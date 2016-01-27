@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ComponentsTestSuite">
+    <test name="ResponsiveTests">
+        <classes>
+            <class name="elementsTests.ResponsiveUtilitiesTest"/>
+        </classes>
+    </test>
+</suite>
