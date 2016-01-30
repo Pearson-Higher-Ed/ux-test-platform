@@ -29,9 +29,7 @@ public class ResponsiveUtilitiesTest {
 
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
 		caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
-			System.out.println("<<<TRAVIS_JOB_NUMBER>>>: "+System.getenv("TRAVIS_JOB_NUMBER"));
 		caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-			System.out.println("<<<TRAVIS_BUILD_NUMBER>>>: "+System.getenv("TRAVIS_BUILD_NUMBER"));
 		caps.setCapability("platform", "OSX 10.8");
 		caps.setCapability("version", "43.0"); 
 		driver = new RemoteWebDriver(new URL(URL), caps);
@@ -46,7 +44,7 @@ public class ResponsiveUtilitiesTest {
 		String inputFilePath = "src/main/java/elements/fixtures/responsive.html";
 		String url = new File(inputFilePath).getAbsolutePath();
 		Thread.sleep(5000);
-		commonUtils.getUrl("http://localhost:8000/javatests-travis-ci-poc/src/main/java/elements/fixtures/responsive.html"); 
+		commonUtils.getUrl("http://localhost:8000/src/main/java/elements/fixtures/responsive.html"); 
 		commonUtils.setWindowSize(300,800);
 
 		String actual = commonUtils.getCSSValue(respPgObj.xtraSmall,"background-color");
