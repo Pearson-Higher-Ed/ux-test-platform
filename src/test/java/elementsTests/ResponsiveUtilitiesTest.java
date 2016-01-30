@@ -48,7 +48,7 @@ public class ResponsiveUtilitiesTest {
 		commonUtils.setWindowSize(300,800);
 
 		String actual = commonUtils.getCSSValue(respPgObj.xtraSmall,"background-color");
-		Assert.assertEquals(actual, "rgba(255, 0, 0, 1)");
+		Assert.assertEquals(actual, "rgba(255, 0, 0, 0)");
 	}
 
 	@AfterTest
