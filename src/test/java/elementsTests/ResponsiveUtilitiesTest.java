@@ -18,20 +18,22 @@ public class ResponsiveUtilitiesTest {
 	public WebDriver driver;
 	ResponsiveUtilitiesPageObjects respPgObj;
 	CommonUtils commonUtils;
-	public static final String USERNAME = System.getenv("SAUCE_USERNAME");
-	public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-	//public static final String USERNAME = "eajaz";
-	//public static final String ACCESS_KEY = "dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80";
+	//public static final String USERNAME = System.getenv("SAUCE_USERNAME");
+	//public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+	public static final String USERNAME = "eajaz";
+	public static final String ACCESS_KEY = "dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80";
 	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 
 	@BeforeTest
 	public void setUp() throws MalformedURLException{
 
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
-		//caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+		caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+		System.out.println("TRAVIS_JOB_NUMBER: "+System.getenv("TRAVIS_JOB_NUMBER"));
+		caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
+		System.out.println("TRAVIS_BUILD_NUMBER: "+System.getenv("TRAVIS_JOB_NUMBER"));
 		caps.setCapability("platform", "OSX 10.8");
-		caps.setCapability("version", "43.0");
-		System.out.println("TRAVIS_JOB_NUMBER: "+System.getenv("TRAVIS_JOB_NUMBER"));				
+		caps.setCapability("version", "43.0");				
 		driver = new RemoteWebDriver(new URL(URL), caps);
 		//driver = new FirefoxDriver();
 		respPgObj = new ResponsiveUtilitiesPageObjects(driver);
