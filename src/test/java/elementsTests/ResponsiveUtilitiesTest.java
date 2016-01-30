@@ -26,7 +26,7 @@ public class ResponsiveUtilitiesTest {
 	public void setUp() throws MalformedURLException{
 
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
-		caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+		//caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		caps.setCapability("platform", "OSX 10.8");
 		caps.setCapability("version", "43.0");
 		System.out.println("TRAVIS_JOB_NUMBER: "+System.getenv("TRAVIS_JOB_NUMBER"));				
