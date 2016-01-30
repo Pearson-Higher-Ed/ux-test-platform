@@ -41,7 +41,7 @@ public class ResponsiveUtilitiesTest {
 		System.out.println(Paths.get(inputFilePath));
 		String url = new File(inputFilePath).getAbsolutePath();
 		Thread.sleep(5000);
-		commonUtils.getUrl("http://localhost:8000/src/main/java/elements/fixtures/responsive.html"); 
+		commonUtils.getUrl("http://0.0.0.0:8000/src/main/java/elements/fixtures/responsive.html"); 
 		commonUtils.setWindowSize(300,800);
 
 		String actual = commonUtils.getCSSValue(respPgObj.xtraSmall,"background-color");
