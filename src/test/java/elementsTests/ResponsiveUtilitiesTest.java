@@ -29,9 +29,9 @@ public class ResponsiveUtilitiesTest {
 
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
 		caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
-			System.out.println("TRAVIS_JOB_NUMBER: "+System.getenv("TRAVIS_JOB_NUMBER"));
+			System.out.println("<<<TRAVIS_JOB_NUMBER>>>: "+System.getenv("TRAVIS_JOB_NUMBER"));
 		caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-			System.out.println("TRAVIS_BUILD_NUMBER: "+System.getenv("TRAVIS_BUILD_NUMBER"));
+			System.out.println("<<<TRAVIS_BUILD_NUMBER>>>: "+System.getenv("TRAVIS_BUILD_NUMBER"));
 		caps.setCapability("platform", "OSX 10.8");
 		caps.setCapability("version", "43.0"); 
 		driver = new RemoteWebDriver(new URL(URL), caps);
