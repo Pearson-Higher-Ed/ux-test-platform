@@ -1,6 +1,8 @@
 language: java
 addons:
 sauce_connect: true
+username: "eajaz"
+access_key: "dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80"
 before_script:
 - python -m SimpleHTTPServer &
 - sleep 2
