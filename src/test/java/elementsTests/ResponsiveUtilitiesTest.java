@@ -33,7 +33,7 @@ public class ResponsiveUtilitiesTest {
 		caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 			System.out.println("TRAVIS_BUILD_NUMBER: "+System.getenv("TRAVIS_BUILD_NUMBER"));
 		caps.setCapability("platform", "OSX 10.8");
-		caps.setCapability("version", "43.0");				
+		caps.setCapability("version", "43.0"); 
 		driver = new RemoteWebDriver(new URL(URL), caps);
 		//driver = new FirefoxDriver();
 		respPgObj = new ResponsiveUtilitiesPageObjects(driver);
