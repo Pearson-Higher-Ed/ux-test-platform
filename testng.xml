@@ -1,9 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="ComponentsTestSuite">
+
+    <parameter name="runEnv" value="sauce"></parameter>
+    <parameter name="travis" value="on"></parameter>
+    <parameter name="platform" value="OSX 10.8"></parameter>
+    <parameter name="vmBrowser" value="firefox"></parameter>
+    <parameter name="vmBrowserVer" value="43"></parameter>
+    <parameter name="localBrowser" value="chrome"></parameter>
+    
     <test name="ResponsiveTests">
-        <classes>
-            <class name="elementsTests.ResponsiveUtilitiesTest"/>
-        </classes>
+        <packages>
+            <package name="elementsTests"/>
+        </packages>
     </test>
 </suite>

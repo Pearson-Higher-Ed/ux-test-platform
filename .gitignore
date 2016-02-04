@@ -14,3 +14,5 @@
 # Maven
 log/
 target/
+test-output/
+testng.out.xml
