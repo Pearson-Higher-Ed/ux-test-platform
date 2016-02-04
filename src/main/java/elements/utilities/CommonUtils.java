@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 public class CommonUtils {
 
     private WebDriver driver;
+    Dimension dimension;
 
     public CommonUtils(WebDriver driver) {
         this.driver = driver;
@@ -36,7 +37,6 @@ public class CommonUtils {
 
     //set windowsize
     public void setWindowSize(int width,int height){
-        Dimension dimension;
         dimension = new Dimension(width, height);
         driver.manage().window().setSize(dimension);
     }
