@@ -11,12 +11,18 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 	final String url="http://localhost:8000/src/main/java/elements/fixtures/responsive.html";
 	String inputFilePath = "src/main/java/elements/fixtures/responsive.html";
 	String localUrl = new File(inputFilePath).getAbsolutePath();
+	static String env="";
 
 	@Parameters({"runEnv"})
+	@BeforeClass
+	public void setEnv(String runEnv){
+		env=runEnv;
+	}
+
 	@Test(testName = "XS Test")
 	public void xsTest(String runEnv) {
 		String responsiveValue,defaultValue;
-		if (runEnv.equals("sauce")) {
+		if (env.equals("sauce")) {
 			commonUtils.getUrl(url);
 		}
         else {
@@ -31,12 +37,11 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		Assert.assertEquals(defaultValue, "none","Responsive Failed");
 	}
 
-	@Parameters({"runEnv"})
 	@Test(testName = "SM Test")
 	public void smTest(String runEnv) {
 		String responsiveValue,defaultValue;
 
-		if (runEnv.equals("sauce")) {
+		if (env.equals("sauce")) {
 			commonUtils.getUrl(url);
 		}
 		else {
@@ -59,12 +64,11 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		Assert.assertEquals(defaultValue, "none","Responsive Failed");
 	}
 
-	@Parameters({"runEnv"})
 	@Test(testName= "MD Test")
 	public void mdTest(String runEnv){
 		String responsiveValue,defaultValue;
 
-		if(runEnv.equals("sauce")){
+		if(env.equals("sauce")){
 			commonUtils.getUrl(url);
 		}
 		else{
@@ -87,7 +91,6 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		Assert.assertEquals(defaultValue, "none","Responsive Failed");
 	}
 
-	@Parameters({"runEnv"})
 	@Test(testName= "LG Test")
 	public void lgTest(String runEnv){
 		String responsiveValue,defaultValue;
@@ -115,12 +118,11 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		Assert.assertEquals(defaultValue, "none","Responsive Failed");
 	}
 
-	@Parameters({"runEnv"})
 	@Test(testName= "XL Test")
 	public void xlTest(String runEnv){
 		String responsiveValue,defaultValue;
 
-		if(runEnv.equals("sauce")){
+		if(env.equals("sauce")){
 			commonUtils.getUrl(url);
 		}
 		else{
