@@ -7,7 +7,7 @@
     <parameter name="platform" value="OSX 10.8"></parameter>
     <parameter name="vmBrowser" value="firefox"></parameter>
     <parameter name="vmBrowserVer" value="43"></parameter>
-    <parameter name="localBrowser" value="chrome"></parameter>
+    <parameter name="localBrowser" value="firefox"></parameter>
     
     <test name="ResponsiveTests">
         <packages>
