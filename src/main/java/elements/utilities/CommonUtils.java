@@ -48,4 +48,9 @@ public class CommonUtils {
         //Test
 	}
 
+    //get Text
+    public String getText(By element){
+        webElement = driver.findElement(element);
+        return webElement.getText();
+    }
 }

@@ -13,9 +13,14 @@ public class ResponsiveUtilitiesPageObjects {
         this.driver = driver;
     }
 
-    public By xtraSmall=By.id("xs");
-    public By small=By.id("sm");
-    public By medium=By.id("md");
-    public By large=By.id("lg");
-    public By xtraLarge=By.id("xl");
+    public By xtraSmallVisible=By.id("xs-visible");
+    public By xtraSmallHidden=By.id("xs-hidden");
+    public By smallVisible=By.id("sm-visible");
+    public By smallHidden=By.id("sm-hidden");
+    public By mediumVisible=By.id("md-visible");
+    public By mediumHidden=By.id("md-hidden");
+    public By largeVisible=By.id("lg-visible");
+    public By largeHidden=By.id("lg-hidden");
+    public By xtraLargeVisible=By.id("xl-visible");
+    public By xtraLargeHidden=By.id("xl-hidden");
 }
