@@ -12,6 +12,7 @@ public class CommonUtils {
 
     private WebDriver driver;
     Dimension dimension;
+    WebElement webElement;
 
     public CommonUtils(WebDriver driver) {
         this.driver = driver;
@@ -19,20 +20,19 @@ public class CommonUtils {
 
     //click
     public void click(By element) {
-        WebElement webElement = driver.findElement(element);
+        webElement = driver.findElement(element);
         webElement.click();
     }
 
     //is element present
     public boolean isElementPresent(By element){
-        WebElement webElement = driver.findElement(element);
+        webElement = driver.findElement(element);
         return webElement.findElement(element).isDisplayed();
     }
 
     //get url
     public void getUrl(String url){
-    	System.out.println("url: "+url);
-        driver.get(url);        
+    	driver.get(url);
     }
 
     //set windowsize
@@ -43,7 +43,7 @@ public class CommonUtils {
 
     //get css value
 	public String getCSSValue(By element, String property) {
-		WebElement webElement = driver.findElement(element);
+		webElement = driver.findElement(element);
 		return webElement.getCssValue(property);
         //Test
 	}

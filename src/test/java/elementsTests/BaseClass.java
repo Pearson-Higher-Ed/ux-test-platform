@@ -28,13 +28,12 @@ public class BaseClass {
     @Parameters({"runEnv","travis","platform","vmBrowser","vmBrowserVer","localBrowser"})
 	@BeforeSuite
 	protected void setUp(String runEnv, String travis, String platform, String vmBrowser, String vmBrowserVer,String localBrowser) throws MalformedURLException{
-    	System.out.println("entering before suite");
-    	System.out.println(runEnv.equals("sauce"));	
+
 		if(runEnv.equals("sauce")) {
 
             DesiredCapabilities caps = new DesiredCapabilities();
 
-			/*** The below conditions is to launch the respective browser driver on Sauce machine ***/
+			//The below conditions is to launch the respective browser driver on Sauce machine
             if(vmBrowser.equals("chrome")) {
                 caps = DesiredCapabilities.chrome();
             }
@@ -45,7 +44,7 @@ public class BaseClass {
                 caps = DesiredCapabilities.internetExplorer();
             }
 
-            /*** The below condition will work only when the build is triggered through Travis CI and in testng.xml -> set travis to 'on' ***/
+            //The below condition will work only when the build is triggered through Travis CI and in testng.xml -> set travis to 'on'
             if(travis.equals("on")) {
             	USERNAME = System.getenv("SAUCE_USERNAME");
     			ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -58,23 +57,19 @@ public class BaseClass {
             caps.setCapability("version", vmBrowserVer);
             driver = new RemoteWebDriver(new URL(URL), caps);
 		}
-        /*** The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce ***/
+        //The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
 		else {
-			System.out.println(localBrowser.equals("firefox"));
-            if(localBrowser.equals("firefox")) {
+			if(localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();
             }
 		}
 		respPgObj = new ResponsiveUtilitiesPageObjects(driver);
 		commonUtils = new CommonUtils(driver);
-		System.out.println("exiting before suite");
     }
     
 	@AfterSuite
 	public void tearDown() {
-		System.out.println("entering after suite");
 		driver.close();
 		driver.quit();
-		System.out.println("exiting after suite");
 	}
 }
