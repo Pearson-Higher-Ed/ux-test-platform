@@ -14,6 +14,64 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 	String responsiveValue_1,responsiveValue_2,defaultValue_1,defaultValue_2;
 
 	@Parameters({"runEnv"})
+	@Test(testName= "LG Test")
+	public void lgTest(String runEnv){
+		String responsiveValue,defaultValue;
+		if(runEnv.equals("sauce")){
+			commonUtils.getUrl(url);
+		}
+		else{
+			commonUtils.getUrl("file:///"+localUrl);
+		}
+		commonUtils.setWindowSize(1024,800);
+		responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
+		responsiveValue_2=commonUtils.getCSSValue(respPgObj.largeVisible,"color");
+		Assert.assertEquals(responsiveValue_1, "lg-visible","Responsive Failed");
+		Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)","Responsive Failed");
+
+		commonUtils.setWindowSize(1279,800);
+		responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
+		responsiveValue_2=commonUtils.getCSSValue(respPgObj.largeVisible,"color");
+		Assert.assertEquals(responsiveValue_1, "lg-visible","Responsive Failed");
+		Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)","Responsive Failed");
+
+		commonUtils.setWindowSize(1023,800);
+		defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
+		defaultValue_2=commonUtils.getCSSValue(respPgObj.largeHidden,"color");
+		Assert.assertEquals(defaultValue_1, "lg-hidden","Responsive Failed");
+		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
+
+		commonUtils.setWindowSize(1280,800);
+		defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
+		defaultValue_2=commonUtils.getCSSValue(respPgObj.largeHidden,"color");
+		Assert.assertEquals(defaultValue_1, "lg-hidden","Responsive Failed");
+		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
+	}
+
+	@Parameters({"runEnv"})
+	@Test(testName= "XL Test")
+	public void xlTest(String runEnv){
+		String responsiveValue,defaultValue;
+		if(runEnv.equals("sauce")){
+			commonUtils.getUrl(url);
+		}
+		else{
+			commonUtils.getUrl("file:///"+localUrl);
+		}
+		commonUtils.setWindowSize(1280,800);
+		responsiveValue_1 = commonUtils.getText(respPgObj.xtraLargeVisible);
+		responsiveValue_2=commonUtils.getCSSValue(respPgObj.xtraLargeVisible,"color");
+		Assert.assertEquals(responsiveValue_1, "xl-visible","Responsive Failed");
+		Assert.assertEquals(responsiveValue_2, "rgba(173, 255, 47, 1)","Responsive Failed");
+
+		commonUtils.setWindowSize(1279,800);
+		defaultValue_1 = commonUtils.getText(respPgObj.xtraLargeHidden);
+		defaultValue_2=commonUtils.getCSSValue(respPgObj.xtraLargeHidden,"color");
+		Assert.assertEquals(defaultValue_1, "xl-hidden","Responsive Failed");
+		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
+	}
+
+	@Parameters({"runEnv"})
 	@Test(testName = "XS Test")
 	public void xsTest(String runEnv) {
 
@@ -105,66 +163,6 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		defaultValue_1 = commonUtils.getText(respPgObj.mediumHidden);
 		defaultValue_2=commonUtils.getCSSValue(respPgObj.mediumHidden,"color");
 		Assert.assertEquals(defaultValue_1, "md-hidden","Responsive Failed");
-		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
-	}
-
-
-	@Parameters({"runEnv"})
-	@Test(testName= "LG Test")
-	public void lgTest(String runEnv){
-		String responsiveValue,defaultValue;
-		if(runEnv.equals("sauce")){
-			commonUtils.getUrl(url);
-		}
-		else{
-			commonUtils.getUrl("file:///"+localUrl);
-		}
-		commonUtils.setWindowSize(1024,800);
-		responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
-		responsiveValue_2=commonUtils.getCSSValue(respPgObj.largeVisible,"color");
-		Assert.assertEquals(responsiveValue_1, "lg-visible","Responsive Failed");
-		Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)","Responsive Failed");
-
-		commonUtils.setWindowSize(1279,800);
-		responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
-		responsiveValue_2=commonUtils.getCSSValue(respPgObj.largeVisible,"color");
-		Assert.assertEquals(responsiveValue_1, "lg-visible","Responsive Failed");
-		Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)","Responsive Failed");
-
-		commonUtils.setWindowSize(1023,800);
-		defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
-		defaultValue_2=commonUtils.getCSSValue(respPgObj.largeHidden,"color");
-		Assert.assertEquals(defaultValue_1, "lg-hidden","Responsive Failed");
-		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
-
-		commonUtils.setWindowSize(1280,800);
-		defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
-		defaultValue_2=commonUtils.getCSSValue(respPgObj.largeHidden,"color");
-		Assert.assertEquals(defaultValue_1, "lg-hidden","Responsive Failed");
-		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
-	}
-
-
-	@Parameters({"runEnv"})
-	@Test(testName= "XL Test")
-	public void xlTest(String runEnv){
-		String responsiveValue,defaultValue;
-		if(runEnv.equals("sauce")){
-			commonUtils.getUrl(url);
-		}
-		else{
-			commonUtils.getUrl("file:///"+localUrl);
-		}
-		commonUtils.setWindowSize(1280,800);
-		responsiveValue_1 = commonUtils.getText(respPgObj.xtraLargeVisible);
-		responsiveValue_2=commonUtils.getCSSValue(respPgObj.xtraLargeVisible,"color");
-		Assert.assertEquals(responsiveValue_1, "xl-visible","Responsive Failed");
-		Assert.assertEquals(responsiveValue_2, "rgba(173, 255, 47, 1)","Responsive Failed");
-
-		commonUtils.setWindowSize(1279,800);
-		defaultValue_1 = commonUtils.getText(respPgObj.xtraLargeHidden);
-		defaultValue_2=commonUtils.getCSSValue(respPgObj.xtraLargeHidden,"color");
-		Assert.assertEquals(defaultValue_1, "xl-hidden","Responsive Failed");
 		Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)","Responsive Failed");
 	}
 }
