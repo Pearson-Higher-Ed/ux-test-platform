@@ -15,7 +15,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 
 	@Parameters({"runEnv"})
 	@Test(testName= "LG Test", enabled = true)
-	public void lgTest(String runEnv){
+	public void lgTest(String runEnv) throws InterruptedException {
 		if(runEnv.equals("sauce")){
 			commonUtils.getUrl(url);
 		}
@@ -34,6 +34,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 		Assert.assertEquals(responsiveValue_1, "lg-visible","Responsive Failed");
 		Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)","Responsive Failed");
 
+		Thread.sleep(1000);
 		commonUtils.setWindowSize(1023,800);
 		defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
 		defaultValue_2=commonUtils.getCSSValue(respPgObj.largeHidden,"color");
