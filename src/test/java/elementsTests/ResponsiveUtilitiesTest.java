@@ -49,7 +49,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 	}
 
 	@Parameters({"runEnv"})
-	@Test(testName= "XL Test", enabled = false)
+	@Test(testName= "XL Test", enabled = true)
 	public void xlTest(String runEnv){
 		if(runEnv.equals("sauce")){
 			commonUtils.getUrl(url);
@@ -71,7 +71,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 	}
 
 	@Parameters({"runEnv"})
-	@Test(testName = "XS Test",enabled = false)
+	@Test(testName = "XS Test",enabled = true)
 	public void xsTest(String runEnv) {
 		if (runEnv.equals("sauce")) {
 			commonUtils.getUrl(url);
@@ -94,7 +94,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 
 
 	@Parameters({"runEnv"})
-	@Test(testName = "SM Test", enabled = false)
+	@Test(testName = "SM Test", enabled = true)
 	public void smTest(String runEnv) {
 		if (runEnv.equals("sauce")) {
 			commonUtils.getUrl(url);
@@ -129,7 +129,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 
 
 	@Parameters({"runEnv"})
-	@Test(testName= "MD Test", enabled = false)
+	@Test(testName= "MD Test", enabled = true)
 	public void mdTest(String runEnv){
 		if(runEnv.equals("sauce")){
 			commonUtils.getUrl(url);
