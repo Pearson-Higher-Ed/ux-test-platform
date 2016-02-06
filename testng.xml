@@ -4,9 +4,9 @@
 
     <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="on"></parameter>
-    <parameter name="platform" value="Windows 10"></parameter>
-    <parameter name="vmBrowser" value="ie"></parameter>
-    <parameter name="vmBrowserVer" value="11"></parameter>
+    <parameter name="platform" value="OSX 10.8"></parameter>
+    <parameter name="vmBrowser" value="chrome"></parameter>
+    <parameter name="vmBrowserVer" value="43"></parameter>
     <parameter name="localBrowser" value="firefox"></parameter>
     
     <test name="ResponsiveTests">
