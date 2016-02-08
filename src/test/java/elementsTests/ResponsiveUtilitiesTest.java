@@ -73,10 +73,10 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 	@Parameters({"runEnv"})
 	@Test(testName = "XS Test",enabled = true)
 	public void xsTest(String runEnv) {
-		if (runEnv.equals("sauce")) {
+		if (runEnv.equals("sauce")){
 			commonUtils.getUrl(url);
-		}
-        else {
+			}
+		else {
 			commonUtils.getUrl("file:///" + localUrl);
 		}
 		commonUtils.setWindowSize(479, 800);
