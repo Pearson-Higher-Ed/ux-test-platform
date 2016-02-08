@@ -25,47 +25,43 @@ public class BaseClass {
 	String USERNAME="eajaz";
 	String ACCESS_KEY="dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80";
 
-    @Parameters({"runEnv","travis","platform","vmBrowser","vmBrowserVer","localBrowser"})
+    	@Parameters({"runEnv","travis","platform","vmBrowser","vmBrowserVer","localBrowser"})
 	@BeforeSuite
 	protected void setUp(String runEnv, String travis, String platform, String vmBrowser, String vmBrowserVer,String localBrowser) throws MalformedURLException{
-
 		if(runEnv.equals("sauce")) {
-
-            DesiredCapabilities caps = new DesiredCapabilities();
-
+			DesiredCapabilities caps = new DesiredCapabilities();
+			
 			//The below conditions is to launch the respective browser driver on Sauce machine
-            if(vmBrowser.equals("chrome")) {
-                caps = DesiredCapabilities.chrome();
-            }
-            else if (vmBrowser.equals("firefox")) {
-                caps = DesiredCapabilities.firefox();
-            }
-            else if (vmBrowser.equals("ie")) {
-                caps = DesiredCapabilities.internetExplorer();
-            }
-
-            //The below condition will work only when the build is triggered through Travis CI and in testng.xml -> set travis to 'on'
-            if(travis.equals("on")) {
-            	USERNAME = System.getenv("SAUCE_USERNAME");
-    			ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-    			caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
-                caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-			}
-
-            final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-            caps.setCapability("platform", platform);
-            caps.setCapability("version", vmBrowserVer);
-            driver = new RemoteWebDriver(new URL(URL), caps);
+			if(vmBrowser.equals("chrome")) {
+				caps = DesiredCapabilities.chrome();
+				}
+			else if (vmBrowser.equals("firefox")) {
+				caps = DesiredCapabilities.firefox();
+				}
+			else if (vmBrowser.equals("ie")) {
+				caps = DesiredCapabilities.internetExplorer();
+				}
+			//The below condition will work only when the build is triggered through Travis CI and in testng.xml -> set travis to 'on'
+			if(travis.equals("on")) {
+				USERNAME = System.getenv("SAUCE_USERNAME");
+				ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+				caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+				caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
+				}
+			final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+			caps.setCapability("platform", platform);
+			caps.setCapability("version", vmBrowserVer);
+			driver = new RemoteWebDriver(new URL(URL), caps);
 		}
-        //The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
-		else {
-			if(localBrowser.equals("firefox")) {
-                driver = new FirefoxDriver();
-            }
-		}
-		respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+            	//The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
+            	else {
+            		if(localBrowser.equals("firefox")) {
+            			driver = new FirefoxDriver();
+            			}
+            	}
+            	respPgObj = new ResponsiveUtilitiesPageObjects(driver);
 		commonUtils = new CommonUtils(driver);
-    }
+	}
     
 	@AfterSuite
 	public void tearDown() {
