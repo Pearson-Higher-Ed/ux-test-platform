@@ -25,22 +25,24 @@ public class BaseClass {
 	String USERNAME="eajaz";
 	String ACCESS_KEY="dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80";
 
-    	@Parameters({"runEnv","travis","platform","vmBrowser","vmBrowserVer","localBrowser"})
+	@Parameters({"runEnv","travis","desktop","platform","vmBrowser","vmBrowserVer","localBrowser","mobile","mobPlatform","mobBrowser","appiumVer"})
 	@BeforeSuite
-	protected void setUp(String runEnv, String travis, String platform, String vmBrowser, String vmBrowserVer,String localBrowser) throws MalformedURLException{
+	protected void setUp(String runEnv, String travis, String desktop, String platform, String vmBrowser, String vmBrowserVer,String localBrowser,String mobile,String mobPlatform,String mobBrowser,String appiumVer) throws MalformedURLException{
 		if(runEnv.equals("sauce")) {
 			DesiredCapabilities caps = new DesiredCapabilities();
-			
-			//The below conditions is to launch the respective browser driver on Sauce machine
-			if(vmBrowser.equals("chrome")) {
-				caps = DesiredCapabilities.chrome();
+
+			if(desktop.equals("on")) {
+				//The below conditions is to launch the respective browser driver on Sauce machine
+				if (vmBrowser.equals("chrome")) {
+					caps = DesiredCapabilities.chrome();
+				} else if (vmBrowser.equals("firefox")) {
+					caps = DesiredCapabilities.firefox();
+				} else if (vmBrowser.equals("ie")) {
+					caps = DesiredCapabilities.internetExplorer();
 				}
-			else if (vmBrowser.equals("firefox")) {
-				caps = DesiredCapabilities.firefox();
-				}
-			else if (vmBrowser.equals("ie")) {
-				caps = DesiredCapabilities.internetExplorer();
-				}
+				caps.setCapability("platform", platform);
+				caps.setCapability("version", vmBrowserVer);
+			}
 			//The below condition will work only when the build is triggered through Travis CI and in testng.xml -> set travis to 'on'
 			if(travis.equals("on")) {
 				USERNAME = System.getenv("SAUCE_USERNAME");
@@ -49,8 +51,6 @@ public class BaseClass {
 				caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 				}
 			final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-			caps.setCapability("platform", platform);
-			caps.setCapability("version", vmBrowserVer);
 			driver = new RemoteWebDriver(new URL(URL), caps);
 		}
             	//The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
