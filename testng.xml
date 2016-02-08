@@ -1,6 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >  
-<suite name="ComponentsTestSuite">  <parameter name="runEnv" value="sauce"></parameter> <parameter name="travis"
-                                                                                                   value="on"></parameter>
+<suite name="ComponentsTestSuite">
+
+      <parameter name="runEnv" value="sauce"></parameter> 
+    <parameter name="travis" value="on"></parameter>
+
     <!-- For Desktop --> 
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop --> 
     <parameter name="platform" value="OSX 10.8"></parameter><!-- MAC or Windows --> 
@@ -15,8 +18,6 @@
     <parameter name="appiumVer" value="1.4"></parameter><!-- version of appium on sauce --> 
 
     <test name="ResponsiveTests"> 
-        <packages> <package name="elementsTests"/> 
-        </packages>         
-    </test>
-     
+        <packages> <package name="elementsTests"/> </packages>         
+    </test>     
 </suite>
