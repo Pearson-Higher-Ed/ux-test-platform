@@ -1,9 +1,11 @@
 package elementsTests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Rotatable;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 
 import java.io.File;
@@ -13,261 +15,198 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     final String url = "http://localhost:8000/src/main/java/elements/fixtures/responsive.html";
     String inputFilePath = "src/main/java/elements/fixtures/responsive.html";
     String localUrl = new File(inputFilePath).getAbsolutePath();
-    String responsiveValue_1, responsiveValue_2, defaultValue_1, defaultValue_2;
+    String responsiveValue_1, responsiveValue_2;
     String landscapeValue_1, landscapeValue_2, portraitValue_1, portraitValue_2;
+    static String env;
+    static String mobileDevice;
 
-    @Parameters({"runEnv"})
-    @Test(testName = "LG Test", groups = {"desktop"})
-    public void lgTest(String runEnv) throws InterruptedException {
-        if (runEnv.equals("sauce")) {
+    @Parameters({"runEnv", "mobDeviceName"})
+    @BeforeClass(alwaysRun = true)
+    public void beforeClass(String runEnv, String mobDeviceName) {
+        env = runEnv;
+        mobileDevice = mobDeviceName;
+    }
+
+    @DataProvider(name = "LGTestData")
+    public Object[][] getLGTestData() {
+        return new Object[][]{
+                {1024, 800, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
+                {1279, 800, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
+                {1023, 800, respPgObj.largeHidden, "lg-hidden", "rgba(128, 128, 128, 1)"},
+                {1280, 800, respPgObj.largeHidden, "lg-hidden", "rgba(128, 128, 128, 1)"}
+        };
+    }
+
+    @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop"})
+    public void lgTest(int width, int height, By element, String visible, String color) throws InterruptedException {
+        chooseEnv();
+        performRespEval(width, height, element, visible, color);
+    }
+
+    @DataProvider(name = "XLTestData")
+    public Object[][] getXLTestData() {
+        return new Object[][]{
+                {1280, 800, respPgObj.xtraLargeVisible, "xl-visible", "rgba(173, 255, 47, 1)"},
+                {1279, 800, respPgObj.xtraLargeHidden, "xl-hidden", "rgba(128, 128, 128, 1)"},
+        };
+    }
+
+    @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop"})
+    public void xlTest(int width, int height, By element, String visible, String color) {
+        chooseEnv();
+        performRespEval(width, height, element, visible, color);
+    }
+
+    @DataProvider(name = "XSTestData")
+    public Object[][] getXSTestData() {
+        return new Object[][]{
+                {479, 800, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {480, 800, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+        };
+    }
+
+    @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop"})
+    public void xsTest(int width, int height, By element, String visible, String color) {
+        chooseEnv();
+        performRespEval(width, height, element, visible, color);
+    }
+
+    @DataProvider(name = "SMTestData")
+    public Object[][] getSMTestData() {
+        return new Object[][]{
+                {480, 800, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"},
+                {767, 800, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"},
+                {479, 800, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {768, 800, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+        };
+    }
+
+    @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop"})
+    public void smTest(int width, int height, By element, String visible, String color) {
+        chooseEnv();
+        performRespEval(width, height, element, visible, color);
+    }
+
+    @DataProvider(name = "MDTestData")
+    public Object[][] getMDTestData() {
+        return new Object[][]{
+                {768, 800, respPgObj.mediumVisible, "md-visible", "rgba(0, 0, 255, 1)"},
+                {1023, 800, respPgObj.mediumVisible, "md-visible", "rgba(0, 0, 255, 1)"},
+                {767, 800, respPgObj.mediumHidden, "md-hidden", "rgba(128, 128, 128, 1)"},
+                {1024, 800, respPgObj.mediumHidden, "md-hidden", "rgba(128, 128, 128, 1)"},
+        };
+    }
+
+    @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop"})
+    public void mdTest(int width, int height, By element, String visible, String color) {
+        chooseEnv();
+        performRespEval(width, height, element, visible, color);
+    }
+
+    public void chooseEnv() {
+        if (env.equals("sauce")) {
             commonUtils.getUrl(url);
         } else {
             commonUtils.getUrl("file:///" + localUrl);
         }
-        commonUtils.setWindowSize(1024, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.largeVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "lg-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(1279, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.largeVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.largeVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "lg-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(139, 0, 139, 1)", "Responsive Failed");
-
-        Thread.sleep(1000);
-        commonUtils.setWindowSize(1023, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.largeHidden, "color");
-        Assert.assertEquals(defaultValue_1, "lg-visible", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(1280, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.largeHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.largeHidden, "color");
-        Assert.assertEquals(defaultValue_1, "lg-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
     }
 
-    @Parameters({"runEnv"})
-    @Test(testName = "XL Test", groups = {"desktop"})
-    public void xlTest(String runEnv) {
-        if (runEnv.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
+    public void performRespEval(int width, int height, By element, String visible, String color) {
+        commonUtils.setWindowSize(width, height);
+        responsiveValue_1 = commonUtils.getText(element);
+        responsiveValue_2 = commonUtils.getCSSValue(element, "color");
+        Assert.assertEquals(responsiveValue_1, visible, "Responsive Failed");
+        Assert.assertEquals(responsiveValue_2, color, "Responsive Failed");
+    }
+
+    public void performRespForMobileEval(By element, String visible, String color) {
+        responsiveValue_1 = commonUtils.getText(element, "mobile");
+        System.out.println("actual: " + responsiveValue_1 + " --- expected: " + visible);
+        responsiveValue_2 = commonUtils.getCSSValue(element, "color", "mobile");
+        System.out.println("actual: " + responsiveValue_2 + " --- expected: " + color);
+        Assert.assertEquals(responsiveValue_1, visible, "Responsive Failed");
+        Assert.assertEquals(responsiveValue_2, color, "Responsive Failed");
+    }
+    
+    /*********************************************************** MOBILE TESTS *************************************************************/
+    
+    //For iPhone 6 Plus
+    @DataProvider(name = "iPhone6PlusTestData")
+    public Object[][] iPhone6PlusTestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"}                
+        };
+    }
+
+    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"})
+    public void iPhone6PlusResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPhone 6 Plus"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.setWindowSize(1280, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.xtraLargeVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.xtraLargeVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "xl-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(173, 255, 47, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(1279, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.xtraLargeHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.xtraLargeHidden, "color");
-        Assert.assertEquals(defaultValue_1, "xl-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
     }
 
-    @Parameters({"runEnv"})
-    @Test(testName = "XS Test", groups = {"desktop"})
-    public void xsTest(String runEnv) {
-        if (runEnv.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
+    //For iPad Air
+    @DataProvider(name = "iPadAirTestData")
+    public Object[][] iPadAirTestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.mediumVisible, "md-visible", "rgba(0, 0, 255, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.mediumHidden, "md-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.largeHidden, "lg-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
+        };
+    }
+
+    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile"})
+    public void iPadAirResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPad Air"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.setWindowSize(479, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.xtraSmallVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.xtraSmallVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "xs-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(480, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.xtraSmallHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.xtraSmallHidden, "color");
-        Assert.assertEquals(defaultValue_1, "xs-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
     }
 
+    //iPad Pro
+    @DataProvider(name = "iPadProTestData")
+    public Object[][] iPadProTestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraLargeVisible, "xl-visible", "rgba(173, 255, 47, 1)"},
+        };
+    }
 
-    @Parameters({"runEnv"})
-    @Test(testName = "SM Test", groups = {"desktop"})
-    public void smTest(String runEnv) {
-        if (runEnv.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
+    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile"})
+    public void iPadProResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPad Pro"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.setWindowSize(480, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.smallVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.smallVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "sm-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(0, 128, 0, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(767, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.smallVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.smallVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "sm-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(0, 128, 0, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(479, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.smallHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.smallHidden, "color");
-        Assert.assertEquals(defaultValue_1, "sm-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(768, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.smallHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.smallHidden, "color");
-        Assert.assertEquals(defaultValue_1, "sm-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
     }
 
+    //Nexus 7
+    @DataProvider(name = "nexus7TestData")
+    public Object[][] nexus7TestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.mediumVisible, "md-visible", "rgba(0, 0, 255, 1)"},
+        };
+    }
 
-    @Parameters({"runEnv"})
-    @Test(testName = "MD Test", groups = {"desktop"})
-    public void mdTest(String runEnv) {
-        if (runEnv.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
+    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile"})
+    public void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
-        commonUtils.setWindowSize(768, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.mediumVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.mediumVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "md-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(0, 0, 255, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(1023, 800);
-        responsiveValue_1 = commonUtils.getText(respPgObj.mediumVisible);
-        responsiveValue_2 = commonUtils.getCSSValue(respPgObj.mediumVisible, "color");
-        Assert.assertEquals(responsiveValue_1, "md-visible", "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, "rgba(0, 0, 255, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(767, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.mediumHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.mediumHidden, "color");
-        Assert.assertEquals(defaultValue_1, "md-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-
-        commonUtils.setWindowSize(1024, 800);
-        defaultValue_1 = commonUtils.getText(respPgObj.mediumHidden);
-        defaultValue_2 = commonUtils.getCSSValue(respPgObj.mediumHidden, "color");
-        Assert.assertEquals(defaultValue_1, "md-hidden", "Responsive Failed");
-        Assert.assertEquals(defaultValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "XS Portrait Test Mobile", groups = {"mobile"},priority = 0)
-    public void xsMobilePortraitTest() {
-        appium.rotate(ScreenOrientation.PORTRAIT);
+        appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        portraitValue_1 = commonUtils.getText(respPgObj.xtraSmallVisible, "mobile");
-        portraitValue_2 = commonUtils.getCSSValue(respPgObj.xtraSmallVisible, "color", "mobile");
-        System.out.println("XS: portraitValue_1: "+portraitValue_1+ ", portraitValue_2: "+portraitValue_2);
-        //Assert.assertEquals(portraitValue_1, "xs-visible", "Responsive Failed");
-        //Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
+        performRespForMobileEval(element, visible, color);
     }
-
-    @Test(testName = "XS Landscape Test Mobile", groups = {"mobile"},priority = 5)
-    public void xsMobileLandscapeTest() {
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        commonUtils.getUrl(url, "mobile");
-        landscapeValue_1 = commonUtils.getText(respPgObj.xtraSmallHidden, "mobile");
-        landscapeValue_2 = commonUtils.getCSSValue(respPgObj.xtraSmallHidden, "color", "mobile");
-        System.out.println("XS: landscapeValue_1: "+landscapeValue_1+ ", landscapeValue_2: "+landscapeValue_2);
-        //Assert.assertEquals(landscapeValue_1, "xs-hidden", "Responsive Failed");
-        //Assert.assertEquals(landscapeValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "SM Portrait Test Mobile", groups = {"mobile"},priority = 1)
-    public void smMobilePortraitTest() {
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        commonUtils.getUrl(url, "mobile");
-        portraitValue_1 = commonUtils.getText(respPgObj.smallVisible, "mobile");
-        portraitValue_2 = commonUtils.getCSSValue(respPgObj.smallVisible, "color", "mobile");
-        System.out.println("SM: portraitValue_1: "+portraitValue_1+ ", portraitValue_2: "+portraitValue_2);
-        //Assert.assertEquals(portraitValue_1, "sm-visible", "Responsive Failed");
-        //Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "SM Landscape Test Mobile", groups = {"mobile"},priority = 6)
-    public void smMobileLandscapeTest() {
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        commonUtils.getUrl(url, "mobile");
-        landscapeValue_1 = commonUtils.getText(respPgObj.smallHidden, "mobile");
-        landscapeValue_2 = commonUtils.getCSSValue(respPgObj.smallHidden, "color", "mobile");
-        System.out.println("SM: landscapeValue_1: "+landscapeValue_1+ ", landscapeValue_2: "+landscapeValue_2);
-        //Assert.assertEquals(landscapeValue_1, "xs-hidden", "Responsive Failed");
-        //Assert.assertEquals(landscapeValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "MD Portrait Test Mobile", groups = {"mobile"},priority = 2)
-    public void mdMobilePortraitTest() {
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        commonUtils.getUrl(url, "mobile");
-        portraitValue_1 = commonUtils.getText(respPgObj.mediumVisible, "mobile");
-        portraitValue_2 = commonUtils.getCSSValue(respPgObj.mediumVisible, "color", "mobile");
-        System.out.println("MD: portraitValue_1: "+portraitValue_1+ ", portraitValue_2: "+portraitValue_2);
-        //Assert.assertEquals(portraitValue_1, "sm-visible", "Responsive Failed");
-        //Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "MD Landscape Test Mobile", groups = {"mobile"},priority = 7)
-    public void mdMobileLandscapeTest() {
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        commonUtils.getUrl(url, "mobile");
-        landscapeValue_1 = commonUtils.getText(respPgObj.mediumHidden, "mobile");
-        landscapeValue_2 = commonUtils.getCSSValue(respPgObj.mediumHidden, "color", "mobile");
-        System.out.println("MD: landscapeValue_1: "+landscapeValue_1+ ", landscapeValue_2: "+landscapeValue_2);
-        //Assert.assertEquals(landscapeValue_1, "xs-hidden", "Responsive Failed");
-        //Assert.assertEquals(landscapeValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "LG Portrait Test Mobile", groups = {"mobile"},priority = 3)
-    public void lgMobilePortraitTest() {
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        commonUtils.getUrl(url, "mobile");
-        portraitValue_1 = commonUtils.getText(respPgObj.largeVisible, "mobile");
-        portraitValue_2 = commonUtils.getCSSValue(respPgObj.largeVisible, "color", "mobile");
-        System.out.println("LG: portraitValue_1: "+portraitValue_1+ ", portraitValue_2: "+portraitValue_2);
-        //Assert.assertEquals(portraitValue_1, "sm-visible", "Responsive Failed");
-        //Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "LG Landscape Test Mobile", groups = {"mobile"},priority = 8)
-    public void lgMobileLandscapeTest() {
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        commonUtils.getUrl(url, "mobile");
-        landscapeValue_1 = commonUtils.getText(respPgObj.largeHidden, "mobile");
-        landscapeValue_2 = commonUtils.getCSSValue(respPgObj.largeHidden, "color", "mobile");
-        System.out.println("LG: landscapeValue_1: "+landscapeValue_1+ ", landscapeValue_2: "+landscapeValue_2);
-        //Assert.assertEquals(landscapeValue_1, "xs-hidden", "Responsive Failed");
-        //Assert.assertEquals(landscapeValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "XL Portrait Test Mobile", groups = {"mobile"},priority = 4)
-    public void xlMobilePortraitTest() {
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        commonUtils.getUrl(url, "mobile");
-        portraitValue_1 = commonUtils.getText(respPgObj.xtraLargeVisible, "mobile");
-        portraitValue_2 = commonUtils.getCSSValue(respPgObj.xtraLargeVisible, "color", "mobile");
-        System.out.println("XL: portraitValue_1: "+portraitValue_1+ ", portraitValue_2: "+portraitValue_2);
-        //Assert.assertEquals(portraitValue_1, "sm-visible", "Responsive Failed");
-        //Assert.assertEquals(responsiveValue_2, "rgba(255, 0, 0, 1)", "Responsive Failed");
-    }
-
-    @Test(testName = "XL Landscape Test Mobile", groups = {"mobile"},priority = 9)
-    public void xlMobileLandscapeTest() {
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        commonUtils.getUrl(url, "mobile");
-        landscapeValue_1 = commonUtils.getText(respPgObj.xtraLargeHidden, "mobile");
-        landscapeValue_2 = commonUtils.getCSSValue(respPgObj.xtraLargeHidden, "color", "mobile");
-        System.out.println("XL: landscapeValue_1: "+landscapeValue_1+ ", landscapeValue_2: "+landscapeValue_2);
-        //Assert.assertEquals(landscapeValue_1, "xs-hidden", "Responsive Failed");
-        //Assert.assertEquals(landscapeValue_2, "rgba(128, 128, 128, 1)", "Responsive Failed");
-    }
-
 }
