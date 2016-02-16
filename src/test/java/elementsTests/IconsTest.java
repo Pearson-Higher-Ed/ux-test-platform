@@ -71,9 +71,10 @@ public class IconsTest extends BaseClass {
         return "\\" + t.substring(4, 8).toLowerCase();
     }
 
-    private void chooseEnv() {
+    private void chooseEnv() throws InterruptedException {
         if (env.equals("sauce")) {
             commonUtils.getUrl(url);
+            Thread.sleep(50000);
         } else {
             commonUtils.getUrl("file:///" + localUrl);
         }
