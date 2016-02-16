@@ -52,7 +52,7 @@ public class BaseClass {
                     caps = DesiredCapabilities.chrome();
                 } else if (vmBrowser.equals("firefox")) {
                     caps = DesiredCapabilities.firefox();
-                } else if (vmBrowser.equals("ie")) {
+                } else if (vmBrowser.equals("internet explorer")) {
                     caps = DesiredCapabilities.internetExplorer();
                 }
                 caps.setCapability("platform", platform);
