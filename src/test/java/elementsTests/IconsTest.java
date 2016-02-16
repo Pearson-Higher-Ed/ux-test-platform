@@ -62,13 +62,13 @@ public class IconsTest extends BaseClass {
         chooseEnv();
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + icon + "'), ':before').getPropertyValue('content')";
         String actualContent = getCode(fetchCharacter);
-        System.out.println(icon+" : "+actualContent);
+        //System.out.println(icon+" : "+actualContent);
         if(browser.equals("chrome")){
-//            \073
-//            \f073
+            //in sauce MAC Chrome, the query returns only \xyz. Tested this on local with same config and it works fine \fxyz
             actualContent =actualContent.replace("\\","\\f");
-            System.out.println(icon+" : "+actualContent);
+            //System.out.println(icon+" : "+actualContent);
         }
+        System.out.println("actualContent: "+actualContent+" ---- " +"actualContent: "+expectedContent);
         Assert.assertEquals(actualContent, expectedContent, "The icon " + icon + " is not as per the SPEC");
     }
 
