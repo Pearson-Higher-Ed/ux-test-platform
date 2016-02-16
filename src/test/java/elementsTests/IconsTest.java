@@ -21,14 +21,16 @@ public class IconsTest extends BaseClass {
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
+    private static String browser;
     String fetchCharacter;
     String content;
 
-    @Parameters({"runEnv", "mobDeviceName"})
+    @Parameters({"runEnv", "mobDeviceName","vmBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobDeviceName) {
+    private void iconsTestBeforeClass(String runEnv, String mobDeviceName,String vmBrowser) {
         env = runEnv;
         mobileDevice = mobDeviceName;
+        browser=vmBrowser;
     }
 
     @DataProvider(name = "getIconsTestData")
@@ -61,6 +63,12 @@ public class IconsTest extends BaseClass {
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + icon + "'), ':before').getPropertyValue('content')";
         String actualContent = getCode(fetchCharacter);
         System.out.println(icon+" : "+actualContent);
+        if(browser.equals("chrome")){
+//            \073
+//            \f073
+            actualContent =actualContent.replace("\\","\\f");
+            System.out.println(icon+" : "+actualContent);
+        }
         Assert.assertEquals(actualContent, expectedContent, "The icon " + icon + " is not as per the SPEC");
     }
 
@@ -74,7 +82,6 @@ public class IconsTest extends BaseClass {
     private void chooseEnv() throws InterruptedException {
         if (env.equals("sauce")) {
             commonUtils.getUrl(url);
-            Thread.sleep(500000);
         } else {
             commonUtils.getUrl("file:///" + localUrl);
         }
