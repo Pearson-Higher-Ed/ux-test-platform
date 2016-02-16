@@ -74,7 +74,7 @@ public class IconsTest extends BaseClass {
     private void chooseEnv() throws InterruptedException {
         if (env.equals("sauce")) {
             commonUtils.getUrl(url);
-            Thread.sleep(50000);
+            Thread.sleep(500000);
         } else {
             commonUtils.getUrl("file:///" + localUrl);
         }
