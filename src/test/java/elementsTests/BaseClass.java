@@ -55,6 +55,9 @@ public class BaseClass {
                 } else if (vmBrowser.equals("internet explorer")) {
                     caps = DesiredCapabilities.internetExplorer();
                 }
+                else if(vmBrowser.equals("safari")){
+                    caps = DesiredCapabilities.safari();
+                }
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", vmBrowserVer);
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
