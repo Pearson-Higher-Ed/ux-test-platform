@@ -60,6 +60,7 @@ public class IconsTest extends BaseClass {
         chooseEnv();
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + icon + "'), ':before').getPropertyValue('content')";
         String actualContent = getCode(fetchCharacter);
+        System.out.println(icon+" : "+actualContent);
         Assert.assertEquals(actualContent, expectedContent, "The icon " + icon + " is not as per the SPEC");
     }
 
