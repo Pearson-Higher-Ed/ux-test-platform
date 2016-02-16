@@ -2,14 +2,14 @@
 
 <suite name="ComponentsTestSuite">
 
-    <parameter name="runEnv" value="sauce"></parameter>
+    <parameter name="runEnv" value="local"></parameter>
     <parameter name="travis" value="on"></parameter>
 
     <!-- For Desktop -->
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
-    <parameter name="platform" value="OSX 10.8"></parameter><!-- MAC or Windows -->
-    <parameter name="vmBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="vmBrowserVer" value="43"></parameter><!-- browser version on sauce machine -->
+    <parameter name="platform" value="OS X El Capitan"></parameter><!-- MAC or Windows -->
+    <parameter name="vmBrowser" value="safari"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
+    <parameter name="vmBrowserVer" value="9"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
@@ -28,6 +28,6 @@
         </groups>
         <packages>
             <package name="elementsTests" />
-        </packages>
+        </packages>        
     </test>
 </suite>
