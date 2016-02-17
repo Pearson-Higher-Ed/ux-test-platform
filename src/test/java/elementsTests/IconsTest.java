@@ -94,8 +94,12 @@ public class IconsTest extends BaseClass {
             js = (JavascriptExecutor) appium;
             content = (String) js.executeScript(script);
             code = StringEscapeUtils.escapeJava(content);
-            System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
-            return "\\" + code.substring(2, 6).toLowerCase();
+            if(browser.equals("safari")){
+                return code.toLowerCase();
+            }else {
+                System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
+                return "\\" + code.substring(2, 6).toLowerCase();
+            }
         } else {
             js = (JavascriptExecutor) driver;
             System.out.println("js set");
