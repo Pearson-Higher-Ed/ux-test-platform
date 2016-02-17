@@ -23,17 +23,19 @@ public class IconsTest extends BaseClass {
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
+    private static String setMobile;
     private static String browser;
     String fetchCharacter;
     String content;
     String actualContent;
 
-    @Parameters({"runEnv", "mobDeviceName", "vmBrowser"})
+    @Parameters({"runEnv", "mobile", "mobDeviceName", "vmBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobDeviceName, String vmBrowser) {
+    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String vmBrowser) {
         env = runEnv;
         mobileDevice = mobDeviceName;
         browser = vmBrowser;
+        setMobile = mobile;
     }
 
     @DataProvider(name = "getIconsTestData")
@@ -85,20 +87,21 @@ public class IconsTest extends BaseClass {
     }
 
     private String getCode(String script) {
-        JavascriptExecutor js=null;
-        try {
-             js = (JavascriptExecutor) appium;
-             content = (String) js.executeScript(script);
+        JavascriptExecutor js = null;
+
+        if (setMobile.equals("on")) {
+            js = (JavascriptExecutor) appium;
+        } else {
+            js = (JavascriptExecutor) driver;
         }
-        catch(JavaScriptException e){
-            System.out.println(e.getMessage());
-        }
-        System.out.println("content: "+content);
-        System.out.println("string escape utils: "+StringEscapeUtils.escapeJava(content));
+        content = (String) js.executeScript(script);
+
+        System.out.println("content: " + content);
+        System.out.println("string escape utils: " + StringEscapeUtils.escapeJava(content));
         //System.out.println("actual content: "+StringEscapeUtils.escapeJava(content).substring(2,5));
         String t = StringEscapeUtils.escapeJava(content);
-        System.out.println("actualContent: "+"\\" + t.substring(2, 6).toLowerCase());
-        return "\\" + t.substring(2, 6).toLowerCase(); 
+        System.out.println("actualContent: " + "\\" + t.substring(2, 6).toLowerCase());
+        return "\\" + t.substring(2, 6).toLowerCase();
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
