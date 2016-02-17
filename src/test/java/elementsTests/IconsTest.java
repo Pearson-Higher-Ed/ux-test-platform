@@ -41,7 +41,7 @@ public class IconsTest extends BaseClass {
     @DataProvider(name = "getIconsTestData")
     private Object[][] getIconsTestData() {
         return new Object[][]{
-                {"check", "\\f00c"},
+                /*{"check", "\\f00c"},
                 {"chevron-down", "\\f078"},
                 {"chevron-up", "\\f077"},
                 {"chevron-right", "\\f058"},
@@ -57,7 +57,7 @@ public class IconsTest extends BaseClass {
                 {"users", "\\f0c0"},
                 {"info-circle", "\\f05a"},
                 {"user", "\\f007"},
-                {"file-o", "\\f016"},
+                {"file-o", "\\f016"},*/
                 {"calendar", "\\f073"}
         };
     }
@@ -87,23 +87,25 @@ public class IconsTest extends BaseClass {
     }
 
     private String getCode(String script) {
+        
         JavascriptExecutor js = null;
         String code;
-
         if (setMobile.equals("on")) {
             js = (JavascriptExecutor) appium;
             content = (String) js.executeScript(script);
-            code=StringEscapeUtils.escapeJava(content);
+            code = StringEscapeUtils.escapeJava(content);
             System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
             return "\\" + code.substring(2, 6).toLowerCase();
         } else {
             js = (JavascriptExecutor) driver;
+            System.out.println("js set");
             content = (String) js.executeScript(script);
+            System.out.println("content set");
             code = StringEscapeUtils.escapeJava(content);
+            System.out.println("code: "+code);
             System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
             return "\\" + code.substring(4, 8).toLowerCase();
         }
-
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
@@ -111,7 +113,7 @@ public class IconsTest extends BaseClass {
             System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected + "'");
             Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
         } else {
-        	System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected);
+            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected);
             Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
         }
     }
