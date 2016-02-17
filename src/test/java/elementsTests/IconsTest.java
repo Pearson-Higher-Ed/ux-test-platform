@@ -39,7 +39,7 @@ public class IconsTest extends BaseClass {
     @DataProvider(name = "getIconsTestData")
     private Object[][] getIconsTestData() {
         return new Object[][]{
-               /* {"check", "\\f00c"},
+                {"check", "\\f00c"},
                 {"chevron-down", "\\f078"},
                 {"chevron-up", "\\f077"},
                 {"chevron-right", "\\f058"},
@@ -55,7 +55,7 @@ public class IconsTest extends BaseClass {
                 {"users", "\\f0c0"},
                 {"info-circle", "\\f05a"},
                 {"user", "\\f007"},
-                {"file-o", "\\f016"},*/
+                {"file-o", "\\f016"},
                 {"calendar", "\\f073"}
         };
     }
