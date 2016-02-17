@@ -98,7 +98,7 @@ public class IconsTest extends BaseClass {
         //System.out.println("actual content: "+StringEscapeUtils.escapeJava(content).substring(2,5));
         String t = StringEscapeUtils.escapeJava(content);
         System.out.println("actualContent: "+"\\" + t.substring(2, 6).toLowerCase());
-        return "\\" + t.substring(2, 6).toLowerCase();
+        return "\\" + t.substring(2, 6).toLowerCase(); 
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
