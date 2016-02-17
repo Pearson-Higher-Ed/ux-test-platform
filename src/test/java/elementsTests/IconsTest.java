@@ -94,6 +94,7 @@ public class IconsTest extends BaseClass {
             System.out.println(e.getMessage());
         }
         System.out.println("content: "+content);
+        System.out.println("string escape utils: "+StringEscapeUtils.escapeJava(content));
         String t = StringEscapeUtils.escapeJava(content);
         System.out.println("actualContent: "+"\\" + t.substring(4, 8).toLowerCase());
         return "\\" + t.substring(4, 8).toLowerCase();
