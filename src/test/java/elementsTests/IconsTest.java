@@ -95,9 +95,10 @@ public class IconsTest extends BaseClass {
         }
         System.out.println("content: "+content);
         System.out.println("string escape utils: "+StringEscapeUtils.escapeJava(content));
+        //System.out.println("actual content: "+StringEscapeUtils.escapeJava(content).substring(2,5));
         String t = StringEscapeUtils.escapeJava(content);
-        System.out.println("actualContent: "+"\\" + t.substring(4, 8).toLowerCase());
-        return "\\" + t.substring(4, 8).toLowerCase();
+        System.out.println("actualContent: "+"\\" + t.substring(2, 5).toLowerCase());
+        return "\\" + t.substring(2, 5).toLowerCase();
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
