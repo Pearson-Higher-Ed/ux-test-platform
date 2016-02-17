@@ -38,7 +38,7 @@ public class IconsTest extends BaseClass {
     @DataProvider(name = "getIconsTestData")
     private Object[][] getIconsTestData() {
         return new Object[][]{
-                {"check", "\\f00c"},
+               /* {"check", "\\f00c"},
                 {"chevron-down", "\\f078"},
                 {"chevron-up", "\\f077"},
                 {"chevron-right", "\\f058"},
@@ -54,7 +54,7 @@ public class IconsTest extends BaseClass {
                 {"users", "\\f0c0"},
                 {"info-circle", "\\f05a"},
                 {"user", "\\f007"},
-                {"file-o", "\\f016"},
+                {"file-o", "\\f016"},*/
                 {"calendar", "\\f073"}
         };
     }
@@ -85,6 +85,7 @@ public class IconsTest extends BaseClass {
     private String getCode(String script) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         content = (String) js.executeScript(script);
+        System.out.println("content: "+content);
         String t = StringEscapeUtils.escapeJava(content);
         return "\\" + t.substring(4, 8).toLowerCase();
     }

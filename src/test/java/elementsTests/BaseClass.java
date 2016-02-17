@@ -54,8 +54,7 @@ public class BaseClass {
                     caps = DesiredCapabilities.firefox();
                 } else if (vmBrowser.equals("internet explorer")) {
                     caps = DesiredCapabilities.internetExplorer();
-                }
-                else if(vmBrowser.equals("safari")){
+                } else if (vmBrowser.equals("safari")) {
                     caps = DesiredCapabilities.safari();
                 }
                 caps.setCapability("platform", platform);
