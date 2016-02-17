@@ -100,7 +100,7 @@ public class IconsTest extends BaseClass {
             content = (String) js.executeScript(script);
             String code = StringEscapeUtils.escapeJava(content);
             System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
-            return "\\" + code.substring(2, 8).toLowerCase();
+            return "\\" + code.substring(4, 8).toLowerCase();
         }
         
         //System.out.println("content: " + content);
