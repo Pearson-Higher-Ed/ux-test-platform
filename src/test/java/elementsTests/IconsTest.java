@@ -113,6 +113,7 @@ public class IconsTest extends BaseClass {
             System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected + "'");
             Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
         } else {
+        	System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected);
             Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
         }
     }
