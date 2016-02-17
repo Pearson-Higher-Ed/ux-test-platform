@@ -67,7 +67,6 @@ public class IconsTest extends BaseClass {
             //in sauce MAC Chrome, the query returns only \xyz'. Tested this on local with same config and it works fine \fxyz
             actualContent = actualContent.replace("\\", "\\f");
         }
-        System.out.println("actualContent: " + actualContent + " ---- " + "expectedContent: " + expectedContent);
         assertUnicode(actualContent, content, testIcon);
     }
 
@@ -80,6 +79,7 @@ public class IconsTest extends BaseClass {
 
     private void assertUnicode(String actual, String expected, String icon) {
         if (browser.equals("chrome")) {
+            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected);
             Assert.assertEquals(actual + "'", expected, "The icon " + icon + " is not as per the SPEC");
         } else {
             Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
