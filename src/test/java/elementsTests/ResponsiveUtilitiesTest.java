@@ -138,7 +138,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"})
+    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"},enabled = false)
     private void iPhone6PlusResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -159,7 +159,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile"})
+    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile"},enabled = false)
     private void iPadAirResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -178,7 +178,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile"})
+    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile"},enabled = false)
     private void iPadProResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
@@ -197,7 +197,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile"})
+    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile"},enabled = false)
     private void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");

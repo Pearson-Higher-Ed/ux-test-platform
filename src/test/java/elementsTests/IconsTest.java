@@ -76,6 +76,7 @@ public class IconsTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
+        System.out.println("entered icons mobile test");
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
