@@ -91,17 +91,21 @@ public class IconsTest extends BaseClass {
 
         if (setMobile.equals("on")) {
             js = (JavascriptExecutor) appium;
+            content = (String) js.executeScript(script);
+            String code = StringEscapeUtils.escapeJava(content);
+            System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
+            return "\\" + code.substring(2, 6).toLowerCase();
         } else {
             js = (JavascriptExecutor) driver;
+            content = (String) js.executeScript(script);
+            String code = StringEscapeUtils.escapeJava(content);
+            System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
+            return "\\" + code.substring(2, 8).toLowerCase();
         }
-        content = (String) js.executeScript(script);
-
-        System.out.println("content: " + content);
-        System.out.println("string escape utils: " + StringEscapeUtils.escapeJava(content));
-        //System.out.println("actual content: "+StringEscapeUtils.escapeJava(content).substring(2,5));
-        String t = StringEscapeUtils.escapeJava(content);
-        System.out.println("actualContent: " + "\\" + t.substring(2, 6).toLowerCase());
-        return "\\" + t.substring(2, 6).toLowerCase();
+        
+        //System.out.println("content: " + content);
+        //System.out.println("string escape utils: " + StringEscapeUtils.escapeJava(content))
+        //
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
