@@ -87,12 +87,12 @@ public class IconsTest extends BaseClass {
     private String getCode(String script) {
         JavascriptExecutor js=null;
         try {
-             js = (JavascriptExecutor) driver;
+             js = (JavascriptExecutor) appium;
+             content = (String) js.executeScript(script);
         }
         catch(JavaScriptException e){
             System.out.println(e.getMessage());
         }
-        content = (String) js.executeScript(script);
         System.out.println("content: "+content);
         String t = StringEscapeUtils.escapeJava(content);
         return "\\" + t.substring(4, 8).toLowerCase();
