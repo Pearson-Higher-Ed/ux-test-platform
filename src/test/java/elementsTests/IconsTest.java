@@ -3,6 +3,7 @@ package elementsTests;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -70,6 +71,17 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+    @Test(testName = "iPhone 6 Plus Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void iPhone6PlusIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("iPhone 6 Plus"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+
     private String getCode(String script) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         content = (String) js.executeScript(script);
@@ -79,8 +91,8 @@ public class IconsTest extends BaseClass {
 
     private void assertUnicode(String actual, String expected, String icon) {
         if (browser.equals("chrome")) {
-            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected+"'");
-            Assert.assertEquals(actual, expected+"'", "The icon " + icon + " is not as per the SPEC");
+            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected + "'");
+            Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
         } else {
             Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
         }
