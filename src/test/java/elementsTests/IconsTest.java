@@ -1,5 +1,6 @@
 package elementsTests;
 
+import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -84,7 +85,13 @@ public class IconsTest extends BaseClass {
     }
 
     private String getCode(String script) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js=null;
+        try {
+             js = (JavascriptExecutor) driver;
+        }
+        catch(JavaScriptException e){
+            System.out.println(e.getMessage());
+        }
         content = (String) js.executeScript(script);
         System.out.println("content: "+content);
         String t = StringEscapeUtils.escapeJava(content);
