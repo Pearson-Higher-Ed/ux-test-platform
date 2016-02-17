@@ -24,13 +24,14 @@ public class IconsTest extends BaseClass {
     private static String browser;
     String fetchCharacter;
     String content;
+    String actualContent;
 
-    @Parameters({"runEnv", "mobDeviceName","vmBrowser"})
+    @Parameters({"runEnv", "mobDeviceName", "vmBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobDeviceName,String vmBrowser) {
+    private void iconsTestBeforeClass(String runEnv, String mobDeviceName, String vmBrowser) {
         env = runEnv;
         mobileDevice = mobDeviceName;
-        browser=vmBrowser;
+        browser = vmBrowser;
     }
 
     @DataProvider(name = "getIconsTestData")
@@ -58,18 +59,16 @@ public class IconsTest extends BaseClass {
     }
 
     @Test(testName = "Icons Test", dataProvider = "getIconsTestData", groups = {"desktop"})
-    private void iconsTest(String icon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
+    private void iconsTest(String testIcon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
         chooseEnv();
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + icon + "'), ':before').getPropertyValue('content')";
-        String actualContent = getCode(fetchCharacter);
-        //System.out.println(icon+" : "+actualContent);
-        if(browser.equals("chrome")){
-            //in sauce MAC Chrome, the query returns only \xyz. Tested this on local with same config and it works fine \fxyz
-            actualContent =actualContent.replace("\\","\\f");
-            //System.out.println(icon+" : "+actualContent);
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        if (browser.equals("chrome")) {
+            //in sauce MAC Chrome, the query returns only \xyz'. Tested this on local with same config and it works fine \fxyz
+            actualContent = actualContent.replace("\\", "\\f");
         }
-        System.out.println("actualContent: "+actualContent+" ---- " +"actualContent: "+expectedContent);
-        Assert.assertEquals(actualContent, expectedContent, "The icon " + icon + " is not as per the SPEC");
+        System.out.println("actualContent: " + actualContent + " ---- " + "expectedContent: " + expectedContent);
+        assertUnicode(actualContent, content, testIcon);
     }
 
     private String getCode(String script) {
@@ -77,6 +76,14 @@ public class IconsTest extends BaseClass {
         content = (String) js.executeScript(script);
         String t = StringEscapeUtils.escapeJava(content);
         return "\\" + t.substring(4, 8).toLowerCase();
+    }
+
+    private void assertUnicode(String actual, String expected, String icon) {
+        if (browser.equals("chrome")) {
+            Assert.assertEquals(actual + "'", expected, "The icon " + icon + " is not as per the SPEC");
+        } else {
+            Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
+        }
     }
 
     private void chooseEnv() throws InterruptedException {
