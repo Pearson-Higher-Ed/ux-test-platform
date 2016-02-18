@@ -44,6 +44,7 @@ public class BaseClass {
 
         caps = new DesiredCapabilities();
 
+      //The below conditions is to set capabilities for desktop run and in testng.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
         if (runEnv.equals("sauce")) {
 
             if (desktop.equals("on")) {
@@ -66,7 +67,7 @@ public class BaseClass {
                 commonUtils = new CommonUtils(driver);
             }
 
-            //The below conditions is to set capabilities for mob device and in testng.xml -> set mobile to 'on' followed by platform details
+            //The below conditions is to set capabilities for mob device and in testng.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
             else if (mobile.equals("on")) {
                 caps.setCapability(MobileCapabilityType.DEVICE_NAME, mobDeviceName);
                 caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);

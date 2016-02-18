@@ -124,8 +124,10 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         Assert.assertEquals(responsiveValue_1, visible, "Responsive Failed");
         Assert.assertEquals(responsiveValue_2, color, "Responsive Failed");
     }
-    
-    /*********************************************************** MOBILE TESTS *************************************************************/
+
+    /*****************************************************************************************************************************************
+                                                               MOBILE TESTS
+     *****************************************************************************************************************************************/
     
     //For iPhone 6 Plus
     @DataProvider(name = "iPhone6PlusTestData")

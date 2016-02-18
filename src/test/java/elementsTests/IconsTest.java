@@ -77,15 +77,16 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
-    /*********************************************************** MOBILE TESTS *************************************************************/
-    
+    /*****************************************************************************************************************************************
+                                                            MOBILE TESTS
+     *****************************************************************************************************************************************/
+
     //For iPhone 6 Plus
     @Test(testName = "iPhone 6 Plus Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void iPhone6PlusIconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        System.out.println("entered icons mobile test");
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
@@ -98,27 +99,25 @@ public class IconsTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        System.out.println("entered icons mobile test");
-        commonUtils.getUrl(url, "mobile");
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
-        actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
-    }
-    
-    //For Nexus7
-    @Test(testName = "nexus7 Test", dataProvider = "getIconsTestData", groups = {"mobile"})
-    private void nexus7IconsTest(String testIcon, String expectedContent) {
-    	if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
-            throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
-        }
-        System.out.println("entered icons mobile test");
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
-    
+    //For Nexus7
+    @Test(testName = "nexus7 Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void nexus7IconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+
+
     private String getCode(String script) {
         JavascriptExecutor js = null;
         String code;
@@ -126,18 +125,15 @@ public class IconsTest extends BaseClass {
             js = (JavascriptExecutor) appium;
             content = (String) js.executeScript(script);
             code = StringEscapeUtils.escapeJava(content);
-            System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
             return "\\" + code.substring(2, 6).toLowerCase();
 
         } else {
             js = (JavascriptExecutor) driver;
             content = (String) js.executeScript(script);
             code = StringEscapeUtils.escapeJava(content);
-            System.out.println(browser+ "=>code: " + code);
             if (browser.equals("safari")) {
                 return "\\" + code.substring(2, 6).toLowerCase();
             } else {
-                System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
                 return "\\" + code.substring(4, 8).toLowerCase();
             }
         }
@@ -145,10 +141,8 @@ public class IconsTest extends BaseClass {
 
     private void assertUnicode(String actual, String expected, String icon) {
         if (browser.equals("chrome")) {
-            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected + "'");
             Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
         } else {
-            System.out.println("actualContent: " + actual + " ---- " + "expectedContent: " + expected);
             Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
         }
     }
