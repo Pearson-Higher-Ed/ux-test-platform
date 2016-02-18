@@ -41,7 +41,7 @@ public class IconsTest extends BaseClass {
     @DataProvider(name = "getIconsTestData")
     private Object[][] getIconsTestData() {
         return new Object[][]{
-                /*{"check", "\\f00c"},
+                {"check", "\\f00c"},
                 {"chevron-down", "\\f078"},
                 {"chevron-up", "\\f077"},
                 {"chevron-right", "\\f058"},
@@ -57,7 +57,7 @@ public class IconsTest extends BaseClass {
                 {"users", "\\f0c0"},
                 {"info-circle", "\\f05a"},
                 {"user", "\\f007"},
-                {"file-o", "\\f016"},*/
+                {"file-o", "\\f016"},
                 {"calendar", "\\f073"}
         };
     }
@@ -74,6 +74,7 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+    //For iPhone 6 Plus
     @Test(testName = "iPhone 6 Plus Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void iPhone6PlusIconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
@@ -86,29 +87,42 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+    @Test(testName = "iPad Air Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void iPadAirIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("iPad Air"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
+        }
+        System.out.println("entered icons mobile test");
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+
+    //For iPad Air
+
     private String getCode(String script) {
-        
+
         JavascriptExecutor js = null;
         String code;
         if (setMobile.equals("on")) {
             js = (JavascriptExecutor) appium;
             content = (String) js.executeScript(script);
             code = StringEscapeUtils.escapeJava(content);
-            if(browser.equals("safari")){
-                return code.toLowerCase();
-            }else {
-                System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
-                return "\\" + code.substring(2, 6).toLowerCase();
-            }
+            System.out.println("actualContent: " + "\\" + code.substring(2, 6).toLowerCase());
+            return "\\" + code.substring(2, 6).toLowerCase();
+
         } else {
             js = (JavascriptExecutor) driver;
-            System.out.println("js set");
             content = (String) js.executeScript(script);
-            System.out.println("content set");
             code = StringEscapeUtils.escapeJava(content);
-            System.out.println("code: "+code);
-            System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
-            return "\\" + code.substring(4, 8).toLowerCase();
+            System.out.println("code: " + code);
+            if (browser.equals("safari")) {
+                return code.toLowerCase();
+            } else {
+                System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
+                return "\\" + code.substring(4, 8).toLowerCase();
+            }
         }
     }
 
