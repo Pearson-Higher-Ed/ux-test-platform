@@ -11,3 +11,6 @@ addons:
   no_ssl_bump_domains: all
 before_script:
 - python -m SimpleHTTPServer &
+
+after_success:
+- print "Hello World\n"
