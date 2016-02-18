@@ -87,6 +87,7 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+    //For iPad Air
     @Test(testName = "iPad Air Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void iPadAirIconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("iPad Air"))) {
@@ -99,10 +100,8 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
-    //For iPad Air
-
+    
     private String getCode(String script) {
-
         JavascriptExecutor js = null;
         String code;
         if (setMobile.equals("on")) {
@@ -116,7 +115,7 @@ public class IconsTest extends BaseClass {
             js = (JavascriptExecutor) driver;
             content = (String) js.executeScript(script);
             code = StringEscapeUtils.escapeJava(content);
-            System.out.println("code: " + code);
+            System.out.println(browser+ "=>code: " + code);
             if (browser.equals("safari")) {
                 return code.toLowerCase();
             } else {

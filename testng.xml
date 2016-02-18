@@ -8,8 +8,8 @@
     <!-- For Desktop -->
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OSX 10.11"></parameter><!-- MAC or Windows -->
-    <parameter name="vmBrowser" value="safari"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="vmBrowserVer" value="9"></parameter><!-- browser version on sauce machine -->
+    <parameter name="vmBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
+    <parameter name="vmBrowserVer" value="43"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
