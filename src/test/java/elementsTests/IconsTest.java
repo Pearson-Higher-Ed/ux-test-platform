@@ -117,7 +117,7 @@ public class IconsTest extends BaseClass {
             code = StringEscapeUtils.escapeJava(content);
             System.out.println(browser+ "=>code: " + code);
             if (browser.equals("safari")) {
-                return code.toLowerCase();
+                return "\\" + code.substring(2, 6).toLowerCase();
             } else {
                 System.out.println("actualContent: " + "\\" + code.substring(2, 8).toLowerCase());
                 return "\\" + code.substring(4, 8).toLowerCase();
