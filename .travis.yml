@@ -13,4 +13,5 @@ before_script:
 - python -m SimpleHTTPServer &
 
 after_success:
+#!/usr/bin/ruby
 - print "Hello World\n"
