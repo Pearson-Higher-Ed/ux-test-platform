@@ -1,8 +1,11 @@
 package elementsTests;
 
 import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
+
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -74,6 +77,8 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+    /*********************************************************** MOBILE TESTS *************************************************************/
+    
     //For iPhone 6 Plus
     @Test(testName = "iPhone 6 Plus Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void iPhone6PlusIconsTest(String testIcon, String expectedContent) {
@@ -92,6 +97,19 @@ public class IconsTest extends BaseClass {
     private void iPadAirIconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
+        }
+        System.out.println("entered icons mobile test");
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+    //For Nexus7
+    @Test(testName = "nexus7 Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void nexus7IconsTest(String testIcon, String expectedContent) {
+    	if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
         System.out.println("entered icons mobile test");
         commonUtils.getUrl(url, "mobile");
