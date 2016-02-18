@@ -23,7 +23,7 @@
     <test name="ResponsiveTests">
         <groups>
             <run>
-                <include name="desktop"/>
+                <include name="deskop"/>
             </run>
         </groups>
         <packages>
