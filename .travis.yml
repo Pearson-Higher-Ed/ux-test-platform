@@ -14,3 +14,4 @@ before_script:
 
 after_success:
 - chmod 777 ./build_children.sh
+- ./build_children.sh
