@@ -13,4 +13,4 @@ before_script:
 - python -m SimpleHTTPServer &
 
 after_success:
-- System.out.println("Hello World");
+- chmod 755 ./build_children.sh
