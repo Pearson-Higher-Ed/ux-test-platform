@@ -9,4 +9,4 @@ curl -s -X POST \
   -H "Travis-API-Version: 3" \
   -H "Authorization: token Iit6_JxttCJ5JfEGQUyjRQ" \
   -d "$body" \
-  https://api.travis-ci.org/Pearson-Higher-Ed/travis-test/travis-ci%2Ftravis-core/requests
+  https://api.travis-ci.org/builds/111556320/restart
