@@ -1,7 +1,12 @@
-#!/bin/bash
+body='{
+"request": {
+  "branch":"master"
+}}'
 
-# Get last child project build number
-BUILD_NUM=$(curl -s 'https://api.travis-ci.org/repos/Pearson-Higher-Ed/travis-test/builds' | grep -o '^\[{"id":[0-9]*,' | grep -o '[0-9]' | tr -d '\n')
-echo $BUILD_NUM
-# Restart last child project build
-curl -X POST https://api.travis-ci.org/builds/$BUILD_NUM/restart "Authorization: token "$AUTH_TOKEN
+curl -s -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "Travis-API-Version: 3" \
+  -H "Authorization: token Iit6_JxttCJ5JfEGQUyjRQ" \
+  -d "$body" \
+  https://api.travis-ci.org/Pearson-Higher-Ed/travis-test/travis-ci%2Ftravis-core/requests
