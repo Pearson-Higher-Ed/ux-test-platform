@@ -13,3 +13,6 @@ before_script:
 - chmod 777 ./test_build_children.sh
 - ./test_build_children.sh
 - python -m SimpleHTTPServer &
+
+after_script:
+- mvn test -B
