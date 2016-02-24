@@ -4,4 +4,4 @@
 BUILD_NUM=$(curl -s 'https://api.travis-ci.org/repos/umahaea/Pearson-Higher-Ed/travis-test/builds' | grep -o '^\[{"id":[0-9]*,' | grep -o '[0-9]' | tr -d '\n')
 echo $BUILD_NUM
 # Restart last child project build
-curl -X POST https://api.travis-ci.org/builds/$BUILD_NUM/restart "Authorization: token "Iit6_JxttCJ5JfEGQUyjRQ
+curl -X POST https://api.travis-ci.org/builds/$BUILD_NUM/restart --header "Authorization: token "Iit6_JxttCJ5JfEGQUyjRQ
