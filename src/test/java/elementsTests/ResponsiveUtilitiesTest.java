@@ -27,7 +27,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @DataProvider(name = "LGTestData")
     private  Object[][] getLGTestData() {
         return new Object[][]{
-                {1024, 800, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 0)"},
+                {1024, 800, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
                 {1279, 800, respPgObj.largeVisible, "lg-visible", "rgba(139, 0, 139, 1)"},
                 {1023, 800, respPgObj.largeHidden, "lg-hidden", "rgba(128, 128, 128, 1)"},
                 {1280, 800, respPgObj.largeHidden, "lg-hidden", "rgba(128, 128, 128, 1)"}
