@@ -16,3 +16,4 @@ log/
 target/
 test-output/
 testng.out.xml
+bin/

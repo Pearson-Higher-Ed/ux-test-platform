@@ -149,6 +149,48 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         performRespForMobileEval(element, visible, color);
     }
+    
+    //For iPhone 6 
+    @DataProvider(name = "iPhone6TestData")
+    private Object[][] iPhone6TestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"}                
+        };
+    }
+
+    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile"},enabled = true)
+    private void iPhone6ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPhone 6"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
+    
+    //For iPhone 5S 
+    @DataProvider(name = "iPhone5SPlusTestData")
+    private Object[][] iPhone5STestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"}                
+        };
+    }
+
+    @Test(testName = "iPhone 5s", dataProvider = "iPhone5SPlusTestData", groups = {"mobile"},enabled = true)
+    private void iPhone5SResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPhone 5s"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 5s'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
 
     //For iPad Air
     @DataProvider(name = "iPadAirTestData")
@@ -189,7 +231,9 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         performRespForMobileEval(element, visible, color);
     }
-
+    
+    
+    //HTC One, LG Nexus, Samsung Galaxy Note Emulator, Samsung Galaxy S4.
     //Nexus 7
     @DataProvider(name = "nexus7TestData")
     private Object[][] nexus7TestData() {
