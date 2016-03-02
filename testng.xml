@@ -6,24 +6,24 @@
     <parameter name="travis" value="on"></parameter>
 
     <!-- For Desktop -->
-    <parameter name="desktop" value="off"></parameter><!-- Set the tests to run Desktop -->
+    <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OSX 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="vmBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
     <parameter name="vmBrowserVer" value="43"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
-    <parameter name="mobile" value="on"></parameter><!-- set the tests to run on mobile devices -->
-    <parameter name="appiumDriver" value="android"></parameter> <!-- appium driver - iosDriver or Android Driver -->
-    <parameter name="mobDeviceName" value="Google Nexus 7 HD Emulator"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
-    <parameter name="mobilePlatformVer" value="4.4"></parameter><!-- mobile OS version -->
-    <parameter name="mobBrowser" value="Browser"></parameter><!-- browser eg.safari, chrome -->
+    <parameter name="mobile" value="off"></parameter><!-- set the tests to run on mobile devices -->
+    <parameter name="appiumDriver" value="iOS"></parameter> <!-- appium driver - iosDriver or Android Driver -->
+    <parameter name="mobDeviceName" value="iPad Retina"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
+    <parameter name="mobilePlatformVer" value="9.2"></parameter><!-- mobile OS version -->
+    <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
     <parameter name="appiumVer" value="1.5"></parameter><!-- version of appium on sauce -->
 
-    <test name="ResponsiveTests">
+    <test name="ElementsTests">
         <groups>
             <run>
-                <include name="mobile"/>
+                <include name="desktop"/>
             </run>
         </groups>
         <packages>

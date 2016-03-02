@@ -161,7 +161,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile"},enabled = true)
+    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile"},enabled = false)
     private void iPhone6ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("iPhone 6"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6'");
@@ -232,8 +232,6 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         performRespForMobileEval(element, visible, color);
     }
     
-    
-    //HTC One, LG Nexus, Samsung Galaxy Note Emulator, Samsung Galaxy S4.
     //Nexus 7
     @DataProvider(name = "nexus7TestData")
     private Object[][] nexus7TestData() {
@@ -247,6 +245,25 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     private void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
+    
+    //LG Nexus 4 Emulator
+    @DataProvider(name = "nexus4TestData")
+    private Object[][] nexus4TestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.smallVisible, "xs-visible", "rgba(0, 128, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.mediumVisible, "sm-visible", "rgba(0, 0, 255, 1)"},
+        };
+    }
+
+    @Test(testName = "LG Nexus 4 Emulator", dataProvider = "nexus4TestData", groups = {"mobile"},enabled = true)
+    private void nexus4ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
