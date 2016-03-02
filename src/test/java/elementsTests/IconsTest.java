@@ -27,7 +27,7 @@ public class IconsTest extends BaseClass {
     private static String env;
     private static String mobileDevice;
     private static String setMobile;
-    private static String browser;
+    private static String browser;    
     String fetchCharacter;
     String content;
     String actualContent;
@@ -38,7 +38,7 @@ public class IconsTest extends BaseClass {
         env = runEnv;
         mobileDevice = mobDeviceName;
         browser = vmBrowser;
-        setMobile = mobile;
+        setMobile = mobile;    
     }
 
     @DataProvider(name = "getIconsTestData")
@@ -86,6 +86,18 @@ public class IconsTest extends BaseClass {
     private void iPhone6PlusIconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
+        }        
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+  //For iPhone 6
+    @Test(testName = "iPhone 6 Test", dataProvider = "getIconsTestData", groups = {"mobile"},enabled=true)
+    private void iPhone6IconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("iPhone 6"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6'");
         }
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
@@ -93,6 +105,31 @@ public class IconsTest extends BaseClass {
         assertUnicode(actualContent, expectedContent, testIcon);
     }
 
+  //For iPhone 5s
+    @Test(testName = "iPhone 5s Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void iPhone5sIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("iPhone 5s"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 5s'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+  //For iPad Retina
+    @Test(testName = "iPad Retina Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void iPadRetinaIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("iPad Retina"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPad Retina'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }    
+    
+    
     //For iPad Air
     @Test(testName = "iPad Air Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void iPadAirIconsTest(String testIcon, String expectedContent) {
@@ -110,6 +147,55 @@ public class IconsTest extends BaseClass {
     private void nexus7IconsTest(String testIcon, String expectedContent) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+    //HTC One X Emulator    
+    @Test(testName = "HTC One X Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void htcOneIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("HTC One X Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'HTC One X Emulator'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+    //LG Nexus 4 Emulator
+    @Test(testName = "LG Nexus 4 Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void lgNexusIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+    
+    //Samsung Galaxy Note Emulator
+    @Test(testName = "Samsung Galaxy Note Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void samsungGalaxyNoteIconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("Samsung Galaxy Note Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'Samsung Galaxy Note Emulator'");
+        }
+        commonUtils.getUrl(url, "mobile");
+        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
+        actualContent = getCode(fetchCharacter);
+        assertUnicode(actualContent, expectedContent, testIcon);
+    }
+    
+    //Samsung Galaxy S4 Emulator
+    @Test(testName = "Samsung Galaxy S4 Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    private void samsungGalaxyS4IconsTest(String testIcon, String expectedContent) {
+        if (!(mobileDevice.equals("Samsung Galaxy S4 Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'Samsung Galaxy S4 Emulator'");
         }
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
@@ -140,11 +226,17 @@ public class IconsTest extends BaseClass {
     }
 
     private void assertUnicode(String actual, String expected, String icon) {
-        if (browser.equals("chrome")) {
+    	/*if (browser.equals("chrome")) {
             Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
-        } else {
-            Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
-        }
+        } else{
+        	Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
+        }*/
+    	if(setMobile.equals("on")||(!(browser.equals("chrome")))){
+    		Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
+    	}
+    	else if(browser.equals("chrome")){
+    		Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");    		
+    	}
     }
 
     private void chooseEnv() throws InterruptedException {

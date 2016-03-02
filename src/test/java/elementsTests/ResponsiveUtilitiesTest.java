@@ -149,6 +149,48 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         performRespForMobileEval(element, visible, color);
     }
+    
+    //For iPhone 6 
+    @DataProvider(name = "iPhone6TestData")
+    private Object[][] iPhone6TestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"}                
+        };
+    }
+
+    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile"},enabled = false)
+    private void iPhone6ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPhone 6"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
+    
+    //For iPhone 5S 
+    @DataProvider(name = "iPhone5SPlusTestData")
+    private Object[][] iPhone5STestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.xtraSmallVisible, "xs-visible", "rgba(255, 0, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.xtraSmallHidden, "xs-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.PORTRAIT, respPgObj.smallHidden, "sm-hidden", "rgba(128, 128, 128, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.smallVisible, "sm-visible", "rgba(0, 128, 0, 1)"}                
+        };
+    }
+
+    @Test(testName = "iPhone 5s", dataProvider = "iPhone5SPlusTestData", groups = {"mobile"},enabled = true)
+    private void iPhone5SResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("iPhone 5s"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 5s'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
 
     //For iPad Air
     @DataProvider(name = "iPadAirTestData")
@@ -189,7 +231,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         performRespForMobileEval(element, visible, color);
     }
-
+    
     //Nexus 7
     @DataProvider(name = "nexus7TestData")
     private Object[][] nexus7TestData() {
@@ -203,6 +245,25 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     private void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        performRespForMobileEval(element, visible, color);
+    }
+    
+    //LG Nexus 4 Emulator
+    @DataProvider(name = "nexus4TestData")
+    private Object[][] nexus4TestData() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, respPgObj.smallVisible, "xs-visible", "rgba(0, 128, 0, 1)"},
+                {ScreenOrientation.LANDSCAPE, respPgObj.mediumVisible, "sm-visible", "rgba(0, 0, 255, 1)"},
+        };
+    }
+
+    @Test(testName = "LG Nexus 4 Emulator", dataProvider = "nexus4TestData", groups = {"mobile"},enabled = true)
+    private void nexus4ResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
+        if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
+            throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
