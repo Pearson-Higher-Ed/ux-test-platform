@@ -61,7 +61,9 @@ public class IconsTest extends BaseClass {
                 {"info-circle", "\\f05a"},
                 {"user", "\\f007"},
                 {"file-o", "\\f016"},
-                {"calendar", "\\f073"}
+                {"calendar", "\\f073"},
+                {"square-o","\\f096"},
+                {"check-square-o","\\f046"}
         };
     }
 
