@@ -16,6 +16,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     private String responsiveValue_1, responsiveValue_2;    
     private static String env;
     private static String mobileDevice;
+    Boolean result=false,result_1=false,result_2=false;
 
     @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
@@ -37,7 +38,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop"})
     private  void lgTest(int width, int height, By element, String visible, String color) throws InterruptedException {
         chooseEnv();
-        performRespEval(width, height, element, visible, color);
+        result = performRespEval(width, height, element, visible, color);
+        Assert.assertTrue(result);
     }
 
     @DataProvider(name = "XLTestData")
@@ -51,7 +53,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop"})
     private  void xlTest(int width, int height, By element, String visible, String color) {
         chooseEnv();
-        performRespEval(width, height, element, visible, color);
+        result = performRespEval(width, height, element, visible, color);
+        Assert.assertTrue(result);
     }
 
     @DataProvider(name = "XSTestData")
@@ -65,7 +68,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop"})
     private  void xsTest(int width, int height, By element, String visible, String color) {
         chooseEnv();
-        performRespEval(width, height, element, visible, color);
+        result = performRespEval(width, height, element, visible, color);
+        Assert.assertTrue(result);
     }
 
     @DataProvider(name = "SMTestData")
@@ -81,7 +85,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop"})
     private void smTest(int width, int height, By element, String visible, String color) {
         chooseEnv();
-        performRespEval(width, height, element, visible, color);
+        result = performRespEval(width, height, element, visible, color);
+        Assert.assertTrue(result);
     }
 
     @DataProvider(name = "MDTestData")
@@ -97,7 +102,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop"})
     private void mdTest(int width, int height, By element, String visible, String color) {
         chooseEnv();
-        performRespEval(width, height, element, visible, color);
+        result = performRespEval(width, height, element, visible, color);
+        Assert.assertTrue(result);
     }
 
     private void chooseEnv() {
@@ -108,21 +114,31 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
     }
 
-    private void performRespEval(int width, int height, By element, String visible, String color) {
+    private boolean performRespEval(int width, int height, By element, String visible, String color) {
         commonUtils.setWindowSize(width, height);
         responsiveValue_1 = commonUtils.getText(element);
         responsiveValue_2 = commonUtils.getCSSValue(element, "color");
-        Assert.assertEquals(responsiveValue_1, visible, "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, color, "Responsive Failed");
+        result_1 = commonUtils.assertValue(responsiveValue_1, visible, "Responsive Failed");
+        result_2 = commonUtils.assertValue(responsiveValue_2, color, "Responsive Failed");
+        
+        if((result_1 && result_2)==true){
+            return true;
+        }else{
+            return false;
+        }        
     }
 
-    private void performRespForMobileEval(By element, String visible, String color) {
+    private boolean performRespForMobileEval(By element, String visible, String color) {
         responsiveValue_1 = commonUtils.getText(element, "mobile");
-        System.out.println("actual: " + responsiveValue_1 + " --- expected: " + visible);
         responsiveValue_2 = commonUtils.getCSSValue(element, "color", "mobile");
-        System.out.println("actual: " + responsiveValue_2 + " --- expected: " + color);
-        Assert.assertEquals(responsiveValue_1, visible, "Responsive Failed");
-        Assert.assertEquals(responsiveValue_2, color, "Responsive Failed");
+        result_1 = commonUtils.assertValue(responsiveValue_1, visible, "Responsive Failed");
+        result_2 = commonUtils.assertValue(responsiveValue_2, color, "Responsive Failed");
+
+        if((result_1 && result_2)==true){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /*****************************************************************************************************************************************
@@ -147,7 +163,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
     
     //For iPhone 6 
@@ -168,7 +185,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
     
     //For iPhone 5S 
@@ -189,7 +207,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
 
     //For iPad Air
@@ -210,7 +229,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
 
     //iPad Pro
@@ -229,7 +249,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
     
     //Nexus 7
@@ -248,7 +269,8 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
     
     //LG Nexus 4 Emulator
@@ -267,6 +289,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        performRespForMobileEval(element, visible, color);
+        result = performRespForMobileEval(element, visible, color);
+        Assert.assertTrue(result);
     }
 }

@@ -3,6 +3,7 @@ package elementsTests;
 import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
@@ -12,7 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 
@@ -31,6 +31,8 @@ public class IconsTest extends BaseClass {
     String fetchCharacter;
     String content;
     String actualContent;
+    Boolean result;
+    final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
     @Parameters({"runEnv", "mobile", "mobDeviceName", "vmBrowser"})
     @BeforeClass(alwaysRun = true)
@@ -64,6 +66,7 @@ public class IconsTest extends BaseClass {
                 {"calendar", "\\f073"},
                 {"square-o","\\f096"},
                 {"check-square-o","\\f046"}
+                //{"ban","\\f05e"}
         };
     }
 
@@ -76,7 +79,8 @@ public class IconsTest extends BaseClass {
             //in sauce MAC Chrome, the query returns only \xyz'. Tested this on local with same config and it works fine \fxyz
             actualContent = actualContent.replace("\\", "\\f");
         }
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
 
     /*****************************************************************************************************************************************
@@ -92,7 +96,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
     
   //For iPhone 6
@@ -104,7 +109,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
 
   //For iPhone 5s
@@ -116,7 +122,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
     
   //For iPad Retina
@@ -128,7 +135,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }    
     
     
@@ -141,7 +149,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
 
     //For Nexus7
@@ -153,7 +162,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
     
     //HTC One X Emulator    
@@ -165,7 +175,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
     
     //LG Nexus 4 Emulator
@@ -190,7 +201,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
     
     //Samsung Galaxy S4 Emulator
@@ -202,7 +214,8 @@ public class IconsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        assertUnicode(actualContent, expectedContent, testIcon);
+        result = assertUnicode(actualContent, expectedContent, testIcon);
+        Assert.assertTrue(result);
     }
 
 
@@ -227,18 +240,15 @@ public class IconsTest extends BaseClass {
         }
     }
 
-    private void assertUnicode(String actual, String expected, String icon) {
-    	/*if (browser.equals("chrome")) {
-            Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
-        } else{
-        	Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
-        }*/
-    	if(setMobile.equals("on")||(!(browser.equals("chrome")))){
-    		Assert.assertEquals(actual, expected, "The icon " + icon + " is not as per the SPEC");
+    private boolean assertUnicode(Object actual, Object expected, String icon) {
+    	boolean assertResult=false;
+        if(setMobile.equals("on")||!(browser.equals("chrome"))){
+        	assertResult=commonUtils.assertValue(actual, expected, "The icon " + icon + " is not as per the SPEC");
     	}
     	else if(browser.equals("chrome")){
-    		Assert.assertEquals(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");    		
+    		assertResult=commonUtils.assertValue(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
     	}
+		return assertResult;
     }
 
     private void chooseEnv() throws InterruptedException {
