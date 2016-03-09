@@ -1,10 +1,13 @@
 package elements.utilities;
 
 import io.appium.java_client.AppiumDriver;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 /**
  * Created by umahaea on 1/26/16.
@@ -15,6 +18,7 @@ public class CommonUtils {
     private AppiumDriver appium;
     Dimension dimension;
     WebElement webElement;
+    final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
         this.driver = driver;
@@ -70,5 +74,16 @@ public class CommonUtils {
         webElement = appium.findElement(element);
         return webElement.getText();
     }
-
+    
+  //assertValues
+    public boolean assertValue(Object actual, Object expected, String message){
+        try{
+           Assert.assertEquals(actual, expected, message);
+            return true;
+        }
+        catch(AssertionError ae){
+            log.info("Assertion Error: "+ae.getMessage());
+            return false;
+        }
+    }
 }

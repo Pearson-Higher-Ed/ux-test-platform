@@ -35,9 +35,6 @@ public class BaseClass {
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
 
-    //String USERNAME = "eajaz";
-    //String ACCESS_KEY = "dee10cb9-6c0f-4ce1-b3b4-ff7d2854ee80";
-
     @Parameters({"runEnv", "travis", "desktop", "platform", "vmBrowser", "vmBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
     @BeforeSuite(alwaysRun = true)
     protected void setUp(String runEnv, String travis, String desktop, String platform, String vmBrowser, String vmBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {

@@ -15,6 +15,6 @@ before_script:
 notifications:
   email:
     recipients:
-    - pearson-design-accelerator@pearson.com
+    - eajazali.mahaboobbasha@pearson.com
     on_success: never
     on_failure: always
