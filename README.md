@@ -55,6 +55,26 @@ NOTE: Mobile tests runs only on Sauce Machine.
 4. Monitor the status of the build by looking into the Travis CI logs
     https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds
 
+##How to set the correct platform config:
+Go this link: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
+
+    - API
+        Desktop - Choose Selenium
+        Mobile - Choose Appium
+    - Device
+        Desktop - Choose Desktop - PC(Windows) or Mac
+        Mobile - Choose iOS or Android - Choose your desired device
+    - Operating System
+        Desktop - Choose your OS
+        Mobile - Choose your iOS or Android OS
+    - Appium Version
+        Desktop - does not apply
+        Mobile - Choose latest stable Appium version
+    - Copy Code
+        The Copy Code section is the right config platform. The same config should be used as Desired Capabilities in Test Code. Anything else would throw an error on Sauce and tests wouldn't run.
+        Refer Base Class where desired Capabilities are set:                    
+        https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/master/src/test/java/elementsTests/BaseClass.java
+
 ##How to view the test results:
 Go to Travis CI https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds/<last_build_run_id&gt;
 
