@@ -34,12 +34,12 @@ public class IconsTest extends BaseClass {
     Boolean result;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
-    @Parameters({"runEnv", "mobile", "mobDeviceName", "vmBrowser"})
+    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String vmBrowser) {
+    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser) {
         env = runEnv;
         mobileDevice = mobDeviceName;
-        browser = vmBrowser;
+        browser = sauceBrowser;
         setMobile = mobile;    
     }
 

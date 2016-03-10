@@ -35,9 +35,9 @@ public class BaseClass {
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
 
-    @Parameters({"runEnv", "travis", "desktop", "platform", "vmBrowser", "vmBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
+    @Parameters({"runEnv", "travis", "desktop", "platform", "sauceBrowser", "sauceBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
     @BeforeSuite(alwaysRun = true)
-    protected void setUp(String runEnv, String travis, String desktop, String platform, String vmBrowser, String vmBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
+    protected void setUp(String runEnv, String travis, String desktop, String platform, String sauceBrowser, String sauceBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
 
         caps = new DesiredCapabilities();
 
@@ -46,17 +46,17 @@ public class BaseClass {
 
             if (desktop.equals("on")) {
                 //The below conditions is to launch the respective browser driver on Sauce machine
-                if (vmBrowser.equals("chrome")) {
+                if (sauceBrowser.equals("chrome")) {
                     caps = DesiredCapabilities.chrome();
-                } else if (vmBrowser.equals("firefox")) {
+                } else if (sauceBrowser.equals("firefox")) {
                     caps = DesiredCapabilities.firefox();
-                } else if (vmBrowser.equals("ie")) {
+                } else if (sauceBrowser.equals("ie")) {
                     caps = DesiredCapabilities.internetExplorer();
-                } else if (vmBrowser.equals("safari")) {
+                } else if (sauceBrowser.equals("safari")) {
                     caps = DesiredCapabilities.safari();
                 }
                 caps.setCapability("platform", platform);
-                caps.setCapability("version", vmBrowserVer);
+                caps.setCapability("version", sauceBrowserVer);
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 driver = new RemoteWebDriver(new URL(URL), caps);
