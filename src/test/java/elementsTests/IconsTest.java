@@ -27,19 +27,22 @@ public class IconsTest extends BaseClass {
     private static String env;
     private static String mobileDevice;
     private static String setMobile;
-    private static String browser;    
+    private static String browser;
+    private static String mBrowser;
     String fetchCharacter;
     String content;
     String actualContent;
+    String code;
     Boolean result;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
-    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser"})
+    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser) {
+    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
         env = runEnv;
         mobileDevice = mobDeviceName;
         browser = sauceBrowser;
+        mBrowser = mobBrowser;
         setMobile = mobile;    
     }
 
@@ -65,8 +68,8 @@ public class IconsTest extends BaseClass {
                 {"file-o", "\\f016"},
                 {"calendar", "\\f073"},
                 {"square-o","\\f096"},
-                {"check-square-o","\\f046"}
-                //{"ban","\\f05e"}
+                {"check-square-o","\\f046"},
+                {"ban","\\f05e"}
         };
     }
 
@@ -75,10 +78,6 @@ public class IconsTest extends BaseClass {
         chooseEnv();
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
         actualContent = getCode(fetchCharacter);
-        if (browser.equals("chrome")) {
-            //in sauce MAC Chrome, the query returns only \xyz'. Tested this on local with same config and it works fine \fxyz
-            actualContent = actualContent.replace("\\", "\\f");
-        }
         result = assertUnicode(actualContent, expectedContent, testIcon);
         Assert.assertTrue(result);
     }
@@ -218,36 +217,32 @@ public class IconsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-
     private String getCode(String script) {
         JavascriptExecutor js = null;
-        String code;
         if (setMobile.equals("on")) {
             js = (JavascriptExecutor) appium;
             content = (String) js.executeScript(script);
-            code = StringEscapeUtils.escapeJava(content);
-            return "\\" + code.substring(2, 6).toLowerCase();
+            int codePointAt0 = Character.codePointAt(content, 0);
+            code = String.format("%x", (int) codePointAt0).toLowerCase();
+            return "\\" + code;
 
         } else {
             js = (JavascriptExecutor) driver;
             content = (String) js.executeScript(script);
-            code = StringEscapeUtils.escapeJava(content);
-            if (browser.equals("safari")) {
-                return "\\" + code.substring(2, 6).toLowerCase();
-            } else {
-                return "\\" + code.substring(4, 8).toLowerCase();
+            if(browser.equals("safari")){
+                int codePointAt0 = Character.codePointAt(content, 0);
+                code = String.format("%x", (int) codePointAt0).toLowerCase();
+            }else{
+                int codePointAt1 = Character.codePointAt(content, 1);
+                code = String.format("%x", (int) codePointAt1).toLowerCase();
             }
+            return "\\" + code;
         }
     }
 
     private boolean assertUnicode(Object actual, Object expected, String icon) {
     	boolean assertResult=false;
-        if(setMobile.equals("on")||!(browser.equals("chrome"))){
-        	assertResult=commonUtils.assertValue(actual, expected, "The icon " + icon + " is not as per the SPEC");
-    	}
-    	else if(browser.equals("chrome")){
-    		assertResult=commonUtils.assertValue(actual, expected + "'", "The icon " + icon + " is not as per the SPEC");
-    	}
+        assertResult=commonUtils.assertValue(actual, expected, "The icon " + icon + " is not as per the SPEC");
 		return assertResult;
     }
 
