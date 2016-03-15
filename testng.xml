@@ -23,11 +23,11 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="desktop"/>
+                <include name="deskto"/>
             </run>
         </groups>
         <packages>
-            <package name="elementsTests" />
+            <package name="elementsTest" />
         </packages>        
     </test>
 </suite>
