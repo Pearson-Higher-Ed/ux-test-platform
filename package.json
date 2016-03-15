@@ -1,10 +1,9 @@
 {
-    "name": "pearson-elements",
-    "version": "0.2.0",
-    "description": "CSS building blocks for Pearson web user experiences.",
+    "name": "ux-test-platform",
+    "description": "Test Platform for UX Design",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Pearson-Higher-Ed/elements.git"
+        "url": "https://github.com/Pearson-Higher-Ed/ux-test-platform.git"
     },
     "scripts": {
         "install": "npm install --save pearson-elements"
@@ -13,18 +12,5 @@
         "Pearson",
         "design",
         "elements"
-    ],
-    "author": "Pearson Design Accelerator",
-    "license": "MIT",
-    "engines": {
-        "node": "^4.0.0"
-    },
-    "devDependencies": {
-        "webpack": "~1.12.11"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    }
+    ]
 }
