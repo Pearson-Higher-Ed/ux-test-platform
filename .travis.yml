@@ -9,7 +9,8 @@ addons:
    no_ssl_bump_domains: "all"
 
 script:
-- git clone https://github.com/Pearson-Higher-Ed/elements.git
+- chmod 777 ./elements.sh
+- ./elements.sh
 
 before_script:
 - python -m SimpleHTTPServer &
