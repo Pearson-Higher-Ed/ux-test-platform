@@ -8,8 +8,8 @@ script:
 - chmod 777 ./elements.sh
 - ./elements.sh
 
-before_script:
-- python -m SimpleHTTPServer &
+script:
+- npm install
 
 notifications:
   email:
