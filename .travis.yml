@@ -8,6 +8,9 @@ addons:
   sauce_connect:
    no_ssl_bump_domains: "all"
 
+script:
+- npm install --save pearson-elements
+
 before_script:
 - python -m SimpleHTTPServer &
 
