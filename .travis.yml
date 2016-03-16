@@ -8,9 +8,6 @@ script:
 - chmod 777 ./elements.sh
 - ./elements.sh
 
-before_install:
-- npm install -g --save pearson-elements
-
 notifications:
   email:
     recipients:
