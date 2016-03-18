@@ -16,6 +16,6 @@ before_script:
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    - chathuranga.wijetunga@pearson.com
     on_success: never
     on_failure: always
