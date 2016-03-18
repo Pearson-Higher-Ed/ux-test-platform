@@ -2,8 +2,8 @@
 
 <suite name="ComponentsTestSuite">
 
-    <parameter name="runEnv" value="local"></parameter>
-    <parameter name="travis" value="off"></parameter>
+    <parameter name="runEnv" value="sauce"></parameter>
+    <parameter name="travis" value="on"></parameter>
 
 	
     <!-- For Desktop -->
