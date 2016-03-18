@@ -22,7 +22,7 @@
 <pre>
 mvn test
 </pre>
-
++++++++++++++++++
 NOTE: Mobile tests runs only on Sauce Machine.
 
 ##How to run your tests in sauce:
