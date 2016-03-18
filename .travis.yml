@@ -11,6 +11,7 @@ addons:
 
 before_script:
 - python -m SimpleHTTPServer &
+ chmod 777 ./elements.sh
 
 notifications:
   email:
