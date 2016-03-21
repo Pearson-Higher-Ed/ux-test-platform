@@ -40,6 +40,8 @@ NOTE: Mobile tests runs only on Sauce Machine.
             &lt;/run&gt;
         &lt;/groups&gt;
     </pre>
+	
+	
     - If you want to run mobile tests:
     <pre>
     &lt;parameter name="desktop" value="off"&gt;&lt;/parameter&gt;
