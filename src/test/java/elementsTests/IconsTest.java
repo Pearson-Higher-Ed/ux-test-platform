@@ -1,18 +1,14 @@
 package elementsTests;
 
-import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import utilities.BaseClass;
+
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 

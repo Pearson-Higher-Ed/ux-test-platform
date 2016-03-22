@@ -1,7 +1,6 @@
-package elements.utilities;
+package utilities;
 
 import io.appium.java_client.AppiumDriver;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
