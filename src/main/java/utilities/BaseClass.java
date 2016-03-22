@@ -1,4 +1,4 @@
-package elementsTests;
+package utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
-import elements.utilities.CommonUtils;
+import utilities.CommonUtils;
 
 import org.testng.annotations.Parameters;
 
