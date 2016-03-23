@@ -156,7 +156,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"})
+    @Test(enabled = false, testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"})
     private void iPhone6PlusResponsiveTest(ScreenOrientation mode, By element, String visible, String color) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
