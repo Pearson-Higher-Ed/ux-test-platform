@@ -70,6 +70,10 @@ public class BaseClass {
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
+                //Viraji
+                bodyPgObj= new BodyPageObjects(driver);
+                listsPgObj= new ListsPageObjects(driver);
+                //Viraji                
             }
 
             //The below conditions is to set capabilities for mob device and in testng.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
