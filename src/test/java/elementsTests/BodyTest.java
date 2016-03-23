@@ -128,7 +128,7 @@ public class BodyTest extends BaseClass {
 
 	private void chooseEnv() throws InterruptedException {
         if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
+            commonUtils.getUrl("http://localhost:8000/src/main/java/elements/fixtures/responsive.html");
         } else {
             commonUtils.getUrl("file:/" + localUrl);
         }
