@@ -205,7 +205,7 @@ public class ListTest extends BaseClass {
     
     private boolean verifyListItemLeftPadding(By element, String expLeftPadding) {
         //get list level one padding
-    	String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-width");
+    	String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left");
     	System.out.println("actualPaddingLeft : "+actualPaddingLeft);
         boolean result_1=commonUtils.assertValue(actualPaddingLeft, expLeftPadding, "padding-left specification Failed");
         

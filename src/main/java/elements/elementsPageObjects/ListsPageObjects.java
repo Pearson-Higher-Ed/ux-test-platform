@@ -18,7 +18,7 @@ public class ListsPageObjects {
         this.appium = appium;
     }
 
-    public By orderedList=By.xpath("/html/body/div[1]/ol");
+    public By orderedList=By.cssSelector(".pe-list.pe-list--styled");
     public By orderedListItem1 = By.xpath("/html/body/div[1]/ol/li[1]");
     public By orderedListItem2 = By.xpath("/html/body/div[1]/ol/li[2]"); 
     public By orderedListItem3 = By.xpath("/html/body/div[1]/ol/li[3]");
@@ -26,7 +26,7 @@ public class ListsPageObjects {
     public By orderedListChildItem2 = By.xpath("/html/body/div[1]/ol/ol/li[2]"); 
     public By orderedListGrandChildItem1 = By.xpath("/html/body/div[1]/ol/ol/ol/li"); 
     
-    public By unorderedList=By.xpath("/html/body/div[2]/ul");
+    public By unorderedList=By.cssSelector(".pe-list.pe-list--styled2");
     public By unorderedListItem1 = By.xpath("/html/body/div[2]/ul/li[1]");
     public By unorderedListItem2 = By.xpath("/html/body/div[2]/ul/li[2]"); 
     public By unorderedListItem3 = By.xpath("/html/body/div[2]/ul/li[3]");
