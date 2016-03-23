@@ -4,18 +4,13 @@
 
     <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="on"></parameter>
-
-	
-	
 	
     <!-- For Desktop -->
     <parameter name="desktop" value="off"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OSX 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="safari"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
     <parameter name="sauceBrowserVer" value="1.0.3"></parameter><!-- browser version on sauce machine -->
-    <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
-
-	
+    <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->	
 	
     <!-- For Mobile -->
     <parameter name="mobile" value="on"></parameter><!-- set the tests to run on mobile devices -->
