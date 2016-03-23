@@ -21,6 +21,10 @@
 
 
 
+
+
+
+
 5. Run the command from the root directory:
 <pre>
 mvn test
