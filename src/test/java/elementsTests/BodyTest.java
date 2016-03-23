@@ -98,10 +98,11 @@ public class BodyTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
+        
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        result = performBodyTestForMobileEval(mode, element, fontsize, lineheight, color);
-        Assert.assertTrue(result);
+        //result = performBodyTestForMobileEval(mode, element, fontsize, lineheight, color);
+        //Assert.assertTrue(result);
     }
 
     private Boolean performBodyTestForMobileEval(ScreenOrientation mode,
