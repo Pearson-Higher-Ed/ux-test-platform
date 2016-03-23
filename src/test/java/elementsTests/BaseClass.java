@@ -1,6 +1,7 @@
 package elementsTests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -8,6 +9,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
+import elements.elementsPageObjects.BodyPageObjects;
+import elements.elementsPageObjects.ListsPageObjects;
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.utilities.CommonUtils;
 
@@ -34,6 +37,11 @@ public class BaseClass {
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
+        
+    //viraji
+    public static BodyPageObjects bodyPgObj;
+    public static ListsPageObjects listsPgObj;
+    //viraji
 
     @Parameters({"runEnv", "travis", "desktop", "platform", "sauceBrowser", "sauceBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
     @BeforeSuite(alwaysRun = true)
@@ -84,11 +92,20 @@ public class BaseClass {
 
         //The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
         else {
+        	//viraji
             if (localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();
-                respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-                commonUtils = new CommonUtils(driver);
             }
+            if (localBrowser.equals("chrome")) {
+            	driver = new ChromeDriver();
+            	
+            }
+        	respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+            bodyPgObj= new BodyPageObjects(driver);
+            listsPgObj= new ListsPageObjects(driver);
+            commonUtils = new CommonUtils(driver);
+            //viraji
+
         }
     }
 
