@@ -100,10 +100,9 @@ public class BodyTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");            
         }
         System.out.println("values "+ mobileDevice);
-        System.out.println("url "+ url);
-        
+       
         appium.rotate(mode);
-        //commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url, "mobile");
         //result = performBodyTestForMobileEval(mode, element, fontsize, lineheight, color);
         //Assert.assertTrue(result);
     }
