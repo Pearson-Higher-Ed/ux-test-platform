@@ -92,8 +92,8 @@ public class BaseClass {
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
                 //Viraji
-                bodyPgObj= new BodyPageObjects(driver);
-                listsPgObj= new ListsPageObjects(driver);
+                bodyPgObj= new BodyPageObjects(appium);
+                listsPgObj= new ListsPageObjects(appium);
                 //Viraji   
             }
         }
