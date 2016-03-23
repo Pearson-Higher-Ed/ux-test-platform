@@ -18,6 +18,9 @@
         &lt;/groups&gt;
 </pre>
 
+
+
+
 5. Run the command from the root directory:
 <pre>
 mvn test
