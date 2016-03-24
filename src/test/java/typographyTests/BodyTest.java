@@ -85,29 +85,24 @@ public class BodyTest extends BaseClass {
                                                             MOBILE TESTS
      *****************************************************************************************************************************************/
 
-    //For iPhone 6 Plus
-    @DataProvider(name = "iPhone6PlusTestData")
-    private Object[][] iPhone6PlusTestData() {
+    //For mobile OS and Anroid
+    @DataProvider(name = "MobileBodyTestData")
+    private Object[][] MobileBodyTestData() {
         return new Object[][]{
                 {ScreenOrientation.PORTRAIT, bodyPgObj.bodyElement, "16px", "22px", "rgba(35, 31, 32, 1)"},
-       
+                {ScreenOrientation.LANDSCAPE, bodyPgObj.bodyElement, "16px", "22px", "rgba(35, 31, 32, 1)"},
         };
     }
 
-    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"}, enabled = true)
-    private void iPhone6PlusBodyTest(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
-        if (!(mobileDevice.equals("iPhone 6 Plus"))) {
-            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");            
-        }
-       
+    @Test(testName = "Mobile Test for Body", dataProvider = "MobileBodyTestData", groups = {"mobile"}, enabled = true)
+    private void MobileBodyTest(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        result = performBodyTestForMobileEval(mode, element, fontsize, lineheight, color);
+        result = performBodyTestForMobileEval(element, fontsize, lineheight, color);
         Assert.assertTrue(result);
     }
 
-    private Boolean performBodyTestForMobileEval(ScreenOrientation mode,
-			By bodyElement, String fontsize, String lineheight, String color) {
+    private Boolean performBodyTestForMobileEval(By bodyElement, String fontsize, String lineheight, String color) {
         
         //get FontSize
     	String actualFontSize_mobile = commonUtils.getCSSValue(bodyElement, "font-size", "mobile");
