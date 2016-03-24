@@ -17,8 +17,8 @@ import elementsTests.BaseClass;
  */
 public class ListTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elements/fixtures/lists.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/lists.html";
+    private final String url = "http://localhost:8000/src/main/java/typography/fixtures/lists.html";
+    private String inputFilePath = "src/main/java/typography/fixtures/lists.html";
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
@@ -188,7 +188,7 @@ public class ListTest extends BaseClass {
     private boolean verifyListItemSpacing(By element, String expListItemLineHeight) {
         //get list item line height
     	String actualListItemSpace = commonUtils.getCSSValue(element, "line-height");
-    	System.out.println("actualListItemSpace:"+actualListItemSpace);
+    	//System.out.println("actualListItemSpace:"+actualListItemSpace);
         boolean result_1=commonUtils.assertValue(actualListItemSpace, expListItemLineHeight, "line-height specification Failed");
         
         if(result_1 == true){

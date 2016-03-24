@@ -20,14 +20,14 @@
     <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
     <parameter name="appiumVer" value="1.5"></parameter><!-- version of appium on sauce -->
 
-    <test name="ElementsTests">
+    <test name="TypographyTests">
         <groups>
             <run>
                 <include name="mobile"/>
             </run>
         </groups>
         <packages>
-            <package name="elementsTests" />
+            <package name="typographyTests" />
         </packages>        
     </test>
 </suite>

@@ -22,8 +22,8 @@ import typography.typographyPageObjects.BodyPageObjects;
  */
 public class BodyTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elements/fixtures/body.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/body.html";
+    private final String url = "http://localhost:8000/src/main/java/typography/fixtures/body.html";
+    private String inputFilePath = "src/main/java/typography/fixtures/body.html";
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
