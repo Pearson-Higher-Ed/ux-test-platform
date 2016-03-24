@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
-
 import java.io.File;
 
 public class ResponsiveUtilitiesTest extends BaseClass {
