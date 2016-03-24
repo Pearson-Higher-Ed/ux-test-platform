@@ -5,6 +5,7 @@ import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import utilities.BaseClass;
 
 import java.io.File;
 

@@ -15,9 +15,14 @@ addons:
    no_ssl_bump_domains: "all"
 
 before_script:
+- nvm install 5.0
+- nvm use 5.0
 - python -m SimpleHTTPServer &
 
-
+script:
+- chmod 777 ./src/main/shell_scripts/app-header.sh
+- ./src/main/shell_scripts/app-header.sh
+- mvn test
 
 notifications:
   email:
