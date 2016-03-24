@@ -1112,8 +1112,9 @@ kbd {
   font-size: 1rem;
   line-height: 1.375rem;
   font-weight: normal; }
-  .pe-list.pe-list--padding--styled {
+  .pe-list.styled-lists--ordered {
     margin-top: 12px;
+    margin-bottom: 12px;
     padding-left: 26px;
     list-style-type: number; }
 
@@ -1122,7 +1123,7 @@ kbd {
   font-size: 1rem;
   line-height: 1.375rem;
   font-weight: normal; }
-  .pe-list.pe-list--styled {
+  .pe-list.nested-styled-lists--ordered {
     list-style-type: lower-alpha;
     padding-left: 20px; }
 
@@ -1131,9 +1132,34 @@ kbd {
   font-size: 1rem;
   line-height: 1.375rem;
   font-weight: normal; }
-  .pe-list.pe-list--styled2 {
+  .pe-list.pe-list-nested--ordered {
+    list-style-type: lower-roman;
+    padding-left: 20px; }
+
+.pe-list {
+  color: #231F20;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: normal; }
+  .pe-list.styled-lists--unordered {
+    margin-top: 12px;
     margin-bottom: 12px;
-    list-style-type: upper-roman;
+    padding-left: 26px; }
+
+.pe-list {
+  color: #231F20;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: normal; }
+  .pe-list.nested-styled-lists--unordered {
+    padding-left: 20px; }
+
+.pe-list {
+  color: #231F20;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: normal; }
+  .pe-list.pe-list-nested--unordered {
     padding-left: 20px; }
 
 .pe-list--unstyled {
