@@ -1,4 +1,4 @@
-package elements.elementsPageObjects;
+package typography.typographyPageObjects;
 
 import io.appium.java_client.AppiumDriver;
 

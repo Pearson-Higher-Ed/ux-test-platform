@@ -1,4 +1,4 @@
-package elements.elementsPageObjects;
+package typography.typographyPageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

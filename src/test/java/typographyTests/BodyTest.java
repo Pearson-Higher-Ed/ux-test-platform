@@ -1,4 +1,4 @@
-package elementsTests;
+package typographyTests;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -14,7 +14,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import elements.elementsPageObjects.BodyPageObjects;
+import elementsTests.BaseClass;
+import typography.typographyPageObjects.BodyPageObjects;
 
 /**
  * Created by uparavi on 3/17/16.
