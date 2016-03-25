@@ -69,7 +69,7 @@ public class IconsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icons Test", dataProvider = "getIconsTestData", groups = {"desktop"})
+    @Test(enabled = false, testName = "Icons Test", dataProvider = "getIconsTestData", groups = {"desktop"}) 
     private void iconsTest(String testIcon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
         chooseEnv();
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
@@ -83,7 +83,7 @@ public class IconsTest extends BaseClass {
      *****************************************************************************************************************************************/
 
     //For iOS or Android
-    @Test(testName = "Mobile Icons Test", dataProvider = "getIconsTestData", groups = {"mobile"})
+    @Test(enabled = false, testName = "Mobile Icons Test", dataProvider = "getIconsTestData", groups = {"mobile"})
     private void mobileIconsTest(String testIcon, String expectedContent) {
         commonUtils.getUrl(url, "mobile");
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";

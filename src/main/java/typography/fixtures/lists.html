@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet"
+	href="elements.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<!-- unstyled lists -->
+	<div>
+		Use `pe-list--unstyled` for plain lists. Basic Body, as you read,
+		quiz..
+		<ul class="pe-list pe-list--padding--unstyled">
+			<li>One</li>
+			<li>Two</li>
+			<li>Three</li>
+		</ul>
+	</div>
+
+	<!-- nested unstlyed lists -->
+	<div>
+		Basic body. As you read, quiz yourself to review concepts and prep for
+		exams,without leaving the page. What could be easier?
+		<ul id=ol-level1 class="pe-list styled-lists--ordered">
+			<li id=ol-level1-item1>List item one. How are you doing today?
+				Quite fine, thank you.</li>
+			<li id=ol-level1-item2>Item two.</li>
+			<li id=ol-level1-item3>Item three.</li>
+			<ul id=ol-level2 class="pe-list nested-styled-lists--ordered">
+				<li id=ol-level2-item1>child item one</li>
+				<li id=ol-level2-item2>child item two</li>
+				<ul id=ol-level3 class="pe-list pe-list-nested--ordered">
+					<li id=ol-level3-item1>grand child item one</li>
+					<li id=ol-level3-item2>grand child item two</li>
+				</ul>
+			</ul>
+		</ul>
+		And back to the regular copy. Hopefully you are fully prepared for
+		your exams now. At least you have a to do list all set up for you.
+		Basic body. As you read, quiz yourself to review concepts and prep for
+		exams,without leaving the page. What could be easier?
+		</p>
+	</div>
+
+	<!-- inline lists -->
+	<div>
+		When nested, `styled-lists--unordered` should be added to each ul
+		element.
+		<ul id=ul-level1 class="pe-list styled-lists--unordered">
+			<li id=ul-level1-item1>List item one. How are you doing today?
+				Quite fine, thank you.</li>
+			<li id=ul-level1-item2>Item two.</li>
+			<li id=ul-level1-item3>Item three.</li>
+			<ul id=ul-level2 class="pe-list nested-styled-lists--unordered">
+				<li id=ul-level2-item1>child item one</li>
+				<li id=ul-level2-item2>child item two</li>
+				<ul id=ul-level3 class="pe-list pe-list-nested--unordered">
+					<li id=ul-level3-item1>grand child item one</li>
+					<li id=ul-level3-item2>grand child item two</li>
+				</ul>
+			</ul>
+		</ul>
+	</div>
+</body>
+</html>
