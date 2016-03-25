@@ -2,14 +2,14 @@
 
 <suite name="ComponentsTestSuite">
 
-    <parameter name="runEnv" value="sauce"></parameter>
+    <parameter name="runEnv" value="desktop"></parameter>
     <parameter name="travis" value="on"></parameter>
 	
     <!-- For Desktop -->
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="Windows"></parameter><!-- MAC or Windows -->
-    <parameter name="sauceBrowser" value="Chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="46.0"></parameter><!-- browser version on sauce machine -->
+    <parameter name="sauceBrowser" value="safari"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
+    <parameter name="sauceBrowserVer" value="1.0.3"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->	
 	
     <!-- For Mobile -->
