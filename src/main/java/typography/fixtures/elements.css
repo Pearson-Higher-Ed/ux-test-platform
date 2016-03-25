@@ -1116,7 +1116,7 @@ kbd {
     margin-top: 12px;
     margin-bottom: 12px;
     padding-left: 26px;
-    list-style-type: number; }
+    list-style-type: decimal; }
 
 .pe-list {
   color: #231F20;
@@ -1144,7 +1144,8 @@ kbd {
   .pe-list.styled-lists--unordered {
     margin-top: 12px;
     margin-bottom: 12px;
-    padding-left: 26px; }
+    padding-left: 26px;
+    list-style-type: disc; }
 
 .pe-list {
   color: #231F20;
@@ -1152,7 +1153,8 @@ kbd {
   line-height: 1.375rem;
   font-weight: normal; }
   .pe-list.nested-styled-lists--unordered {
-    padding-left: 20px; }
+    padding-left: 20px;
+    list-style-type: circle; }
 
 .pe-list {
   color: #231F20;
@@ -1160,7 +1162,8 @@ kbd {
   line-height: 1.375rem;
   font-weight: normal; }
   .pe-list.pe-list-nested--unordered {
-    padding-left: 20px; }
+    padding-left: 20px;
+    list-style-type: square; }
 
 .pe-list--unstyled {
   padding-left: 0;

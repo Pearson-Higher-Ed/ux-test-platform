@@ -18,19 +18,23 @@ public class ListsPageObjects {
         this.appium = appium;
     }
 
-    public By orderedList=By.cssSelector(".pe-list.pe-list--styled");
-    public By orderedListItem1 = By.xpath("/html/body/div[1]/ol/li[1]");
-    public By orderedListItem2 = By.xpath("/html/body/div[1]/ol/li[2]"); 
-    public By orderedListItem3 = By.xpath("/html/body/div[1]/ol/li[3]");
-    public By orderedListChildItem1 = By.xpath("/html/body/div[1]/ol/ol/li[1]");
-    public By orderedListChildItem2 = By.xpath("/html/body/div[1]/ol/ol/li[2]"); 
-    public By orderedListGrandChildItem1 = By.xpath("/html/body/div[1]/ol/ol/ol/li"); 
+    public By orderedListLevel1=By.id("ol-level1");
+    public By orderedListItem1 = By.id("ol-level1-item1");
+    public By orderedListItem2 = By.id("ol-level1-item2"); 
+    public By orderedListItem3 = By.id("ol-level1-item3");
+    public By orderedListLevel2=By.id("ol-level2");
+    public By orderedListChildItem1 = By.id("ol-level2-item1");
+    public By orderedListChildItem2 = By.id("ol-level2-item2"); 
+    public By orderedListLevel3=By.id("ol-level3");
+    public By orderedListGrandChildItem1 = By.id("ol-level3-item1"); 
     
-    public By unorderedList=By.cssSelector(".pe-list.pe-list--styled2");
-    public By unorderedListItem1 = By.xpath("/html/body/div[2]/ul/li[1]");
-    public By unorderedListItem2 = By.xpath("/html/body/div[2]/ul/li[2]"); 
-    public By unorderedListItem3 = By.xpath("/html/body/div[2]/ul/li[3]");
-    public By unorderedListChildItem1 = By.xpath("/html/body/div[2]/ul/ul/li[1]");
-    public By unorderedListChildItem2 = By.xpath("/html/body/div[2]/ul/ul/li[2]"); 
-    public By unorderedListGrandChildItem1 = By.xpath("/html/body/div[2]/ul/ul/ul/li"); 
+    public By unorderedListLevel1=By.id("ul-level1");
+    public By unorderedListItem1 = By.id("ul-level1-item1");
+    public By unorderedListItem2 = By.id("ul-level1-item2"); 
+    public By unorderedListItem3 = By.id("ul-level1-item3");
+    public By unorderedListLevel2=By.id("ul-level2");
+    public By unorderedListChildItem1 = By.id("ul-level2-item1");
+    public By unorderedListChildItem2 = By.id("ul-level2-item2"); 
+    public By unorderedListLevel3=By.id("ul-level3");
+    public By unorderedListGrandChildItem1 = By.id("ul-level3-item1"); 
 }

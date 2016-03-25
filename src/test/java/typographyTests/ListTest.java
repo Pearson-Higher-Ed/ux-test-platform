@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -68,59 +69,56 @@ public class ListTest extends BaseClass {
     
    
     //Test 2 - Verify margin-top and margin-bottom
-    @DataProvider(name = "getLists")
-    private Object[][] getListsSpacingTestData() {
+    @DataProvider(name = "getListsSpacingtopBottomMarginTestData")
+    private Object[][] getListsSpacingtopBottomMarginTestData() {
     	//verify below objects contain top margin and bottom margin = "12px" 
         return new Object[][]{
         		//ordered
-        		{listsPgObj.orderedList}, 
+        		{listsPgObj.orderedListLevel1, "12px" },  
         		//Unordered
-        		{listsPgObj.unorderedList}, 
+        		{listsPgObj.unorderedListLevel1, "12px"}
         };
     }
 
-    @Test(testName = "Lists spacing test", dataProvider = "getLists", groups = {"desktop"})
-    private void ListsSpacingTest(By element) 
+    @Test(testName = "Lists Margin top and bottom test", dataProvider = "getListsSpacingtopBottomMarginTestData", groups = {"desktop"})
+    private void ListsSpacingMarginTest(By element, String space_above_below) 
     {
     	chooseEnv();
-    	String space_above_below="12px";
         result = verifyListSpacing(element, space_above_below);
         Assert.assertTrue(result);
 
     }
     
     //Test 4 - Verify line space
-    @DataProvider(name = "getListItems")
-    private Object[][] getListItemsTestData() {
+    @DataProvider(name = "getListItemsSpacingTest")
+    private Object[][] getListItemsSpacingTest() {
     	//verify List item's line height = "6px"
         return new Object[][]{
         		//ordered
-        		{listsPgObj.orderedListItem1}, 
-        		{listsPgObj.orderedListItem2}, 
-        		{listsPgObj.orderedListItem3}, 
-        		{listsPgObj.orderedListChildItem1}, 
-        		{listsPgObj.orderedListChildItem2}, 
-        		{listsPgObj.orderedListGrandChildItem1}, 
+        		{listsPgObj.orderedListItem1,"6px"}, 
+        		{listsPgObj.orderedListItem2, "6px"}, 
+        		{listsPgObj.orderedListItem3, "6px"}, 
+        		{listsPgObj.orderedListChildItem1, "6px"}, 
+        		{listsPgObj.orderedListChildItem2, "6px"}, 
+        		{listsPgObj.orderedListGrandChildItem1, "6px"}, 
         		//unordered
-        		{listsPgObj.unorderedListItem1}, 
-        		{listsPgObj.unorderedListItem2}, 
-        		{listsPgObj.unorderedListItem3}, 
-        		{listsPgObj.unorderedListChildItem1}, 
-        		{listsPgObj.unorderedListChildItem2}, 
-        		{listsPgObj.unorderedListGrandChildItem1}, 
+        		{listsPgObj.unorderedListItem1, "6px"}, 
+        		{listsPgObj.unorderedListItem2, "6px"}, 
+        		{listsPgObj.unorderedListItem3, "6px"}, 
+        		{listsPgObj.unorderedListChildItem1, "6px"}, 
+        		{listsPgObj.unorderedListChildItem2, "6px"}, 
+        		{listsPgObj.unorderedListGrandChildItem1, "6px"}, 
 
         };
     }
     
-    @Test(testName = "Lists item spacing test", dataProvider = "getListItems", groups = {"desktop"})
-    private void ListItemSpacingTest(By element) 
+    @Test(testName = "Lists item spacing test", dataProvider = "getListItemsSpacingTest", groups = {"desktop"})
+    private void ListItemSpacingTest(By element, String space_list_items) 
     {
     	chooseEnv();
     	//Get font size
     	String actualFontSize=getFontSize(element);
     	int int_actualFontSize=Integer.parseInt(actualFontSize.replace("px", ""));
-    	//Expected line space between list Items
-    	String space_list_items="6px";
     	int int_space_list_items=Integer.parseInt(space_list_items.replace("px", ""));
     	//Add expected line space between list item with font size
     	int expectedLineHeight=int_actualFontSize+int_space_list_items;
@@ -133,22 +131,15 @@ public class ListTest extends BaseClass {
     //Test 4 - VErify left padding
     @DataProvider(name = "getListItemsLeftPaddingTestData")
     private Object[][] getListItemsLeftPaddingTestData() {
-    	//verify List item's line height = "6px"
-        return new Object[][]{
-        		//Ordered
-        		{listsPgObj.orderedListItem1, "26px"}, 
-        		{listsPgObj.orderedListItem2, "26px"}, 
-        		{listsPgObj.orderedListItem3, "26px"}, 
-        		{listsPgObj.orderedListChildItem1, "20px"}, 
-        		{listsPgObj.orderedListChildItem2, "20px"}, 
-        		{listsPgObj.orderedListGrandChildItem1, "20px" }, 
+        return new Object[][]{        		
+        		//ordered
+        		{listsPgObj.orderedListLevel1, "26px"}, 
+        		{listsPgObj.orderedListLevel2, "20px"},
+        		{listsPgObj.orderedListLevel3, "20px"}, 
         		//Unordered
-        		{listsPgObj.unorderedListItem1, "26px"}, 
-        		{listsPgObj.unorderedListItem2, "26px"}, 
-        		{listsPgObj.unorderedListItem3, "26px"}, 
-        		{listsPgObj.unorderedListChildItem1, "20px"}, 
-        		{listsPgObj.unorderedListChildItem2, "20px"}, 
-        		{listsPgObj.unorderedListGrandChildItem1, "20px" }, 
+        		{listsPgObj.unorderedListLevel1, "26px"},
+        		{listsPgObj.unorderedListLevel2, "20px"}, 
+        		{listsPgObj.unorderedListLevel3, "20px"}, 
         };
     }
     
@@ -156,7 +147,7 @@ public class ListTest extends BaseClass {
     private void ListItemLeftPaddingTest(By element, String leftPadding)
     {
     	chooseEnv();
-        //Verify Line Height level 1
+        //Verify left padding
     	result = verifyListItemLeftPadding(element, leftPadding);
         Assert.assertTrue(result);
     }
@@ -201,7 +192,7 @@ public class ListTest extends BaseClass {
     private boolean verifyListItemSpacing(By element, String expListItemLineHeight) {
         //get list item line height
     	String actualListItemSpace = commonUtils.getCSSValue(element, "line-height");
-    	//System.out.println("actualListItemSpace:"+actualListItemSpace);
+
         boolean result_1=commonUtils.assertValue(actualListItemSpace, expListItemLineHeight, "line-height specification Failed");
         
         if(result_1 == true){
@@ -212,16 +203,15 @@ public class ListTest extends BaseClass {
     }
     
     private String getFontSize(By element) {
-
     	//get LineHeight
         String actualFontSize = commonUtils.getCSSValue(element, "font-size");
         return actualFontSize;
     }
     
     private boolean verifyListItemLeftPadding(By element, String expLeftPadding) {
-        //get list level one padding
+    	//get list level one padding
     	String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left");
-    	System.out.println("actualPaddingLeft : "+actualPaddingLeft);
+
         boolean result_1=commonUtils.assertValue(actualPaddingLeft, expLeftPadding, "padding-left specification Failed");
         
         if(result_1 == true){
@@ -230,6 +220,7 @@ public class ListTest extends BaseClass {
             return false;
         }
     }
+
 
     /*****************************************************************************************************************************************
                                                             MOBILE TESTS
@@ -288,11 +279,11 @@ public class ListTest extends BaseClass {
     	//verify below objects contain top margin and bottom margin = "12px" 
         return new Object[][]{
         		//ordered
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedList}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedList},
+        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListLevel1}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListLevel1},
         		//Unordered
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedList}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedList},
+        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListLevel1}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListLevel1},
         };
     }
 
@@ -392,32 +383,29 @@ public class ListTest extends BaseClass {
     private Object[][] getListItemsLeftPaddingTestDataMobile() {
     	//verify List item's line height = "6px"
         return new Object[][]{
-        		//Ordered
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListItem1, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListItem2, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListItem3, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListChildItem1, "20px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListChildItem2, "20px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListGrandChildItem1, "20px" }, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListItem1, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListItem2, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListItem3, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListChildItem1, "20px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListChildItem2, "20px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListGrandChildItem1, "20px" }, 
+        		//ordered
+        		{listsPgObj.orderedListLevel1, "26px"}, 
+        		{listsPgObj.orderedListLevel2, "20px"},
+        		{listsPgObj.orderedListLevel3, "20px"}, 
         		//Unordered
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListItem1, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListItem2, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListItem3, "26px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListChildItem1, "20px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListChildItem2, "20px"}, 
-        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListGrandChildItem1, "20px" }, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListItem1, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListItem2, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListItem3, "26px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListChildItem1, "20px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListChildItem2, "20px"}, 
-        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListGrandChildItem1, "20px" }, 
+        		{listsPgObj.unorderedListLevel1, "26px"},
+        		{listsPgObj.unorderedListLevel2, "20px"}, 
+        		{listsPgObj.unorderedListLevel3, "20px"}, 
+        		
+        		//Ordered
+        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListLevel1, "26px"}, 
+        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListLevel2, "20px"}, 
+        		{ScreenOrientation.PORTRAIT, listsPgObj.orderedListLevel3, "20px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListLevel1, "26px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListLevel2, "20px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.orderedListLevel3, "20px"}, 
+        		//Unordered
+        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListLevel1, "26px"}, 
+        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListLevel2, "20px"}, 
+        		{ScreenOrientation.PORTRAIT, listsPgObj.unorderedListLevel3, "20px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListLevel1, "26px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListLevel2, "20px"}, 
+        		{ScreenOrientation.LANDSCAPE, listsPgObj.unorderedListLevel3, "20px"}, 
         };
     }
     
@@ -431,7 +419,7 @@ public class ListTest extends BaseClass {
     }
     
     private boolean verifyListItemLeftPadding(By element, String expLeftPadding, String Mobile) {
-        //get list level one padding
+
     	String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
         boolean result_1=commonUtils.assertValue(actualPaddingLeft, expLeftPadding, "padding-left specification Failed");
         
