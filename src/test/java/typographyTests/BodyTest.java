@@ -14,8 +14,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import elementsTests.BaseClass;
 import typography.typographyPageObjects.BodyPageObjects;
+import utilities.BaseClass;
 
 /**
  * Created by uparavi on 3/17/16.
