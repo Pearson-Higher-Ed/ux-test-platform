@@ -1,6 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,7 +13,7 @@ import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import utilities.CommonUtils;
 
 import org.testng.annotations.Parameters;
-
+import elements.elementsPageObjects.TypographyPageObjects;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -29,6 +30,7 @@ public class BaseClass {
     public static WebDriver driver;
     public static AppiumDriver appium;
     public static ResponsiveUtilitiesPageObjects respPgObj;
+    public static TypographyPageObjects typoPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -61,6 +63,7 @@ public class BaseClass {
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+                typoPgObj = new TypographyPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
 
@@ -78,6 +81,7 @@ public class BaseClass {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
+                typoPgObj = new TypographyPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
             }
         }
@@ -87,6 +91,7 @@ public class BaseClass {
             if (localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+                typoPgObj = new TypographyPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
         }
