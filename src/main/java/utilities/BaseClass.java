@@ -9,10 +9,11 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
-import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import utilities.CommonUtils;
 
 import org.testng.annotations.Parameters;
+
+import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.elementsPageObjects.TypographyPageObjects;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
