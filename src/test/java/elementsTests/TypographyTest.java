@@ -279,7 +279,7 @@ public class TypographyTest extends BaseClass {
 		String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color");
 		commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
 		commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
-		commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not" + lnHeight);
+		commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
 		commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
 		commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
 	}
@@ -298,8 +298,8 @@ public class TypographyTest extends BaseClass {
 		String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
 		String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Font Family is not" + fntFamly);
-		commonUtils.assertValue(pdngLft, pddngLft, "Padding Left is not" + pdngLft);
+		commonUtils.assertValue(fontFamily, fntFamly, "Font Family is not " + fntFamly);
+		commonUtils.assertValue(pdngLft, pddngLft, "Padding Left is not " + pdngLft);
 		commonUtils.assertValue(pdngRght, pddngRgt, "Padding Right is not " + pddngRgt);
 		commonUtils.assertValue(bckgrnd, bckClr, "Background Color is not" + bckClr);
 	}
@@ -318,10 +318,10 @@ public class TypographyTest extends BaseClass {
 		String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
 		String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-		commonUtils.assertValue(fontFamily, fntFamly, "kbd Code Test Font Family is not" + fntFamly);
-		commonUtils.assertValue(pdngLft, pddngLft, "kbd Code Test Padding Left is not" + pdngLft);
+		commonUtils.assertValue(fontFamily, fntFamly, "kbd Code Test Font Family is not " + fntFamly);
+		commonUtils.assertValue(pdngLft, pddngLft, "kbd Code Test Padding Left is not " + pdngLft);
 		commonUtils.assertValue(pdngRght, pddngRgt, "kbd Code Test Padding Right is not " + pddngRgt);
-		commonUtils.assertValue(bckgrnd, bckClr, "kbd Code Test Background Color is not" + bckClr);
+		commonUtils.assertValue(bckgrnd, bckClr, "kbd Code Test Background Color is not " + bckClr);
 	}
 
 	/**********************************************************************************************************************************************
@@ -577,10 +577,10 @@ public class TypographyTest extends BaseClass {
 		String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
 		String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Kbd Code Test Font Family is not" + fntFamly);
-		commonUtils.assertValue(pdngLft, pddngLft, "Kbd Code Test Padding Left is not" + pdngLft);
+		commonUtils.assertValue(fontFamily, fntFamly, "Kbd Code Test Font Family is not " + fntFamly);
+		commonUtils.assertValue(pdngLft, pddngLft, "Kbd Code Test Padding Left is not " + pdngLft);
 		commonUtils.assertValue(pdngRght, pddngRgt, "Kbd Code Test Padding Right is not " + pddngRgt);
-		commonUtils.assertValue(bckgrnd, bckClr, "Kbd Code Test Background Color is not" + bckClr);
+		commonUtils.assertValue(bckgrnd, bckClr, "Kbd Code Test Background Color is not " + bckClr);
 	}
 
 	@Test(enabled = true, testName = "Heading Margin Test", groups = { "mobile" })
