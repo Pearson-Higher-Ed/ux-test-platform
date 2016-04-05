@@ -142,7 +142,7 @@ public class TypographyTest extends BaseClass {
 		int expectedLineHeight = int_actualFontSize + int_space_list_items;
 		// Verify Line Height
 		String actualListItemSpace = commonUtils.getCSSValue(element, "line-height");
-		boolean result_1 = commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists line-height specification Failed");
+		commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists line-height specification Failed");
 	}
 
 	@DataProvider(name = "getListItemsLeftPaddingTestData")
@@ -165,7 +165,7 @@ public class TypographyTest extends BaseClass {
 		chooseEnv();
 		// Verify left padding
 		String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left");
-		boolean result_1 = commonUtils.assertValue(actualPaddingLeft, leftPadding, "Lists padding-left specification Failed");
+		commonUtils.assertValue(actualPaddingLeft, leftPadding, "Lists padding-left specification Failed");
 	}
 
 	@DataProvider(name = "getListstopMarginAfterHeaderTestData")
@@ -179,11 +179,11 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 6
-	@Test(testName = "Lists top Margin After Header test", dataProvider = "getListstopMarginAfterHeaderTestData", groups = {"desktop" })
+	@Test(testName = "Lists top Margin After Header test", dataProvider = "getListstopMarginAfterHeaderTestData", groups = {"desktop"})
 	private void ListsMarginAfterHeaderTest(By element, String space_above) {
 		chooseEnv();
 		String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
-		boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above, "Lists margin-top after header specification Failed");
+		commonUtils.assertValue(actualSpaceAbove, space_above, "Lists margin-top after header specification Failed");
 	}
 
 	// Feature: Heading
@@ -236,7 +236,7 @@ public class TypographyTest extends BaseClass {
 			};
 	}
 
-	@Test(enabled = true, testName = "Heading Margin Content Test", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"desktop" })
+	@Test(enabled = true, testName = "Heading Margin Content Test", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"desktop"})
 	private void HeadingMrgnParaTest(By element, String actulmrgn) {
 		chooseEnv();
 		String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -254,7 +254,7 @@ public class TypographyTest extends BaseClass {
 			};
 	}
 
-	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"desktop" })
+	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"desktop"})
 	private void HeadingMrgnCntntTest(By element, String actlMrgn) {
 		chooseEnv();
 		String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -369,7 +369,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 2
-	@Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile" })
+	@Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile"})
 	private void OrderedListsFontTestMobile(ScreenOrientation mode, By element, String fontsize, String lineheight,String color) {
 		appium.rotate(mode);
 		commonUtils.getUrl(url, "mobile");
@@ -390,7 +390,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 3
-	@Test(testName = "Lists spacing test Mobile", dataProvider = "getListsMobile", groups = { "mobile" })
+	@Test(testName = "Lists spacing test Mobile", dataProvider = "getListsMobile", groups = {"mobile"})
 	private void ListsSpacingTestMobile(By element) {
 		chooseEnv();
 		String space_above_below = "12px";
@@ -431,7 +431,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 4
-	@Test(testName = "Lists item spacing test Mobile", dataProvider = "getListItemsMobile", groups = { "mobile" })
+	@Test(testName = "Lists item spacing test Mobile", dataProvider = "getListItemsMobile", groups = {"mobile"})
 	private void ListItemSpacingTestMobile(By element) {
 		chooseEnv();
 		// Get font size
@@ -445,7 +445,7 @@ public class TypographyTest extends BaseClass {
 		int expectedLineHeight = int_actualFontSize + int_space_list_items;
 		// Verify Line Height
 		String actualListItemSpace = commonUtils.getCSSValue(element, "line-height", "mobile");
-		boolean result_1 = commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists item line-height specification Failed");
+		commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists item line-height specification Failed");
 	}
 
 	@DataProvider(name = "getListItemsLeftPaddingTestDataMobile")
@@ -469,12 +469,12 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 5
-	@Test(testName = "Lists left padding Mobile", dataProvider = "getListItemsLeftPaddingTestDataMobile", groups = {"mobile" })
+	@Test(testName = "Lists left padding Mobile", dataProvider = "getListItemsLeftPaddingTestDataMobile", groups = {"mobile"})
 	private void getListItemsLeftPaddingTestDataMobile(By element, String leftPadding) {
 		chooseEnv();
 		// Verify left padding
 		String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-		boolean result_1 = commonUtils.assertValue(actualPaddingLeft, leftPadding,"Lists padding-left specification Failed");
+		commonUtils.assertValue(actualPaddingLeft, leftPadding,"Lists padding-left specification Failed");
 	}
 
 	@DataProvider(name = "getListstopMarginAfterHeaderTestDataMobile")
@@ -490,22 +490,22 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test 6
-	@Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile" })
+	@Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile"})
 	private void ListsMarginAfterHeaderTestMobile(By element, String space_above) {
 		chooseEnv();
 		String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top", "mobile");
-		boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above,"Lists margin-top after header specification Failed");
+		commonUtils.assertValue(actualSpaceAbove, space_above,"Lists margin-top after header specification Failed");
 	}
 
 	// Feature: Heading
-	@Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"mobile"})
 	private void HeadingMobileTestLANDSCAPE(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
 		chooseEnv();
 		result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item, ScreenOrientation.LANDSCAPE);
 		Assert.assertTrue(result);
 	}
 
-	@Test(enabled = true, testName = "Heading Margin Test", groups = { "mobile" })
+	@Test(enabled = true, testName = "Heading Margin Test", groups = {"mobile"})
 	private void HeadingMrgnMobileTestLANDSCAPE(By element) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -513,7 +513,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
 	}
 
-	@Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile" })
+	@Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile"})
 	private void HeadingMrgnParaMobileTest(By element, String actulmrgn) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -522,7 +522,7 @@ public class TypographyTest extends BaseClass {
 
 	}
 
-	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile" })
+	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile"})
 	private void HeadingMrgnCntntMobileTest(By element) throws InterruptedException, UnsupportedEncodingException {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -531,7 +531,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Test For Portrait
-	@Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"mobile"})
 	private void HeadingMobileTestPORTRAIT(By element, String fontSize, String lineHeight, String fontWeight,String fontColor, String item) {
 		chooseEnv();
 		result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item,ScreenOrientation.PORTRAIT);
@@ -539,7 +539,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Feature: Coding
-	@Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
 	private void CodeMobileTestLANDSCAPE(String fntFamly, String fntSize, String lnHeight, String bckClr,String fntColr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -555,7 +555,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
 	}
 
-	@Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
 	private void InlneCodeMobileTestLANDSCAPE(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -569,7 +569,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not " + bckClr);
 	}
 
-	@Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
 	private void kbdCodeMobileTestLANDSCAPE(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -583,7 +583,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
 	}
 
-	@Test(enabled = true, testName = "Heading Margin Test", groups = { "mobile" })
+	@Test(enabled = true, testName = "Heading Margin Test", groups = {"mobile"})
 	private void HeadingMrgnMobileTestPORTRAIT(By element) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -591,7 +591,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
 	}
 
-	@Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile" })
+	@Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile"})
 	private void HeadingMrgnParaMobileTestPORTRAIT(By element, String actulmrgn) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -599,7 +599,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has" + actulmrgn);
 	}
 
-	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile" })
+	@Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile"})
 	private void HeadingMrgnCntntMobileTestPORTRAIT(By element, String actlMrgn) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -607,7 +607,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(margin, actlMrgn, "Header that follows a heading dosent has" + actlMrgn + " margin");
 	}
 
-	@Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
 	private void CodeMobileTestPORTRAIT(String fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -623,7 +623,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
 	}
 
-	@Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
 	private void InlneCodeMobileTestPORTRAIT(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -637,7 +637,7 @@ public class TypographyTest extends BaseClass {
 		commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
 	}
 
-	@Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
 	private void kbdCodeMobileTestPORTRAIT(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
 		chooseEnv();
 		appium.rotate(ScreenOrientation.PORTRAIT);
