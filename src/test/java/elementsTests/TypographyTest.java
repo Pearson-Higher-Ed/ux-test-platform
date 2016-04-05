@@ -275,7 +275,8 @@ public class TypographyTest extends BaseClass {
 
 	@DataProvider(name = "getHeadingsMrgnMrgnTestData")
 	private Object[][] getHeadingsMrgnMrgnTestData() {
-		return new Object[][] { { typoPgObj.heading_2, "6px", },
+		return new Object[][] { 
+				{ typoPgObj.heading_2, "6px", },
 				{ typoPgObj.heading_3, "6px", },
 				{ typoPgObj.heading_4, "6px", },
 				{ typoPgObj.heading_5, "6px", },

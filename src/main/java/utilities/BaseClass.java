@@ -98,6 +98,7 @@ public class BaseClass {
         }
     }
 
+    
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
