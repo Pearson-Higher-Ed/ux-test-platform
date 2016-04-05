@@ -756,8 +756,7 @@ public class TypographyTest extends BaseClass {
 	}
 
 	// Feature : Heading
-	private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String fontWeight, String fontColor,
-			String item) {
+	private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String fontWeight, String fontColor,String item) {
 		boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
 		String headingFontSize = commonUtils.getCSSValue(element, "font-size");
 		String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
