@@ -277,11 +277,11 @@ public class TypographyTest extends BaseClass {
 		String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
 		String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Font Family is not " + fontFamily);
-		commonUtils.assertValue(fontSize, fntSize, "Font Size is not " + fntSize);
-		commonUtils.assertValue(lneHeight, lnHeight, "Line height is not" + lnHeight);
-		commonUtils.assertValue(bckgrnd, bckClr, "Background Color is not " + bckClr);
-		commonUtils.assertValue(fntClr, fntColr, "Font color is not " + fntColr);
+		commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+		commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
+		commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not" + lnHeight);
+		commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
+		commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
 	}
 
 	@DataProvider(name = "getInlnCodeTestData")
@@ -307,7 +307,7 @@ public class TypographyTest extends BaseClass {
 	@DataProvider(name = "getkbdTestData")
 	private Object[][] getkbdTestData() {
 		return new Object[][] {
-						{"'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace", "4px","4px", "rgba(230, 230, 230, 1)", } 
+						{"'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace", "4px","4px", "rgba(230, 230, 230, 1)",} 
 			};
 	}
 
@@ -318,10 +318,10 @@ public class TypographyTest extends BaseClass {
 		String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
 		String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Font Family is not" + fntFamly);
-		commonUtils.assertValue(pdngLft, pddngLft, "Padding Left is not" + pdngLft);
-		commonUtils.assertValue(pdngRght, pddngRgt, "Padding Right is not " + pddngRgt);
-		commonUtils.assertValue(bckgrnd, bckClr, "Background Color is not" + bckClr);
+		commonUtils.assertValue(fontFamily, fntFamly, "kbd Code Test Font Family is not" + fntFamly);
+		commonUtils.assertValue(pdngLft, pddngLft, "kbd Code Test Padding Left is not" + pdngLft);
+		commonUtils.assertValue(pdngRght, pddngRgt, "kbd Code Test Padding Right is not " + pddngRgt);
+		commonUtils.assertValue(bckgrnd, bckClr, "kbd Code Test Background Color is not" + bckClr);
 	}
 
 	/**********************************************************************************************************************************************
@@ -334,8 +334,8 @@ public class TypographyTest extends BaseClass {
 	@DataProvider(name = "MobileBodyTestData")
 	private Object[][] MobileBodyTestData() {
 		return new Object[][] {
-						{ ScreenOrientation.PORTRAIT, typoPgObj.paragraph1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.paragraph1, "16px", "22px", "rgba(35, 31, 32, 1)" }
+						{ ScreenOrientation.PORTRAIT, typoPgObj.paragraph1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.paragraph1, "16px", "22px", "rgba(35, 31, 32, 1)"}
 			};
 	}
 
@@ -352,19 +352,19 @@ public class TypographyTest extends BaseClass {
 	@DataProvider(name = "getOrderedListsFontTestDataMobile")
 	private Object[][] getOrderedListsFontTestDataMobile() {
 		return new Object[][] {
-						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
+						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.PORTRAIT, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
 						// Unordered
-						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" },
-						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)" }
+						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.PORTRAIT, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
+						{ ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"}
 			};
 	}
 
@@ -548,11 +548,11 @@ public class TypographyTest extends BaseClass {
 		String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
 		String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Font Family is not " + fontFamily);
-		commonUtils.assertValue(fontSize, fntSize, "Font Size is not " + fntSize);
-		commonUtils.assertValue(lneHeight, lnHeight, "Line height is not" + lnHeight);
-		commonUtils.assertValue(bckgrnd, bckClr, "Background Color is not " + bckClr);
-		commonUtils.assertValue(fntClr, fntColr, "Font color is not " + fntColr);
+		commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+		commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
+		commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
+		commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
+		commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
 	}
 
 	@Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = { "mobile" })
@@ -563,10 +563,10 @@ public class TypographyTest extends BaseClass {
 		String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
 		String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
 		String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-		commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not" + fntFamly);
-		commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not" + pdngLft);
+		commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
+		commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
 		commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
-		commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
+		commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not " + bckClr);
 	}
 
 	@Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = { "mobile" })
