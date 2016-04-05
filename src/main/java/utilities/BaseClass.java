@@ -86,8 +86,8 @@ public class BaseClass {
                 commonUtils = new CommonUtils(appium);
             }
         }
-
-        //The below else condition is to lauch browser driver on your local machine. In testng.xml -> set runEnv != sauce
+        
+        //The below else condition is to launch browser driver on your local machine. In testng.xml -> set runEnv != sauce
         else {
             if (localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();
