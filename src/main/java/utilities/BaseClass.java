@@ -1,5 +1,6 @@
 package utilities;
 
+import molecules.moleculesPageObjects.AppHeaderPageObjects;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -32,6 +33,7 @@ public class BaseClass {
     public static AppiumDriver appium;
     public static ResponsiveUtilitiesPageObjects respPgObj;
     public static TypographyPageObjects typoPgObj;
+    public static AppHeaderPageObjects appHeaderPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -65,6 +67,7 @@ public class BaseClass {
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
+                appHeaderPgObj = new AppHeaderPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
 
@@ -83,6 +86,7 @@ public class BaseClass {
                 }
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
                 typoPgObj = new TypographyPageObjects(appium);
+                appHeaderPgObj= new AppHeaderPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
             }
         }
@@ -93,11 +97,11 @@ public class BaseClass {
                 driver = new FirefoxDriver();
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
+                appHeaderPgObj= new AppHeaderPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
         }
     }
-
     
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
