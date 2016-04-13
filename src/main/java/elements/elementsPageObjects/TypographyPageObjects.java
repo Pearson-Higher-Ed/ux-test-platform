@@ -81,4 +81,52 @@ public class TypographyPageObjects {
 	public By HeadingOrderedListLevel1=By.id("hd-ol-level1-item1");
 	public By HeadingUnorderedListLevel1=By.id("hd-ul-level1-item1");
 
+	//Feature: labels
+	public By pLabelBasic=By.id("pLabel-basic");
+	public By pLabelSmall=By.id("pLabel-small");
+	public By pLabelLarge=By.id("pLabel-large");
+	public By pLabelBold=By.id("pLabel-bold");
+	public By sLabelBasic=By.id("sLabel-basic");
+	public By sLabelSmall=By.id("sLabel-small");
+	public By sLabelLarge=By.id("sLabel-large");
+	public By sLabelBold=By.id("sLabel-bold");
+	public By pILabelBasic=By.id("pILabel-basic");
+	public By pILabelSmall=By.id("pILabel-small");
+	public By pILabelLarge=By.id("pILabel-large");
+	public By pILabelBold=By.id("pILabel-bold");
+	public By sILabelBasic=By.id("sILabel-basic");
+	public By sILabelSmall=By.id("sILabel-small");
+	public By sILabelLarge=By.id("sILabel-large");
+	public By sILabelBold=By.id("sILabel-bold");
+
+	//Feature: titles
+	public By basicTitle=By.id("basicTitle");
+	public By largeTitle=By.id("largeTitle");
+	public By xLargeTitle=By.id("xLargeTitle");
+
+	//Feature: Copy
+	public By copy=By.id("copy");
+
+	//Feature: Lead
+	public By lead=By.id("lead");
+
+	//Feature: InlineElements
+	public By abbr=By.id("abbr");
+	public By delTag=By.id("delTag");
+	public By insTag=By.id("insTag");
+	public By strikeThrough=By.id("strikeThrough");
+	public By mark=By.id("mark");
+	public By emTag=By.id("emTag");
+	public By strongTag=By.id("strongTag");
+	public By boldTag=By.id("boldTag");
+	public By quoteTag=By.id("quoteTag");
+	public By timeTag=By.id("timeTag");
+	public By smallTag=By.id("smallTag");
+	public By subscript=By.id("subscript");
+	public By superscript=By.id("superscript");
+
+	//Feature: Lists
+	public By unstyledLists=By.id("unstyledLists");
+	public By nestedUnstyledLists=By.id("nestedUnstyledLists");
+
 }
