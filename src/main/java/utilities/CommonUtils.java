@@ -2,10 +2,9 @@ package utilities;
 
 import io.appium.java_client.AppiumDriver;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.awt.*;
@@ -20,6 +19,8 @@ public class CommonUtils {
     private AppiumDriver appium;
     Dimension dimension;
     WebElement webElement;
+    Actions action;
+    JavascriptExecutor js=null;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -62,7 +63,8 @@ public class CommonUtils {
         webElement = driver.findElement(element);
         return webElement.getCssValue(property);
     }
-    public String getCSSValue(By element, String property,String mobile) {
+
+    public String getCSSValue(By element, String property, String mobile) {
         webElement = appium.findElement(element);
         return webElement.getCssValue(property);
     }
@@ -72,21 +74,27 @@ public class CommonUtils {
         webElement = driver.findElement(element);
         return webElement.getText();
     }
+
     public String getText(By element, String mobile) {
         webElement = appium.findElement(element);
         return webElement.getText();
     }
-    
-  //assertValues
-    public boolean assertValue(Object actual, Object expected, String message){
-        try{
-           Assert.assertEquals(actual, expected, message);
+
+    //assertValues
+    public boolean assertValue(Object actual, Object expected, String message) {
+        try {
+            Assert.assertEquals(actual, expected, message);
             return true;
-        }
-        catch(AssertionError ae){
-            log.info("Assertion Error: "+ae.getMessage());
+        } catch (AssertionError ae) {
+            log.info("Assertion Error: " + ae.getMessage());
             return false;
         }
+    }
+
+    //hover on an element
+    public void hoverOnElement(By element) {
+        action = new Actions(driver);
+        action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).click().build().perform();
     }
 
     /**
@@ -115,7 +123,7 @@ public class CommonUtils {
     /**
      * @param propertyType  - gives info to user on what propertyType been looked for.
      * @param expectedValue e.g. "'font-size' value of 16px"
-     * @param Object[] arr - the array of all the possible css values retrievied for expectedValue. eg. new String[]{"14px","14.001px"}
+     * @param Object[]      arr - the array of all the possible css values retrievied for expectedValue. eg. new String[]{"14px","14.001px"}
      * @return boolean - isCSSPropertyPresent "true or false"
      */
 
