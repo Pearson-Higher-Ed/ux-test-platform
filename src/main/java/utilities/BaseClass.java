@@ -6,15 +6,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
-
-import utilities.CommonUtils;
 
 import org.testng.annotations.Parameters;
 
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.elementsPageObjects.TypographyPageObjects;
+import elements.elementsPageObjects.ButtonsPageObjects;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -32,6 +30,7 @@ public class BaseClass {
     public static AppiumDriver appium;
     public static ResponsiveUtilitiesPageObjects respPgObj;
     public static TypographyPageObjects typoPgObj;
+    public static ButtonsPageObjects btnPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -65,6 +64,7 @@ public class BaseClass {
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
+                btnPgObj=new ButtonsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
 
@@ -83,6 +83,7 @@ public class BaseClass {
                 }
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
                 typoPgObj = new TypographyPageObjects(appium);
+                btnPgObj=new ButtonsPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
             }
         }
@@ -93,6 +94,7 @@ public class BaseClass {
                 driver = new FirefoxDriver();
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
+                btnPgObj=new ButtonsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
         }
