@@ -3,14 +3,12 @@ package elementsTests;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 
 /**
  * Created by umahaea on 2/15/16.
@@ -127,5 +125,15 @@ public class IconsTest extends BaseClass {
         } else {
             commonUtils.getUrl("file:///" + localUrl);
         }
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    private void beforeMethod(Method method) {
+        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+    }
+
+    @AfterMethod(alwaysRun = true)
+    private void afterMethod() {
+        System.out.println("_________________________________________________");
     }
 }

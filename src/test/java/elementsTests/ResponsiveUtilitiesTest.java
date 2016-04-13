@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.io.File;
+import java.lang.reflect.Method;
 
 public class ResponsiveUtilitiesTest extends BaseClass {
 
@@ -292,5 +293,15 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         result = performRespForMobileEval(element, visible, color);
         Assert.assertTrue(result);
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    private void beforeMethod(Method method) {
+        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+    }
+
+    @AfterMethod(alwaysRun = true)
+    private void afterMethod() {
+        System.out.println("_________________________________________________");
     }
 }
