@@ -20,7 +20,7 @@ public class CommonUtils {
     Dimension dimension;
     WebElement webElement;
     Actions action;
-    JavascriptExecutor js=null;
+    JavascriptExecutor js = null;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -97,11 +97,17 @@ public class CommonUtils {
         action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).click().build().perform();
     }
 
-    //focus on an element
+    //Tab on an element
     public void tabOnElement(By element) {
         webElement = driver.findElement(element);
         webElement.sendKeys(Keys.TAB);
         webElement.sendKeys(Keys.ENTER);
+    }
+
+    //focus on an element by Id
+    public void focusOnElementById(By element) {
+        js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('" + element + "').focus()");
     }
 
     /**

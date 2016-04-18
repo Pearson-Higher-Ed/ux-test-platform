@@ -166,7 +166,7 @@ public class ButtonsTest extends BaseClass {
     private void defaultButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.tabOnElement(btnPgObj.defaultBtn);
+        commonUtils.focusOnElementById(btnPgObj.defaultBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
@@ -299,7 +299,7 @@ public class ButtonsTest extends BaseClass {
     private void primaryButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.tabOnElement(btnPgObj.primaryBtn);
+        commonUtils.focusOnElementById(btnPgObj.primaryBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
@@ -419,7 +419,7 @@ public class ButtonsTest extends BaseClass {
     private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.tabOnElement(btnPgObj.linkBtn);
+        commonUtils.focusOnElementById(btnPgObj.linkBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
