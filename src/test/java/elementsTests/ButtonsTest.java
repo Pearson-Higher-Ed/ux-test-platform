@@ -124,7 +124,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"desktop"})
+    @Test(testName = "Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"deskto"})
     private void defaultButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -162,7 +162,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default Button Test-Focus state", dataProvider = "Default Button-Focus state Test Data", groups = {"desktop"})
+    @Test(testName = "Default Button Test-Focus state", dataProvider = "Default Button-Focus state Test Data", groups = {"deskto"})
     private void defaultButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -191,7 +191,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"deskto"})
     private void defaultButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -273,7 +273,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Primary Button Test-Hover state", dataProvider = "Primary Button-Hover state Test Data", groups = {"desktop"})
+    @Test(testName = "Primary Button Test-Hover state", dataProvider = "Primary Button-Hover state Test Data", groups = {"deskto"})
     private void primaryButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -295,7 +295,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Primary Button Test-Focus state", dataProvider = "Primary Button-Focus state Test Data", groups = {"desktop"})
+    @Test(testName = "Primary Button Test-Focus state", dataProvider = "Primary Button-Focus state Test Data", groups = {"deskto"})
     private void primaryButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -325,7 +325,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Primary Button Test-Disabled", dataProvider = "Primary Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Primary Button Test-Disabled", dataProvider = "Primary Button-Disabled Test Data", groups = {"deskto"})
     private void primaryButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -393,7 +393,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"desktop"})
+    @Test(testName = "Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"deskto"})
     private void linkButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -415,7 +415,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Link Button Test-Focus state", dataProvider = "Link Button-Focus state Test Data", groups = {"desktop"})
+    @Test(testName = "Link Button Test-Focus state", dataProvider = "Link Button-Focus state Test Data", groups = {"deskto"})
     private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -444,7 +444,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Link Button Test-Disabled", dataProvider = "Link Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Link Button Test-Disabled", dataProvider = "Link Button-Disabled Test Data", groups = {"deskto"})
     private void linkButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -458,7 +458,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     //Fake Buttons
-    @Test(testName = "Fake Div Button Test", dataProvider = "Default Button Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Div Button Test", dataProvider = "Default Button Test Data", groups = {"deskto"})
     private void fakeDivButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -470,7 +470,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Fake Anchor Button Test", dataProvider = "Default Button Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Anchor Button Test", dataProvider = "Default Button Test Data", groups = {"deskto"})
     private void fakeAnchorButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -482,7 +482,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Fake Input Button Test", dataProvider = "Default Button Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Input Button Test", dataProvider = "Default Button Test Data", groups = {"deskto"})
     private void fakeInputButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -494,7 +494,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Fake Div Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Div Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"deskto"})
     private void fakeDivButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -507,7 +507,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Fake Anchor Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Anchor Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"deskto"})
     private void fakeAnchorButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -520,7 +520,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Fake Input Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop"})
+    @Test(testName = "Fake Input Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"deskto"})
     private void fakeInputButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
