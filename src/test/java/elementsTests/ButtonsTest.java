@@ -4,6 +4,8 @@ import io.appium.java_client.TouchAction;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import io.appium.java_client.TouchAction.*;
 import org.testng.Assert;
@@ -164,7 +166,7 @@ public class ButtonsTest extends BaseClass {
     private void defaultButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.click(btnPgObj.defaultBtn);
+        commonUtils.tabOnElement(btnPgObj.defaultBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
@@ -297,7 +299,7 @@ public class ButtonsTest extends BaseClass {
     private void primaryButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.click(btnPgObj.primaryBtn);
+        commonUtils.tabOnElement(btnPgObj.primaryBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
@@ -417,7 +419,7 @@ public class ButtonsTest extends BaseClass {
     private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
-        commonUtils.click(btnPgObj.linkBtn);
+        commonUtils.tabOnElement(btnPgObj.linkBtn);
         cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {

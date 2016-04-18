@@ -97,6 +97,13 @@ public class CommonUtils {
         action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).click().build().perform();
     }
 
+    //focus on an element
+    public void tabOnElement(By element) {
+        webElement = driver.findElement(element);
+        webElement.sendKeys(Keys.TAB);
+        webElement.sendKeys(Keys.ENTER);
+    }
+
     /**
      * @param colorStr e.g. "#FFFFFF"
      * @return String - formatted "rgba(0,0,0,0)"
