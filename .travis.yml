@@ -15,13 +15,13 @@ before_script:
 - python -m SimpleHTTPServer &
 
 script:
-- chmod 777 ./src/main/shell_scripts/app-header.sh
-- ./src/main/shell_scripts/app-header.sh
+- chmod 777 ./src/main/shell_scripts/elements.sh
+- ./src/main/shell_scripts/elements.sh
 - mvn test
 
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    - pearson-design-accelerator@pearson.com
     on_success: never
     on_failure: always
