@@ -1,5 +1,4 @@
-#Test Platform for UX Design
-<img src="https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform.svg?branch=master" alt="Build Status" />
+#Test Platform for UX Design [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform.svg?branch=master)](https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform)
 
 ##How to run your tests in local:
 1. Clone this project:
@@ -17,6 +16,16 @@
             &lt;/run&gt;
         &lt;/groups&gt;
 </pre>
+####Pre-requisite to run tests on local:
+Install Elements on your local machine and copy the elements.css file to /ux-test-platform/src/main/java/elements/css/
+<pre>
+git clone https://github.com/Pearson-Higher-Ed/elements.git
+cd elements
+npm install --no-shrinkwrap
+npm run build
+cp elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
+</pre>
+    
 
 5. Run the command from the root directory:
 <pre>
