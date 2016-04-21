@@ -1,5 +1,4 @@
-#Test Platform for UX Design
-<img src="https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform.svg?branch=master" alt="Build Status" />
+#Test Platform for UX Design [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform.svg?branch=master)](https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform)
 
 ##How to run your tests in local:
 1. Clone this project:
@@ -17,6 +16,16 @@
             &lt;/run&gt;
         &lt;/groups&gt;
 </pre>
+####Pre-requisite to run tests on local:
+Install Elements on your local machine and copy the elements.css file to /ux-test-platform/src/main/java/elements/css/
+<pre>
+git clone https://github.com/Pearson-Higher-Ed/elements.git
+cd elements
+npm install --no-shrinkwrap
+npm run build
+cp elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
+</pre>
+    
 
 5. Run the command from the root directory:
 <pre>
@@ -54,6 +63,15 @@ NOTE: Mobile tests runs only on Sauce Machine.
 3. In Travis CI, ux-test-platform build is triggered automatically.
 4. Monitor the status of the build by looking into the Travis CI logs
     https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds
+
+###When you fork the repo
+Tests would not run as the Sauce Connect secured encrypted user name and auth_key wouldn't work.The problem is due to encrypted environment variables SAUCE_USERNAME and SAUCE_ACCESS_KEY. Each repository needs its own encrypted variables, and they are not passed from the original repository to the fork.Regenerate encrypted environment variables SAUCE_USERNAME and SAUCE_ACCESS_KEY:
+
+Go to your forked repo directory (cd ux-test-platform) and run below two commands
+    <pre>travis encrypt SAUCE_USERNAME=p_PDAauto   //This generates a new encrypted value. Simply replace the first 'secure' value in .travis.yml to this newly generated value
+travis encrypt SAUCE_ACCESS_KEY=xxx-xxx-xxx //This generates a new encrypted value. Simply replace the second 'secure' value in .travis.yml to this newly generated value</pre>
+
+Now commit this and push to your forked repo. It will work as expected.
 
 ##How to set the correct platform config:
 Go this link: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
