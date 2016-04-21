@@ -64,6 +64,15 @@ NOTE: Mobile tests runs only on Sauce Machine.
 4. Monitor the status of the build by looking into the Travis CI logs
     https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds
 
+###When you fork the repo
+Tests would not run as the Sauce Connect secured encrypted user name and auth_key wouldn't work.The problem is due to encrypted environment variables SAUCE_USERNAME and SAUCE_ACCESS_KEY. Each repository needs its own encrypted variables, and they are not passed from the original repository to the fork.Regenerate encrypted environment variables SAUCE_USERNAME and SAUCE_ACCESS_KEY:
+
+Go to your forked repo directory (cd ux-test-platform) and run below two commands
+    <pre>travis encrypt SAUCE_USERNAME=p_PDAauto   //This generates a new encrypted value. Simply replace the first 'secure' value in .travis.yml to this newly generated value
+travis encrypt SAUCE_ACCESS_KEY=xxx-xxx-xxx //This generates a new encrypted value. Simply replace the second 'secure' value in .travis.yml to this newly generated value</pre>
+
+Now commit this and push to your forked repo. It will work as expected.
+
 ##How to set the correct platform config:
 Go this link: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
 
