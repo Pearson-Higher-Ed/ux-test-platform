@@ -1,6 +1,7 @@
 package utilities;
 
 import molecules.moleculesPageObjects.AppHeaderPageObjects;
+import molecules.moleculesPageObjects.ContextualHelpPageObjects;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,9 +19,11 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import sun.security.krb5.internal.crypto.Des;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by umahaea on 2/3/16.
@@ -33,6 +36,7 @@ public class BaseClass {
     public static TypographyPageObjects typoPgObj;
     public static ButtonsPageObjects btnPgObj;
     public static AppHeaderPageObjects appHeaderPgObj;
+    public static ContextualHelpPageObjects conxHelpPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -45,7 +49,7 @@ public class BaseClass {
 
         caps = new DesiredCapabilities();
 
-      //The below conditions is to set capabilities for desktop run and in testng.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
+        //The below conditions is to set capabilities for desktop run and in testng.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
         if (runEnv.equals("sauce")) {
 
             if (desktop.equals("on")) {
@@ -58,6 +62,8 @@ public class BaseClass {
                     caps = DesiredCapabilities.internetExplorer();
                 } else if (sauceBrowser.equals("safari")) {
                     caps = DesiredCapabilities.safari();
+                } else if (sauceBrowser.equals("edge")) {
+                    caps = DesiredCapabilities.edge();
                 }
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
@@ -66,9 +72,11 @@ public class BaseClass {
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
-                btnPgObj=new ButtonsPageObjects(driver);
+                btnPgObj = new ButtonsPageObjects(driver);
                 appHeaderPgObj = new AppHeaderPageObjects(driver);
+                conxHelpPgObj = new ContextualHelpPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
+                driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
 
             //The below conditions is to set capabilities for mob device and in testng.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
@@ -86,25 +94,29 @@ public class BaseClass {
                 }
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
                 typoPgObj = new TypographyPageObjects(appium);
-                btnPgObj=new ButtonsPageObjects(appium);
-                appHeaderPgObj= new AppHeaderPageObjects(appium);
+                btnPgObj = new ButtonsPageObjects(appium);
+                appHeaderPgObj = new AppHeaderPageObjects(appium);
+                conxHelpPgObj = new ContextualHelpPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
+                appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
         }
-        
+
         //The below else condition is to launch browser driver on your local machine. In testng.xml -> set runEnv != sauce
         else {
             if (localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();
                 respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                 typoPgObj = new TypographyPageObjects(driver);
-                btnPgObj=new ButtonsPageObjects(driver);
-                appHeaderPgObj= new AppHeaderPageObjects(driver);
+                btnPgObj = new ButtonsPageObjects(driver);
+                appHeaderPgObj = new AppHeaderPageObjects(driver);
+                conxHelpPgObj = new ContextualHelpPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
+                driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
         }
     }
-    
+
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
@@ -112,7 +124,7 @@ public class BaseClass {
             appium.close();
             appium.quit();
         } else {
-         // driver.close();
+            // driver.close();
             driver.quit();
         }
     }
