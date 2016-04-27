@@ -21,7 +21,7 @@ Install Elements on your local machine and copy the elements.css file to /ux-tes
 <pre>
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
-npm install --no-shrinkwrap
+npm install
 npm run build
 cp elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
 </pre>

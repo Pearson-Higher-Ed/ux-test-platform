@@ -16,14 +16,16 @@ before_script:
 
 script:
 - chmod 777 ./src/main/shell_scripts/elements.sh
-- chmod 777 ./src/main/shell_scripts/app-header.sh
+#- chmod 777 ./src/main/shell_scripts/app-header.sh
+#- chmod 777 ./src/main/shell_scripts/contextual-help.sh
 - ./src/main/shell_scripts/elements.sh
-- ./src/main/shell_scripts/app-header.sh
+#- ./src/main/shell_scripts/app-header.sh
+#- ./src/main/shell_scripts/contextual-help.sh
 - mvn test
 
 notifications:
   email:
     recipients:
-    - pearson-design-accelerato@pearson.com
+    - eajazali.mahaboobbasha@pearson.com
     on_success: never
     on_failure: always
