@@ -1,0 +1,59 @@
+<!-- <html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../elements/css/elements.css"/>
+</head>
+
+<body>
+<h1 style="position: relative;top:80px;left:20px;color:blue">Contextual Help Test</h1>
+<div class="demo-container"></div>
+
+<script src="../../jsfiles/appHeader/dist.app-header.js"></script>
+<script src="../../jsfiles/contextualHelp/dist.contextual-help.js"></script>
+<script type="text/javascript" src="../../jsfiles/appHeader/integ.js"></script>
+<script type="text/javascript" src="../../jsfiles/contextualHelp/contextual-help.js"></script>
+
+<script type="application/json" data-o-contextual-help-config>
+    {
+        "helpTopics": [
+            "testcontent/instructor/courseregsettings",
+            "testcontent/instructor/educatorresources"
+        ]
+    }
+</script>
+</body>
+</html> -->
+
+<html>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../elements/css/elements.css"/>
+
+<body>
+<div style="position: relative;top: 100px;">
+    <h2 style="color:peru">Contextual Help Test -> Integration Mode App Header</h2>
+    <label id="demo" style="color:green">Drawer Toggle Status</label><br><br>
+    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('testcontent/student/freetrial')">Open Specific Article(FreeTrial)</a><br><br>
+    <a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help topics</a><br><br>
+    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('testcontent/student/freetrial',500)">Remove one topic</a><br><br>
+    <a id="openAndThenRemoveMoreThanOneTopic" href="#" onclick="openThenRemoveTopics((['testcontent/student/freetrial','testcontent/contactsupport']),500)">Remove more than one topic</a><br><br>
+</div>
+<div class="demo-container"></div>
+
+<script src="../../jsfiles/appHeader/dist.app-header.js"></script>
+<script src="../../jsfiles/contextualHelp/dist.contextual-help.js"></script>
+<script type="text/javascript" src="../../jsfiles/appHeader/integ.js"></script>
+<script type="text/javascript" src="../../jsfiles/contextualHelp/contextual-help.js"></script>
+
+<script type="application/json" data-o-contextual-help-config>
+    {
+        "helpTopics": [
+            "testcontent/contactsupport"
+        ]
+    }
+</script>
+</body>
+</html>
