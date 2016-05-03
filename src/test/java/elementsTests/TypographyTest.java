@@ -13,6 +13,7 @@ import org.testng.annotations.*;
 
 import utilities.BaseClass;
 
+@Test(groups = { "TypographyTest" })
 public class TypographyTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/typography.html";
