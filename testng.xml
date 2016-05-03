@@ -6,14 +6,14 @@
     <parameter name="travis" value="on"></parameter>
 
     <!-- For Desktop -->
-    <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
+    <parameter name="desktop" value="off"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OSX 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
     <parameter name="sauceBrowserVer" value="43"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
-    <parameter name="mobile" value="off"></parameter><!-- set the tests to run on mobile devices -->
+    <parameter name="mobile" value="on"></parameter><!-- set the tests to run on mobile devices -->
     <parameter name="appiumDriver" value="iOS"></parameter> <!-- appium driver - iosDriver or Android Driver -->
     <parameter name="mobDeviceName" value="iPhone 6"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
     <parameter name="mobilePlatformVer" value="9.2"></parameter><!-- mobile OS version -->
