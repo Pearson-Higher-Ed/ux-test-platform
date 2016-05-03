@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Typography</title>
-    <link rel="stylesheet" href="../css/elements.css"/>
+    <link rel="stylesheet" href="https://pearson-elements-v0.surge.sh/css/docs.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div id=basic-body1 class="pe-copy">Basic body copy.</div>
 		<p id=body-para1 class="pe-paragraph">Paragraph 1</p>
 		<p id=body-para2 class="pe-paragraph">Paragraph 2</p>
-		<p id=body-para3 class="pe-last-paragraph">Paragraph 3</p>
+		<p id=body-para3 class="pe-paragraph--last">Paragraph 3</p>
 	<div id=basic-small-body class="pe-copy--small">Small size body copy</div>
 	<p>__________________________________</p>
     <div>
         <p>Example ordered nested lists</p>
-        <ol id=ol-level1 class="pe-list styled-lists--ordered">
+        <ol id="ol-level1" class="pe-list pe-list pe-styled-lists--ordered">
             <li id=ol-level1-item1>Item one.</li>
             <li id=ol-level1-item2>Item two.</li>
             <li id=ol-level1-item3>Item three.</li>
-            <ol id=ol-level2 class="pe-list nested-styled-lists--ordered">
+            <ol id=ol-level2>
                 <li id=ol-level2-item1>child item one</li>
                 <li id=ol-level2-item2>child item two</li>
-                <ol id=ol-level3 class="pe-list pe-list-nested--ordered">
+                <ol id=ol-level3>
                     <li id=ol-level3-item1>grand child item one</li>
                     <li id=ol-level3-item2>grand child item two</li>
                 </ol>
@@ -34,14 +34,14 @@
     <!-- Unordered nested lists -->
     <div>
         <p>Example Unordered nested lists</p>
-        <ul id=ul-level1 class="pe-list styled-lists--unordered">
+        <ul id="ul-level1" class="pe-list pe-list pe-styled-lists--unordered">
             <li id=ul-level1-item1>Item one.</li>
             <li id=ul-level1-item2>Item two.</li>
             <li id=ul-level1-item3>Item three.</li>
-            <ul id=ul-level2 class="pe-list nested-styled-lists--unordered">
+            <ul id=ul-level2>
                 <li id=ul-level2-item1>child item one</li>
                 <li id=ul-level2-item2>child item two</li>
-                <ul id=ul-level3 class="pe-list pe-list-nested--unordered">
+                <ul id=ul-level3>
                     <li id=ul-level3-item1>grand child item one</li>
                     <li id=ul-level3-item2>grand child item two</li>
                 </ul>
@@ -53,13 +53,13 @@
     <!-- Lists followed by Heading lists -->
     <div>
         <h3>Example ordered lists followed by a heading</h3>
-        <ol id=hd-ol-level1-item1 class="pe-list styled-lists--headding">
+        <ol id=hd-ol-level1-item1 class="pe-list pe-list pe-styled-lists-heading--ordered">
             <li id=hd-ol-level1-item1>Item one.</li>
             <li id=hd-ol-level1-item1>Item two.</li>
             <li id=hd-ol-level1-item1>Item three.</li>
         </ol>
         <h3>Example unordered lists followed by a heading</h3>
-        <ul id=hd-ul-level1-item1 class="pe-list styled-lists--headding">
+        <ul id=hd-ul-level1-item1 class="pe-list pe-list pe-styled-lists-heading--unordered">
             <li id=hd-ul-level1-item1>Item one.</li>
             <li id=hd-ul-level1-item1>Item two.</li>
             <li id=hd-ul-level1-item1>Item three.</li>
@@ -136,82 +136,5 @@ greet('hello, world');
             <kbd class="pe-kbd">,</kbd>
         </p>
     </div>
-
-/*** Added by Eajaz ***/
-
-    <!-- Primary Label elements -->
-    <span id="pLabel-basic" class="pe-label">Primary Basic</span>
-    <span id="pLabel-small" class="pe-label pe-label--small">Primary Small</span>
-    <span id="pLabel-large" class="pe-label pe-label--large">Primary Large</span>
-    <span id="pLabel-bold" class="pe-label pe-label--bold">Primary Bold</span> <br>
-    <!-- Secondary Label elements -->
-    <span id="sLabel-basic" class="pe-label pe-label--secondary">Secondary Basic</span>
-    <span id="sLabel-small" class="pe-label pe-label--small pe-label--secondary">Secondary Small</span>
-    <span id="sLabel-large" class="pe-label pe-label--large pe-label--secondary">Secondary Large</span>
-    <span id="sLabel-bold" class="pe-label pe-label--bold pe-label--secondary">Secondary Bold</span> <br>
-    <!-- Inverse: Primary Label elements -->
-    <span id="pILabel-basic" class="pe-label pe-label--inverse">Inverse Primary Basic</span>
-    <span id="pILabel-small" class="pe-label pe-label--small pe-label--inverse">Inverse Primary Small</span>
-    <span id="pILabel-large" class="pe-label pe-label--large pe-label--inverse">Inverse Primary Large</span>
-    <span id="pILabel-bold" class="pe-label pe-label--bold pe-label--inverse">Inverse Primary Bold</span> <br>
-    <!-- Inverse: Secondary Label elements -->
-    <span id="sILabel-basic" class="pe-label pe-label--inverse pe-label--secondary">Inverse Secondary Basic</span>
-    <span id="sILabel-small" class="pe-label pe-label--small pe-label--inverse pe-label--secondary">Inverse Secondary Small</span>
-    <span id="sILabel-large" class="pe-label pe-label--large pe-label--inverse pe-label--secondary">Inverse Secondary Large</span>
-    <span id="sILabel-bold" class="pe-label pe-label--bold pe-label--inverse pe-label--secondary">Inverse Secondary Bold</span><br>
-
-
-    <!-- Title elements -->
-    <!-- Basic Title -->
-    <span id="basicTitle" class="pe-title">Basic Title</span>
-    <!-- Large Title -->
-    <span id="largeTitle" class="pe-title pe-title--large">Large Title</span>
-    <!-- Extra Large Title -->
-    <span id="xLargeTitle" class="pe-title pe-title--extra-large">XLarge Title</span><br>
-
-    <!--Copy -->
-    <div id="copy" class="pe-copy">Copy</div>
-
-    <!--Lead -->
-    <div id="lead" class="pe-lead">Lead</div> <br>
-
-    <!--Inline Elements -->
-    <div>
-        <div>Basic elements are the backbone of any<abbr id="abbr" title="HyperText Markup Language">HTML</abbr> document.</div>
-        <div>It was the best of times, it was the <del id="delTag">blurst</del><ins id="insTag">worst</ins> of times</div>
-        <div>Support is provided for the latest versions of Chrome, Firefox,and Internet Explorer<s id="strikeThrough">, and IE versions 7 and 8</s>.</div>
-        <div>The latest report shows that <mark id="mark">profits have increased by 15%</mark> over the previous year.</div>
-        <div>I think carrots are ok, but I <em id="emTag">love</em> beets.</div>
-        <div>I have a meeting on <strong id="strongTag"> Monday</strong></div>
-        <div>I have a meeting on <b id="boldTag"> Monday</b></div>
-        <div><q id="quoteTag" cite="https://en.wikipedia.org/wiki/Lost_in_Space#Catchphrases">That does not compute</q>is one of several of the Robot's catchphrases used in the television show <i>Lost in Space</i>.</div>
-        <div>I have a meeting on <time id="timeTag" datetime="2008-02-14 20:00">Monday</time>.</div>
-        <div><small id="smallTag">Copyright 1999-2050 by Refsnes Data.</small></div>
-        <p> This is <sub id="subscript" class="sub">below</sub>Subscript and this is <sup id="superscript" class="sup">above</sup>superscript</p>
-    </div>
-
-    <!-- unstyled lists -->
-    <div>
-        <ul id ="unstyledLists" class="pe-list pe-list--unstyled">
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-        </ul>
-    </div>
-    <!-- nested unstlyed lists -->
-    <div>
-        <ul class="pe-list pe-list--unstyled">
-            <li>1</li>
-            <li>
-                <ul id="nestedUnstyledLists" class="pe-list pe-list--unstyled">
-                    <li>1.a</li>
-                    <li>1.b</li>
-                </ul>
-            </li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-
 </body>
 </html>
