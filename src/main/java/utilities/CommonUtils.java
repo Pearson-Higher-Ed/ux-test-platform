@@ -145,7 +145,7 @@ public class CommonUtils {
 
     /**
      * @param colorStr e.g. "#FFFFFF"
-     * @return String - formatted "rgba(0,0,0,0)"
+     * @return String - formatted "rgb(0,0,0,0)"
      */
     public String hex2Rgb(String colorStr) {
         Color c = new Color(
@@ -165,6 +165,28 @@ public class CommonUtils {
         sb.append(")");
         return sb.toString();
     }
+    
+    /**
+    * 
+    * @param colorStr e.g. "#FFFFFF"
+    * @return String - formatted "hex2RgbWithoutTransparency(0,0,0)"
+    */
+    public String hex2RgbWithoutTransparency(String colorStr) {
+	    Color c = new Color(
+	        Integer.valueOf(colorStr.substring(1, 3), 16), 
+	        Integer.valueOf(colorStr.substring(3, 5), 16), 
+	        Integer.valueOf(colorStr.substring(5, 7), 16));
+
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("rgb(");
+	    sb.append(c.getRed());
+	    sb.append(", ");
+	    sb.append(c.getGreen());
+	    sb.append(", ");
+	    sb.append(c.getBlue());
+	    sb.append(")");
+	    return sb.toString();
+	}
 
     /**
      * @param propertyType  - gives info to user on what propertyType been looked for.

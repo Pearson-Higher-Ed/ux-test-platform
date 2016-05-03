@@ -864,7 +864,7 @@ public class TypographyTest extends BaseClass {
     }
 
 
-    //********************************************* Added by Eajaz *********************************************//
+    //********************************************* Added by Eajaz *******************************************
 
     boolean isFontSize = false;
     boolean isFontWeight = false;

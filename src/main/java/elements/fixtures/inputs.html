@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputs</title>
+    <link rel="stylesheet" href="http://laxapana.elements.surge.sh/elements_textinputs.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<form action="demo_form.asp">
+		<div class="pe-input">
+			<label for="input-text-active">Active Basic text input :</label> <input
+				type="text" id="input-text-active">
+		</div>
+		<div class="pe-input">
+			<label for="input-text-active-PH">Active Basic text input
+				with placeholder :</label> <input type="text" id="input-text-active-PH"
+				placeholder="Basic text input field" value="">
+		</div>
+		<div class="pe-input pe-input--small">
+			<label for="input-text-active-placeholder-small">Active small
+				text input :</label> <input type="text" id="input-text-active-small">
+		</div>
+		<div class="pe-input pe-input--small">
+			<label for="input-text-active-placeholder-small-PH">Active
+				small text input with placeholder :</label> <input type="text"
+				id="input-text-active-small-PH"
+				placeholder="Basic text input field small" value="">
+		</div>
+
+		<div class="pe-input pe-input--readonly">
+			<label for="input-text-readonly">Read-only text input :</label> <input
+				type="text" id="input-text-readonly" readonly>
+		</div>
+		<div class="pe-input pe-input--readonly pe-input--small">
+			<label for="input-text-readonly-small">Read-only small text
+				input :</label> <input type="text" id="input-text-readonly-small" readonly>
+		</div>
+
+		<div class="pe-input pe-input--disabled">
+			<label for="input-text-disabled">Disabled text input :</label> <input
+				type="text" id="input-text-disabled">
+		</div>
+		<div class="pe-input pe-input--disabled pe-input--small">
+			<label for="input-text-disabled-small">Disabled small text
+				input :</label> <input type="text" id="input-text-disabled-small">
+		</div>
+
+		<div class="pe-input pe-input--error">
+			<label for="input-text-error1">Error input text 1 : <span
+				class="pe-error-text">something went wrong!</span></label> <input
+				type="text" id="input-text-error1" value="Error">
+		</div>
+		<div class="pe-input pe-input--error">
+			<label for="input-text-error2">Error input text 2 : </label> <input
+				type="text" id="input-text-error2"
+				aria-describedby="input-text-error2-error" value="Error">
+			<p id="input-text-error2-error" class="pe-error-text">Something
+				went wrong again!</p>
+		</div>
+
+		<div class="pe-input pe-input--error pe-input--small">
+			<label for="input-text-error1-small">Error small input text 1
+				: <span class="pe-error-text">something went wrong!</span>
+			</label> <input type="text" id="input-text-error1-small" value="Error">
+		</div>
+		<div class="pe-input pe-input--error pe-input--small">
+			<label for="input-text-error2-small">Error small input text 2
+				: </label> <input type="text" id="input-text-error2-small"
+				aria-describedby="input-text-error2-small-error" value="Error">
+			<p id="input-text-error2-error-small" class="pe-error-text">Something
+				went wrong again!</p>
+		</div>
+	</form>
+</body>
+</html>
+
