@@ -29,7 +29,6 @@ public class TypographyPageObjects {
 	public By para_two = By.id("para2");
 	public By para_three = By.id("para3");
 	public By para_four = By.id("para4");
-	public By heading_one_one = By.id("hd_1");
 	public By heading_two_two = By.id("hd_2");
 	public By heading_three_three = By.id("hd_3");
 	public By heading_four_four = By.id("hd_4");
@@ -39,19 +38,19 @@ public class TypographyPageObjects {
 	public By heading_3 = By.id("hd_33");
 	public By heading_4 = By.id("hd_44");
 	public By heading_5 = By.id("hd_55");
-	public By heading_6 = By.id("hd_66");	
+	public By heading_6 = By.id("hd_66");
 	public By heading_oneOne = By.id("hd_one_1");
 	public By heading_twoTwo = By.id("hd_two_2");
 	public By heading_threeThree = By.id("hd_three_3");
 	public By heading_fourFour = By.id("hd_four_4");
 	public By heading_fiveFive = By.id("hd_five_5");
 	public By heading_sixSix = By.id("hd_six_6");
-	
-	//Feature : Code
+
+	// Feature : Code
 	public By code = By.id("block-code");
 	public By inlne_code = By.id("inline-code");
 	public By kbd = By.id("user-input");
-	
+
 	// Feature : Body
 	public By basicBody1 = By.id("basic-body1");
 	public By basicSmallBody = By.id("basic-small-body");
@@ -77,56 +76,56 @@ public class TypographyPageObjects {
 	public By unorderedListChildItem1 = By.id("ul-level2-item1");
 	public By unorderedListChildItem2 = By.id("ul-level2-item2");
 	public By unorderedListLevel3 = By.id("ul-level3");
-	public By unorderedListGrandChildItem1 = By.id("ul-level3-item1");	
-	public By HeadingOrderedListLevel1=By.id("hd-ol-level1-item1");
-	public By HeadingUnorderedListLevel1=By.id("hd-ul-level1-item1");
+	public By unorderedListGrandChildItem1 = By.id("ul-level3-item1");
+	public By HeadingOrderedListLevel1 = By.id("hd-ol-level1-item1");
+	public By HeadingUnorderedListLevel1 = By.id("hd-ul-level1-item1");
 
-	//Feature: labels
-	public By pLabelBasic=By.id("pLabel-basic");
-	public By pLabelSmall=By.id("pLabel-small");
-	public By pLabelLarge=By.id("pLabel-large");
-	public By pLabelBold=By.id("pLabel-bold");
-	public By sLabelBasic=By.id("sLabel-basic");
-	public By sLabelSmall=By.id("sLabel-small");
-	public By sLabelLarge=By.id("sLabel-large");
-	public By sLabelBold=By.id("sLabel-bold");
-	public By pILabelBasic=By.id("pILabel-basic");
-	public By pILabelSmall=By.id("pILabel-small");
-	public By pILabelLarge=By.id("pILabel-large");
-	public By pILabelBold=By.id("pILabel-bold");
-	public By sILabelBasic=By.id("sILabel-basic");
-	public By sILabelSmall=By.id("sILabel-small");
-	public By sILabelLarge=By.id("sILabel-large");
-	public By sILabelBold=By.id("sILabel-bold");
+	// Feature: labels
+	public By pLabelBasic = By.id("pLabel-basic");
+	public By pLabelSmall = By.id("pLabel-small");
+	public By pLabelLarge = By.id("pLabel-large");
+	public By pLabelBold = By.id("pLabel-bold");
+	public By sLabelBasic = By.id("sLabel-basic");
+	public By sLabelSmall = By.id("sLabel-small");
+	public By sLabelLarge = By.id("sLabel-large");
+	public By sLabelBold = By.id("sLabel-bold");
+	public By pILabelBasic = By.id("pILabel-basic");
+	public By pILabelSmall = By.id("pILabel-small");
+	public By pILabelLarge = By.id("pILabel-large");
+	public By pILabelBold = By.id("pILabel-bold");
+	public By sILabelBasic = By.id("sILabel-basic");
+	public By sILabelSmall = By.id("sILabel-small");
+	public By sILabelLarge = By.id("sILabel-large");
+	public By sILabelBold = By.id("sILabel-bold");
 
-	//Feature: titles
-	public By basicTitle=By.id("basicTitle");
-	public By largeTitle=By.id("largeTitle");
-	public By xLargeTitle=By.id("xLargeTitle");
+	// Feature: titles
+	public By basicTitle = By.id("basicTitle");
+	public By largeTitle = By.id("largeTitle");
+	public By xLargeTitle = By.id("xLargeTitle");
 
-	//Feature: Copy
-	public By copy=By.id("copy");
+	// Feature: Copy
+	public By copy = By.id("copy");
 
-	//Feature: Lead
-	public By lead=By.id("lead");
+	// Feature: Lead
+	public By lead = By.id("lead");
 
-	//Feature: InlineElements
-	public By abbr=By.id("abbr");
-	public By delTag=By.id("delTag");
-	public By insTag=By.id("insTag");
-	public By strikeThrough=By.id("strikeThrough");
-	public By mark=By.id("mark");
-	public By emTag=By.id("emTag");
-	public By strongTag=By.id("strongTag");
-	public By boldTag=By.id("boldTag");
-	public By quoteTag=By.id("quoteTag");
-	public By timeTag=By.id("timeTag");
-	public By smallTag=By.id("smallTag");
-	public By subscript=By.id("subscript");
-	public By superscript=By.id("superscript");
+	// Feature: InlineElements
+	public By abbr = By.id("abbr");
+	public By delTag = By.id("delTag");
+	public By insTag = By.id("insTag");
+	public By strikeThrough = By.id("strikeThrough");
+	public By mark = By.id("mark");
+	public By emTag = By.id("emTag");
+	public By strongTag = By.id("strongTag");
+	public By boldTag = By.id("boldTag");
+	public By quoteTag = By.id("quoteTag");
+	public By timeTag = By.id("timeTag");
+	public By smallTag = By.id("smallTag");
+	public By subscript = By.id("subscript");
+	public By superscript = By.id("superscript");
 
-	//Feature: Lists
-	public By unstyledLists=By.id("unstyledLists");
-	public By nestedUnstyledLists=By.id("nestedUnstyledLists");
+	// Feature: Lists
+	public By unstyledLists = By.id("unstyledLists");
+	public By nestedUnstyledLists = By.id("nestedUnstyledLists");
 
 }

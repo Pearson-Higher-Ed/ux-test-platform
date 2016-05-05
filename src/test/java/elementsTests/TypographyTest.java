@@ -57,7 +57,7 @@ public class TypographyTest extends BaseClass {
   	private Object[][] getBodyCopyFontTestData() {
   		return new Object[][] { 
   			{ typoPgObj.basicBody1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-  			//{ typoPgObj.basicSmallBody, "14px", "20px", "rgba(35, 31, 32, 1)"} 
+  			{ typoPgObj.basicSmallBody, "14px", "20px", "rgba(35, 31, 32, 1)"} 
   		};
   	}
 
@@ -406,7 +406,7 @@ public class TypographyTest extends BaseClass {
  		};
  	}
  	
- 	// Test 2
+ // Test 2
  	@Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile"})
  	private void OrderedListsFontTestMobile(ScreenOrientation mode, By element, String fontsize, String lineheight,String color) {
  		commonUtils.getUrl(url, "mobile");
@@ -525,7 +525,7 @@ public class TypographyTest extends BaseClass {
  			{ ScreenOrientation.LANDSCAPE, typoPgObj.HeadingOrderedListLevel1, "0px" } 	
  		};
  	}
- 	
+ 
  	// Test 6
  	@Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile"})
  	private void ListsMarginAfterHeaderTestMobile(ScreenOrientation mode, By element, String space_above) {
@@ -555,7 +555,7 @@ public class TypographyTest extends BaseClass {
  		Assert.assertTrue(result);
  	}
  	
- 	@Test(enabled = true, testName = "Heading Margin Test", groups = {"mobile"})
+ 	@Test(enabled = true, testName = "Heading Margin Test",dataProvider = "getHeadingsMrgnTestData", groups = {"mobile"})
  	private void HeadingMrgnMobileTestLANDSCAPE(By element) {
  		commonUtils.getUrl(url, "mobile");
  		appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -631,7 +631,7 @@ public class TypographyTest extends BaseClass {
  		commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
  	}
  	
- 	@Test(enabled = true, testName = "Heading Margin Test", groups = {"mobile"})
+ 	@Test(enabled = true, testName = "Heading Margin Test",dataProvider = "getHeadingsMrgnTestData", groups = {"mobile"})
  	private void HeadingMrgnMobileTestPORTRAIT(By element) {
  		commonUtils.getUrl(url, "mobile");
  		appium.rotate(ScreenOrientation.PORTRAIT);
@@ -703,166 +703,167 @@ public class TypographyTest extends BaseClass {
      * COMMON METHODS
      *********************************************************************************************************************************************/
 
- // Feature : Body
- 		private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color) {
- 			// get FontSize
- 			String actualFontSize = commonUtils.getCSSValue(bodyElement, "font-size");
- 			// get LineHeight
- 			String actualLineHeight = commonUtils.getCSSValue(bodyElement, "line-height");
- 			// get Color
- 			String actualColor = commonUtils.getCSSValue(bodyElement, "color");
- 			boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "Body Copy font-size specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "Body Copy line-height specification Failed");
- 			boolean result_3 = commonUtils.assertValue(actualColor, color, "Body Copy Color specification Failed");
- 			if (result_1 == true && result_2 == true && result_3 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	// Feature : Body
+	private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color) {
+		// get FontSize
+		String actualFontSize = commonUtils.getCSSValue(bodyElement, "font-size");
+		// get LineHeight
+		String actualLineHeight = commonUtils.getCSSValue(bodyElement, "line-height");
+		// get Color
+		String actualColor = commonUtils.getCSSValue(bodyElement, "color");
+		boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "Body Copy font-size specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "Body Copy line-height specification Failed");
+		boolean result_3 = commonUtils.assertValue(actualColor, color, "Body Copy Color specification Failed");
+		if (result_1 == true && result_2 == true && result_3 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color, String mobile) {
- 			// get FontSize
- 			String actualFontSize_mobile = commonUtils.getCSSValue(bodyElement, "font-size", "mobile");
- 			// get LineHeight
- 			String actualLineHeight_mobile = commonUtils.getCSSValue(bodyElement, "line-height", "mobile");
- 			// get Color
- 			String actualColor_mobile = commonUtils.getCSSValue(bodyElement, "color", "mobile");
- 			boolean result_1 = commonUtils.assertValue(actualFontSize_mobile, fontsize, "Body Copy font-size specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualLineHeight_mobile, lineheight, "Body Copy line-height specification Failed");
- 			boolean result_3 = commonUtils.assertValue(actualColor_mobile, color, "Body Copy Color specification Failed");
- 			if (result_1 == true&& result_2 == true && result_3 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color, String mobile) {
+		// get FontSize
+		String actualFontSize_mobile = commonUtils.getCSSValue(bodyElement, "font-size", "mobile");
+		// get LineHeight
+		String actualLineHeight_mobile = commonUtils.getCSSValue(bodyElement, "line-height", "mobile");
+		// get Color
+		String actualColor_mobile = commonUtils.getCSSValue(bodyElement, "color", "mobile");
+		boolean result_1 = commonUtils.assertValue(actualFontSize_mobile, fontsize, "Body Copy font-size specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualLineHeight_mobile, lineheight, "Body Copy line-height specification Failed");
+		boolean result_3 = commonUtils.assertValue(actualColor_mobile, color, "Body Copy Color specification Failed");
+		if (result_1 == true&& result_2 == true && result_3 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		// Feature : Lists
- 		private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color) {
- 			// get FontSize
- 			String actualFontSize = commonUtils.getCSSValue(element, "font-size");
- 			// get LineHeight
- 			String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
- 			// get Color
- 			String actualColor = commonUtils.getCSSValue(element, "color");
- 			boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
- 			boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
- 			if (result_1 == true && result_2 == true && result_3 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	// Feature : Lists
+	private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color) {
+		// get FontSize
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size");
+		// get LineHeight
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
+		// get Color
+		String actualColor = commonUtils.getCSSValue(element, "color");
+		boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
+		boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
+		if (result_1 == true && result_2 == true && result_3 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color, String mobile) {
- 			// get FontSize
- 			String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
- 			// get LineHeight
- 			String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
- 			// get Color
- 			String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
- 			boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
- 			boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
- 			if (result_1 == true && result_2 == true && result_3 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color, String mobile) {
+		// get FontSize
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+		// get LineHeight
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+		// get Color
+		String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
+		boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
+		boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
+		if (result_1 == true && result_2 == true && result_3 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		private boolean verifyListSpacing(By element, String space_above_below) {
- 			// get margin-top
- 			String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
- 			// get margin-below
- 			String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom");
- 			
- 			boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, element + " Lists margin-top specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, element + " Lists margin-bottom specification Failed");
- 			if (result_1 == true && result_2 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	private boolean verifyListSpacing(By element, String space_above_below) {
+		// get margin-top
+		String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
+		// get margin-below
+		String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom");
+		
+		boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, element + " Lists margin-top specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, element + " Lists margin-bottom specification Failed");
+		if (result_1 == true && result_2 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		private boolean verifyListSpacing(By element, String space_above_below, String mobile) {
- 			// get margin-top
- 			String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top", "mobile");
- 			// get margin-below
- 			String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
- 			boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, "Lists margin-top specification Failed");
- 			boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, "Lists margin-bottom specification Failed");
- 			if (result_1 == true && result_2 == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	private boolean verifyListSpacing(By element, String space_above_below, String mobile) {
+		// get margin-top
+		String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top", "mobile");
+		// get margin-below
+		String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+		boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, "Lists margin-top specification Failed");
+		boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, "Lists margin-bottom specification Failed");
+		if (result_1 == true && result_2 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		// Feature : Heading
- 		private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String fontWeight, String fontColor,String item) {
- 			boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
- 			String headingFontSize = commonUtils.getCSSValue(element, "font-size");
- 			String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
- 			String headingFontWeight = commonUtils.getCSSValue(element, "font-weight");
- 			String headingFontColor = commonUtils.getCSSValue(element, "color");
- 			boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
- 			boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
- 			boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
- 			boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
- 			
- 			if (item=="h1") {
- 				String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color");
- 				String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width");
- 				String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style");
- 				result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)","Heading border-bottom-color");
- 				result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
- 				result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
- 			} else
- 				result_bttnBordrSze = true;
- 				result_bttnBordrClr = true;
- 				result_bttnBordrStl = true;
- 			if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl && result_bttnBordrSze && result_fontColor) == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	// Feature : Heading
+	private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String fontWeight, String fontColor,String item) {
+		boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
+		String headingFontSize = commonUtils.getCSSValue(element, "font-size");
+		String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
+		String headingFontWeight = commonUtils.getCSSValue(element, "font-weight");
+		String headingFontColor = commonUtils.getCSSValue(element, "color");
+		boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
+		boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
+		boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
+		boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
+		
+		if (item=="h1") {
+			String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color");
+			String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width");
+			String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style");
+			result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)","Heading border-bottom-color");
+			result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
+			result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
+		} else
+			result_bttnBordrSze = true;
+			result_bttnBordrClr = true;
+			result_bttnBordrStl = true;
+		if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl && result_bttnBordrSze && result_fontColor) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
- 		// For heading mobile test
- 		private boolean HeadingCSSEvalMob(By element, String fontSize, String lineHeight, String fontWeight,String fontColor, String item, ScreenOrientation mode) {
- 			boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
- 			appium.rotate(mode);
- 			String headingFontSize = commonUtils.getCSSValue(element, "font-size","mobile");
- 			String headingLineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
- 			String headingFontWeight = commonUtils.getCSSValue(element, "font-weight","mobile");
- 			String headingFontColor = commonUtils.getCSSValue(element, "color","mobile");
- 			boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
- 			boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height");
- 			boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
- 			boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
- 			if (item == "h1") {
- 				String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color","mobile");
- 				String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width","mobile");
- 				String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style","mobile");
- 				result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)","Heading border-bottom-color");
- 				result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
- 				result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
- 			} else
- 				result_bttnBordrSze = true;
- 				result_bttnBordrClr = true;
- 				result_bttnBordrStl = true;
- 			if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl&& result_bttnBordrSze && result_fontColor) == true) {
- 				return true;
- 			} else {
- 				return false;
- 			}
- 		}
+	// For heading mobile test
+	private boolean HeadingCSSEvalMob(By element, String fontSize, String lineHeight, String fontWeight,String fontColor, String item, ScreenOrientation mode) {
+		boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
+		appium.rotate(mode);
+		String headingFontSize = commonUtils.getCSSValue(element, "font-size","mobile");
+		String headingLineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
+		String headingFontWeight = commonUtils.getCSSValue(element, "font-weight","mobile");
+		String headingFontColor = commonUtils.getCSSValue(element, "color","mobile");
+		boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
+		boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height");
+		boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
+		boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
+		if (item == "h1") {
+			String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color","mobile");
+			String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width","mobile");
+			String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style","mobile");
+			result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)","Heading border-bottom-color");
+			result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
+			result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
+		} else
+			result_bttnBordrSze = true;
+			result_bttnBordrClr = true;
+			result_bttnBordrStl = true;
+		if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl&& result_bttnBordrSze && result_fontColor) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    /********************************************* Added by Eajaz *********************************************/
+
+   /* *//********************************************* Added by Eajaz *********************************************//*
     boolean isFontSize = false;
     boolean isFontWeight = false;
     boolean isLineHeight = false;
@@ -1124,9 +1125,9 @@ public class TypographyTest extends BaseClass {
     }
 
 
-    /*******************
+    *//*******************
      * Common Methods
-     *******************/
+     *******************//*
 
     private boolean verifyLabelTypoProperties(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -1211,7 +1212,7 @@ public class TypographyTest extends BaseClass {
         listStyle = commonUtils.getCSSValue(element, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, unstyledListStyle, "'" + unstyledListType + "' list style value is not as per spec");
         return (isPaddingLeft && isListStyle);
-    }
+    }*/
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
