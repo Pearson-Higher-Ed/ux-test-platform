@@ -24,7 +24,6 @@
         <groups>
             <run>
                 <include name="desktop"/>
-                <exclude name="TypographyTest"/>
             </run>
         </groups>
         <packages>
