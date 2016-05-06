@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  */
 public class ButtonsTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
+    /*private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private String inputFilePath = "src/main/java/elements/fixtures/buttons.html";
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
@@ -586,9 +586,9 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    /***************
+    *//***************
      * Mobile Tests
-     ***************/
+     ***************//*
 
     @Test(testName = "Mobile: Default Button Test", dataProvider = "Default Button Test Data", groups = {"mobile"})
     private void defaultButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
@@ -650,9 +650,9 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    /*************
+    *//*************
      * Common methods
-     ************/
+     ************//*
     private void chooseEnv() throws InterruptedException {
         if (env.equals("sauce")) {
             commonUtils.getUrl(url);
@@ -669,5 +669,5 @@ public class ButtonsTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
-    }
+    }*/
 }

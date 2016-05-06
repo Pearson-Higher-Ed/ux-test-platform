@@ -1,4 +1,4 @@
-package elementsTests;
+/*package elementsTests;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -49,9 +49,9 @@ public class TypographyTest extends BaseClass {
         }
     }
 
-    /**********************************************************************************************************************************************
+    *//**********************************************************************************************************************************************
      * DESKTOP TESTS
-     *********************************************************************************************************************************************/
+     *********************************************************************************************************************************************//*
     // Feature: Body Copy Font
     @DataProvider(name = "getBodyCopyFontTestData")
     private Object[][] getBodyCopyFontTestData() {
@@ -341,9 +341,9 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
     }
 
-    /**********************************************************************************************************************************************
+    *//**********************************************************************************************************************************************
      * MOBILE TESTS
-     *********************************************************************************************************************************************/
+     *********************************************************************************************************************************************//*
 
     // Feature: Body
     @DataProvider(name = "MobileBodyCopyFontTestData")
@@ -700,9 +700,9 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not" + bckClr);
     }
 
-    /**********************************************************************************************************************************************
+    *//**********************************************************************************************************************************************
      * COMMON METHODS
-     *********************************************************************************************************************************************/
+     *********************************************************************************************************************************************//*
 
     // Feature : Body
     private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color) {
@@ -864,7 +864,7 @@ public class TypographyTest extends BaseClass {
     }
 
 
-    //********************************************* Added by Eajaz *********************************************//
+    //********************************************* Added by Eajaz *******************************************
 
     boolean isFontSize = false;
     boolean isFontWeight = false;
@@ -931,7 +931,7 @@ public class TypographyTest extends BaseClass {
     @Test(testName = "Labels Test", dataProvider = "Label Test Data", groups = {"desktop"})
     private void labelsTest(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
         chooseEnv();
-        result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgb(labelHexValue));
+        result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgba(labelHexValue));
         Assert.assertTrue(result);
     }
 
@@ -974,7 +974,7 @@ public class TypographyTest extends BaseClass {
 
         isFontSize = commonUtils.assertValue(fontSize, copyFontSize, "'copy' font-size is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, copyLineHeight, "'copy' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(copyHexValue), "'copy' rgb value is not as per the spec");
+        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgba(copyHexValue), "'copy' rgb value is not as per the spec");
         result = commonUtils.assertValue((isFontSize && isLineHeight && isRgbValue), true, "'copy' is not as per the spec");
         Assert.assertTrue(result);
     }
@@ -1127,9 +1127,9 @@ public class TypographyTest extends BaseClass {
     }
 
 
-    /*********************
+    *//*********************
      * Common Methods
-     *********************/
+     *********************//*
 
     private boolean verifyLabelTypoProperties(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -1167,7 +1167,7 @@ public class TypographyTest extends BaseClass {
 
         isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
+        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgba(leadHexValue), "'lead' rgb value is not as per the spec");
         return (isFontSize && isLineHeight && isRgbValue);
     }
 
@@ -1225,4 +1225,4 @@ public class TypographyTest extends BaseClass {
     private void afterMethod() {
         System.out.println("_________________________________________________");
     }
-}
+}*/

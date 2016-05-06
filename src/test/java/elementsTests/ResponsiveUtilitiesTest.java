@@ -1,4 +1,4 @@
-package elementsTests;
+/*package elementsTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -170,9 +170,9 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         }
     }
 
-    /*****************************************************************************************************************************************
+    *//*****************************************************************************************************************************************
      * MOBILE TESTS
-     *****************************************************************************************************************************************/
+     *****************************************************************************************************************************************//*
 
     //For iPhone 6 Plus
     @DataProvider(name = "iPhone6PlusTestData")
@@ -331,4 +331,4 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     private void afterMethod() {
         System.out.println("_________________________________________________");
     }
-}
+}*/
