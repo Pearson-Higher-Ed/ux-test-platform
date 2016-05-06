@@ -1,4 +1,4 @@
-/*package elementsTests;
+package elementsTests;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 
-*//**
+/**
  * Created by umahaea on 2/15/16.
- *//*
+ */
 public class IconsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/icons.html";
@@ -76,9 +76,9 @@ public class IconsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    *//*****************************************************************************************************************************************
+    /*****************************************************************************************************************************************
                                                             MOBILE TESTS
-     *****************************************************************************************************************************************//*
+     *****************************************************************************************************************************************/
 
     //For iOS or Android
     @Test(testName = "Mobile Icons Test", dataProvider = "getIconsTestData", groups = {"mobile"})
@@ -137,4 +137,3 @@ public class IconsTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 }
-*/

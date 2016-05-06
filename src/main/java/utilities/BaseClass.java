@@ -14,7 +14,6 @@ import org.testng.annotations.Parameters;
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.elementsPageObjects.TypographyPageObjects;
 import elements.elementsPageObjects.ButtonsPageObjects;
-import elements.elementsPageObjects.InputsPageObjects;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -34,7 +33,6 @@ public class BaseClass {
     public static TypographyPageObjects typoPgObj;
     public static ButtonsPageObjects btnPgObj;
     public static AppHeaderPageObjects appHeaderPgObj;
-    public static InputsPageObjects inputsPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -70,7 +68,6 @@ public class BaseClass {
                 typoPgObj = new TypographyPageObjects(driver);
                 btnPgObj=new ButtonsPageObjects(driver);
                 appHeaderPgObj = new AppHeaderPageObjects(driver);
-                inputsPgObj = new InputsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
 
@@ -91,7 +88,6 @@ public class BaseClass {
                 typoPgObj = new TypographyPageObjects(appium);
                 btnPgObj=new ButtonsPageObjects(appium);
                 appHeaderPgObj= new AppHeaderPageObjects(appium);
-                inputsPgObj = new InputsPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
             }
         }
@@ -104,7 +100,6 @@ public class BaseClass {
                 typoPgObj = new TypographyPageObjects(driver);
                 btnPgObj=new ButtonsPageObjects(driver);
                 appHeaderPgObj= new AppHeaderPageObjects(driver);
-                inputsPgObj = new InputsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
             }
         }
