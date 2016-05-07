@@ -20,17 +20,18 @@ import java.util.*;
 /**
  * Created by umahaea on 3/22/16.
  */
+
 public class AppHeaderTest extends BaseClass {
 
-    private final String signOutModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/app-header-SignOutMode.html";
-    private final String basicModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/app-header-BasicMode.html";
-    private final String courseModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/app-header-CourseMode.html";
-    private final String integModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/app-header-IntegMode.html";
-    private final String signedOutJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/signedout.js";
-    private final String basicJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/basic.js";
-    private final String courseJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/course.js";
-    private final String integJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/integ.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/temp.js";
+    private final String signOutModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/appHeader/app-header-SignOutMode.html";
+    private final String basicModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/appHeader/app-header-BasicMode.html";
+    private final String courseModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/appHeader/app-header-CourseMode.html";
+    private final String integModeUrl = "http://localhost:8000/src/main/java/molecules/fixtures/appHeader/app-header-IntegMode.html";
+    private final String signedOutJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/appHeader/signedout.js";
+    private final String basicJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/appHeader/basic.js";
+    private final String courseJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/appHeader/course.js";
+    private final String integJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/appHeader/integ.js";
+    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/molecules/jsfiles/appHeader/temp.js";
     JsonObject jsonObject;
     private String testConfig = "";
     private String userName = "";
@@ -55,6 +56,7 @@ public class AppHeaderTest extends BaseClass {
     private String attributeValue = "";
     private String themeON = "\"theme\": \"light\"";
     private String themeOFF = "\"theme\": \"off\"";
+    private static String setMobile;
 
     //For Sign out mode
     private String defaultConfigSignoutMode = "var config = {\"mode\":\"Signed Out\",\"showLoginControls\": true};";
@@ -110,7 +112,7 @@ public class AppHeaderTest extends BaseClass {
      * Signed Out Mode Tests *
      ***************************/
 
-    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop", "molecules"}, priority = 0)
+    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop", "molecules"})
     private void signedOutModeDefaultTest() {
 
         commonUtils.getUrl(signOutModeUrl);
@@ -127,7 +129,7 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
@@ -145,10 +147,9 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+        Thread.sleep(5000);
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
-        driver.navigate().refresh();
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         signInLinkVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.signInLink);
@@ -163,7 +164,7 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo);
@@ -178,7 +179,7 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo);
@@ -193,7 +194,7 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink);
@@ -208,7 +209,7 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         readInitialConfig(signedOutJSFilePath);
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl);
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink);
@@ -218,7 +219,7 @@ public class AppHeaderTest extends BaseClass {
     }
 
     public String buildJSONObjectForSignedOutMode(String mode, boolean loginControls) {
-    	
+
         jsonObject = new JsonObject();
         jsonObject.addProperty("mode", mode);
         jsonObject.addProperty("showLoginControls", loginControls);
@@ -230,7 +231,7 @@ public class AppHeaderTest extends BaseClass {
      * Basic Mode Tests *
      *************************/
 
-    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop", "molecules"}, priority = 1)
+    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop", "molecules"})
     private void basicModeDesktopViewDefaultTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -248,6 +249,7 @@ public class AppHeaderTest extends BaseClass {
         chevronDownIconVisible = commonUtils.isElementPresent(appHeaderPgObj.chevronDownIcon);
         userName = commonUtils.getText(appHeaderPgObj.desktopViewUserMenu);
         commonUtils.assertValue(userName, "Michel", "Error: Basic Mode user name incorrect");
+        writeInitialConfig(basicJSFilePath);
         Assert.assertEquals(userName, "Michel");
         result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && desktopViewUserMenuVisible && chevronDownIconVisible), true, "Error: Basic Mode Desktop View");
         writeInitialConfig(basicJSFilePath);
@@ -329,6 +331,7 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        Thread.sleep(500);
         commonUtils.getUrl(basicModeUrl);
         desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
         userName = driver.findElement(appHeaderPgObj.desktopViewUserMenu).getText();
@@ -354,14 +357,13 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop", "molecules"})
+    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop", "molecules"}, priority = 1)
     private void addCoursesForBasicModeTest(String noOfCourse, String courses) throws Exception {
 
         readInitialConfig(basicJSFilePath);
         testConfig = basicConfig + course1 + "," + course2 + "," + courses + "]};";
-        
-        changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         if (noOfCourse.equals("3")) {
@@ -400,7 +402,7 @@ public class AppHeaderTest extends BaseClass {
         bModecourses.put("Chemistry", "https://example.com/chemistry");
         bModecourses.put("Maths", "https://example.com/maths");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(basicModeUrl);
@@ -419,8 +421,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "BasicMode - Remove one course", groups = {"desktop", "molecules"})
     private void removeOneCourseForBasicModeTest() throws Exception {
-        
-    	readInitialConfig(basicJSFilePath);
+
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + course1 + "," + course2 + "]};";
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("Physics", "https://example.com/physics");
@@ -455,15 +457,16 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "BasicMode - Remove All course", groups = {"desktop", "molecules"})
     private void zeroCoursesForBasicModeTest() throws Exception {
-        
-    	readInitialConfig(basicJSFilePath);
+
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + "]};";
         bModecourses = new LinkedHashMap<String, String>();
         //bModecourses.put("Physics", "https://example.com/physics");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(500);
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 1);
@@ -480,12 +483,12 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "BasicMode - Truncate course names", groups = {"desktop", "molecules"})
     private void truncateCourseNameForBasicModeTest() throws Exception {
 
-    	readInitialConfig(basicJSFilePath);
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + "{\"text\": \"verylongcoursenameverylongcoursename\", \"href\":\"https://example.com/physics\"}" + "]}";
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("verylongcoursenameverylongcoursename", "https://example.com/physics");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(basicModeUrl);
@@ -548,7 +551,7 @@ public class AppHeaderTest extends BaseClass {
      * Course Mode Tests *
      *************************/
 
-    @Test(testName = "Default Course Mode in Desktop View", groups = {"desktop", "molecules"}, priority = 1)
+    @Test(testName = "Default Course Mode in Desktop View", groups = {"desktop", "molecules"})
     private void courseModeDesktopViewDefaultTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -557,8 +560,9 @@ public class AppHeaderTest extends BaseClass {
         cModeCourseNavItems.put("Performance", "https://example.com/performance");
         cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
         testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
+        Thread.sleep(1000);
         commonUtils.getUrl(courseModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
@@ -566,6 +570,7 @@ public class AppHeaderTest extends BaseClass {
         chevronDownIconVisible = commonUtils.isElementPresent(appHeaderPgObj.chevronDownIcon);
         userName = commonUtils.getText(appHeaderPgObj.desktopViewUserMenu);
         commonUtils.assertValue(userName, "Michel", "Error: User name is incorrect");
+        writeInitialConfig(courseJSFilePath);
         Assert.assertEquals(userName, "Michel");
         result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && desktopViewUserMenuVisible && chevronDownIconVisible), true, "Error: Course Mode Desktop View");
         writeInitialConfig(courseJSFilePath);
@@ -647,6 +652,7 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
 
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
+        Thread.sleep(500);
         commonUtils.getUrl(courseModeUrl);
         desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
         userName = driver.findElement(appHeaderPgObj.desktopViewUserMenu).getText();
@@ -676,9 +682,10 @@ public class AppHeaderTest extends BaseClass {
 
         readInitialConfig(courseJSFilePath);
         testConfig = courseConfig + "," + courseNavHeading + "," + items + "," + "]}};";
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(1000);
         commonUtils.getUrl(courseModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         courseNavHeadingText = commonUtils.getText(appHeaderPgObj.courseNavHeading);
@@ -752,8 +759,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "CourseMode - Remove one nav item", groups = {"desktop", "molecules"})
     private void removeOneCourseNavItemForCourseModeTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         //add a course
         //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
@@ -764,12 +771,13 @@ public class AppHeaderTest extends BaseClass {
 
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(500);
         commonUtils.getUrl(courseModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("", 4);
         courseNavItemAdded = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem));
-        Assert.assertTrue(courseNavItemAdded);
         writeInitialConfig(courseJSFilePath);
+        Assert.assertTrue(courseNavItemAdded);
 
         //remove a course
         readInitialConfig(courseJSFilePath);
@@ -792,12 +800,12 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "CourseMode - Remove All course", groups = {"desktop", "molecules"})
     private void zeroCoursesForCourseModeTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         //testConfig = courseConfig + "," + courseNavHeading + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
         testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(courseModeUrl);
@@ -813,8 +821,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "CourseMode - Truncate course Nav Item names", groups = {"desktop", "molecules"})
     private void truncateCourseNavItemForCourseModeTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         String veryLongCourseNavItem = "VeryLongCourseNavItemThatIsTruncatable";
         //testConfig = courseConfig + "," + "\"courseNav\":{\"heading\":{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/physics\"},\"items\":[" + "," + "{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/performance\",\"active\":false}" + "," + courseNavItem2 + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
@@ -824,6 +832,7 @@ public class AppHeaderTest extends BaseClass {
 
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(500);
         commonUtils.getUrl(courseModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         int i;
@@ -832,10 +841,11 @@ public class AppHeaderTest extends BaseClass {
             xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("first", i);
             courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem));
             result = commonUtils.assertValue(courseNavItemText, veryLongCourseNavItem, "Error: Course Nav Item not added");
+            writeInitialConfig(courseJSFilePath);
             Assert.assertTrue(result);
             courseNavItemTruncatable = commonUtils.getCSSValue(By.xpath(xpathForCourseNavItem + "/a"), "text-overflow");
             commonUtils.setWindowSize(768, 800);
-            writeInitialConfig(courseJSFilePath);
+            //writeInitialConfig(courseJSFilePath);
             result = commonUtils.assertValue(courseNavItemTruncatable, "ellipsis", "Error: Course Nav item is not truncatable");
             Assert.assertTrue(result);
         }
@@ -892,6 +902,7 @@ public class AppHeaderTest extends BaseClass {
 
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(500);
         commonUtils.getUrl(courseModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("forDisabledCourse", 2);
@@ -922,7 +933,7 @@ public class AppHeaderTest extends BaseClass {
 
         readInitialConfig(JSFilePath);
         testConfig = config + theme;
-        
+
         changeConfig(JSFilePath, defaultConfig, testConfig);
         commonUtils.getUrl(modeUrl);
 
@@ -978,8 +989,8 @@ public class AppHeaderTest extends BaseClass {
      *************************/
     @Test(testName = "Default Integration Mode in Desktop View", groups = {"desktop", "molecules"})
     private void integrationModeDesktopViewDefaultTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl);
+
+        commonUtils.getUrl(integModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
         result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible), true, "Error: Integration Mode Desktop View");
@@ -988,8 +999,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Default Integration Mode in Mobile View", groups = {"desktop", "molecules"})
     private void integrationModeMobileViewDefaultTest() throws Exception {
-        
-    	commonUtils.setWindowSize(767, 800);
+
+        commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(integModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
@@ -1000,8 +1011,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"desktop", "molecules"})
     private void pearsonLogoClickableForIntegModeTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl);
+
+        commonUtils.getUrl(integModeUrl);
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo);
         result = commonUtils.assertValue((pearsonLogoClickable), false, "Error: Pearson Logo is clickable");
         Assert.assertTrue(result);
@@ -1009,8 +1020,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"desktop", "molecules"})
     private void helpLinkClickableForIntegModeTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl);
+
+        commonUtils.getUrl(integModeUrl);
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink);
         result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
         Assert.assertTrue(result);
@@ -1037,10 +1048,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Show Login Controls", groups = {"mobile", "molecules"})
     private void signedOutModeShowLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsTrue + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink, "mobile");
@@ -1054,10 +1065,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Hide Login Controls", groups = {"mobile", "molecules"})
     private void signedOutModeHideLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsFalse + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink, "mobile");
@@ -1071,10 +1082,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Is Pearson Logo Clickable?", groups = {"mobile", "molecules"})
     private void pearsonLogoClickableForShowLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsTrue + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo, "mobile");
@@ -1086,10 +1097,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Is Pearson Logo Clickable?", groups = {"mobile", "molecules"})
     private void pearsonLogoClickableForHideLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsFalse + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo, "mobile");
@@ -1101,10 +1112,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Is Help Link Clickable?", groups = {"mobile", "molecules"})
     private void helpLinkClickableForShowLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsTrue + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsTrue + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", true);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
@@ -1116,10 +1127,10 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "Mobile: SignedOutMode - Is Help Link Clickable?", groups = {"mobile", "molecules"})
     private void helpLinkClickableForHideLoginControlsMobileTest() throws Exception {
 
-    	readInitialConfig(signedOutJSFilePath);
-    	//testConfig = signOutConfig + "," + loginControlsFalse + "};";
+        readInitialConfig(signedOutJSFilePath);
+        //testConfig = signOutConfig + "," + loginControlsFalse + "};";
         testConfig = buildJSONObjectForSignedOutMode("Signed Out", false);
-        
+
         changeConfig(signedOutJSFilePath, defaultConfigSignoutMode, testConfig);
         commonUtils.getUrl(signOutModeUrl, "mobile");
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
@@ -1132,7 +1143,7 @@ public class AppHeaderTest extends BaseClass {
      * Basic mode mobile tests *
      *************************************/
 
-    @Test(testName = "Mobile: Default Basic Mode in Mobile View", groups = {"mobile", "molecules"}, priority = 0)
+    @Test(testName = "Mobile: Default Basic Mode in Mobile View", groups = {"mobile", "molecules"})
     private void basicModeDefaultMobileTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -1143,7 +1154,6 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo, "mobile");
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink, "mobile");
@@ -1206,7 +1216,6 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu, "mobile");
         userName = commonUtils.getText(appHeaderPgObj.mobileViewUserMenu, "mobile");
@@ -1225,9 +1234,8 @@ public class AppHeaderTest extends BaseClass {
 
         readInitialConfig(basicJSFilePath);
         testConfig = basicConfig + course1 + "," + course2 + "," + courses + "]};";
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         if (noOfCourse.equals("3")) {
@@ -1264,9 +1272,8 @@ public class AppHeaderTest extends BaseClass {
         bModecourses.put("Chemistry", "https://example.com/chemistry");
         bModecourses.put("Maths", "https://example.com/maths");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         int i;
@@ -1281,8 +1288,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: BasicMode - Remove one course", groups = {"mobile", "molecules"})
     private void removeOneCourseForBasicModeMobileTest() throws Exception {
-        
-    	readInitialConfig(basicJSFilePath);
+
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + course1 + "," + course2 + "]};";
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("Physics", "https://example.com/physics");
@@ -1290,7 +1297,6 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 3);
@@ -1304,7 +1310,6 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 3);
@@ -1316,14 +1321,13 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: BasicMode - Remove All course", groups = {"mobile", "molecules"})
     private void zeroCoursesForBasicModeMobileTest() throws Exception {
-        
-    	readInitialConfig(basicJSFilePath);
+
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + "]};";
-        bModecourses = new LinkedHashMap<String, String>();        
+        bModecourses = new LinkedHashMap<String, String>();
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        
+
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 1);
@@ -1338,15 +1342,14 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: BasicMode - Truncate course names", groups = {"mobile", "molecules"})
     private void truncateCourseNameForBasicModeMobileTest() throws Exception {
-        
-    	readInitialConfig(basicJSFilePath);
+
+        readInitialConfig(basicJSFilePath);
         //testConfig = basicConfig + "{\"text\": \"verylongcoursenameverylongcoursename\", \"href\":\"https://example.com/physics\"}" + "]}";
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("verylongcoursenameverylongcoursename", "https://example.com/physics");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 1);
@@ -1368,7 +1371,6 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 1);
@@ -1473,7 +1475,7 @@ public class AppHeaderTest extends BaseClass {
 
         readInitialConfig(courseJSFilePath);
         testConfig = courseConfig + "," + courseNavHeading + "," + items + "," + "]}};";
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.getUrl(courseModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
@@ -1542,8 +1544,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: CourseMode - Remove one nav item", groups = {"mobile", "molecules"})
     private void removeOneCourseNavItemForCourseModeMobileTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         //add a course
         //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
@@ -1580,12 +1582,12 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: CourseMode - Remove All course", groups = {"mobile", "molecules"})
     private void zeroCoursesForCourseModeMobileTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         //testConfig = courseConfig + "," + courseNavHeading + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
         testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.getUrl(courseModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
@@ -1599,8 +1601,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: CourseMode - Truncate course Nav Item names", groups = {"mobile", "molecules"})
     private void truncateCourseNavItemForCourseModeMobileTest() throws Exception {
-        
-    	readInitialConfig(courseJSFilePath);
+
+        readInitialConfig(courseJSFilePath);
         String veryLongCourseNavItem = "VeryLongCourseNavItemThatIsTruncatable";
         //testConfig = courseConfig + "," + "\"courseNav\":{\"heading\":{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/physics\"},\"items\":[" + "," + "{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/performance\",\"active\":false}" + "," + courseNavItem2 + "]}};";
         cModeCourseNavItems = new LinkedHashMap<String, String>();
@@ -1616,9 +1618,10 @@ public class AppHeaderTest extends BaseClass {
             xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("first", i);
             courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem), "mobile");
             result = commonUtils.assertValue(courseNavItemText, veryLongCourseNavItem, "Error: Course Nav Item not added");
+            writeInitialConfig(courseJSFilePath);
             Assert.assertTrue(result);
             courseNavItemTruncatable = commonUtils.getCSSValue(By.xpath(xpathForCourseNavItem + "/a"), "text-overflow", "mobile");
-            writeInitialConfig(courseJSFilePath);
+            //writeInitialConfig(courseJSFilePath);
             result = commonUtils.assertValue(courseNavItemTruncatable, "ellipsis", "Error: Course Nav item is not truncatable");
             Assert.assertTrue(result);
         }
@@ -1667,7 +1670,7 @@ public class AppHeaderTest extends BaseClass {
         cModeCourseNavItems = new LinkedHashMap<String, String>();
         cModeCourseNavItems.put("Performance", "https://example.com/performance");
         testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, true);
-        
+
         changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
         commonUtils.getUrl(courseModeUrl, "mobile");
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
@@ -1705,8 +1708,8 @@ public class AppHeaderTest extends BaseClass {
      *************************/
     @Test(testName = "Mobile: Default Integration Mode in Mobile View", groups = {"mobile", "molecules"})
     private void integrationModeDefaultMobileTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl, "mobile");
+
+        commonUtils.getUrl(integModeUrl, "mobile");
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo, "mobile");
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink, "mobile");
         result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible), true, "Error: Integration Mode Desktop View");
@@ -1715,8 +1718,8 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"mobile", "molecules"})
     private void pearsonLogoClickableForIntegModeMobileTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl, "mobile");
+
+        commonUtils.getUrl(integModeUrl, "mobile");
         pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo, "mobile");
         result = commonUtils.assertValue((pearsonLogoClickable), false, "Error: Pearson Logo is clickable");
         Assert.assertTrue(result);
@@ -1724,16 +1727,16 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"mobile", "molecules"})
     private void helpLinkClickableForIntegModeMobileTest() throws Exception {
-        
-    	commonUtils.getUrl(integModeUrl, "mobile");
+
+        commonUtils.getUrl(integModeUrl, "mobile");
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
         result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
         Assert.assertTrue(result);
     }
 
     @BeforeMethod(alwaysRun = true)
-    private void beforeMethod(Method method) {
-        System.out.println("Test Method----> " + method.getName());
+    private void beforeMethod(Method method) throws Exception {
+        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
     }
 
     @AfterMethod(alwaysRun = true)
@@ -1741,13 +1744,25 @@ public class AppHeaderTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
+
+    @Parameters({"mobile"})
+    @BeforeClass(alwaysRun = true)
+    private void beforeClass(String mobile) {
+        setMobile = mobile;
+        if (setMobile.equals("on")) {
+            appium.manage().deleteAllCookies();
+        } else {
+            driver.manage().deleteAllCookies();
+        }
+    }
+
     /**********************
      * Common methods *
      *********************/
 
     private void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
-        
-    	List<String> newLines = new ArrayList<String>();
+
+        List<String> newLines = new ArrayList<String>();
         for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
             newLines.add(line.replace(getDefaultConfig, getTestConfig));
         }
@@ -1755,8 +1770,8 @@ public class AppHeaderTest extends BaseClass {
     }
 
     private void readInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        
-    	List<String> newLines = new ArrayList<String>();
+
+        List<String> newLines = new ArrayList<String>();
         for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
             newLines.add(line);
         }
@@ -1764,8 +1779,8 @@ public class AppHeaderTest extends BaseClass {
     }
 
     private void writeInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        
-    	List<String> newLines = new ArrayList<String>();
+
+        List<String> newLines = new ArrayList<String>();
         for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
             newLines.add(line);
         }
