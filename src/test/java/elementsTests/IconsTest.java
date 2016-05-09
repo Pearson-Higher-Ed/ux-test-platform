@@ -63,7 +63,10 @@ public class IconsTest extends BaseClass {
                 {"calendar", "\\f073"},
                 {"square-o","\\f096"},
                 {"check-square-o","\\f046"},
-                {"ban","\\f05e"}
+                {"ban","\\f05e"},
+                {"camera","\\f030"},
+                {"clock-o","\\f017"},
+                {"exclamation-circle","\\f06a"}
         };
     }
 
