@@ -51,5 +51,4 @@ public class AppHeaderPageObjects {
     public By courseNavItems=By.xpath("//ul[@class='o-app-header__menu-items-course-nav o-header__viewport-tablet--hidden o-header__viewport-desktop--hidden']");
 
     //Integration Mode Page Objects
-
 }

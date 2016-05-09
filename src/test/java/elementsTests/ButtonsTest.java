@@ -537,7 +537,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Small Button Test Data")
     public Object[][] getSmallButtonTestData() {
         return new Object[][]{
-                {"font-size", new String[]{"13px", "13.0080003738403px"}},
+                {"font-size", new String[]{"13px", "13.0080003738403px","13.008px"}},
                 {"height", new String[]{"24px"}},
                 {"line-height", new String[]{"24px"}},
 
