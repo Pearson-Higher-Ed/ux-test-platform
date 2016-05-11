@@ -1,29 +1,29 @@
 package utilities;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 import molecules.moleculesPageObjects.AppHeaderPageObjects;
 import molecules.moleculesPageObjects.ContextualHelpPageObjects;
-import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import org.testng.annotations.Parameters;
 
+import elements.elementsPageObjects.ButtonsPageObjects;
+import elements.elementsPageObjects.InputsPageObjects;
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.elementsPageObjects.TypographyPageObjects;
-import elements.elementsPageObjects.ButtonsPageObjects;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
-import sun.security.krb5.internal.crypto.Des;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by umahaea on 2/3/16.
@@ -34,6 +34,7 @@ public class BaseClass {
     public static AppiumDriver appium;
     public static ResponsiveUtilitiesPageObjects respPgObj;
     public static TypographyPageObjects typoPgObj;
+    public static InputsPageObjects inputsPgObj;
     public static ButtonsPageObjects btnPgObj;
     public static AppHeaderPageObjects appHeaderPgObj;
     public static ContextualHelpPageObjects conxHelpPgObj;
@@ -75,6 +76,7 @@ public class BaseClass {
                 btnPgObj = new ButtonsPageObjects(driver);
                 appHeaderPgObj = new AppHeaderPageObjects(driver);
                 conxHelpPgObj = new ContextualHelpPageObjects(driver);
+                inputsPgObj = new InputsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -97,6 +99,7 @@ public class BaseClass {
                 btnPgObj = new ButtonsPageObjects(appium);
                 appHeaderPgObj = new AppHeaderPageObjects(appium);
                 conxHelpPgObj = new ContextualHelpPageObjects(appium);
+                inputsPgObj = new InputsPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
                 appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -111,6 +114,7 @@ public class BaseClass {
                 btnPgObj = new ButtonsPageObjects(driver);
                 appHeaderPgObj = new AppHeaderPageObjects(driver);
                 conxHelpPgObj = new ContextualHelpPageObjects(driver);
+                inputsPgObj = new InputsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -120,11 +124,11 @@ public class BaseClass {
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
-        if (mobile.equals("on")) {
-            appium.close();
+        if (mobile.equals("on")) {        	
+        	appium.close();
             appium.quit();
         } else {
-            // driver.close();
+        	driver.close();
             driver.quit();
         }
     }

@@ -45,7 +45,6 @@ Desktop:-
         |Windows 10  |firefox      |45.0    |
         |Windows 10  |ie           |11.103  |
         |Windows 10  |edge         |13.10586|
-
 Mobile:-
         |appiumDriver  | mobDeviceName              | mobilePlatformVer | mobBrowser | appiumVer|
         |iOS           | iPhone 6 Plus              | 9.2               | Safari     | 1.5.2    |
