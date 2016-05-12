@@ -68,6 +68,7 @@ public class BaseClass {
                 }
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
+                caps.setCapability("screenResolution","1920x1080");
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 driver = new RemoteWebDriver(new URL(URL), caps);
