@@ -143,6 +143,11 @@ public class CommonUtils {
         js.executeScript("document.getElementById('"+element+"').focus()");
     }
 
+    public void focusOnElementById(String element,String mobile) {
+        js = (JavascriptExecutor) appium;
+        js.executeScript("document.getElementById('"+element+"').focus()");
+    }
+
     /**
      * @param colorStr e.g. "#FFFFFF"
      * @return String - formatted "rgb(0,0,0,0)"
