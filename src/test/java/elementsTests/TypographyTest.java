@@ -207,17 +207,17 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "getHeadingsCSSTestData")
     private Object[][] getHeadingsTestData() {
         return new Object[][]{
-                {typoPgObj.heading_one, "24px", "30px", "bold", "rgba(35, 31, 32, 1)", "h1"},
-                {typoPgObj.heading_two, "20px", "24px", "bold", "rgba(35, 31, 32, 1)", "h2"},
-                {typoPgObj.heading_three, "18px", "22px", "bold", "rgba(35, 31, 32, 1)", "h3"},
-                {typoPgObj.heading_four, "16px", "20px", "bold", "rgba(86, 86, 86, 1)", "h4"},
-                {typoPgObj.heading_five, "16px", "20px", "bold", "rgba(86, 86, 86, 1)", "h5"},
-                {typoPgObj.heading_six, "14px", "16px", "bold", "rgba(86, 86, 86, 1)", "h6"}
+                {typoPgObj.heading_one, "24px", "30px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h1"},
+                {typoPgObj.heading_two, "20px", "24px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h2"},
+                {typoPgObj.heading_three, "18px", "22px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h3"},
+                {typoPgObj.heading_four, "16px", "20px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h4"},
+                {typoPgObj.heading_five, "16px", "20px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h5"},
+                {typoPgObj.heading_six, "14px", "16px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h6"}
         };
     }
 
     @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"desktop"})
-    private void HeadingCSSTest(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) throws InterruptedException, UnsupportedEncodingException {
+    private void HeadingCSSTest(By element, String fontSize, String lineHeight, String[] fontWeight, String fontColor, String item) throws InterruptedException, UnsupportedEncodingException {
         chooseEnv();
         result = HeadingCSSEval(element, fontSize, lineHeight, fontWeight, fontColor, item);
         Assert.assertTrue(result);
@@ -804,7 +804,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Feature : Heading
-    private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
+    private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String[] fontWeight, String fontColor, String item) {
         boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
         String headingFontSize = commonUtils.getCSSValue(element, "font-size");
         String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
@@ -812,7 +812,11 @@ public class TypographyTest extends BaseClass {
         String headingFontColor = commonUtils.getCSSValue(element, "color");
         boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
         boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
-        boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
+        //boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
+        boolean result_fontWeight = commonUtils.assertCSSProperties(element.toString(), headingFontWeight, fontWeight);
+        if (result_fontWeight == false) {
+            System.out.println("Heading Font Height for " + element.toString() + "--> is not as per the spec");
+        }
         boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
 
         if (item == "h1") {
