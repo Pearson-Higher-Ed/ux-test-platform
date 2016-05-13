@@ -29,6 +29,8 @@ public class TypographyTest extends BaseClass {
     String actualContent;
     String code;
     boolean result = false;
+    private final String fontFamilyChrome="'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace";
+    private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
 
     @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
@@ -282,19 +284,23 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "getCodeTestData")
     private Object[][] getcodeTestData() {
         return new Object[][]{
-                {"'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace", "14px", "20px", "rgba(66, 66, 66, 1)", "rgba(174, 174, 174, 1)"}
+                {new String[]{fontFamilyChrome,fontFamilyFF}, "14px", "20px", "rgba(66, 66, 66, 1)", "rgba(174, 174, 174, 1)"}
         };
     }
 
     @Test(enabled = true, dataProvider = "getCodeTestData", testName = "Code Test", groups = {"desktop"})
-    private void CodeTest(String fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
+    private void CodeTest(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family");
         String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size");
         String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
         String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
@@ -304,18 +310,22 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "getInlnCodeTestData")
     private Object[][] getInlnCodeTestData() {
         return new Object[][]{
-                {"'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace", "4px", "4px", "rgba(230, 230, 230, 1)"}
+                {new String[]{fontFamilyChrome,fontFamilyFF}, "4px", "4px", "rgba(230, 230, 230, 1)"}
         };
     }
 
     @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"desktop"})
-    private void InlneCodeTest(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void InlneCodeTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-        commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
@@ -324,18 +334,22 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "getkbdTestData")
     private Object[][] getkbdTestData() {
         return new Object[][]{
-                {"'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace", "4px", "4px", "rgba(230, 230, 230, 1)",}
+                {new String[]{fontFamilyChrome,fontFamilyFF}, "4px", "4px", "rgba(230, 230, 230, 1)",}
         };
     }
 
     @Test(enabled = true, testName = "kbd Code Test", dataProvider = "getkbdTestData", groups = {"desktop"})
-    private void kbdTest(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void kbdTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
@@ -589,7 +603,7 @@ public class TypographyTest extends BaseClass {
 
     // Feature: Coding
     @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
-    private void CodeMobileTestLANDSCAPE(String fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
+    private void CodeMobileTestLANDSCAPE(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family", "mobile");
@@ -597,7 +611,11 @@ public class TypographyTest extends BaseClass {
         String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color", "mobile");
         String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
@@ -605,28 +623,36 @@ public class TypographyTest extends BaseClass {
     }
 
     @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
-    private void InlneCodeMobileTestLANDSCAPE(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void InlneCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not " + bckClr);
     }
 
     @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
-    private void kbdCodeMobileTestLANDSCAPE(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void kbdCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
@@ -657,7 +683,7 @@ public class TypographyTest extends BaseClass {
     }
 
     @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
-    private void CodeMobileTestPORTRAIT(String fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
+    private void CodeMobileTestPORTRAIT(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family", "mobile");
@@ -665,7 +691,11 @@ public class TypographyTest extends BaseClass {
         String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color", "mobile");
         String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not" + lnHeight);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
@@ -673,28 +703,36 @@ public class TypographyTest extends BaseClass {
     }
 
     @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
-    private void InlneCodeMobileTestPORTRAIT(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void InlneCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not" + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not" + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not" + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
     }
 
     @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
-    private void kbdCodeMobileTestPORTRAIT(String fntFamly, String pddngLft, String pddngRgt, String bckClr) {
+    private void kbdCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not" + fntFamly);
+        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
+        if (isFontFamily == false) {
+            System.out.println("Font Family is not as per the spec");
+        }
+        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not" + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not" + pdngLft);
         commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not" + bckClr);
