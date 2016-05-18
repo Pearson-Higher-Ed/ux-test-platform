@@ -37,16 +37,29 @@ public class CommonUtils {
     public CommonUtils(AppiumDriver appium) {
         this.appium = appium;
     }
-    
+
     //click
     public void click(By element) {
         webElement = driver.findElement(element);
         webElement.click();
     }
 
-    public void click(By element,String mobile) {
+    public void click(By element, String mobile) {
         webElement = appium.findElement(element);
         webElement.click();
+    }
+
+    //send keys
+    public void sendKeys(By element, String text) {
+        webElement = driver.findElement(element);
+        webElement.clear();
+        webElement.sendKeys(text);
+    }
+
+    public void sendKeys(By element, String text, String mobile) {
+        webElement = appium.findElement(element);
+        webElement.clear();
+        webElement.sendKeys(text);
     }
 
     //is element present
@@ -54,8 +67,7 @@ public class CommonUtils {
         try {
             webElement = driver.findElement(element);
             return webElement.findElement(element).isDisplayed();
-        }
-        catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             log.info(e.getMessage());
             return false;
         }
@@ -63,7 +75,7 @@ public class CommonUtils {
 
     //is element present
     public boolean isElementPresent(By element, String mobile) {
-        mobWebElement = (MobileElement)appium.findElement(element);
+        mobWebElement = (MobileElement) appium.findElement(element);
         return mobWebElement.findElement(element).isDisplayed();
     }
 
@@ -105,11 +117,11 @@ public class CommonUtils {
     }
 
     //get Attribute value
-    public String getAttributeValue(By element, String attribute){
+    public String getAttributeValue(By element, String attribute) {
         return driver.findElement(element).getAttribute(attribute);
     }
 
-    public String getAttributeValue(By element, String attribute,String mobile){
+    public String getAttributeValue(By element, String attribute, String mobile) {
         return appium.findElement(element).getAttribute(attribute);
     }
 
@@ -140,12 +152,12 @@ public class CommonUtils {
     //focus on an element by Id
     public void focusOnElementById(String element) {
         js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementById('"+element+"').focus()");
+        js.executeScript("document.getElementById('" + element + "').focus()");
     }
 
-    public void focusOnElementById(String element,String mobile) {
+    public void focusOnElementById(String element, String mobile) {
         js = (JavascriptExecutor) appium;
-        js.executeScript("document.getElementById('"+element+"').focus()");
+        js.executeScript("document.getElementById('" + element + "').focus()");
     }
 
     /**
@@ -170,33 +182,32 @@ public class CommonUtils {
         sb.append(")");
         return sb.toString();
     }
-    
-    /**
-    * 
-    * @param colorStr e.g. "#FFFFFF"
-    * @return String - formatted "hex2RgbWithoutTransparency(0,0,0)"
-    */
-    public String hex2RgbWithoutTransparency(String colorStr) {
-	    Color c = new Color(
-	        Integer.valueOf(colorStr.substring(1, 3), 16), 
-	        Integer.valueOf(colorStr.substring(3, 5), 16), 
-	        Integer.valueOf(colorStr.substring(5, 7), 16));
 
-	    StringBuffer sb = new StringBuffer();
-	    sb.append("rgb(");
-	    sb.append(c.getRed());
-	    sb.append(", ");
-	    sb.append(c.getGreen());
-	    sb.append(", ");
-	    sb.append(c.getBlue());
-	    sb.append(")");
-	    return sb.toString();
-	}
+    /**
+     * @param colorStr e.g. "#FFFFFF"
+     * @return String - formatted "hex2RgbWithoutTransparency(0,0,0)"
+     */
+    public String hex2RgbWithoutTransparency(String colorStr) {
+        Color c = new Color(
+                Integer.valueOf(colorStr.substring(1, 3), 16),
+                Integer.valueOf(colorStr.substring(3, 5), 16),
+                Integer.valueOf(colorStr.substring(5, 7), 16));
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("rgb(");
+        sb.append(c.getRed());
+        sb.append(", ");
+        sb.append(c.getGreen());
+        sb.append(", ");
+        sb.append(c.getBlue());
+        sb.append(")");
+        return sb.toString();
+    }
 
     /**
      * @param propertyType  - gives info to user on what propertyType been looked for.
      * @param expectedValue e.g. "'font-size' value of 16px"
-     * @param 'Object[]      arr - the array of all the possible css values retrievied for expectedValue. eg. new String[]{"14px","14.001px"}
+     * @param 'Object[]     arr - the array of all the possible css values retrievied for expectedValue. eg. new String[]{"14px","14.001px"}
      * @return boolean - isCSSPropertyPresent "true or false"
      */
 
@@ -228,7 +239,7 @@ public class CommonUtils {
         }
     }
 
-    public boolean isElementsVisibleOnPage(By element,String mobile) {
+    public boolean isElementsVisibleOnPage(By element, String mobile) {
         listMobWebElements = appium.findElements(element);
         if (listMobWebElements.size() > 0) {
             elementVisible = true;
