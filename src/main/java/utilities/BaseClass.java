@@ -89,9 +89,9 @@ public class BaseClass {
                 caps.setCapability(MobileCapabilityType.APPIUM_VERSION, appiumVer);
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-                if (appiumDriver.equals("iOS")) {
+                if (appiumDriver.equalsIgnoreCase("iOS")) {
                     appium = new IOSDriver(new URL(URL), caps);
-                } else if (appiumDriver.equals("android")) {
+                } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
                 respPgObj = new ResponsiveUtilitiesPageObjects(appium);
