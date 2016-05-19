@@ -2,7 +2,7 @@
 
 <suite name="ComponentsTestSuite">
 
-    <parameter name="runEnv" value="sauce"></parameter>
+    <parameter name="runEnv" value="local"></parameter>
     <parameter name="travis" value="on"></parameter>
 
     <!-- For Desktop -->
@@ -23,7 +23,7 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="desktop"/>
+                <include name="desktop1"/>
             </run>
         </groups>
     <packages>

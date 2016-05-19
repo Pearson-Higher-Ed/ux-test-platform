@@ -120,7 +120,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop"})
+    @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop1"})
     private void VerifyInputTextActiveTest(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws InterruptedException {
         chooseEnv();
         result = verifyInputTextActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign, component);
