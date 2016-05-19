@@ -190,15 +190,15 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "CheckBoxFocusStateTestData")
     private Object[][] getCheckBoxFocusStateTestData() {
         return new Object[][]{
-                {"SmallChecked", inputsPgObj.smallCheckedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"},
-                {"checked", inputsPgObj.checkedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"},
-                {"unchecked", inputsPgObj.unCheckedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"},
+                {"SmallChecked", inputsPgObj.smallCheckedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}},
+                {"checked", inputsPgObj.checkedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}},
+                {"unchecked", inputsPgObj.unCheckedCheckBox, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}},
                 //Disabled fields cannot be focused.
         };
     }
 
     @Test(testName = "Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "desktop1")
-    private void verifyCheckBoxFocusStateTest(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
+    private void verifyCheckBoxFocusStateTest(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
         result = verifyCheckBoxFocusState(checkBoxType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId);
@@ -208,15 +208,15 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "RadioFocusStateTestData")
     private Object[][] getRadioFocusStateTestData() {
         return new Object[][]{
-                {"SmallChecked", inputsPgObj.smallCheckedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"},
-                {"checked", inputsPgObj.checkedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"},
-                {"unchecked", inputsPgObj.unCheckedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", "2px"}
+                {"SmallChecked", inputsPgObj.smallCheckedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}},
+                {"checked", inputsPgObj.checkedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}},
+                {"unchecked", inputsPgObj.unCheckedRadio, commonUtils.hex2Rgb("#0d65a6"), "solid", "1px", new String[]{"2px",""}}
                 //Disabled fields cannot be focused.
         };
     }
 
     @Test(testName = "Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "desktop1")
-    private void verifyRadioFocusStateTest(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
+    private void verifyRadioFocusStateTest(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
         result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId);
@@ -661,7 +661,7 @@ public class InputsTest extends BaseClass {
         }
     }
 
-    public boolean verifyCheckBoxFocusState(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset, String elementId) throws Exception {
+    public boolean verifyCheckBoxFocusState(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset, String elementId) throws Exception {
         commonUtils.focusOnElementById(elementId);
         Thread.sleep(1000);
         System.out.println(outlineColor = commonUtils.getCSSValue(element, "outline-color"));
@@ -672,7 +672,11 @@ public class InputsTest extends BaseClass {
         isOutlineColor = commonUtils.assertValue(outlineColor, expOutlineColor, "outline-color for " + checkBoxType + " is not as per the spec");
         isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "outline-style for " + checkBoxType + " is not as per the spec");
         isOutlineWidth = commonUtils.assertValue(outlineWidth, expOutlineWidth, "outline-width for " + checkBoxType + " is not as per the spec");
-        isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + checkBoxType + " is not as per the spec");
+        //isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + checkBoxType + " is not as per the spec");
+        isOutlineOffset = commonUtils.assertCSSProperties(checkBoxType.toString(), outlineOffset, expOutlineOffset);
+        if (isOutlineOffset == false) {
+            log.info("outline-offset for " + checkBoxType + " is not as per the spec");
+        }
 
         if (isOutlineColor && isOutlineStyle && isOutlineWidth && isOutlineOffset) {
             return true;
@@ -703,7 +707,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    public boolean verifyRadioFocusState(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset, String elementId) throws Exception {
+    public boolean verifyRadioFocusState(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset, String elementId) throws Exception {
         commonUtils.focusOnElementById(elementId);
         Thread.sleep(1000);
         System.out.println(outlineColor = commonUtils.getCSSValue(element, "outline-color"));
@@ -714,7 +718,11 @@ public class InputsTest extends BaseClass {
         isOutlineColor = commonUtils.assertValue(outlineColor, expOutlineColor, "outline-color for " + radioType + " is not as per the spec");
         isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "outline-style for " + radioType + " is not as per the spec");
         isOutlineWidth = commonUtils.assertValue(outlineWidth, expOutlineWidth, "outline-width for " + radioType + " is not as per the spec");
-        isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + radioType + " is not as per the spec");
+        //isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + radioType + " is not as per the spec");
+        isOutlineOffset = commonUtils.assertCSSProperties(radioType.toString(), outlineOffset, expOutlineOffset);
+        if (isOutlineOffset == false) {
+            log.info("outline-offset for " + radioType + " is not as per the spec");
+        }
 
         if (isOutlineColor && isOutlineStyle && isOutlineWidth && isOutlineOffset) {
             return true;
