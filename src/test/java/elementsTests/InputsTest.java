@@ -37,6 +37,12 @@ public class InputsTest extends BaseClass {
     String code;
     String marginRight = "";
     boolean isMarginRight = false;
+    String marginLeft = "";
+    boolean isMarginLeft= false;
+    String marginTop = "";
+    boolean isMarginTop= false;
+    String marginBottom = "";
+    boolean isMarginBottom= false;
     String display = "";
     boolean isDisplay = false;
     String verticalAlign = "";
@@ -148,36 +154,36 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "CheckBoxTestData")
     private Object[][] getCheckBoxTestData() {
         return new Object[][]{
-                {"checked", inputsPgObj.checkedCheckBox, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForCheckedCheckBox, "16px", "18px"},
-                {"unchecked", inputsPgObj.unCheckedCheckBox, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForUnCheckedCheckBox, "16px", "18px"},
-                {"ReadDisabledUnChecked", inputsPgObj.readDisabledUncheckedCheckBox, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledUncheckedCheckBox, "16px", "18px"},
-                {"ReadDisabledChecked", inputsPgObj.readDisabledCheckedCheckBox, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledCheckedCheckBox, "16px", "18px"},
-                {"SmallChecked", inputsPgObj.smallCheckedCheckBox, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForSmallCheckedCheckBox, "14px", "16px"}
+                {"checked", inputsPgObj.checkedCheckBox, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForCheckedCheckBox, "16px", "18px"},
+                {"unchecked", inputsPgObj.unCheckedCheckBox, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForUnCheckedCheckBox, "16px", "18px"},
+                {"ReadDisabledUnChecked", inputsPgObj.readDisabledUncheckedCheckBox, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledUncheckedCheckBox, "16px", "18px"},
+                {"ReadDisabledChecked", inputsPgObj.readDisabledCheckedCheckBox, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledCheckedCheckBox, "16px", "18px"},
+                {"SmallChecked", inputsPgObj.smallCheckedCheckBox, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForSmallCheckedCheckBox, "14px", "16px"}
         };
     }
 
-    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "desktop")
-    public void verifyCheckBoxTest(String checkBoxType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "desktop1")
+    public void verifyCheckBoxTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
         chooseEnv();
-        result = verifyCheckBox(checkBoxType, element, expMarginRight, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
+        result = verifyCheckBox(checkBoxType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
         Assert.assertTrue(result);
     }
 
     @DataProvider(name = "RadioTestData")
     private Object[][] getRadioTestData() {
         return new Object[][]{
-                {"checked", inputsPgObj.checkedRadio, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForCheckedRadio, "16px", "18px"},
-                {"unchecked", inputsPgObj.unCheckedRadio, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForUnCheckedRadio, "16px", "18px"},
-                {"ReadDisabledUnChecked", inputsPgObj.readDisabledUncheckedRadio, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledUncheckedRadio, "16px", "18px"},
-                {"ReadDisabledChecked", inputsPgObj.readDisabledCheckedRadio, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledCheckedRadio, "16px", "18px"},
-                {"SmallChecked", inputsPgObj.smallCheckedRadio, "7px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForSmallCheckedRadio, "14px", "16px"}
+                {"checked", inputsPgObj.checkedRadio, "7px", "0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForCheckedRadio, "16px", "18px"},
+                {"unchecked", inputsPgObj.unCheckedRadio, "7px","0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForUnCheckedRadio, "16px", "18px"},
+                {"ReadDisabledUnChecked", inputsPgObj.readDisabledUncheckedRadio, "7px","0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledUncheckedRadio, "16px", "18px"},
+                {"ReadDisabledChecked", inputsPgObj.readDisabledCheckedRadio, "7px", "0px", "0px", "0px","inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForReadDisabledCheckedRadio, "16px", "18px"},
+                {"SmallChecked", inputsPgObj.smallCheckedRadio, "7px","0px", "0px", "0px", "inline-block", "middle", "border-box", "0px", "0px", "0px", "0px", inputsPgObj.labelForSmallCheckedRadio, "14px", "16px"}
         };
     }
 
-    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = "desktop")
-    public void verifyRadioTest(String radioType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = "desktop1")
+    public void verifyRadioTest(String radioType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
         chooseEnv();
-        result = verifyRadio(radioType, element, expMarginRight, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
+        result = verifyRadio(radioType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
         Assert.assertTrue(result);
     }
 
@@ -190,7 +196,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "desktop")
+    @Test(testName = "Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "desktop1")
     private void verifyCheckBoxFocusStateTest(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
@@ -209,7 +215,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "desktop")
+    @Test(testName = "Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "desktop1")
     private void verifyRadioFocusStateTest(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
@@ -288,14 +294,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile")
-    public void verifyCheckBoxMobileTest(String checkBoxType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile1")
+    public void verifyCheckBoxMobileTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
         commonUtils.getUrl(url, "mobile");
-        result = verifyCheckBox(checkBoxType, element, expMarginRight, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
+        result = verifyCheckBox(checkBoxType, element, expMarginRight, expMarginLeft, expPaddingTop, expMarginBottom,expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "mobile1")
     private void verifyCheckBoxFocusStateMobileTest(String checkBoxType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
@@ -303,14 +309,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio", dataProvider = "RadioTestData", groups = "mobile")
-    public void verifyRadioMobileTest(String radioType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    @Test(testName = "Mobile: Verify Radio", dataProvider = "RadioTestData", groups = "mobile1")
+    public void verifyRadioMobileTest(String radioType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
         commonUtils.getUrl(url, "mobile");
-        result = verifyRadio(radioType, element, expMarginRight, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
+        result = verifyRadio(radioType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile1")
     private void verifyRadioFocusStateMobileTest(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
@@ -503,9 +509,12 @@ public class InputsTest extends BaseClass {
         }
     }
 
-    private boolean verifyCheckBox(String checkBoxType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    private boolean verifyCheckBox(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
 
         marginRight = commonUtils.getCSSValue(element, "margin-right");
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
         display = commonUtils.getCSSValue(element, "display");
         verticalAlign = commonUtils.getCSSValue(element, "vertical-align");
         boxSizing = commonUtils.getCSSValue(element, "box-sizing");
@@ -517,6 +526,9 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height");
 
         isMarginRight = commonUtils.assertValue(expMarginRight, marginRight, "margin right for " + checkBoxType + " is not as per the spec");
+        isMarginLeft = commonUtils.assertValue(expMarginLeft, marginLeft, "margin left for " + checkBoxType + " is not as per the spec");
+        isMarginTop = commonUtils.assertValue(expMarginTop, marginTop, "margin top for " + checkBoxType + " is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(expMarginBottom, marginBottom, "margin bottom for " + checkBoxType + " is not as per the spec");
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + checkBoxType + "is not as per the spec");
         isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical align for " + checkBoxType + " is not as per the spec");
         isBoxSizing = commonUtils.assertValue(boxSizing, expBoxSizing, "box sizing for " + checkBoxType + " is not as per the spec");
@@ -527,16 +539,19 @@ public class InputsTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "label font size for " + checkBoxType + " is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + checkBoxType + " is not as per the spec");
 
-        if ((isMarginRight && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
+        if ((isMarginRight && isMarginLeft && isMarginTop && isMarginBottom && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean verifyCheckBox(String checkBoxType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight, String mobile) {
+    private boolean verifyCheckBox(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight, String mobile) {
 
         marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(element, "margin-left","mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top","mobile");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom","mobile");
         display = commonUtils.getCSSValue(element, "display", "mobile");
         verticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
         boxSizing = commonUtils.getCSSValue(element, "box-sizing", "mobile");
@@ -548,6 +563,9 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height", "mobile");
 
         isMarginRight = commonUtils.assertValue(expMarginRight, marginRight, "margin right for " + checkBoxType + " is not as per the spec");
+        isMarginLeft = commonUtils.assertValue(expMarginLeft, marginLeft, "margin left for " + checkBoxType + " is not as per the spec");
+        isMarginTop = commonUtils.assertValue(expMarginTop, marginTop, "margin top for " + checkBoxType + " is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(expMarginBottom, marginBottom, "margin bottom for " + checkBoxType + " is not as per the spec");
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + checkBoxType + "is not as per the spec");
         isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical align for " + checkBoxType + " is not as per the spec");
         isBoxSizing = commonUtils.assertValue(boxSizing, expBoxSizing, "box sizing for " + checkBoxType + " is not as per the spec");
@@ -558,7 +576,7 @@ public class InputsTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "label font size for " + checkBoxType + " is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + checkBoxType + " is not as per the spec");
 
-        if ((isMarginRight && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
+        if ((isMarginRight && isMarginLeft && isMarginTop && isMarginBottom && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
             return true;
         } else {
             return false;
@@ -566,9 +584,12 @@ public class InputsTest extends BaseClass {
     }
 
 
-    private boolean verifyRadio(String radioType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
+    private boolean verifyRadio(String radioType, By element, String expMarginRight,String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
 
         marginRight = commonUtils.getCSSValue(element, "margin-right");
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
         display = commonUtils.getCSSValue(element, "display");
         verticalAlign = commonUtils.getCSSValue(element, "vertical-align");
         boxSizing = commonUtils.getCSSValue(element, "box-sizing");
@@ -580,6 +601,9 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height");
 
         isMarginRight = commonUtils.assertValue(expMarginRight, marginRight, "margin right for " + radioType + " is not as per the spec");
+        isMarginLeft = commonUtils.assertValue(expMarginLeft, marginLeft, "margin left for " + radioType + " is not as per the spec");
+        isMarginTop = commonUtils.assertValue(expMarginTop, marginTop, "margin top for " + radioType + " is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(expMarginBottom, marginBottom, "margin bottom for " + radioType + " is not as per the spec");
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + radioType + "is not as per the spec");
         isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical align for " + radioType + " is not as per the spec");
         isBoxSizing = commonUtils.assertValue(boxSizing, expBoxSizing, "box sizing for " + radioType + " is not as per the spec");
@@ -590,16 +614,19 @@ public class InputsTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "label font size for " + radioType + " is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + radioType + " is not as per the spec");
 
-        if ((isMarginRight && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
+        if ((isMarginRight && isMarginLeft && isMarginTop && isMarginBottom && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean verifyRadio(String radioType, By element, String expMarginRight, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight, String mobile) {
+    private boolean verifyRadio(String radioType, By element, String expMarginRight,String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight, String mobile) {
 
         marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(element, "margin-left","mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top","mobile");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom","mobile");
         display = commonUtils.getCSSValue(element, "display", "mobile");
         verticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
         boxSizing = commonUtils.getCSSValue(element, "box-sizing", "mobile");
@@ -613,6 +640,9 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height", "mobile");
 
         isMarginRight = commonUtils.assertValue(expMarginRight, marginRight, "margin right for " + radioType + " is not as per the spec");
+        isMarginLeft = commonUtils.assertValue(expMarginLeft, marginLeft, "margin left for " + radioType + " is not as per the spec");
+        isMarginTop = commonUtils.assertValue(expMarginTop, marginTop, "margin top for " + radioType + " is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(expMarginBottom, marginBottom, "margin bottom for " + radioType + " is not as per the spec");
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + radioType + "is not as per the spec");
         isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical align for " + radioType + " is not as per the spec");
         isBoxSizing = commonUtils.assertValue(boxSizing, expBoxSizing, "box sizing for " + radioType + " is not as per the spec");
@@ -624,7 +654,7 @@ public class InputsTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "label font size for " + radioType + " is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + radioType + " is not as per the spec");
 
-        if ((isMarginRight && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
+        if ((isMarginRight && isMarginLeft && isMarginTop && isMarginBottom && isDisplay && isVerticalAlign && isBoxSizing && isPaddingTop && isPaddingLeft && isPaddingBottom && isPaddingRight && isFontSize && isLineHeight) == true) {
             return true;
         } else {
             return false;
