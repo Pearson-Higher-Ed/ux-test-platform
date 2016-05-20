@@ -848,12 +848,12 @@ public class TypographyTest extends BaseClass {
         String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
         String headingFontWeight = commonUtils.getCSSValue(element, "font-weight");
         String headingFontColor = commonUtils.getCSSValue(element, "color");
+
         boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
         boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
-        //boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
         boolean result_fontWeight = commonUtils.assertCSSProperties(element.toString(), headingFontWeight, fontWeight);
         if (result_fontWeight == false) {
-            System.out.println("Heading Font Height for " + element.toString() + "--> is not as per the spec");
+            System.out.println("Heading Font Weight for " + element.toString() + "--> is not as per the spec");
         }
         boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
 
