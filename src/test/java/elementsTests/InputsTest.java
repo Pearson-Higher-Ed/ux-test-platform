@@ -294,7 +294,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile1")
+    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile")
     public void verifyCheckBoxMobileTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String expLabelFontSize, String expLabelLineHeight) {
         commonUtils.getUrl(url, "mobile");
         result = verifyCheckBox(checkBoxType, element, expMarginRight, expMarginLeft, expPaddingTop, expMarginBottom,expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
@@ -321,6 +321,14 @@ public class InputsTest extends BaseClass {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
         result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData1", groups = "mobile1")
+    private void sampleTest() throws Exception {
+        //String elementId = element.toString().substring(7, (element.toString().length()));
+        commonUtils.getUrl(url, "mobile");
+        //result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId, "mobile");
         Assert.assertTrue(result);
     }
 
