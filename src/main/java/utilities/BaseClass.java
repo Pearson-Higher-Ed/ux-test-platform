@@ -125,8 +125,7 @@ public class BaseClass {
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
         if (mobile.equals("on")) {        	
-        	appium.close();
-            appium.quit();
+        	appium.closeApp();
         } else {
         	driver.close();
             driver.quit();
