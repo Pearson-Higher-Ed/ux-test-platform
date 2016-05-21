@@ -23,7 +23,7 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="mobile"/>
+                <include name="mobile1"/>
             </run>
         </groups>
     <!--<packages>
