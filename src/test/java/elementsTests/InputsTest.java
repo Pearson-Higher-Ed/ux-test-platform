@@ -324,9 +324,20 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData1", groups = "mobile1")
-    private void sampleTest() throws Exception {
+
+    @DataProvider(name = "test1")
+    private Object[][] getTest1() {
+        return new Object[][]{
+                {"1"},
+                {"2"}
+        };
+    }
+
+
+    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "test1", groups = "mobile1")
+    private void sampleTest(String num) throws Exception {
         //String elementId = element.toString().substring(7, (element.toString().length()));
+        System.out.println("num: "+num);
         commonUtils.getUrl(url, "mobile");
         //result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId, "mobile");
         Assert.assertTrue(result);
