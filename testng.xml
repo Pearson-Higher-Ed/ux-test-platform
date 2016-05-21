@@ -23,15 +23,12 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="mobile1"/>
+                <include name="mobile"/>
             </run>
         </groups>
-    <!--<packages>
+    <packages>
             <package name="elementsTests" />
-    </packages>-->
-        <classes>
-            <class name="elementsTests.InputsTest"></class>
-        </classes>
+    </packages>
     </test>
 </suite>
 
