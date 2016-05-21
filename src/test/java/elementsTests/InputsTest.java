@@ -316,33 +316,13 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile")
-    private void verifyRadioFocusStateMobileTest(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset) throws Exception {
+    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile1")
+    private void verifyRadioFocusStateMobileTest(String radioType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
         result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId, "mobile");
         Assert.assertTrue(result);
     }
-
-
-    @DataProvider(name = "test1")
-    private Object[][] getTest1() {
-        return new Object[][]{
-                {"1"},
-                {"2"}
-        };
-    }
-
-
-    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "test1", groups = "mobile1")
-    private void sampleTest(String num) throws Exception {
-        //String elementId = element.toString().substring(7, (element.toString().length()));
-        System.out.println("num: "+num);
-        commonUtils.getUrl(url, "mobile");
-        //result = verifyRadioFocusState(radioType, element, expOutlineColor, expOutlineStyle, expOutlineWidth, expOutlineOffset, elementId, "mobile");
-        Assert.assertTrue(result);
-    }
-
 
     /**********************************************************************************************************************************************
      * COMMON METHODS
@@ -762,7 +742,7 @@ public class InputsTest extends BaseClass {
         }
     }
 
-    public boolean verifyRadioFocusState(String radioType, By element, String expOutlineColor, String expOutlineStyle, String expOutlineWidth, String expOutlineOffset, String elementId, String mobile) throws Exception {
+    public boolean verifyRadioFocusState(String radioType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset, String elementId, String mobile) throws Exception {
         commonUtils.focusOnElementById(elementId, "mobile");
         Thread.sleep(1000);
         outlineColor = commonUtils.getCSSValue(element, "outline-color", "mobile");
@@ -770,10 +750,18 @@ public class InputsTest extends BaseClass {
         outlineWidth = commonUtils.getCSSValue(element, "outline-width", "mobile");
         outlineOffset = commonUtils.getCSSValue(element, "outline-offset", "mobile");
 
-        isOutlineColor = commonUtils.assertValue(outlineColor, expOutlineColor, "outline-color for " + radioType + " is not as per the spec");
+        //isOutlineColor = commonUtils.assertValue(outlineColor, expOutlineColor, "outline-color for " + radioType + " is not as per the spec");
+        isOutlineColor = commonUtils.assertCSSProperties(radioType.toString(), outlineColor, expOutlineColor);
+        if (isOutlineColor == false) {
+            log.info("outline-color for " + radioType + " is not as per the spec");
+        }
         isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "outline-style for " + radioType + " is not as per the spec");
         isOutlineWidth = commonUtils.assertValue(outlineWidth, expOutlineWidth, "outline-width for " + radioType + " is not as per the spec");
-        isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + radioType + " is not as per the spec");
+        //isOutlineOffset = commonUtils.assertValue(outlineOffset, expOutlineOffset, "outline-offset for " + radioType + " is not as per the spec");
+        isOutlineOffset = commonUtils.assertCSSProperties(radioType.toString(), outlineOffset, expOutlineOffset);
+        if (isOutlineOffset == false) {
+            log.info("outline-offset for " + radioType + " is not as per the spec");
+        }
 
         if (isOutlineColor && isOutlineStyle && isOutlineWidth && isOutlineOffset) {
             return true;
