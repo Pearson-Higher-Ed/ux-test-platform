@@ -26,6 +26,6 @@ script:
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    - pearson-design-accelerator@pearson.com
     on_success: never
     on_failure: always
