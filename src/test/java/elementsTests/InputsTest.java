@@ -147,6 +147,55 @@ public class InputsTest extends BaseClass {
         result = commonUtils.assertValue(actBoxShadow, expBoxShadow, element + " Input Text error box-shadow specification Failed");
         Assert.assertTrue(result);
     }
+    
+    @DataProvider(name = "SelectBoxData")
+	private Object[][] SelectBoxData() {
+		return new Object[][]{
+			 { inputsPgObj.selectbox_normal, new String[]{"36px","34px"},"14px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","20.45px"}, "3px", "inline-block", "middle"},
+			 { inputsPgObj.selectbox_small,  new String[]{"28px","26px"},"10px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"14px", "13.93px"}, new String[]{"16px","normal","17.4px"}, "3px", "inline-block", "middle"},	
+			 { inputsPgObj.selectbox_disabled,  new String[]{"36px","34px"},"14px", "solid 1px #d0d0d0", "#f2f2f2", "#a6a8ab", new String[]{"16px"}, new String[]{"18px","normal","20.45px"}, "3px", "inline-block", "middle"},
+			 { inputsPgObj.selectbox_readonly,  new String[]{"36px","34px"},"14px", "solid 1px #d0d0d0", "#f2f2f2", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","20.45px"}, "3px", "inline-block", "middle"},	
+			 { inputsPgObj.selectbox_error,  new String[]{"36px","34px"},"14px",  "solid 1px #D0021B", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","20.45px"}, "3px", "inline-block", "middle"},	
+		};
+	}
+	 
+	@Test(testName = "Verify Select box specifications", dataProvider = "SelectBoxData", groups = {"desktop"})
+	private void verifylSelectboxTest(By element, String[] dimension,String padding, String border, String background, String color, String[] fontsize, String []lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
+		chooseEnv();      
+		boolean result_1 = VerifySlctBxPrpty(element, dimension,padding);
+		boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign);		
+		if(result_1 && result_2)
+			result =true;
+		else
+			result = false;		
+		Assert.assertTrue(result);
+	 }
+	
+	@DataProvider(name = "SelectBoxErrorBoxShadowData")
+	private Object[][] SelectBoxErrorBoxShadowData() {
+		return new Object[][]{
+			 { inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"}			 
+		};
+	}
+	 
+	@Test(testName = "Verify Select Box Error State Box Shadow", dataProvider = "SelectBoxErrorBoxShadow", groups = {"desktop"})
+	private void verifySelectBoxErrorBoxShadowTest(By element, String boxshadow) throws InterruptedException {
+		chooseEnv();      
+		String[] boxShadowArr=boxshadow.split(" ");
+		String expBoxShadowColor=commonUtils.hex2RgbWithoutTransparency(boxShadowArr[0]);
+		String expBoxShadow1=expBoxShadowColor+" "+boxShadowArr[1]+" "+boxShadowArr[2]+" "+boxShadowArr[3]+" "+boxShadowArr[4];
+		String expBoxShadow2=boxShadowArr[1]+" "+boxShadowArr[2]+" "+boxShadowArr[3]+" "+boxShadowArr[0];
+		String[] expBoxShadows={expBoxShadow1, expBoxShadow2};
+		
+		String actBoxShadow = commonUtils.getCSSValue(element, "box-shadow");
+		
+		boolean result = commonUtils.assertCSSProperties(element.toString(), actBoxShadow, expBoxShadows);
+		if (result == false) {
+            System.out.println("Select Box error box-shadow specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		Assert.assertTrue(result);
+	 }
 
     /**************
      * Check Boxes
@@ -293,6 +342,55 @@ public class InputsTest extends BaseClass {
         result = commonUtils.assertValue(actBoxShadow, expBoxShadow, element + " Input Text error box-shadow specification Failed");
         Assert.assertTrue(result);
     }
+    
+    @DataProvider(name = "SelectBoxMobileData")
+	private Object[][] SlctBoxMobileData() {
+		return new Object[][]{
+			 { ScreenOrientation.PORTRAIT,inputsPgObj.selectbox_normal, "36px","14px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},
+			 { ScreenOrientation.PORTRAIT,inputsPgObj.selectbox_small, "28px","10px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"14px", "13.93px"}, new String[]{"16px","normal","18px"}, "3px", "inline-block", "middle","mobile"},	
+			 { ScreenOrientation.PORTRAIT,inputsPgObj.selectbox_disabled, "36px","14px", "solid 1px #d0d0d0", "#f2f2f2", "#a6a8ab", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},
+			 { ScreenOrientation.PORTRAIT,inputsPgObj.selectbox_readonly, "36px","14px", "solid 1px #d0d0d0", "#f2f2f2", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},	
+			 { ScreenOrientation.PORTRAIT,inputsPgObj.selectbox_error, "36px","14px",  "solid 1px #D0021B", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},					 
+			 { ScreenOrientation.LANDSCAPE,inputsPgObj.selectbox_normal, "36px","14px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},
+			 { ScreenOrientation.LANDSCAPE,inputsPgObj.selectbox_small, "28px","10px", "solid 1px #d0d0d0", "#ffffff", "#231F20", new String[]{"14px", "13.93px"}, new String[]{"16px","normal","18px"}, "3px", "inline-block", "middle","mobile"},	
+			 { ScreenOrientation.LANDSCAPE,inputsPgObj.selectbox_disabled, "36px","14px", "solid 1px #d0d0d0", "#f2f2f2", "#a6a8ab", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},
+			 { ScreenOrientation.LANDSCAPE,inputsPgObj.selectbox_readonly, "36px","14px", "solid 1px #d0d0d0", "#f2f2f2", "#231F20", new String[]{"16px"},new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},	
+			 { ScreenOrientation.LANDSCAPE,inputsPgObj.selectbox_error, "36px","14px",  "solid 1px #D0021B", "#ffffff", "#231F20", new String[]{"16px"}, new String[]{"18px","normal","21px"}, "3px", "inline-block", "middle","mobile"},
+		};
+	}
+	 
+	@Test(testName = "Verify Select box Specifications", dataProvider = "SlctBoxMobileData", groups = {"mobile"})
+	private void verifySelectBoxMobileTest(ScreenOrientation mode,By element, String dimension,String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign,String mobile) throws InterruptedException {
+		commonUtils.getUrl(url, "mobile");
+		appium.rotate(mode);
+		boolean result_1 = VerifySlctBxPrpty(element,dimension,padding,mobile);
+		boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign,mobile);		
+		if(result_1 && result_2)
+			result =true;
+		else
+			result = false;
+		Assert.assertTrue(result);
+	 }
+	
+	/*@DataProvider(name = "SelectBoxErrorBoxShadowMobileData")
+	private Object[][] SelectBoxErrorBoxShadowMobileData() {
+		return new Object[][]{
+			{ ScreenOrientation.PORTRAIT, inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"},
+			{ ScreenOrientation.LANDSCAPE, inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"}		 
+		};
+	}*/
+	 
+	@Test(testName = "Verify Select Box Error State Box Shadow", dataProvider = "SelectBoxErrorBoxShadowMobile", groups = {"mobile"})
+	private void verifySelectBoxErrorBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow) throws InterruptedException {
+		commonUtils.getUrl(url, "mobile");
+		appium.rotate(mode);      
+		String[] boxShadowArr=boxshadow.split(" ");
+		String expBoxShadowColor=commonUtils.hex2RgbWithoutTransparency(boxShadowArr[0]);
+		String expBoxShadow=expBoxShadowColor+" "+boxShadowArr[1]+" "+boxShadowArr[2]+" "+boxShadowArr[3]+" "+boxShadowArr[4];		
+		String actBoxShadow = commonUtils.getCSSValue(element, "box-shadow", "mobile");
+		result = commonUtils.assertValue(actBoxShadow, expBoxShadow, element+" Input Text error box-shadow specification Failed");
+		Assert.assertTrue(result);
+	}
 
     @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile")
     public void verifyCheckBoxMobileTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
@@ -458,50 +556,6 @@ public class InputsTest extends BaseClass {
         boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign, "Element:" + element + " Component:" + component + " vertical-align specification Failed");
 
         if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true && result_color == true && result_fontsize == true && result_lineheight == true && result_borderradius == true && result_display == true && result_verticalalign == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private Boolean verifyBorderRadius(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius) {
-        // get radius_top_left
-        String actual_radius_top_left = commonUtils.getCSSValue(element, "border-top-left-radius");
-        // get top_right_radius
-        String actual_top_right_radius = commonUtils.getCSSValue(element, "border-top-right-radius");
-        // get bottom_right_radius
-        String actual_bottom_right_radius = commonUtils.getCSSValue(element, "border-bottom-right-radius");
-        // get bottom_left_radius
-        String actual_bottom_left_radius = commonUtils.getCSSValue(element, "border-bottom-left-radius");
-
-        boolean result_radius_top_left = commonUtils.assertValue(actual_radius_top_left, radius_top_left, "Element:" + element + " Input Text border-top-left-radius specification Failed");
-        boolean result_top_right_radius = commonUtils.assertValue(actual_top_right_radius, top_right_radius, "Element:" + element + " Input Text border-top-right-radius specification Failed");
-        boolean result_bottom_right_radius = commonUtils.assertValue(actual_bottom_right_radius, bottom_right_radius, "Element:" + element + " Input Text border-bottom-right-radius specification Failed");
-        boolean result_bottom_left_radius = commonUtils.assertValue(actual_bottom_left_radius, bottom_left_radius, "Element:" + element + " Input Text border-bottom-left-radius specification Failed");
-
-        if (result_radius_top_left == true && result_top_right_radius == true && result_bottom_right_radius == true && result_bottom_left_radius == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private Boolean verifyBorderRadiusMobile(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius, String mobile) {
-        // get radius_top_left
-        String actual_radius_top_left = commonUtils.getCSSValue(element, "border-top-left-radius", "mobile");
-        // get top_right_radius
-        String actual_top_right_radius = commonUtils.getCSSValue(element, "border-top-right-radius", "mobile");
-        // get bottom_right_radius
-        String actual_bottom_right_radius = commonUtils.getCSSValue(element, "border-bottom-right-radius", "mobile");
-        // get bottom_left_radius
-        String actual_bottom_left_radius = commonUtils.getCSSValue(element, "border-bottom-left-radius", "mobile");
-
-        boolean result_radius_top_left = commonUtils.assertValue(actual_radius_top_left, radius_top_left, "Element:" + element + " Input Text border-top-left-radius specification Failed");
-        boolean result_top_right_radius = commonUtils.assertValue(actual_top_right_radius, top_right_radius, "Element:" + element + " Input Text border-top-right-radius specification Failed");
-        boolean result_bottom_right_radius = commonUtils.assertValue(actual_bottom_right_radius, bottom_right_radius, "Element:" + element + " Input Text border-bottom-right-radius specification Failed");
-        boolean result_bottom_left_radius = commonUtils.assertValue(actual_bottom_left_radius, bottom_left_radius, "Element:" + element + " Input Text border-bottom-left-radius specification Failed");
-
-        if (result_radius_top_left == true && result_top_right_radius == true && result_bottom_right_radius == true && result_bottom_left_radius == true) {
             return true;
         } else {
             return false;
@@ -778,6 +832,205 @@ public class InputsTest extends BaseClass {
             return false;
         }
     }
+    
+    private Boolean verifyBorderRadius(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius) {		
+		// get radius_top_left
+		String actual_radius_top_left = commonUtils.getCSSValue(element, "border-top-left-radius");
+		// get top_right_radius
+		String actual_top_right_radius = commonUtils.getCSSValue(element, "border-top-right-radius");
+		// get bottom_right_radius
+		String actual_bottom_right_radius = commonUtils.getCSSValue(element, "border-bottom-right-radius");
+		// get bottom_left_radius
+		String actual_bottom_left_radius = commonUtils.getCSSValue(element, "border-bottom-left-radius");
+	
+		boolean result_radius_top_left = commonUtils.assertValue(actual_radius_top_left, radius_top_left, element+" Input Text border-top-left-radius specification Failed");
+		boolean result_top_right_radius = commonUtils.assertValue(actual_top_right_radius, top_right_radius, element+" Input Text border-top-right-radius specification Failed");
+		boolean result_bottom_right_radius = commonUtils.assertValue(actual_bottom_right_radius, bottom_right_radius, element+" Input Text border-bottom-right-radius specification Failed");
+		boolean result_bottom_left_radius = commonUtils.assertValue(actual_bottom_left_radius, bottom_left_radius, element+" Input Text border-bottom-left-radius specification Failed");
+		
+		if (result_radius_top_left == true && result_top_right_radius == true && result_bottom_right_radius == true && result_bottom_left_radius == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private Boolean verifyBorderRadiusMobile(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius, String mobile) {		
+		// get radius_top_left
+		String actual_radius_top_left = commonUtils.getCSSValue(element, "border-top-left-radius", "mobile");
+		// get top_right_radius
+		String actual_top_right_radius = commonUtils.getCSSValue(element, "border-top-right-radius", "mobile");
+		// get bottom_right_radius
+		String actual_bottom_right_radius = commonUtils.getCSSValue(element, "border-bottom-right-radius", "mobile");
+		// get bottom_left_radius
+		String actual_bottom_left_radius = commonUtils.getCSSValue(element, "border-bottom-left-radius", "mobile");
+	
+		boolean result_radius_top_left = commonUtils.assertValue(actual_radius_top_left, radius_top_left, element+" Input Text border-top-left-radius specification Failed");
+		boolean result_top_right_radius = commonUtils.assertValue(actual_top_right_radius, top_right_radius, element+" Input Text border-top-right-radius specification Failed");
+		boolean result_bottom_right_radius = commonUtils.assertValue(actual_bottom_right_radius, bottom_right_radius, element+" Input Text border-bottom-right-radius specification Failed");
+		boolean result_bottom_left_radius = commonUtils.assertValue(actual_bottom_left_radius, bottom_left_radius, element+" Input Text border-bottom-left-radius specification Failed");
+		
+		if (result_radius_top_left == true && result_top_right_radius == true && result_bottom_right_radius == true && result_bottom_left_radius == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private Boolean VerifySlctBxPrpty(By element,String []dimension,String padding){
+		
+		String Dimension_str = commonUtils.getCSSValue(element, "height");
+		//String padding_lft_str = commonUtils.getCSSValue(element, "padding-left");
+		//String padding_rgt_str = commonUtils.getCSSValue(element, "padding-right");
+		
+		boolean Dimension_res = commonUtils.assertCSSProperties(element.toString(),  Dimension_str,dimension);
+		//boolean paddingLft_res = commonUtils.assertValue(padding_lft_str, padding, element+" "+" padding-left specification Failed");
+		//boolean paddingRgt_res = commonUtils.assertValue(padding_rgt_str, padding, element+" "+" padding-right specification Failed");
+		
+		if (Dimension_res == true ) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	
+	private Boolean VerifySlctBxPrpty(By element,String dimension,String padding, String mobile){
+		
+		String Dimension_str = commonUtils.getCSSValue(element, "height",mobile);
+		//String padding_lft_str = commonUtils.getCSSValue(element, "padding-left",mobile);
+		//String padding_rgt_str = commonUtils.getCSSValue(element, "padding-right",mobile);
+		
+		boolean dimension_res = commonUtils.assertValue(Dimension_str,dimension, element+" "+" height specification Failed");
+		//boolean paddingLft_res = commonUtils.assertValue(padding_lft_str, padding, element+" "+" padding-left specification Failed");
+		//boolean paddingRgt_res = commonUtils.assertValue(padding_rgt_str, padding, element+" "+" padding-right specification Failed");
+		
+		if (dimension_res == true ) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	private Boolean verifySelecBoxActive(By element, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) {
+		String[] borderArray=border.split(" ");
+		String border_style=borderArray[0];
+		String border_width=borderArray[1];
+		
+		// get border
+		String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width");
+		// get border
+		String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style");
+		// get border
+		String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color");
+		// get background
+		String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color");
+		// get color
+		String actualColor = commonUtils.getCSSValue(element, "color");
+		// get font size
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size");
+		// get line height
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
+		// get display
+		String actualDisplay = commonUtils.getCSSValue(element, "display");
+		// get vertical-align
+		String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align");
+		
+		boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width, element+" border-width specification Failed");
+		boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style, element+" border-style specification Failed");
+
+		String[] expBorderColors = {commonUtils.hex2Rgb(borderArray[2]),commonUtils.hex2RgbWithoutTransparency(borderArray[2])};
+		boolean result_border3 = commonUtils.assertCSSProperties(element.toString(), actualBorderColor, expBorderColors);
+		if (result_border3 == false) {
+            System.out.println("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		String[] expBackgroundColors = {commonUtils.hex2Rgb(background),commonUtils.hex2RgbWithoutTransparency(background)};
+		boolean result_background = commonUtils.assertCSSProperties(element.toString(), actualBackgroundColor, expBackgroundColors);
+		if (result_background == false) {
+            System.out.println("background specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		String[] expColors = {commonUtils.hex2Rgb(color),commonUtils.hex2RgbWithoutTransparency(color)};
+		boolean result_color = commonUtils.assertCSSProperties(element.toString(), actualColor, expColors);
+		if (result_color == false) {
+            System.out.println("color specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		boolean result_fontsize = commonUtils.assertCSSProperties(element.toString(), actualFontSize, fontsize);
+		if (result_fontsize == false) {
+            System.out.println("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		boolean result_lineheight = commonUtils.assertCSSProperties(element.toString(), actualLineHeight,lineheight ); 
+		//boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius, borderradius);
+		boolean result_display = commonUtils.assertValue(actualDisplay, display, element+" display specification Failed");
+		boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign, element+" vertical-align specification Failed");
+		
+		if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true && result_color == true && result_fontsize == true && result_lineheight == true  && result_display == true && result_verticalalign == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	
+	private Boolean verifySelecBoxActive(By element, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign, String mobile) {
+		String[] borderArray=border.split(" ");
+		String border_style=borderArray[0];
+		String border_width=borderArray[1];
+		
+		// get border
+		String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width", "mobile");
+		// get border
+		String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style", "mobile");
+		// get border
+		String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color", "mobile");
+		// get background
+		String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+		// get color
+		String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
+		// get font size
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+		// get line height
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+		// get display
+		String actualDisplay = commonUtils.getCSSValue(element, "display", "mobile");
+		// get vertical-align
+		String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
+		
+		boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width, element+" border-width specification Failed");
+		boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style, element+" border-style specification Failed");
+		
+		String[] expBorderColors = {commonUtils.hex2Rgb(borderArray[2]),commonUtils.hex2RgbWithoutTransparency(borderArray[2])};
+		boolean result_border3 = commonUtils.assertCSSProperties(element.toString(), actualBorderColor, expBorderColors);
+		if (result_border3 == false) {
+            System.out.println("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		String[] expBackgroundColors = {commonUtils.hex2Rgb(background),commonUtils.hex2RgbWithoutTransparency(background)};
+		boolean result_background = commonUtils.assertCSSProperties(element.toString(), actualBackgroundColor, expBackgroundColors);
+		if (result_background == false) {
+            System.out.println("background specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		String[] expColors = {commonUtils.hex2Rgb(color),commonUtils.hex2RgbWithoutTransparency(color)};
+		boolean result_color = commonUtils.assertCSSProperties(element.toString(), actualColor, expColors);
+		if (result_color == false) {
+            System.out.println("color specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		boolean result_fontsize = commonUtils.assertCSSProperties(element.toString(), actualFontSize, fontsize);
+		if (result_fontsize == false) {
+            System.out.println("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
+        }
+		
+		boolean result_lineheight = commonUtils.assertCSSProperties(element.toString(), actualLineHeight, lineheight) ; 
+		//boolean result_borderradius = verifyBorderRadiusMobile(element, borderradius, borderradius, borderradius, borderradius, "mobile");
+		boolean result_display = commonUtils.assertValue(actualDisplay, display, element+" display specification Failed");
+		boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign, element+" vertical-align specification Failed");
+	
+		if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true && result_color == true && result_fontsize == true && result_lineheight == true &&  result_display == true && result_verticalalign == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}    
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
