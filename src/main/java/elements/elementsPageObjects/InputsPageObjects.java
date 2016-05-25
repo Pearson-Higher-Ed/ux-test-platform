@@ -58,5 +58,12 @@ public class InputsPageObjects {
 	public By labelForReadDisabledCheckedRadio=By.id("labelForReadDisabledCheckedRadio");
 	public By smallCheckedRadio=By.id("smallCheckedRadio");
 	public By labelForSmallCheckedRadio=By.id("labelForSmallCheckedRadio");
+	
+	//Select box page objects
+	public By selectbox_normal = By.id("selectbox-normal");
+	public By selectbox_small = By.id("selectbox-small");
+	public By selectbox_readonly = By.id("selectbox-readonly");
+	public By selectbox_disabled = By.id("selectbox-disabled");
+	public By selectbox_error = By.id("selectbox-error");	
 
 }
