@@ -21,6 +21,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import elements.elementsPageObjects.ButtonsPageObjects;
+import elements.elementsPageObjects.CalendarPageObjects;
 import elements.elementsPageObjects.InputsPageObjects;
 import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import elements.elementsPageObjects.TypographyPageObjects;
@@ -38,6 +39,7 @@ public class BaseClass {
     public static ButtonsPageObjects btnPgObj;
     public static AppHeaderPageObjects appHeaderPgObj;
     public static ContextualHelpPageObjects conxHelpPgObj;
+    public static CalendarPageObjects clndrPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = System.getenv("SAUCE_USERNAME");
     final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -77,6 +79,7 @@ public class BaseClass {
                 appHeaderPgObj = new AppHeaderPageObjects(driver);
                 conxHelpPgObj = new ContextualHelpPageObjects(driver);
                 inputsPgObj = new InputsPageObjects(driver);
+                clndrPgObj = new CalendarPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -100,6 +103,7 @@ public class BaseClass {
                 appHeaderPgObj = new AppHeaderPageObjects(appium);
                 conxHelpPgObj = new ContextualHelpPageObjects(appium);
                 inputsPgObj = new InputsPageObjects(appium);
+                clndrPgObj = new CalendarPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
                 appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
