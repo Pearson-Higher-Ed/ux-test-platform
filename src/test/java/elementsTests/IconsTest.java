@@ -71,7 +71,7 @@ public class IconsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icons Test", dataProvider = "getIconsTestData", groups = {"desktopp"})
+    @Test(testName = "Icons Test", dataProvider = "getIconsTestData", groups = {"desktop"})
     private void iconsTest(String testIcon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
         chooseEnv();
         fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
