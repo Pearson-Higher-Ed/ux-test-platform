@@ -2,6 +2,7 @@
 
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
+git checkout iconsdoc
 npm install
 npm run build
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
