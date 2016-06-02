@@ -139,29 +139,29 @@ public class InputsTest extends BaseClass {
 	@DataProvider(name = "InputTextFocusStateData")
 	private Object[][] InputTextFocusStateData() {
 		return new Object[][] {
-			{ inputsPgObj.input_text_active, "solid 1px #0d65a6", "#ffffff", "#231F20", "16px", "18px", "3px",
-				"inline-block", "middle", "Input Text" },
-		{ inputsPgObj.input_text_active_small, "solid 1px #0d65a6", "#ffffff", "#231F20", "14px", "16px", "3px",
-				"inline-block", "middle", "Input Text" },
-		{ inputsPgObj.input_text_readonly, "solid 1px #0d65a6", "#f2f2f2", "#231F20", "16px", "18px", "3px",
-				"inline-block", "middle", "Input Text" },
-		{ inputsPgObj.input_text_disable, "solid 1px #0d65a6", "#f2f2f2", "#a6a8ab", "16px", "18px", "3px",
-				"inline-block", "middle", "Input Text" },
-		{ inputsPgObj.input_text_error1, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px",
-				"inline-block", "middle", "Input Text" },
-		{ inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px",
-				"inline-block", "middle", "Input Text" } };
+				{ inputsPgObj.input_text_active, "solid 1px #0d65a6", "#ffffff", "#231F20", "16px", "18px", "3px",
+						"inline-block", "middle", "Input Text" },
+				{ inputsPgObj.input_text_active_small, "solid 1px #0d65a6", "#ffffff", "#231F20", "14px", "16px", "3px",
+						"inline-block", "middle", "Input Text" },
+				{ inputsPgObj.input_text_readonly, "solid 1px #0d65a6", "#f2f2f2", "#231F20", "16px", "18px", "3px",
+						"inline-block", "middle", "Input Text" },
+				{ inputsPgObj.input_text_disable, "solid 1px #0d65a6", "#f2f2f2", "#a6a8ab", "16px", "18px", "3px",
+						"inline-block", "middle", "Input Text" },
+				{ inputsPgObj.input_text_error1, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px",
+						"inline-block", "middle", "Input Text" },
+				{ inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px",
+						"inline-block", "middle", "Input Text" } };
 	}
 
 	@Test(testName = "Verify InputText FocusState", dataProvider = "InputTextFocusStateData", groups = "desktop")
-	private void verifyInputTextFocusStateTest(By element, String border, String background, String color, String fontsize,
-			String lineheight, String borderradius, String display, String verticalalign, String component)
-			throws Exception {
+	private void verifyInputTextFocusStateTest(By element, String border, String background, String color,
+			String fontsize, String lineheight, String borderradius, String display, String verticalalign,
+			String component) throws Exception {
 		chooseEnv();
 		String elementId = element.toString().substring(7, (element.toString().length()));
 		commonUtils.focusOnElementById(elementId);
-		result = verifyInputTextFocusState(element, border, background, color, fontsize, lineheight, borderradius, display,
-				verticalalign, component);
+		result = verifyInputTextFocusState(element, border, background, color, fontsize, lineheight, borderradius,
+				display, verticalalign, component);
 		Assert.assertTrue(result);
 	}
 
@@ -226,11 +226,11 @@ public class InputsTest extends BaseClass {
 			result = false;
 		Assert.assertTrue(result);
 	}
-	
+
 	@Test(testName = "Verify Select Box Focus specifications", dataProvider = "SelectBoxData", groups = { "desktop" })
-	private void verifylSelectBoxFocusTest(By element, String[] dimension, String padding, String border, String background,
-			String color, String[] fontsize, String[] lineheight, String borderradius, String display,
-			String verticalalign) throws InterruptedException {
+	private void verifylSelectBoxFocusTest(By element, String[] dimension, String padding, String border,
+			String background, String color, String[] fontsize, String[] lineheight, String borderradius,
+			String display, String verticalalign) throws InterruptedException {
 		chooseEnv();
 		String elementId = element.toString().substring(7, (element.toString().length()));
 		commonUtils.focusOnElementById(elementId);
@@ -246,9 +246,9 @@ public class InputsTest extends BaseClass {
 
 	@DataProvider(name = "SelectBoxFocusBoxShadowData")
 	private Object[][] SelectBoxErrorBoxShadowData() {
-		return new Object[][] { 
-		
-			{ inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px" } };
+		return new Object[][] {
+
+				{ inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px" } };
 	}
 
 	@Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowData", groups = {
@@ -462,21 +462,71 @@ public class InputsTest extends BaseClass {
 		Assert.assertTrue(result);
 	}
 
-	@DataProvider(name = "InputTextErrorBoxShadowMobileData")
-	private Object[][] InputTextErrorBoxShadowMobileData() {
+	@DataProvider(name = "InputTextFocusStateMobileData")
+	private Object[][] InputTextFocusStateMobileData() {
 		return new Object[][] {
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_active, "solid 1px #0d65a6", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_active_small, "solid 1px #0d65a6", "#ffffff",
+						"#231F20", "14px", "16px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_readonly, "solid 1px #0d65a6", "#f2f2f2",
+						"#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_disable, "solid 1px #0d65a6", "#f2f2f2", "#a6a8ab",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error1, "solid 1px #d0021b", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active, "solid 1px #0d65a6", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active_small, "solid 1px #0d65a6", "#ffffff",
+						"#231F20", "14px", "16px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_readonly, "solid 1px #0d65a6", "#f2f2f2",
+						"#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_disable, "solid 1px #0d65a6", "#f2f2f2",
+						"#a6a8ab", "16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error1, "solid 1px #d0021b", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20",
+						"16px", "18px", "3px", "inline-block", "middle", "Input Text" } };
+	}
+
+	@Test(testName = "Verify Input Text Focus State Mobile", dataProvider = "InputTextFocusStateMobileData", groups = "mobile")
+	private void verifyInputTextFocusStateMobileTest(ScreenOrientation mode, By element, String border, String background, String color,
+			String fontsize, String lineheight, String borderradius, String display, String verticalalign,
+			String component) throws Exception {
+		commonUtils.getUrl(url, "mobile");
+		appium.rotate(mode);
+		String elementId = element.toString().substring(7, (element.toString().length()));
+		commonUtils.focusOnElementById(elementId, "mobile");
+		result = verifyInputTextFocusState(element, border, background, color, fontsize, lineheight, borderradius,
+				display, verticalalign, component, "mobile");
+		Assert.assertTrue(result);
+	}
+
+	@DataProvider(name = "InputTextFocusBoxShadowMobileData")
+	private Object[][] InputTextFocusBoxShadowMobileData() {
+		return new Object[][] { { inputsPgObj.input_text_active, "#0d65a6 0px 0px 4px 0px" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_active_small, "#0d65a6 0px 0px 4px 0px" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_readonly, "#0d65a6 0px 0px 4px 0px" },
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_disable, "#0d65a6 0px 0px 4px 0px" },
 				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error1, "#d0021b 0px 0px 4px 0px" },
 				{ ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error2, "#d0021b 0px 0px 4px 0px" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active_small, "#0d65a6 0px 0px 4px 0px" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_readonly, "#0d65a6 0px 0px 4px 0px" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_disable, "#0d65a6 0px 0px 4px 0px" },
 				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error1, "#d0021b 0px 0px 4px 0px" },
 				{ ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error2, "#d0021b 0px 0px 4px 0px" } };
 	}
 
-	@Test(testName = "Verify Text Input Error State Box Shadow", dataProvider = "InputTextErrorBoxShadowMobileData", groups = {
+	@Test(testName = "Verify Text Input Focus State Box Shadow", dataProvider = "InputTextFocusBoxShadowMobileData", groups = {
 			"mobile" })
-	private void verifyInputTextErrorBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow)
+	private void verifyInputTextFocusBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow)
 			throws InterruptedException {
 		commonUtils.getUrl(url, "mobile");
 		appium.rotate(mode);
+		String elementId = element.toString().substring(7, (element.toString().length()));
+		commonUtils.focusOnElementById(elementId, "mobile");
 		String[] boxShadowArr = boxshadow.split(" ");
 		String expBoxShadowColor = commonUtils.hex2RgbWithoutTransparency(boxShadowArr[0]);
 		String expBoxShadow = expBoxShadowColor + " " + boxShadowArr[1] + " " + boxShadowArr[2] + " " + boxShadowArr[3]
@@ -547,8 +597,35 @@ public class InputsTest extends BaseClass {
 	 * "#d0021b 0px 0px 4px 0px"}, { ScreenOrientation.LANDSCAPE,
 	 * inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"} }; }
 	 */
+	
+	@Test(testName = "Verify Select Box Focus specifications", dataProvider = "SlctBoxMobileData", groups = { "mobile" })
+	private void verifySelectBoxFocusStateMobileTest(ScreenOrientation mode, By element, String dimension, String padding,
+			String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius,
+			String display, String verticalalign, String mobile) throws InterruptedException {
+		commonUtils.getUrl(url, "mobile");
+		appium.rotate(mode);
+		String elementId = element.toString().substring(7, (element.toString().length()));
+		commonUtils.focusOnElementById(elementId, "mobile");
+		boolean result_1 = VerifySlctBxPrpty(element, dimension, padding, mobile);
+		boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius,
+				display, verticalalign, mobile);
+		if (result_1 && result_2)
+			result = true;
+		else
+			result = false;
+		Assert.assertTrue(result);
+	}
+	
+	@DataProvider(name = "SelectBoxFocusBoxShadowMobileData")
+	private Object[][] SelectBoxErrorBoxShadowMobileData() {
+		return new Object[][] {
 
-	@Test(testName = "Verify Select Box Error State Box Shadow", dataProvider = "SelectBoxErrorBoxShadowMobile", groups = {
+				{ ScreenOrientation.PORTRAIT, inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px" },
+				{ ScreenOrientation.LANDSCAPE, inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px" } };
+	}
+
+
+	@Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowMobileData", groups = {
 			"mobile" })
 	private void verifySelectBoxErrorBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow)
 			throws InterruptedException {
@@ -556,11 +633,21 @@ public class InputsTest extends BaseClass {
 		appium.rotate(mode);
 		String[] boxShadowArr = boxshadow.split(" ");
 		String expBoxShadowColor = commonUtils.hex2RgbWithoutTransparency(boxShadowArr[0]);
-		String expBoxShadow = expBoxShadowColor + " " + boxShadowArr[1] + " " + boxShadowArr[2] + " " + boxShadowArr[3]
+		String expBoxShadow1 = expBoxShadowColor + " " + boxShadowArr[1] + " " + boxShadowArr[2] + " " + boxShadowArr[3]
 				+ " " + boxShadowArr[4];
+		String expBoxShadow2 = boxShadowArr[1] + " " + boxShadowArr[2] + " " + boxShadowArr[3] + " " + boxShadowArr[0];
+		String[] expBoxShadows = { expBoxShadow1, expBoxShadow2 };
+
+		String elementId = element.toString().substring(7, (element.toString().length()));
+		commonUtils.focusOnElementById(elementId, "mobile");
 		String actBoxShadow = commonUtils.getCSSValue(element, "box-shadow", "mobile");
-		result = commonUtils.assertValue(actBoxShadow, expBoxShadow,
-				element + " Input Text error box-shadow specification Failed");
+
+		boolean result = commonUtils.assertCSSProperties(element.toString(), actBoxShadow, expBoxShadows);
+		if (result == false) {
+			System.out.println("Select Box error box-shadow specification Failed. " + element.toString()
+					+ "--> is not as per the spec");
+		}
+
 		Assert.assertTrue(result);
 	}
 
@@ -1049,62 +1136,119 @@ public class InputsTest extends BaseClass {
 		}
 	}
 
-			private Boolean verifyInputTextFocusState(By element, String border, String background, String color, String fontsize,
-					String lineheight, String borderradius, String display, String verticalalign, String component) {
-				String[] borderArray = border.split(" ");
-				String border_style = borderArray[0];
-				String border_width = borderArray[1];
-				String border_color = commonUtils.hex2Rgb(borderArray[2]);
+	private Boolean verifyInputTextFocusState(By element, String border, String background, String color,
+			String fontsize, String lineheight, String borderradius, String display, String verticalalign,
+			String component) {
+		String[] borderArray = border.split(" ");
+		String border_style = borderArray[0];
+		String border_width = borderArray[1];
+		String border_color = commonUtils.hex2Rgb(borderArray[2]);
 
-				// get border
-				String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width");
-				// get border
-				String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style");
-				// get border
-				String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color");
-				// get background
-				String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color");
-				// get color
-				String actualColor = commonUtils.getCSSValue(element, "color");
-				// get font size
-				String actualFontSize = commonUtils.getCSSValue(element, "font-size");
-				// get line height
-				String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
-				// get display
-				String actualDisplay = commonUtils.getCSSValue(element, "display");
-				// get vertical-align
-				String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align");
+		// get border
+		String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width");
+		// get border
+		String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style");
+		// get border
+		String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color");
+		// get background
+		String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color");
+		// get color
+		String actualColor = commonUtils.getCSSValue(element, "color");
+		// get font size
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size");
+		// get line height
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
+		// get display
+		String actualDisplay = commonUtils.getCSSValue(element, "display");
+		// get vertical-align
+		String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align");
 
-				boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width,
-						"Element:" + element + " Component:" + component + " border-width specification Failed");
-				boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style,
-						"Element:" + element + " Component:" + component + " border-style specification Failed");
-				boolean result_border3 = commonUtils.assertValue(actualBorderColor, border_color,
-						"Element:" + element + " Component:" + component + " border-color specification Failed");
-				boolean result_background = commonUtils.assertValue(actualBackgroundColor, commonUtils.hex2Rgb(background),
-						"Element:" + element + " Component:" + component + " background specification Failed");
-				boolean result_color = commonUtils.assertValue(actualColor, commonUtils.hex2Rgb(color),
-						"Element:" + element + " Component:" + component + " color specification Failed");
-				boolean result_fontsize = commonUtils.assertValue(actualFontSize, fontsize,
-						"Element:" + element + " Component:" + component + " font-size specification Failed");
-				boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight,
-						"Element:" + element + " Component:" + component + " line-height specification Failed");
-				boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius,
-						borderradius);
-				boolean result_display = commonUtils.assertValue(actualDisplay, display,
-						"Element:" + element + " Component:" + component + " display specification Failed");
-				boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign,
-						"Element:" + element + " Component:" + component + " vertical-align specification Failed");
+		boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width,
+				"Element:" + element + " Component:" + component + " border-width specification Failed");
+		boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style,
+				"Element:" + element + " Component:" + component + " border-style specification Failed");
+		boolean result_border3 = commonUtils.assertValue(actualBorderColor, border_color,
+				"Element:" + element + " Component:" + component + " border-color specification Failed");
+		boolean result_background = commonUtils.assertValue(actualBackgroundColor, commonUtils.hex2Rgb(background),
+				"Element:" + element + " Component:" + component + " background specification Failed");
+		boolean result_color = commonUtils.assertValue(actualColor, commonUtils.hex2Rgb(color),
+				"Element:" + element + " Component:" + component + " color specification Failed");
+		boolean result_fontsize = commonUtils.assertValue(actualFontSize, fontsize,
+				"Element:" + element + " Component:" + component + " font-size specification Failed");
+		boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight,
+				"Element:" + element + " Component:" + component + " line-height specification Failed");
+		boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius,
+				borderradius);
+		boolean result_display = commonUtils.assertValue(actualDisplay, display,
+				"Element:" + element + " Component:" + component + " display specification Failed");
+		boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign,
+				"Element:" + element + " Component:" + component + " vertical-align specification Failed");
 
-				if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true
-						&& result_color == true && result_fontsize == true && result_lineheight == true
-						&& result_borderradius == true && result_display == true && result_verticalalign == true) {
-					return true;
-				} else {
-					return false;
-				}
-			}
+		if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true
+				&& result_color == true && result_fontsize == true && result_lineheight == true
+				&& result_borderradius == true && result_display == true && result_verticalalign == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	private Boolean verifyInputTextFocusState(By element, String border, String background, String color,
+			String fontsize, String lineheight, String borderradius, String display, String verticalalign,
+			String component, String mobile) {
+		String[] borderArray = border.split(" ");
+		String border_style = borderArray[0];
+		String border_width = borderArray[1];
+		String border_color = commonUtils.hex2Rgb(borderArray[2]);
+
+		// get border
+		String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width", "mobile");
+		// get border
+		String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style", "mobile");
+		// get border
+		String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color", "mobile");
+		// get background
+		String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+		// get color
+		String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
+		// get font size
+		String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+		// get line height
+		String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+		// get display
+		String actualDisplay = commonUtils.getCSSValue(element, "display", "mobile");
+		// get vertical-align
+		String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
+
+		boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width,
+				"Element:" + element + " Component:" + component + " border-width specification Failed");
+		boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style,
+				"Element:" + element + " Component:" + component + " border-style specification Failed");
+		boolean result_border3 = commonUtils.assertValue(actualBorderColor, border_color,
+				"Element:" + element + " Component:" + component + " border-color specification Failed");
+		boolean result_background = commonUtils.assertValue(actualBackgroundColor, commonUtils.hex2Rgb(background),
+				"Element:" + element + " Component:" + component + " background specification Failed");
+		boolean result_color = commonUtils.assertValue(actualColor, commonUtils.hex2Rgb(color),
+				"Element:" + element + " Component:" + component + " color specification Failed");
+		boolean result_fontsize = commonUtils.assertValue(actualFontSize, fontsize,
+				"Element:" + element + " Component:" + component + " font-size specification Failed");
+		boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight,
+				"Element:" + element + " Component:" + component + " line-height specification Failed");
+		boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius,
+				borderradius);
+		boolean result_display = commonUtils.assertValue(actualDisplay, display,
+				"Element:" + element + " Component:" + component + " display specification Failed");
+		boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign,
+				"Element:" + element + " Component:" + component + " vertical-align specification Failed");
+
+		if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true
+				&& result_color == true && result_fontsize == true && result_lineheight == true
+				&& result_borderradius == true && result_display == true && result_verticalalign == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public boolean verifyCheckBoxFocusState(String checkBoxType, By element, String[] expOutlineColor,
 			String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset, String elementId, String mobile)
