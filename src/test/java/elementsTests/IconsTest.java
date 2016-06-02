@@ -66,7 +66,9 @@ public class IconsTest extends BaseClass {
                 {"ban","\\f05e"},
                 {"camera","\\f030"},
                 {"clock-o","\\f017"},
-                {"exclamation-circle","\\f06a"}
+                {"exclamation-circle","\\f06a"},
+                {"bell","\\f0f3"},
+                {"archive","\\f187"}
         };
     }
 
