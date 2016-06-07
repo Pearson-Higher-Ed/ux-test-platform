@@ -44,8 +44,8 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                        <!-- <suiteXmlFile>MoleculesTests.xml</suiteXmlFile>-->
+                        <suiteXmlFile>elements_sdk.xml</suiteXmlFile>
+                         <!--<suiteXmlFile>origami_v2.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

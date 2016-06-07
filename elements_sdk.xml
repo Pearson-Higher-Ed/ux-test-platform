@@ -1,6 +1,6 @@
  <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="ComponentsTestSuite">
+<suite name="Elements sdk Test Suite">
 
     <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="on"></parameter>

@@ -9,8 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import molecules.moleculesPageObjects.AppHeaderPageObjects;
-import molecules.moleculesPageObjects.ContextualHelpPageObjects;
+import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
+import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -52,7 +52,7 @@ public class BaseClass {
 
         caps = new DesiredCapabilities();
 
-        //The below conditions is to set capabilities for desktop run and in testng.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
+        //The below conditions is to set capabilities for desktop run and in elements_sdk/compounds_sdk/origami_v2/.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
         if (runEnv.equals("sauce")) {
 
             if (desktop.equals("on")) {
@@ -84,7 +84,7 @@ public class BaseClass {
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
 
-            //The below conditions is to set capabilities for mob device and in testng.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
+            //The below conditions is to set capabilities for mob device and in elements_sdk/compounds_sdk/origami_v2/.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
             else if (mobile.equals("on")) {
                 caps.setCapability(MobileCapabilityType.DEVICE_NAME, mobDeviceName);
                 caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);
@@ -109,7 +109,7 @@ public class BaseClass {
             }
         }
 
-        //The below else condition is to launch browser driver on your local machine. In testng.xml -> set runEnv != sauce
+        //The below else condition is to launch browser driver on your local machine. In elements_sdk.xml -> set runEnv != sauce
         else {
             if (localBrowser.equals("firefox")) {
                 driver = new FirefoxDriver();

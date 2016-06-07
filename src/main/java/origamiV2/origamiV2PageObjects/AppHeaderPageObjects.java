@@ -1,4 +1,4 @@
-package molecules.moleculesPageObjects;
+package origamiV2.origamiV2PageObjects;
 
 import io.appium.java_client.AppiumDriver;
 
