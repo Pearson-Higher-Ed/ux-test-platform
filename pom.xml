@@ -45,7 +45,7 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
                         <suiteXmlFile>testng.xml</suiteXmlFile>
-                        <!--<suiteXmlFile>MoleculesTests.xml</suiteXmlFile>-->
+                        <!-- <suiteXmlFile>MoleculesTests.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
