@@ -1,6 +1,6 @@
  <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="ComponentsTestSuite">
+<suite name="Origami v2 Test Suite">
 
     <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="on"></parameter>
@@ -20,15 +20,15 @@
     <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
     <parameter name="appiumVer" value="1.5.2"></parameter><!-- version of appium on sauce -->
 
-    <test name="MoleculesTests">
+    <test name="origamiV2Tests">
         <groups>
             <run>
                 <include name="desktop"/>
             </run>
         </groups>
         <classes>
-            <class name="moleculesTests.AppHeaderTest"/>
-            <class name="moleculesTests.ContextualHelpTest"/>
+            <class name="origamiV2Tests.AppHeaderTest"/>
+            <class name="origamiV2Tests.ContextualHelpTest"/>
         </classes>
     </test>
 </suite>
