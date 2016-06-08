@@ -62,7 +62,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-1
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = { "desktop-ci", "desktop-regression" })
 	private void SpacingTest(By element, String padding) {
 		chooseEnv();
 		result = verifySpace(element, padding);
@@ -80,7 +80,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-2
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = { "desktop-ci", "desktop-regression" })
 	private void DaySpacingTest(By element, String paddingArndDte) {
 		chooseEnv();
 		result = verifySpaceBtwn(element, paddingArndDte);
@@ -95,7 +95,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Label Test-1
-	@Test(enabled = true, testName = "Month label Test", dataProvider = "LabelTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Month label Test", dataProvider = "LabelTestData", groups = { "desktop-regression" })
 	private void LabelTest(By element, String[] txtSize, String lnHieght,
 			String fntColor, String lblHeight) {
 		chooseEnv();
@@ -111,7 +111,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Day Label Test-1
-	@Test(enabled = true, testName = "Day label Test", dataProvider = "DayLabelTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Day label Test", dataProvider = "DayLabelTestData", groups = { "desktop-regression" })
 	private void DayLabelTest(By element, String txtSize, String lnHieght,
 			String fntColor, String padBottom) {
 		chooseEnv();
@@ -127,7 +127,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Border Test-1
-	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = { "desktop-ci","desktop-regression"})
 	private void BorderTest(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding) {
 		chooseEnv();
@@ -147,7 +147,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Date Test-1
-	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = { "desktop-ci", "desktop-regression" })
 	private void DateTest(By element, String txtSize, String lnHeight) {
 		chooseEnv();
 		result = verifyDate(element, txtSize, lnHeight);
@@ -173,7 +173,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1
-	@Test(enabled = true, testName = "Size Test", dataProvider = "SizeTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Size Test", dataProvider = "SizeTestData", groups = { "desktop-regression" })
 	private void SizeTest(By element, String[] hieght, String[] width) {
 		chooseEnv();
 		result = verifySize(element, hieght, width);
@@ -193,7 +193,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1
-	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = { "desktop-ci", "desktop-regression" })
 	private void StateTest(By element, String bckColor, String txtColor) {
 		chooseEnv();
 		result = verifyState(element, bckColor, txtColor);
@@ -208,7 +208,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-2
-	@Test(enabled = true, testName = "Hover State Test", dataProvider = "HoverStateTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Hover State Test", dataProvider = "HoverStateTestData", groups = { "desktop-regression" })
 	private void HoverStateTest(By element, By element2, String bckColor,
 			String txtColor) {
 		chooseEnv();
@@ -224,7 +224,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Hover Month Control Test
-	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = { "desktop-ci","desktop-regression" })
 	private void HoverMonthControlTest(By element, String txtMonth) {
 		chooseEnv();
 		result = verifyHoverMonthControl(element, txtMonth);
@@ -244,7 +244,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Days of Week Test
-	@Test(enabled = true, testName = "Days Of Week Test", dataProvider = "DaysOfWeekTestData", groups = { "desktop" })
+	@Test(enabled = true, testName = "Days Of Week Test", dataProvider = "DaysOfWeekTestData", groups = { "desktop-regression" })
 	private void DaysOfWeekTest(By element, String day, String txtDay) {
 		chooseEnv();
 		result = verifyDaysOfWeek(element, day, txtDay);
@@ -262,7 +262,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-1- Mobile
-	@Test(enabled = true, testName = "Mobile: Calendar Spacing Test", dataProvider = "Mobile Spacing TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Calendar Spacing Test", dataProvider = "Mobile Spacing TestData", groups = { "mobile-regression" })
 	private void MobileSpacingTest(ScreenOrientation mode, By element,
 			String padding) {
 		commonUtils.getUrl(url, "mobile");
@@ -274,27 +274,22 @@ public class CalendarTest extends BaseClass {
 	@DataProvider(name = "Mobile Day Spacing TestData")
 	private Object[][] getMobileDaySpacingTestData() {
 		return new Object[][] {
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.dayLbl, "1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDate, "1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHih, "1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedis, "1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateout, "1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslct,
-						"1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.dayLbl, "1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDate, "1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHih,
-						"1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedis,
-						"1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateout,
-						"1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslct,
-						"1px" } };
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.dayLbl, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDate, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHih, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedis, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateout, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslct, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.dayLbl, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDate, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHih, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedis, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateout, "1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslct, "1px 1px" } };
 	}
 
 	// Spacing Test-2
-	@Test(enabled = true, testName = "Mobile: Calendar Spacing Test", dataProvider = "Mobile Day Spacing TestData", groups = { "Mobile" })
+	@Test(enabled = true, testName = "Mobile: Calendar Spacing Test", dataProvider = "Mobile Day Spacing TestData", groups = { "mobile-regression" })
 	private void MobileDaySpacingTest(ScreenOrientation mode, By element,
 			String paddingArndDte) {
 		commonUtils.getUrl(url, "mobile");
@@ -314,7 +309,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Label Test-1
-	@Test(enabled = true, testName = "Mobile: Month label Test", dataProvider = "Mobile Label TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Month label Test", dataProvider = "Mobile Label TestData", groups = { "mobile-regression" })
 	private void MobileLabelTest(ScreenOrientation mode, By element,
 			String txtSize, String lnHieght, String fntColor, String lblHeight) {
 		commonUtils.getUrl(url, "mobile");
@@ -335,7 +330,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Day Label Test-1 - Mobile
-	@Test(enabled = true, testName = "Mobile: Day label Test", dataProvider = "Mobile Day Label TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Day label Test", dataProvider = "Mobile Day Label TestData", groups = { "mobile-regression" })
 	private void MobileDayLabelTest(ScreenOrientation mode, By element,
 			String txtSize, String lnHieght, String fntColor, String padBottom) {
 		commonUtils.getUrl(url, "mobile");
@@ -356,7 +351,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Border Test-1-Mobile
-	@Test(enabled = true, testName = "Mobile: Border Test", dataProvider = "Mobile Border TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Border Test", dataProvider = "Mobile Border TestData", groups = { "mobile-regression" })
 	private void MobileBorderTest(ScreenOrientation mode, By element,
 			String brdrSize, String brdrColor, String brdrHeight,
 			String leftPadding, String rightPadding) {
@@ -394,7 +389,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Date Test-1- Mobile
-	@Test(enabled = true, testName = "Mobile: Date Test", dataProvider = "Mobile Date TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Date Test", dataProvider = "Mobile Date TestData", groups = { "mobile-regression" })
 	private void MobileDateTest(ScreenOrientation mode, By element,
 			String txtSize, String lnHeight) {
 		commonUtils.getUrl(url, "mobile");
@@ -430,7 +425,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1 -Mobile
-	@Test(enabled = true, testName = "Mobile: Size Test", dataProvider = "Mobile Size TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Size Test", dataProvider = "Mobile Size TestData", groups = { "mobile-regression" })
 	private void MobileSizeTest(ScreenOrientation mode, By element,
 			String[] hieght, String[] width) {
 		commonUtils.getUrl(url, "mobile");
@@ -464,7 +459,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1
-	@Test(enabled = true, testName = "Mobile: State Test", dataProvider = "Mobile State TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: State Test", dataProvider = "Mobile State TestData", groups = { "mobile-regression" })
 	private void MobileStateTest(ScreenOrientation mode, By element,
 			String bckColor, String txtColor) {
 		commonUtils.getUrl(url, "mobile");
@@ -484,7 +479,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-2
-	@Test(enabled = true, testName = "Mobile: Hover State Test", dataProvider = "Mobile HoverState TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Hover State Test", dataProvider = "Mobile HoverState TestData", groups = { "mobile-regression" })
 	private void MobileHoverStateTest(ScreenOrientation mode, By element,
 			String bckColor, String txtColor) {
 		commonUtils.getUrl(url, "mobile");
@@ -504,7 +499,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Hover Month Control Test
-	@Test(enabled = true, testName = "Mobile: Hover Month Control Test", dataProvider = "Mobile HoverMonth ControlData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Hover Month Control Test", dataProvider = "Mobile HoverMonth ControlData", groups = { "mobile-regression" })
 	private void MobileHoverMonthControlTest(ScreenOrientation mode,
 			By element, String txtMonth) {
 		commonUtils.getUrl(url, "mobile");
@@ -548,7 +543,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-2
-	@Test(enabled = true, testName = "Mobile: Days Of Week Test", dataProvider = "Mobile DaysOfWeek TestData", groups = { "mobile" })
+	@Test(enabled = true, testName = "Mobile: Days Of Week Test", dataProvider = "Mobile DaysOfWeek TestData", groups = { "mobile-regression" })
 	private void MobileDaysOfWeekTest(ScreenOrientation mode, By element,
 			String day, String txtDay) {
 		commonUtils.getUrl(url, "mobile");

@@ -3,11 +3,13 @@ package elementsTests;
 
 import java.io.File;
 
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Command;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -68,7 +70,7 @@ public class InputsTest extends BaseClass {
                 {inputsPgObj.input_text_active_small, "28px", "10px", "0px"}};
     }
 
-    @Test(testName = "verifyInputTextDimensionsSpacingTest", dataProvider = "InputTextDimensionsSpacingData", groups = {"desktop"})
+    @Test(testName = "verifyInputTextDimensionsSpacingTest", dataProvider = "InputTextDimensionsSpacingData", groups = {"desktop-regression"})
     private void verifyInputTextDimensionsSpacingTest(By element, String height, String horizontal_padding, String vertical_padding) throws InterruptedException {
         chooseEnv();
         result = verifyDimensionSpacing(element, height, horizontal_padding, vertical_padding);
@@ -86,7 +88,7 @@ public class InputsTest extends BaseClass {
                 {inputsPgObj.input_text_error2, "solid 1px #D0021B", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
-    @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop"})
+    @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop-ci", "desktop-regression"})
     private void VerifyInputTextActiveTest(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws InterruptedException {
         chooseEnv();
         result = verifyInputTextActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign, component);
@@ -104,7 +106,7 @@ public class InputsTest extends BaseClass {
                 {inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
-    @Test(testName = "Verify InputText FocusState", dataProvider = "InputTextFocusStateData", groups = "desktop")
+    @Test(testName = "Verify InputText FocusState", dataProvider = "InputTextFocusStateData", groups = "desktop-regression")
     private void verifyInputTextFocusStateTest(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws Exception {
         chooseEnv();
         String elementId = element.toString().substring(7, (element.toString().length()));
@@ -124,7 +126,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "verifyInputTextFocusBoxShadowTest", dataProvider = "InputTextFocusBoxShadowData", groups = {"desktop"})
+    @Test(testName = "verifyInputTextFocusBoxShadowTest", dataProvider = "InputTextFocusBoxShadowData", groups = {"desktop-regression"})
     private void verifyInputTextFocusBoxShadowTest(By element, String boxshadow) throws InterruptedException {
         chooseEnv();
         String[] boxShadowArr = boxshadow.split(" ");
@@ -149,8 +151,8 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Select box specifications", dataProvider = "SelectBoxData", groups = {"desktop"})
-    private void verifylSelectboxTest(By element, String[] dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
+    @Test(testName = "Verify Select box specifications", dataProvider = "SelectBoxData", groups = {"desktop-ci", "desktop-regression"})
+    private void verifySelectBoxTest(By element, String[] dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
         chooseEnv();
         boolean result_1 = VerifySlctBxPrpty(element, dimension, padding);
         boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign);
@@ -161,8 +163,8 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Verify Select Box Focus specifications", dataProvider = "SelectBoxData", groups = {"desktop"})
-    private void verifylSelectBoxFocusTest(By element, String[] dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
+    @Test(testName = "Verify Select Box Focus specifications", dataProvider = "SelectBoxData", groups = {"desktop-regression"})
+    private void verifySelectBoxFocusTest(By element, String[] dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
         chooseEnv();
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.focusOnElementById(elementId);
@@ -181,7 +183,7 @@ public class InputsTest extends BaseClass {
                 {inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"}};
     }
 
-    @Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowData", groups = {"desktop"})
+    @Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowData", groups = {"desktop-regression"})
     private void verifySelectBoxFocusStateBoxShadowTest(By element, String boxshadow) throws InterruptedException {
         chooseEnv();
         String[] boxShadowArr = boxshadow.split(" ");
@@ -216,7 +218,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "desktop")
+    @Test(testName = "Verify CheckBox", dataProvider = "CheckBoxTestData", groups = {"desktop-ci", "desktop-regression"})
     public void verifyCheckBoxTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
         chooseEnv();
         result = verifyCheckBox(checkBoxType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
@@ -234,7 +236,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = "desktop")
+    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = {"desktop-ci","desktop-regression"})
     public void verifyRadioTest(String radioType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
         chooseEnv();
         result = verifyRadio(radioType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
@@ -251,7 +253,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "desktop")
+    @Test(testName = "Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = {"desktop-regression"})
     private void verifyCheckBoxFocusStateTest(String checkBoxType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
@@ -269,7 +271,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "desktop")
+    @Test(testName = "Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = {"desktop-regression"})
     private void verifyRadioFocusStateTest(String radioType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         chooseEnv();
@@ -314,7 +316,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
     private void verifyLargeSizeTextAreaTest(String cssProperty, String[] expectedCSSValue) throws Exception {
 
         chooseEnv();
@@ -343,7 +345,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Small Size TextArea", dataProvider = "SmallSizeTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify Small Size TextArea", dataProvider = "SmallSizeTextAreaTestData", groups = "desktop-regression")
     private void verifySmallSizeTextAreaTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -363,7 +365,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
     private void verifyReadOnlyTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -384,7 +386,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
     private void verifyDisabledTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -415,7 +417,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
     private void verifyErroredTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -445,7 +447,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify label for TextArea", dataProvider = "LabelForTextAreaTestData", groups = "desktop")
+    @Test(testName = "Verify label for TextArea", dataProvider = "LabelForTextAreaTestData", groups = {"desktop-regression"})
     private void verifyLabelForTextAreaTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -469,7 +471,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = "desktop")
+    @Test(testName = "Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = {"desktop-regression"})
     private void verifyTextAreaFocusStateTest(String textAreaType, By element, String[] borderRightColor, String[] borderLeftColor, String[] borderBottomColor, String[] borderTopColor, String borderRightWidth, String borderLeftWidth, String borderBottomWidth, String borderTopWidth, String borderLeftStyle, String borderRightStyle, String borderBottomStyle, String borderTopStyle, String boxShadow) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         System.out.println("elementId: " + elementId);
@@ -490,7 +492,7 @@ public class InputsTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active_small, "28px", "10px", "0px"}};
     }
 
-    @Test(testName = "verifyInputTextDimensionsSpacingMobileTest", dataProvider = "InputTextDimensionsSpacingMobileData", groups = {"mobile"})
+    @Test(testName = "verifyInputTextDimensionsSpacingMobileTest", dataProvider = "InputTextDimensionsSpacingMobileData", groups = {"mobile-regression"})
     private void verifyInputTextDimensionsSpacingMobileTest(ScreenOrientation mode, By element, String height, String horizontal_padding, String vertical_padding) throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -515,7 +517,7 @@ public class InputsTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error2, "solid 1px #D0021B", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
-    @Test(testName = "verifyInputTextDimensionsSpacingMobileTest", dataProvider = "InputTextActiveMobileData", groups = {"mobile"})
+    @Test(testName = "verifyInputTextDimensionsSpacingMobileTest", dataProvider = "InputTextActiveMobileData", groups = {"mobile-regression"})
     private void verifyInputTextActiveMobileTest(ScreenOrientation mode, By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -540,7 +542,7 @@ public class InputsTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error2, "solid 1px #d0021b", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
-    @Test(testName = "Verify Input Text Focus State Mobile", dataProvider = "InputTextFocusStateMobileData", groups = "mobile1")
+    @Test(testName = "Verify Input Text Focus State Mobile", dataProvider = "InputTextFocusStateMobileData", groups = "mobile-regression")
     private void verifyInputTextFocusStateMobileTest(ScreenOrientation mode, By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws Exception {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -552,12 +554,14 @@ public class InputsTest extends BaseClass {
 
     @DataProvider(name = "InputTextFocusBoxShadowMobileData")
     private Object[][] InputTextFocusBoxShadowMobileData() {
-        return new Object[][]{{inputsPgObj.input_text_active, "#0d65a6 0px 0px 4px 0px"},
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_active, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_active_small, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_readonly, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_disable, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error1, "#d0021b 0px 0px 4px 0px"},
                 {ScreenOrientation.PORTRAIT, inputsPgObj.input_text_error2, "#d0021b 0px 0px 4px 0px"},
+                {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_active_small, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_readonly, "#0d65a6 0px 0px 4px 0px"},
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_disable, "#0d65a6 0px 0px 4px 0px"},
@@ -565,7 +569,7 @@ public class InputsTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.input_text_error2, "#d0021b 0px 0px 4px 0px"}};
     }
 
-    @Test(testName = "Verify Text Input Focus State Box Shadow", dataProvider = "InputTextFocusBoxShadowMobileData", groups = {"mobile"})
+    @Test(testName = "Verify Text Input Focus State Box Shadow", dataProvider = "InputTextFocusBoxShadowMobileData", groups = {"mobile-regression"})
     private void verifyInputTextFocusBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow) throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -597,7 +601,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Select box Specifications", dataProvider = "SlctBoxMobileData", groups = {"mobile"})
+    @Test(testName = "Verify Select box Specifications", dataProvider = "SelectBoxMobileData", groups = {"mobile-regression"})
     private void verifySelectBoxMobileTest(ScreenOrientation mode, By element, String dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign, String mobile) throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -618,7 +622,7 @@ public class InputsTest extends BaseClass {
 	 * inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"} }; }
 	 */
 
-    @Test(testName = "Verify Select Box Focus specifications", dataProvider = "SlctBoxMobileData", groups = {"mobile"})
+    @Test(testName = "Verify Select Box Focus specifications", dataProvider = "SelectBoxMobileData", groups = {"mobile-regression"})
     private void verifySelectBoxFocusStateMobileTest(ScreenOrientation mode, By element, String dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign, String mobile) throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -640,8 +644,11 @@ public class InputsTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, inputsPgObj.selectbox_error, "#d0021b 0px 0px 4px 0px"}};
     }
 
-    @Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowMobileData", groups = {"mobile"})
+    @Test(testName = "Verify Select Box Focus State Box Shadow", dataProvider = "SelectBoxFocusBoxShadowMobileData", groups = {"mobile-regression"})
     private void verifySelectBoxErrorBoxShadowMobileTest(ScreenOrientation mode, By element, String boxshadow) throws InterruptedException {
+        if (appium instanceof IOSDriver) {
+            throw new SkipException("Select Box - Box Shadow does not work on IOS platform - Skipping Test");
+        }
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
         String[] boxShadowArr = boxshadow.split(" ");
@@ -653,7 +660,6 @@ public class InputsTest extends BaseClass {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.focusOnElementById(elementId, "mobile");
         String actBoxShadow = commonUtils.getCSSValue(element, "box-shadow", "mobile");
-
         boolean result = commonUtils.assertCSSProperties(element.toString(), actBoxShadow, expBoxShadows);
         if (result == false) {
             System.out.println("Select Box error box-shadow specification Failed. " + element.toString() + "--> is not as per the spec");
@@ -662,14 +668,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify CheckBox", dataProvider = "CheckBoxTestData", groups = "mobile-regression")
     public void verifyCheckBoxMobileTest(String checkBoxType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
         commonUtils.getUrl(url, "mobile");
         result = verifyCheckBox(checkBoxType, element, expMarginRight, expMarginLeft, expPaddingTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify CheckBox FocusState", dataProvider = "CheckBoxFocusStateTestData", groups = "mobile-regression")
     private void verifyCheckBoxFocusStateMobileTest(String checkBoxType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
@@ -677,14 +683,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio", dataProvider = "RadioTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Radio", dataProvider = "RadioTestData", groups = "mobile-regression")
     public void verifyRadioMobileTest(String radioType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
         commonUtils.getUrl(url, "mobile");
         result = verifyRadio(radioType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight, "mobile");
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Radio FocusState", dataProvider = "RadioFocusStateTestData", groups = "mobile-regression")
     private void verifyRadioFocusStateMobileTest(String radioType, By element, String[] expOutlineColor, String expOutlineStyle, String expOutlineWidth, String[] expOutlineOffset) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         commonUtils.getUrl(url, "mobile");
@@ -692,7 +698,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = "mobile-regression")
     private void verifyLargeSizeTextAreaMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -706,7 +712,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify Small Size TextArea", dataProvider = "SmallSizeTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Small Size TextArea", dataProvider = "SmallSizeTextAreaTestData", groups = "mobile-regression")
     private void verifySmallSizeTextAreaMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -719,7 +725,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = "mobile-regression")
     private void verifyReadOnlyTextAreaMobileTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -733,7 +739,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = "mobile-regression")
     private void verifyDisabledTextAreaMobileTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -747,7 +753,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = "mobile-regression")
     private void verifyErroredTextAreaMobileTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -759,7 +765,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify label for TextArea", dataProvider = "LabelForTextAreaTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify label for TextArea", dataProvider = "LabelForTextAreaTestData", groups = "mobile-regression")
     private void verifyLabelForTextAreaMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
@@ -772,7 +778,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = "mobile")
+    @Test(testName = "Mobile: Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = "mobile-regression")
     private void verifyTextAreaFocusStateMobileTest(String textAreaType, By element, String[] borderRightColor, String[] borderLeftColor, String[] borderBottomColor, String[] borderTopColor, String borderRightWidth, String borderLeftWidth, String borderBottomWidth, String borderTopWidth, String borderLeftStyle, String borderRightStyle, String borderBottomStyle, String borderTopStyle, String boxShadow) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
         System.out.println("elementId: " + elementId);
@@ -1191,7 +1197,7 @@ public class InputsTest extends BaseClass {
         boolean result_color = commonUtils.assertValue(actualColor, commonUtils.hex2Rgb(color), "Element:" + element + " Component:" + component + " color specification Failed");
         boolean result_fontsize = commonUtils.assertValue(actualFontSize, fontsize, "Element:" + element + " Component:" + component + " font-size specification Failed");
         boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight, "Element:" + element + " Component:" + component + " line-height specification Failed");
-        boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius, borderradius);
+        boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius, borderradius, mobile);
         boolean result_display = commonUtils.assertValue(actualDisplay, display, "Element:" + element + " Component:" + component + " display specification Failed");
         boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign, "Element:" + element + " Component:" + component + " vertical-align specification Failed");
 
@@ -1302,6 +1308,30 @@ public class InputsTest extends BaseClass {
             return false;
         }
     }
+
+    private Boolean verifyBorderRadius(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius, String mobile) {
+        // get radius_top_left
+        String actual_radius_top_left = commonUtils.getCSSValue(element, "border-top-left-radius", "mobile");
+        // get top_right_radius
+        String actual_top_right_radius = commonUtils.getCSSValue(element, "border-top-right-radius", "mobile");
+        // get bottom_right_radius
+        String actual_bottom_right_radius = commonUtils.getCSSValue(element, "border-bottom-right-radius", "mobile");
+        // get bottom_left_radius
+        String actual_bottom_left_radius = commonUtils.getCSSValue(element, "border-bottom-left-radius", "mobile");
+
+        boolean result_radius_top_left = commonUtils.assertValue(actual_radius_top_left, radius_top_left, element + " Input Text border-top-left-radius specification Failed");
+        boolean result_top_right_radius = commonUtils.assertValue(actual_top_right_radius, top_right_radius, element + " Input Text border-top-right-radius specification Failed");
+        boolean result_bottom_right_radius = commonUtils.assertValue(actual_bottom_right_radius, bottom_right_radius, element + " Input Text border-bottom-right-radius specification Failed");
+        boolean result_bottom_left_radius = commonUtils.assertValue(actual_bottom_left_radius, bottom_left_radius, element + " Input Text border-bottom-left-radius specification Failed");
+
+        if (result_radius_top_left == true && result_top_right_radius == true && result_bottom_right_radius == true
+                && result_bottom_left_radius == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     private Boolean verifyBorderRadiusMobile(By element, String radius_top_left, String top_right_radius, String bottom_right_radius, String bottom_left_radius, String mobile) {
         // get radius_top_left

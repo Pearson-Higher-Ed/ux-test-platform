@@ -64,7 +64,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Body Copy Font
-    @Test(enabled = true, testName = "Body Copy Test", dataProvider = "getBodyCopyFontTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Body Copy Test", dataProvider = "getBodyCopyFontTestData", groups = {"desktop-ci","desktop-regression"})
     private void bodyCopyFontTest(By element, String fontsize, String lineheight, String color) {
         chooseEnv();
         result = verifyBodyCopyFont(element, fontsize, lineheight, color);
@@ -81,7 +81,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Body Copy - Paragraph Margin
-    @Test(enabled = true, testName = "Body Copy Paragraph Margin Test", dataProvider = "getParaMarginTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Body Copy Paragraph Margin Test", dataProvider = "getParaMarginTestData", groups = {"desktop-ci","desktop-regression"})
     private void bodyCopyParaMarginTest(By element, String marginbottom) {
         chooseEnv();
         String actualMarginBottom = commonUtils.getCSSValue(element, "margin-bottom");
@@ -104,7 +104,7 @@ public class TypographyTest extends BaseClass {
     }
 
     //  Lists
-    @Test(enabled = true, testName = "Lists font fest", dataProvider = "getListsFontTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Lists font fest", dataProvider = "getListsFontTestData", groups = {"desktop-regression"})
     private void ListsFontTest(By element, String fontsize, String lineheight, String color) {
         chooseEnv();
         result = verifyListItemFont(element, fontsize, lineheight, color);
@@ -122,7 +122,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 3
-    @Test(enabled = true, testName = "Lists Margin top and bottom test", dataProvider = "getListsSpacingtopBottomMarginTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Lists Margin top and bottom test", dataProvider = "getListsSpacingtopBottomMarginTestData", groups = {"desktop-regression"})
     private void ListsSpacingMarginTest(By element, String space_above_below) {
         chooseEnv();
         result = verifyListSpacing(element, space_above_below);
@@ -150,7 +150,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 4
-    @Test(enabled = true, testName = "Lists item spacing test", dataProvider = "getListItemsSpacingTest", groups = {"desktop"})
+    @Test(enabled = true, testName = "Lists item spacing test", dataProvider = "getListItemsSpacingTest", groups = {"desktop-regression"})
     private void ListItemSpacingTest(By element, String space_list_items) {
         chooseEnv();
         // Get font size
@@ -179,7 +179,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 5
-    @Test(enabled = true, testName = "Lists left padding", dataProvider = "getListItemsLeftPaddingTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Lists left padding", dataProvider = "getListItemsLeftPaddingTestData", groups = {"desktop-regression"})
     private void ListItemLeftPaddingTest(By element, String leftPadding) {
         chooseEnv();
         // Verify left padding
@@ -198,7 +198,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 6
-    @Test(enabled = true, testName = "Lists top Margin After Header test", dataProvider = "getListstopMarginAfterHeaderTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Lists top Margin After Header test", dataProvider = "getListstopMarginAfterHeaderTestData", groups = {"desktop-ci","desktop-regression"})
     private void ListsMarginAfterHeaderTest(By element, String space_above) {
         chooseEnv();
         String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
@@ -218,7 +218,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"desktop-regression"})
     private void HeadingCSSTest(By element, String fontSize, String lineHeight, String[] fontWeight, String fontColor, String item) throws InterruptedException, UnsupportedEncodingException {
         chooseEnv();
         result = HeadingCSSEval(element, fontSize, lineHeight, fontWeight, fontColor, item);
@@ -236,7 +236,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"desktop-ci","desktop-regression"})
     private void HeadingMrgnTest(By element) {
         chooseEnv();
         String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -255,7 +255,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Heading Margin Content Test", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Heading Margin Content Test", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"desktop-regression"})
     private void HeadingMrgnParaTest(By element, String actulmrgn) {
         chooseEnv();
         String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -273,7 +273,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"desktop-regression"})
     private void HeadingMrgnCntntTest(By element, String actlMrgn) {
         chooseEnv();
         String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -288,7 +288,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, dataProvider = "getCodeTestData", testName = "Code Test", groups = {"desktop"})
+    @Test(enabled = true, dataProvider = "getCodeTestData", testName = "Code Test", groups = {"desktop-ci","desktop-regression"})
     private void CodeTest(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family");
@@ -314,7 +314,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"desktop-ci","desktop-regression"})
     private void InlneCodeTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
@@ -338,7 +338,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "kbd Code Test", dataProvider = "getkbdTestData", groups = {"desktop"})
+    @Test(enabled = true, testName = "kbd Code Test", dataProvider = "getkbdTestData", groups = {"desktop-ci","desktop-regression"})
     private void kbdTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
@@ -371,7 +371,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 1
-    @Test(testName = "Mobile Body Copy Test", dataProvider = "MobileBodyCopyFontTestData", groups = {"mobile"}, enabled = true)
+    @Test(testName = "Mobile Body Copy Test", dataProvider = "MobileBodyCopyFontTestData", groups = {"mobile-regression"}, enabled = true)
     private void mobileBodyCopyFontTest(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -391,7 +391,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Body Copy - Paragraph Margin
-    @Test(testName = "Body Copy Paragraph Margin Test Mobile", dataProvider = "MobileParaMarginTestData", groups = {"mobile"})
+    @Test(testName = "Body Copy Paragraph Margin Test Mobile", dataProvider = "MobileParaMarginTestData", groups = {"mobile-regression"})
     private void mobileBodyCopyParaMarginTest(ScreenOrientation mode, By element, String marginbottom) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -420,7 +420,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 2
-    @Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile"})
+    @Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile-regression"})
     private void OrderedListsFontTestMobile(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -441,7 +441,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 3
-    @Test(testName = "Lists spacing test Mobile", dataProvider = "getListsSpacingtopBottomMarginTestDataMobile", groups = {"mobile"})
+    @Test(testName = "Lists spacing test Mobile", dataProvider = "getListsSpacingtopBottomMarginTestDataMobile", groups = {"mobile-regression"})
     private void ListsSpacingTestMobile(ScreenOrientation mode, By element, String space_above_below) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -482,7 +482,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 4
-    @Test(testName = "Lists item spacing test Mobile", dataProvider = "getListItemsMobile", groups = {"mobile"})
+    @Test(testName = "Lists item spacing test Mobile", dataProvider = "getListItemsMobile", groups = {"mobile-regression"})
     private void ListItemSpacingTestMobile(ScreenOrientation mode, By element, String space_list_items) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -518,7 +518,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 5
-    @Test(testName = "Lists left padding Mobile", dataProvider = "getListItemsLeftPaddingTestDataMobile", groups = {"mobile"})
+    @Test(testName = "Lists left padding Mobile", dataProvider = "getListItemsLeftPaddingTestDataMobile", groups = {"mobile-regression"})
     private void getListItemsLeftPaddingTestDataMobile(ScreenOrientation mode, By element, String leftPadding) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -540,7 +540,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test 6
-    @Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile"})
+    @Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile-regression"})
     private void ListsMarginAfterHeaderTestMobile(ScreenOrientation mode, By element, String space_above) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
@@ -562,14 +562,14 @@ public class TypographyTest extends BaseClass {
     }
 
     // Feature: Heading
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile-regression"})
     private void HeadingMobileTestLANDSCAPE(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
         commonUtils.getUrl(url, "mobile");
         result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item, ScreenOrientation.LANDSCAPE);
         Assert.assertTrue(result);
     }
 
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile-regression"})
     private void HeadingMrgnMobileTestLANDSCAPE(By element) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -577,7 +577,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
     }
 
-    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile-regression"})
     private void HeadingMrgnParaMobileTest(By element, String actulmrgn) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -585,7 +585,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has " + actulmrgn);
     }
 
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile-regression"})
     private void HeadingMrgnCntntMobileTest(By element, String actlMrgn) throws InterruptedException, UnsupportedEncodingException {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -594,7 +594,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Test For Portrait
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile-regression"})
     private void HeadingMobileTestPORTRAIT(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
         commonUtils.getUrl(url, "mobile");
         result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item, ScreenOrientation.PORTRAIT);
@@ -602,7 +602,7 @@ public class TypographyTest extends BaseClass {
     }
 
     // Feature: Coding
-    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile-regression"})
     private void CodeMobileTestLANDSCAPE(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -622,7 +622,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
     }
 
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile-regression"})
     private void InlneCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -640,7 +640,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not " + bckClr);
     }
 
-    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile-regression"})
     private void kbdCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.LANDSCAPE);
@@ -658,7 +658,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
     }
 
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile-regression"})
     private void HeadingMrgnMobileTestPORTRAIT(By element) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -666,7 +666,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
     }
 
-    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile-regression"})
     private void HeadingMrgnParaMobileTestPORTRAIT(By element, String actulmrgn) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -674,7 +674,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has" + actulmrgn);
     }
 
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile-regression"})
     private void HeadingMrgnCntntMobileTestPORTRAIT(By element, String actlMrgn) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -682,7 +682,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(margin, actlMrgn, "Header that follows a heading dosent has" + actlMrgn + " margin");
     }
 
-    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile-regression"})
     private void CodeMobileTestPORTRAIT(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -702,7 +702,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
     }
 
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile-regression"})
     private void InlneCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -720,7 +720,7 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
     }
 
-    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile"})
+    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile-regression"})
     private void kbdCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(ScreenOrientation.PORTRAIT);
@@ -970,7 +970,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Labels Test", dataProvider = "Label Test Data", groups = {"desktop"})
+    @Test(testName = "Labels Test", dataProvider = "Label Test Data", groups = {"desktop-regresssion"})
     private void labelsTest(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
         chooseEnv();
         result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgb(labelHexValue));
@@ -990,7 +990,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Titles Test", dataProvider = "Titles Test Data", groups = {"desktop"})
+    @Test(testName = "Titles Test", dataProvider = "Titles Test Data", groups = {"desktop-regression"})
     private void titleTest(String titleType, By element, String[] titleFontSize, String titleLineHeight, int windowWidth, int windowHeight) {
         chooseEnv();
         commonUtils.setWindowSize(windowWidth, windowHeight);
@@ -1007,7 +1007,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Copy Test", dataProvider = "Copy Test Data", groups = {"desktop"})
+    @Test(testName = "Copy Test", dataProvider = "Copy Test Data", groups = {"desktop-regression"})
     private void copyTest(By element, String copyFontSize, String copyLineHeight, String copyHexValue) {
         chooseEnv();
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -1030,7 +1030,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Lead Test", dataProvider = "Lead Test Data", groups = {"desktop"})
+    @Test(testName = "Lead Test", dataProvider = "Lead Test Data", groups = {"desktop-ci"})
     private void leadTest(By element, String leadFontSize, String leadLineHeight, String leadHexValue, int windowWidth, int windowHeight) {
 
         chooseEnv();
@@ -1041,7 +1041,7 @@ public class TypographyTest extends BaseClass {
     }
 
     //Feature: Inline elements
-    @Test(testName = "Inline: Abbr Test", groups = {"desktop"})
+    @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression"})
     private void abbrTest() {
         chooseEnv();
         borderBottomWidth = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-width");
@@ -1062,14 +1062,14 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: Del and Ins Tag", dataProvider = "DelAndInsTag Test Data", groups = "desktop")
+    @Test(testName = "Inline: Del and Ins Tag", dataProvider = "DelAndInsTag Test Data", groups = "desktop-regression")
     private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute) {
         chooseEnv();
         result = verifyDelAndInsTagProperties(element, inlineTag, inlineTagTextDecoration, pseudoContentAttribute);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: Strikethrough Test", groups = {"desktop"})
+    @Test(testName = "Inline: Strikethrough Test", groups = {"desktop-regression"})
     private void strikeThroughTest() {
         chooseEnv();
         rgbValue = commonUtils.getCSSValue(typoPgObj.strikeThrough, "color");
@@ -1078,7 +1078,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: mark Test", groups = {"desktop"})
+    @Test(testName = "Inline: mark Test", groups = {"desktop-ci"})
     private void markTest() {
         chooseEnv();
         rgbValue = commonUtils.getCSSValue(typoPgObj.mark, "background-color");
@@ -1087,7 +1087,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: emTag Test", groups = {"desktop"})
+    @Test(testName = "Inline: emTag Test", groups = {"desktop-ci"})
     private void emTagTest() {
         chooseEnv();
         fontStyle = commonUtils.getCSSValue(typoPgObj.emTag, "font-style");
@@ -1104,14 +1104,14 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: Strong and Bold Tag Test", dataProvider = "StrongAndBoldTag Test Data", groups = {"desktop"})
+    @Test(testName = "Inline: Strong and Bold Tag Test", dataProvider = "StrongAndBoldTag Test Data", groups = {"desktop-regression"})
     private void strongTagTest(By element, String inlineTag, String[] inlineTagFontWeight) {
         chooseEnv();
         result = verifyStrongAndBoldTagProperties(element, inlineTag, inlineTagFontWeight);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: quote Tag Test", groups = {"desktop"})
+    @Test(testName = "Inline: quote Tag Test", groups = {"desktop-regression"})
     private void quoteTagTest() {
         chooseEnv();
         display = commonUtils.getCSSValue(typoPgObj.quoteTag, "display");
@@ -1120,7 +1120,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: time Tag Test", groups = {"desktop"})
+    @Test(testName = "Inline: time Tag Test", groups = {"desktop-regresssion"})
     private void timeTagTest() {
         chooseEnv();
         boxSizing = commonUtils.getCSSValue(typoPgObj.timeTag, "box-sizing");
@@ -1129,7 +1129,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Inline: small Tag Test", groups = {"desktop"})
+    @Test(testName = "Inline: small Tag Test", groups = {"desktop-regression"})
     private void smallTagTest() {
         chooseEnv();
         fontSize = commonUtils.getCSSValue(typoPgObj.smallTag, "font-size");
@@ -1146,7 +1146,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: SuperAndSubScript", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop"})
+    @Test(testName = "Inline: SuperAndSubScript", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop-regression"})
     private void superAndSubScriptTagTest(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition) {
         chooseEnv();
         result = verifySuperAndSubScriptProperties(element, inlineTag, inlineFontSize, inlineTop, inlinePosition);
@@ -1161,7 +1161,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Unstyled List", dataProvider = "Unstyled List Test Data", groups = {"desktop"})
+    @Test(testName = "Unstyled List", dataProvider = "Unstyled List Test Data", groups = {"desktop-regression"})
     private void unstyledListTest(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
         chooseEnv();
         result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle);
