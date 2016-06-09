@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
+import origamiV2.origamiV2PageObjects.ComponentArchetype;
 import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
 
 import org.openqa.selenium.WebDriver;
@@ -41,6 +42,7 @@ public class BaseClass {
     public static AppHeaderPageObjects appHeaderPgObj;
     public static ContextualHelpPageObjects conxHelpPgObj;
     public static CalendarPageObjects clndrPgObj;
+    public static ComponentArchetype compArchtypePgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
@@ -82,6 +84,7 @@ public class BaseClass {
                 conxHelpPgObj = new ContextualHelpPageObjects(driver);
                 inputsPgObj = new InputsPageObjects(driver);
                 clndrPgObj = new CalendarPageObjects(driver);
+                compArchtypePgObj= new ComponentArchetype(driver);
                 commonUtils = new CommonUtils(driver);
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -107,6 +110,7 @@ public class BaseClass {
                 conxHelpPgObj = new ContextualHelpPageObjects(appium);
                 inputsPgObj = new InputsPageObjects(appium);
                 clndrPgObj = new CalendarPageObjects(appium);
+                compArchtypePgObj= new ComponentArchetype(appium);
                 commonUtils = new CommonUtils(appium);
                 appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
