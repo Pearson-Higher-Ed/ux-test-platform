@@ -28,7 +28,7 @@ public class ComponentArchetypeTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop","origamiV2"})
+    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-ci", "origamiV2"})
     private void componentArchetypeDemoTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl);
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder");
@@ -45,7 +45,7 @@ public class ComponentArchetypeTest extends BaseClass {
      * Mobile Tests
      ****************/
 
-    @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile","origamiV2"})
+    @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "origamiV2"})
     private void componentArchetypeDemoMobileTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl,"mobile");
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder","mobile");
