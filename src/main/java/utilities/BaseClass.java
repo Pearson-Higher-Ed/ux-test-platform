@@ -9,13 +9,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
 import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
 import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -42,8 +42,8 @@ public class BaseClass {
     public static ContextualHelpPageObjects conxHelpPgObj;
     public static CalendarPageObjects clndrPgObj;
     public static CommonUtils commonUtils;
-    final static String USERNAME = SauceParam.SAUCE_USER;
-    final static String ACCESS_KEY = SauceParam.SAUCE_APIKEY;
+    final static String USERNAME = SauceParam.SAUCE_USERNAME;
+    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
 
@@ -128,7 +128,7 @@ public class BaseClass {
                     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
                 }
                 if (localBrowser.equals("chrome")) {
-                    System.setProperty("webdriver.driver.chrome", "chromedriver");
+                    CommonUtils.setupChromeDriver();
                     driver = new ChromeDriver();
                     respPgObj = new ResponsiveUtilitiesPageObjects(driver);
                     typoPgObj = new TypographyPageObjects(driver);
@@ -169,10 +169,10 @@ public class BaseClass {
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
-        if (mobile.equals("on")) {        	
-        	appium.closeApp();
+        if (mobile.equals("on")) {
+            appium.closeApp();
         } else {
-        	driver.close();
+            driver.close();
             driver.quit();
         }
     }

@@ -14,8 +14,8 @@ import java.util.Properties;
 
 public class SauceParam {
 
-    public static final String SAUCE_USER;
-    public static final String SAUCE_APIKEY;
+    public static final String SAUCE_USERNAME;
+    public static final String SAUCE_ACCESS_KEY;
     public static final String SAUCE_TUNNEL;
     public static final String TEST_ROOT_DIR;
     private static final String PROP_FILE = "SauceParam.properties";
@@ -41,19 +41,19 @@ public class SauceParam {
         }
 
         if (System.getenv("SAUCE_USERNAME") != null && !(System.getenv("SAUCE_USERNAME").equalsIgnoreCase(""))) {
-            SAUCE_USER = System.getenv("SAUCE_USERNAME");
+            SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
         } else if (properties.getProperty("SauceUser") != null
                 && !(properties.getProperty("SauceUser").equalsIgnoreCase(""))) {
-            SAUCE_USER = properties.getProperty("SauceUser");
+            SAUCE_USERNAME = properties.getProperty("SauceUser");
         } else {
             throw new SkipException("SauceUser property not set, " + "it is mandate to define the SauceUser property");
         }
 
         if (System.getenv("SAUCE_ACCESS_KEY") != null && !(System.getenv("SAUCE_ACCESS_KEY").equalsIgnoreCase(""))) {
-            SAUCE_APIKEY = System.getenv("SAUCE_ACCESS_KEY");
+            SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
         } else if (properties.getProperty("SauceKey") != null
                 && !(properties.getProperty("SauceKey").equalsIgnoreCase(""))) {
-            SAUCE_APIKEY = properties.getProperty("SauceKey");
+            SAUCE_ACCESS_KEY = properties.getProperty("SauceKey");
         } else {
             throw new SkipException("SauceKey property not set, " + "it is mandate to define the SauceKey property");
         }
