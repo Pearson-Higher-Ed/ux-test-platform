@@ -17,8 +17,8 @@ before_script:
 script:
 - chmod 777 ./src/main/shell_scripts/elements.sh
 - ./src/main/shell_scripts/elements.sh
-# - chmod 777 ./src/main/shell_scripts/origami-v2/origami-v2.sh
-# - ./src/main/shell_scripts/origami-v2/origami-v2.sh
+#- chmod 777 ./src/main/shell_scripts/origami-v2/origami-v2.sh
+#- ./src/main/shell_scripts/origami-v2/origami-v2.sh
 - mvn test
 
 notifications:
@@ -26,6 +26,6 @@ notifications:
     recipients:
     - eajazali.mahaboobbasha@pearson.com
     - veeramani.balagurusamy@pearson.com
-    on_success: never
+    on_success: always
     on_failure: always
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476

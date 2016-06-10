@@ -45,7 +45,7 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
                         <suiteXmlFile>elements_sdk.xml</suiteXmlFile>
-                        <!--<suiteXmlFile>origami_v2.xml</suiteXmlFile>-->
+                         <!--<suiteXmlFile>origami_v2.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

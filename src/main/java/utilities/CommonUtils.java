@@ -52,6 +52,19 @@ public class CommonUtils {
         webElement.click();
     }
 
+    //click using js
+    public void clickUsingJS(By element){
+        webElement = driver.findElement(element);
+        js= (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();", webElement);
+    }
+
+    public void clickUsingJS(By element, String mobile){
+        webElement = appium.findElement(element);
+        js= (JavascriptExecutor)appium;
+        js.executeScript("arguments[0].click();", webElement);
+    }
+
     //send keys
     public void sendKeys(By element, String text) {
         webElement = driver.findElement(element);
