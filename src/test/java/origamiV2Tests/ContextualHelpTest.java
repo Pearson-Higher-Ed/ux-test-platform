@@ -72,7 +72,7 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Open Contextual Help Thru AppHeader Modes", groups = {"desktop-ci", "origamiV2"}, dataProvider = "ConxHelp with AppHeader Data")
+    @Test(testName = "Open Contextual Help Thru AppHeader Modes", groups = {"desktop-regression", "origamiV2"}, dataProvider = "ConxHelp with AppHeader Data")
     private void openThruAppHeaderSignedOutModeTest(String appHeaderMode, String url) throws Exception {
 
         commonUtils.getUrl(url);
@@ -82,7 +82,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Display Student only help topics", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Display Student only help topics", groups = {"desktop-regression", "origamiV2"})
     private void displayStudentHelpTopicsTest() throws Exception {
 
         int i;
@@ -97,7 +97,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Display Instructor only help topics", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Display Instructor only help topics", groups = {"desktop-regression", "origamiV2"})
     private void displayInstructorHelpTopicsTest() throws Exception {
 
         readInitialConfig(contextualHelpJSFilePath);
@@ -120,7 +120,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify Contextual Help Drawer elements", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify Contextual Help Drawer elements", groups = {"desktop-regression", "origamiV2"})
     private void verifyContextualHelpDrawerTest() throws Exception {
 
         int i;
@@ -143,7 +143,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify X button functionality", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify X button functionality", groups = {"desktop-regression", "origamiV2"})
     private void verifyXButtonTest() throws Exception {
 
         commonUtils.getUrl(contextualHelpUrl);
@@ -170,7 +170,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isHelpContentTopicDetailVisible);
     }
 
-    @Test(testName = "Verify Toggle Contextual Help Drawer", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify Toggle Contextual Help Drawer", groups = {"desktop-regression", "origamiV2"})
     private void toggleContextualHelpDrawerTest() throws Exception {
 
         int i;
@@ -187,7 +187,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify Back to Help Topics link functionaliy", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify Back to Help Topics link functionaliy", groups = {"desktop-regression", "origamiV2"})
     private void backToHelpTopicsTest() throws Exception {
 
         int i;
@@ -211,7 +211,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify one help topic details", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify one help topic details", groups = {"desktop-regression", "origamiV2"})
     private void verifyOneHelpTopicDetailsTest() throws Exception {
 
         commonUtils.getUrl(contextualHelpUrl);
@@ -225,29 +225,29 @@ public class ContextualHelpTest extends BaseClass {
     }
 
 
-    @Test(testName = "Verify open and close state of contextual help drawer", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify open and close state of contextual help drawer", groups = {"desktop-regression", "origamiV2"})
     private void verifyOpenCloseStateTest() throws Exception {
         String demoText;
         commonUtils.getUrl(contextualHelpUrl);
         //open via clicking help
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(500);
+        Thread.sleep(1000);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is opened", "Open method is NOT eventing right"));
         //close via clicking help
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(500);
+        Thread.sleep(1000);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
         //close via clicking X button
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton);
-        Thread.sleep(500);
+        Thread.sleep(1000);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
     }
 
-    @Test(testName = "Verify open one specific Help topic only", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify open one specific Help topic only", groups = {"desktop-regression", "origamiV2"})
     private void openSpecificHelpTopicTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
@@ -278,7 +278,7 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"desktop-regression", "origamiV2"})
     private void openAndThenRemoveHelpTopicsTest(String noOfTopics, String topicToBeRemoved) throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);

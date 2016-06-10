@@ -112,7 +112,7 @@ public class AppHeaderTest extends BaseClass {
      * Signed Out Mode Tests *
      ***************************/
 
-    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression", "origamiV2"})
     private void signedOutModeDefaultTest() {
 
         commonUtils.getUrl(signOutModeUrl);
@@ -123,7 +123,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "SignedOutMode - Show Login Controls", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Show Login Controls", groups = {"desktop-regression", "origamiV2"})
     private void signedOutModeShowLoginControlsTest() throws Exception {
 
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
@@ -141,7 +141,7 @@ public class AppHeaderTest extends BaseClass {
 
     }
 
-    @Test(testName = "SignedOutMode - Hide Login Controls", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Hide Login Controls", groups = {"desktop-regression", "origamiV2"})
     private void signedOutModeHideLoginControlsTest() throws Exception {
 
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
@@ -158,7 +158,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void pearsonLogoClickableForShowLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
@@ -173,7 +173,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void pearsonLogoClickableForHideLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
@@ -188,7 +188,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "SignedOutMode - Is Help Link Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Is Help Link Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void helpLinkClickableForShowLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
@@ -203,7 +203,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "SignedOutMode - Is Help Link Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "SignedOutMode - Is Help Link Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void helpLinkClickableForHideLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
@@ -231,7 +231,7 @@ public class AppHeaderTest extends BaseClass {
      * Basic Mode Tests *
      *************************/
 
-    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-regression", "origamiV2"})
     private void basicModeDesktopViewDefaultTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -256,7 +256,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Default Basic Mode in Mobile View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Basic Mode in Mobile View", groups = {"desktop-regression", "origamiV2"})
     private void basicModeMobileViewDefaultTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -283,7 +283,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Pearson Logo Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void pearsonLogoClickableForBasicModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(basicModeUrl);
@@ -292,7 +292,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Help Link Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Is Help Link Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void helpLinkClickableForBasicModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(basicModeUrl);
@@ -301,7 +301,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is My Account Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Is My Account Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void myAccountClickableForBasicModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(basicModeUrl);
@@ -311,7 +311,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Sign Out Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Is Sign Out Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void signOutClickableForBasicModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(basicModeUrl);
@@ -321,7 +321,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - User Menu Test", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - User Menu Test", groups = {"desktop-regression", "origamiV2"})
     private void userMenuForBasicModeTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -357,7 +357,7 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop-ci", "origamiV2"}, priority = 1)
+    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop-regression", "origamiV2"}, priority = 1)
     private void addCoursesForBasicModeTest(String noOfCourse, String courses) throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -390,7 +390,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression", "origamiV2"})
     private void listAllCoursesInBasicModeTest() throws Exception {
 
         String[] arr = {"Physics", "Chemistry", "Maths", "", "My Account", "Sign Out"};
@@ -419,7 +419,7 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.setWindowSize(768, 800);
     }
 
-    @Test(testName = "BasicMode - Remove one course", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Remove one course", groups = {"desktop-regression", "origamiV2"})
     private void removeOneCourseForBasicModeTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -455,7 +455,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-regression", "origamiV2"})
     private void zeroCoursesForBasicModeTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -480,7 +480,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Truncate course names", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Truncate course names", groups = {"desktop-regression", "origamiV2"})
     private void truncateCourseNameForBasicModeTest() throws Exception {
 
         readInitialConfig(basicJSFilePath);
@@ -503,7 +503,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Course Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "BasicMode - Is Course Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void courseClickableForBasicModeTest() throws IOException, InterruptedException {
 
         readInitialConfig(basicJSFilePath);
@@ -551,7 +551,7 @@ public class AppHeaderTest extends BaseClass {
      * Course Mode Tests *
      *************************/
 
-    @Test(testName = "Default Course Mode in Desktop View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Course Mode in Desktop View", groups = {"desktop-regression", "origamiV2"})
     private void courseModeDesktopViewDefaultTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -577,7 +577,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Default Course Mode in Mobile View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Course Mode in Mobile View", groups = {"desktop-regression", "origamiV2"})
     private void courseModeMobileViewDefaultTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -604,7 +604,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - Is Pearson Logo Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void pearsonLogoClickableForCourseModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(courseModeUrl);
@@ -613,7 +613,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - Is Help Link Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is Help Link Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void helpLinkClickableForCourseModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(courseModeUrl);
@@ -622,7 +622,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - Is My Account Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is My Account Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void myAccountClickableForCourseModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(courseModeUrl);
@@ -632,7 +632,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - Is Sign Out Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is Sign Out Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void signOutClickableForCourseModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(courseModeUrl);
@@ -642,7 +642,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - User Menu Test", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - User Menu Test", groups = {"desktop-regression", "origamiV2"})
     private void userMenuForCourseModeTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -677,7 +677,7 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "CourseMode - Add courses", dataProvider = "CourseMode-Add Course items", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Add courses", dataProvider = "CourseMode-Add Course items", groups = {"desktop-regression", "origamiV2"})
     private void addCourseItemsForCourseModeTest(String noOfItems, String items) throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -712,7 +712,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - List all courses in order", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - List all courses in order", groups = {"desktop-regression", "origamiV2"})
     private void listAllCourseNavItemsInCourseModeTest() throws Exception {
 
         String[] arrCourses = {"All courses", "", "", "My Account", "Sign Out"};
@@ -757,7 +757,7 @@ public class AppHeaderTest extends BaseClass {
         writeInitialConfig(courseJSFilePath);
     }
 
-    @Test(testName = "CourseMode - Remove one nav item", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Remove one nav item", groups = {"desktop-regression", "origamiV2"})
     private void removeOneCourseNavItemForCourseModeTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -798,7 +798,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "CourseMode - Remove All course", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Remove All course", groups = {"desktop-regression", "origamiV2"})
     private void zeroCoursesForCourseModeTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -819,7 +819,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(courseNavItemAdded);
     }
 
-    @Test(testName = "CourseMode - Truncate course Nav Item names", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Truncate course Nav Item names", groups = {"desktop-regression", "origamiV2"})
     private void truncateCourseNavItemForCourseModeTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -851,7 +851,7 @@ public class AppHeaderTest extends BaseClass {
         }
     }
 
-    @Test(testName = "CourseMode - Is Course Nav items Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is Course Nav items Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void courseNavItemClickableForCourseModeTest() throws IOException, InterruptedException {
 
         readInitialConfig(courseJSFilePath);
@@ -891,7 +891,7 @@ public class AppHeaderTest extends BaseClass {
         }
     }
 
-    @Test(testName = "CourseMode - Is Course Nav items Enabled?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "CourseMode - Is Course Nav items Enabled?", groups = {"desktop-regression", "origamiV2"})
     public void courseNavItemEnabledTest() throws Exception {
 
         readInitialConfig(courseJSFilePath);
@@ -928,7 +928,7 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mode - Theme On/Off?", dataProvider = "Set Theme Test Data", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Mode - Theme On/Off?", dataProvider = "Set Theme Test Data", groups = {"desktop-regression", "origamiV2"})
     public void themeForAllModesTest(String mode, String modeUrl, String JSFilePath, String defaultConfig, String config, String theme) throws Exception {
 
         readInitialConfig(JSFilePath);
@@ -987,7 +987,7 @@ public class AppHeaderTest extends BaseClass {
     /*************************
      * Integration Mode Tests *
      *************************/
-    @Test(testName = "Default Integration Mode in Desktop View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Integration Mode in Desktop View", groups = {"desktop-regression", "origamiV2"})
     private void integrationModeDesktopViewDefaultTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
@@ -997,7 +997,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Default Integration Mode in Mobile View", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Default Integration Mode in Mobile View", groups = {"desktop-regression", "origamiV2"})
     private void integrationModeMobileViewDefaultTest() throws Exception {
 
         commonUtils.setWindowSize(767, 800);
@@ -1009,7 +1009,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void pearsonLogoClickableForIntegModeTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
@@ -1018,7 +1018,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"desktop-regression", "origamiV2"})
     private void helpLinkClickableForIntegModeTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
