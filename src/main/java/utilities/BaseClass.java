@@ -13,8 +13,9 @@ import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
 import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -41,8 +42,8 @@ public class BaseClass {
     public static ContextualHelpPageObjects conxHelpPgObj;
     public static CalendarPageObjects clndrPgObj;
     public static CommonUtils commonUtils;
-    final static String USERNAME = System.getenv("SAUCE_USERNAME");
-    final static String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+    final static String USERNAME = SauceParam.SAUCE_USERNAME;
+    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
 
@@ -70,6 +71,7 @@ public class BaseClass {
                 }
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
+                caps.setCapability("maxDuration", "10800");
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 driver = new RemoteWebDriver(new URL(URL), caps);
@@ -90,6 +92,7 @@ public class BaseClass {
                 caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);
                 caps.setCapability(MobileCapabilityType.BROWSER_NAME, mobBrowser);
                 caps.setCapability(MobileCapabilityType.APPIUM_VERSION, appiumVer);
+                caps.setCapability("maxDuration", "10800");
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 if (appiumDriver.equalsIgnoreCase("iOS")) {
@@ -111,16 +114,54 @@ public class BaseClass {
 
         //The below else condition is to launch browser driver on your local machine. In elements_sdk.xml -> set runEnv != sauce
         else {
-            if (localBrowser.equals("firefox")) {
-                driver = new FirefoxDriver();
-                respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-                typoPgObj = new TypographyPageObjects(driver);
-                btnPgObj = new ButtonsPageObjects(driver);
-                appHeaderPgObj = new AppHeaderPageObjects(driver);
-                conxHelpPgObj = new ContextualHelpPageObjects(driver);
-                inputsPgObj = new InputsPageObjects(driver);
-                commonUtils = new CommonUtils(driver);
-                driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            if (desktop.equals("on")) {
+                if (localBrowser.equals("firefox")) {
+                    driver = new FirefoxDriver();
+                    respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+                    typoPgObj = new TypographyPageObjects(driver);
+                    btnPgObj = new ButtonsPageObjects(driver);
+                    appHeaderPgObj = new AppHeaderPageObjects(driver);
+                    conxHelpPgObj = new ContextualHelpPageObjects(driver);
+                    inputsPgObj = new InputsPageObjects(driver);
+                    clndrPgObj = new CalendarPageObjects(driver);
+                    commonUtils = new CommonUtils(driver);
+                    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                }
+                if (localBrowser.equals("chrome")) {
+                    CommonUtils.setupChromeDriver();
+                    driver = new ChromeDriver();
+                    respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+                    typoPgObj = new TypographyPageObjects(driver);
+                    btnPgObj = new ButtonsPageObjects(driver);
+                    appHeaderPgObj = new AppHeaderPageObjects(driver);
+                    conxHelpPgObj = new ContextualHelpPageObjects(driver);
+                    inputsPgObj = new InputsPageObjects(driver);
+                    clndrPgObj = new CalendarPageObjects(driver);
+                    commonUtils = new CommonUtils(driver);
+                    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                }
+            }
+            if (mobile.equals("on")) {
+                caps.setCapability(MobileCapabilityType.DEVICE_NAME, mobDeviceName);
+                caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);
+                caps.setCapability(MobileCapabilityType.BROWSER_NAME, mobBrowser);
+                caps.setCapability(MobileCapabilityType.APPIUM_VERSION, appiumVer);
+                caps.setCapability("maxDuration", "10800");
+                caps.setCapability("tunnel-identifier", SauceParam.SAUCE_TUNNEL);
+                if (appiumDriver.equalsIgnoreCase("iOS")) {
+                    appium = new IOSDriver(new URL(URL), caps);
+                } else if (appiumDriver.equalsIgnoreCase("android")) {
+                    appium = new AndroidDriver(new URL(URL), caps);
+                }
+                respPgObj = new ResponsiveUtilitiesPageObjects(appium);
+                typoPgObj = new TypographyPageObjects(appium);
+                btnPgObj = new ButtonsPageObjects(appium);
+                appHeaderPgObj = new AppHeaderPageObjects(appium);
+                conxHelpPgObj = new ContextualHelpPageObjects(appium);
+                inputsPgObj = new InputsPageObjects(appium);
+                clndrPgObj = new CalendarPageObjects(appium);
+                commonUtils = new CommonUtils(appium);
+                appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
         }
     }
@@ -128,10 +169,10 @@ public class BaseClass {
     @Parameters({"mobile"})
     @AfterSuite(alwaysRun = true)
     public void tearDown(String mobile) {
-        if (mobile.equals("on")) {        	
-        	appium.closeApp();
+        if (mobile.equals("on")) {
+            appium.closeApp();
         } else {
-        	driver.close();
+            driver.close();
             driver.quit();
         }
     }

@@ -8,10 +8,13 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.testng.SkipException;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * Created by umahaea on 1/26/16.
@@ -247,6 +250,30 @@ public class CommonUtils {
         } else {
             elementVisible = false;
             return elementVisible;
+        }
+    }
+
+    public static void setupChromeDriver() {
+
+        String ChromProp = "webdriver.chrome.driver";
+        File targetChromedriver = null;
+        String osType = System.getProperty("os.name");
+        try {
+            if (osType.contains("Windows")) {
+                targetChromedriver = new File(SauceParam.TEST_ROOT_DIR + File.separator + "drivers" + File.separator
+                        + "chrome" + File.separator + "win" + File.separator + "chromedriver.exe");
+            } else if (osType.contains("Mac")) {
+                targetChromedriver = new File(SauceParam.TEST_ROOT_DIR + File.separator + "drivers" + File.separator
+                        + "chrome" + File.separator + "mac" + File.separator + "chromedriver");
+            }
+
+            if (targetChromedriver.exists()) {
+                System.setProperty(ChromProp, targetChromedriver.getAbsolutePath());
+            } else {
+                throw new SkipException("Issue with loading chrome driver file, ensure the file exists in the project");
+            }
+        } catch (Exception e) {
+            throw new SkipException("Issue with loading chrome driver file, ensure the file exists in the project");
         }
     }
 }

@@ -17,13 +17,13 @@ before_script:
 script:
 - chmod 777 ./src/main/shell_scripts/elements.sh
 - ./src/main/shell_scripts/elements.sh
-- chmod 777 ./src/main/shell_scripts/origami-v2/origami-v2.sh
-- ./src/main/shell_scripts/origami-v2/origami-v2.sh
+# - chmod 777 ./src/main/shell_scripts/origami-v2/origami-v2.sh
+# - ./src/main/shell_scripts/origami-v2/origami-v2.sh
 - mvn test
 
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    - pearson-design-accelerator@pearson.com
     on_success: never
     on_failure: always

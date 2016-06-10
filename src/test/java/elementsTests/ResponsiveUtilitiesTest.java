@@ -42,7 +42,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop"})
+    @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop-ci","desktop-regression"})
     private void lgTest(int width, int height, By element, String visible, String color, String display) throws InterruptedException {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -60,7 +60,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop"})
+    @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop-ci","desktop-regression"})
     private void xlTest(int width, int height, By element, String visible, String color, String display) {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -82,7 +82,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop"})
+    @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop-ci","desktop-regression"})
     private void smTest(int width, int height, By element, String visible, String color, String display) {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -105,7 +105,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop"})
+    @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop-ci","desktop-regression"})
     private void mdTest(int width, int height, By element, String visible, String color, String display) {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -131,7 +131,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop"})
+    @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop-ci","desktop-regression"})
     private void xsTest(int width, int height, By element, String visible, String color, String display) {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -185,7 +185,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile"})
+    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6PlusTestData", groups = {"mobile-regression"})
     private void iPhone6PlusResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -207,7 +207,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile"})
+    @Test(testName = "iPhone 6", dataProvider = "iPhone6TestData", groups = {"mobile-regression"})
     private void iPhone6ResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPhone 6"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6'");
@@ -229,7 +229,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 5s", dataProvider = "iPhone5SPlusTestData", groups = {"mobile"})
+    @Test(testName = "iPhone 5s", dataProvider = "iPhone5SPlusTestData", groups = {"mobile-regression"})
     private void iPhone5SResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPhone 5s"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 5s'");
@@ -251,7 +251,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile"})
+    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile-regression"})
     private void iPadAirResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -271,7 +271,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile"})
+    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile-regression"})
     private void iPadProResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
@@ -291,7 +291,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile"})
+    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile-regression"})
     private void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
@@ -311,7 +311,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "LG Nexus 4 Emulator", dataProvider = "nexus4TestData", groups = {"mobile"})
+    @Test(testName = "LG Nexus 4 Emulator", dataProvider = "nexus4TestData", groups = {"mobile-regression"})
     private void nexus4ResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");

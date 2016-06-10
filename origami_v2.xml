@@ -23,7 +23,7 @@
     <test name="origamiV2Tests">
         <groups>
             <run>
-                <include name="desktop"/>
+                <include name="desktop-ci"/>
             </run>
         </groups>
         <classes>
