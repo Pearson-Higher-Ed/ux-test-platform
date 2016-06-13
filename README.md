@@ -47,7 +47,7 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
 mvn test
 </pre>
 
-NOTE: Mobile tests runs only on Sauce Machine.
+NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered locally to run on Sauce via Sauce Connect. Follow this <a href="https://neo.pearson.com/docs/DOC-617300">link</a> for detailed steps.
 
 ##How to run your tests in sauce:
   * __elements sdk__:
