@@ -19,6 +19,17 @@ In _elements_sdk.xml_ set the below values, and leave the rest to default:
             &lt;/run&gt;
         &lt;/groups&gt;
 </pre>
+If you want to run the complete desktop tests, use the below configuration
+<pre>
+    &lt;parameter name="runEnv" value="local"&gt;&lt;/parameter&gt;
+    &lt;parameter name="desktop" value="on">&lt;/parameter&gt;
+    &lt;parameter name="mobile" value="off"&gt;
+        &lt;groups&gt;
+            &lt;run&gt;
+                &lt;include name="desktop-regression"/&gt;
+            &lt;/run&gt;
+        &lt;/groups&gt;
+</pre>
 
 #####Pre-requisite to run tests on local:
   * __elements sdk__:
@@ -45,23 +56,33 @@ NOTE: Mobile tests runs only on Sauce Machine.
 <pre>
   &lt;parameter name="runEnv" value="sauce"&gt;&lt;/parameter&gt;
 </pre>
-    - If you want to run desktop tests:
+3. If you want to run desktop tests - Only CI tests
     <pre>
     &lt;parameter name="desktop" value="on"&gt;&lt;/parameter&gt;
     &lt;parameter name="mobile" value="off"&gt;&lt;/parameter&gt;
      &lt;groups&gt;
             &lt;run&gt;
-                &lt;include name="desktop"/&gt;
+                &lt;include name="desktop-ci"/&gt;
             &lt;/run&gt;
         &lt;/groups&gt;
     </pre>
-    - If you want to run mobile tests:
+4. If you want to run desktop tests - Complete set of regression tests
+    <pre>
+    &lt;parameter name="desktop" value="on"&gt;&lt;/parameter&gt;
+    &lt;parameter name="mobile" value="off"&gt;&lt;/parameter&gt;
+     &lt;groups&gt;
+            &lt;run&gt;
+                &lt;include name="desktop-regression"/&gt;
+            &lt;/run&gt;
+        &lt;/groups&gt;
+    </pre>
+5. If you want to run mobile tests:
     <pre>
     &lt;parameter name="desktop" value="off"&gt;&lt;/parameter&gt;
     &lt;parameter name="mobile" value="on"&gt;&lt;/parameter&gt;
      &lt;groups&gt;
             &lt;run&gt;
-                &lt;include name="mobile"/&gt;
+                &lt;include name="mobile-regression"/&gt;
             &lt;/run&gt;
         &lt;/groups&gt;
     </pre>
