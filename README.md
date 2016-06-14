@@ -47,9 +47,9 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
 mvn test
 </pre>
 
-NOTE: Mobile tests runs only on Sauce Machine.
+NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered locally to run on Sauce via Sauce Connect. Follow this <a href="https://neo.pearson.com/docs/DOC-617300">link</a> for detailed steps.
 
-##How to run your tests in sauce:
+##How to run your tests in sauce via Travis CI:
   * __elements sdk__:
 1. In pom.xml uncomment _&lt;suiteXmlFile&gt;elements_sdk.xml&lt;/suiteXmlFile&gt;_ and comment the other _&lt;suiteXmlFile&gt;_ to run only elements sdk tests.
 2. Leave the default _elements_sdk.xml_ settings. Make sure to have the below parameters always set to:
