@@ -25,6 +25,11 @@ public class CalendarPageObjects {
 	public By crntMnthDateout=By.id("curnt_mnth_day_out");
 	public By crntMnthDateslct=By.id("curnt_mnth_day_slc");
 	public By crntMnthDatedis=By.id("curnt_mnth_day_dis");
+	public By crntMnthDateSpec=By.id("curnt_mnth_day_spec");
+	public By crntMnthDateHihSpec=By.id("curnt_mnth_day_hig_spec");
+	public By crntMnthDateoutSpec=By.id("curnt_mnth_day_out_spec");
+	public By crntMnthDateslctSpec=By.id("curnt_mnth_day_slc_spec");
+	public By crntMnthDatedisSpec=By.id("curnt_mnth_day_dis_spec");
 	public By iconLeft=By.id("icon_left");
 	public By iconRight=By.id("icon_right");
 	public By daySunday=By.id("day_sunday");
