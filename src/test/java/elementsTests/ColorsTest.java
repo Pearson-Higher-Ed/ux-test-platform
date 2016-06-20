@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * Created by vbalave on 6/15/16.
@@ -63,10 +64,13 @@ public class ColorsTest extends BaseClass {
 
         chooseEnv();
         String cssPropertyType = cssProperty;
+        String elementId = element.toString().substring(7, (element.toString().length()));
         cssProperty = commonUtils.getCSSValue(element, cssProperty);
         iSCSSMatches = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCssValue);
         if (iSCSSMatches == false) {
-            log.info("'" + cssPropertyType + "' :for Disabled Text Area is not as per the spec");
+            log.info(cssPropertyType + " for "+ elementId + " is not as per the spec");
+            log.info("Expected CSS Value : "+ Arrays.toString(expectedCssValue));
+            log.info("Actual CSS Value : "+ cssProperty);
         }
         Assert.assertTrue(iSCSSMatches);
 
