@@ -1,5 +1,6 @@
 package utilities;
 
+import elements.elementsPageObjects.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -22,12 +23,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
-import elements.elementsPageObjects.ButtonsPageObjects;
-import elements.elementsPageObjects.CalendarPageObjects;
-import elements.elementsPageObjects.InputsPageObjects;
-import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
-import elements.elementsPageObjects.TypographyPageObjects;
-
 /**
  * Created by umahaea on 2/3/16.
  */
@@ -43,6 +38,7 @@ public class BaseClass {
     public static ContextualHelpPageObjects conxHelpPgObj;
     public static CalendarPageObjects clndrPgObj;
     public static ComponentArchetype compArchtypePgObj;
+    public static ColorsPageObjects colorsPgObj;
     public static CommonUtils commonUtils;
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
@@ -85,6 +81,7 @@ public class BaseClass {
                 inputsPgObj = new InputsPageObjects(driver);
                 clndrPgObj = new CalendarPageObjects(driver);
                 compArchtypePgObj= new ComponentArchetype(driver);
+                colorsPgObj = new ColorsPageObjects(driver);
                 commonUtils = new CommonUtils(driver);
                 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -111,6 +108,7 @@ public class BaseClass {
                 inputsPgObj = new InputsPageObjects(appium);
                 clndrPgObj = new CalendarPageObjects(appium);
                 compArchtypePgObj= new ComponentArchetype(appium);
+                colorsPgObj = new ColorsPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
                 appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }
@@ -128,6 +126,7 @@ public class BaseClass {
                     conxHelpPgObj = new ContextualHelpPageObjects(driver);
                     inputsPgObj = new InputsPageObjects(driver);
                     clndrPgObj = new CalendarPageObjects(driver);
+                    colorsPgObj = new ColorsPageObjects(driver);
                     commonUtils = new CommonUtils(driver);
                     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
                 }
@@ -141,6 +140,7 @@ public class BaseClass {
                     conxHelpPgObj = new ContextualHelpPageObjects(driver);
                     inputsPgObj = new InputsPageObjects(driver);
                     clndrPgObj = new CalendarPageObjects(driver);
+                    colorsPgObj = new ColorsPageObjects(driver);
                     commonUtils = new CommonUtils(driver);
                     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
                 }
@@ -164,6 +164,7 @@ public class BaseClass {
                 conxHelpPgObj = new ContextualHelpPageObjects(appium);
                 inputsPgObj = new InputsPageObjects(appium);
                 clndrPgObj = new CalendarPageObjects(appium);
+                colorsPgObj = new ColorsPageObjects(appium);
                 commonUtils = new CommonUtils(appium);
                 appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             }

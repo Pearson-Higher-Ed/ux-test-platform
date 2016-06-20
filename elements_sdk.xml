@@ -10,7 +10,7 @@
     <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
     <parameter name="sauceBrowserVer" value="48.0"></parameter><!-- browser version on sauce machine -->
-    <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
+    <parameter name="localBrowser" value="chrome"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
     <parameter name="mobile" value="off"></parameter><!-- set the tests to run on mobile devices -->
