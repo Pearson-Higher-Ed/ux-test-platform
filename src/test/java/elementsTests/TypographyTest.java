@@ -32,7 +32,7 @@ public class TypographyTest extends BaseClass {
     private final String fontFamilyChrome="'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace";
     private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
-
+    
     @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
     private void TypographyTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
@@ -42,7 +42,7 @@ public class TypographyTest extends BaseClass {
         mBrowser = mobBrowser;
         setMobile = mobile;
     }
-
+    
     private void chooseEnv() {
         if (env.equals("sauce")) {
             commonUtils.getUrl(url);

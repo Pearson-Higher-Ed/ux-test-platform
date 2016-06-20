@@ -139,11 +139,11 @@ public class CalendarTest extends BaseClass {
 	// Feature: Date Test
 	@DataProvider(name = "DateTestData")
 	private Object[][] getDateTestData() {
-		return new Object[][] { { clndrPgObj.crntMnthDate, "16px", "18px" },
-				{ clndrPgObj.crntMnthDatedis, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateHih, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateout, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateslct, "16px", "18px" }, };
+		return new Object[][] { { clndrPgObj.crntMnthDateSpec, "16px", "18px" },
+				{ clndrPgObj.crntMnthDatedisSpec, "16px", "18px" },
+				{ clndrPgObj.crntMnthDateHihSpec, "16px", "18px" },
+				{ clndrPgObj.crntMnthDateoutSpec, "16px", "18px" },
+				{ clndrPgObj.crntMnthDateslctSpec, "16px", "18px" }, };
 	}
 
 	// Date Test-1
@@ -219,8 +219,8 @@ public class CalendarTest extends BaseClass {
 	// Feature:Hover Month Control Test
 	@DataProvider(name = "HoverMonthControlData")
 	private Object[][] getHoverMonthControlData() {
-		return new Object[][] { { clndrPgObj.iconLeft, "February" },
-				{ clndrPgObj.iconRight, "April" }, };
+		return new Object[][] { { clndrPgObj.iconLeft, "Prev" },
+				{ clndrPgObj.iconRight, "Next" }, };
 	}
 
 	// Hover Month Control Test
@@ -366,25 +366,25 @@ public class CalendarTest extends BaseClass {
 	@DataProvider(name = "Mobile Date TestData")
 	private Object[][] getMobileDateTestData() {
 		return new Object[][] {
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDate, "16px",
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateSpec, "16px",
 						"18px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedis,
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedisSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHih,
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHihSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateout,
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateoutSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslct,
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslctSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDate, "16px",
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateSpec, "16px",
 						"18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedis,
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedisSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHih,
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHihSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateout,
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateoutSpec,
 						"16px", "18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslct,
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslctSpec,
 						"16px", "18px" }, };
 	}
 
@@ -492,10 +492,10 @@ public class CalendarTest extends BaseClass {
 	@DataProvider(name = "Mobile HoverMonth ControlData")
 	private Object[][] getMobileHoverMonthControlData() {
 		return new Object[][] {
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconLeft, "February" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconRight, "April" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconLeft, "February" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconRight, "April" }, };
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconLeft, "Prev" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconRight, "Next" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconLeft, "Prev" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconRight, "Next" }, };
 	}
 
 	// Hover Month Control Test
@@ -707,9 +707,9 @@ public class CalendarTest extends BaseClass {
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding) {
-		String actborder = commonUtils.getCSSValue(element, "border-top-width");
+		String actborder = commonUtils.getCSSValue(element, "border-bottom-width");
 		String actbrdrColor = commonUtils.getCSSValue(element,
-				"border-left-color");
+				"border-bottom-color");
 		String actbrdrHeight = commonUtils.getCSSValue(element, "line-height");
 		String actbrdrLeftPadding = commonUtils.getCSSValue(element,
 				"padding-left");
@@ -749,10 +749,10 @@ public class CalendarTest extends BaseClass {
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding,
 			String device) {
-		String actborder = commonUtils.getCSSValue(element, "border-top-width",
+		String actborder = commonUtils.getCSSValue(element, "border-bottom-width",
 				device);
 		String actbrdrColor = commonUtils.getCSSValue(element,
-				"border-left-color", device);
+				"border-bottom-color", device);
 		String actbrdrHeight = commonUtils.getCSSValue(element, "line-height",
 				device);
 		String actbrdrLeftPadding = commonUtils.getCSSValue(element,
