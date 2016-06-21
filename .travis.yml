@@ -28,3 +28,4 @@ notifications:
     - veeramani.balagurusamy@pearson.com
     on_success: never
     on_failure: always
+  hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476
