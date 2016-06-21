@@ -10,9 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
-import origamiV2.origamiV2PageObjects.ComponentArchetype;
-import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
+import origamiV2.origamiV2PageObjects.*;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +20,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
+
 
 /**
  * Created by umahaea on 2/3/16.
@@ -36,10 +35,13 @@ public class BaseClass {
     public static ButtonsPageObjects btnPgObj;
     public static AppHeaderPageObjects appHeaderPgObj;
     public static ContextualHelpPageObjects conxHelpPgObj;
+    public static DrawerPageObjects drawerPgObj;
     public static CalendarPageObjects clndrPgObj;
     public static ComponentArchetype compArchtypePgObj;
     public static ColorsPageObjects colorsPgObj;
     public static CommonUtils commonUtils;
+    public static String setDesktop = "";
+    public static String setMobile = "";
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
@@ -50,6 +52,8 @@ public class BaseClass {
     protected void setUp(String runEnv, String travis, String desktop, String platform, String sauceBrowser, String sauceBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
 
         caps = new DesiredCapabilities();
+        setDesktop = desktop;
+        setMobile = mobile;
 
         //The below conditions is to set capabilities for desktop run and in elements_sdk/compounds_sdk/origami_v2/.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
         if (runEnv.equals("sauce")) {
@@ -73,17 +77,7 @@ public class BaseClass {
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
                 driver = new RemoteWebDriver(new URL(URL), caps);
-                respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-                typoPgObj = new TypographyPageObjects(driver);
-                btnPgObj = new ButtonsPageObjects(driver);
-                appHeaderPgObj = new AppHeaderPageObjects(driver);
-                conxHelpPgObj = new ContextualHelpPageObjects(driver);
-                inputsPgObj = new InputsPageObjects(driver);
-                clndrPgObj = new CalendarPageObjects(driver);
-                compArchtypePgObj= new ComponentArchetype(driver);
-                colorsPgObj = new ColorsPageObjects(driver);
-                commonUtils = new CommonUtils(driver);
-                driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                includePageObjects();
             }
 
             //The below conditions is to set capabilities for mob device and in elements_sdk/compounds_sdk/origami_v2/.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
@@ -100,17 +94,7 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
-                respPgObj = new ResponsiveUtilitiesPageObjects(appium);
-                typoPgObj = new TypographyPageObjects(appium);
-                btnPgObj = new ButtonsPageObjects(appium);
-                appHeaderPgObj = new AppHeaderPageObjects(appium);
-                conxHelpPgObj = new ContextualHelpPageObjects(appium);
-                inputsPgObj = new InputsPageObjects(appium);
-                clndrPgObj = new CalendarPageObjects(appium);
-                compArchtypePgObj= new ComponentArchetype(appium);
-                colorsPgObj = new ColorsPageObjects(appium);
-                commonUtils = new CommonUtils(appium);
-                appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                includePageObjects();
             }
         }
 
@@ -119,30 +103,12 @@ public class BaseClass {
             if (desktop.equals("on")) {
                 if (localBrowser.equals("firefox")) {
                     driver = new FirefoxDriver();
-                    respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-                    typoPgObj = new TypographyPageObjects(driver);
-                    btnPgObj = new ButtonsPageObjects(driver);
-                    appHeaderPgObj = new AppHeaderPageObjects(driver);
-                    conxHelpPgObj = new ContextualHelpPageObjects(driver);
-                    inputsPgObj = new InputsPageObjects(driver);
-                    clndrPgObj = new CalendarPageObjects(driver);
-                    colorsPgObj = new ColorsPageObjects(driver);
-                    commonUtils = new CommonUtils(driver);
-                    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                    includePageObjects();
                 }
                 if (localBrowser.equals("chrome")) {
                     CommonUtils.setupChromeDriver();
                     driver = new ChromeDriver();
-                    respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-                    typoPgObj = new TypographyPageObjects(driver);
-                    btnPgObj = new ButtonsPageObjects(driver);
-                    appHeaderPgObj = new AppHeaderPageObjects(driver);
-                    conxHelpPgObj = new ContextualHelpPageObjects(driver);
-                    inputsPgObj = new InputsPageObjects(driver);
-                    clndrPgObj = new CalendarPageObjects(driver);
-                    colorsPgObj = new ColorsPageObjects(driver);
-                    commonUtils = new CommonUtils(driver);
-                    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                    includePageObjects();
                 }
             }
             if (mobile.equals("on")) {
@@ -157,17 +123,36 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
-                respPgObj = new ResponsiveUtilitiesPageObjects(appium);
-                typoPgObj = new TypographyPageObjects(appium);
-                btnPgObj = new ButtonsPageObjects(appium);
-                appHeaderPgObj = new AppHeaderPageObjects(appium);
-                conxHelpPgObj = new ContextualHelpPageObjects(appium);
-                inputsPgObj = new InputsPageObjects(appium);
-                clndrPgObj = new CalendarPageObjects(appium);
-                colorsPgObj = new ColorsPageObjects(appium);
-                commonUtils = new CommonUtils(appium);
-                appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                includePageObjects();
             }
+        }
+    }
+
+    public void includePageObjects() {
+        if (setDesktop.equals("on")) {
+            respPgObj = new ResponsiveUtilitiesPageObjects(driver);
+            typoPgObj = new TypographyPageObjects(driver);
+            btnPgObj = new ButtonsPageObjects(driver);
+            appHeaderPgObj = new AppHeaderPageObjects(driver);
+            conxHelpPgObj = new ContextualHelpPageObjects(driver);
+            drawerPgObj = new DrawerPageObjects(driver);
+            inputsPgObj = new InputsPageObjects(driver);
+            clndrPgObj = new CalendarPageObjects(driver);
+            compArchtypePgObj = new ComponentArchetype(driver);
+            commonUtils = new CommonUtils(driver);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        } else if (setMobile.equals("on")) {
+            respPgObj = new ResponsiveUtilitiesPageObjects(appium);
+            typoPgObj = new TypographyPageObjects(appium);
+            btnPgObj = new ButtonsPageObjects(appium);
+            appHeaderPgObj = new AppHeaderPageObjects(appium);
+            conxHelpPgObj = new ContextualHelpPageObjects(appium);
+            drawerPgObj = new DrawerPageObjects(appium);
+            inputsPgObj = new InputsPageObjects(appium);
+            clndrPgObj = new CalendarPageObjects(appium);
+            compArchtypePgObj = new ComponentArchetype(appium);
+            commonUtils = new CommonUtils(appium);
+            appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
     }
 
