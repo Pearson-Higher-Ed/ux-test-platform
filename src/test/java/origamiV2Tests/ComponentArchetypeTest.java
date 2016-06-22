@@ -2,9 +2,13 @@ package origamiV2Tests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utilities.BaseClass;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by umahaea on 6/9/16.
@@ -28,7 +32,7 @@ public class ComponentArchetypeTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-ci", "origamiV2"})
+    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-regression", "origamiV2"})
     private void componentArchetypeDemoTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl);
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder");
@@ -56,5 +60,15 @@ public class ComponentArchetypeTest extends BaseClass {
         translatedText = commonUtils.getAttributeValue(inputElement,"type","mobile");
         isTranslatedText = commonUtils.assertValue(translatedText,expTranslation,"Translated Text for "+target+" is not as per the Spec");*/
         Assert.assertTrue(isPlaceHolderText);
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    private void beforeMethod(Method method) throws Exception {
+        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+    }
+
+    @AfterMethod(alwaysRun = true)
+    private void afterMethod() {
+        System.out.println("_________________________________________________");
     }
 }
