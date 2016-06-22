@@ -62,7 +62,8 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-1
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = { "desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = {
+			"desktop-ci", "desktop-regression" })
 	private void SpacingTest(By element, String padding) {
 		chooseEnv();
 		result = verifySpace(element, padding);
@@ -80,7 +81,8 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-2
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = { "desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = {
+			"desktop-ci", "desktop-regression" })
 	private void DaySpacingTest(By element, String paddingArndDte) {
 		chooseEnv();
 		result = verifySpaceBtwn(element, paddingArndDte);
@@ -127,7 +129,8 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Border Test-1
-	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = { "desktop-ci","desktop-regression"})
+	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = {
+			"desktop-ci", "desktop-regression" })
 	private void BorderTest(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding) {
 		chooseEnv();
@@ -139,18 +142,21 @@ public class CalendarTest extends BaseClass {
 	// Feature: Date Test
 	@DataProvider(name = "DateTestData")
 	private Object[][] getDateTestData() {
-		return new Object[][] { { clndrPgObj.crntMnthDateSpec, "16px", "18px" },
-				{ clndrPgObj.crntMnthDatedisSpec, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateHihSpec, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateoutSpec, "16px", "18px" },
-				{ clndrPgObj.crntMnthDateslctSpec, "16px", "18px" }, };
+		return new Object[][] {
+				{ clndrPgObj.crntMnthDateSpec, "16px", "18px", "10px" },
+				{ clndrPgObj.crntMnthDatedisSpec, "16px", "18px", "10px" },
+				{ clndrPgObj.crntMnthDateHihSpec, "16px", "18px", "10px" },
+				{ clndrPgObj.crntMnthDateoutSpec, "16px", "18px", "10px" },
+				{ clndrPgObj.crntMnthDateslctSpec, "16px", "18px", "10px" }, };
 	}
 
 	// Date Test-1
-	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = { "desktop-ci", "desktop-regression" })
-	private void DateTest(By element, String txtSize, String lnHeight) {
+	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = {
+			"desktop-ci", "desktop-regression" })
+	private void DateTest(By element, String txtSize, String lnHeight,
+			String paddingTop) {
 		chooseEnv();
-		result = verifyDate(element, txtSize, lnHeight);
+		result = verifyDate(element, txtSize, lnHeight, paddingTop);
 		Assert.assertTrue(result);
 	}
 
@@ -193,7 +199,8 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1
-	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = { "desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = {
+			"desktop-ci", "desktop-regression" })
 	private void StateTest(By element, String bckColor, String txtColor) {
 		chooseEnv();
 		result = verifyState(element, bckColor, txtColor);
@@ -219,12 +226,13 @@ public class CalendarTest extends BaseClass {
 	// Feature:Hover Month Control Test
 	@DataProvider(name = "HoverMonthControlData")
 	private Object[][] getHoverMonthControlData() {
-		return new Object[][] { { clndrPgObj.iconLeft, "Prev" },
+		return new Object[][] { { clndrPgObj.iconLeft, "Previous" },
 				{ clndrPgObj.iconRight, "Next" }, };
 	}
 
 	// Hover Month Control Test
-	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = { "desktop-ci","desktop-regression" })
+	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = {
+			"desktop-ci", "desktop-regression" })
 	private void HoverMonthControlTest(By element, String txtMonth) {
 		chooseEnv();
 		result = verifyHoverMonthControl(element, txtMonth);
@@ -275,17 +283,27 @@ public class CalendarTest extends BaseClass {
 	private Object[][] getMobileDaySpacingTestData() {
 		return new Object[][] {
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.dayLbl, "1px 1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDate, "1px 1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHih, "1px 1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedis, "1px 1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateout, "1px 1px" },
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslct, "1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDate,
+						"1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHih,
+						"1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedis,
+						"1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateout,
+						"1px 1px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslct,
+						"1px 1px" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.dayLbl, "1px 1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDate, "1px 1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHih, "1px 1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedis, "1px 1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateout, "1px 1px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslct, "1px 1px" } };
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDate,
+						"1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHih,
+						"1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedis,
+						"1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateout,
+						"1px 1px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslct,
+						"1px 1px" } };
 	}
 
 	// Spacing Test-2
@@ -366,35 +384,35 @@ public class CalendarTest extends BaseClass {
 	@DataProvider(name = "Mobile Date TestData")
 	private Object[][] getMobileDateTestData() {
 		return new Object[][] {
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateSpec, "16px",
-						"18px" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateSpec,
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDatedisSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateHihSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateoutSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.crntMnthDateslctSpec,
-						"16px", "18px" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateSpec, "16px",
-						"18px" },
+						"16px", "18px", "10px" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateSpec,
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDatedisSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateHihSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateoutSpec,
-						"16px", "18px" },
+						"16px", "18px", "10px" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.crntMnthDateslctSpec,
-						"16px", "18px" }, };
+						"16px", "18px", "10px" }, };
 	}
 
 	// Date Test-1- Mobile
 	@Test(enabled = true, testName = "Mobile: Date Test", dataProvider = "Mobile Date TestData", groups = { "mobile-regression" })
 	private void MobileDateTest(ScreenOrientation mode, By element,
-			String txtSize, String lnHeight) {
+			String txtSize, String lnHeight, String paddingTop) {
 		commonUtils.getUrl(url, "mobile");
 		appium.rotate(mode);
-		result = verifyDate(element, txtSize, lnHeight, "mobile");
+		result = verifyDate(element, txtSize, lnHeight, paddingTop, "mobile");
 		Assert.assertTrue(result);
 	}
 
@@ -492,9 +510,9 @@ public class CalendarTest extends BaseClass {
 	@DataProvider(name = "Mobile HoverMonth ControlData")
 	private Object[][] getMobileHoverMonthControlData() {
 		return new Object[][] {
-				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconLeft, "Prev" },
+				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconLeft, "Previous" },
 				{ ScreenOrientation.PORTRAIT, clndrPgObj.iconRight, "Next" },
-				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconLeft, "Prev" },
+				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconLeft, "Previous" },
 				{ ScreenOrientation.LANDSCAPE, clndrPgObj.iconRight, "Next" }, };
 	}
 
@@ -707,7 +725,8 @@ public class CalendarTest extends BaseClass {
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding) {
-		String actborder = commonUtils.getCSSValue(element, "border-bottom-width");
+		String actborder = commonUtils.getCSSValue(element,
+				"border-bottom-width");
 		String actbrdrColor = commonUtils.getCSSValue(element,
 				"border-bottom-color");
 		String actbrdrHeight = commonUtils.getCSSValue(element, "line-height");
@@ -749,8 +768,8 @@ public class CalendarTest extends BaseClass {
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
 			String brdrHeight, String leftPadding, String rightPadding,
 			String device) {
-		String actborder = commonUtils.getCSSValue(element, "border-bottom-width",
-				device);
+		String actborder = commonUtils.getCSSValue(element,
+				"border-bottom-width", device);
 		String actbrdrColor = commonUtils.getCSSValue(element,
 				"border-bottom-color", device);
 		String actbrdrHeight = commonUtils.getCSSValue(element, "line-height",
@@ -781,16 +800,20 @@ public class CalendarTest extends BaseClass {
 
 	}
 
-	private boolean verifyDate(By element, String txtSize, String lnHeight) {
+	private boolean verifyDate(By element, String txtSize, String lnHeight,
+			String paddingTop) {
 		String actltxtsize = commonUtils.getCSSValue(element, "font-size");
 		String actlnHeight = commonUtils.getCSSValue(element, "line-height");
+		String actpdTop = commonUtils.getCSSValue(element, "padding-top");
 
 		boolean result1 = commonUtils.assertValue(actltxtsize, txtSize, element
 				+ " - Font Size is not as in spec");
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHeight,
 				element + " - Line Height is not as in spec");
+		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop, element
+				+ " - Padding-top is not as in spec");
 
-		if (result1 == true && result2 == true)
+		if (result1 == true && result2 == true && result3 == true)
 			result = true;
 		else
 			result = false;
@@ -798,18 +821,22 @@ public class CalendarTest extends BaseClass {
 	}
 
 	private boolean verifyDate(By element, String txtSize, String lnHeight,
-			String device) {
+			String paddingTop, String device) {
 		String actltxtsize = commonUtils.getCSSValue(element, "font-size",
 				device);
 		String actlnHeight = commonUtils.getCSSValue(element, "line-height",
+				device);
+		String actpdTop = commonUtils.getCSSValue(element, "padding-top",
 				device);
 
 		boolean result1 = commonUtils.assertValue(actltxtsize, txtSize, element
 				+ " - Font Size is not as in spec");
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHeight,
 				element + " - Line Height is not as in spec");
+		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop,
+				element + " - Padding-top is not as in spec");
 
-		if (result1 == true && result2 == true)
+		if (result1 == true && result2 == true && result3 == true)
 			result = true;
 		else
 			result = false;
