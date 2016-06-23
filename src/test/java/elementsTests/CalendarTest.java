@@ -174,7 +174,6 @@ public class CalendarTest extends BaseClass {
 						new String[] { "40px" } },
 				{ clndrPgObj.crntMnthDateslct, new String[] { "35px" },
 						new String[] { "40px" } },
-
 		};
 	}
 
@@ -185,8 +184,6 @@ public class CalendarTest extends BaseClass {
 		result = verifySize(element, hieght, width);
 		Assert.assertTrue(result);
 	}
-
-	// Calender States Test
 
 	// Feature:State Test
 	@DataProvider(name = "StateTestData")
@@ -452,8 +449,6 @@ public class CalendarTest extends BaseClass {
 		Assert.assertTrue(result);
 	}
 
-	// Calender States Test-Mobile
-
 	// Feature:State Test-Mobile
 	@DataProvider(name = "Mobile State TestData")
 	private Object[][] getMobileStateTestData() {
@@ -573,7 +568,6 @@ public class CalendarTest extends BaseClass {
 	/*************
 	 * Common methods
 	 ************/
-
 	public boolean verifySpace(By element, String paddingArndDate) {
 		String actlPaddingArndDate = commonUtils.getCSSValue(element,
 				"padding-right");
@@ -720,7 +714,6 @@ public class CalendarTest extends BaseClass {
 		else
 			result = false;
 		return result;
-
 	}
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
@@ -762,7 +755,6 @@ public class CalendarTest extends BaseClass {
 		else
 			result = false;
 		return result;
-
 	}
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor,
@@ -797,7 +789,6 @@ public class CalendarTest extends BaseClass {
 		else
 			result = false;
 		return result;
-
 	}
 
 	private boolean verifyDate(By element, String txtSize, String lnHeight,
@@ -833,8 +824,8 @@ public class CalendarTest extends BaseClass {
 				+ " - Font Size is not as in spec");
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHeight,
 				element + " - Line Height is not as in spec");
-		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop,
-				element + " - Padding-top is not as in spec");
+		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop, element
+				+ " - Padding-top is not as in spec");
 
 		if (result1 == true && result2 == true && result3 == true)
 			result = true;
