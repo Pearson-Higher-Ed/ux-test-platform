@@ -110,6 +110,11 @@ public class CommonUtils {
         driver.manage().window().setSize(dimension);
     }
 
+    public void setWindowSize(int width, int height, String mobile) {
+        dimension = new Dimension(width, height);
+        appium.manage().window().setSize(dimension);
+    }
+
     //get css value
     public String getCSSValue(By element, String property) {
         webElement = driver.findElement(element);

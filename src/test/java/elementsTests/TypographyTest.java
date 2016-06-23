@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 
 import utilities.BaseClass;
@@ -32,6 +33,40 @@ public class TypographyTest extends BaseClass {
     private final String fontFamilyChrome="'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace";
     private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
+    boolean isFontSize = false;
+    boolean isFontWeight = false;
+    boolean isLineHeight = false;
+    boolean isHexValue = false;
+    boolean isRgbValue = false;
+    boolean isBorderBottomWidth = false;
+    boolean isBorderBottomStyle = false;
+    boolean isTextDecoration = false;
+    boolean isFontStyle = false;
+    boolean isDisplay = false;
+    boolean isBoxSizing = false;
+    boolean isPosition = false;
+    boolean isTop = false;
+    boolean isPaddingLeft = false;
+    boolean isListStyle = false;
+    boolean isPseudoContent = false;
+    private String fontSize = "";
+    private String fontWeight = "";
+    private String lineHeight = "";
+    private String rgbValue = "";
+    private String borderBottomWidth = "";
+    private String borderBottomStyle = "";
+    private String textDecoration = "";
+    private String fontStyle = "";
+    private String display = "";
+    private String jQueryScript = "";
+    private String jQueryReturnValue = "";
+    private String boxSizing = "";
+    private String position = "";
+    private String top = "";
+    private String paddingLeft = "";
+    private String listStyle = "";
+    private String pseudoContent = "";
+    JavascriptExecutor js = null;
     
     @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
@@ -738,6 +773,242 @@ public class TypographyTest extends BaseClass {
         commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not" + bckClr);
     }
 
+    @DataProvider(name = "Label Test Mobile Data")
+    public Object[][] getLabelMobileTestData() {
+        return new Object[][]{
+                //pe-label
+                {"primary", typoPgObj.pLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#231F20"},
+                {"primary", typoPgObj.pLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#231F20"},
+                {"primary", typoPgObj.pLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#231F20"},
+                {"primary", typoPgObj.pLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#231F20"},
+                //pe-label--secondary
+                {"secondary", typoPgObj.sLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#565656"},
+                {"secondary", typoPgObj.sLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#565656"},
+                {"secondary", typoPgObj.sLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#565656"},
+                {"secondary", typoPgObj.sLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#565656"},
+                //inverse
+                {"primary-inverse", typoPgObj.pILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
+                {"primary-inverse", typoPgObj.pILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#FFFFFF"},
+                {"primary-inverse", typoPgObj.pILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#FFFFFF"},
+                {"primary-inverse", typoPgObj.pILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
+                //inverse pe-label--secondary
+                {"secondary-inverse", typoPgObj.sILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"},
+                {"secondary-inverse", typoPgObj.sILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#AEAEAE"},
+                {"secondary-inverse", typoPgObj.sILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#AEAEAE"},
+                {"secondary-inverse", typoPgObj.sILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"}
+        };
+    }
+
+    @Test(testName = "Labels Mobile Test", dataProvider = "Label Test Mobile Data", groups = {"mobile-regression"})
+    private void labelsMobileTest(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
+        commonUtils.getUrl(url, "mobile");
+        result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgb(labelHexValue),"mobile");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "Titles Test Mobile Data")
+    public Object[][] getTitleTestMobileData() {
+        return new Object[][]{
+                {"basic", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px"},
+                {"large", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px"},
+                {"xLarge","iPhone 6 Plus", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px"},
+                {"basic", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px"},
+                {"large", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px"},
+                {"xLarge", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px"},
+                {"basic", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px"},
+                {"large", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px"},
+                {"xLarge","Android Emulator", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px"},
+                {"basic", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px"},
+                {"large", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px"},
+                {"xLarge", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px"}
+        };
+    }
+
+    @Test(testName = "Titles Mobile Test", dataProvider = "Titles Test Mobile Data", groups = {"mobile-regression"})
+    private void titleMobileTest(String titleType, String device, ScreenOrientation mode, By element, String[] titleFontSize, String titleLineHeight) {
+        if (!(mobileDevice.equals(device))) {
+            throw new SkipException("To run this test specify mobile device as "+device);
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Feature: Copy
+    @DataProvider(name = "Copy Test Mobile Data")
+    public Object[][] getCopyTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.copy, "16px", "22px", "#231f20"}
+        };
+    }
+
+    @Test(testName = "Copy Mobile Test", dataProvider = "Copy Test Mobile Data", groups = {"mobile-regression"})
+    private void copyMobileTest(By element, String copyFontSize, String copyLineHeight, String copyHexValue) {
+        commonUtils.getUrl(url, "mobile");
+        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
+        rgbValue = commonUtils.getCSSValue(element, "color","mobile");
+
+        isFontSize = commonUtils.assertValue(fontSize, copyFontSize, "'copy' font-size is not as per the spec");
+        isLineHeight = commonUtils.assertValue(lineHeight, copyLineHeight, "'copy' line-height is not as per the spec");
+        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(copyHexValue), "'copy' rgb value is not as per the spec");
+        result = commonUtils.assertValue((isFontSize && isLineHeight && isRgbValue), true, "'copy' is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    //Feature: Lead
+    @DataProvider(name = "Lead Test Mobile Data")
+    public Object[][] getLeadTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.lead, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE, "20px", "28px", "#231f20"},
+                {typoPgObj.lead, "iPhone 6 Plus", ScreenOrientation.PORTRAIT, "18px", "24px", "#231f20"},
+                {typoPgObj.lead, "Android Emulator", ScreenOrientation.LANDSCAPE, "20px", "28px", "#231f20"},
+                {typoPgObj.lead, "Android Emulator", ScreenOrientation.PORTRAIT, "18px", "24px", "#231f20"}
+        };
+    }
+
+    @Test(testName = "Lead Mobile Test", dataProvider = "Lead Test Mobile Data", groups = {"mobile-regression"})
+    private void leadMobileTest(By element, String device, ScreenOrientation mode, String leadFontSize, String leadLineHeight, String leadHexValue) {
+
+        if (!(mobileDevice.equals(device))) {
+            throw new SkipException("To run this test specify mobile device as "+device);
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        result = verifyLeadTypoProperties(element, leadFontSize, leadLineHeight, leadHexValue,"mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Feature: Inline elements
+    @Test(testName = "Inline: Abbr Mobile Test", groups = {"mobile-regression"})
+    private void abbrMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        borderBottomWidth = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-width","mobile");
+        borderBottomStyle = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-style","mobile");
+        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", "abbr border-bottom-width is not as per spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "dotted", "abbr border-bottom-style is not as per spec");
+        result = commonUtils.assertValue((isBorderBottomWidth && isBorderBottomWidth), true, "abbr is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "DelAndInsTag Test Mobile Data")
+    public Object[][] getDelAndInsTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.delTag, "delTag", "line-through", ""},
+                {typoPgObj.insTag, "insTag", "underline", ""},
+                {typoPgObj.insTag, "insTagPseudo", "underline", "before"},
+                {typoPgObj.insTag, "insTagPseudo", "underline", "after"}
+        };
+    }
+
+    @Test(testName = "Inline: Del and Ins Tag Mobile Test", dataProvider = "DelAndInsTag Test Mobile Data", groups ={"mobile-regression"})
+    private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute) {
+        commonUtils.getUrl(url, "mobile");
+        result = verifyDelAndInsTagProperties(element, inlineTag, inlineTagTextDecoration, pseudoContentAttribute,"mobile");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: Strikethrough Test", groups = {"mobile-regression"})
+    private void strikeThroughMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        rgbValue = commonUtils.getCSSValue(typoPgObj.strikeThrough, "color","mobile");
+        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(86, 86, 86, 1)", "strikethrough rgb value is not as per spec");
+        result = commonUtils.assertValue(isRgbValue, true, "strikethrough is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: mark Test", groups = {"mobile-regression"})
+    private void markMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        rgbValue = commonUtils.getCSSValue(typoPgObj.mark, "background-color","mobile");
+        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(253, 236, 46, 1)", "mark rgb value is not as per spec");
+        result = commonUtils.assertValue(isRgbValue, true, "mark is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: emTag Mobile Test", groups = {"mobile-regression"})
+    private void emTagMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        fontStyle = commonUtils.getCSSValue(typoPgObj.emTag, "font-style","mobile");
+        isFontStyle = commonUtils.assertValue(fontStyle, "italic", "emTag font-style value is not as per spec");
+        result = commonUtils.assertValue(isFontStyle, true, "emTag is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "StrongAndBoldTag Test Mobile Data")
+    public Object[][] getStrongAndBoldTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.strongTag, "strongTag", new String[]{"bold", "700"}},
+                {typoPgObj.boldTag, "boldTag", new String[]{"bold", "700"}}
+        };
+    }
+
+    @Test(testName = "Inline: Strong and Bold Tag Mobile Test", dataProvider = "StrongAndBoldTag Test Mobile Data", groups = {"mobile-regression"})
+    private void strongTagMobileTest(By element, String inlineTag, String[] inlineTagFontWeight) {
+        commonUtils.getUrl(url, "mobile");
+        result = verifyStrongAndBoldTagProperties(element, inlineTag, inlineTagFontWeight,"mobile");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: quote Tag Mobile Test", groups = {"mobile-regression"})
+    private void quoteTagMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        display = commonUtils.getCSSValue(typoPgObj.quoteTag, "display","mobile");
+        isDisplay = commonUtils.assertValue(display, "inline", "'quoteTag' display value is not as per spec");
+        result = commonUtils.assertValue(isDisplay, true, "quoteTag is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: time Tag Mobile Test", groups = {"mobile-regression"})
+    private void timeTagMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        boxSizing = commonUtils.getCSSValue(typoPgObj.timeTag, "box-sizing","mobile");
+        isBoxSizing = commonUtils.assertValue(boxSizing, "border-box", "'timeTag' display value is not as per spec");
+        result = commonUtils.assertValue(isBoxSizing, true, "'timeTag' is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Inline: small Tag Mobile Test", groups = {"mobile-regression"})
+    private void smallTagMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        fontSize = commonUtils.getCSSValue(typoPgObj.smallTag, "font-size","mobile");
+        isFontSize = commonUtils.assertValue(fontSize, "16px", "'smallTag' font-size value is not as per spec");
+        result = commonUtils.assertValue(isFontSize, true, "'smallTag' is not as per the spec");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "SuperAndSubScript Test Mobile Data")
+    public Object[][] getSuperAndSubScriptTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.superscript, "superscript", new String[]{"14px", "14.4px", "14.3999996185303px"}, new String[]{"-3.200000047683716px", "-3.2px", "-3.20000004768372px"}, "relative"},
+                {typoPgObj.subscript, "subscript", new String[]{"14px", "14.4px", "14.3999996185303px"}, new String[]{"3.200000047683716px", "3.2px", "3.20000004768372px"}, "relative"}
+        };
+    }
+
+    @Test(testName = "Inline: SuperAndSubScript Mobile Test", dataProvider = "SuperAndSubScript Test Mobile Data", groups = {"mobile-regression"})
+    private void superAndSubScriptTagMobileTest(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition) {
+        commonUtils.getUrl(url, "mobile");
+        result = verifySuperAndSubScriptProperties(element, inlineTag, inlineFontSize, inlineTop, inlinePosition,"mobile");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "Unstyled List Test Mobile Data")
+    public Object[][] getUnstyledListTestMobileData() {
+        return new Object[][]{
+                {typoPgObj.unstyledLists, "unstyled", "0px", "none"},
+                {typoPgObj.nestedUnstyledLists, "nestedUnstyled", "0px", "none"},
+        };
+    }
+
+    @Test(testName = "Unstyled List Mobile Test", dataProvider = "Unstyled List Test Mobile Data", groups = {"mobile-regression"})
+    private void unstyledListMobileTest(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
+        commonUtils.getUrl(url, "mobile");
+        result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle,"mobile");
+        Assert.assertTrue(result);
+    }
+
+
     /**********************************************************************************************************************************************
      * COMMON METHODS
      *********************************************************************************************************************************************/
@@ -908,40 +1179,7 @@ public class TypographyTest extends BaseClass {
 
     //********************************************* Added by Eajaz *******************************************
 
-    boolean isFontSize = false;
-    boolean isFontWeight = false;
-    boolean isLineHeight = false;
-    boolean isHexValue = false;
-    boolean isRgbValue = false;
-    boolean isBorderBottomWidth = false;
-    boolean isBorderBottomStyle = false;
-    boolean isTextDecoration = false;
-    boolean isFontStyle = false;
-    boolean isDisplay = false;
-    boolean isBoxSizing = false;
-    boolean isPosition = false;
-    boolean isTop = false;
-    boolean isPaddingLeft = false;
-    boolean isListStyle = false;
-    boolean isPseudoContent = false;
-    private String fontSize = "";
-    private String fontWeight = "";
-    private String lineHeight = "";
-    private String rgbValue = "";
-    private String borderBottomWidth = "";
-    private String borderBottomStyle = "";
-    private String textDecoration = "";
-    private String fontStyle = "";
-    private String display = "";
-    private String jQueryScript = "";
-    private String jQueryReturnValue = "";
-    private String boxSizing = "";
-    private String position = "";
-    private String top = "";
-    private String paddingLeft = "";
-    private String listStyle = "";
-    private String pseudoContent = "";
-    JavascriptExecutor js = null;
+
 
     //Feature: Labels
     @DataProvider(name = "Label Test Data")
@@ -1191,9 +1429,40 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isFontWeight && isHexValue);
     }
 
+    private boolean verifyLabelTypoProperties(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", mobile);
+        lineHeight = commonUtils.getCSSValue(element, "line-height", mobile);
+        fontWeight = commonUtils.getCSSValue(element, "font-weight", mobile);
+        String actualLabelHexValue = commonUtils.getCSSValue(element, "color", mobile);
+        isFontSize = commonUtils.assertCSSProperties(labelType, fontSize, labelFontSize);
+        if (isFontSize == false) {
+            log.info("Font size for " + labelType + "--> " + labelName + " is not as per the spec");
+        }
+        isLineHeight = commonUtils.assertValue(lineHeight, labelLineHeight, "Line height for " + labelType + "--> " + labelName + " is not as per the spec");
+        isFontWeight = commonUtils.assertCSSProperties(labelType, fontWeight, labelFontWeight);
+        if (isFontWeight == false) {
+            log.info("Font weight for " + labelType + "--> " + labelName + " is not as per the spec");
+        }
+        isHexValue = commonUtils.assertValue(actualLabelHexValue, labelHexValue, "HEX value for " + labelType + "--> " + labelName + " is not as per the spec");
+        return (isFontSize && isLineHeight && isFontWeight && isHexValue);
+    }
+
     private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
+        if (isFontSize == false) {
+            log.info(titleType + " 'font size' is not as per the spec");
+        }
+        isLineHeight = commonUtils.assertValue(lineHeight, titleLineHeight, "Line height for " + titleType + " ---> is not as per the spec");
+        return (isFontSize && isLineHeight);
+    }
+
+    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight,String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
+        System.out.println(fontSize);
+        System.out.println(lineHeight);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
@@ -1213,8 +1482,31 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isRgbValue);
     }
 
+    private boolean verifyLeadTypoProperties(By element, String leadFontSize, String leadLineHeight, String leadHexValue, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
+        rgbValue = commonUtils.getCSSValue(element, "color","mobile");
+        System.out.println(fontSize);
+        System.out.println(lineHeight);
+        System.out.println(rgbValue);
+        isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
+        isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
+        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
+        return (isFontSize && isLineHeight && isRgbValue);
+    }
+
     private boolean verifyStrongAndBoldTagProperties(By element, String inlineTag, String[] inlineTagFontWeight) {
         fontWeight = commonUtils.getCSSValue(element, "font-weight");
+        //isFontWeight = commonUtils.assertValue(fontWeight, inlineTagFontWeight, inlineTag + " font-weight is not as per the spec");
+        isFontWeight = commonUtils.assertCSSProperties(inlineTag, fontWeight, inlineTagFontWeight);
+        if (isFontWeight == false) {
+            log.info(inlineTag + " font-weight is not as per the spec");
+        }
+        return (isFontWeight);
+    }
+
+    private boolean verifyStrongAndBoldTagProperties(By element, String inlineTag, String[] inlineTagFontWeight, String mobile) {
+        fontWeight = commonUtils.getCSSValue(element, "font-weight","mobile");
         //isFontWeight = commonUtils.assertValue(fontWeight, inlineTagFontWeight, inlineTag + " font-weight is not as per the spec");
         isFontWeight = commonUtils.assertCSSProperties(inlineTag, fontWeight, inlineTagFontWeight);
         if (isFontWeight == false) {
@@ -1230,6 +1522,21 @@ public class TypographyTest extends BaseClass {
         isTop = commonUtils.assertCSSProperties(inlineTag, top, inlineTop);
         position = commonUtils.getCSSValue(element, "position");
         isPosition = commonUtils.assertValue(position, inlinePosition, "'" + inlineTag + "' position value is not as per spec");
+        return (isFontSize && isTop && isPosition);
+    }
+
+    private boolean verifySuperAndSubScriptProperties(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
+        System.out.println(fontSize);
+        isFontSize = commonUtils.assertCSSProperties(inlineTag, fontSize, inlineFontSize);
+        top = commonUtils.getCSSValue(element, "top","mobile");
+        System.out.println(top);
+        isTop = commonUtils.assertCSSProperties(inlineTag, top, inlineTop);
+        position = commonUtils.getCSSValue(element, "position","mobile");
+        isPosition = commonUtils.assertValue(position, inlinePosition, "'" + inlineTag + "' position value is not as per spec");
+        System.out.println(isFontSize);
+        System.out.println(isTop);
+        System.out.println(isPosition);
         return (isFontSize && isTop && isPosition);
     }
 
@@ -1250,10 +1557,35 @@ public class TypographyTest extends BaseClass {
         return (isTextDecoration);
     }
 
+    private boolean verifyDelAndInsTagProperties(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute, String mobile) {
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration","mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
+
+        if (pseudoContentAttribute.equals("before") || pseudoContentAttribute.equals("after")) {
+            js = (JavascriptExecutor) appium;
+            jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContentAttribute + "').getPropertyValue('content');";
+            jQueryReturnValue = (String) js.executeScript(jQueryScript);
+            isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
+            if (isPseudoContent == false) {
+                log.info("pseudo '" + pseudoContentAttribute + "' value for insTag is incorrect");
+            }
+            Assert.assertTrue(isPseudoContent);
+        }
+        return (isTextDecoration);
+    }
+
     private boolean verifyUnstyledListProperties(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         isPaddingLeft = commonUtils.assertValue(paddingLeft, unstyledListPaddingLeft, "'" + unstyledListType + "' padding-left value is not as per spec");
         listStyle = commonUtils.getCSSValue(element, "list-style-type");
+        isListStyle = commonUtils.assertValue(listStyle, unstyledListStyle, "'" + unstyledListType + "' list style value is not as per spec");
+        return (isPaddingLeft && isListStyle);
+    }
+
+    private boolean verifyUnstyledListProperties(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle, String mobile) {
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left","mobile");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, unstyledListPaddingLeft, "'" + unstyledListType + "' padding-left value is not as per spec");
+        listStyle = commonUtils.getCSSValue(element, "list-style-type","mobile");
         isListStyle = commonUtils.assertValue(listStyle, unstyledListStyle, "'" + unstyledListType + "' list style value is not as per spec");
         return (isPaddingLeft && isListStyle);
     }
