@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <title>Calendar</title>
 <link rel="stylesheet"
-	href="../css/elements.css" />
+	href="http://laxapana.elements.surge.sh/elements_buttons.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="pe-calendar">
   <div class="pe-calendar-year" id="calendar">
     <h3 class="pe-calendar-month" id="month_lable">March 2016</h3>
-    <div class="pe-calendar-chevron">
-      <label class="pe-icon--chevron-left pe-calendar-chevron-cursor" aria-label="Prev" title="Prev" id="icon_left"></label>
-      <label class="pe-icon--chevron-right pe-calendar-chevron-cursor" aria-label="Next" title="Next" id="icon_right"></label>
+	 <div class="pe-calendar-buttons">
+      <button class="pe-btn--inverse-link" aria-label="Previous" title="Previous" id="icon_left">
+       <span class="pe-icon--chevron-left" aria-hidden="true"></span>
+      </button>
+      <button class="pe-btn--inverse-link" aria-label="Next" title="Next" id="icon_right">
+        <span class="pe-icon--chevron-right" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
   <table class="pe-calendar-dates" id="table">
@@ -42,24 +46,50 @@
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">6</div></td>
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">7</div></td>
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">8</div></td>
-        <td class="pe-calendar-dates--selected" id="curnt_mnth_day_slc"><div class="pe-calendar-dates-div" id="curnt_mnth_day_slc_spec">9</div><span class="pe-sr-only">Highlighted</span></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">10</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">11</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">12</div></td>
+        <td class="pe-calendar-dates--selected" id="curnt_mnth_day_slc">
+           <div class="pe-calendar-dates-div">9</div> <span class="pe-sr-only">Selected</span>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_slc_spec">10 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_slc_spec">11 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_slc_spec">12 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
       </tr>
       <tr>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">13</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">14</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">15</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">16</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">17</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">18</div></td>
-        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">19</div></td>
-      </tr>
+		<td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">13 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">14 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">15 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">16 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">17 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">18 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">19 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+	  </tr>
       <tr>
-        <td id="curnt_mnth_day_hig" class="pe-calendar-dates--highlighted"><div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">20</div></td>
-        <td id="curnt_mnth_day_dis" class="pe-calendar-dates--disabled"><div class="pe-calendar-dates-div" id="curnt_mnth_day_dis_spec">21</div></td>
-        <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">22</div></td>
+        <td class="pe-calendar-dates--highlighted" id="curnt_mnth_day_hig">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_hig_spec">20 <span class="pe-sr-only">Highlighted</span></div>
+        </td>
+        <td class="pe-calendar-dates--disabled" id="curnt_mnth_day_dis">
+           <div class="pe-calendar-dates-div" id="curnt_mnth_day_dis_spec">21 <span class="pe-sr-only">Not selectable</span></div>
+        </td>
+		<td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">22</div></td>
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">23</div></td>
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">24</div></td>
         <td id="curnt_mnth_day"><div class="pe-calendar-dates-div" id="curnt_mnth_day_spec">25</div></td>
