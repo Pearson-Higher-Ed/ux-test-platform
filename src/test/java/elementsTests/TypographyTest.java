@@ -1461,8 +1461,6 @@ public class TypographyTest extends BaseClass {
     private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight,String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
         lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
-        System.out.println(fontSize);
-        System.out.println(lineHeight);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
@@ -1475,7 +1473,6 @@ public class TypographyTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         lineHeight = commonUtils.getCSSValue(element, "line-height");
         rgbValue = commonUtils.getCSSValue(element, "color");
-
         isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
         isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
@@ -1486,9 +1483,6 @@ public class TypographyTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
         lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
         rgbValue = commonUtils.getCSSValue(element, "color","mobile");
-        System.out.println(fontSize);
-        System.out.println(lineHeight);
-        System.out.println(rgbValue);
         isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
         isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
         isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
