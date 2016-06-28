@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.testng.annotations.*;
 import origamiV2.origamiV2PageObjects.*;
 
 import org.openqa.selenium.WebDriver;
@@ -17,9 +18,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
 
 
 /**
@@ -27,28 +25,28 @@ import org.testng.annotations.Parameters;
  */
 public class BaseClass {
 
-    public static WebDriver driver;
-    public static AppiumDriver appium;
-    public static ResponsiveUtilitiesPageObjects respPgObj;
-    public static TypographyPageObjects typoPgObj;
-    public static InputsPageObjects inputsPgObj;
-    public static ButtonsPageObjects btnPgObj;
-    public static AppHeaderPageObjects appHeaderPgObj;
-    public static ContextualHelpPageObjects conxHelpPgObj;
-    public static DrawerPageObjects drawerPgObj;
-    public static CalendarPageObjects clndrPgObj;
-    public static ComponentArchetype compArchtypePgObj;
-    public static ColorsPageObjects colorsPgObj;
-    public static CommonUtils commonUtils;
-    public static String setDesktop = "";
-    public static String setMobile = "";
+    public WebDriver driver;
+    public AppiumDriver appium;
+    public ResponsiveUtilitiesPageObjects respPgObj;
+    public TypographyPageObjects typoPgObj;
+    public InputsPageObjects inputsPgObj;
+    public ButtonsPageObjects btnPgObj;
+    public AppHeaderPageObjects appHeaderPgObj;
+    public ContextualHelpPageObjects conxHelpPgObj;
+    public DrawerPageObjects drawerPgObj;
+    public CalendarPageObjects clndrPgObj;
+    public ComponentArchetype compArchtypePgObj;
+    public ColorsPageObjects colorsPgObj;
+    public CommonUtils commonUtils;
+    public String setDesktop = "";
+    public String setMobile = "";
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     DesiredCapabilities caps;
 
     @Parameters({"runEnv", "travis", "desktop", "platform", "sauceBrowser", "sauceBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
-    @BeforeSuite(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     protected void setUp(String runEnv, String travis, String desktop, String platform, String sauceBrowser, String sauceBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
 
         caps = new DesiredCapabilities();
@@ -138,6 +136,7 @@ public class BaseClass {
             drawerPgObj = new DrawerPageObjects(driver);
             inputsPgObj = new InputsPageObjects(driver);
             clndrPgObj = new CalendarPageObjects(driver);
+            colorsPgObj = new ColorsPageObjects(driver);
             compArchtypePgObj = new ComponentArchetype(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -150,6 +149,7 @@ public class BaseClass {
             drawerPgObj = new DrawerPageObjects(appium);
             inputsPgObj = new InputsPageObjects(appium);
             clndrPgObj = new CalendarPageObjects(appium);
+            colorsPgObj = new ColorsPageObjects(appium);
             compArchtypePgObj = new ComponentArchetype(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -157,7 +157,7 @@ public class BaseClass {
     }
 
     @Parameters({"mobile"})
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown(String mobile) {
         if (mobile.equals("on")) {
             appium.closeApp();
