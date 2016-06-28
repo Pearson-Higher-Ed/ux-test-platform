@@ -1,4 +1,5 @@
 language: java
+sudo: false
 
 env:
   global:
@@ -15,11 +16,11 @@ before_script:
 - python -m SimpleHTTPServer &
 
 script:
-- chmod 777 ./src/main/shell_scripts/elements.sh
-- ./src/main/shell_scripts/elements.sh
-#- chmod 777 ./src/main/shell_scripts/origami-v2/origami-v2.sh
-#- ./src/main/shell_scripts/origami-v2/origami-v2.sh
-- mvn test
+- export component=elements_sdk
+- export feature_branch=v0
+- chmod 777 ./src/main/shell_scripts/components.sh
+- ./src/main/shell_scripts/components.sh
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 
 notifications:
   email:

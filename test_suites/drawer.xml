@@ -1,6 +1,6 @@
  <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Origami v2 Test Suite">
+<suite name="Origami v2 - Drawer Test Suite">
 
     <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="on"></parameter>
@@ -20,16 +20,13 @@
     <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
     <parameter name="appiumVer" value="1.5.2"></parameter><!-- version of appium on sauce -->
 
-    <test name="origamiV2Tests">
+    <test name="origamiV2Test - Drawer">
         <groups>
             <run>
                 <include name="desktop-regression"/>
             </run>
         </groups>
         <classes>
-            <class name="origamiV2Tests.AppHeaderTest"/>
-            <class name="origamiV2Tests.ContextualHelpTest"/>
-            <class name="origamiV2Tests.ComponentArchetypeTest"/>
             <class name="origamiV2Tests.DrawerTest"/>
         </classes>
     </test>
@@ -53,4 +50,5 @@ Mobile:-
         |iOS           | iPhone 6 Plus              | 9.2               | Safari     | 1.5.2    |
         |iOS           | iPad Air                   | 9.2               | Safari     | 1.5.2    |
         |Android       | Google Nexus 7 HD Emulator | 4.4               | Browser    | 1.5.2    |
+        |android       | Android Phone              | 4.4               | Browser    | 1.5.2    | Few orientation tests works only in Android Phones
 -->
