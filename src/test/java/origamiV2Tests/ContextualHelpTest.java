@@ -41,6 +41,7 @@ public class ContextualHelpTest extends BaseClass {
     private String helpTopicExcerpt = "";
     private String helpContentTopicDetail = "";
     private String helpContentTopicDetailText = "";
+    private String color = "", fontSize = "", lineHeight = "";
 
     private boolean isConxHelpHeader = false;
     private boolean result = false;
@@ -50,12 +51,15 @@ public class ContextualHelpTest extends BaseClass {
     private boolean isContextualHelpDrawerClose = false;
     private boolean isContextualHelpDrawerHeading = false;
     private boolean isContextualHelpDrawerCloseButton = false;
+    private boolean isContextualHelpDrawerHelpTopicDetailCloseButton = false;
     private boolean isHelpTopicExcerpt = false;
     private boolean isHelpTopicExcerptEmpty = false;
     private boolean isHelpContentTopicDetailVisible = false;
     private boolean isHelpContentTopicDetailHidden = false;
     private boolean isHelpContentTopicDetailTitle = false;
     private boolean isHelpContentTopicDetailText = false;
+    private boolean isContextualHelpCloseContent = false;
+    private boolean isFontSize = false, isLineHeight = false;
     private static String setMobile;
 
     final static Logger log = Logger.getLogger(ContextualHelpTest.class.getName());
@@ -129,6 +133,15 @@ public class ContextualHelpTest extends BaseClass {
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         contextualHelpDrawerHeading = commonUtils.getText(conxHelpPgObj.contextualHelpHeader);
         isContextualHelpDrawerHeading = commonUtils.assertValue(contextualHelpDrawerHeading, "Help Topics", "contextual help header HEADING is not 'Help Topics'");
+        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "font-size");
+        lineHeight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "line-height");
+        isFontSize = commonUtils.assertValue(fontSize, "16px", "contextual help header HEADING font size is not as per spec");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"18px", "normal"});
+        if (isLineHeight == false) {
+            log.info("contextual help header HEADING line height is not as per spec");
+        }
+        Assert.assertTrue(isLineHeight);
+        Assert.assertTrue(isFontSize);
         isContextualHelpDrawerCloseButton = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseButton);
         Assert.assertTrue(isContextualHelpDrawerOpen && isContextualHelpDrawerHeading && isContextualHelpDrawerCloseButton);
 
@@ -136,6 +149,15 @@ public class ContextualHelpTest extends BaseClass {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
             xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
+            fontSize = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "font-size");
+            lineHeight = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "line-height");
+            isFontSize = commonUtils.assertValue(fontSize, "16px", "contextual help topic title font size is not as per spec");
+            isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"18px", "normal"});
+            if (isLineHeight == false) {
+                log.info("contextual help topic title line height is not as per spec");
+            }
+            Assert.assertTrue(isLineHeight);
+            Assert.assertTrue(isFontSize);
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt));
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
             result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
@@ -150,6 +172,9 @@ public class ContextualHelpTest extends BaseClass {
         //Test1- Click 'X' button when contextual-help-drawer is opened
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         Thread.sleep(500);
+        color = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "color");
+        isContextualHelpDrawerCloseButton = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextualHelpDrawerCloseButton color is not as per the spec");
+        Assert.assertTrue(isContextualHelpDrawerCloseButton);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton);
         isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose);
         Assert.assertTrue(isContextualHelpDrawerClose);
@@ -159,6 +184,9 @@ public class ContextualHelpTest extends BaseClass {
         Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
+        color = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "color");
+        isContextualHelpDrawerHelpTopicDetailCloseButton = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextualHelpDrawerHelpTopicDetailCloseButton color is not as per the spec");
+        Assert.assertTrue(isContextualHelpDrawerHelpTopicDetailCloseButton);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton);
 
         //Test3 - Click 'X' button when user navigates into a help topic and now Open contextual-help-drawer
@@ -187,7 +215,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify Back to Help Topics link functionaliy", groups = {"desktop-regression", "origamiV2"})
+    @Test(testName = "Verify Back to Help Topics link functionality", groups = {"desktop-regression", "origamiV2"})
     private void backToHelpTopicsTest() throws Exception {
 
         int i;
@@ -196,6 +224,9 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
+        color = commonUtils.getCSSValue(conxHelpPgObj.backtoHelpTopicsLink, "color");
+        isContextualHelpCloseContent = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextual-help-close-content color is not as per the spec");
+        Assert.assertTrue(isContextualHelpCloseContent);
         commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
@@ -316,14 +347,16 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    /********************* Mobile Tests *********************/
+    /*********************
+     * Mobile Tests
+     *********************/
 
     @Test(testName = "Mobile: Open Contextual Help Thru AppHeader Modes", groups = {"mobile-regression", "origamiV2"}, dataProvider = "ConxHelp with AppHeader Data")
     private void openThruAppHeaderSignedOutModeMobileTest(String appHeaderMode, String url) throws Exception {
 
-        commonUtils.getUrl(url,"mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        isConxHelpHeader = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpHeader,"mobile");
+        commonUtils.getUrl(url, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        isConxHelpHeader = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpHeader, "mobile");
         result = commonUtils.assertValue(isConxHelpHeader, true, " Contextual Help in AppHeader-" + appHeaderMode + " mode did NOT launch");
         Assert.assertTrue(result);
     }
@@ -332,12 +365,12 @@ public class ContextualHelpTest extends BaseClass {
     private void displayStudentHelpTopicsMobileTest() throws Exception {
 
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
-            isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics),"mobile");
+            isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics), "mobile");
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Student");
             Assert.assertTrue(result);
         }
@@ -354,12 +387,12 @@ public class ContextualHelpTest extends BaseClass {
         testConfig = buildJsonArrayForHelpTopics(helpTopicsList);
 
         changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
 
         for (i = 1; i <= 3; i++) {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
-            isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics),"mobile");
+            isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics), "mobile");
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Instructor");
             writeInitialConfig(contextualHelpJSFilePath);
             Assert.assertTrue(result);
@@ -370,19 +403,37 @@ public class ContextualHelpTest extends BaseClass {
     private void verifyContextualHelpDrawerMobileTest() throws Exception {
 
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
-        contextualHelpDrawerHeading = commonUtils.getText(conxHelpPgObj.contextualHelpHeader,"mobile");
+        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
+        contextualHelpDrawerHeading = commonUtils.getText(conxHelpPgObj.contextualHelpHeader, "mobile");
         isContextualHelpDrawerHeading = commonUtils.assertValue(contextualHelpDrawerHeading, "Help Topics", "contextual help header HEADING is not 'Help Topics'");
-        isContextualHelpDrawerCloseButton = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseButton,"mobile");
+        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "font-size", "mobile");
+        lineHeight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "line-height", "mobile");
+        isFontSize = commonUtils.assertValue(fontSize, "16px", "contextual help header HEADING font size is not as per spec");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"18px", "normal"});
+        if (isLineHeight == false) {
+            log.info("contextual help header HEADING line height is not as per spec");
+        }
+        Assert.assertTrue(isLineHeight);
+        Assert.assertTrue(isFontSize);
+        isContextualHelpDrawerCloseButton = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseButton, "mobile");
         Assert.assertTrue(isContextualHelpDrawerOpen && isContextualHelpDrawerHeading && isContextualHelpDrawerCloseButton);
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
             xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
-            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle),"mobile");
-            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt),"mobile");
+            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
+            fontSize = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "font-size", "mobile");
+            lineHeight = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "line-height", "mobile");
+            isFontSize = commonUtils.assertValue(fontSize, "16px", "contextual help topic title font size is not as per spec");
+            isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"18px", "normal"});
+            if (isLineHeight == false) {
+                log.info("contextual help topic title line height is not as per spec");
+            }
+            Assert.assertTrue(isLineHeight);
+            Assert.assertTrue(isFontSize);
+            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
             result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
             Assert.assertTrue(result);
@@ -392,24 +443,30 @@ public class ContextualHelpTest extends BaseClass {
     @Test(testName = "Mobile: Verify X button functionality", groups = {"mobile-regression", "origamiV2"})
     private void verifyXButtonMobileTest() throws Exception {
 
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
         //Test1- Click 'X' button when contextual-help-drawer is opened
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton,"mobile");
-        isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        color = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "color", "mobile");
+        isContextualHelpDrawerCloseButton = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextualHelpDrawerCloseButton color is not as per the spec");
+        Assert.assertTrue(isContextualHelpDrawerCloseButton);
+        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton, "mobile");
+        isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose, "mobile");
         Assert.assertTrue(isContextualHelpDrawerClose);
 
         //Test2 - Click 'X' button when user navigates into a help topic
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        commonUtils.click(conxHelpPgObj.helpTopicTitle,"mobile");
-        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible,"mobile");
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
+        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible, "mobile");
+        color = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "color", "mobile");
+        isContextualHelpDrawerHelpTopicDetailCloseButton = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextualHelpDrawerHelpTopicDetailCloseButton color is not as per the spec");
+        Assert.assertTrue(isContextualHelpDrawerHelpTopicDetailCloseButton);
+        commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "mobile");
 
         //Test3 - Click 'X' button when user navigates into a help topic and now Open contextual-help-drawer
-        isHelpContentTopicDetailHidden = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailHidden,"mobile");
+        isHelpContentTopicDetailHidden = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailHidden, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailHidden);
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailVisible);
     }
 
@@ -417,37 +474,40 @@ public class ContextualHelpTest extends BaseClass {
     private void toggleContextualHelpDrawerMobileTest() throws Exception {
 
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
         for (i = 0; i < 4; i++) {
             //Test1- Click 'Help' to open the drawer
-            commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+            commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
             //Test2- Click 'Help' to close the drawer
-            commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-            isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose,"mobile");
+            commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+            isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose, "mobile");
             Assert.assertTrue(isContextualHelpDrawerClose);
         }
     }
 
-    @Test(testName = "Mobile: Verify Back to Help Topics link functionaliy", groups = {"mobile-regression", "origamiV2"})
+    @Test(testName = "Mobile: Verify Back to Help Topics link functionality", groups = {"mobile-regression", "origamiV2"})
     private void backToHelpTopicsMobileTest() throws Exception {
 
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        commonUtils.click(conxHelpPgObj.helpTopicTitle,"mobile");
-        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
+        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailVisible);
-        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon,"mobile");
-        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+        color = commonUtils.getCSSValue(conxHelpPgObj.backtoHelpTopicsLink, "color", "mobile");
+        isContextualHelpCloseContent = commonUtils.assertValue(color, commonUtils.hex2Rgb("#333333"), "contextual-help-close-content color is not as per the spec");
+        Assert.assertTrue(isContextualHelpCloseContent);
+        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon, "mobile");
+        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
         Assert.assertTrue(isContextualHelpDrawerOpen);
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
             xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
-            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle),"mobile");
-            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt),"mobile");
+            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
+            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
             result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
             Assert.assertTrue(result);
@@ -457,11 +517,11 @@ public class ContextualHelpTest extends BaseClass {
     @Test(testName = "Mobile: Verify one help topic details", groups = {"mobile-regression", "origamiV2"})
     private void verifyOneHelpTopicDetailsMobileTest() throws Exception {
 
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        commonUtils.click(conxHelpPgObj.helpTopicTitle,"mobile");
-        helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle,"mobile");
-        helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
+        helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle, "mobile");
+        helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText, "mobile");
         isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Test Contact Support", " HelpContentTopicDetailTitle is NOT correct");
         isHelpContentTopicDetailText = commonUtils.assertValue(helpContentTopicDetailText, "Thank you for stopping by! Having trouble? Please Contact Us Now . If there's an answer you'd like to see listed in our Help menu, tell us! We're here to listen and make Help and Support yours.", " HelpContentTopicDetailText is NOT correct");
         Assert.assertTrue(isHelpContentTopicDetailTitle && isHelpContentTopicDetailText);
@@ -471,38 +531,38 @@ public class ContextualHelpTest extends BaseClass {
     @Test(testName = "Mobile: Verify open and close state of contextual help drawer", groups = {"mobile-regression", "origamiV2"})
     private void verifyOpenCloseStateMobileTest() throws Exception {
         String demoText;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
         //open via clicking help
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        demoText = commonUtils.getText(conxHelpPgObj.labelDemo,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        demoText = commonUtils.getText(conxHelpPgObj.labelDemo, "mobile");
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is opened", "Open method is NOT eventing right"));
         //close via clicking help
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        demoText = commonUtils.getText(conxHelpPgObj.labelDemo,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        demoText = commonUtils.getText(conxHelpPgObj.labelDemo, "mobile");
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
         //close via clicking X button
-        commonUtils.click(appHeaderPgObj.clickableHelpLink,"mobile");
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton,"mobile");
-        demoText = commonUtils.getText(conxHelpPgObj.labelDemo,"mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton, "mobile");
+        demoText = commonUtils.getText(conxHelpPgObj.labelDemo, "mobile");
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
     }
 
     @Test(testName = "Mobile: Verify open one specific Help topic only", groups = {"mobile-regression", "origamiV2"})
     private void openSpecificHelpTopicMobileTest() throws Exception {
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
-        commonUtils.click(conxHelpPgObj.openSpecificHelpTopic,"mobile");
-        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailReopen,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(conxHelpPgObj.openSpecificHelpTopic, "mobile");
+        isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailReopen, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailVisible);
-        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon,"mobile");
-        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon, "mobile");
+        isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
         Assert.assertTrue(isContextualHelpDrawerOpen);
 
         for (i = 1; i <= 4; i++) { //Iterating it 4 times because there are 4 help topics. They should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
             xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
-            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle),"mobile");
-            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt),"mobile");
+            isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
+            helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
             result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
             Assert.assertTrue(result);
@@ -512,35 +572,35 @@ public class ContextualHelpTest extends BaseClass {
     @Test(testName = "Mobile: Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"mobile-regression", "origamiV2"})
     private void openAndThenRemoveHelpTopicsMobileTest(String noOfTopics, String topicToBeRemoved) throws Exception {
         int i;
-        commonUtils.getUrl(contextualHelpUrl,"mobile");
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
 
         if (noOfTopics.equals("two")) {
-            commonUtils.click(conxHelpPgObj.openAndThenRemoveMoreThanOneTopic,"mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+            commonUtils.click(conxHelpPgObj.openAndThenRemoveMoreThanOneTopic, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 3; i <= 4; i++) { //Iterating it 2 times because two help topics are removed. They should not be displayed
                 xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle),"mobile");
+                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle), "mobile");
                 result = commonUtils.assertValue((isHelpTopicTitlePresent), false, "help topic title " + topicToBeRemoved + " Displayed");
                 Assert.assertTrue(result);
             }
         } else if (noOfTopics.equals("one")) {
-            commonUtils.click(conxHelpPgObj.openAndThenRemoveOneTopic,"mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+            commonUtils.click(conxHelpPgObj.openAndThenRemoveOneTopic, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 4; i <= 4; i++) { //Iterating it 1 times because one help topics is removed. It should not be displayed
                 xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle),"mobile");
+                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle), "mobile");
                 result = commonUtils.assertValue((isHelpTopicTitlePresent), false, "help topic title " + topicToBeRemoved + " Displayed");
                 Assert.assertTrue(result);
             }
         } else if (noOfTopics.equals("all")) {
-            commonUtils.click(conxHelpPgObj.openAndThenRemoveAllHelpTopics,"mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen,"mobile");
+            commonUtils.click(conxHelpPgObj.openAndThenRemoveAllHelpTopics, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 1; i <= 4; i++) { //Iterating it 4 times because there were 4 help topics. They should not be displayed
                 xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle),"mobile");
+                isHelpTopicTitlePresent = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForHelpTopicsTitle), "mobile");
                 result = commonUtils.assertValue((isHelpTopicTitlePresent), false, "help topic title " + i + " Displayed");
                 Assert.assertTrue(result);
             }
@@ -570,7 +630,7 @@ public class ContextualHelpTest extends BaseClass {
 
     /*******************************
      * Common methods
-     ***********************************/
+     *******************************/
 
     private String buildJsonArrayForHelpTopics(List<String> helpTopicsList) {
         jsonArray = new JsonArray();
