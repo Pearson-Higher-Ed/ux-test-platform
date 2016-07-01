@@ -158,6 +158,11 @@ public class CommonUtils {
         action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).click().build().perform();
     }
 
+    public void hoverOnElement(By element, String mobile) {
+        action = new Actions(appium);
+        action.moveToElement(appium.findElement(element)).moveToElement(appium.findElement(element)).click().build().perform();
+    }
+
     //Tab on an element
     public void tabOnElement(By element) {
         webElement = driver.findElement(element);
