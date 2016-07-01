@@ -510,11 +510,7 @@ public class CalendarTest extends BaseClass {
 			result3 = commonUtils.assertValue(actlfntColor, commonUtils.hex2Rgb(fntColor), element + " - Font color is not as in spec");
 		}
 
-		if (result1 == true && result2 == true && result3 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
 	}
 
 	public boolean verifyLabel(By element, String txtSize, String lnHieght, String fntColor, String lblHeight, String device) {
@@ -526,11 +522,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertValue(actltxtsize, txtSize, element + " - Font Size is not as in spec");
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHieght, element + " - Line Height is not as in spec");
 		boolean result3 = commonUtils.assertValue(actlfntColor, commonUtils.hex2Rgb(fntColor), element + " - Font color is not as in spec");
-		if (result1 == true && result2 == true && result3 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
 	}
 
 	private boolean verifyDayLabel(By element, String txtSize, String lnHieght, String fntColor, String padBottom) {
@@ -550,11 +542,7 @@ public class CalendarTest extends BaseClass {
 
 		boolean result4 = commonUtils.assertValue(actlpadBottom, padBottom, element + " - Padding Bottom is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true && result4 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3 && result4;
 	}
 
 	private boolean verifyDayLabel(By element, String txtSize, String lnHieght, String fntColor, String padBottom, String device) {
@@ -568,11 +556,7 @@ public class CalendarTest extends BaseClass {
 		boolean result3 = commonUtils.assertValue(actlfntColor, commonUtils.hex2Rgb(fntColor), element + " - Font color is not as in spec");
 		boolean result4 = commonUtils.assertValue(actlfntpadBottom, padBottom, element + " - Padding-Bottom is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true && result4 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3 && result4;
 	}
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor, String brdrHeight, String leftPadding, String rightPadding) {
@@ -596,11 +580,7 @@ public class CalendarTest extends BaseClass {
 		boolean result4 = commonUtils.assertValue(actbrdrLeftPadding, leftPadding, element + " - Padding Left is not as in spec");
 		boolean result5 = commonUtils.assertValue(actbrdrRightPadding, rightPadding, element + " - Padding Right is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true && result4 == true && result5 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3 && result4 && result5;
 	}
 
 	private boolean verifyBorder(By element, String brdrSize, String brdrColor, String brdrHeight, String leftPadding, String rightPadding, String device) {
@@ -617,11 +597,7 @@ public class CalendarTest extends BaseClass {
 		boolean result4 = commonUtils.assertValue(actbrdrLeftPadding, leftPadding, element + " - Padding Left is not as in spec");
 		boolean result5 = commonUtils.assertValue(actbrdrRightPadding, rightPadding, element + " - Padding Right is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true && result4 == true && result5 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3 && result4 && result5;
 	}
 
 	private boolean verifyDate(By element, String txtSize, String lnHeight, String paddingTop) {
@@ -633,11 +609,7 @@ public class CalendarTest extends BaseClass {
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHeight, element + " - Line Height is not as in spec");
 		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop, element + " - Padding-top is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
 	}
 
 	private boolean verifyDate(By element, String txtSize, String lnHeight, String paddingTop, String device) {
@@ -649,11 +621,7 @@ public class CalendarTest extends BaseClass {
 		boolean result2 = commonUtils.assertValue(actlnHeight, lnHeight, element + " - Line Height is not as in spec");
 		boolean result3 = commonUtils.assertValue(actpdTop, paddingTop, element + " - Padding-top is not as in spec");
 
-		if (result1 == true && result2 == true && result3 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
 	}
 
 	private boolean verifySize(By element, String[] hieght, String[] width) {
@@ -663,11 +631,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertCSSProperties(element + " - Line-Height is not as in spec", acthieght, hieght);
 		boolean result2 = commonUtils.assertCSSProperties(element + " - Width  is not as in spec", actnwidth, width);
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifySize(By element, String[] hieght, String[] width,
@@ -678,11 +642,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertCSSProperties(element + " - Height is not as in spec", acthieght, hieght);
 		boolean result2 = commonUtils.assertCSSProperties(element + " - Width  is not as in spec", actnwidth, width);
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyState(By element, String bckColor, String txtColor) {
@@ -703,11 +663,7 @@ public class CalendarTest extends BaseClass {
 			result2 = commonUtils.assertValue(actbckColor, commonUtils.hex2Rgb(bckColor), element + " - Background color  is not as in spec");
 		}
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyState(By element, String bckColor, String txtColor,
@@ -718,11 +674,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertValue(acttxtColor, commonUtils.hex2Rgb(txtColor), element + " - Text color is not as in spec");
 		boolean result2 = commonUtils.assertValue(actbckColor, commonUtils.hex2Rgb(bckColor), element + " - Background color  is not as in spec");
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyHoverState(By element, By element2, String bckColor,
@@ -746,11 +698,7 @@ public class CalendarTest extends BaseClass {
 			result2 = commonUtils.assertValue(actbckColor, commonUtils.hex2Rgb(bckColor), element + " - Background color  is not as in spec");
 		}
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyHoverState(By element, String bckColor,
@@ -762,11 +710,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertValue(acttxtColor, commonUtils.hex2Rgb(txtColor), element + " - Text color is not as in spec");
 		boolean result2 = commonUtils.assertValue(actbckColor, commonUtils.hex2Rgb(bckColor), element + " - Background color  is not as in spec");
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyHoverMonthControl(By element, String txtMonth, String expectedColor, String expectedHoverColor) {
@@ -788,11 +732,8 @@ public class CalendarTest extends BaseClass {
 		String actMonth = commonUtils.getAttributeValue(element, "title");
 		boolean result3 = commonUtils.assertValue(actMonth, txtMonth, element + " - Month is not as in spec");
 
-		if (result1 && result2 && result3)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
+
 	}
 
 	private boolean verifyDaysOfWeek(By element, String day, String txtDay) {
@@ -803,11 +744,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertValue(actDay, day, element + " - Day is not as in spec");
 		boolean result2 = commonUtils.assertValue(actDayText, txtDay, element + " - Day Text is not as in spec");
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	private boolean verifyHoverMonthControl(By element, String txtMonth, String expectedColor, String expectedHoverColor, String mobile) {
@@ -820,11 +757,8 @@ public class CalendarTest extends BaseClass {
 
 		boolean result3 = commonUtils.assertValue(actMonth, txtMonth, element + " - Month is not as in spec");
 
-		if (result1 && result2 && result3)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2 && result3;
+
 	}
 	private boolean verifyDaysOfWeek(By element, String day, String txtDay,
 			String device) {
@@ -835,11 +769,7 @@ public class CalendarTest extends BaseClass {
 		boolean result1 = commonUtils.assertValue(actDay, day, element + " - Day is not as in spec");
 		boolean result2 = commonUtils.assertValue(actDayText, txtDay, element + " - Day Text is not as in spec");
 
-		if (result1 == true && result2 == true)
-			result = true;
-		else
-			result = false;
-		return result;
+		return result1 && result2;
 	}
 
 	@BeforeMethod(alwaysRun = true)
