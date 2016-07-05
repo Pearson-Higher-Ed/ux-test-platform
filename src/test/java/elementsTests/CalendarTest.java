@@ -78,7 +78,7 @@ public class CalendarTest extends BaseClass {
 		};
 	}
 
-	@Test(enabled = true, testName = "Calendar Base Test", dataProvider = "Calendar Base Test Data", groups = {"desktop-c", "desktop-regression" })
+	@Test(enabled = true, testName = "Calendar Base Test", dataProvider = "Calendar Base Test Data", groups = {"desktop-ci", "desktop-regression" })
 	private void calendarBaseTest(String cssProperty, String[] expectedCSSValue) {
 
 		chooseEnv();

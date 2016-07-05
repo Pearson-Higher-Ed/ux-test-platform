@@ -7,9 +7,9 @@
 
     <!-- For Desktop -->
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
-    <parameter name="platform" value="Windows 10"></parameter><!-- MAC or Windows -->
-    <parameter name="sauceBrowser" value="ie"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="11.103"></parameter><!-- browser version on sauce machine -->
+    <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
+    <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
+    <parameter name="sauceBrowserVer" value="48.0"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="chrome"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
@@ -23,7 +23,7 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="desktop-c"/>
+                <include name="desktop-ci"/>
             </run>
         </groups>
     <packages>
