@@ -2,6 +2,8 @@ package elementsTests;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -29,7 +31,7 @@ public class CalendarTest extends BaseClass {
 	String actualContent;
 	String code;
 	boolean result = false;
-	final static Logger log = Logger.getLogger(TypographyTest.class.getName());
+	final static Logger log = Logger.getLogger(CalendarTest.class.getName());
 	int count = 1;
 
 	@Parameters({ "runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser" })
@@ -84,8 +86,8 @@ public class CalendarTest extends BaseClass {
 		commonUtils.hoverOnElement(clndrPgObj.peCalendar);
 		cssProperty = commonUtils.getCSSValue(clndrPgObj.peCalendar, cssProperty);
 		result = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-		if (result) {
-			log.info("'" + cssPropertyType + "' :for Calendar Base is not as per the spec");
+		if (!result) {
+			log.info("'" + cssPropertyType + "' :for Calendar Base is not as per the spec, Expected: "+ Arrays.toString(expectedCSSValue) +" Actual: "+cssProperty);
 		}
 		Assert.assertTrue(result);
 	}
