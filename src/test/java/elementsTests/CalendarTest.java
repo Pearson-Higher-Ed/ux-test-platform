@@ -74,7 +74,7 @@ public class CalendarTest extends BaseClass {
 				{"border-left-width", new String[]{"1px"}},
 				{"border-right-width", new String[]{"1px"}},
 
-				{"width", new String[]{"328px"}}
+				{"width", new String[]{"328px","326px"}}
 		};
 	}
 
