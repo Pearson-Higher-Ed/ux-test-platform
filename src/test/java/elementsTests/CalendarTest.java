@@ -279,6 +279,19 @@ public class CalendarTest extends BaseClass {
 
 	/********************** Mobile ********************************************************/
 
+	@Test(enabled = true, testName = "Calendar Base Mobile Test", dataProvider = "Calendar Base Test Data", groups = {"mobile" })
+	private void calendarBaseMobileTest(String cssProperty, String[] expectedCSSValue) {
+
+		commonUtils.getUrl(url, "mobile");
+		String cssPropertyType = cssProperty;
+		cssProperty = commonUtils.getCSSValue(clndrPgObj.peCalendar, cssProperty, "mobile");
+		result = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+		if (!result) {
+			log.info("'" + cssPropertyType + "' :for Calendar Base is not as per the spec, Expected: "+ Arrays.toString(expectedCSSValue) +" Actual: "+cssProperty);
+		}
+		Assert.assertTrue(result);
+	}
+
 	// Feature: Spacing Test - Mobile
 	@DataProvider(name = "Mobile Spacing TestData")
 	private Object[][] getMobileSpacingTestData() {
