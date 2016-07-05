@@ -14,10 +14,10 @@
 
     <!-- For Mobile -->
     <parameter name="mobile" value="on"></parameter><!-- set the tests to run on mobile devices -->
-    <parameter name="appiumDriver" value="iOS"></parameter> <!-- appium driver - iosDriver or Android Driver -->
-    <parameter name="mobDeviceName" value="iPhone 6 Plus"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
-    <parameter name="mobilePlatformVer" value="9.2"></parameter><!-- mobile OS version -->
-    <parameter name="mobBrowser" value="safari"></parameter><!-- browser eg.safari, chrome -->
+    <parameter name="appiumDriver" value="android"></parameter> <!-- appium driver - iosDriver or Android Driver -->
+    <parameter name="mobDeviceName" value="Google Nexus 7 HD Emulator"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
+    <parameter name="mobilePlatformVer" value="4.4"></parameter><!-- mobile OS version -->
+    <parameter name="mobBrowser" value="Browser"></parameter><!-- browser eg.safari, chrome -->
     <parameter name="appiumVer" value="1.5.2"></parameter><!-- version of appium on sauce -->
 
     <test name="ElementsTests">
