@@ -23,7 +23,7 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="desktop-ci"/>
+                <include name="desktop-c"/>
             </run>
         </groups>
     <packages>

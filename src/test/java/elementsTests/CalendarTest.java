@@ -51,6 +51,45 @@ public class CalendarTest extends BaseClass {
 	}
 
 	/*************************************** DeskTop *****************************/
+
+	@DataProvider(name = "Calendar Base Test Data")
+	public Object[][] getCalendarBaseTestData() {
+		return new Object[][]{
+				{"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+
+				{"border-top-style", new String[]{"solid"}},
+				{"border-bottom-style", new String[]{"solid"}},
+				{"border-left-style", new String[]{"solid"}},
+				{"border-right-style", new String[]{"solid"}},
+
+				{"border-top-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+				{"border-bottom-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+				{"border-left-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+				{"border-right-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+
+				{"border-top-width", new String[]{"1px"}},
+				{"border-bottom-width", new String[]{"1px"}},
+				{"border-left-width", new String[]{"1px"}},
+				{"border-right-width", new String[]{"1px"}},
+
+				{"width", new String[]{"328px"}}
+		};
+	}
+
+	@Test(enabled = true, testName = "Calendar Base Test", dataProvider = "Calendar Base Test Data", groups = {"desktop-c", "desktop-regression" })
+	private void calendarBaseTest(String cssProperty, String[] expectedCSSValue) {
+
+		chooseEnv();
+		String cssPropertyType = cssProperty;
+		commonUtils.hoverOnElement(clndrPgObj.peCalendar);
+		cssProperty = commonUtils.getCSSValue(clndrPgObj.peCalendar, cssProperty);
+		result = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+		if (result) {
+			log.info("'" + cssPropertyType + "' :for Calendar Base is not as per the spec");
+		}
+		Assert.assertTrue(result);
+	}
+
 	// Feature: Spacing Test
 	@DataProvider(name = "SpacingTestData")
 	private Object[][] getSpacingTestData() {
