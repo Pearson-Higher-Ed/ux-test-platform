@@ -20,7 +20,7 @@ public class ContextualHelpPageObjects {
     }
 
     public By contextualHelpDrawer = By.xpath("//div[@id='o-contextual-help-drawer']");
-    public By contextualHelpHeader= By.xpath("//div[@class='o-contextual-help__header']");
+    public By contextualHelpHeader= By.xpath("//div[@class='o-contextual-help__header pe-label pe-label--large']");
     public By contextualHelpDrawerCloseButton=By.xpath("//i[@class='pe-icon--close']");
     public By contextualHelpDrawerHelpTopicDetailCloseButton=By.xpath("//div[@id='o-contextual-help-drawer']/div[2]/div/a[2]/i");
     public By contextualHelpDrawerOpen=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-drawer-open']");
@@ -32,9 +32,9 @@ public class ContextualHelpPageObjects {
         return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div";
     }
 
-    public By helpTopicTitle=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/h4/a");
+    public By helpTopicTitle=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/h4/span/a");
     public String xpathForHelpTopicsTitle(String item, int x){
-        return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div/h4/a";
+        return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div/h4/span/a";
     }
 
     public By helpTopicExcerpt=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/p");
@@ -47,6 +47,7 @@ public class ContextualHelpPageObjects {
     public By helpContentTopicDetailHidden=By.xpath("//div[@class= 'o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-contextual-help__detail--visible']");
     public By helpTopicContentHeader=By.xpath("//div[@id='o-contextual-help-topic-content-target']/h4");
     public By helpTopicContent=By.xpath("//div[@id='o-contextual-help-topic-content-target']");
+    public By backtoHelpTopicsLink=By.xpath("//div[@class='o-contextual-help__topic-content']/div/a");
     public By backToHelpTopicsIcon=By.xpath("//span[@class='back-to-help-icon']");
     public By helpContentTopicDetailTitle=By.xpath("//div[@id='o-contextual-help-topic-content-target']/h4");
     public By helpContentTopicDetailText=By.xpath("//div[@id='o-contextual-help-topic-content-target']/div");
