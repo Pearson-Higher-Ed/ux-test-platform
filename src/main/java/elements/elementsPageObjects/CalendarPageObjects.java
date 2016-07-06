@@ -15,10 +15,9 @@ public class CalendarPageObjects {
 	public CalendarPageObjects(AppiumDriver appium) {
 		this.appium = appium;
 	}
-	
+	public By peCalendar= By.className("pe-calendar");
 	public By monthLbl=By.id("month_lable");
 	public By calendar=By.id("calendar");
-	public By calendar_table=By.id("table");
 	public By dayLbl=By.id("day_name");
 	public By crntMnthDate=By.id("curnt_mnth_day");
 	public By crntMnthDateHih=By.id("curnt_mnth_day_hig");
