@@ -279,7 +279,7 @@ public class CalendarTest extends BaseClass {
 
 	/********************** Mobile ********************************************************/
 
-	@Test(enabled = true, testName = "Calendar Base Mobile Test", dataProvider = "Calendar Base Test Data", groups = {"mobile" })
+	@Test(enabled = true, testName = "Calendar Base Mobile Test", dataProvider = "Calendar Base Test Data", groups = {"mobile-regression" })
 	private void calendarBaseMobileTest(String cssProperty, String[] expectedCSSValue) {
 
 		commonUtils.getUrl(url, "mobile");
