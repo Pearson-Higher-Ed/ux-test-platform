@@ -38,9 +38,9 @@ public class InputsTest extends BaseClass {
     String actualContent;
     String code;
     String marginRight = "", marginLeft = "", marginTop = "", marginBottom = "", display = "", verticalAlign = "", boxSizing = "", paddingTop = "", paddingRight = "", paddingBottom = "", paddingLeft = "", fontSize = "", lineHeight = "", outlineColor = "", outlineStyle = "", outlineWidth = "", outlineOffset = "", actualText = "";
-    String borderRightColor = "", borderLeftColor = "", borderTopColor = "", borderBottomColor = "", borderRightWidth = "", borderLeftWidth = "", borderTopWidth = "", borderBottomWidth = "", borderRightStyle = "", borderLeftStyle = "", borderTopStyle = "", borderBottomStyle = "", boxShadow = "";
+    String borderRightColor = "", borderLeftColor = "", borderTopColor = "", borderBottomColor = "", borderRightWidth = "", borderLeftWidth = "", borderTopWidth = "", borderBottomWidth = "", borderRightStyle = "", borderLeftStyle = "", borderTopStyle = "", borderBottomStyle = "", boxShadow = "", borderTopRightRadius="", borderBottomRightRadius="",borderTopLeftRadius="", borderBottomLeftRadius="",floatProperty="";
     boolean result = false, isMarginRight = false, isMarginLeft = false, isMarginTop = false, isMarginBottom = false, isDisplay = false, isVerticalAlign = false, isBoxSizing = false, isPaddingTop = false, isPaddingRight = false, isPaddingBottom = false, isPaddingLeft = false, isFontSize = false, isLineHeight = false, isOutlineColor = false, isOutlineStyle = false, isOutlineWidth = false, isOutlineOffset = false, isCSSProperty = false;
-    boolean isBorderRightColor = false, isBorderLeftColor = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderRightWidth = false, isBorderLeftWidth = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderRightStyle = false, isBorderLeftStyle = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBoxShadow = false;
+    boolean isBorderRightColor = false, isBorderLeftColor = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderRightWidth = false, isBorderLeftWidth = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderRightStyle = false, isBorderLeftStyle = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBoxShadow = false,isBorderTopRightRadius=false,isBorderBottomRightRadius=false,isBorderTopLeftRadius=false,isBorderBottomLeftRadius=false,isFloatProperty=false;
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
     @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
@@ -480,6 +480,34 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    /***********
+     * pe-input-group
+     ***********/
+    @Test(testName = "Verify InputGroup: Input",groups = {"desktop-regression"})
+    private void verifyInputGroupInputTest(){
+        chooseEnv();
+        floatProperty=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"float");
+        borderTopRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-top-right-radius");
+        borderBottomRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-bottom-right-radius");
+        borderRightWidth=commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width");
+
+        isFloatProperty=commonUtils.assertValue(floatProperty,"left","float property for input-group: input is not as per the spec");
+        isBorderTopRightRadius=commonUtils.assertValue(borderTopRightRadius,"0px","border top right radius for input-group: input is not as per the spec");
+        isBorderBottomRightRadius=commonUtils.assertValue(borderBottomRightRadius,"0px","border bottom right radius for input-group: input is not as per the spec");
+        isBorderRightWidth=commonUtils.assertValue(borderRightWidth,"0px","border right width for input-group: input is not as per the spec");
+        Assert.assertTrue(isFloatProperty && isBorderTopRightRadius && isBorderBottomRightRadius && isBorderRightWidth);
+    }
+
+    @Test(testName = "Verify InputGroup: Button",groups = {"desktop-regression"})
+    private void verifyInputGroupButtonTest(){
+        chooseEnv();
+        borderTopLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-top-left-radius");
+        borderBottomLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-bottom-left-radius");
+
+        isBorderTopLeftRadius=commonUtils.assertValue(borderTopLeftRadius,"0px","border top left radius for input-group: button is not as per the spec");
+        isBorderBottomLeftRadius=commonUtils.assertValue(borderBottomLeftRadius,"0px","border bottom left radius for input-group: button is not as per the spec");
+        Assert.assertTrue(isBorderTopLeftRadius && isBorderBottomLeftRadius);
+    }
 
     /**********************************************************************************************************************************************
      * MOBILE TESTS
@@ -785,6 +813,32 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         result = verifyTextAreaFocusState(textAreaType, element, borderRightColor, borderLeftColor, borderBottomColor, borderTopColor, borderRightWidth, borderLeftWidth, borderBottomWidth, borderTopWidth, borderLeftStyle, borderRightStyle, borderBottomStyle, borderTopStyle, boxShadow, elementId, "mobile");
         Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile: Verify InputGroup: Input",groups = {"mobile-regression"})
+    private void verifyInputGroupInputMobileTest(){
+        commonUtils.getUrl(url,"mobile");
+        floatProperty=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"float","mobile");
+        borderTopRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-top-right-radius","mobile");
+        borderBottomRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-bottom-right-radius","mobile");
+        borderRightWidth=commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width","mobile");
+
+        isFloatProperty=commonUtils.assertValue(floatProperty,"left","float property for input-group: input is not as per the spec");
+        isBorderTopRightRadius=commonUtils.assertValue(borderTopRightRadius,"0px","border top right radius for input-group: input is not as per the spec");
+        isBorderBottomRightRadius=commonUtils.assertValue(borderBottomRightRadius,"0px","border bottom right radius for input-group: input is not as per the spec");
+        isBorderRightWidth=commonUtils.assertValue(borderRightWidth,"0px","border right width for input-group: input is not as per the spec");
+        Assert.assertTrue(isFloatProperty && isBorderTopRightRadius && isBorderBottomRightRadius && isBorderRightWidth);
+    }
+
+    @Test(testName = "Mobile: Verify InputGroup: Button",groups = {"mobile-regression"})
+    private void verifyInputGroupButtonMobileTest(){
+        commonUtils.getUrl(url,"mobile");
+        borderTopLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-top-left-radius","mobile");
+        borderBottomLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-bottom-left-radius","mobile");
+
+        isBorderTopLeftRadius=commonUtils.assertValue(borderTopLeftRadius,"0px","border top left radius for input-group: button is not as per the spec");
+        isBorderBottomLeftRadius=commonUtils.assertValue(borderBottomLeftRadius,"0px","border bottom left radius for input-group: button is not as per the spec");
+        Assert.assertTrue(isBorderTopLeftRadius && isBorderBottomLeftRadius);
     }
 
     /**********************************************************************************************************************************************

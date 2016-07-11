@@ -79,5 +79,9 @@ public class InputsPageObjects {
     public By selectbox_readonly = By.id("selectbox-readonly");
     public By selectbox_disabled = By.id("selectbox-disabled");
     public By selectbox_error = By.id("selectbox-error");
+
+    //Input Group
+    public By inputInGroup=By.xpath("//input[@id='input-group']");
+    public By buttonInGroup=By.xpath("//button[@id='button-input-group']");
 }
 
