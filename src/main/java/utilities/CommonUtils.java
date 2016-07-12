@@ -155,7 +155,7 @@ public class CommonUtils {
     //hover on an element
     public void hoverOnElement(By element) {
         action = new Actions(driver);
-        action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).click().build().perform();
+        action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).build().perform();
     }
 
     public void hoverOnElement(By element, String mobile) {
