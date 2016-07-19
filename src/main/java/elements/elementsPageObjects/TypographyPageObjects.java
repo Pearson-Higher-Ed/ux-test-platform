@@ -128,4 +128,6 @@ public class TypographyPageObjects {
 	public By unstyledLists = By.id("unstyledLists");
 	public By nestedUnstyledLists = By.id("nestedUnstyledLists");
 
+	//Feature: Links
+	public By links=By.id("links");
 }

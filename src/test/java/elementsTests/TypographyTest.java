@@ -14,7 +14,6 @@ import org.testng.annotations.*;
 
 import utilities.BaseClass;
 
-@Test(groups = {"TypographyTest"})
 public class TypographyTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/typography.html";
@@ -33,6 +32,7 @@ public class TypographyTest extends BaseClass {
     private final String fontFamilyChrome="'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace";
     private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
+    boolean isColor = false;
     boolean isFontSize = false;
     boolean isFontWeight = false;
     boolean isLineHeight = false;
@@ -49,6 +49,7 @@ public class TypographyTest extends BaseClass {
     boolean isPaddingLeft = false;
     boolean isListStyle = false;
     boolean isPseudoContent = false;
+    private String color="";
     private String fontSize = "";
     private String fontWeight = "";
     private String lineHeight = "";
@@ -809,29 +810,29 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "Titles Test Mobile Data")
     public Object[][] getTitleTestMobileData() {
         return new Object[][]{
-                {"basic", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px"},
-                {"large", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px"},
-                {"xLarge","iPhone 6 Plus", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px"},
-                {"basic", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px"},
-                {"large", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px"},
-                {"xLarge", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px"},
-                {"basic", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px"},
-                {"large", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px"},
-                {"xLarge","Android Emulator", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px"},
-                {"basic", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px"},
-                {"large", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px"},
-                {"xLarge", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px"}
+                {"basic", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px"}},
+                {"large", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px"}},
+                {"xLarge","iPhone 6 Plus", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
+                {"basic", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
+                {"large", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px"}},
+                {"xLarge", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px", new String[]{"0px","6px"}},
+                {"basic", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px"}},
+                {"large", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px"}},
+                {"xLarge","Android Emulator", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
+                {"basic", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
+                {"large", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px"}},
+                {"xLarge", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px", new String[]{"0px","6px"}}
         };
     }
 
     @Test(testName = "Titles Mobile Test", dataProvider = "Titles Test Mobile Data", groups = {"mobile-regression"})
-    private void titleMobileTest(String titleType, String device, ScreenOrientation mode, By element, String[] titleFontSize, String titleLineHeight) {
+    private void titleMobileTest(String titleType, String device, ScreenOrientation mode, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth) {
         if (!(mobileDevice.equals(device))) {
             throw new SkipException("To run this test specify mobile device as "+device);
         }
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
-        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight, "mobile");
+        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight, titleBorderBottomWidth, "mobile");
         Assert.assertTrue(result);
     }
 
@@ -993,6 +994,16 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @Test(testName = "Mobile: Links Test", groups = {"mobile-regression"})
+    private void linksMobileTest(){
+        commonUtils.getUrl(url, "mobile");
+        color = commonUtils.getCSSValue(typoPgObj.links,"color","mobile");
+        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#0d65a6"),"color for links is not as per the spec");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration","mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration,"underline","text-decoration for links is not as per the spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
     @DataProvider(name = "Unstyled List Test Mobile Data")
     public Object[][] getUnstyledListTestMobileData() {
         return new Object[][]{
@@ -1007,7 +1018,6 @@ public class TypographyTest extends BaseClass {
         result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle,"mobile");
         Assert.assertTrue(result);
     }
-
 
     /**********************************************************************************************************************************************
      * COMMON METHODS
@@ -1219,20 +1229,20 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "Titles Test Data")
     public Object[][] getTitleTestData() {
         return new Object[][]{
-                {"basic", typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", 479, 800},
-                {"large", typoPgObj.largeTitle, new String[]{"20px"}, "24px", 479, 800},
-                {"xLarge", typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", 479, 800},
-                {"basic", typoPgObj.basicTitle, new String[]{"22px"}, "28px", 480, 800},
-                {"large", typoPgObj.largeTitle, new String[]{"24px"}, "30px", 480, 800},
-                {"xLarge", typoPgObj.xLargeTitle, new String[]{"30px"}, "36px", 480, 800}
+                {"basic", typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px","2px"}, 479, 800},
+                {"large", typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px","2px"}, 479, 800},
+                {"xLarge", typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px","2px"}, 479, 800},
+                {"basic", typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px","2px"}, 480, 800},
+                {"large", typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px","2px"}, 480, 800},
+                {"xLarge", typoPgObj.xLargeTitle, new String[]{"30px"}, "36px",new String[]{"0px","6px","2px"}, 480, 800}
         };
     }
 
     @Test(testName = "Titles Test", dataProvider = "Titles Test Data", groups = {"desktop-regression"})
-    private void titleTest(String titleType, By element, String[] titleFontSize, String titleLineHeight, int windowWidth, int windowHeight) {
+    private void titleTest(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth, int windowWidth, int windowHeight) {
         chooseEnv();
         commonUtils.setWindowSize(windowWidth, windowHeight);
-        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight);
+        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight,titleBorderBottomWidth);
         commonUtils.setWindowSize(480, 800);
         Assert.assertTrue(result);
     }
@@ -1391,6 +1401,38 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @Test(testName = "Links Test", groups = {"desktop-regression"})
+    private void linksTest(){
+        chooseEnv();
+        color = commonUtils.getCSSValue(typoPgObj.links,"color");
+        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#0d65a6"),"color for links is not as per the spec");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration,"underline","text-decoration for links is not as per the spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
+    @Test(testName = "Links Focus State Test", groups = {"desktop-regression"})
+    private void linksFocusStateTest(){
+        chooseEnv();
+        commonUtils.focusOnElementById("links");
+        color = commonUtils.getCSSValue(typoPgObj.links,"color");
+        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#094877"),"color for links in focus state is not as per the spec");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration,"none","text-decoration for links in focus state is not as per the spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
+    @Test(testName = "Links Hover State Test", groups = {"desktop-regression"})
+    private void linksHoverStateTest(){
+        chooseEnv();
+        commonUtils.hoverOnElement(typoPgObj.links);
+        color = commonUtils.getCSSValue(typoPgObj.links,"color");
+        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#094877"),"color for links in hover state is not as per the spec");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration,"none","text-decoration for links in hover state is not as per the spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
     @DataProvider(name = "Unstyled List Test Data")
     public Object[][] getUnstyledListTestData() {
         return new Object[][]{
@@ -1405,7 +1447,6 @@ public class TypographyTest extends BaseClass {
         result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle);
         Assert.assertTrue(result);
     }
-
 
     /*********************
      * Common Methods
@@ -1447,25 +1488,37 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isFontWeight && isHexValue);
     }
 
-    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight) {
+    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         lineHeight = commonUtils.getCSSValue(element, "line-height");
+        borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width");
+        System.out.println("borderBottomWidth: "+ borderBottomWidth);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, titleLineHeight, "Line height for " + titleType + " ---> is not as per the spec");
-        return (isFontSize && isLineHeight);
+        isBorderBottomWidth=commonUtils.assertCSSProperties(titleType,borderBottomWidth,titleBorderBottomWidth);
+        if (isBorderBottomWidth == false) {
+            log.info(titleType + " 'border-bottom-width' is not as per the spec");
+        }
+        return (isFontSize && isLineHeight && isBorderBottomWidth);
     }
 
-    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight,String mobile) {
+    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
         lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
+        borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width","mobile");
+        System.out.println("borderBottomWidth: "+borderBottomWidth);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, titleLineHeight, "Line height for " + titleType + " ---> is not as per the spec");
+        isBorderBottomWidth=commonUtils.assertCSSProperties(titleType,borderBottomWidth,titleBorderBottomWidth);
+        if (isBorderBottomWidth == false) {
+            log.info(titleType + " 'border-bottom-width' is not as per the spec");
+        }
         return (isFontSize && isLineHeight);
     }
 

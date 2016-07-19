@@ -161,6 +161,7 @@ public class BaseClass {
     public void tearDown(String mobile) {
         if (mobile.equals("on")) {
             appium.closeApp();
+            appium.quit();
         } else {
             driver.close();
             driver.quit();
