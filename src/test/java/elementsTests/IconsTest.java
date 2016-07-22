@@ -54,7 +54,7 @@ public class IconsTest extends BaseClass {
                 {"search", "\\f002"},
                 {"thumb-tack", "\\f08d"},
                 {"times", "\\f00d"},
-                {"times-circle", "\\f057"},
+                {"times-circle-o", "\\f05c"},
                 {"trash-o", "\\f014"},
                 {"users", "\\f0c0"},
                 {"info-circle", "\\f05a"},
@@ -68,7 +68,20 @@ public class IconsTest extends BaseClass {
                 {"clock-o","\\f017"},
                 {"exclamation-circle","\\f06a"},
                 {"bell","\\f0f3"},
-                {"archive","\\f187"}
+                {"archive","\\f187"},
+                {"question-circle","\\f059"},
+                {"heart","\\f004"},
+                {"heart-o","\\f08a"},
+                {"laptop","\\f109"},
+                {"book","\\f02d"},
+                {"list-ul","\\f0ca"},
+                {"th-large","\\f009"},
+                {"newspaper-o","\\f1ea"},
+                {"video-camera","\\f03d"},
+                {"picture-o","\\f03e"},
+                {"caret-right","\\f0da"},
+                {"caret-down","\\f0d7"},
+                {"lightbulb-o","\\f0eb"}
         };
     }
 
