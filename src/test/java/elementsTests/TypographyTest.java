@@ -249,8 +249,8 @@ public class TypographyTest extends BaseClass {
                 {typoPgObj.heading_two, "20px", "24px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h2"},
                 {typoPgObj.heading_three, "18px", "22px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h3"},
                 {typoPgObj.heading_four, "16px", "20px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h4"},
-                {typoPgObj.heading_five, "16px", "20px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h5"},
-                {typoPgObj.heading_six, "14px", "16px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h6"}
+                {typoPgObj.heading_five, "16px", "20px", new String[]{"normal", "400"}, "rgba(86, 86, 86, 1)", "h5"},
+                {typoPgObj.heading_six, "14px", "16px", new String[]{"normal", "400"}, "rgba(86, 86, 86, 1)", "h6"}
         };
     }
 
@@ -592,8 +592,8 @@ public class TypographyTest extends BaseClass {
                 {typoPgObj.heading_two, "20px", "24px", "bold", "rgba(35, 31, 32, 1)", "h2"},
                 {typoPgObj.heading_three, "18px", "22px", "bold", "rgba(35, 31, 32, 1)", "h3"},
                 {typoPgObj.heading_four, "16px", "20px", "bold", "rgba(86, 86, 86, 1)", "h4"},
-                {typoPgObj.heading_five, "16px", "20px", "bold", "rgba(86, 86, 86, 1)", "h5"},
-                {typoPgObj.heading_six, "14px", "16px", "bold", "rgba(86, 86, 86, 1)", "h6"}
+                {typoPgObj.heading_five, "16px", "20px", "normal", "rgba(86, 86, 86, 1)", "h5"},
+                {typoPgObj.heading_six, "14px", "16px", "normal", "rgba(86, 86, 86, 1)", "h6"}
         };
     }
 
