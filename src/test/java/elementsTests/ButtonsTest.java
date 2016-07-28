@@ -47,18 +47,18 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Default Button Test Data")
     public Object[][] getDefaultButtonTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#565656")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#f8f8f8")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#565656"),commonUtils.hex2RgbWithoutTransparency("#565656")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#f8f8f8"),commonUtils.hex2RgbWithoutTransparency("#f8f8f8")}},
 
                 {"border-top-style", new String[]{"solid"}},
                 {"border-bottom-style", new String[]{"solid"}},
                 {"border-left-style", new String[]{"solid"}},
                 {"border-right-style", new String[]{"solid"}},
 
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#d0d0d0")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#d0d0d0")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#d0d0d0")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#d0d0d0")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#d0d0d0"),commonUtils.hex2RgbWithoutTransparency("#d0d0d0")}},
 
                 {"border-top-width", new String[]{"1px"}},
                 {"border-bottom-width", new String[]{"1px"}},
@@ -77,7 +77,7 @@ public class ButtonsTest extends BaseClass {
                 {"display", new String[]{"inline-block"}},
                 {"vertical-align", new String[]{"middle"}},
                 {"cursor", new String[]{"pointer"}},
-                {"font-size", new String[]{"14px"}},
+                {"font-size", new String[]{"14px","13.93px"}},
                 {"height", new String[]{"28px"}},
                 {"line-height", new String[]{"28px"}},
 
@@ -103,18 +103,18 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Default Button-Hover state Test Data")
     public Object[][] getDefaultButtonHoverStateTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#565656")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#e6e6e6")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#565656"),commonUtils.hex2RgbWithoutTransparency("#565656")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#e6e6e6"),commonUtils.hex2RgbWithoutTransparency("#e6e6e6")}},
 
                 {"border-top-style", new String[]{"solid"}},
                 {"border-bottom-style", new String[]{"solid"}},
                 {"border-left-style", new String[]{"solid"}},
                 {"border-right-style", new String[]{"solid"}},
 
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
 
                 {"border-top-width", new String[]{"1px"}},
                 {"border-bottom-width", new String[]{"1px"}},
@@ -141,18 +141,18 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getDefaultButtonFocusStateTestData() {
         return new Object[][]{
 
-                {"color", new String[]{commonUtils.hex2Rgb("#565656")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#e6e6e6")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#565656"),commonUtils.hex2RgbWithoutTransparency("#565656")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#e6e6e6"),commonUtils.hex2RgbWithoutTransparency("#e6e6e6")}},
 
                 {"border-top-style", new String[]{"solid"}},
                 {"border-bottom-style", new String[]{"solid"}},
                 {"border-left-style", new String[]{"solid"}},
                 {"border-right-style", new String[]{"solid"}},
 
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#b3b3b3")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#b3b3b3"),commonUtils.hex2RgbWithoutTransparency("#b3b3b3")}},
 
                 {"border-top-width", new String[]{"1px"}},
                 {"border-bottom-width", new String[]{"1px"}},
@@ -178,8 +178,8 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Default Button-Disabled Test Data")
     public Object[][] getDefaultButtonDisabledStateTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#a6a8ab")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#f2f2f2")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#a6a8ab"),commonUtils.hex2RgbWithoutTransparency("#a6a8ab")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#f2f2f2"),commonUtils.hex2RgbWithoutTransparency("#f2f2f2")}},
 
                 {"border-top-width", new String[]{"0px"}},
                 {"border-bottom-width", new String[]{"0px"}},
@@ -209,18 +209,18 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getPrimaryButtonTestData() {
         return new Object[][]{
 
-                {"color", new String[]{commonUtils.hex2Rgb("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#107aca")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#107aca"),commonUtils.hex2RgbWithoutTransparency("#107aca")}},
 
                 {"border-top-style", new String[]{"solid"}},
                 {"border-bottom-style", new String[]{"solid"}},
                 {"border-left-style", new String[]{"solid"}},
                 {"border-right-style", new String[]{"solid"}},
 
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
 
                 {"border-top-width", new String[]{"1px"}},
                 {"border-bottom-width", new String[]{"1px"}},
@@ -252,18 +252,18 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Primary Button-Hover state Test Data")
     public Object[][] getPrimaryButtonHoverStateTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#0c5d99")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#0c5d99"),commonUtils.hex2RgbWithoutTransparency("#0c5d99")}},
 
                 {"border-top-style", new String[]{"solid"}},
                 {"border-bottom-style", new String[]{"solid"}},
                 {"border-left-style", new String[]{"solid"}},
                 {"border-right-style", new String[]{"solid"}},
 
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#0a4d80")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#0a4d80"),commonUtils.hex2RgbWithoutTransparency("#0a4d80")}},
 
                 {"border-top-width", new String[]{"1px"}},
                 {"border-bottom-width", new String[]{"1px"}},
@@ -289,7 +289,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Primary Button-Focus state Test Data")
     public Object[][] getPrimaryButtonFocusStateTestData() {
         return new Object[][]{
-                {"outline-color", new String[]{"rgba(0, 0, 0, 1)"}},
+                {"outline-color", new String[]{"rgba(0, 0, 0, 1)","rgba(0, 0, 0)"}},
                 {"outline-style", new String[]{"dotted"}},
                 {"outline-width", new String[]{"1px"}},
         };
@@ -311,8 +311,8 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Primary Button-Disabled Test Data")
     public Object[][] getPrimaryButtonDisabledStateTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#9dc0db")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#9dc0db"),commonUtils.hex2RgbWithoutTransparency("#9dc0db")}},
 
                 {"border-top-width", new String[]{"0px"}},
                 {"border-bottom-width", new String[]{"0px"}},
@@ -342,7 +342,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button Test Data")
     public Object[][] getLinkButtonTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#0d65a6")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#0d65a6"),commonUtils.hex2RgbWithoutTransparency("#0d65a6")}},
                 {"background-image", new String[]{"none"}},
 
                 {"border-top-width", new String[]{"0px"}},
@@ -380,7 +380,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLinkButtonHoverStateTestData() {
         return new Object[][]{
 
-                {"color", new String[]{commonUtils.hex2Rgb("#094877")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#094877"),commonUtils.hex2RgbWithoutTransparency("#094877")}},
                 {"background-image", new String[]{"none"}},
 
                 {"border-top-width", new String[]{"0px"}},
@@ -409,7 +409,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button-Focus state Test Data")
     public Object[][] getLinkButtonFocusStateTestData() {
         return new Object[][]{
-                {"outline-color", new String[]{"rgba(0, 0, 0, 1)"}},
+                {"outline-color", new String[]{"rgba(0, 0, 0, 1)","rgba(0, 0, 0)"}},
                 {"outline-style", new String[]{"dotted"}},
                 {"outline-width", new String[]{"1px"}},
         };
@@ -431,7 +431,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button-Disabled Test Data")
     public Object[][] getLinkButtonDisabledStateTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#9dc0db")}},
+                {"color", new String[]{commonUtils.hex2Rgb("#9dc0db"),commonUtils.hex2RgbWithoutTransparency("#9dc0db")}},
                 {"background-color", new String[]{"transparent", "rgba(0, 0, 0, 0)"}}, // to be checked with Mallory
 
                 {"border-top-width", new String[]{"0px"}},

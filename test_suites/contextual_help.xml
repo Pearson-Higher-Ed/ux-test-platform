@@ -9,16 +9,16 @@
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="48.0"></parameter><!-- browser version on sauce machine -->
+    <parameter name="sauceBrowserVer" value="51.0"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
     <parameter name="mobile" value="off"></parameter><!-- set the tests to run on mobile devices -->
     <parameter name="appiumDriver" value="iOS"></parameter> <!-- appium driver - iosDriver or Android Driver -->
     <parameter name="mobDeviceName" value="iPhone 6 Plus"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
-    <parameter name="mobilePlatformVer" value="9.2"></parameter><!-- mobile OS version -->
+    <parameter name="mobilePlatformVer" value="9.3"></parameter><!-- mobile OS version -->
     <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
-    <parameter name="appiumVer" value="1.5.2"></parameter><!-- version of appium on sauce -->
+    <parameter name="appiumVer" value="1.5.3"></parameter><!-- version of appium on sauce -->
 
     <test name="origamiV2Test - Contextual Help">
         <groups>
@@ -34,21 +34,21 @@
 
 <!--
 Test Platform Config:
-https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
+https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/#/
 Eg.
 Desktop:-
         |platform    |sauceBrowser |version |
-        |OS X 10.11  |chrome       |48.0    |
-        |OS X 10.11  |firefox      |45.0    |
+        |OS X 10.11  |chrome       |51.0    |
+        |OS X 10.11  |firefox      |47.0    |
         |OS X 10.11  |safari       |9.0     |
-        |Windows 10  |chrome       |50.0    |
-        |Windows 10  |firefox      |45.0    |
+        |Windows 10  |chrome       |51.0    |
+        |Windows 10  |firefox      |47.0    |
         |Windows 10  |ie           |11.103  |
         |Windows 10  |edge         |13.10586|
 Mobile:-
         |appiumDriver  | mobDeviceName              | mobilePlatformVer | mobBrowser | appiumVer|
-        |iOS           | iPhone 6 Plus              | 9.2               | Safari     | 1.5.2    |
-        |iOS           | iPad Air                   | 9.2               | Safari     | 1.5.2    |
-        |Android       | Google Nexus 7 HD Emulator | 4.4               | Browser    | 1.5.2    |
-        |android       | Android Phone              | 4.4               | Browser    | 1.5.2    | Few orientation tests works only in Android Phones
+        |iOS           | iPhone 6 Plus              | 9.3               | Safari     | 1.5.3    |
+        |iOS           | iPad Air                   | 9.2               | Safari     | 1.5.3    |
+        |android       | Google Nexus 7 HD Emulator | 4.4               | Browser    | 1.5.3    |
+        |android       | Android Phone              | 5.1               | Browser    | 1.5.3    | Few orientation tests works only in Android Phones
 -->
