@@ -24,12 +24,8 @@ public class TypographyTest extends BaseClass {
     private static String setMobile;
     private static String browser;
     private static String mBrowser;
-    String fetchCharacter;
-    String content;
-    String actualContent;
-    String code;
     boolean result = false;
-    private final String fontFamilyChrome="'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace";
+    private final String fontFamilyChrome="\"Lucida Sans Typewriter\", \"Lucida Console\", monaco, \"Bitstream Vera Sans Mono\", monospace";
     private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
     boolean isColor = false;
@@ -94,14 +90,14 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "getBodyCopyFontTestData")
     private Object[][] getBodyCopyFontTestData() {
         return new Object[][]{
-                {typoPgObj.basicBody1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {typoPgObj.basicSmallBody, "14px", "20px", "rgba(35, 31, 32, 1)"}
+                {typoPgObj.basicBody1, "16px", "22px", new String[]{"rgba(35, 31, 32, 1)","rgb(35,31,32)"}},
+                {typoPgObj.basicSmallBody, "14px", "20px", new String[]{"rgba(35, 31, 32, 1)","rgb(35,31,32)"}}
         };
     }
 
     // Body Copy Font
     @Test(enabled = true, testName = "Body Copy Test", dataProvider = "getBodyCopyFontTestData", groups = {"desktop-ci","desktop-regression"})
-    private void bodyCopyFontTest(By element, String fontsize, String lineheight, String color) {
+    private void bodyCopyFontTest(By element, String fontsize, String lineheight, String[] color) {
         chooseEnv();
         result = verifyBodyCopyFont(element, fontsize, lineheight, color);
         Assert.assertTrue(result);
@@ -328,6 +324,7 @@ public class TypographyTest extends BaseClass {
     private void CodeTest(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family");
+        System.out.println("fontFamily: "+fontFamily);
         String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size");
         String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
@@ -354,6 +351,7 @@ public class TypographyTest extends BaseClass {
     private void InlneCodeTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
+        System.out.println("fontFamily: "+fontFamily);
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
@@ -378,6 +376,7 @@ public class TypographyTest extends BaseClass {
     private void kbdTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
+        System.out.println("fontFamily: "+fontFamily);
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
@@ -1024,21 +1023,21 @@ public class TypographyTest extends BaseClass {
      *********************************************************************************************************************************************/
 
     // Feature : Body
-    private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color) {
+    private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String[] color) {
         // get FontSize
         String actualFontSize = commonUtils.getCSSValue(bodyElement, "font-size");
         // get LineHeight
         String actualLineHeight = commonUtils.getCSSValue(bodyElement, "line-height");
         // get Color
         String actualColor = commonUtils.getCSSValue(bodyElement, "color");
+
         boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "Body Copy font-size specification Failed");
         boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "Body Copy line-height specification Failed");
-        boolean result_3 = commonUtils.assertValue(actualColor, color, "Body Copy Color specification Failed");
-        if (result_1 == true && result_2 == true && result_3 == true) {
-            return true;
-        } else {
-            return false;
+        boolean result_3 = commonUtils.assertCSSProperties(bodyElement.toString(), actualColor, color);
+        if (result_3 == false) {
+            log.info("'" + bodyElement.toString() + "' :Body Copy Color is not as per the spec");
         }
+        return (result_1 == true && result_2 == true && result_3 == true);
     }
 
     private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color, String mobile) {

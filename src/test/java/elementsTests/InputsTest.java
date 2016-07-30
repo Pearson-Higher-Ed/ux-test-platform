@@ -22,7 +22,6 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import utilities.BaseClass;
-
 public class InputsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/inputs.html";
@@ -80,16 +79,16 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "InputTextActiveData")
     private Object[][] InputTextActiveData() {
         return new Object[][]{
-                {inputsPgObj.input_text_active, "solid 1px #d0d0d0", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_active_small, "solid 1px #d0d0d0", "#ffffff", "#231F20", "14px", "16px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_readonly, "solid 1px #d0d0d0", "#f2f2f2", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_disable, "solid 1px #d0d0d0", "#f2f2f2", "#a6a8ab", "16px", "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_error1, "solid 1px #D0021B", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_error2, "solid 1px #D0021B", "#ffffff", "#231F20", "16px", "18px", "3px", "inline-block", "middle", "Input Text"}};
+                {inputsPgObj.input_text_active, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_active_small, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"14px","13.93px"}, "16px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_readonly, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#F2F2F2"),commonUtils.hex2RgbWithoutTransparency("#F2F2F2")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_disable, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#f2f2f2"),commonUtils.hex2RgbWithoutTransparency("#f2f2f2")}, new String[]{commonUtils.hex2Rgb("#a6a8ab"),commonUtils.hex2RgbWithoutTransparency("#a6a8ab")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_error1, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_error2, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
     @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop-ci", "desktop-regression"})
-    private void VerifyInputTextActiveTest(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws InterruptedException {
+    private void VerifyInputTextActiveTest(By element, String border, String[] background, String[] color, String[] fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) throws InterruptedException {
         chooseEnv();
         result = verifyInputTextActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign, component);
         Assert.assertTrue(result);
@@ -156,11 +155,7 @@ public class InputsTest extends BaseClass {
         chooseEnv();
         boolean result_1 = VerifySlctBxPrpty(element, dimension, padding);
         boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign);
-        if (result_1 && result_2)
-            result = true;
-        else
-            result = false;
-        Assert.assertTrue(result);
+        Assert.assertTrue(result_1 && result_2);
     }
 
     @Test(testName = "Verify Select Box Focus specifications", dataProvider = "SelectBoxData", groups = {"desktop-regression"})
@@ -170,11 +165,7 @@ public class InputsTest extends BaseClass {
         commonUtils.focusOnElementById(elementId);
         boolean result_1 = VerifySlctBxPrpty(element, dimension, padding);
         boolean result_2 = verifySelecBoxActive(element, border, background, color, fontsize, lineheight, borderradius, display, verticalalign);
-        if (result_1 && result_2)
-            result = true;
-        else
-            result = false;
-        Assert.assertTrue(result);
+        Assert.assertTrue(result_1 && result_2);
     }
 
     @DataProvider(name = "SelectBoxFocusBoxShadowData")
@@ -897,12 +888,16 @@ public class InputsTest extends BaseClass {
         }
     }
 
-    private Boolean verifyInputTextActive(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) {
+    private Boolean verifyInputTextActive(By element, String border, String[] background, String[] color, String[] fontsize, String lineheight, String borderradius, String display, String verticalalign, String component) {
         String[] borderArray = border.split(" ");
         String border_style = borderArray[0];
         String border_width = borderArray[1];
-        String border_color = commonUtils.hex2Rgb(borderArray[2]);
-
+        String border_color;
+        if(browser.equals("edge")){
+            border_color = commonUtils.hex2RgbWithoutTransparency(borderArray[2]);
+        }else {
+            border_color = commonUtils.hex2Rgb(borderArray[2]);
+        }
         // get border
         String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width");
         // get border
@@ -925,19 +920,24 @@ public class InputsTest extends BaseClass {
         boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width, "Element:" + element + " Component:" + component + " border-width specification Failed");
         boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style, "Element:" + element + " Component:" + component + " border-style specification Failed");
         boolean result_border3 = commonUtils.assertValue(actualBorderColor, border_color, "Element:" + element + " Component:" + component + " border-color specification Failed");
-        boolean result_background = commonUtils.assertValue(actualBackgroundColor, commonUtils.hex2Rgb(background), "Element:" + element + " Component:" + component + " background specification Failed");
-        boolean result_color = commonUtils.assertValue(actualColor, commonUtils.hex2Rgb(color), "Element:" + element + " Component:" + component + " color specification Failed");
-        boolean result_fontsize = commonUtils.assertValue(actualFontSize, fontsize, "Element:" + element + " Component:" + component + " font-size specification Failed");
+        boolean result_background = commonUtils.assertCSSProperties(actualBackgroundColor.toString(), actualBackgroundColor, background);
+        if (result_background == false) {
+            log.info("'background color' :for "+element+" is not as per the spec");
+        }
+        boolean result_color = commonUtils.assertCSSProperties(actualColor.toString(), actualColor, color);
+        if (result_color == false) {
+            log.info("'color' :for "+element+" is not as per the spec");
+        }
+        boolean result_fontsize = commonUtils.assertCSSProperties(actualColor.toString(), actualFontSize, fontsize);
+        if (result_fontsize == false) {
+            log.info("'font-size' :for "+element+" is not as per the spec");
+        }
         boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight, "Element:" + element + " Component:" + component + " line-height specification Failed");
         boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius, borderradius);
         boolean result_display = commonUtils.assertValue(actualDisplay, display, "Element:" + element + " Component:" + component + " display specification Failed");
         boolean result_verticalalign = commonUtils.assertValue(actualVerticalAlign, verticalalign, "Element:" + element + " Component:" + component + " vertical-align specification Failed");
 
-        if (result_border1 == true && result_border2 == true && result_border3 == true && result_background == true && result_color == true && result_fontsize == true && result_lineheight == true && result_borderradius == true && result_display == true && result_verticalalign == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return (result_border1 && result_border2 && result_border3 && result_background && result_color && result_fontsize && result_lineheight && result_borderradius && result_display && result_verticalalign);
     }
 
     private Boolean verifyInputTextActive(By element, String border, String background, String color, String fontsize, String lineheight, String borderradius, String display, String verticalalign, String mobile, String component) {
