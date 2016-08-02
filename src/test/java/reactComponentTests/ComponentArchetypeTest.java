@@ -1,4 +1,4 @@
-package origamiV2Tests;
+package reactComponentTests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  */
 public class ComponentArchetypeTest extends BaseClass {
 
-    private final String demoUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/componentArchetype/component-archetype.html";
+    private final String demoUrl = "http://localhost:8000/src/main/java/reactComponents/fixtures/componentArchetype/component-archetype.html";
     String placeHolderText = "";
     boolean isPlaceHolderText = false;
     String translatedText = "";
@@ -32,7 +32,7 @@ public class ComponentArchetypeTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-regression", "origamiV2"})
+    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-regression", "react"})
     private void componentArchetypeDemoTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl);
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder");
@@ -49,7 +49,7 @@ public class ComponentArchetypeTest extends BaseClass {
      * Mobile Tests
      ****************/
 
-    @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "origamiV2"})
+    @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "react"})
     private void componentArchetypeDemoMobileTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl,"mobile");
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder","mobile");
