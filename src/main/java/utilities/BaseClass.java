@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import reactComponents.reactComponentsPageObjects.*;
 
 
 /**
@@ -35,7 +36,8 @@ public class BaseClass {
     public ContextualHelpPageObjects conxHelpPgObj;
     public DrawerPageObjects drawerPgObj;
     public CalendarPageObjects clndrPgObj;
-    public ComponentArchetype compArchtypePgObj;
+    public ComponentArchetypePageObjects compArchtypePgObj;
+    public AvatarDisplayPageObjects avatarDisplayPgObj;
     public ColorsPageObjects colorsPgObj;
     public CommonUtils commonUtils;
     public String setDesktop = "";
@@ -142,7 +144,8 @@ public class BaseClass {
             inputsPgObj = new InputsPageObjects(driver);
             clndrPgObj = new CalendarPageObjects(driver);
             colorsPgObj = new ColorsPageObjects(driver);
-            compArchtypePgObj = new ComponentArchetype(driver);
+            compArchtypePgObj = new ComponentArchetypePageObjects(driver);
+            avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -155,7 +158,8 @@ public class BaseClass {
             inputsPgObj = new InputsPageObjects(appium);
             clndrPgObj = new CalendarPageObjects(appium);
             colorsPgObj = new ColorsPageObjects(appium);
-            compArchtypePgObj = new ComponentArchetype(appium);
+            compArchtypePgObj = new ComponentArchetypePageObjects(appium);
+            avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }

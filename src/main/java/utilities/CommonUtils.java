@@ -7,13 +7,22 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.SkipException;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.nio.charset.MalformedInputException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 
 /**
@@ -31,6 +40,7 @@ public class CommonUtils {
     boolean elementVisible = false;
     List<WebElement> listWebElements;
     List<MobileElement> listMobWebElements;
+    LogEntries browserLogs;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -53,15 +63,15 @@ public class CommonUtils {
     }
 
     //click using js
-    public void clickUsingJS(By element){
+    public void clickUsingJS(By element) {
         webElement = driver.findElement(element);
-        js= (JavascriptExecutor)driver;
+        js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", webElement);
     }
 
-    public void clickUsingJS(By element, String mobile){
+    public void clickUsingJS(By element, String mobile) {
         webElement = appium.findElement(element);
-        js= (JavascriptExecutor)appium;
+        js = (JavascriptExecutor) appium;
         js.executeScript("arguments[0].click();", webElement);
     }
 
@@ -293,5 +303,10 @@ public class CommonUtils {
         } catch (Exception e) {
             throw new SkipException("Issue with loading chrome driver file, ensure the file exists in the project");
         }
+    }
+
+    public Object browserLogs() {
+        browserLogs = driver.manage().logs().get("browser");
+        return browserLogs.filter(Level.ALL);
     }
 }
