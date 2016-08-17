@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/elements.css"/>
+    <style>
+        div.meters {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="meters">
+    <p id="meter-label" class="pe-progressbar-label">80% Complete</p>
+    <div id="meter" class="pe-progressbar" role="progressbar" aria-roledescription="meter" aria-readonly="true"
+         aria-valuemin="0"
+         aria-valuemax="100" aria-valuenow="80" aria-valuetext="almost done">
+        <div id="meter-inner" class="pe-progressbar-inner" style="width:80%;"></div>
+    </div><br>
+    <progress id="progress" value="80" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">80%</progress>
+</div>
+
+</body>
+</html>

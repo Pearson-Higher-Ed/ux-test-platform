@@ -35,6 +35,7 @@ public class BaseClass {
     public CalendarPageObjects clndrPgObj;
     public ColorsPageObjects colorsPgObj;
     public NoPlainCSSPageObjects noPlainCSSPgObj;
+    public MeterPageObjects meterPgObj;
     public AppHeaderPageObjects appHeaderPgObj;
     public ContextualHelpPageObjects conxHelpPgObj;
     public DrawerPageObjects drawerPgObj;
@@ -147,6 +148,7 @@ public class BaseClass {
             clndrPgObj = new CalendarPageObjects(driver);
             colorsPgObj = new ColorsPageObjects(driver);
             noPlainCSSPgObj = new NoPlainCSSPageObjects(driver);
+            meterPgObj = new MeterPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             commonUtils = new CommonUtils(driver);
@@ -162,6 +164,7 @@ public class BaseClass {
             clndrPgObj = new CalendarPageObjects(appium);
             colorsPgObj = new ColorsPageObjects(appium);
             noPlainCSSPgObj = new NoPlainCSSPageObjects(appium);
+            meterPgObj = new MeterPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             commonUtils = new CommonUtils(appium);
