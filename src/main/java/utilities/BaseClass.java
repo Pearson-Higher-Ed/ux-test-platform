@@ -32,13 +32,15 @@ public class BaseClass {
     public TypographyPageObjects typoPgObj;
     public InputsPageObjects inputsPgObj;
     public ButtonsPageObjects btnPgObj;
+    public CalendarPageObjects clndrPgObj;
+    public ColorsPageObjects colorsPgObj;
+    public NoPlainCSSPageObjects noPlainCSSPgObj;
     public AppHeaderPageObjects appHeaderPgObj;
     public ContextualHelpPageObjects conxHelpPgObj;
     public DrawerPageObjects drawerPgObj;
-    public CalendarPageObjects clndrPgObj;
     public ComponentArchetypePageObjects compArchtypePgObj;
     public AvatarDisplayPageObjects avatarDisplayPgObj;
-    public ColorsPageObjects colorsPgObj;
+
     public CommonUtils commonUtils;
     public String setDesktop = "";
     public String setMobile = "";
@@ -144,6 +146,7 @@ public class BaseClass {
             inputsPgObj = new InputsPageObjects(driver);
             clndrPgObj = new CalendarPageObjects(driver);
             colorsPgObj = new ColorsPageObjects(driver);
+            noPlainCSSPgObj = new NoPlainCSSPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             commonUtils = new CommonUtils(driver);
@@ -158,6 +161,7 @@ public class BaseClass {
             inputsPgObj = new InputsPageObjects(appium);
             clndrPgObj = new CalendarPageObjects(appium);
             colorsPgObj = new ColorsPageObjects(appium);
+            noPlainCSSPgObj = new NoPlainCSSPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             commonUtils = new CommonUtils(appium);
