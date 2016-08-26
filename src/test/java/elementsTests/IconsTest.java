@@ -37,7 +37,7 @@ public class IconsTest extends BaseClass {
         mobileDevice = mobDeviceName;
         browser = sauceBrowser;
         mBrowser = mobBrowser;
-        setMobile = mobile;    
+        setMobile = mobile;
     }
 
     @DataProvider(name = "getIconsTestData")
@@ -81,7 +81,8 @@ public class IconsTest extends BaseClass {
                 {"picture-o","\\f03e"},
                 {"caret-right","\\f0da"},
                 {"caret-down","\\f0d7"},
-                {"lightbulb-o","\\f0eb"}
+                {"lightbulb-o","\\f0eb"},
+                //{"shopping-cart","\\f07a"}
         };
     }
 

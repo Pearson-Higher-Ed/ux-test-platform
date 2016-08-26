@@ -22,6 +22,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import utilities.BaseClass;
+
 public class InputsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/inputs.html";
@@ -37,9 +38,9 @@ public class InputsTest extends BaseClass {
     String actualContent;
     String code;
     String marginRight = "", marginLeft = "", marginTop = "", marginBottom = "", display = "", verticalAlign = "", boxSizing = "", paddingTop = "", paddingRight = "", paddingBottom = "", paddingLeft = "", fontSize = "", lineHeight = "", outlineColor = "", outlineStyle = "", outlineWidth = "", outlineOffset = "", actualText = "";
-    String borderRightColor = "", borderLeftColor = "", borderTopColor = "", borderBottomColor = "", borderRightWidth = "", borderLeftWidth = "", borderTopWidth = "", borderBottomWidth = "", borderRightStyle = "", borderLeftStyle = "", borderTopStyle = "", borderBottomStyle = "", boxShadow = "", borderTopRightRadius="", borderBottomRightRadius="",borderTopLeftRadius="", borderBottomLeftRadius="",floatProperty="";
+    String borderRightColor = "", borderLeftColor = "", borderTopColor = "", borderBottomColor = "", borderRightWidth = "", borderLeftWidth = "", borderTopWidth = "", borderBottomWidth = "", borderRightStyle = "", borderLeftStyle = "", borderTopStyle = "", borderBottomStyle = "", boxShadow = "", borderTopRightRadius = "", borderBottomRightRadius = "", borderTopLeftRadius = "", borderBottomLeftRadius = "", floatProperty = "";
     boolean result = false, isMarginRight = false, isMarginLeft = false, isMarginTop = false, isMarginBottom = false, isDisplay = false, isVerticalAlign = false, isBoxSizing = false, isPaddingTop = false, isPaddingRight = false, isPaddingBottom = false, isPaddingLeft = false, isFontSize = false, isLineHeight = false, isOutlineColor = false, isOutlineStyle = false, isOutlineWidth = false, isOutlineOffset = false, isCSSProperty = false;
-    boolean isBorderRightColor = false, isBorderLeftColor = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderRightWidth = false, isBorderLeftWidth = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderRightStyle = false, isBorderLeftStyle = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBoxShadow = false,isBorderTopRightRadius=false,isBorderBottomRightRadius=false,isBorderTopLeftRadius=false,isBorderBottomLeftRadius=false,isFloatProperty=false;
+    boolean isBorderRightColor = false, isBorderLeftColor = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderRightWidth = false, isBorderLeftWidth = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderRightStyle = false, isBorderLeftStyle = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBoxShadow = false, isBorderTopRightRadius = false, isBorderBottomRightRadius = false, isBorderTopLeftRadius = false, isBorderBottomLeftRadius = false, isFloatProperty = false;
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
     @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
@@ -79,12 +80,12 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "InputTextActiveData")
     private Object[][] InputTextActiveData() {
         return new Object[][]{
-                {inputsPgObj.input_text_active, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_active_small, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"14px","13.93px"}, "16px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_readonly, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#F2F2F2"),commonUtils.hex2RgbWithoutTransparency("#F2F2F2")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_disable, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#f2f2f2"),commonUtils.hex2RgbWithoutTransparency("#f2f2f2")}, new String[]{commonUtils.hex2Rgb("#a6a8ab"),commonUtils.hex2RgbWithoutTransparency("#a6a8ab")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_error1, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
-                {inputsPgObj.input_text_error2, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"),commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"),commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"}};
+                {inputsPgObj.input_text_active, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_active_small, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"14px", "13.93px"}, "16px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_readonly, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#F2F2F2"), commonUtils.hex2RgbWithoutTransparency("#F2F2F2")}, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_disable, "solid 1px #d0d0d0", new String[]{commonUtils.hex2Rgb("#f2f2f2"), commonUtils.hex2RgbWithoutTransparency("#f2f2f2")}, new String[]{commonUtils.hex2Rgb("#a6a8ab"), commonUtils.hex2RgbWithoutTransparency("#a6a8ab")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_error1, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"},
+                {inputsPgObj.input_text_error2, "solid 1px #D0021B", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")}, new String[]{"16px"}, "18px", "3px", "inline-block", "middle", "Input Text"}};
     }
 
     @Test(testName = "VerifyInputTextActiveTest", dataProvider = "InputTextActiveData", groups = {"desktop-ci", "desktop-regression"})
@@ -227,7 +228,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Radio", dataProvider = "RadioTestData", groups = {"desktop-ci", "desktop-regression"})
     public void verifyRadioTest(String radioType, By element, String expMarginRight, String expMarginLeft, String expMarginTop, String expMarginBottom, String expDisplay, String expVerticalAlign, String expBoxSizing, String expPaddingTop, String expPaddingRight, String expPaddingBottom, String expPaddingLeft, By labelElement, String[] expLabelFontSize, String expLabelLineHeight) {
         chooseEnv();
         result = verifyRadio(radioType, element, expMarginRight, expMarginLeft, expMarginTop, expMarginBottom, expDisplay, expVerticalAlign, expBoxSizing, expPaddingTop, expPaddingRight, expPaddingBottom, expPaddingLeft, labelElement, expLabelFontSize, expLabelLineHeight);
@@ -307,7 +308,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
     private void verifyLargeSizeTextAreaTest(String cssProperty, String[] expectedCSSValue) throws Exception {
 
         chooseEnv();
@@ -356,7 +357,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
     private void verifyReadOnlyTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -377,7 +378,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
     private void verifyDisabledTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -408,7 +409,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
     private void verifyErroredTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -474,29 +475,29 @@ public class InputsTest extends BaseClass {
     /***********
      * pe-input-group
      ***********/
-    @Test(testName = "Verify InputGroup: Input",groups = {"desktop-regression"})
-    private void verifyInputGroupInputTest(){
+    @Test(testName = "Verify InputGroup: Input", groups = {"desktop-regression"})
+    private void verifyInputGroupInputTest() {
         chooseEnv();
-        floatProperty=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"float");
-        borderTopRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-top-right-radius");
-        borderBottomRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-bottom-right-radius");
-        borderRightWidth=commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width");
+        floatProperty = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "float");
+        borderTopRightRadius = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-top-right-radius");
+        borderBottomRightRadius = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-bottom-right-radius");
+        borderRightWidth = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width");
 
-        isFloatProperty=commonUtils.assertValue(floatProperty,"left","float property for input-group: input is not as per the spec");
-        isBorderTopRightRadius=commonUtils.assertValue(borderTopRightRadius,"0px","border top right radius for input-group: input is not as per the spec");
-        isBorderBottomRightRadius=commonUtils.assertValue(borderBottomRightRadius,"0px","border bottom right radius for input-group: input is not as per the spec");
-        isBorderRightWidth=commonUtils.assertValue(borderRightWidth,"0px","border right width for input-group: input is not as per the spec");
+        isFloatProperty = commonUtils.assertValue(floatProperty, "left", "float property for input-group: input is not as per the spec");
+        isBorderTopRightRadius = commonUtils.assertValue(borderTopRightRadius, "0px", "border top right radius for input-group: input is not as per the spec");
+        isBorderBottomRightRadius = commonUtils.assertValue(borderBottomRightRadius, "0px", "border bottom right radius for input-group: input is not as per the spec");
+        isBorderRightWidth = commonUtils.assertValue(borderRightWidth, "0px", "border right width for input-group: input is not as per the spec");
         Assert.assertTrue(isFloatProperty && isBorderTopRightRadius && isBorderBottomRightRadius && isBorderRightWidth);
     }
 
-    @Test(testName = "Verify InputGroup: Button",groups = {"desktop-regression"})
-    private void verifyInputGroupButtonTest(){
+    @Test(testName = "Verify InputGroup: Button", groups = {"desktop-regression"})
+    private void verifyInputGroupButtonTest() {
         chooseEnv();
-        borderTopLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-top-left-radius");
-        borderBottomLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-bottom-left-radius");
+        borderTopLeftRadius = commonUtils.getCSSValue(inputsPgObj.buttonInGroup, "border-top-left-radius");
+        borderBottomLeftRadius = commonUtils.getCSSValue(inputsPgObj.buttonInGroup, "border-bottom-left-radius");
 
-        isBorderTopLeftRadius=commonUtils.assertValue(borderTopLeftRadius,"0px","border top left radius for input-group: button is not as per the spec");
-        isBorderBottomLeftRadius=commonUtils.assertValue(borderBottomLeftRadius,"0px","border bottom left radius for input-group: button is not as per the spec");
+        isBorderTopLeftRadius = commonUtils.assertValue(borderTopLeftRadius, "0px", "border top left radius for input-group: button is not as per the spec");
+        isBorderBottomLeftRadius = commonUtils.assertValue(borderBottomLeftRadius, "0px", "border bottom left radius for input-group: button is not as per the spec");
         Assert.assertTrue(isBorderTopLeftRadius && isBorderBottomLeftRadius);
     }
 
@@ -683,7 +684,6 @@ public class InputsTest extends BaseClass {
         if (result == false) {
             System.out.println("Select Box error box-shadow specification Failed. " + element.toString() + "--> is not as per the spec");
         }
-
         Assert.assertTrue(result);
     }
 
@@ -806,29 +806,29 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify InputGroup: Input",groups = {"mobile-regression"})
-    private void verifyInputGroupInputMobileTest(){
-        commonUtils.getUrl(url,"mobile");
-        floatProperty=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"float","mobile");
-        borderTopRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-top-right-radius","mobile");
-        borderBottomRightRadius=commonUtils.getCSSValue(inputsPgObj.inputInGroup,"border-bottom-right-radius","mobile");
-        borderRightWidth=commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width","mobile");
+    @Test(testName = "Mobile: Verify InputGroup: Input", groups = {"mobile-regression"})
+    private void verifyInputGroupInputMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        floatProperty = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "float", "mobile");
+        borderTopRightRadius = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-top-right-radius", "mobile");
+        borderBottomRightRadius = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-bottom-right-radius", "mobile");
+        borderRightWidth = commonUtils.getCSSValue(inputsPgObj.inputInGroup, "border-right-width", "mobile");
 
-        isFloatProperty=commonUtils.assertValue(floatProperty,"left","float property for input-group: input is not as per the spec");
-        isBorderTopRightRadius=commonUtils.assertValue(borderTopRightRadius,"0px","border top right radius for input-group: input is not as per the spec");
-        isBorderBottomRightRadius=commonUtils.assertValue(borderBottomRightRadius,"0px","border bottom right radius for input-group: input is not as per the spec");
-        isBorderRightWidth=commonUtils.assertValue(borderRightWidth,"0px","border right width for input-group: input is not as per the spec");
+        isFloatProperty = commonUtils.assertValue(floatProperty, "left", "float property for input-group: input is not as per the spec");
+        isBorderTopRightRadius = commonUtils.assertValue(borderTopRightRadius, "0px", "border top right radius for input-group: input is not as per the spec");
+        isBorderBottomRightRadius = commonUtils.assertValue(borderBottomRightRadius, "0px", "border bottom right radius for input-group: input is not as per the spec");
+        isBorderRightWidth = commonUtils.assertValue(borderRightWidth, "0px", "border right width for input-group: input is not as per the spec");
         Assert.assertTrue(isFloatProperty && isBorderTopRightRadius && isBorderBottomRightRadius && isBorderRightWidth);
     }
 
-    @Test(testName = "Mobile: Verify InputGroup: Button",groups = {"mobile-regression"})
-    private void verifyInputGroupButtonMobileTest(){
-        commonUtils.getUrl(url,"mobile");
-        borderTopLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-top-left-radius","mobile");
-        borderBottomLeftRadius=commonUtils.getCSSValue(inputsPgObj.buttonInGroup,"border-bottom-left-radius","mobile");
+    @Test(testName = "Mobile: Verify InputGroup: Button", groups = {"mobile-regression"})
+    private void verifyInputGroupButtonMobileTest() {
+        commonUtils.getUrl(url, "mobile");
+        borderTopLeftRadius = commonUtils.getCSSValue(inputsPgObj.buttonInGroup, "border-top-left-radius", "mobile");
+        borderBottomLeftRadius = commonUtils.getCSSValue(inputsPgObj.buttonInGroup, "border-bottom-left-radius", "mobile");
 
-        isBorderTopLeftRadius=commonUtils.assertValue(borderTopLeftRadius,"0px","border top left radius for input-group: button is not as per the spec");
-        isBorderBottomLeftRadius=commonUtils.assertValue(borderBottomLeftRadius,"0px","border bottom left radius for input-group: button is not as per the spec");
+        isBorderTopLeftRadius = commonUtils.assertValue(borderTopLeftRadius, "0px", "border top left radius for input-group: button is not as per the spec");
+        isBorderBottomLeftRadius = commonUtils.assertValue(borderBottomLeftRadius, "0px", "border bottom left radius for input-group: button is not as per the spec");
         Assert.assertTrue(isBorderTopLeftRadius && isBorderBottomLeftRadius);
     }
 
@@ -893,9 +893,9 @@ public class InputsTest extends BaseClass {
         String border_style = borderArray[0];
         String border_width = borderArray[1];
         String border_color;
-        if(browser.equals("edge")){
+        if (browser.equals("edge")) {
             border_color = commonUtils.hex2RgbWithoutTransparency(borderArray[2]);
-        }else {
+        } else {
             border_color = commonUtils.hex2Rgb(borderArray[2]);
         }
         // get border
@@ -922,15 +922,15 @@ public class InputsTest extends BaseClass {
         boolean result_border3 = commonUtils.assertValue(actualBorderColor, border_color, "Element:" + element + " Component:" + component + " border-color specification Failed");
         boolean result_background = commonUtils.assertCSSProperties(actualBackgroundColor.toString(), actualBackgroundColor, background);
         if (result_background == false) {
-            log.info("'background color' :for "+element+" is not as per the spec");
+            log.info("'background color' :for " + element + " is not as per the spec");
         }
         boolean result_color = commonUtils.assertCSSProperties(actualColor.toString(), actualColor, color);
         if (result_color == false) {
-            log.info("'color' :for "+element+" is not as per the spec");
+            log.info("'color' :for " + element + " is not as per the spec");
         }
         boolean result_fontsize = commonUtils.assertCSSProperties(actualColor.toString(), actualFontSize, fontsize);
         if (result_fontsize == false) {
-            log.info("'font-size' :for "+element+" is not as per the spec");
+            log.info("'font-size' :for " + element + " is not as per the spec");
         }
         boolean result_lineheight = commonUtils.assertValue(actualLineHeight, lineheight, "Element:" + element + " Component:" + component + " line-height specification Failed");
         boolean result_borderradius = verifyBorderRadius(element, borderradius, borderradius, borderradius, borderradius);
