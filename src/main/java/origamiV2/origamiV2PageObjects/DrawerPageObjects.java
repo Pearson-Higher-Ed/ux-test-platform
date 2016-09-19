@@ -49,4 +49,12 @@ public class DrawerPageObjects {
 
     public By otherRightDrawerOpened=By.xpath("//div[@id='other-right-drawer-demo'][@class='o-drawer-right o-drawer-animated o-drawer o-drawer-open']");
     public By otherRightDrawerClosed=By.xpath("//div[@id='other-right-drawer-demo'][@class='o-drawer-right o-drawer-animated o-drawer']");
+
+    public By randomLinkInLeftDrawer=By.id("random-link-in-left-drawer");
+    public By focusablesInputInLeftDrawer=By.id("focusables-input-in-left-drawer");
+    public By closeLinkInLeftDrawer=By.id("close-link-in-left-drawer");
+
+    public By randomLinkInRightDrawer=By.id("random-link-in-right-drawer");
+    public By focusablesInputInRightDrawer=By.id("focusables-input-in-right-drawer");
+    public By closeLinkInRightDrawer=By.id("close-link-in-right-drawer");
 }
