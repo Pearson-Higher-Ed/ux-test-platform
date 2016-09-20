@@ -191,6 +191,11 @@ public class CommonUtils {
         js.executeScript("document.getElementById('" + element + "').focus()");
     }
 
+    //key operation on active element
+    public void keyOperationOnActiveElement(Keys key){
+        driver.switchTo().activeElement().sendKeys(key);
+    }
+
     /**
      * @param colorStr e.g. "#FFFFFF"
      * @return String - formatted "rgb(0,0,0,0)"
