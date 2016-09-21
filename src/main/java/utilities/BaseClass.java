@@ -42,6 +42,7 @@ public class BaseClass {
     public DrawerPageObjects drawerPgObj;
     public ComponentArchetypePageObjects compArchtypePgObj;
     public AvatarDisplayPageObjects avatarDisplayPgObj;
+    public TemplatesPageObjects templatePgObj;
 
     public CommonUtils commonUtils;
     public String setDesktop = "";
@@ -151,6 +152,7 @@ public class BaseClass {
             noPlainCSSPgObj = new NoPlainCSSPageObjects(driver);
             meterPgObj = new MeterPageObjects(driver);
             gridPgObj = new GridPageObjects(driver);
+            templatePgObj = new TemplatesPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             commonUtils = new CommonUtils(driver);
@@ -168,6 +170,7 @@ public class BaseClass {
             noPlainCSSPgObj = new NoPlainCSSPageObjects(appium);
             meterPgObj = new MeterPageObjects(appium);
             gridPgObj = new GridPageObjects(appium);
+            templatePgObj = new TemplatesPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             commonUtils = new CommonUtils(appium);
