@@ -75,7 +75,7 @@ public class TemplatesTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
-        isPaddingRight = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-right for window size " + width + " is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
         if (isColWidth == false) {
             log.info("column width for windows size " + width + " is not as per the spec");
@@ -131,7 +131,7 @@ public class TemplatesTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
-        isPaddingRight = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-right for window size " + width + " is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
         if (isColWidth == false) {
             log.info("column width for windows size " + width + " is not as per the spec");
@@ -186,7 +186,7 @@ public class TemplatesTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
-        isPaddingRight = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-right for window size " + width + " is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
         if (isColWidth == false) {
             log.info("column width for windows size " + width + " is not as per the spec");
@@ -242,7 +242,7 @@ public class TemplatesTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
-        isPaddingRight = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-right for window size " + width + " is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
         if (isColWidth == false) {
             log.info("column width for windows size " + width + " is not as per the spec");
@@ -298,7 +298,7 @@ public class TemplatesTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
-        isPaddingRight = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-right for window size " + width + " is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
         if (isColWidth == false) {
             log.info("column width for windows size " + width + " is not as per the spec");
