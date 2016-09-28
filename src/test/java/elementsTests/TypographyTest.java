@@ -268,7 +268,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"desktop-regression"})
     private void HeadingMrgnTest(By element) {
         chooseEnv();
         String margin = commonUtils.getCSSValue(element, "margin-top");
@@ -324,7 +324,6 @@ public class TypographyTest extends BaseClass {
     private void CodeTest(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family");
-        System.out.println("fontFamily: "+fontFamily);
         String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size");
         String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
@@ -332,7 +331,7 @@ public class TypographyTest extends BaseClass {
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
@@ -351,13 +350,12 @@ public class TypographyTest extends BaseClass {
     private void InlneCodeTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
-        System.out.println("fontFamily: "+fontFamily);
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
@@ -376,13 +374,12 @@ public class TypographyTest extends BaseClass {
     private void kbdTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
         chooseEnv();
         String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
-        System.out.println("fontFamily: "+fontFamily);
         String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
         String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
@@ -649,7 +646,7 @@ public class TypographyTest extends BaseClass {
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
@@ -667,7 +664,7 @@ public class TypographyTest extends BaseClass {
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
@@ -685,7 +682,7 @@ public class TypographyTest extends BaseClass {
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
@@ -729,7 +726,7 @@ public class TypographyTest extends BaseClass {
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
         commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not" + lnHeight);
@@ -747,7 +744,7 @@ public class TypographyTest extends BaseClass {
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not" + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not" + pdngLft);
@@ -765,7 +762,7 @@ public class TypographyTest extends BaseClass {
         String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
         boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
         if (isFontFamily == false) {
-            System.out.println("Font Family is not as per the spec");
+            log.info("Font Family is not as per the spec");
         }
         //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not" + fntFamly);
         commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not" + pdngLft);
@@ -1133,7 +1130,7 @@ public class TypographyTest extends BaseClass {
         boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
         boolean result_fontWeight = commonUtils.assertCSSProperties(element.toString(), headingFontWeight, fontWeight);
         if (result_fontWeight == false) {
-            System.out.println("Heading Font Weight for " + element.toString() + "--> is not as per the spec");
+            log.info("Heading Font Weight for " + element.toString() + "--> is not as per the spec");
         }
         boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
 
@@ -1491,7 +1488,6 @@ public class TypographyTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         lineHeight = commonUtils.getCSSValue(element, "line-height");
         borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width");
-        System.out.println("borderBottomWidth: "+ borderBottomWidth);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
@@ -1508,7 +1504,6 @@ public class TypographyTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
         lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
         borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width","mobile");
-        System.out.println("borderBottomWidth: "+borderBottomWidth);
         isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
         if (isFontSize == false) {
             log.info(titleType + " 'font size' is not as per the spec");
@@ -1573,16 +1568,11 @@ public class TypographyTest extends BaseClass {
 
     private boolean verifySuperAndSubScriptProperties(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
-        System.out.println(fontSize);
         isFontSize = commonUtils.assertCSSProperties(inlineTag, fontSize, inlineFontSize);
         top = commonUtils.getCSSValue(element, "top","mobile");
-        System.out.println(top);
         isTop = commonUtils.assertCSSProperties(inlineTag, top, inlineTop);
         position = commonUtils.getCSSValue(element, "position","mobile");
         isPosition = commonUtils.assertValue(position, inlinePosition, "'" + inlineTag + "' position value is not as per spec");
-        System.out.println(isFontSize);
-        System.out.println(isTop);
-        System.out.println(isPosition);
         return (isFontSize && isTop && isPosition);
     }
 

@@ -151,7 +151,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Select box specifications", dataProvider = "SelectBoxData", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Select box specifications", dataProvider = "SelectBoxData", groups = {"desktop-regression"})
     private void verifySelectBoxTest(By element, String[] dimension, String padding, String border, String background, String color, String[] fontsize, String[] lineheight, String borderradius, String display, String verticalalign) throws InterruptedException {
         chooseEnv();
         boolean result_1 = VerifySlctBxPrpty(element, dimension, padding);
@@ -190,8 +190,7 @@ public class InputsTest extends BaseClass {
 
         boolean result = commonUtils.assertCSSProperties(element.toString(), actBoxShadow, expBoxShadows);
         if (result == false) {
-            System.out.println("Select Box error box-shadow specification Failed. " + element.toString()
-                    + "--> is not as per the spec");
+            log.info("Select Box error box-shadow specification Failed. " + element.toString()+ "--> is not as per the spec");
         }
         Assert.assertTrue(result);
     }
@@ -308,13 +307,12 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Large Size TextArea", dataProvider = "LargeSizeTextAreaTestData", groups = {"desktop-regression"})
     private void verifyLargeSizeTextAreaTest(String cssProperty, String[] expectedCSSValue) throws Exception {
 
         chooseEnv();
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.largeSizeTextArea, cssProperty);
-        System.out.println("cssProperty: " + cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Large Size Text Area is not as per the spec");
@@ -342,7 +340,6 @@ public class InputsTest extends BaseClass {
         chooseEnv();
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.smallSizeTextArea, cssProperty);
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Small Size Text Area is not as per the spec");
@@ -357,12 +354,11 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Read Only TextArea", dataProvider = "ReadOnlyTextAreaTestData", groups = {"desktop-regression"})
     private void verifyReadOnlyTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.readOnlyTextArea, cssProperty);
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Read Only Text Area is not as per the spec");
@@ -378,12 +374,11 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Disabled TextArea", dataProvider = "DisabledTextAreaTestData", groups = {"desktop-regression"})
     private void verifyDisabledTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.disabledTextArea, cssProperty);
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Disabled Text Area is not as per the spec");
@@ -409,7 +404,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Errored TextArea", dataProvider = "ErroredTextAreaTestData", groups = {"desktop-regression"})
     private void verifyErroredTextAreaTest(String cssProperty, String[] expectedCSSValue) {
         chooseEnv();
         String cssPropertyType = cssProperty;
@@ -444,7 +439,6 @@ public class InputsTest extends BaseClass {
         chooseEnv();
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty);
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("Label for " + "'" + cssPropertyType + "' :for Text Area is not as per the spec");
@@ -466,7 +460,6 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = {"desktop-regression"})
     private void verifyTextAreaFocusStateTest(String textAreaType, By element, String[] borderRightColor, String[] borderLeftColor, String[] borderBottomColor, String[] borderTopColor, String borderRightWidth, String borderLeftWidth, String borderBottomWidth, String borderTopWidth, String borderLeftStyle, String borderRightStyle, String borderBottomStyle, String borderTopStyle, String boxShadow) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
-        System.out.println("elementId: " + elementId);
         chooseEnv();
         result = verifyTextAreaFocusState(textAreaType, element, borderRightColor, borderLeftColor, borderBottomColor, borderTopColor, borderRightWidth, borderLeftWidth, borderBottomWidth, borderTopWidth, borderLeftStyle, borderRightStyle, borderBottomStyle, borderTopStyle, boxShadow, elementId);
         Assert.assertTrue(result);
@@ -682,7 +675,7 @@ public class InputsTest extends BaseClass {
         String actBoxShadow = commonUtils.getCSSValue(element, "box-shadow", "mobile");
         boolean result = commonUtils.assertCSSProperties(element.toString(), actBoxShadow, expBoxShadows);
         if (result == false) {
-            System.out.println("Select Box error box-shadow specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("Select Box error box-shadow specification Failed. " + element.toString() + "--> is not as per the spec");
         }
         Assert.assertTrue(result);
     }
@@ -722,7 +715,6 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.largeSizeTextArea, cssProperty, "mobile");
-        System.out.println("cssProperty: " + cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Large Size Text Area is not as per the spec");
@@ -736,7 +728,6 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.smallSizeTextArea, cssProperty, "mobile");
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Small Size Text Area is not as per the spec");
@@ -749,7 +740,6 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.readOnlyTextArea, cssProperty, "mobile");
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Read Only Text Area is not as per the spec");
@@ -763,7 +753,6 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.disabledTextArea, cssProperty, "mobile");
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("'" + cssPropertyType + "' :for Disabled Text Area is not as per the spec");
@@ -789,7 +778,6 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
-        System.out.println(cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (isCSSProperty == false) {
             log.info("Label for " + "'" + cssPropertyType + "' :for Text Area is not as per the spec");
@@ -800,7 +788,6 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify TextArea Focus State", dataProvider = "TextAreaFocusStateTestData", groups = "mobile-regression")
     private void verifyTextAreaFocusStateMobileTest(String textAreaType, By element, String[] borderRightColor, String[] borderLeftColor, String[] borderBottomColor, String[] borderTopColor, String borderRightWidth, String borderLeftWidth, String borderBottomWidth, String borderTopWidth, String borderLeftStyle, String borderRightStyle, String borderBottomStyle, String borderTopStyle, String boxShadow) throws Exception {
         String elementId = element.toString().substring(7, (element.toString().length()));
-        System.out.println("elementId: " + elementId);
         commonUtils.getUrl(url, "mobile");
         result = verifyTextAreaFocusState(textAreaType, element, borderRightColor, borderLeftColor, borderBottomColor, borderTopColor, borderRightWidth, borderLeftWidth, borderBottomWidth, borderTopWidth, borderLeftStyle, borderRightStyle, borderBottomStyle, borderTopStyle, boxShadow, elementId, "mobile");
         Assert.assertTrue(result);
@@ -1218,31 +1205,22 @@ public class InputsTest extends BaseClass {
 
         // get border
         String actualBorderWidth = commonUtils.getCSSValue(element, "border-top-width", "mobile");
-        System.out.println(actualBorderWidth);
         // get border
         String actualBorderStyle = commonUtils.getCSSValue(element, "border-top-style", "mobile");
-        System.out.println(actualBorderStyle);
         // get border
         String actualBorderColor = commonUtils.getCSSValue(element, "border-top-color", "mobile");
-        System.out.println(actualBorderColor);
         // get background
         String actualBackgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
-        System.out.println(actualBackgroundColor);
         // get color
         String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
-        System.out.println(actualColor);
         // get font size
         String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        System.out.println(actualFontSize);
         // get line height
         String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        System.out.println(actualLineHeight);
         // get display
         String actualDisplay = commonUtils.getCSSValue(element, "display", "mobile");
-        System.out.println(actualDisplay);
         // get vertical-align
         String actualVerticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
-        System.out.println(actualVerticalAlign);
 
         boolean result_border1 = commonUtils.assertValue(actualBorderWidth, border_width, "Element:" + element + " Component:" + component + " border-width specification Failed");
         boolean result_border2 = commonUtils.assertValue(actualBorderStyle, border_style, "Element:" + element + " Component:" + component + " border-style specification Failed");
@@ -1481,23 +1459,23 @@ public class InputsTest extends BaseClass {
         String[] expBorderColors = {commonUtils.hex2Rgb(borderArray[2]), commonUtils.hex2RgbWithoutTransparency(borderArray[2])};
         boolean result_border3 = commonUtils.assertCSSProperties(element.toString(), actualBorderColor, expBorderColors);
         if (result_border3 == false) {
-            System.out.println("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         String[] expBackgroundColors = {commonUtils.hex2Rgb(background), commonUtils.hex2RgbWithoutTransparency(background)};
         boolean result_background = commonUtils.assertCSSProperties(element.toString(), actualBackgroundColor, expBackgroundColors);
         if (result_background == false) {
-            System.out.println("background specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("background specification Failed. " + element.toString() + "--> is not as per the spec");
         }
         String[] expColors = {commonUtils.hex2Rgb(color), commonUtils.hex2RgbWithoutTransparency(color)};
         boolean result_color = commonUtils.assertCSSProperties(element.toString(), actualColor, expColors);
         if (result_color == false) {
-            System.out.println("color specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("color specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         boolean result_fontsize = commonUtils.assertCSSProperties(element.toString(), actualFontSize, fontsize);
         if (result_fontsize == false) {
-            System.out.println("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         boolean result_lineheight = commonUtils.assertCSSProperties(element.toString(), actualLineHeight, lineheight);
@@ -1545,23 +1523,23 @@ public class InputsTest extends BaseClass {
         String[] expBorderColors = {commonUtils.hex2Rgb(borderArray[2]), commonUtils.hex2RgbWithoutTransparency(borderArray[2])};
         boolean result_border3 = commonUtils.assertCSSProperties(element.toString(), actualBorderColor, expBorderColors);
         if (result_border3 == false) {
-            System.out.println("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("border-color specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         String[] expBackgroundColors = {commonUtils.hex2Rgb(background), commonUtils.hex2RgbWithoutTransparency(background)};
         boolean result_background = commonUtils.assertCSSProperties(element.toString(), actualBackgroundColor, expBackgroundColors);
         if (result_background == false) {
-            System.out.println("background specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("background specification Failed. " + element.toString() + "--> is not as per the spec");
         }
         String[] expColors = {commonUtils.hex2Rgb(color), commonUtils.hex2RgbWithoutTransparency(color)};
         boolean result_color = commonUtils.assertCSSProperties(element.toString(), actualColor, expColors);
         if (result_color == false) {
-            System.out.println("color specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("color specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         boolean result_fontsize = commonUtils.assertCSSProperties(element.toString(), actualFontSize, fontsize);
         if (result_fontsize == false) {
-            System.out.println("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
+            log.info("font-size specification Failed. " + element.toString() + "--> is not as per the spec");
         }
 
         boolean result_lineheight = commonUtils.assertCSSProperties(element.toString(), actualLineHeight, lineheight);

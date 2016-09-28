@@ -27,7 +27,7 @@
             </run>
         </groups>
         <classes>
-            <class name="reactComponentTests.ComponentArchetypeTest"/>
+            <class name="origamiV2Tests.ComponentArchetypeTest"/>
         </classes>
     </test>
 </suite>

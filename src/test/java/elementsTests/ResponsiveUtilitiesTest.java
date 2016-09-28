@@ -42,7 +42,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop-regression"})
     private void lgTest(int width, int height, By element, String visible, String color, String display) throws InterruptedException {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);
@@ -82,7 +82,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop-regression"})
     private void smTest(int width, int height, By element, String visible, String color, String display) {
         chooseEnv();
         result = performRespEval(width, height, element, visible, color, display);

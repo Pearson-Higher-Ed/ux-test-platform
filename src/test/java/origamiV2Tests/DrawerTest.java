@@ -173,7 +173,6 @@ public class DrawerTest extends BaseClass {
 
         //Verify if the first drawer is closed
         Thread.sleep(1000);
-        System.out.println(commonUtils.getAttributeValue(drawerClosedStatusElement, "class"));
         isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement);
         Assert.assertTrue(isDrawerClosed);
     }

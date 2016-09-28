@@ -27,7 +27,7 @@
             </run>
         </groups>
         <classes>
-            <class name="reactComponentTests.AvatarDisplayTest"/>
+            <class name="origamiV2Tests.AvatarDisplayTest"/>
         </classes>
     </test>
 </suite>

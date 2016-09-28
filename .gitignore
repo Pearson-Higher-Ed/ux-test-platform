@@ -17,3 +17,6 @@ target/
 test-output/
 testng.out.xml
 bin/
+
+# Node
+node_modules
