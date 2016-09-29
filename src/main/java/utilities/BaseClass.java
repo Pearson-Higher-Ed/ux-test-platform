@@ -43,6 +43,7 @@ public class BaseClass {
     public ComponentArchetypePageObjects compArchtypePgObj;
     public AvatarDisplayPageObjects avatarDisplayPgObj;
     public TemplatesPageObjects templatePgObj;
+    public SliderPageObjects sliderPgObj;
 
     public CommonUtils commonUtils;
     public String setDesktop = "";
@@ -71,6 +72,7 @@ public class BaseClass {
                     caps = DesiredCapabilities.firefox();
                 } else if (sauceBrowser.equals("ie")) {
                     caps = DesiredCapabilities.internetExplorer();
+                    caps.setCapability("nativeEvents",true);
                 } else if (sauceBrowser.equals("safari")) {
                     caps = DesiredCapabilities.safari();
                 } else if (sauceBrowser.equals("edge")) {
@@ -156,6 +158,7 @@ public class BaseClass {
             preStratPgObj = new PresentationStrategiesPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
+            sliderPgObj = new SliderPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -175,6 +178,7 @@ public class BaseClass {
             preStratPgObj = new PresentationStrategiesPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
+            sliderPgObj = new SliderPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
