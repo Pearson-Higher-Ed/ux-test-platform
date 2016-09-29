@@ -4,65 +4,71 @@ echo "component: $component"
 echo "feature_branch: $feature_branch"
 
 install_elements_sdk() {
+echo -e "******************************\\n    Installing elements sdk    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
 git checkout $1
-npm install
-npm run build
+npm install &>/dev/null
+npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elementsNoPlain.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
 
 install_appHeader(){
+echo -e "******************************\\n    Installing app-header    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
 cd app-header
 git checkout $1
-npm install
-npm run build
+npm install &>/dev/null
+npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/build/dist.app-header.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }
 
 install_contextualHelp(){
+echo -e "******************************\\n    Installing contextual-help    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/contextual-help.git
 cd contextual-help
 git checkout $1
-npm install
-npm run build
+npm install &>/dev/null
+npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/build/dist.contextual-help.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/contextualHelp/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }
 
 install_drawer(){
+echo -e "******************************\\n    Installing drawer    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/drawer.git
 cd drawer
 git checkout $1
-npm install
-npm run build
+npm install &>/dev/null
+npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/drawer/build/dist.drawer.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/drawer/
 }
 
 install_componentArchetype(){
+echo -e "******************************\\n    Installing component-archetype    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/component-archetype.git
 cd component-archetype
 git checkout $1
-npm install
-npm run build
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/build/dist.component-name.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/reactComponents/jsfiles/componentArchetype/
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/build/dist.component-name.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/componentArchetype/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }
 
 install_avatarDisplay(){
+echo -e "******************************\\n    Installing avatar-display    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/avatar-display.git
 cd avatar-display
 git checkout $1
-npm install
-npm run build
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/build/dist.avatar-display.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/reactComponents/jsfiles/avatarDisplay/
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/build/dist.avatar-display.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/avatarDisplay/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }

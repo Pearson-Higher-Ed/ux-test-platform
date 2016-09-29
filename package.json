@@ -1,0 +1,14 @@
+{
+    "name": "local-web-server",
+    "version": "1.0.0",
+    "local-web-server": {
+        "port": "8000",
+        "forbid": "*.json"
+    },
+    "scripts": {
+        "start": "ws"
+    },
+    "devDependencies": {
+        "local-web-server": "^1.2.6"
+    }
+}

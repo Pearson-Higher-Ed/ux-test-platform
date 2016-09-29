@@ -1,4 +1,4 @@
-package reactComponentTests;
+package origamiV2Tests;
 
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
@@ -22,9 +22,9 @@ import java.util.List;
  */
 public class AvatarDisplayTest extends BaseClass {
 
-    private final String avatarDisplayUrl = "http://localhost:8000/src/main/java/reactComponents/fixtures/avatarDisplay/avatar-display.html";
-    private final String avatarDisplayJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/reactComponents/jsfiles/avatarDisplay/avatar-display.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/reactComponents/jsfiles/avatarDisplay/temp.js";
+    private final String avatarDisplayUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/avatarDisplay/avatar-display.html";
+    private final String avatarDisplayJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/avatarDisplay/avatar-display.js";
+    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/avatarDisplay/temp.js";
     private String avatarURLText = "http://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/profile_user.jpg";
     private String testConfig = "";
     private static String browser = "";
@@ -55,7 +55,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarSizeTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
         readInitialConfig(avatarDisplayJSPath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -76,7 +76,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarShapeTest(String size) throws Exception {
         readInitialConfig(avatarDisplayJSPath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -97,7 +97,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "elementId config Test", dataProvider = "elementId config Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "elementId config Test", dataProvider = "elementId config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void elementIdConfigTest(String[] configArray) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
@@ -129,7 +129,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarURLTextConfigTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         if ((!browser.equals("chrome")) && configType.equals("invalidAvatarURLText")) {
             throw new SkipException("browser console logs apis are still not implemented for this browser driver'");
@@ -173,7 +173,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarALTTextConfigTest(String configType, String[] configArray, String avatarALTText) throws Exception {
         int i;
         readInitialConfig(avatarDisplayJSPath);
@@ -201,7 +201,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"desktop-regression", "react"})
+    @Test(testName = "avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarSizeConfigTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         int i;
         readInitialConfig(avatarDisplayJSPath);
@@ -230,7 +230,7 @@ public class AvatarDisplayTest extends BaseClass {
     /***************
      * Mobile Tests
      **************/
-    @Test(testName = "Mobile: avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"mobile-regression", "react"})
+    @Test(testName = "Mobile: avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarSizeMobileTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
         readInitialConfig(avatarDisplayJSPath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -242,7 +242,7 @@ public class AvatarDisplayTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"mobile-regression", "react"})
+    @Test(testName = "Mobile: avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarShapeMobileTest(String size) throws Exception {
         readInitialConfig(avatarDisplayJSPath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -255,7 +255,7 @@ public class AvatarDisplayTest extends BaseClass {
         Assert.assertTrue(isShape);
     }
 
-    @Test(testName = "Mobile: avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"mobile-regression", "react"})
+    @Test(testName = "Mobile: avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarURLTextConfigMobileTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         if (configType.equals("invalidAvatarURLText")) {
             throw new SkipException("browser console logs apis are still not implemented for this driver'");
@@ -284,7 +284,7 @@ public class AvatarDisplayTest extends BaseClass {
         Assert.assertTrue(isHeight && isWidth);
     }
 
-    @Test(testName = "Mobile: avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"mobile-regression", "react"})
+    @Test(testName = "Mobile: avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarALTTextConfigMobileTest(String configType, String[] configArray, String avatarALTText) throws Exception {
         int i;
         readInitialConfig(avatarDisplayJSPath);
@@ -302,7 +302,7 @@ public class AvatarDisplayTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"mobile-regression", "react"})
+    @Test(testName = "Mobile: avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarSizeConfigMobileTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         int i;
         readInitialConfig(avatarDisplayJSPath);

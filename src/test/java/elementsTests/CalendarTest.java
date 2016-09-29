@@ -101,7 +101,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-1
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = {"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "SpacingTestData", groups = {"desktop-regression" })
 	private void SpacingTest(By element, String padding) {
 		chooseEnv();
 		result = verifySpace(element, padding);
@@ -119,7 +119,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Spacing Test-2
-	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = {"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Calendar Spacing Test", dataProvider = "DaySpacingTestData", groups = {"desktop-regression" })
 	private void DaySpacingTest(By element, String paddingArndDte) {
 		chooseEnv();
 		result = verifySpaceBtwn(element, paddingArndDte);
@@ -161,8 +161,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Border Test-1
-	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = {
-			"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Border Test", dataProvider = "BorderTestData", groups = {"desktop-regression" })
 	private void BorderTest(By element, String brdrSize, String brdrColor, String brdrHeight, String leftPadding, String rightPadding) {
 		chooseEnv();
 		result = verifyBorder(element, brdrSize, brdrColor, brdrHeight, leftPadding, rightPadding);
@@ -181,7 +180,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Date Test-1
-	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = {"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Date Test", dataProvider = "DateTestData", groups = {"desktop-regression" })
 	private void DateTest(By element, String txtSize, String lnHeight, String paddingTop) {
 		chooseEnv();
 		result = verifyDate(element, txtSize, lnHeight, paddingTop);
@@ -219,7 +218,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// size Test-1
-	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = {"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "State Test", dataProvider = "StateTestData", groups = {"desktop-regression" })
 	private void StateTest(By element, String bckColor, String txtColor) {
 		chooseEnv();
 		result = verifyState(element, bckColor, txtColor);
@@ -250,7 +249,7 @@ public class CalendarTest extends BaseClass {
 	}
 
 	// Hover Month Control Test
-	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = {"desktop-ci", "desktop-regression" })
+	@Test(enabled = true, testName = "Hover Month Control Test", dataProvider = "HoverMonthControlData", groups = {"desktop-regression" })
 	private void HoverMonthControlTest(By element, String txtMonth, String color, String hoverColor) {
 		chooseEnv();
 		result = verifyHoverMonthControl(element, txtMonth, color, hoverColor);

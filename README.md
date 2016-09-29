@@ -16,7 +16,7 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
     </pre>
 
 * __origami_v2__:
-    *  Run python -m SimpleHTTPServer from the root directory of ux-test-platform. This will start localhost:8000
+    *  Run python -m SimpleHTTPServer or npm install and npm start from the root directory of ux-test-platform. This will start localhost:8000
     *  Install origami v2 component(eg. app-header) on your local machine and copy the dist.app-header.js file to /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
     *  <pre>
     git clone https://github.com/Pearson-Higher-Ed/app-header.git

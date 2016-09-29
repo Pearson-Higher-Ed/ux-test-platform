@@ -1,4 +1,4 @@
-package reactComponents.reactComponentsPageObjects;
+package origamiV2.origamiV2PageObjects;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;

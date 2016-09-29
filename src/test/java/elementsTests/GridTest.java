@@ -220,7 +220,6 @@ public class GridTest extends BaseClass {
         chooseEnv();
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
-        System.out.println(colWidth);
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
         if (isColWidth == false) {
             log.info(" Column width for container 3 and column " + colName + " is not as per the spec");
@@ -583,7 +582,6 @@ public class GridTest extends BaseClass {
         appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
         colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        System.out.println("width" + colWidth);
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
