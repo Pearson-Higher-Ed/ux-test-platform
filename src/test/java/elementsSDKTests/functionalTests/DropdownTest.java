@@ -463,20 +463,28 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Mobile : Label Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
     private void headerLabelDropdownMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 8 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
         String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig("label", paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
+        commonUtils.printFileContents(dropdownJSFilePath);
+        System.out.println("1");
         commonUtils.click(dropdownPgObj.textLabel, "mobile");
+        System.out.println("2");
         cssPropertyType = cssProperty;
+        System.out.println("3");
         cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        System.out.println("4");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+        System.out.println("5");
         if (!isCSSProperty) {
+            System.out.println("6");
             log.info("Compounds-> '" + cssPropertyType + "' :of Header for Label Dropdown is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
+        System.out.println("7");
     }
 
     @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
