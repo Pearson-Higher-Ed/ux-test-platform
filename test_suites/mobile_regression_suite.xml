@@ -1,0 +1,60 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Mobile Regression Test Suite">
+
+    <test name="Elements and Origami Tests" parallel="classes">
+        <groups>
+            <run>
+                <include name="mobile-regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="elementsTests.InputsTest"/>
+            <class name="elementsTests.ButtonsTest"/>
+            <class name="elementsTests.TypographyTest"/>
+            <class name="elementsTests.ResponsiveUtilitiesTest"/>
+            <class name="elementsTests.IconsTest"/>
+            <class name="elementsTests.GridTest"/>
+            <class name="elementsTests.TemplatesTest"/>
+            <class name="elementsTests.PresentationStrategyTest"/>
+            <class name="elementsTests.FormsTest"/>
+            <class name="origamiV2Tests.ContextualHelpTest"/>
+            <class name="origamiV2Tests.DrawerTest"/>
+            <!--<class name="origamiV2Tests.ComponentArchetypeTest"/>-->
+            <class name="origamiV2Tests.AvatarDisplayTest"/>
+            <class name="origamiV2Tests.TextModalTest"/>
+            <class name="origamiV2Tests.SliderTest"/>
+            <class name="origamiV2Tests.AlertsTest"/>
+            <class name="origamiV2Tests.ModalTest"/>
+            <class name="origamiV2Tests.PaginationTest"/>
+        </classes>
+    </test>
+
+    <test name="Origami - App Header Tests">
+        <groups>
+            <run>
+                <include name="mobile-regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="origamiV2Tests.AppHeaderTest"/>
+        </classes>
+    </test>
+
+    <test name="Compounds Tests" parallel="classes">
+        <groups>
+            <run>
+                <include name="mobile-regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="compoundsTests.InputsTest"/>
+            <class name="compoundsTests.ButtonsTest"/>
+            <class name="compoundsTests.IconsTest"/>
+            <class name="compoundsTests.DropdownTest"/>
+            <class name="compoundsTests.LoadingIndicatorTest"/>
+            <class name="compoundsTests.FooterTest"/>
+            <class name="compoundsTests.TabsTest"/>
+        </classes>
+    </test>
+</suite>

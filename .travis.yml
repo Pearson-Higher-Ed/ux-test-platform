@@ -5,6 +5,9 @@ jdk:
   - oraclejdk8
 
 env:
+  matrix:
+  - TEST_SUITE=desktop_regression_suite.xml
+  - TEST_SUITE=mobile_regression_suite.xml
   global:
   - secure: UX8IPlfuE1XvcEJwZiv6eM4rsPO3cxapgywxLqOObVt2wypsSiHo0NkkYJet5MfgpPYIviy8FP2poZUG3PkSc+x+zWtNf+usYBMeuhjbaW4sUvjznwhOpq5qphEhBlf7L9OCGd5Qv0qZjoHNSD5stfSOJd8Z53miFJ4O4KjpRNVFCJYfn1ple5WCoCjATbMl6bZqbigYU3s0jaXp9oue8cYVCttm/ahyQ+O9ya/NvGr93mr+dIr0scXDAMDM3aUTB8VZcRJ46Y9jy8MJ3nQTlJr1/+Gm2ujdpzgloVlQ2nBgSPAjvxJv3RQIZZsIYm4SoRntpSilYR91KZFEirUkZON7E6/bhb8N4mJTnqo5UPcHJl/8teF+SfdURiYDc7XQ3i94aiWKzOdzNBWi0OZsAU483jn0+kuTMafsTZ3EOGMMequZecdfn4PG47Ahq29Qy2s/92CECNoFiZL8BXCAbb4ecnS0fShe/79qsbG7OyTHkJlDPYhoQY+2eCVv0Wnrprv/sThzmnrs8QpAyPWAQ4siJ0y8Q8mIeDUWWZ4C5cll4Mincom7tdOOapuCsNLCxWn2LJeyCRPzpbgJBW4I2R76Ed2yjR1yuh4l5W0HB1604rRh+ImPpHn8ZYDYxrk284aI2RzhSNkUU6bdx2tgheJs2uFtDgXKIpZtlw1Kqks=
   - secure: P8t4vLidU5cVGbHllIiUkZFeajPVwGMaipIe+o1rm0FQO7bciJawoXJSOcTSMJhN1RMFSzF0ZaAbo4EiLJcx2VGxppyiR8LLYDMXt8E0QuW+Yy91K8TdjJOMrgJlWJsWmK8pRVjQSeLP77xDO7HvA/vfJPSf3d6DLeeFQ+Y+hu1/u+HwTUxZ4Ta79Iy87U6y4tyZCx/0H28Xvb9cMRM0m1urPJ15EGyDGJfo9rmn77VKrdFy2q5QDjF/O8o6fNCZ+lXlyWxEnxawETKjX3nfOTM1Lm2pfLfKC3+zhLQ5ukQPbrhDXK5QHK03nppv7lUMtN+BskWyJCZnC7l4VkZyYaOumnTENuDXK4O7Lq4swv3jXOcWZT3ZLpRG0/Ydw4rFwPOW4VCVEO10tVdxyi+hro4C+CgNxalXyXdLCAGqEYkIH0RsKp3hPoOaD00pstobGvEw/ZWIhinkk8YNAJ4MliKINonFBHUe5TEt4p4QV2awee3Q8ajn9F0BhpNsS733dkSIV1BvWgj/BwVllN4kxNP0XoCFMVa7lifykFr/TI39ilwUFK5wOM36kmVTTLHumB4qVdybrqOcG2amjsTgql9MbBxuD0tzBpLJzKacCXB/W8Z148oYFQQSkX6KM5Cp39a2HiLmH2oZrLk8xrVNxUcGqS+xYW3S7CEYSxxp+hs=
@@ -23,17 +26,18 @@ install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
 
 before_script:
-- nvm install 8.0
-- nvm use 8.0
+- nvm install 6.0
+- nvm use 6.0
 - npm install -g local-web-server &>/dev/null
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
+- export component=regression
 - export feature_branch=v1
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- echo $TEST_SUITE
+- mvn -Dtest_suite_xml=$TEST_SUITE test
 
 notifications:
   email:
@@ -42,5 +46,4 @@ notifications:
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
-
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476
