@@ -45,7 +45,6 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
                         <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
-                        <!--<suiteXmlFile>test_suites/mobile_regression_suite.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
