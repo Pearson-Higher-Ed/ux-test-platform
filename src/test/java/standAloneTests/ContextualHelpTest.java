@@ -175,6 +175,7 @@ public class ContextualHelpTest extends BaseClass {
 
         //Test2 - Click 'X' button when user navigates into a help topic
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
         Thread.sleep(2000);

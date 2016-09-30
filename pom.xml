@@ -20,6 +20,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.saucelabs.maven.plugin</groupId>
+            <artifactId>sauce-connect-plugin</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_java_common</artifactId>
             <version>LATEST</version>
@@ -27,12 +32,17 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>LATEST</version>
+            <version>4.1.2</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>LATEST</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.6</version>
         </dependency>
     </dependencies>
     <build>
@@ -44,13 +54,12 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
-                       <suiteXmlFile>test_suites/${test_suite_xml}_desktop.xml</suiteXmlFile>
-                        <suiteXmlFile>test_suites/${test_suite_xml}_mobile.xml</suiteXmlFile>
-                       <!-- <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile> -->
+                       <!--<suiteXmlFile>test_suites/${test_suite_xml}_desktop.xml</suiteXmlFile>-->
+                        <!--<suiteXmlFile>test_suites/${test_suite_xml}_mobile.xml</suiteXmlFile>-->
+                        <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-</project> 
+</project>

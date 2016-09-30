@@ -1343,6 +1343,7 @@ public class AppHeaderTest extends BaseClass {
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
+        Thread.sleep(1000);
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         Thread.sleep(1000);
     }

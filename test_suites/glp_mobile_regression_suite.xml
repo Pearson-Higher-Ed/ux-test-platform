@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="GLP ElementsSDK Test Suite">
+    <groups>
+        <run>
+            <include name="mobile-regression"/>
+        </run>
+    </groups>
+    <!-- Styles(CSS) Tests -->
+    <test name="GLP ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="3">
+        <classes>
+            <class name="glpTests.stylesTests.GLPFormsTest"/>
+            <class name="glpTests.stylesTests.GLPButtonsTest"/>
+            <class name="glpTests.functionalTests.GLPButtonsTest"/>
+        </classes>
+    </test>
+</suite>

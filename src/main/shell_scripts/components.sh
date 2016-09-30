@@ -271,35 +271,22 @@ install_coachMark $feature_branch
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-echo $TEST_SUITE
-if [[ $TEST_SUITE =~ "stand_alone_part_1" ]]
-then
 install_appHeader master &
+install_drawer master &
 install_contextualHelp master &
 install_avatarDisplay master &
-install_alerts master &
-install_drawer master &
-fi
-if [[ $TEST_SUITE =~ "stand_alone_part_2" ]]
-then
 install_slider master &
+fi
+jobs -l
+wait
+if [[ $component == "regression" ]]
+then
+install_alerts master &
 install_pagination master &
 install_modal master &
 install_loadingIndicator master &
 install_coachMark master &
-fi
-if [[ $TEST_SUITE =~ "elements_styles_sdk" ]]
-then
 install_elements_sdk master &
-fi
-if [[ $TEST_SUITE =~ "elements_functional_sdk" ]]
-then
-install_elements_sdk master &
-fi
-if [[ $TEST_SUITE == "glp-elements-sdk" ]]
-then
-install_glp_elements_sdk master &
-fi
-wait
 fi
 jobs -l
+wait
