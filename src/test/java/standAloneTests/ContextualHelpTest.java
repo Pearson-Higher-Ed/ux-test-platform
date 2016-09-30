@@ -1045,12 +1045,15 @@ public class ContextualHelpTest extends BaseClass {
         isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose, "mobile");
         Assert.assertTrue(isContextualHelpDrawerClose);
 
+        Thread.sleep(500);
         //Test2 - Click 'X' button when user navigates into a help topic
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailVisible);
 
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "mobile");
         isHelpContentTopicDetailHidden = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailHidden, "mobile");
         Assert.assertTrue(isHelpContentTopicDetailHidden);
@@ -1074,6 +1077,7 @@ public class ContextualHelpTest extends BaseClass {
             Assert.assertTrue(isContextualHelpDrawerOpen);
             //Test2- Click 'Help' to close the drawer
             commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+            Thread.sleep(1000);
             isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose, "mobile");
             Assert.assertTrue(isContextualHelpDrawerClose);
         }
@@ -1131,6 +1135,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
         //close via clicking X button
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseIcon, "mobile");
         Thread.sleep(500);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo, "mobile");
@@ -1525,6 +1530,7 @@ public class ContextualHelpTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws InterruptedException {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        Thread.sleep(1000);
     }
 
     @AfterMethod(alwaysRun = true)

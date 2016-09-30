@@ -27,7 +27,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>5.0.4</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -44,7 +44,9 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
-                        <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
+                       <suiteXmlFile>test_suites/${test_suite_xml}_desktop.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/${test_suite_xml}_mobile.xml</suiteXmlFile>
+                       <!-- <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile> -->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

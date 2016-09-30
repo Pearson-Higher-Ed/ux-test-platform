@@ -493,19 +493,21 @@ public class TimePickerTest extends BaseClass {
         Assert.assertTrue((timeInTimeField.equals(value)), "In '" + state + "' inputState, the time in the timeField text box and the one selected in the dropdown doesn't match");
     }
 
-    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression1", retryAnalyzer = RetryAnalyzer.class)
     private void dropDownCloseMobileTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
 
         for (int i = 0; i < 2; i++) {
             String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
             String[] propsPropertiesList = new String[]{"inputState", state[i], "timeFormat", "hh:mm", "labelText", "Select time"};
             setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+            commonUtils.printFileContents(timepickerJSFilePath);
 
             commonUtils.click(timeFieldElement[i], "mobile");
 
             //With Selection
             if (closeType.equals("with-selection")) {
                 commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+                System.out.println("hi");
                 if (dropDownCloseCase.equals("makes a selection from the dropdown")) {
                     commonUtils.click(timeFieldElement[i], "mobile");
                     commonUtils.click(By.xpath("//li[2]"), "mobile");

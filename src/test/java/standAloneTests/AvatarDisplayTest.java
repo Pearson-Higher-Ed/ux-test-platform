@@ -121,7 +121,7 @@ public class AvatarDisplayTest extends BaseClass {
     @DataProvider(name = "avatarURLText config Test Data")
     private Object[][] getAvatarURLTextConfigTest() {
         return new Object[][]{
-                {"invalidAvatarURLText", new String[]{"elementId", "avatar-target", "avatarURLText", "123", "avatarAltText", "Avatar Image", "avatarSize", "large"}, new String[]{"120px"}, new String[]{"120px"}},
+                {"invalidAvatarURLText", new String[]{"elementId", "avatar-target", "avatarURLText", "123", "avatarAltText", "Avatar Image", "avatarSize", "large"}, new String[]{"120px","22px"}, new String[]{"120px","94.25px"}},
                 {"validAvatarURLText", new String[]{"elementId", "avatar-target", "avatarURLText", avatarURLText, "avatarAltText", "Avatar Image", "avatarSize", "large"}, new String[]{"120px"}, new String[]{"120px"}},
                 {"emptyAvatarURLText", new String[]{"elementId", "avatar-target", "avatarURLText", "", "avatarAltText", "Avatar Image", "avatarSize", "large"}, new String[]{"120px"}, new String[]{"120px"}},
                 {"noConfigAvatarURLTextForSmallSize", new String[]{"elementId", "avatar-target", "avatarAltText", "Avatar Image", "avatarSize", "small"}, new String[]{"50px"}, new String[]{"50px"}},
@@ -449,6 +449,7 @@ public class AvatarDisplayTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        Thread.sleep(500);
     }
 
     @AfterMethod(alwaysRun = true)

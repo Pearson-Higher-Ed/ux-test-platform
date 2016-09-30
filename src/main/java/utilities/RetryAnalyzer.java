@@ -9,7 +9,7 @@ import org.testng.ITestResult;
 public class RetryAnalyzer implements IRetryAnalyzer {
 
     private int count = 0;
-    private static int maxTry = 3;
+    private static int maxTry = 4;
 
     @Override
     public boolean retry(ITestResult iTestResult) {

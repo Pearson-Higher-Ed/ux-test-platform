@@ -587,7 +587,7 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue((dateInDateField.equals(value)), "In '" + state + "' inputState, the date in the dateField text box and the one selected in the calendar doesn't match");
     }
 
-    @Test(testName = "Mobile: Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Mobile: Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = "mobile-regression1", retryAnalyzer = RetryAnalyzer.class)
     private void calendarCloseMobileTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
         for (int i = 0; i < 2; i++) {
             String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
