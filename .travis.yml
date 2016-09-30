@@ -29,11 +29,11 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
+- export component=regression
 - export feature_branch=v1
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn test
 
 notifications:
   email:

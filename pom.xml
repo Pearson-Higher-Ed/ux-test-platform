@@ -43,8 +43,9 @@
                 <version>2.5</version>
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
+                    <suiteXmlFiles> 
+                        <suiteXmlFile>test_suites/desktop_regression_suite.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/mobile_regression_suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
