@@ -36,6 +36,7 @@ public class BaseClass {
     public NoPlainCSSPageObjects noPlainCSSPgObj;
     public MeterPageObjects meterPgObj;
     public GridPageObjects gridPgObj;
+    public PresentationStrategiesPageObjects preStratPgObj;
     public AppHeaderPageObjects appHeaderPgObj;
     public ContextualHelpPageObjects conxHelpPgObj;
     public DrawerPageObjects drawerPgObj;
@@ -152,6 +153,7 @@ public class BaseClass {
             meterPgObj = new MeterPageObjects(driver);
             gridPgObj = new GridPageObjects(driver);
             templatePgObj = new TemplatesPageObjects(driver);
+            preStratPgObj = new PresentationStrategiesPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             commonUtils = new CommonUtils(driver);
@@ -170,6 +172,7 @@ public class BaseClass {
             meterPgObj = new MeterPageObjects(appium);
             gridPgObj = new GridPageObjects(appium);
             templatePgObj = new TemplatesPageObjects(appium);
+            preStratPgObj = new PresentationStrategiesPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             commonUtils = new CommonUtils(appium);
