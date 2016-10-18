@@ -299,6 +299,32 @@ public class ContextualHelpTest extends BaseClass {
             Assert.assertTrue(result);
         }
     }
+    
+	@Test(testName = "Verify that setLanguage method will not make contextual detail visible", groups = {
+			"desktop-regression", "origamiV2" })
+	private void verifyContextualVisibilityImmuneToSetLanguageTest()
+			throws Exception {
+		int i;
+		commonUtils.getUrl(contextualHelpUrl);
+		commonUtils.click(conxHelpPgObj.removeAllTopicsAndSetLanguageAndAddtopicsAndOpen);
+		isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
+		Assert.assertTrue(isContextualHelpDrawerOpen);
+		isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpTopics);
+		Assert.assertTrue(isHelpContentTopicDetailVisible);
+		isContextualHelpDrawerCloseButton = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseButton);
+		Assert.assertTrue(isContextualHelpDrawerCloseButton);
+		for (i = 1; i <= 2; i++) { // Iterating it 2 times because there are 2
+									// help topics. They
+									// should be displayed.
+			xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
+			xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+			isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
+			helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt));
+			isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
+			result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
+			Assert.assertTrue(result);
+		}
+	}
 
     @DataProvider(name = "ConxHelp Remove Help Topics Data")
     public Object[][] getConxHelpRemoveHelpTopicsData() {
@@ -568,6 +594,32 @@ public class ContextualHelpTest extends BaseClass {
             Assert.assertTrue(result);
         }
     }
+    
+    @Test(testName = "Mobile: Verify that setLanguage method will not make contextual detail visible", groups = {
+			"mobile-regression", "origamiV2" })
+	private void verifyContextualVisibilityImmuneToSetLanguageMobileTest()
+			throws Exception {
+		int i;
+		commonUtils.getUrl(contextualHelpUrl, "mobile");
+		commonUtils.click(conxHelpPgObj.removeAllTopicsAndSetLanguageAndAddtopicsAndOpen, "mobile");
+		isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
+		Assert.assertTrue(isContextualHelpDrawerOpen);
+		isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpTopics, "mobile");
+		Assert.assertTrue(isHelpContentTopicDetailVisible);
+		isContextualHelpDrawerCloseButton = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseButton, "mobile");
+		Assert.assertTrue(isContextualHelpDrawerCloseButton);
+		for (i = 1; i <= 2; i++) { // Iterating it 2 times because there are 2
+									// help topics. They
+									// should be displayed.
+			xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
+			xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+			isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
+			helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
+			isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
+			result = commonUtils.assertValue((isHelpTopicTitlePresent && isHelpTopicTitlePresent), true, "help topic title " + i + " not displayed");
+			Assert.assertTrue(result);
+		}
+	}
 
     @Test(testName = "Mobile: Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"mobile-regression", "origamiV2"})
     private void openAndThenRemoveHelpTopicsMobileTest(String noOfTopics, String topicToBeRemoved) throws Exception {

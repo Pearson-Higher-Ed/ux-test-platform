@@ -56,5 +56,6 @@ public class ContextualHelpPageObjects {
     public By openAndThenRemoveAllHelpTopics=By.id("openAndThenRemoveAllHelpTopics");
     public By openAndThenRemoveOneTopic= By.id("openAndThenRemoveOneTopic");
     public By openAndThenRemoveMoreThanOneTopic=By.id("openAndThenRemoveMoreThanOneTopic");
+    public By removeAllTopicsAndSetLanguageAndAddtopicsAndOpen = By.id("removeAllTopicsAndSetLanguageAndAddtopicsAndOpen");
 
 }
