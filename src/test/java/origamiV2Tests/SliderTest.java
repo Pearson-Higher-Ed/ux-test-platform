@@ -26,9 +26,13 @@ import javax.naming.directory.NoSuchAttributeException;
 public class SliderTest extends BaseClass {
 
     private final String basicModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/slider/slider.html";
-    private final String sliderJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/slider.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/temp.js";
-    private final String sliderDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/dist.slider.js";
+    //private final String sliderJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/slider.js";
+    //private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/temp.js";
+    //private final String sliderDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/dist.slider.js";
+    private final String sliderJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/slider.js";
+    private final String tempJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/temp.js";
+    private final String sliderDistJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/dist.slider.js";
+
     final static Logger log = Logger.getLogger(SliderTest.class.getName());
     private boolean isSliderVal, isLabelPresent, isForPresent, isForValue;
     private String actSliderVal, labelContains;
@@ -46,8 +50,8 @@ public class SliderTest extends BaseClass {
     @DataProvider(name = "Drag to Left Test Data")
     public Object[][] getDataDragLeft() {
         return new Object[][]{
-                {sliderPgObj.slider, -11, new String[]{"45", "41"}},
-                {sliderPgObj.slider, -33, new String[]{"35", "34", "24", "23"}},
+                {sliderPgObj.slider, -11, new String[]{"45", "41","38"}},
+                {sliderPgObj.slider, -33, new String[]{"35", "34", "24", "23","16"}},
                 {sliderPgObj.slider, -99, new String[]{"5", "4", "0"}},
         };
     }
@@ -68,8 +72,8 @@ public class SliderTest extends BaseClass {
     @DataProvider(name = "Drag to Right Test Data")
     public Object[][] getDataDragRight() {
         return new Object[][]{
-                {sliderPgObj.slider, 11, new String[]{"55", "59"}},
-                {sliderPgObj.slider, 33, new String[]{"65", "75", "76", "77"}},
+                {sliderPgObj.slider, 11, new String[]{"55", "59","61"}},
+                {sliderPgObj.slider, 33, new String[]{"65", "75", "76", "77","83"}},
                 {sliderPgObj.slider, 99, new String[]{"95", "100", "96"}},
         };
     }
