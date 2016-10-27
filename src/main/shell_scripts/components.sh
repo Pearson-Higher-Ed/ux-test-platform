@@ -73,6 +73,17 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pea
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }
 
+install_slider(){
+git clone https://github.com/Pearson-Higher-Ed/slider.git
+cd slider
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/build/dist.slider.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/slider.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/slider/
+}
+
 # Below conditions are to install the components specific to its feature branch.
 if [[ $component == "elements_sdk" ]]
 then
@@ -100,6 +111,10 @@ elif [[ $component == "avatar-display" ]]
 then
 install_avatarDisplay $feature_branch
 
+elif [[ $component == "slider" ]]
+then
+install_slider $feature_branch
+
 # Below condition is to install all the "master" branch of components for the regression test run
 elif [[ $component == "regression" ]]
 then
@@ -112,6 +127,8 @@ cd ..
 install_componentArchetype master
 cd ..
 install_avatarDisplay master
+cd ..
+install_slider master
 cd ..
 install_elements_sdk v0
 fi
