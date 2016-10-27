@@ -20,11 +20,11 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=slider
-- export feature_branch=master
+- export component=elements_sdk
+- export feature_branch=v0
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=slider.xml test
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 
 notifications:
   email:
