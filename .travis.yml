@@ -15,11 +15,11 @@ before_script:
 - npm install -g local-web-server &>/dev/null
 - ws --log-format none &
 script:
-- export component=contextual-help
-- export feature_branch=DES-214
+- export component=elements_sdk
+- export feature_branch=v0
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=contextual_help.xml test
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 notifications:
   email:
     recipients:
