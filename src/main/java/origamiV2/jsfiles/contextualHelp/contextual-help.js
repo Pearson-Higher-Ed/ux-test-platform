@@ -39,3 +39,15 @@ document.openThenRemoveTopics = function(topics, delay){
     help.removeTopics(topics)
   }, delay);
 }
+
+document.setLanguageThenOpen = function(){
+	var help = document.getElementById('o-contextual-help-drawer').oContextualHelp;
+	help.removeAllTopics();
+	help.setLanguage('fr');
+	var newTopics = [
+		'pi/forgot_creds_next',
+		'contactsupport'
+	];
+	help.addTopics(newTopics);
+	help.open();
+}

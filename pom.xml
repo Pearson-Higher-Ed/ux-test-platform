@@ -43,7 +43,8 @@
                 <version>2.5</version>
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
-                    <suiteXmlFiles> 
+                    <suiteXmlFiles>
+
                         <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
