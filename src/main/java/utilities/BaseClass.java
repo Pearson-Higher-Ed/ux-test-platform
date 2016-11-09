@@ -56,9 +56,6 @@ public class BaseClass {
     @Parameters({"runEnv", "travis", "desktop", "platform", "sauceBrowser", "sauceBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
     @BeforeClass(alwaysRun = true)
     protected void setUp(String runEnv, String travis, String desktop, String platform, String sauceBrowser, String sauceBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
-        System.out.println(USERNAME);
-        System.out.println(ACCESS_KEY);
-
         caps = new DesiredCapabilities();
         setDesktop = desktop;
         setMobile = mobile;

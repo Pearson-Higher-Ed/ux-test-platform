@@ -181,7 +181,7 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Validate the modal title and content", dataProvider = "Modal Title,Content CSS data", groups = {"desktop-regression"})
+    @Test(testName = "Validate the modal title and content", dataProvider = "Modal Title,Content CSS data", groups = {"1desktop-regression"})
     private void modalTitleTest(int width, int height, String[] expWidth, String[] titleFontSize, String titleLineHeight, String contentFontSize, String contentLineHeight, String[] contentColor) {
         if (platform.contains("Windows")) {
             throw new SkipException("Saucelabs does not support responsive behavior on Windows");
@@ -276,7 +276,7 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Small Template config Test", dataProvider = "Small Template config Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Small Template config Test", dataProvider = "Small Template config Test Data", groups = {"1desktop-regression"})
     private void smTemplateConfigTest(int width, int height, String[] expWidth, String titleFontSize, String titleLineHeight, String contentFontSize, String contentLineHeight, String contentColor, String Config) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");

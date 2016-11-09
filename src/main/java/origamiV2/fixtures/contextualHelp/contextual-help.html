@@ -13,11 +13,14 @@
     <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('testcontent/student/freetrial',500)">Remove one topic</a><br><br>
     <a id="openAndThenRemoveMoreThanOneTopic" href="#" onclick="openThenRemoveTopics((['testcontent/student/freetrial','testcontent/contactsupport']),500)">Remove more than one topic</a><br><br>
     <a id="removeAllTopicsAndSetLanguageAndAddtopicsAndOpen" href="#" onclick="setLanguageThenOpen()">Remove all topics, setLanguage('fr'), add topics, open drawer</a><br><br>
+    <a id="testAccordianContent" href="#" onclick="testAccordion()">Test Accordion Content</a><br><br>
+    <button id="toggleHelpDrawer" type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer">Toggle Help Drawer (direct)</button>
 </div>
 <div class="demo-container"></div>
 
 <script src="../../jsfiles/appHeader/dist.app-header.js"></script>
 <script src="../../jsfiles/contextualHelp/dist.contextual-help.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 <script type="text/javascript" src="../../jsfiles/appHeader/basic.js"></script>
 <script type="text/javascript" src="../../jsfiles/contextualHelp/contextual-help.js"></script>
 
