@@ -20,9 +20,9 @@ public class ContextualHelpPageObjects {
     }
 
     public By contextualHelpDrawer = By.xpath("//div[@id='o-contextual-help-drawer']");
-    public By contextualHelpHeader= By.xpath("//div[@class='o-contextual-help__header pe-label pe-label--large']");
+    public By contextualHelpHeader= By.xpath("//div[@class='o-contextual-help__header']/h2");
     public By contextualHelpDrawerCloseButton=By.xpath("//i[@class='pe-icon--close']");
-    public By contextualHelpDrawerHelpTopicDetailCloseButton=By.xpath("//div[@id='o-contextual-help-drawer']/div[2]/div/a[2]/i");
+    public By contextualHelpDrawerHelpTopicDetailCloseButton=By.xpath("//div[@id='o-contextual-help-drawer']/div[2]/div/button/i");
     public By contextualHelpDrawerOpen=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-drawer-open']");
     public By contextualHelpDrawerClose=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer']");
     public By helpTopicBackgroundColor=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]");
@@ -32,9 +32,9 @@ public class ContextualHelpPageObjects {
         return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div";
     }
 
-    public By helpTopicTitle=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/h4/span/a");
+    public By helpTopicTitle=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/h3/a");
     public String xpathForHelpTopicsTitle(String item, int x){
-        return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div/h4/span/a";
+        return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div/h3/a";
     }
 
     public By helpTopicExcerpt=By.xpath("//div[@class='o-contextual-help__excerpt-list']/div[1]/div/p");
@@ -42,20 +42,33 @@ public class ContextualHelpPageObjects {
         return "//div[@class='o-contextual-help__excerpt-list']/div["+x+"]/div/p";
     }
 
-    public By helpContentTopicDetailVisible=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-drawer-open o-contextual-help__detail--visible']");
-    public By helpContentTopicDetailReopen=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-contextual-help__detail--visible o-drawer-open']");
-    public By helpContentTopicDetailHidden=By.xpath("//div[@class= 'o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-contextual-help__detail--visible']");
+    public By helpContentTopicDetailVisible=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-drawer-open o-contextual-help__content--visible']");
+    public By helpContentTopicDetailReopen=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-contextual-help__content--visible o-drawer-open']");
+    public By helpContentTopicDetailHidden=By.xpath("//div[@class= 'o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-contextual-help__content--visible']");
     public By helpTopicContentHeader=By.xpath("//div[@id='o-contextual-help-topic-content-target']/h4");
     public By helpTopicContent=By.xpath("//div[@id='o-contextual-help-topic-content-target']");
-    public By backtoHelpTopicsLink=By.xpath("//div[@class='o-contextual-help__topic-content']/div/a");
-    public By backToHelpTopicsIcon=By.xpath("//span[@class='back-to-help-icon']");
-    public By helpContentTopicDetailTitle=By.xpath("//div[@id='o-contextual-help-topic-content-target']/h4");
-    public By helpContentTopicDetailText=By.xpath("//div[@id='o-contextual-help-topic-content-target']/div");
+    public By backtoHelpTopicsLink=By.xpath("//button[@class='pe-label pe-label--large back-to-help']");
+    public By backToHelpTopicsIcon=By.xpath("//i[@class='pe-icon--chevron-left']");
+    public By helpContentTopicDetailTitle=By.xpath("//*[@id='o-contextual-help-topic-content-target']/h2");
+    public By helpContentTopicDetailText=By.xpath("//*[@id='o-contextual-help-topic-content-target']/div/p");
     public By labelDemo=By.id("demo");
     public By openSpecificHelpTopic=By.id("openSpecificHelpTopic");
     public By openAndThenRemoveAllHelpTopics=By.id("openAndThenRemoveAllHelpTopics");
     public By openAndThenRemoveOneTopic= By.id("openAndThenRemoveOneTopic");
     public By openAndThenRemoveMoreThanOneTopic=By.id("openAndThenRemoveMoreThanOneTopic");
     public By removeAllTopicsAndSetLanguageAndAddtopicsAndOpen = By.id("removeAllTopicsAndSetLanguageAndAddtopicsAndOpen");
+    public By toggleHelpDrawerButton=By.id("toggleHelpDrawer");
+    public By testAccordianContentLink = By.id("testAccordianContent");
 
+    public String xpathForAccordionItemButton(String item, int x){
+        return "//div[@id='o-contextual-help-topic-content-target']/div/div/h3["+x+"]/button";
+    }
+
+    public String xpathForItemIcon(String item, int x){
+        return "//div[@id='o-contextual-help-topic-content-target']/div/div/h3["+x+"]/button/i";
+    }
+
+    public String xpathForItemPanel(String item, int x){
+        return "//div[@id='o-contextual-help-topic-content-target']/div/div/div["+x+"]";
+    }
 }
