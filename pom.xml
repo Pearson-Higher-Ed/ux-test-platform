@@ -44,7 +44,6 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-
                         <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>

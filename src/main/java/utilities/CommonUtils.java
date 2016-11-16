@@ -107,6 +107,7 @@ public class CommonUtils {
 
     //get url
     public void getUrl(String url) {
+
         driver.get(url);
     }
 
@@ -252,10 +253,8 @@ public class CommonUtils {
         try {
             if (Arrays.asList(arr).contains(expectedValue)) {
                 isCSSPropertyPresent = true;
-
             } else {
                 isCSSPropertyPresent = false;
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

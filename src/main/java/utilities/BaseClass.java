@@ -44,7 +44,7 @@ public class BaseClass {
     public AvatarDisplayPageObjects avatarDisplayPgObj;
     public TemplatesPageObjects templatePgObj;
     public SliderPageObjects sliderPgObj;
-
+    public TextModalPageObjects textModalPgObj;
     public CommonUtils commonUtils;
     public String setDesktop = "";
     public String setMobile = "";
@@ -74,7 +74,7 @@ public class BaseClass {
                     caps = DesiredCapabilities.firefox();
                 } else if (sauceBrowser.equals("ie")) {
                     caps = DesiredCapabilities.internetExplorer();
-                    caps.setCapability("nativeEvents",true);
+                    caps.setCapability("nativeEvents", true);
                 } else if (sauceBrowser.equals("safari")) {
                     caps = DesiredCapabilities.safari();
                 } else if (sauceBrowser.equals("edge")) {
@@ -109,9 +109,9 @@ public class BaseClass {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
                 includePageObjects();
+
             }
         }
-
         //The below else condition is to launch browser driver on your local machine. In elements_sdk.xml -> set runEnv != sauce
         else {
             if (desktop.equals("on")) {
@@ -161,6 +161,7 @@ public class BaseClass {
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
+            textModalPgObj = new TextModalPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -181,6 +182,7 @@ public class BaseClass {
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);
+            textModalPgObj = new TextModalPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
