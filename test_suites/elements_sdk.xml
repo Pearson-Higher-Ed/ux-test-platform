@@ -23,12 +23,12 @@
     <test name="ElementsTests">
         <groups>
             <run>
-                <include name="desktop-regression"/>
+                <include name="desktop-ci"/>
             </run>
         </groups>
-   <classes>
-       <class name="elementsTests.PresentationStrategyTest"/>
-   </classes>
+   <packages>
+            <package name="elementsTests"/>
+   </packages>
     </test>
 </suite>
 
