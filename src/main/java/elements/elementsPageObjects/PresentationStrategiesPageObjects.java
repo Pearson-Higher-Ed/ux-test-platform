@@ -32,4 +32,21 @@ public class PresentationStrategiesPageObjects {
     public By leftrightStrategy = By.id("leftright-strategy");
     public By leftElement = By.id("left-element");
     public By rightElement = By.id("right-element");
+
+    //Default  - Spacing
+    public By defaultCenteredGap1 = By.id("centered-default1");
+    public By defaultCenteredGap2 = By.id("centered-default2");
+    public By defaultCenteredGap3 = By.id("centered-default3");
+
+    //Small Gap - Spacing
+    public By smallCenteredGap1 = By.id("centered-smallgap1");
+    public By smallCenteredGap2 = By.id("centered-smallgap2");
+    public By smallCenteredGap3 = By.id("centered-smallgap3");
+
+    //Large Gap - Spacing
+    public By largeCenteredGap1 = By.id("centered-largegap1");
+    public By largeCenteredGap2 = By.id("centered-largegap2");
+    public By largeCenteredGap3 = By.id("centered-largegap3");
+
+
 }

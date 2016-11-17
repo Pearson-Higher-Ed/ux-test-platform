@@ -21,8 +21,8 @@ public class PresentationStrategyTest extends BaseClass {
     private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
-    String marginRight, marginLeft;
-    boolean isMarginLeft, isMarginRight;
+    String marginRight, marginLeft, marginBottom, marginTop;
+    boolean isMarginLeft, isMarginRight, isMarginBottom, isMarginTop;
     final static Logger log = Logger.getLogger(PresentationStrategyTest.class.getName());
 
     @Parameters({"runEnv", "mobDeviceName"})
@@ -112,6 +112,157 @@ public class PresentationStrategyTest extends BaseClass {
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "left/right strategy: margin-right for window size " + width + " is not as per the spec");
 
         Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @DataProvider(name = "Spacing Default Gap Test Data")
+    private Object[][] getSpacingDefaultGapData() {
+        return new Object[][]{
+                {"Default Gap Spacing Element", 479, 800},
+                {"Default Gap Spacing Element", 480, 800},
+                {"Default Gap Spacing Element", 768, 800},
+                {"Default Gap Spacing Element", 1024, 800},
+                {"Default Gap Spacing Element", 1140, 800},
+
+        };
+    }
+
+    // Default Spacing
+    @Test(testName = "Spacing - Default Gap Test", dataProvider = "Spacing Default Gap Test Data", groups = {"desktop-regression"})
+    private void setSpacingDefaultGapTest(String item, int width, int height) {
+        chooseEnv();
+        commonUtils.setWindowSize(width, height);
+        // Loop for the 3 centered strategy elements
+        for (int j = 1; j <= 3; j++) {
+            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom");
+            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top");
+
+            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin bottom value for" + item + j + "is not as per the spec");
+            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin top value for value for" + item + j + "is not as per the spec");
+
+            // Loop for the two content areas under each element centered strategy
+            for (int i = 1; i <= 2; i++) {
+                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left");
+
+                isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+                if (isMarginRight == false) {
+                    log.info("Small Gap content area element for" + item + j + " margin-right at " + width + " is not as per the spec");
+                }
+                isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+                if (isMarginLeft == false) {
+                    log.info("Small Gap content area element for" + item + j + " margin-left at " + width + " is not as per the spec");
+                }
+                Assert.assertTrue(isMarginLeft && isMarginRight);
+            }
+            Assert.assertTrue(isMarginBottom && isMarginTop);
+        }
+    }
+
+    @DataProvider(name = "Spacing Small Gap Test Data")
+    private Object[][] getSpacingSmallGapData() {
+        return new Object[][]{
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, 479, 800, "20px", "0px"},
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, 480, 800, "20px", "0px"},
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, 768, 800, "20px", "0px"},
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, 1024, 800, "20px", "0px"},
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, 1140, 800, "20px", "0px"},
+
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, 479, 800, "20px", "20px"},
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, 480, 800, "20px", "20px"},
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, 768, 800, "20px", "20px"},
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, 1024, 800, "20px", "20px"},
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, 1140, 800, "20px", "20px"},
+
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, 479, 800, "0px", "20px"},
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, 480, 800, "0px", "20px"},
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, 768, 800, "0px", "20px"},
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, 1024, 800, "0px", "20px"},
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, 1140, 800, "0px", "20px"},
+
+        };
+    }
+
+    // Small Gap Spacing
+    @Test(testName = "Spacing - Small Gap Test", dataProvider = "Spacing Small Gap Test Data", groups = {"desktop-regression"})
+    private void setSpacingSmallGapTest(String item, By element, int width, int height, String expMarginBottom, String expMarginTop) {
+        chooseEnv();
+        commonUtils.setWindowSize(width, height);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top value for value for" + item + "is not as per the spec");
+
+        // Loop for the two content areas under each element centered strategy
+        for (int i = 1; i <= 2; i++) {
+            marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left");
+
+            isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginRight == false) {
+                log.info("Small Gap content area element for" + item + " margin-right at " + width + " is not as per the spec");
+            }
+            isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginLeft == false) {
+                log.info("Small Gap content area element for" + item + " margin-left at " + width + " is not as per the spec");
+            }
+            Assert.assertTrue(isMarginLeft && isMarginRight);
+        }
+        Assert.assertTrue(isMarginBottom && isMarginTop);
+    }
+
+    @DataProvider(name = "Spacing Large Gap Test Data")
+    private Object[][] getSpacingLargeGapData() {
+        return new Object[][]{
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, 479, 800, "40px", "0px"},
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, 480, 800, "40px", "0px"},
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, 768, 800, "40px", "0px"},
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, 1024, 800, "40px", "0px"},
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, 1140, 800, "40px", "0px"},
+
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, 479, 800, "40px", "40px"},
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, 480, 800, "40px", "40px"},
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, 768, 800, "40px", "40px"},
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, 1024, 800, "40px", "40px"},
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, 1140, 800, "40px", "40px"},
+
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, 479, 800, "0px", "40px"},
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, 480, 800, "0px", "40px"},
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, 768, 800, "0px", "40px"},
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, 1024, 800, "0px", "40px"},
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, 1140, 800, "0px", "40px"},
+
+        };
+    }
+
+    //Large Gap Spacing
+    @Test(testName = "Spacing - Large Gap Test", dataProvider = "Spacing Large Gap Test Data", groups = {"desktop-regression"})
+    private void setSpacingLargeGapTest(String item, By element, int width, int height, String expMarginBottom, String expMarginTop) {
+        chooseEnv();
+        commonUtils.setWindowSize(width, height);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top value for value for" + item + "is not as per the spec");
+
+        // Loop for the two content areas under each element centered strategy
+        for (int i = 1; i <= 2; i++) {
+
+            marginRight = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-left");
+
+            isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginRight == false) {
+                log.info("Large Gap content area element for" + item + " margin-right at " + width + " is not as per the spec");
+            }
+            isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginLeft == false) {
+                log.info("Large Gap content area element for" + item + " margin-left at " + width + " is not as per the spec");
+            }
+            Assert.assertTrue(isMarginLeft && isMarginRight);
+        }
+        Assert.assertTrue(isMarginBottom && isMarginTop);
     }
 
     /*************
@@ -221,12 +372,13 @@ public class PresentationStrategyTest extends BaseClass {
 
         marginLeft = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-left", "mobile");
         marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right", "mobile");
-
-        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"60px", "90px"});
+        System.out.println(marginLeft);
+        System.out.println(marginRight);
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"60px","80px", "90px"});
         if (!isMarginLeft) {
             log.info("centered strategy: margin-left for centered element is not as per the spec");
         }
-        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"60px", "90px"});
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"60px", "80px","90px"});
         if (!isMarginRight) {
             log.info("centered strategy: margin-right for centered element is not as per the spec");
         }
@@ -312,6 +464,129 @@ public class PresentationStrategyTest extends BaseClass {
 
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
+
+    @DataProvider(name = "Mobile:Spacing Default Gap Test Data")
+    private Object[][] getSpacingDefaultGapMobileData() {
+        return new Object[][]{
+                {"Default Gap Spacing Element", ScreenOrientation.LANDSCAPE},
+                {"Default Gap Spacing Element", ScreenOrientation.PORTRAIT},
+        };
+    }
+
+    //Default Gap Spacing
+    @Test(testName = "Mobile: Default Spacing Gap Test", dataProvider = "Mobile:Spacing Default Gap Test Data", groups = {"mobile-regression"})
+    private void setSpacingDefaultGapMobileTest(String item, ScreenOrientation mode) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+        for (int j = 1; j <= 3; j++) {
+            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom","mobile");
+            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top","mobile");
+
+            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin bottom value for" + item+j + "is not as per the spec");
+            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin top value for value for" + item+j + "is not as per the spec");
+
+            for (int i = 1; i <= 2; i++) {
+                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right","mobile");
+                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left","mobile");
+
+                isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+                if (isMarginRight == false) {
+                    log.info("Small Gap content area element for" + item+j + " margin-right at " + mode + " is not as per the spec");
+                }
+                isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+                if (isMarginLeft == false) {
+                    log.info("Small Gap content area element for" + item+j + " margin-left at " + mode + " is not as per the spec");
+                }
+                Assert.assertTrue(isMarginLeft && isMarginRight);
+            }
+            Assert.assertTrue(isMarginBottom && isMarginTop);
+        }
+    }
+
+    @DataProvider(name = "Mobile:Spacing Small Gap Test Data")
+    private Object[][] getSpacingSmallGapMobile() {
+        return new Object[][]{
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, ScreenOrientation.LANDSCAPE, "20px", "0px"},
+                {"Small Gap spacing Element1", preStratPgObj.smallCenteredGap1, ScreenOrientation.PORTRAIT, "20px", "0px"},
+
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, ScreenOrientation.LANDSCAPE, "20px", "20px"},
+                {"Small Gap spacing Element2", preStratPgObj.smallCenteredGap2, ScreenOrientation.PORTRAIT, "20px", "20px"},
+
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, ScreenOrientation.LANDSCAPE, "0px", "20px"},
+                {"Small Gap spacing Element3", preStratPgObj.smallCenteredGap3, ScreenOrientation.PORTRAIT, "0px", "20px"},
+        };
+    }
+
+    //Small Gap Spacing
+    @Test(testName = "Mobile: Small Gap Spacing Test", dataProvider = "Mobile:Spacing Small Gap Test Data", groups = {"mobile-regression"})
+    private void setSmallGapSpacingMobileTest(String item, By element, ScreenOrientation mode, String expMarginBottom, String expMarginTop) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin Top value for" + item + "is not as per the spec");
+
+        for (int i = 1; i <= 2; i++) {
+            marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right", "mobile");
+            marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left", "mobile");
+
+            isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginRight == false) {
+                log.info("Small Gap content area element for" + item + " margin-right at " + mode + " is not as per the spec");
+            }
+            isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginLeft == false) {
+                log.info("Small Gap content area element for" + item + " margin-left at " + mode + " is not as per the spec");
+            }
+            Assert.assertTrue(isMarginLeft && isMarginRight);
+        }
+        Assert.assertTrue(isMarginBottom && isMarginTop);
+    }
+
+    @DataProvider(name = "Mobile:Spacing Large Gap Test Data")
+    private Object[][] getSpacingLargeGapMobile() {
+        return new Object[][]{
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, ScreenOrientation.LANDSCAPE, "40px", "0px"},
+                {"Large Gap spacing Element1", preStratPgObj.largeCenteredGap1, ScreenOrientation.PORTRAIT, "40px", "0px"},
+
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, ScreenOrientation.LANDSCAPE, "40px", "40px"},
+                {"Large Gap spacing Element2", preStratPgObj.largeCenteredGap2, ScreenOrientation.PORTRAIT, "40px", "40px"},
+
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, ScreenOrientation.LANDSCAPE, "0px", "40px"},
+                {"Large Gap spacing Element3", preStratPgObj.largeCenteredGap3, ScreenOrientation.PORTRAIT, "0px", "40px"},
+        };
+    }
+
+    //Large Gap Spacing
+    @Test(testName = "Mobile: Large Gap Spacing Test", dataProvider = "Mobile:Spacing Large Gap Test Data", groups = {"mobile-regression"})
+    private void setLargeGapSpacingMobileTest(String item, By element, ScreenOrientation mode, String expMarginBottom, String expMarginTop) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top value for" + item + "is not as per the spec");
+
+        for (int i = 1; i <= 2; i++) {
+            marginRight = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-right", "mobile");
+            marginLeft = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-left", "mobile");
+
+            isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginRight == false) {
+                log.info("Large Gap content area element for" + item + " margin-right at " + mode + " is not as per the spec");
+            }
+            isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
+            if (isMarginLeft == false) {
+                log.info("Large Gap content area element for" + item + " margin-left at " + mode + " is not as per the spec");
+            }
+            Assert.assertTrue(isMarginLeft && isMarginRight);
+        }
+        Assert.assertTrue(isMarginBottom && isMarginTop);
+    }
+
 
     /****************
      * Common Methods
