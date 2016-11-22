@@ -1,8 +1,23 @@
 <html>
-<meta charset="UTF-8">
-<title></title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../elements/css/elements.css"/>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>o-contextual-help demo</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script>
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function(e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    </script>
+    <link rel="stylesheet" href="../../../elements/css/elements.css"/>
+</head>
 
 <body>
 <div style="position: relative;top: 100px;">
@@ -17,6 +32,7 @@
 
 <script src="../../jsfiles/appHeader/dist.app-header.js"></script>
 <script src="../../jsfiles/contextualHelp/dist.contextual-help.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 <script type="text/javascript" src="../../jsfiles/appHeader/signedout.js"></script>
 <script type="text/javascript" src="../../jsfiles/contextualHelp/contextual-help.js"></script>
 
