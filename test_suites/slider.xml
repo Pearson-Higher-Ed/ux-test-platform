@@ -2,7 +2,7 @@
 
 <suite name="Origami v2 - Slider Test Suite">
 
-    <parameter name="runEnv" value="local"></parameter>
+    <parameter name="runEnv" value="sauce"></parameter>
     <parameter name="travis" value="off"></parameter>
 
     <!-- For Desktop -->
