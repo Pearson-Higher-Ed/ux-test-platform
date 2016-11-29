@@ -4,7 +4,7 @@ echo "component: $component"
 echo "feature_branch: $feature_branch"
 
 install_elements_sdk() {
-echo -e "******************************\\n    Installing elements sdk    \\n******************************"
+echo -e "******************************\\n    Installing elements sdk V1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
 git checkout $1
@@ -28,14 +28,15 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-el
 }
 
 install_contextualHelp(){
-echo -e "******************************\\n    Installing contextual-help    \\n******************************"
+echo -e "******************************\\n    Installing contextual-help V2   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/contextual-help.git
 cd contextual-help
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/build/dist.contextual-help.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/contextualHelp/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help//node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 }
 

@@ -25,12 +25,13 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
     npm run build
     cp app-header/build/dist.app-header.js /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
     cp app-header/node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
-    cp -R app-header/node_modules/pearson-elements/dist/fonts /ux-test-platform/
+    cp -R app-header/node_modules/pearson-elements/dist/fonts /ux-test-platform/    
     </pre>
 
 NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered locally to run on Sauce via Sauce Connect. Follow this <a href="https://neo.pearson.com/docs/DOC-617300">link</a> for detailed steps.
 
 * Go to ux-test-platform directory
+    * git checkout _rebrand_
     * In test_suites/&lt;&lt;component&gt;&gt;.xml set the below values, and leave the rest to default:
     * For CI tests -> set name="desktop-ci"
     * For Regression tests -> set name="desktop-regression"
@@ -82,7 +83,7 @@ Leave the default test_suites/<component>.xml settings. Make sure to have the be
     * In .travis.yml file set
     <pre>
     export component=elements_sdk
-    export feature_branch=v0
+    export feature_branch=v1
     chmod 777 ./src/main/shell_scripts/components.sh
     ./src/main/shell_scripts/components.sh
     mvn -Dtest_suite_xml=elements_sdk.xml test
