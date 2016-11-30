@@ -6,213 +6,183 @@
     <link rel="stylesheet" href="../css/elements.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-	<div id=basic-body1 class="pe-copy">Basic body copy.</div>
-		<p id=body-para1 class="pe-paragraph">Paragraph 1</p>
-		<p id=body-para2 class="pe-paragraph">Paragraph 2</p>
-		<p id=body-para3 class="pe-paragraph--last">Paragraph 3</p>
-	<div id=basic-small-body class="pe-copy--small">Small size body copy</div>
-	<p>__________________________________</p>
-    <div>
-        <p>Example ordered nested lists</p>
-        <ol id="ol-level1" class="pe-list pe-list pe-styled-lists--ordered">
-            <li id=ol-level1-item1>Item one.</li>
-            <li id=ol-level1-item2>Item two.</li>
-            <li id=ol-level1-item3>Item three.</li>
-            <ol id=ol-level2>
-                <li id=ol-level2-item1>child item one</li>
-                <li id=ol-level2-item2>child item two</li>
-                <ol id=ol-level3>
-                    <li id=ol-level3-item1>grand child item one</li>
-                    <li id=ol-level3-item2>grand child item two</li>
-                </ol>
-            </ol>
-        </ol>
-        <p>Hopefully you are fully prepared for the exam.</p>
-    </div>
-    <p>__________________________________</p>
-    <!-- Unordered nested lists -->
-    <div>
-        <p>Example Unordered nested lists</p>
-        <ul id="ul-level1" class="pe-list pe-list pe-styled-lists--unordered">
-            <li id=ul-level1-item1>Item one.</li>
-            <li id=ul-level1-item2>Item two.</li>
-            <li id=ul-level1-item3>Item three.</li>
-            <ul id=ul-level2>
-                <li id=ul-level2-item1>child item one</li>
-                <li id=ul-level2-item2>child item two</li>
-                <ul id=ul-level3>
-                    <li id=ul-level3-item1>grand child item one</li>
-                    <li id=ul-level3-item2>grand child item two</li>
-                </ul>
-            </ul>
-        </ul>
-        <p>Hopefully you are fully prepared for the exam.</p>
-    </div>
-    <p>__________________________________</p>
-    <!-- Lists followed by Heading lists -->
-    <div>
-        <h3>Example ordered lists followed by a heading</h3>
-        <ol id=hd-ol-level1-item1 class="pe-list pe-list pe-styled-lists-heading--ordered">
-            <li id=hd-ol-level1-item1>Item one.</li>
-            <li id=hd-ol-level1-item1>Item two.</li>
-            <li id=hd-ol-level1-item1>Item three.</li>
-        </ol>
-        <h3>Example unordered lists followed by a heading</h3>
-        <ul id=hd-ul-level1-item1 class="pe-list pe-list pe-styled-lists-heading--unordered">
-            <li id=hd-ul-level1-item1>Item one.</li>
-            <li id=hd-ul-level1-item1>Item two.</li>
-            <li id=hd-ul-level1-item1>Item three.</li>
-        </ul>
-    </div>
-    <!-- Headings testing material Start-->
-    <h1 id=hd_one>This is an h1 heading</h1>
-    <h2 id=hd_two>This is an h2 heading</h2>
-    <h3 id=hd_three>This is an h3 heading</h3>
-    <p id=para1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-    <h4 id=hd_four>This is an h4 heading</h4>
-    <h5 id=hd_five>This is an h5 heading</h5>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <p id=para3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-    <h6 id=hd_six>This is an h6 heading</h6>
-    <p id=para4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+<!------------------ Headings and Subtitles ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Headings and Subtitles</h2>
+<header id="header-1">
+    <h1></h1>
+    <p id="subtitle-1" class="subtitle">Subtitle, sized based on the preceding element</p>
+</header>
+<header id="header-2">
+    <h2></h2>
+    <p id="subtitle-2" class="subtitle">Subtitle, sized based on the preceding element</p>
+</header>
+<header id="header-3">
+    <h3></h3>
+    <p id="subtitle-3" class="subtitle">Subtitle, sized based on the preceding element</p>
+</header>
+<header id="header-4">
+    <h4></h4>
+    <p id="subtitle-4" class="subtitle">Subtitle, sized based on the preceding element</p>
+</header>
+<header id="header-5">
+    <h5></h5>
+    <p id="subtitle-5" class="subtitle">Subtitle, sized based on the preceding element</p>
+</header>
+<!---------------- Only h1,h2,h3,h4,h5 ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Headings</h2>
+<h1 id="h1">H1 Heading</h1>
+<h2 id="h2">H2 Heading</h2>
+<h3 id="h3">H3 Heading</h3>
+<h4 id="h4">H4 Heading</h4>
+<h5 id="h5">H5 Heading</h5>
+<h6 id="h6">H6 Heading</h6>
+<!------------------ Paragraphs ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Para</h2>
+<p id="para" class="pe-paragraph">Cogito sociis natoque penatibus et magnis dis parturient montes, nascetur odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+<p id="para-last" class="pe-paragraph--last">Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+<!------------------ Copy ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Copy</h2>
+<p id="copy" class="pe-copy"> Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque </p>
+<p id="copy-small" class="pe-copy pe-copy--small"> Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque</p>
+<p id="copy-large" class="pe-copy pe-copy--large"> Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque </p>
+<p id="copy-secondary" class="pe-copy pe-copy--secondary"> Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque</p>
+<!------------------ Lead ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Lead</h2>
+<p id="lead" class="pe-lead">It was the best of times, it was the worst of times&hellip;</p>
+<!------------------ Page Level Headings(Page Level Titles) ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Page Level Headings(Page Titles)</h2>
+<h1 id="page-title" class="pe-page-title">Page Level Heading</h1>
+<h1 id="page-title-secondary" class="pe-page-title pe-page-title--secondary">Secondary Color Page Level Heading</h1>
+<h1 id="page-title--small" class="pe-page-title pe-page-title--small">Small Page Level Heading</h1>
+<h1 id="page-title-small-secondary" class="pe-page-title pe-page-title--small pe-page-title--secondary">Secondary Color Small Page Level Heading</h1>
+<!------------------ Section Level Headings(Section Level Titles) ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Section Level Headings (Section Titles)</h2>
+<h3 id="section-title" class="pe-title">Section Heading</h3>
+<h3 class="pe-title"><b id="section-title-bold">Bold UI Section Heading</b></h3>
+<h3 id="section-title-secondary" class="pe-title pe-title--secondary">Secondary Color Section Headings</h3>
+<h3 id="section-title-small" class="pe-title pe-title--small">Small Section Headings</h3>
+<h3 class="pe-title pe-title--small"><b id="section-title-small-bold">Small and Bold Section Headings</b></h3>
+<h3 id="section-title-small-secondary" class="pe-title pe-title--small pe-title--secondary">Secondary Color Small Section Headings</h3>
+<h3 id="section-title-large" class="pe-title pe-title--large">Large Section Headings</h3>
+<h3 class="pe-title pe-title--large"><b id="section-title-large-bold">Large and bold  Section Headings</b></h3>
+<h3 id="section-title-large-secondary" class="pe-title pe-title--large pe-title--secondary">Secondary Color Large Section Headings</h3>
+<!------------------ Labels ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Labels</h2>
+<div id="label" class="pe-label">Label Text</div>
+<div id="label-secondary" class="pe-label pe-label--secondary">Secondary Label Text</div>
+<div id="label-bold" class="pe-label pe-label--bold">Bold Label Text</div>
+<div id="label-small" class="pe-label pe-label--small">Small Label Text</div>
+<div id="label-small-secondary" class="pe-label pe-label--small pe-label--secondary">Small Label secondary Text</div>
+<div id="label-large" class="pe-label pe-label--large">Large Label Text</div>
+<div id="label-large-secondary" class="pe-label pe-label--large pe-label--secondary">Large Label secondary Text</div>
+<div id= "label-inverse" class="pe-label pe-label--inverse">Inverse Label Text</div>
+<div id="label-inverse-secondary" class="pe-label pe-label--secondary pe-label--inverse">Inverse secondary Label Text</div>
 
-    <h1>This is an h1 heading</h1>
-    <h2 id=hd_2>This is an h2 heading</h2>
-    <h1>This is an h1 heading</h1>
-    <h3 id=hd_3>This is an h3 heading</h3>
-    <h1>This is an h1 heading</h1>
-    <h4 id=hd_4>This is an h4 heading</h4>
-    <h1>This is an h1 heading</h1>
-    <h5 id=hd_5>This is an h5 heading</h5>
-    <h1>This is an h1 heading</h1>
-    <h6 id=hd_6>This is an h6 heading</h6>
+<!------------------ Inline Elements ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Inline Elements</h2>
+<div>Basic elements are the backbone of any <abbr id="abbr" title="HyperText Markup Language">HTML</abbr> document.</div>
+<div>It was the best of times, it was the <del id="delTag">blurst</del><ins id="insTag">worst</ins> of times</div>
+<div>The latest report shows that <mark id="mark">profits have increased by 15%</mark> over the previous year.</div>
+<div>Use <kbd>rm -rf</kbd> to recursively remove files. <strong id="strongTag">Be careful when using  <code>-f</code> because it will remove files without prompting for confirmation.</strong></div>
+<p> This is <sub id="subscript" class="sub">below</sub>Subscript and this is <sup id="superscript" class="sup">above</sup>superscript</p>
 
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h1 id=hd_one_1>This is an h1 heading</h1>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h2 id=hd_two_2>This is an h2 heading</h2>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h3 id=hd_three_3>This is an h3 heading</h3>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h4 id=hd_four_4>This is an h4 heading</h4>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h5 id=hd_five_5>This is an h5 heading</h5>
-    <p id=para2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <h6 id=hd_six_6>This is an h6 heading</h6>
-
-    <h2 id=hd_22>This is an h2 heading</h2>
-    <h3 id=hd_33>This is an h3 heading</h3>
-    <h4 id=hd_44>This is an h4 heading</h4>
-    <h5 id=hd_55>This is an h5 heading</h5>
-    <h6 id=hd_66>This is an h6 heading</h6>
-
-    <!-- Headings testing material Ends-->
-    <div>
-        <p>
-            The
-            <code id="inline-code" class="pe-code-inline">&lt;section&gt;</code> HTML element represents a section of a document.
-        </p>
-    </div>
-    <!-- code block -->
-    <div>
-        <pre id="block-code" class="pe-code">
-<code id=code>
-// This is a code example
+<!------------------ Code ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Code</h2>
+The <code id="code-inline" class="pe-code-inline">&lt;section&gt;</code> HTML element represents a section of a document.
+<pre id="code" class="pe-code"><code>// This is a code example
 function greet(greeting) {
- 	console.log(greeting);
+  console.log(greeting);
 }
-greet('hello, world');
-</code>
-</pre>
-    </div>
-    <!-- user input -->
-    <div>
-        <p>
-            To switch directories, type
-            <kbd class="pe-kbd">cd</kbd> followed by the name of the directory.
-            <br /> To edit settings, press
-            <kbd id="user-input" class="pe-kbd">ctrl</kbd> +
-            <kbd class="pe-kbd">,</kbd>
-        </p>
-    </div>
+greet('hello, world');</code></pre>
+<p>
+    To switch directories, type <kbd id="user-input" class="pe-kbd">cd</kbd> followed by the name of the directory.<br/>
+    To edit settings, press <kbd class="pe-kbd">ctrl</kbd> + <kbd class="pe-kbd">,</kbd>
+</p>
+<!------------------ Lists ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Lists</h2>
+<ul id="list" class="pe-list">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+</ul>
 
-    /*** Added by Eajaz ***/
+<ul id="unstyled-list"class="pe-list--unstyled">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+</ul>
 
-    <!-- Primary Label elements -->
-    <span id="pLabel-basic" class="pe-label">Primary Basic</span>
-    <span id="pLabel-small" class="pe-label pe-label--small">Primary Small</span>
-    <span id="pLabel-large" class="pe-label pe-label--large">Primary Large</span>
-    <span id="pLabel-bold" class="pe-label pe-label--bold">Primary Bold</span> <br>
-    <!-- Secondary Label elements -->
-    <span id="sLabel-basic" class="pe-label pe-label--secondary">Secondary Basic</span>
-    <span id="sLabel-small" class="pe-label pe-label--small pe-label--secondary">Secondary Small</span>
-    <span id="sLabel-large" class="pe-label pe-label--large pe-label--secondary">Secondary Large</span>
-    <span id="sLabel-bold" class="pe-label pe-label--bold pe-label--secondary">Secondary Bold</span> <br>
-    <!-- Inverse: Primary Label elements -->
-    <span id="pILabel-basic" class="pe-label pe-label--inverse">Inverse Primary Basic</span>
-    <span id="pILabel-small" class="pe-label pe-label--small pe-label--inverse">Inverse Primary Small</span>
-    <span id="pILabel-large" class="pe-label pe-label--large pe-label--inverse">Inverse Primary Large</span>
-    <span id="pILabel-bold" class="pe-label pe-label--bold pe-label--inverse">Inverse Primary Bold</span> <br>
-    <!-- Inverse: Secondary Label elements -->
-    <span id="sILabel-basic" class="pe-label pe-label--inverse pe-label--secondary">Inverse Secondary Basic</span>
-    <span id="sILabel-small" class="pe-label pe-label--small pe-label--inverse pe-label--secondary">Inverse Secondary Small</span>
-    <span id="sILabel-large" class="pe-label pe-label--large pe-label--inverse pe-label--secondary">Inverse Secondary Large</span>
-    <span id="sILabel-bold" class="pe-label pe-label--bold pe-label--inverse pe-label--secondary">Inverse Secondary Bold</span><br>
-
-    <!-- Title elements -->
-    <!-- Basic Title -->
-    <h1 id="basicTitle" class="pe-title">Basic Title</h1>
-    <!-- Large Title -->
-    <h2 id="largeTitle" class="pe-title pe-title--large">Large Title</h2>
-    <!-- Extra Large Title -->
-    <h3 id="xLargeTitle" class="pe-title pe-title--extra-large">XLarge Title</h3><br>
-
-    <!--Copy -->
-    <div id="copy" class="pe-copy">Copy</div>
-
-    <!--Lead -->
-    <div id="lead" class="pe-lead">Lead</div> <br>
-
-    <!--Inline Elements -->
-    <div>
-        <div>Basic elements are the backbone of any<abbr id="abbr" title="HyperText Markup Language">HTML</abbr> document.</div>
-        <div>It was the best of times, it was the <del id="delTag">blurst</del><ins id="insTag">worst</ins> of times</div>
-        <div>Support is provided for the latest versions of Chrome, Firefox,and Internet Explorer<s id="strikeThrough">, and IE versions 7 and 8</s>.</div>
-        <div>The latest report shows that <mark id="mark">profits have increased by 15%</mark> over the previous year.</div>
-        <div>I think carrots are ok, but I <em id="emTag">love</em> beets.</div>
-        <div>I have a meeting on <strong id="strongTag"> Monday</strong></div>
-        <div>I have a meeting on <b id="boldTag"> Monday</b></div>
-        <div><q id="quoteTag" cite="https://en.wikipedia.org/wiki/Lost_in_Space#Catchphrases">That does not compute</q>is one of several of the Robot's catchphrases used in the television show <i>Lost in Space</i>.</div>
-        <div>I have a meeting on <time id="timeTag" datetime="2008-02-14 20:00">Monday</time>.</div>
-        <div><small id="smallTag">Copyright 1999-2050 by Refsnes Data.</small></div>
-        <p> This is <sub id="subscript" class="sub">below</sub>Subscript and this is <sup id="superscript" class="sup">above</sup>superscript</p>
-    </div>
-
-    <!-- Links -->
-        <p><a id="links" href="path/to/account">view your account page</a></p>
-
-    <!-- unstyled lists -->
-    <div>
-        <ul id ="unstyledLists" class="pe-list pe-list--unstyled">
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-        </ul>
-    </div>
-    <!-- nested unstlyed lists -->
-    <div>
-        <ul class="pe-list pe-list--unstyled">
-            <li>1</li>
-            <li>
-                <ul id="nestedUnstyledLists" class="pe-list pe-list--unstyled">
-                    <li>1.a</li>
-                    <li>1.b</li>
+<p>
+    Basic body. As you read, quiz yourself to review concepts and prep for exams, without leaving the page. What could be easier?
+</p>
+<ol id="ordered-list" class="pe-list pe-styled-lists--ordered">
+    <li>List item one. How are you doing today? Quite fine, thank you.</li>
+    <li>Item two.</li>
+    <li>Item three.
+        <ol>
+            <li>child item one</li>
+            <li>child item two
+                <ol>
+                    <li>grand child item one</li>
+                    <li>grand child item two</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+</ol>
+<ul id="unordered-list" class="pe-list pe-styled-lists--unordered">
+    <li>List item one. How are you doing today? Quite fine, thank you.</li>
+    <li>Item two.</li>
+    <li>Item three.
+        <ul>
+            <li>child item one</li>
+            <li>child item two
+                <ul>
+                    <li>grand child item one</li>
+                    <li>grand child item two</li>
                 </ul>
             </li>
-            <li>2</li>
-            <li>3</li>
         </ul>
-    </div>
+    </li>
+</ul>
+
+<h2>Basic body. As you read, quiz yourself to review concepts and prep for exams, without leaving the page. What could be easier?</h2>
+<ol id="heading-ordered-list" class="pe-list pe-styled-lists-heading--ordered">
+    <li>List item one. How are you doing today? Quite fine, thank you.</li>
+    <li>Item two.</li>
+    <li>Item three.
+        <ol>
+            <li>child item one</li>
+            <li>child item two
+                <ol>
+                    <li>grand child item one</li>
+                    <li>grand child item two</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+</ol>
+
+<h2>Basic body. As you read, quiz yourself to review concepts and prep for exams, without leaving the page. What could be easier?</h2>
+<ul id="heading-unordered-list" class="pe-list pe-styled-lists-heading--unordered">
+    <li>List item one. How are you doing today? Quite fine, thank you.</li>
+    <li>Item two.</li>
+    <li>Item three.
+        <ul>
+            <li>child item one</li>
+            <li>child item two
+                <ul>
+                    <li>grand child item one</li>
+                    <li>grand child item two</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!------------------ Links ------------------>
+<h2 style="background-color: #C7C7C7;margin-right: 1100px">Links</h2>
+<p>For more information, <a id="link" href="path/to/account">view your account page</a>.</p>
 </body>
 </html>
