@@ -1,9 +1,5 @@
 package elementsTests;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,1289 +7,193 @@ import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
-
 import utilities.BaseClass;
 
+import java.io.File;
+import java.lang.reflect.Method;
+
+/**
+ * Created by umahaea on 11/30/16.
+ */
 public class TypographyTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/typography.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/typography.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
-    private static String env;
-    private static String mobileDevice;
-    private static String setMobile;
-    private static String browser;
-    private static String mBrowser;
-    boolean result = false;
-    private final String fontFamilyChrome="\"Lucida Sans Typewriter\", \"Lucida Console\", monaco, \"Bitstream Vera Sans Mono\", monospace";
-    private final String fontFamilyFF="\"Lucida Sans Typewriter\",\"Lucida Console\",monaco,\"Bitstream Vera Sans Mono\",monospace";
+    private static String env, setDesktop, mobileDevice, setMobile, browser, mBrowser;
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
-    boolean isColor = false;
-    boolean isFontSize = false;
-    boolean isFontWeight = false;
-    boolean isLineHeight = false;
-    boolean isHexValue = false;
-    boolean isRgbValue = false;
-    boolean isBorderBottomWidth = false;
-    boolean isBorderBottomStyle = false;
-    boolean isTextDecoration = false;
-    boolean isFontStyle = false;
-    boolean isDisplay = false;
-    boolean isBoxSizing = false;
-    boolean isPosition = false;
-    boolean isTop = false;
-    boolean isPaddingLeft = false;
-    boolean isListStyle = false;
-    boolean isPseudoContent = false;
-    private String color="";
-    private String fontSize = "";
-    private String fontWeight = "";
-    private String lineHeight = "";
-    private String rgbValue = "";
-    private String borderBottomWidth = "";
-    private String borderBottomStyle = "";
-    private String textDecoration = "";
-    private String fontStyle = "";
-    private String display = "";
-    private String jQueryScript = "";
-    private String jQueryReturnValue = "";
-    private String boxSizing = "";
-    private String position = "";
-    private String top = "";
-    private String paddingLeft = "";
-    private String listStyle = "";
-    private String pseudoContent = "";
+    boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;
+    private String color = "", fontSize = "", fontWeight = "", lineHeight = "", rgbValue = "", borderBottomWidth = "", borderBottomStyle = "", textDecoration = "", fontStyle = "", display = "", jQueryScript = "", jQueryReturnValue = "", boxSizing = "", position = "", top = "", listStyle = "", pseudoContent = "", marginLeft = "", marginRight = "", marginBottom = "", marginTop = "", backgroundColor = "", verticalAlign = "", fontFamily = "", winChromeFontFamily = "Monaco, \"Lucida Console\", monospace", macChromeFontFamily = "Monaco, 'Lucida Console', monospace", ieFontFamily="monaco, \"lucida console\", monospace", ffFontFamily = "Monaco,\"Lucida Console\",monospace", paddingTop = "", paddingBottom = "", paddingLeft = "", paddingRight = "";
     JavascriptExecutor js = null;
-    
-    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
+
+    @Parameters({"runEnv", "desktop", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void TypographyTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
+    private void TypographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
         env = runEnv;
+        setDesktop = desktop;
         mobileDevice = mobDeviceName;
         browser = sauceBrowser;
         mBrowser = mobBrowser;
         setMobile = mobile;
     }
-    
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file://" + localUrl);
-        }
+
+    //Desktop Tests
+    //Verify <header>
+    @Test(testName = "Verify <header> properties", groups = "desktop-regression")
+    private void headerTest() {
+        marginBottom = commonUtils.getCSSValue(typoPgObj.header, "margin-bottom");
+        isMarginBottom = commonUtils.assertValue(marginBottom, "20px", "margin-bottom for <header> is not as per the spec");
+        Assert.assertTrue(isMarginBottom);
     }
 
-    /**********************************************************************************************************************************************
-     * DESKTOP TESTS
-     *********************************************************************************************************************************************/
-    // Feature: Body Copy Font
-    @DataProvider(name = "getBodyCopyFontTestData")
-    private Object[][] getBodyCopyFontTestData() {
+    //Verify Only <h1,h2,h3,h4,h5>
+    @DataProvider(name = "h1h2h3h4h5 Test Data")
+    private Object[][] getH1H2H3H4H5TestData() {
         return new Object[][]{
-                {typoPgObj.basicBody1, "16px", "22px", new String[]{"rgba(35, 31, 32, 1)","rgb(35,31,32)"}},
-                {typoPgObj.basicSmallBody, "14px", "20px", new String[]{"rgba(35, 31, 32, 1)","rgb(35,31,32)"}}
+                {"h1", typoPgObj.h1, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "20px", "6px"},
+                {"h2", typoPgObj.h2, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px", ""}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "40px", "6px"},
+                {"h3", typoPgObj.h3, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
+                {"h4", typoPgObj.h4, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
+                {"h5", typoPgObj.h5, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"}
         };
     }
 
-    // Body Copy Font
-    @Test(enabled = true, testName = "Body Copy Test", dataProvider = "getBodyCopyFontTestData", groups = {"desktop-ci","desktop-regression"})
-    private void bodyCopyFontTest(By element, String fontsize, String lineheight, String[] color) {
-        chooseEnv();
-        result = verifyBodyCopyFont(element, fontsize, lineheight, color);
+    @Test(testName = "Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = "desktop-ci")
+    private void h1h2h3h4h5Test(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
-    // Feature: Body Copy - Paragraph Margin
-    @DataProvider(name = "getParaMarginTestData")
-    private Object[][] getParaMarginTestData() {
+    //Verify <subtitle> with <h1,h2,h3,h4,h5>
+    @DataProvider(name = "subtitle Test Data")
+    private Object[][] getSubTitleAndH1H2H3H4H5TestData() {
         return new Object[][]{
-                {typoPgObj.paragraph1, "12px"},
-                {typoPgObj.paragraph3, "0px"},
+                {"subtitle-1", typoPgObj.subtitle1, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "34px", "6px"},
+                {"subtitle-2", typoPgObj.subtitle2, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-3", typoPgObj.subtitle3, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-4", typoPgObj.subtitle4, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-5", typoPgObj.subtitle5, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"}
         };
     }
 
-    // Body Copy - Paragraph Margin
-    @Test(enabled = true, testName = "Body Copy Paragraph Margin Test", dataProvider = "getParaMarginTestData", groups = {"desktop-ci","desktop-regression"})
-    private void bodyCopyParaMarginTest(By element, String marginbottom) {
-        chooseEnv();
-        String actualMarginBottom = commonUtils.getCSSValue(element, "margin-bottom");
-        commonUtils.assertValue(actualMarginBottom, marginbottom, "Body Copy - paragraph margin-bottom specification Failed");
-    }
-
-    // Feature: Lists
-    @DataProvider(name = "getListsFontTestData")
-    private Object[][] getListsFontTestData() {
-        return new Object[][]{
-                // ordered
-                {typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                // Unordered
-                {typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"}
-        };
-    }
-
-    //  Lists
-    @Test(enabled = true, testName = "Lists font fest", dataProvider = "getListsFontTestData", groups = {"desktop-regression"})
-    private void ListsFontTest(By element, String fontsize, String lineheight, String color) {
-        chooseEnv();
-        result = verifyListItemFont(element, fontsize, lineheight, color);
+    @Test(testName = "Verify <subtitle> properties", dataProvider = "subtitle Test Data", groups = "desktop-regression")
+    private void subtitleWithh1h2h3h4h5Test(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "getListsSpacingtopBottomMarginTestData")
-    private Object[][] getListsSpacingtopBottomMarginTestData() {
+    // Verify Para
+    @DataProvider(name = "para Test Data")
+    private Object[][] getParaTestData() {
         return new Object[][]{
-                // ordered
-                {typoPgObj.orderedListLevel1, "12px"},
-                // Unordered
-                {typoPgObj.unorderedListLevel1, "12px"}
+                {"para", typoPgObj.para, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"12px", "11.999959945678711px","11.84px"}},
+                {"para-last", typoPgObj.paraLast, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"0px"}}
         };
     }
 
-    // Test 3
-    @Test(enabled = true, testName = "Lists Margin top and bottom test", dataProvider = "getListsSpacingtopBottomMarginTestData", groups = {"desktop-regression"})
-    private void ListsSpacingMarginTest(By element, String space_above_below) {
-        chooseEnv();
-        result = verifyListSpacing(element, space_above_below);
+    @Test(testName = "Verify Para properties", dataProvider = "para Test Data", groups = "desktop-ci")
+    private void paraTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "getListItemsSpacingTest")
-    private Object[][] getListItemsSpacingTest() {
+    //Verify Copy
+    @DataProvider(name = "copy Test Data")
+    private Object[][] getCopyTestData() {
         return new Object[][]{
-                // ordered
-                {typoPgObj.orderedListItem1, "6px"},
-                {typoPgObj.orderedListItem2, "6px"},
-                {typoPgObj.orderedListItem3, "6px"},
-                {typoPgObj.orderedListChildItem1, "6px"},
-                {typoPgObj.orderedListChildItem2, "6px"},
-                {typoPgObj.orderedListGrandChildItem1, "6px"},
-                // unordered
-                {typoPgObj.unorderedListItem1, "6px"},
-                {typoPgObj.unorderedListItem2, "6px"},
-                {typoPgObj.unorderedListItem3, "6px"},
-                {typoPgObj.unorderedListChildItem1, "6px"},
-                {typoPgObj.unorderedListChildItem2, "6px"},
-                {typoPgObj.unorderedListGrandChildItem1, "6px"}
+                {"copy", typoPgObj.copy, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-small", typoPgObj.copySmall, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-large", typoPgObj.copyLarge, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-secondary", typoPgObj.copySecondary, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}}
         };
     }
 
-    // Test 4
-    @Test(enabled = true, testName = "Lists item spacing test", dataProvider = "getListItemsSpacingTest", groups = {"desktop-regression"})
-    private void ListItemSpacingTest(By element, String space_list_items) {
-        chooseEnv();
-        // Get font size
-        String actualFontSize = commonUtils.getCSSValue(element, "font-size");
-        int int_actualFontSize = Integer.parseInt(actualFontSize.replace("px", ""));
-        int int_space_list_items = Integer.parseInt(space_list_items.replace("px", ""));
-        // Add expected line space between list item with font size
-        int expectedLineHeight = int_actualFontSize + int_space_list_items;
-        // Verify Line Height
-        String actualListItemSpace = commonUtils.getCSSValue(element, "line-height");
-        commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists line-height specification Failed");
-    }
-
-    @DataProvider(name = "getListItemsLeftPaddingTestData")
-    private Object[][] getListItemsLeftPaddingTestData() {
-        return new Object[][]{
-                // ordered
-                {typoPgObj.orderedListLevel1, "26px"},
-                {typoPgObj.orderedListLevel2, "20px"},
-                {typoPgObj.orderedListLevel3, "20px"},
-                // Unordered
-                {typoPgObj.unorderedListLevel1, "26px"},
-                {typoPgObj.unorderedListLevel2, "20px"},
-                {typoPgObj.unorderedListLevel3, "20px"}
-        };
-    }
-
-    // Test 5
-    @Test(enabled = true, testName = "Lists left padding", dataProvider = "getListItemsLeftPaddingTestData", groups = {"desktop-regression"})
-    private void ListItemLeftPaddingTest(By element, String leftPadding) {
-        chooseEnv();
-        // Verify left padding
-        String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left");
-        commonUtils.assertValue(actualPaddingLeft, leftPadding, "Lists padding-left specification Failed");
-    }
-
-    @DataProvider(name = "getListstopMarginAfterHeaderTestData")
-    private Object[][] getListstopMarginAfterHeaderTestData() {
-        return new Object[][]{
-                // ordered
-                {typoPgObj.HeadingOrderedListLevel1, "0px"},
-                // Unordered
-                {typoPgObj.HeadingUnorderedListLevel1, "0px"}
-        };
-    }
-
-    // Test 6
-    @Test(enabled = true, testName = "Lists top Margin After Header test", dataProvider = "getListstopMarginAfterHeaderTestData", groups = {"desktop-ci","desktop-regression"})
-    private void ListsMarginAfterHeaderTest(By element, String space_above) {
-        chooseEnv();
-        String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
-        commonUtils.assertValue(actualSpaceAbove, space_above, "Lists margin-top after header specification Failed");
-    }
-
-    // Feature: Heading
-    @DataProvider(name = "getHeadingsCSSTestData")
-    private Object[][] getHeadingsTestData() {
-        return new Object[][]{
-                {typoPgObj.heading_one, "24px", "30px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h1"},
-                {typoPgObj.heading_two, "20px", "24px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h2"},
-                {typoPgObj.heading_three, "18px", "22px", new String[]{"bold", "700"}, "rgba(35, 31, 32, 1)", "h3"},
-                {typoPgObj.heading_four, "16px", "20px", new String[]{"bold", "700"}, "rgba(86, 86, 86, 1)", "h4"},
-                {typoPgObj.heading_five, "16px", "20px", new String[]{"normal", "400"}, "rgba(86, 86, 86, 1)", "h5"},
-                {typoPgObj.heading_six, "14px", "16px", new String[]{"normal", "400"}, "rgba(86, 86, 86, 1)", "h6"}
-        };
-    }
-
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestData", groups = {"desktop-regression"})
-    private void HeadingCSSTest(By element, String fontSize, String lineHeight, String[] fontWeight, String fontColor, String item) throws InterruptedException, UnsupportedEncodingException {
-        chooseEnv();
-        result = HeadingCSSEval(element, fontSize, lineHeight, fontWeight, fontColor, item);
+    @Test(testName = "Verify Copy Properties", dataProvider = "copy Test Data", groups = "desktop-ci")
+    private void copyTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor);
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "getHeadingsMrgnTestData")
-    private Object[][] getHeadingsMrgnTestData() {
+    //Verify Lead
+    @DataProvider(name = "lead Test Data")
+    private Object[][] getLeadTestData() {
         return new Object[][]{
-                {typoPgObj.heading_two_two,},
-                {typoPgObj.heading_three_three,},
-                {typoPgObj.heading_four_four,},
-                {typoPgObj.heading_five_five,},
-                {typoPgObj.heading_six_six,}
+                {"lead", typoPgObj.lead, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"28px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
         };
     }
 
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"desktop-regression"})
-    private void HeadingMrgnTest(By element) {
-        chooseEnv();
-        String margin = commonUtils.getCSSValue(element, "margin-top");
-        commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
-    }
-
-    @DataProvider(name = "getHeadingsMrgnCntntTestData")
-    private Object[][] getHeadingsMrgnCntntTestData() {
-        return new Object[][]{
-                {typoPgObj.heading_oneOne, "20px",},
-                {typoPgObj.heading_twoTwo, "20px",},
-                {typoPgObj.heading_threeThree, "20px",},
-                {typoPgObj.heading_fourFour, "20px",},
-                {typoPgObj.heading_fiveFive, "20px",},
-                {typoPgObj.heading_sixSix, "20px",}
-        };
-    }
-
-    @Test(enabled = true, testName = "Heading Margin Content Test", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"desktop-regression"})
-    private void HeadingMrgnParaTest(By element, String actulmrgn) {
-        chooseEnv();
-        String margin = commonUtils.getCSSValue(element, "margin-top");
-        commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has" + actulmrgn);
-    }
-
-    @DataProvider(name = "getHeadingsMrgnMrgnTestData")
-    private Object[][] getHeadingsMrgnMrgnTestData() {
-        return new Object[][]{
-                {typoPgObj.heading_2, "6px",},
-                {typoPgObj.heading_3, "6px",},
-                {typoPgObj.heading_4, "6px",},
-                {typoPgObj.heading_5, "6px",},
-                {typoPgObj.heading_6, "6px",}
-        };
-    }
-
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"desktop-regression"})
-    private void HeadingMrgnCntntTest(By element, String actlMrgn) {
-        chooseEnv();
-        String margin = commonUtils.getCSSValue(element, "margin-top");
-        commonUtils.assertValue(margin, actlMrgn, "Header that follows a heading has no 6px margin");
-    }
-
-    // Feature: Code
-    @DataProvider(name = "getCodeTestData")
-    private Object[][] getcodeTestData() {
-        return new Object[][]{
-                {new String[]{fontFamilyChrome,fontFamilyFF}, "14px", "20px", "rgba(66, 66, 66, 1)", "rgba(174, 174, 174, 1)"}
-        };
-    }
-
-    @Test(enabled = true, dataProvider = "getCodeTestData", testName = "Code Test", groups = {"desktop-ci","desktop-regression"})
-    private void CodeTest(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
-        chooseEnv();
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family");
-        String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size");
-        String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color");
-        String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color");
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
-        commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
-        commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
-    }
-
-    @DataProvider(name = "getInlnCodeTestData")
-    private Object[][] getInlnCodeTestData() {
-        return new Object[][]{
-                {new String[]{fontFamilyChrome,fontFamilyFF}, "4px", "4px", "rgba(230, 230, 230, 1)"}
-        };
-    }
-
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"desktop-ci","desktop-regression"})
-    private void InlneCodeTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        chooseEnv();
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
-    }
-
-    @DataProvider(name = "getkbdTestData")
-    private Object[][] getkbdTestData() {
-        return new Object[][]{
-                {new String[]{fontFamilyChrome,fontFamilyFF}, "4px", "4px", "rgba(230, 230, 230, 1)",}
-        };
-    }
-
-    @Test(enabled = true, testName = "kbd Code Test", dataProvider = "getkbdTestData", groups = {"desktop-ci","desktop-regression"})
-    private void kbdTest(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        chooseEnv();
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
-    }
-
-    /**********************************************************************************************************************************************
-     * MOBILE TESTS
-     *********************************************************************************************************************************************/
-
-    // Feature: Body
-    @DataProvider(name = "MobileBodyCopyFontTestData")
-    private Object[][] MobileBodyCopyFontTestData() {
-        return new Object[][]{
-                {ScreenOrientation.PORTRAIT, typoPgObj.basicBody1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.basicSmallBody, "14px", "20px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.basicBody1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.basicSmallBody, "14px", "20px", "rgba(35, 31, 32, 1)"}
-        };
-    }
-
-    // Test 1
-    @Test(testName = "Mobile Body Copy Test", dataProvider = "MobileBodyCopyFontTestData", groups = {"mobile-regression"}, enabled = true)
-    private void mobileBodyCopyFontTest(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        result = verifyBodyCopyFont(element, fontsize, lineheight, color, "mobile");
+    @Test(testName = "Verify Lead Properties", dataProvider = "lead Test Data", groups = "desktop-regression")
+    private void leadTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
-    // Feature: Body Copy - Paragraph Margin
-    @DataProvider(name = "MobileParaMarginTestData")
-    private Object[][] MobileParaMarginTestData() {
+    //Verify Page Level Headings
+    @DataProvider(name = "page Title Test Data")
+    private Object[][] getPageTitleTestData() {
         return new Object[][]{
-                {ScreenOrientation.PORTRAIT, typoPgObj.paragraph1, "12px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.paragraph3, "0px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.paragraph1, "12px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.paragraph3, "0px"},
+                {"page-title", typoPgObj.pageTitle, new String[]{"38.0001px", "38px", "38.00006103515625px","37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"page-title-secondary", typoPgObj.pageTitleSecondary, new String[]{"38.0001px", "38px", "38.00006103515625px","37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"page-title-small", typoPgObj.pageTitleSmall, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"page-title-small-secondary", typoPgObj.pageTitleSmallSecondary, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
 
-    // Body Copy - Paragraph Margin
-    @Test(testName = "Body Copy Paragraph Margin Test Mobile", dataProvider = "MobileParaMarginTestData", groups = {"mobile-regression"})
-    private void mobileBodyCopyParaMarginTest(ScreenOrientation mode, By element, String marginbottom) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        String actualMarginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
-        commonUtils.assertValue(actualMarginBottom, marginbottom, "Body Copy - paragraph margin-bottom specification Failed");
+    @Test(testName = "Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = "desktop-ci")
+    private void pageTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
+        Assert.assertTrue(result);
     }
 
-    // Feature: Lists
-    @DataProvider(name = "getOrderedListsFontTestDataMobile")
-    private Object[][] getOrderedListsFontTestDataMobile() {
+    //Verify Section Headings
+    @DataProvider(name = "section Title Test Data")
+    private Object[][] getSectionTitleTestData() {
         return new Object[][]{
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                // Unordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListGrandChildItem1, "16px", "22px", "rgba(35, 31, 32, 1)"}
+                {"section-title", typoPgObj.sectionTitle, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-bold", typoPgObj.sectionTitleBold, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-secondary", typoPgObj.sectionTitleSecondary, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"section-title-small", typoPgObj.sectionTitleSmall, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-small-bold", typoPgObj.sectionTitleSmallBold, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-small-secondary", typoPgObj.sectionTitleSmallSecondary, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"section-title-large", typoPgObj.sectionTitleLarge, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-large-bold", typoPgObj.sectionTitleLargeBold, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-large-secondary", typoPgObj.sectionTitleLargeSecondary, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
 
-    // Test 2
-    @Test(testName = "Ordered lists font test Mobile", dataProvider = "getOrderedListsFontTestDataMobile", groups = {"mobile-regression"})
-    private void OrderedListsFontTestMobile(ScreenOrientation mode, By element, String fontsize, String lineheight, String color) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        result = verifyListItemFont(element, fontsize, lineheight, color, "mobile");
+    @Test(testName = "Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = "desktop-ci")
+    private void sectionTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "getListsSpacingtopBottomMarginTestDataMobile")
-    private Object[][] getListsSpacingtopBottomMarginTestDataMobile() {
+    //Verify Labels
+    @DataProvider(name = "label Test Data")
+    private Object[][] getLabelTestData() {
         return new Object[][]{
-                // ordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListLevel1, "12px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListLevel1, "12px"},
-                // Unordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListLevel1, "12px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListLevel1, "12px"}
+                {"label", typoPgObj.label, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-secondary", typoPgObj.labelSecondary, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-bold", typoPgObj.labelBold, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-small", typoPgObj.labelSmall, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-small-secondary", typoPgObj.labelSmallSecondary, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-large", typoPgObj.labelLarge, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-large-secondary", typoPgObj.labelLargeSecondary, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-inverse", typoPgObj.labelInverse, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"label-inverse-secondary", typoPgObj.labelInverseSecondary, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}}
         };
     }
 
-    // Test 3
-    @Test(testName = "Lists spacing test Mobile", dataProvider = "getListsSpacingtopBottomMarginTestDataMobile", groups = {"mobile-regression"})
-    private void ListsSpacingTestMobile(ScreenOrientation mode, By element, String space_above_below) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        result = verifyListSpacing(element, space_above_below, "mobile");
+    @Test(testName = "Verify Label properties", dataProvider = "label Test Data", groups = "desktop-ci")
+    private void labelTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "getListItemsMobile")
-    private Object[][] getListItemsTestDataMobile() {
-        return new Object[][]{
-                // ordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem1, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem2, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListItem3, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListChildItem1, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListChildItem2, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListGrandChildItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem2, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListItem3, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListChildItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListChildItem2, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListGrandChildItem1, "6px"},
-                // unordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem1, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem2, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListItem3, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListChildItem1, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListChildItem2, "6px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListGrandChildItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem2, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListItem3, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListChildItem1, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListChildItem2, "6px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListGrandChildItem1, "6px"},
-        };
-    }
-
-    // Test 4
-    @Test(testName = "Lists item spacing test Mobile", dataProvider = "getListItemsMobile", groups = {"mobile-regression"})
-    private void ListItemSpacingTestMobile(ScreenOrientation mode, By element, String space_list_items) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        // Get font size
-        String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        int int_actualFontSize = Integer.parseInt(actualFontSize.replace("px", ""));
-        int int_space_list_items = Integer.parseInt(space_list_items.replace("px", ""));
-        // Add expected line space between list item with font size
-        int expectedLineHeight = int_actualFontSize + int_space_list_items;
-        // Verify Line Height
-        String actualListItemSpace = commonUtils.getCSSValue(element, "line-height", "mobile");
-        commonUtils.assertValue(actualListItemSpace, expectedLineHeight + "px", "Lists line-height specification Failed");
-    }
-
-    @DataProvider(name = "getListItemsLeftPaddingTestDataMobile")
-    private Object[][] getListItemsLeftPaddingTestDataMobile() {
-        return new Object[][]{
-                // Ordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListLevel1, "26px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListLevel2, "20px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.orderedListLevel3, "20px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListLevel1, "26px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListLevel2, "20px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.orderedListLevel3, "20px"},
-                // Unordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListLevel1, "26px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListLevel2, "20px"},
-                {ScreenOrientation.PORTRAIT, typoPgObj.unorderedListLevel3, "20px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListLevel1, "26px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListLevel2, "20px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.unorderedListLevel3, "20px"}
-        };
-    }
-
-    // Test 5
-    @Test(testName = "Lists left padding Mobile", dataProvider = "getListItemsLeftPaddingTestDataMobile", groups = {"mobile-regression"})
-    private void getListItemsLeftPaddingTestDataMobile(ScreenOrientation mode, By element, String leftPadding) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        // Verify left padding
-        String actualPaddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        commonUtils.assertValue(actualPaddingLeft, leftPadding, "Lists padding-left specification Failed");
-    }
-
-    @DataProvider(name = "getListstopMarginAfterHeaderTestDataMobile")
-    private Object[][] getListstopMarginAfterHeaderTestDataMobile() {
-        return new Object[][]{
-                // ordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.HeadingUnorderedListLevel1, "0px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.HeadingUnorderedListLevel1, "0px"},
-                // Unordered
-                {ScreenOrientation.PORTRAIT, typoPgObj.HeadingOrderedListLevel1, "0px"},
-                {ScreenOrientation.LANDSCAPE, typoPgObj.HeadingOrderedListLevel1, "0px"}
-        };
-    }
-
-    // Test 6
-    @Test(testName = "Lists top Margin After Header test Mobile", dataProvider = "getListstopMarginAfterHeaderTestDataMobile", groups = {"mobile-regression"})
-    private void ListsMarginAfterHeaderTestMobile(ScreenOrientation mode, By element, String space_above) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(actualSpaceAbove, space_above, "Lists margin-top after header specification Failed");
-    }
-
-    // Feature: Heading
-    @DataProvider(name = "getHeadingsCSSTestDataMobile")
-    private Object[][] getHeadingsTestDataMobile() {
-        return new Object[][]{
-                {typoPgObj.heading_one, "24px", "30px", "bold", "rgba(35, 31, 32, 1)", "h1"},
-                {typoPgObj.heading_two, "20px", "24px", "bold", "rgba(35, 31, 32, 1)", "h2"},
-                {typoPgObj.heading_three, "18px", "22px", "bold", "rgba(35, 31, 32, 1)", "h3"},
-                {typoPgObj.heading_four, "16px", "20px", "bold", "rgba(86, 86, 86, 1)", "h4"},
-                {typoPgObj.heading_five, "16px", "20px", "normal", "rgba(86, 86, 86, 1)", "h5"},
-                {typoPgObj.heading_six, "14px", "16px", "normal", "rgba(86, 86, 86, 1)", "h6"}
-        };
-    }
-
-    // Feature: Heading
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile-regression"})
-    private void HeadingMobileTestLANDSCAPE(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
-        commonUtils.getUrl(url, "mobile");
-        result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item, ScreenOrientation.LANDSCAPE);
-        Assert.assertTrue(result);
-    }
-
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnMobileTestLANDSCAPE(By element) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
-    }
-
-    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnParaMobileTest(By element, String actulmrgn) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has " + actulmrgn);
-    }
-
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnCntntMobileTest(By element, String actlMrgn) throws InterruptedException, UnsupportedEncodingException {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(actlMrgn, margin, "Header that follows a heading has a 6px margin");
-    }
-
-    // Test For Portrait
-    @Test(enabled = true, testName = "Heading Test", dataProvider = "getHeadingsCSSTestDataMobile", groups = {"mobile-regression"})
-    private void HeadingMobileTestPORTRAIT(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item) {
-        commonUtils.getUrl(url, "mobile");
-        result = HeadingCSSEvalMob(element, fontSize, lineHeight, fontWeight, fontColor, item, ScreenOrientation.PORTRAIT);
-        Assert.assertTrue(result);
-    }
-
-    // Feature: Coding
-    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile-regression"})
-    private void CodeMobileTestLANDSCAPE(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family", "mobile");
-        String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size", "mobile");
-        String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color", "mobile");
-        String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color", "mobile");
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
-        commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not " + lnHeight);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
-        commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
-    }
-
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile-regression"})
-    private void InlneCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not " + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not " + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not " + bckClr);
-    }
-
-    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile-regression"})
-    private void kbdCodeMobileTestLANDSCAPE(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.LANDSCAPE);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not " + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
-    }
-
-    @Test(enabled = true, testName = "Heading Margin Test", dataProvider = "getHeadingsMrgnTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnMobileTestPORTRAIT(By element) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(margin, "40px", "Header that follows a header has a 6px margin");
-    }
-
-    @Test(enabled = true, testName = "Heading Margin Content Test Mobile", dataProvider = "getHeadingsMrgnCntntTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnParaMobileTestPORTRAIT(By element, String actulmrgn) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(margin, actulmrgn, "Header that follows a content dosent has" + actulmrgn);
-    }
-
-    @Test(enabled = true, testName = "Heading Margin with heading Test", dataProvider = "getHeadingsMrgnMrgnTestData", groups = {"mobile-regression"})
-    private void HeadingMrgnCntntMobileTestPORTRAIT(By element, String actlMrgn) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String margin = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        commonUtils.assertValue(margin, actlMrgn, "Header that follows a heading dosent has" + actlMrgn + " margin");
-    }
-
-    @Test(enabled = true, testName = "Code Test", dataProvider = "getCodeTestData", groups = {"mobile-regression"})
-    private void CodeMobileTestPORTRAIT(String[] fntFamly, String fntSize, String lnHeight, String bckClr, String fntColr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.code, "font-family", "mobile");
-        String fontSize = commonUtils.getCSSValue(typoPgObj.code, "font-size", "mobile");
-        String lneHeight = commonUtils.getCSSValue(typoPgObj.code, "line-height", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.code, "background-color", "mobile");
-        String fntClr = commonUtils.getCSSValue(typoPgObj.code, "color", "mobile");
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not " + fontFamily);
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        commonUtils.assertValue(fontSize, fntSize, "Code Test Font Size is not " + fntSize);
-        commonUtils.assertValue(lneHeight, lnHeight, "Code Test Line height is not" + lnHeight);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not " + bckClr);
-        commonUtils.assertValue(fntClr, fntColr, "Code Test Font color is not " + fntColr);
-    }
-
-    @Test(enabled = true, testName = "Inline Code Test", dataProvider = "getInlnCodeTestData", groups = {"mobile-regression"})
-    private void InlneCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Inline Code Test Font Family is not" + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Inline Code Test Padding Left is not" + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Inline Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Inline Code Test Background Color is not" + bckClr);
-    }
-
-    @Test(enabled = true, testName = "Kbd Code Test", dataProvider = "getkbdTestData", groups = {"mobile-regression"})
-    private void kbdCodeMobileTestPORTRAIT(String[] fntFamly, String pddngLft, String pddngRgt, String bckClr) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(ScreenOrientation.PORTRAIT);
-        String fontFamily = commonUtils.getCSSValue(typoPgObj.inlne_code, "font-family", "mobile");
-        String pdngLft = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-left", "mobile");
-        String pdngRght = commonUtils.getCSSValue(typoPgObj.inlne_code, "padding-right", "mobile");
-        String bckgrnd = commonUtils.getCSSValue(typoPgObj.inlne_code, "background-color", "mobile");
-        boolean isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, fntFamly);
-        if (isFontFamily == false) {
-            log.info("Font Family is not as per the spec");
-        }
-        //commonUtils.assertValue(fontFamily, fntFamly, "Code Test Font Family is not" + fntFamly);
-        commonUtils.assertValue(pdngLft, pddngLft, "Code Test Padding Left is not" + pdngLft);
-        commonUtils.assertValue(pdngRght, pddngRgt, "Code Test Padding Right is not " + pddngRgt);
-        commonUtils.assertValue(bckgrnd, bckClr, "Code Test Background Color is not" + bckClr);
-    }
-
-    @DataProvider(name = "Label Test Mobile Data")
-    public Object[][] getLabelMobileTestData() {
-        return new Object[][]{
-                //pe-label
-                {"primary", typoPgObj.pLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#231F20"},
-                //pe-label--secondary
-                {"secondary", typoPgObj.sLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#565656"},
-                //inverse
-                {"primary-inverse", typoPgObj.pILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
-                //inverse pe-label--secondary
-                {"secondary-inverse", typoPgObj.sILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"}
-        };
-    }
-
-    @Test(testName = "Labels Mobile Test", dataProvider = "Label Test Mobile Data", groups = {"mobile-regression"})
-    private void labelsMobileTest(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgb(labelHexValue),"mobile");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "Titles Test Mobile Data")
-    public Object[][] getTitleTestMobileData() {
-        return new Object[][]{
-                {"basic", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px"}},
-                {"large", "iPhone 6 Plus", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px"}},
-                {"xLarge","iPhone 6 Plus", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
-                {"basic", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
-                {"large", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px"}},
-                {"xLarge", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px", new String[]{"0px","6px"}},
-                {"basic", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px"}},
-                {"large", "Android Emulator", ScreenOrientation.PORTRAIT,typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px"}},
-                {"xLarge","Android Emulator", ScreenOrientation.PORTRAIT, typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
-                {"basic", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px"}},
-                {"large", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px"}},
-                {"xLarge", "Android Emulator", ScreenOrientation.LANDSCAPE,typoPgObj.xLargeTitle, new String[]{"30px"}, "36px", new String[]{"0px","6px"}}
-        };
-    }
-
-    @Test(testName = "Titles Mobile Test", dataProvider = "Titles Test Mobile Data", groups = {"mobile-regression"})
-    private void titleMobileTest(String titleType, String device, ScreenOrientation mode, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth) {
-        if (!(mobileDevice.equals(device))) {
-            throw new SkipException("To run this test specify mobile device as "+device);
-        }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight, titleBorderBottomWidth, "mobile");
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Copy
-    @DataProvider(name = "Copy Test Mobile Data")
-    public Object[][] getCopyTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.copy, "16px", "22px", "#231f20"}
-        };
-    }
-
-    @Test(testName = "Copy Mobile Test", dataProvider = "Copy Test Mobile Data", groups = {"mobile-regression"})
-    private void copyMobileTest(By element, String copyFontSize, String copyLineHeight, String copyHexValue) {
-        commonUtils.getUrl(url, "mobile");
-        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
-        rgbValue = commonUtils.getCSSValue(element, "color","mobile");
-
-        isFontSize = commonUtils.assertValue(fontSize, copyFontSize, "'copy' font-size is not as per the spec");
-        isLineHeight = commonUtils.assertValue(lineHeight, copyLineHeight, "'copy' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(copyHexValue), "'copy' rgb value is not as per the spec");
-        result = commonUtils.assertValue((isFontSize && isLineHeight && isRgbValue), true, "'copy' is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Lead
-    @DataProvider(name = "Lead Test Mobile Data")
-    public Object[][] getLeadTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.lead, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE, "20px", "28px", "#231f20"},
-                {typoPgObj.lead, "iPhone 6 Plus", ScreenOrientation.PORTRAIT, "18px", "24px", "#231f20"},
-                {typoPgObj.lead, "Android Emulator", ScreenOrientation.LANDSCAPE, "20px", "28px", "#231f20"},
-                {typoPgObj.lead, "Android Emulator", ScreenOrientation.PORTRAIT, "18px", "24px", "#231f20"}
-        };
-    }
-
-    @Test(testName = "Lead Mobile Test", dataProvider = "Lead Test Mobile Data", groups = {"mobile-regression"})
-    private void leadMobileTest(By element, String device, ScreenOrientation mode, String leadFontSize, String leadLineHeight, String leadHexValue) {
-
-        if (!(mobileDevice.equals(device))) {
-            throw new SkipException("To run this test specify mobile device as "+device);
-        }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        result = verifyLeadTypoProperties(element, leadFontSize, leadLineHeight, leadHexValue,"mobile");
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Inline elements
-    @Test(testName = "Inline: Abbr Mobile Test", groups = {"mobile-regression"})
-    private void abbrMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        borderBottomWidth = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-width","mobile");
-        borderBottomStyle = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-style","mobile");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", "abbr border-bottom-width is not as per spec");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "dotted", "abbr border-bottom-style is not as per spec");
-        result = commonUtils.assertValue((isBorderBottomWidth && isBorderBottomWidth), true, "abbr is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "DelAndInsTag Test Mobile Data")
-    public Object[][] getDelAndInsTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.delTag, "delTag", "line-through", ""},
-                {typoPgObj.insTag, "insTag", "underline", ""},
-                {typoPgObj.insTag, "insTagPseudo", "underline", "before"},
-                {typoPgObj.insTag, "insTagPseudo", "underline", "after"}
-        };
-    }
-
-    @Test(testName = "Inline: Del and Ins Tag Mobile Test", dataProvider = "DelAndInsTag Test Mobile Data", groups ={"mobile-regression"})
-    private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifyDelAndInsTagProperties(element, inlineTag, inlineTagTextDecoration, pseudoContentAttribute,"mobile");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: Strikethrough Test", groups = {"mobile-regression"})
-    private void strikeThroughMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        rgbValue = commonUtils.getCSSValue(typoPgObj.strikeThrough, "color","mobile");
-        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(86, 86, 86, 1)", "strikethrough rgb value is not as per spec");
-        result = commonUtils.assertValue(isRgbValue, true, "strikethrough is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: mark Test", groups = {"mobile-regression"})
-    private void markMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        rgbValue = commonUtils.getCSSValue(typoPgObj.mark, "background-color","mobile");
-        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(253, 236, 46, 1)", "mark rgb value is not as per spec");
-        result = commonUtils.assertValue(isRgbValue, true, "mark is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: emTag Mobile Test", groups = {"mobile-regression"})
-    private void emTagMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        fontStyle = commonUtils.getCSSValue(typoPgObj.emTag, "font-style","mobile");
-        isFontStyle = commonUtils.assertValue(fontStyle, "italic", "emTag font-style value is not as per spec");
-        result = commonUtils.assertValue(isFontStyle, true, "emTag is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "StrongAndBoldTag Test Mobile Data")
-    public Object[][] getStrongAndBoldTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.strongTag, "strongTag", new String[]{"bold", "700"}},
-                {typoPgObj.boldTag, "boldTag", new String[]{"bold", "700"}}
-        };
-    }
-
-    @Test(testName = "Inline: Strong and Bold Tag Mobile Test", dataProvider = "StrongAndBoldTag Test Mobile Data", groups = {"mobile-regression"})
-    private void strongTagMobileTest(By element, String inlineTag, String[] inlineTagFontWeight) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifyStrongAndBoldTagProperties(element, inlineTag, inlineTagFontWeight,"mobile");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: quote Tag Mobile Test", groups = {"mobile-regression"})
-    private void quoteTagMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        display = commonUtils.getCSSValue(typoPgObj.quoteTag, "display","mobile");
-        isDisplay = commonUtils.assertValue(display, "inline", "'quoteTag' display value is not as per spec");
-        result = commonUtils.assertValue(isDisplay, true, "quoteTag is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: time Tag Mobile Test", groups = {"mobile-regression"})
-    private void timeTagMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        boxSizing = commonUtils.getCSSValue(typoPgObj.timeTag, "box-sizing","mobile");
-        isBoxSizing = commonUtils.assertValue(boxSizing, "border-box", "'timeTag' display value is not as per spec");
-        result = commonUtils.assertValue(isBoxSizing, true, "'timeTag' is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: small Tag Mobile Test", groups = {"mobile-regression"})
-    private void smallTagMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        fontSize = commonUtils.getCSSValue(typoPgObj.smallTag, "font-size","mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", "'smallTag' font-size value is not as per spec");
-        result = commonUtils.assertValue(isFontSize, true, "'smallTag' is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "SuperAndSubScript Test Mobile Data")
-    public Object[][] getSuperAndSubScriptTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.superscript, "superscript", new String[]{"14px", "14.4px", "14.3999996185303px"}, new String[]{"-3.200000047683716px", "-3.2px", "-3.20000004768372px"}, "relative"},
-                {typoPgObj.subscript, "subscript", new String[]{"14px", "14.4px", "14.3999996185303px"}, new String[]{"3.200000047683716px", "3.2px", "3.20000004768372px"}, "relative"}
-        };
-    }
-
-    @Test(testName = "Inline: SuperAndSubScript Mobile Test", dataProvider = "SuperAndSubScript Test Mobile Data", groups = {"mobile-regression"})
-    private void superAndSubScriptTagMobileTest(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifySuperAndSubScriptProperties(element, inlineTag, inlineFontSize, inlineTop, inlinePosition,"mobile");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: Links Test", groups = {"mobile-regression"})
-    private void linksMobileTest(){
-        commonUtils.getUrl(url, "mobile");
-        color = commonUtils.getCSSValue(typoPgObj.links,"color","mobile");
-        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#0d65a6"),"color for links is not as per the spec");
-        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration","mobile");
-        isTextDecoration = commonUtils.assertValue(textDecoration,"underline","text-decoration for links is not as per the spec");
-        Assert.assertTrue(isColor && isTextDecoration);
-    }
-
-    @DataProvider(name = "Unstyled List Test Mobile Data")
-    public Object[][] getUnstyledListTestMobileData() {
-        return new Object[][]{
-                {typoPgObj.unstyledLists, "unstyled", "0px", "none"},
-                {typoPgObj.nestedUnstyledLists, "nestedUnstyled", "0px", "none"},
-        };
-    }
-
-    @Test(testName = "Unstyled List Mobile Test", dataProvider = "Unstyled List Test Mobile Data", groups = {"mobile-regression"})
-    private void unstyledListMobileTest(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle,"mobile");
-        Assert.assertTrue(result);
-    }
-
-    /**********************************************************************************************************************************************
-     * COMMON METHODS
-     *********************************************************************************************************************************************/
-
-    // Feature : Body
-    private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String[] color) {
-        // get FontSize
-        String actualFontSize = commonUtils.getCSSValue(bodyElement, "font-size");
-        // get LineHeight
-        String actualLineHeight = commonUtils.getCSSValue(bodyElement, "line-height");
-        // get Color
-        String actualColor = commonUtils.getCSSValue(bodyElement, "color");
-
-        boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "Body Copy font-size specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "Body Copy line-height specification Failed");
-        boolean result_3 = commonUtils.assertCSSProperties(bodyElement.toString(), actualColor, color);
-        if (result_3 == false) {
-            log.info("'" + bodyElement.toString() + "' :Body Copy Color is not as per the spec");
-        }
-        return (result_1 == true && result_2 == true && result_3 == true);
-    }
-
-    private boolean verifyBodyCopyFont(By bodyElement, String fontsize, String lineheight, String color, String mobile) {
-        // get FontSize
-        String actualFontSize_mobile = commonUtils.getCSSValue(bodyElement, "font-size", "mobile");
-        // get LineHeight
-        String actualLineHeight_mobile = commonUtils.getCSSValue(bodyElement, "line-height", "mobile");
-        // get Color
-        String actualColor_mobile = commonUtils.getCSSValue(bodyElement, "color", "mobile");
-        boolean result_1 = commonUtils.assertValue(actualFontSize_mobile, fontsize, "Body Copy font-size specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualLineHeight_mobile, lineheight, "Body Copy line-height specification Failed");
-        boolean result_3 = commonUtils.assertValue(actualColor_mobile, color, "Body Copy Color specification Failed");
-        if (result_1 == true && result_2 == true && result_3 == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Feature : Lists
-    private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color) {
-        // get FontSize
-        String actualFontSize = commonUtils.getCSSValue(element, "font-size");
-        // get LineHeight
-        String actualLineHeight = commonUtils.getCSSValue(element, "line-height");
-        // get Color
-        String actualColor = commonUtils.getCSSValue(element, "color");
-        boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
-        boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
-        if (result_1 == true && result_2 == true && result_3 == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean verifyListItemFont(By element, String fontsize, String lineheight, String color, String mobile) {
-        // get FontSize
-        String actualFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        // get LineHeight
-        String actualLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        // get Color
-        String actualColor = commonUtils.getCSSValue(element, "color", "mobile");
-        boolean result_1 = commonUtils.assertValue(actualFontSize, fontsize, "List Item font-size specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualLineHeight, lineheight, "List Item line-height specification Failed");
-        boolean result_3 = commonUtils.assertValue(actualColor, color, "List Item Color specification Failed");
-        if (result_1 == true && result_2 == true && result_3 == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean verifyListSpacing(By element, String space_above_below) {
-        // get margin-top
-        String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top");
-        // get margin-below
-        String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom");
-
-        boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, element + " Lists margin-top specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, element + " Lists margin-bottom specification Failed");
-        if (result_1 == true && result_2 == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean verifyListSpacing(By element, String space_above_below, String mobile) {
-        // get margin-top
-        String actualSpaceAbove = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        // get margin-below
-        String actualSpaceBelow = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
-        boolean result_1 = commonUtils.assertValue(actualSpaceAbove, space_above_below, "Lists margin-top specification Failed");
-        boolean result_2 = commonUtils.assertValue(actualSpaceBelow, space_above_below, "Lists margin-bottom specification Failed");
-        if (result_1 == true && result_2 == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Feature : Heading
-    private boolean HeadingCSSEval(By element, String fontSize, String lineHeight, String[] fontWeight, String fontColor, String item) {
-        boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
-        String headingFontSize = commonUtils.getCSSValue(element, "font-size");
-        String headingLineHeight = commonUtils.getCSSValue(element, "line-height");
-        String headingFontWeight = commonUtils.getCSSValue(element, "font-weight");
-        String headingFontColor = commonUtils.getCSSValue(element, "color");
-
-        boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
-        boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height" + item);
-        boolean result_fontWeight = commonUtils.assertCSSProperties(element.toString(), headingFontWeight, fontWeight);
-        if (result_fontWeight == false) {
-            log.info("Heading Font Weight for " + element.toString() + "--> is not as per the spec");
-        }
-        boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
-
-        if (item == "h1") {
-            String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color");
-            String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width");
-            String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style");
-            result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)", "Heading border-bottom-color");
-            result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
-            result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
-        } else
-            result_bttnBordrSze = true;
-        result_bttnBordrClr = true;
-        result_bttnBordrStl = true;
-        if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl && result_bttnBordrSze && result_fontColor) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // For heading mobile test
-    private boolean HeadingCSSEvalMob(By element, String fontSize, String lineHeight, String fontWeight, String fontColor, String item, ScreenOrientation mode) {
-        boolean result_bttnBordrClr, result_bttnBordrSze, result_bttnBordrStl;
-        appium.rotate(mode);
-        String headingFontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        String headingLineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        String headingFontWeight = commonUtils.getCSSValue(element, "font-weight", "mobile");
-        String headingFontColor = commonUtils.getCSSValue(element, "color", "mobile");
-        boolean result_fontSize = commonUtils.assertValue(headingFontSize, fontSize, "Heading Font Size");
-        boolean result_lineHeight = commonUtils.assertValue(headingLineHeight, lineHeight, "Heading Line Height");
-        boolean result_fontWeight = commonUtils.assertValue(headingFontWeight, fontWeight, "Heading font Weight");
-        boolean result_fontColor = commonUtils.assertValue(headingFontColor, fontColor, "Heading Font Color");
-        if (item == "h1") {
-            String headingBttmBordrClr = commonUtils.getCSSValue(element, "border-bottom-color", "mobile");
-            String headingBttmBordrSze = commonUtils.getCSSValue(element, "border-bottom-width", "mobile");
-            String headingBttmBordrStl = commonUtils.getCSSValue(element, "border-bottom-style", "mobile");
-            result_bttnBordrClr = commonUtils.assertValue(headingBttmBordrClr, "rgba(166, 168, 171, 1)", "Heading border-bottom-color");
-            result_bttnBordrSze = commonUtils.assertValue(headingBttmBordrSze, "2px", "Heading border-bottom-color");
-            result_bttnBordrStl = commonUtils.assertValue(headingBttmBordrStl, "solid", "Heading border-bottom-color");
-        } else
-            result_bttnBordrSze = true;
-        result_bttnBordrClr = true;
-        result_bttnBordrStl = true;
-        if ((result_fontSize && result_lineHeight && result_fontWeight && result_bttnBordrClr && result_bttnBordrStl && result_bttnBordrSze && result_fontColor) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    //********************************************* Added by Eajaz *******************************************
-
-
-
-    //Feature: Labels
-    @DataProvider(name = "Label Test Data")
-    public Object[][] getLabelTestData() {
-        return new Object[][]{
-                //pe-label
-                {"primary", typoPgObj.pLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#231F20"},
-                {"primary", typoPgObj.pLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#231F20"},
-                //pe-label--secondary
-                {"secondary", typoPgObj.sLabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"normal", "400"}, "#565656"},
-                {"secondary", typoPgObj.sLabelBold, "bold", new String[]{"14px"}, "16px", new String[]{"bold", "700"}, "#565656"},
-                //inverse
-                {"primary-inverse", typoPgObj.pILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#FFFFFF"},
-                {"primary-inverse", typoPgObj.pILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#FFFFFF"},
-                //inverse pe-label--secondary
-                {"secondary-inverse", typoPgObj.sILabelBasic, "basic", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelSmall, "small", new String[]{"13px", "13.008px", "13.0080003738403px"}, "15px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelLarge, "large", new String[]{"16px"}, "18px", new String[]{"light", "300"}, "#AEAEAE"},
-                {"secondary-inverse", typoPgObj.sILabelBold, "light", new String[]{"14px"}, "16px", new String[]{"light", "300"}, "#AEAEAE"}
-        };
-    }
-
-    @Test(testName = "Labels Test", dataProvider = "Label Test Data", groups = {"desktop-regresssion"})
-    private void labelsTest(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
-        chooseEnv();
-        result = verifyLabelTypoProperties(labelType, element, labelName, labelFontSize, labelLineHeight, labelFontWeight, commonUtils.hex2Rgb(labelHexValue));
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Titles
-    @DataProvider(name = "Titles Test Data")
-    public Object[][] getTitleTestData() {
-        return new Object[][]{
-                {"basic", typoPgObj.basicTitle, new String[]{"18px", "17.9833px", "17.984px", "17.9839992523193px"}, "22px", new String[]{"0px","6px","2px"}, 479, 800},
-                {"large", typoPgObj.largeTitle, new String[]{"20px"}, "24px", new String[]{"0px","6px","2px"}, 479, 800},
-                {"xLarge", typoPgObj.xLargeTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px","2px"}, 479, 800},
-                {"basic", typoPgObj.basicTitle, new String[]{"22px"}, "28px", new String[]{"0px","6px","2px"}, 480, 800},
-                {"large", typoPgObj.largeTitle, new String[]{"24px"}, "30px", new String[]{"0px","6px","2px"}, 480, 800},
-                {"xLarge", typoPgObj.xLargeTitle, new String[]{"30px"}, "36px",new String[]{"0px","6px","2px"}, 480, 800}
-        };
-    }
-
-    @Test(testName = "Titles Test", dataProvider = "Titles Test Data", groups = {"desktop-regression"})
-    private void titleTest(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth, int windowWidth, int windowHeight) {
-        chooseEnv();
-        commonUtils.setWindowSize(windowWidth, windowHeight);
-        result = verifyTitleTypoProperties(titleType, element, titleFontSize, titleLineHeight,titleBorderBottomWidth);
-        commonUtils.setWindowSize(480, 800);
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Copy
-    @DataProvider(name = "Copy Test Data")
-    public Object[][] getCopyTestData() {
-        return new Object[][]{
-                {typoPgObj.copy, "16px", "22px", "#231f20"}
-        };
-    }
-
-    @Test(testName = "Copy Test", dataProvider = "Copy Test Data", groups = {"desktop-regression"})
-    private void copyTest(By element, String copyFontSize, String copyLineHeight, String copyHexValue) {
-        chooseEnv();
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        lineHeight = commonUtils.getCSSValue(element, "line-height");
-        rgbValue = commonUtils.getCSSValue(element, "color");
-
-        isFontSize = commonUtils.assertValue(fontSize, copyFontSize, "'copy' font-size is not as per the spec");
-        isLineHeight = commonUtils.assertValue(lineHeight, copyLineHeight, "'copy' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(copyHexValue), "'copy' rgb value is not as per the spec");
-        result = commonUtils.assertValue((isFontSize && isLineHeight && isRgbValue), true, "'copy' is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Lead
-    @DataProvider(name = "Lead Test Data")
-    public Object[][] getLeadTestData() {
-        return new Object[][]{
-                {typoPgObj.lead, "18px", "24px", "#231f20", 479, 800},
-                {typoPgObj.lead, "20px", "28px", "#231f20", 480, 800}
-        };
-    }
-
-    @Test(testName = "Lead Test", dataProvider = "Lead Test Data", groups = {"desktop-ci"})
-    private void leadTest(By element, String leadFontSize, String leadLineHeight, String leadHexValue, int windowWidth, int windowHeight) {
-
-        chooseEnv();
-        commonUtils.setWindowSize(windowWidth, windowHeight);
-        result = verifyLeadTypoProperties(element, leadFontSize, leadLineHeight, leadHexValue);
-        commonUtils.setWindowSize(480, 800);
-        Assert.assertTrue(result);
-    }
-
-    //Feature: Inline elements
+    //Inline elements
+    //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression"})
     private void abbrTest() {
-        chooseEnv();
-        borderBottomWidth = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-width");
-        borderBottomStyle = commonUtils.getCSSValue(typoPgObj.abbr, "border-bottom-style");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", "abbr border-bottom-width is not as per spec");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "dotted", "abbr border-bottom-style is not as per spec");
-        result = commonUtils.assertValue((isBorderBottomWidth && isBorderBottomWidth), true, "abbr is not as per the spec");
-        Assert.assertTrue(result);
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
+        Assert.assertTrue(isTextDecoration);
     }
 
     @DataProvider(name = "DelAndInsTag Test Data")
@@ -1306,329 +206,691 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: Del and Ins Tag", dataProvider = "DelAndInsTag Test Data", groups = "desktop-regression")
-    private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute) {
-        chooseEnv();
-        result = verifyDelAndInsTagProperties(element, inlineTag, inlineTagTextDecoration, pseudoContentAttribute);
-        Assert.assertTrue(result);
+    @Test(testName = "Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "desktop-regression")
+    private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
+
+        if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
+            js = (JavascriptExecutor) driver;
+            jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContAttribute + "').getPropertyValue('content');";
+            jQueryReturnValue = (String) js.executeScript(jQueryScript);
+            isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
+            if (isPseudoContent == false) {
+                log.info("pseudo '" + pseudoContAttribute + "' value for insTag is incorrect");
+            }
+            Assert.assertTrue(isPseudoContent);
+        }
+        Assert.assertTrue(isTextDecoration);
     }
 
-    @Test(testName = "Inline: Strikethrough Test", groups = {"desktop-regression"})
-    private void strikeThroughTest() {
-        chooseEnv();
-        rgbValue = commonUtils.getCSSValue(typoPgObj.strikeThrough, "color");
-        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(86, 86, 86, 1)", "strikethrough rgb value is not as per spec");
-        result = commonUtils.assertValue(isRgbValue, true, "strikethrough is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: mark Test", groups = {"desktop-ci"})
+    @Test(testName = "Inline: mark Test", groups = {"desktop-regression"})
     private void markTest() {
-        chooseEnv();
-        rgbValue = commonUtils.getCSSValue(typoPgObj.mark, "background-color");
-        isRgbValue = commonUtils.assertValue(rgbValue, "rgba(253, 236, 46, 1)", "mark rgb value is not as per spec");
-        result = commonUtils.assertValue(isRgbValue, true, "mark is not as per the spec");
-        Assert.assertTrue(result);
+
+        backgroundColor = commonUtils.getCSSValue(typoPgObj.mark, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")});
+        if (!isBackgroundColor) {
+            log.info("mark 'background-color' is not as per the spec, actual: " + backgroundColor);
+        }
+        color = commonUtils.getCSSValue(typoPgObj.mark, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{"rgb(0, 0, 0)", "rgba(0, 0, 0, 1)"});
+        if (!isColor) {
+            log.info("mark 'color' is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isBackgroundColor && isColor);
     }
 
-    @Test(testName = "Inline: emTag Test", groups = {"desktop-ci"})
-    private void emTagTest() {
-        chooseEnv();
-        fontStyle = commonUtils.getCSSValue(typoPgObj.emTag, "font-style");
-        isFontStyle = commonUtils.assertValue(fontStyle, "italic", "emTag font-style value is not as per spec");
-        result = commonUtils.assertValue(isFontStyle, true, "emTag is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "StrongAndBoldTag Test Data")
-    public Object[][] getStrongAndBoldTestData() {
-        return new Object[][]{
-                {typoPgObj.strongTag, "strongTag", new String[]{"bold", "700"}},
-                {typoPgObj.boldTag, "boldTag", new String[]{"bold", "700"}}
-        };
-    }
-
-    @Test(testName = "Inline: Strong and Bold Tag Test", dataProvider = "StrongAndBoldTag Test Data", groups = {"desktop-regression"})
-    private void strongTagTest(By element, String inlineTag, String[] inlineTagFontWeight) {
-        chooseEnv();
-        result = verifyStrongAndBoldTagProperties(element, inlineTag, inlineTagFontWeight);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: quote Tag Test", groups = {"desktop-regression"})
-    private void quoteTagTest() {
-        chooseEnv();
-        display = commonUtils.getCSSValue(typoPgObj.quoteTag, "display");
-        isDisplay = commonUtils.assertValue(display, "inline", "'quoteTag' display value is not as per spec");
-        result = commonUtils.assertValue(isDisplay, true, "quoteTag is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: time Tag Test", groups = {"desktop-regresssion"})
-    private void timeTagTest() {
-        chooseEnv();
-        boxSizing = commonUtils.getCSSValue(typoPgObj.timeTag, "box-sizing");
-        isBoxSizing = commonUtils.assertValue(boxSizing, "border-box", "'timeTag' display value is not as per spec");
-        result = commonUtils.assertValue(isBoxSizing, true, "'timeTag' is not as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Inline: small Tag Test", groups = {"desktop-regression"})
-    private void smallTagTest() {
-        chooseEnv();
-        fontSize = commonUtils.getCSSValue(typoPgObj.smallTag, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", "'smallTag' font-size value is not as per spec");
-        result = commonUtils.assertValue(isFontSize, true, "'smallTag' is not as per the spec");
-        Assert.assertTrue(result);
+    @Test(testName = "Inline: strong Test", groups = {"desktop-regression"})
+    private void strongTest() {
+        fontWeight = commonUtils.getCSSValue(typoPgObj.strongTag, "font-weight");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
+        if (!isFontWeight) {
+            log.info("font-weight for strongTag is not as per the spec, actual: " + fontWeight);
+        }
+        Assert.assertTrue(isFontWeight);
     }
 
     @DataProvider(name = "SuperAndSubScript Test Data")
     public Object[][] getSuperAndSubScriptTestData() {
         return new Object[][]{
-                {typoPgObj.superscript, "superscript", new String[]{"14.4px", "14.3999996185303px"}, new String[]{"-3.2px", "-3.20000004768372px"}, "relative"},
-                {typoPgObj.subscript, "subscript", new String[]{"14.4px", "14.3999996185303px"}, new String[]{"3.2px", "3.20000004768372px"}, "relative"}
+                {typoPgObj.superscript, "superscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px","10.46px"}, new String[]{"-2.8px", "-3.20000004768372px", "-2.799999952316284px","-2.78px"}, "relative", "baseline"},
+                {typoPgObj.subscript, "subscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px","10.46px"}, new String[]{"2.8px", "3.20000004768372px", "2.799999952316284px","2.78px"}, "relative", "baseline"}
         };
     }
 
-    @Test(testName = "Inline: SuperAndSubScript", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop-regression"})
-    private void superAndSubScriptTagTest(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition) {
-        chooseEnv();
-        result = verifySuperAndSubScriptProperties(element, inlineTag, inlineFontSize, inlineTop, inlinePosition);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Links Test", groups = {"desktop-regression"})
-    private void linksTest(){
-        chooseEnv();
-        color = commonUtils.getCSSValue(typoPgObj.links,"color");
-        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#0d65a6"),"color for links is not as per the spec");
-        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
-        isTextDecoration = commonUtils.assertValue(textDecoration,"underline","text-decoration for links is not as per the spec");
-        Assert.assertTrue(isColor && isTextDecoration);
-    }
-
-    @Test(testName = "Links Focus State Test", groups = {"desktop-regression"})
-    private void linksFocusStateTest(){
-        chooseEnv();
-        commonUtils.focusOnElementById("links");
-        color = commonUtils.getCSSValue(typoPgObj.links,"color");
-        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#094877"),"color for links in focus state is not as per the spec");
-        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
-        isTextDecoration = commonUtils.assertValue(textDecoration,"none","text-decoration for links in focus state is not as per the spec");
-        Assert.assertTrue(isColor && isTextDecoration);
-    }
-
-    @Test(testName = "Links Hover State Test", groups = {"desktop-regression"})
-    private void linksHoverStateTest(){
-        chooseEnv();
-        commonUtils.hoverOnElement(typoPgObj.links);
-        color = commonUtils.getCSSValue(typoPgObj.links,"color");
-        isColor = commonUtils.assertValue(color,commonUtils.hex2Rgb("#094877"),"color for links in hover state is not as per the spec");
-        textDecoration = commonUtils.getCSSValue(typoPgObj.links,"text-decoration");
-        isTextDecoration = commonUtils.assertValue(textDecoration,"none","text-decoration for links in hover state is not as per the spec");
-        Assert.assertTrue(isColor && isTextDecoration);
-    }
-
-    @DataProvider(name = "Unstyled List Test Data")
-    public Object[][] getUnstyledListTestData() {
-        return new Object[][]{
-                {typoPgObj.unstyledLists, "unstyled", "0px", "none"},
-                {typoPgObj.nestedUnstyledLists, "nestedUnstyled", "0px", "none"},
-        };
-    }
-
-    @Test(testName = "Unstyled List", dataProvider = "Unstyled List Test Data", groups = {"desktop-regression"})
-    private void unstyledListTest(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
-        chooseEnv();
-        result = verifyUnstyledListProperties(element, unstyledListType, unstyledListPaddingLeft, unstyledListStyle);
-        Assert.assertTrue(result);
-    }
-
-    /*********************
-     * Common Methods
-     *********************/
-
-    private boolean verifyLabelTypoProperties(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue) {
+    @Test(testName = "Inline: SuperAndSubScript Test", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop-regression"})
+    private void superAndSubScriptTagTest(By element, String type, String[] expInlineFontSize, String[] expInlineTop, String expInlinePosition, String expVerticalAlign) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
-        lineHeight = commonUtils.getCSSValue(element, "line-height");
-        fontWeight = commonUtils.getCSSValue(element, "font-weight");
-        String actualLabelHexValue = commonUtils.getCSSValue(element, "color");
-        isFontSize = commonUtils.assertCSSProperties(labelType, fontSize, labelFontSize);
-        if (isFontSize == false) {
-            log.info("Font size for " + labelType + "--> " + labelName + " is not as per the spec");
+        isFontSize = commonUtils.assertCSSProperties(type, fontSize, expInlineFontSize);
+        if (!isFontSize) {
+            log.info("font-size for '" + type + "' is not as per the spec, actual: " + fontSize);
         }
-        isLineHeight = commonUtils.assertValue(lineHeight, labelLineHeight, "Line height for " + labelType + "--> " + labelName + " is not as per the spec");
-        isFontWeight = commonUtils.assertCSSProperties(labelType, fontWeight, labelFontWeight);
-        if (isFontWeight == false) {
-            log.info("Font weight for " + labelType + "--> " + labelName + " is not as per the spec");
-        }
-        isHexValue = commonUtils.assertValue(actualLabelHexValue, labelHexValue, "HEX value for " + labelType + "--> " + labelName + " is not as per the spec");
-        return (isFontSize && isLineHeight && isFontWeight && isHexValue);
-    }
-
-    private boolean verifyLabelTypoProperties(String labelType, By element, String labelName, String[] labelFontSize, String labelLineHeight, String[] labelFontWeight, String labelHexValue, String mobile) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", mobile);
-        lineHeight = commonUtils.getCSSValue(element, "line-height", mobile);
-        fontWeight = commonUtils.getCSSValue(element, "font-weight", mobile);
-        String actualLabelHexValue = commonUtils.getCSSValue(element, "color", mobile);
-        isFontSize = commonUtils.assertCSSProperties(labelType, fontSize, labelFontSize);
-        if (isFontSize == false) {
-            log.info("Font size for " + labelType + "--> " + labelName + " is not as per the spec");
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, labelLineHeight, "Line height for " + labelType + "--> " + labelName + " is not as per the spec");
-        isFontWeight = commonUtils.assertCSSProperties(labelType, fontWeight, labelFontWeight);
-        if (isFontWeight == false) {
-            log.info("Font weight for " + labelType + "--> " + labelName + " is not as per the spec");
-        }
-        isHexValue = commonUtils.assertValue(actualLabelHexValue, labelHexValue, "HEX value for " + labelType + "--> " + labelName + " is not as per the spec");
-        return (isFontSize && isLineHeight && isFontWeight && isHexValue);
-    }
-
-    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth) {
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        lineHeight = commonUtils.getCSSValue(element, "line-height");
-        borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width");
-        isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
-        if (isFontSize == false) {
-            log.info(titleType + " 'font size' is not as per the spec");
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, titleLineHeight, "Line height for " + titleType + " ---> is not as per the spec");
-        isBorderBottomWidth=commonUtils.assertCSSProperties(titleType,borderBottomWidth,titleBorderBottomWidth);
-        if (isBorderBottomWidth == false) {
-            log.info(titleType + " 'border-bottom-width' is not as per the spec");
-        }
-        return (isFontSize && isLineHeight && isBorderBottomWidth);
-    }
-
-    private boolean verifyTitleTypoProperties(String titleType, By element, String[] titleFontSize, String titleLineHeight, String[] titleBorderBottomWidth, String mobile) {
-        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
-        borderBottomWidth=commonUtils.getCSSValue(element,"border-bottom-width","mobile");
-        isFontSize = commonUtils.assertCSSProperties(titleType, fontSize, titleFontSize);
-        if (isFontSize == false) {
-            log.info(titleType + " 'font size' is not as per the spec");
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, titleLineHeight, "Line height for " + titleType + " ---> is not as per the spec");
-        isBorderBottomWidth=commonUtils.assertCSSProperties(titleType,borderBottomWidth,titleBorderBottomWidth);
-        if (isBorderBottomWidth == false) {
-            log.info(titleType + " 'border-bottom-width' is not as per the spec");
-        }
-        return (isFontSize && isLineHeight);
-    }
-
-    private boolean verifyLeadTypoProperties(By element, String leadFontSize, String leadLineHeight, String leadHexValue) {
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        lineHeight = commonUtils.getCSSValue(element, "line-height");
-        rgbValue = commonUtils.getCSSValue(element, "color");
-        isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
-        isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
-        return (isFontSize && isLineHeight && isRgbValue);
-    }
-
-    private boolean verifyLeadTypoProperties(By element, String leadFontSize, String leadLineHeight, String leadHexValue, String mobile) {
-        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height","mobile");
-        rgbValue = commonUtils.getCSSValue(element, "color","mobile");
-        isFontSize = commonUtils.assertValue(fontSize, leadFontSize, "'lead' font-size is not as per the spec");
-        isLineHeight = commonUtils.assertValue(lineHeight, leadLineHeight, "'lead' line-height is not as per the spec");
-        isRgbValue = commonUtils.assertValue(rgbValue, commonUtils.hex2Rgb(leadHexValue), "'lead' rgb value is not as per the spec");
-        return (isFontSize && isLineHeight && isRgbValue);
-    }
-
-    private boolean verifyStrongAndBoldTagProperties(By element, String inlineTag, String[] inlineTagFontWeight) {
-        fontWeight = commonUtils.getCSSValue(element, "font-weight");
-        //isFontWeight = commonUtils.assertValue(fontWeight, inlineTagFontWeight, inlineTag + " font-weight is not as per the spec");
-        isFontWeight = commonUtils.assertCSSProperties(inlineTag, fontWeight, inlineTagFontWeight);
-        if (isFontWeight == false) {
-            log.info(inlineTag + " font-weight is not as per the spec");
-        }
-        return (isFontWeight);
-    }
-
-    private boolean verifyStrongAndBoldTagProperties(By element, String inlineTag, String[] inlineTagFontWeight, String mobile) {
-        fontWeight = commonUtils.getCSSValue(element, "font-weight","mobile");
-        //isFontWeight = commonUtils.assertValue(fontWeight, inlineTagFontWeight, inlineTag + " font-weight is not as per the spec");
-        isFontWeight = commonUtils.assertCSSProperties(inlineTag, fontWeight, inlineTagFontWeight);
-        if (isFontWeight == false) {
-            log.info(inlineTag + " font-weight is not as per the spec");
-        }
-        return (isFontWeight);
-    }
-
-    private boolean verifySuperAndSubScriptProperties(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition) {
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        isFontSize = commonUtils.assertCSSProperties(inlineTag, fontSize, inlineFontSize);
         top = commonUtils.getCSSValue(element, "top");
-        isTop = commonUtils.assertCSSProperties(inlineTag, top, inlineTop);
+        isTop = commonUtils.assertCSSProperties(type, top, expInlineTop);
+        if (!isTop) {
+            log.info("top value for '" + type + "' is not as per the spec, actual: " + top);
+        }
         position = commonUtils.getCSSValue(element, "position");
-        isPosition = commonUtils.assertValue(position, inlinePosition, "'" + inlineTag + "' position value is not as per spec");
-        return (isFontSize && isTop && isPosition);
+        isPosition = commonUtils.assertValue(position, expInlinePosition, "position value for '" + type + "' is not as per spec");
+        verticalAlign = commonUtils.getCSSValue(element, "vertical-align");
+        isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical-align value for '" + type + "' is not as per spec");
+        Assert.assertTrue(isFontSize && isTop && isPosition && isVerticalAlign);
     }
 
-    private boolean verifySuperAndSubScriptProperties(By element, String inlineTag, String[] inlineFontSize, String[] inlineTop, String inlinePosition, String mobile) {
-        fontSize = commonUtils.getCSSValue(element, "font-size","mobile");
-        isFontSize = commonUtils.assertCSSProperties(inlineTag, fontSize, inlineFontSize);
-        top = commonUtils.getCSSValue(element, "top","mobile");
-        isTop = commonUtils.assertCSSProperties(inlineTag, top, inlineTop);
-        position = commonUtils.getCSSValue(element, "position","mobile");
-        isPosition = commonUtils.assertValue(position, inlinePosition, "'" + inlineTag + "' position value is not as per spec");
-        return (isFontSize && isTop && isPosition);
+    //Verify Code
+    @DataProvider(name = "Code Test Data")
+    public Object[][] getCodeTestData() {
+        return new Object[][]{
+                {"code-block", typoPgObj.code, new String[]{"14px","13.93px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}, new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}, "30px", "30px", "50px", "50px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}},
+                {"code-inline", typoPgObj.codeInline, new String[]{"14px","13.93px"}, new String[]{"16.1px", "16px","16.01px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}},
+                {"kdd", typoPgObj.kbd, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}}
+        };
     }
 
-    private boolean verifyDelAndInsTagProperties(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
-        isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
+    @Test(testName = "Verify Code Test", dataProvider = "Code Test Data", groups = "desktop-regression")
+    private void codeTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expBackgroundColor, expPaddingTop, expPaddingBottom, expPaddingLeft, expPaddingRight, expFontFamily);
+        Assert.assertTrue(result);
+    }
 
-        if (pseudoContentAttribute.equals("before") || pseudoContentAttribute.equals("after")) {
-            js = (JavascriptExecutor) driver;
-            jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContentAttribute + "').getPropertyValue('content');";
-            jQueryReturnValue = (String) js.executeScript(jQueryScript);
-            isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
-            if (isPseudoContent == false) {
-                log.info("pseudo '" + pseudoContentAttribute + "' value for insTag is incorrect");
-            }
-            Assert.assertTrue(isPseudoContent);
+    //Verify pe-list
+    @Test(testName = "Verify pe-list", groups = "desktop-regression")
+    private void listTest() {
+        marginTop = commonUtils.getCSSValue(typoPgObj.list, "margin-top");
+        isMarginTop = commonUtils.assertValue(marginTop, "12px", "margin-top for pe-list is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(typoPgObj.list, "margin-bottom");
+        isMarginBottom = commonUtils.assertValue(marginBottom, "12px", "margin-bottom for pe-list is not as per the spec");
+        marginLeft = commonUtils.getCSSValue(typoPgObj.list, "margin-left");
+        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", "margin-left for pe-list is not as per the spec");
+        marginRight = commonUtils.getCSSValue(typoPgObj.list, "margin-right");
+        isMarginRight = commonUtils.assertValue(marginRight, "0px", "margin-right for pe-list is not as per the spec");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.list, "padding-left");
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"25.99995994567871px", "26px","25.77px"});
+        if (!isPaddingLeft) {
+            log.info("padding-left for pe-list is not as per the spec, actual:"+paddingLeft);
         }
-        return (isTextDecoration);
+        Assert.assertTrue(isMarginTop && isMarginBottom && isMarginLeft && isMarginRight && isPaddingLeft);
     }
 
-    private boolean verifyDelAndInsTagProperties(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContentAttribute, String mobile) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration","mobile");
-        isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
-
-        if (pseudoContentAttribute.equals("before") || pseudoContentAttribute.equals("after")) {
-            js = (JavascriptExecutor) appium;
-            jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContentAttribute + "').getPropertyValue('content');";
-            jQueryReturnValue = (String) js.executeScript(jQueryScript);
-            isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
-            if (isPseudoContent == false) {
-                log.info("pseudo '" + pseudoContentAttribute + "' value for insTag is incorrect");
-            }
-            Assert.assertTrue(isPseudoContent);
-        }
-        return (isTextDecoration);
+    //Verify pe-unstyled
+    @Test(testName = "Verify unstyled-list", groups = "desktop-regression")
+    private void unstyledListTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.unstyledList, "list-style-type");
+        isListStyle = commonUtils.assertValue(listStyle, "none", "list-style for unstyled-list is not as per the spec");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.unstyledList, "padding-left");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, "0px", "padding-left for unstyled-list is not as per the spec");
+        Assert.assertTrue(isListStyle && isPaddingLeft);
     }
 
-    private boolean verifyUnstyledListProperties(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle) {
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, unstyledListPaddingLeft, "'" + unstyledListType + "' padding-left value is not as per spec");
+    //Verify Nested ordered lists
+    @Test(testName = "Verify ordered-list", groups = "desktop-regression")
+    private void orderedListTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.orderedList, "list-style-type");
+        isListStyle = commonUtils.assertValue(listStyle, "decimal", "list-style for ordered-list is not as per the spec");
+        Assert.assertTrue(isListStyle);
+    }
+
+    //Verify Nested unordered lists
+    @Test(testName = "Verify unordered-list", groups = "desktop-regression")
+    private void unorderedListTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.unorderedList, "list-style-type");
+        isListStyle = commonUtils.assertValue(listStyle, "disc", "list-style for unordered-list is not as per the spec");
+        Assert.assertTrue(isListStyle);
+    }
+
+    //Verify Nested ordered/unordered lists following a heading
+    @DataProvider(name = "list following Heading Test Data")
+    public Object[][] getListFollHeadingTestData() {
+        return new Object[][]{
+                {"heading-ordered-list", typoPgObj.headingOrderedList, "decimal", "0px"},
+                {"heading-unordered-list", typoPgObj.headingUnorderedList, "disc", "0px"},
+        };
+    }
+
+    @Test(testName = "Verify heading-ordered-list", dataProvider = "list following Heading Test Data", groups = "desktop-regression")
+    private void headingOrderedListTest(String type, By element, String expListStyle, String expMarginTop) {
         listStyle = commonUtils.getCSSValue(element, "list-style-type");
-        isListStyle = commonUtils.assertValue(listStyle, unstyledListStyle, "'" + unstyledListType + "' list style value is not as per spec");
-        return (isPaddingLeft && isListStyle);
+        isListStyle = commonUtils.assertValue(listStyle, expListStyle, "list-style for " + type + " is not as per the spec");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        Assert.assertTrue(isListStyle && isMarginTop);
     }
 
-    private boolean verifyUnstyledListProperties(By element, String unstyledListType, String unstyledListPaddingLeft, String unstyledListStyle, String mobile) {
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left","mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, unstyledListPaddingLeft, "'" + unstyledListType + "' padding-left value is not as per spec");
-        listStyle = commonUtils.getCSSValue(element, "list-style-type","mobile");
-        isListStyle = commonUtils.assertValue(listStyle, unstyledListStyle, "'" + unstyledListType + "' list style value is not as per spec");
-        return (isPaddingLeft && isListStyle);
+    @DataProvider(name = "link state Test Data")
+    public Object[][] getlinkStatesTestData() {
+        return new Object[][]{
+                {"normal", typoPgObj.link, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, "underline"},
+                {"focus", typoPgObj.link, new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}, "none"},
+                {"hover", typoPgObj.link, new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}, "none"}
+        };
+    }
+
+    //Verify Links
+    @Test(testName = "Verify link states", dataProvider = "link state Test Data", groups = "desktop-regression")
+    private void linkStateTest(String state, By element, String[] expColor, String expTextDecoration) {
+        if (state.equals("hover")) {
+            commonUtils.hoverOnElement(typoPgObj.link);
+        }
+        if (state.equals("focus")) {
+            commonUtils.focusOnElementById("link");
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("link color for " + state + " is not as per the spec, actual: " + color);
+        }
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
+
+    /**************
+     * Mobile Tests
+     **************/
+    //Verify <header>
+    @Test(testName = "Mobile: Verify <header> properties", groups = "mobile-regression")
+    private void headerMobileTest() {
+        marginBottom = commonUtils.getCSSValue(typoPgObj.header, "margin-bottom", "mobile");
+        isMarginBottom = commonUtils.assertValue(marginBottom, "20px", "margin-bottom for <header> is not as per the spec");
+        Assert.assertTrue(isMarginBottom);
+    }
+
+    //Verify Only <h1,h2,h3,h4,h5>
+    @Test(testName = "Mobile: Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = "mobile-regression")
+    private void h1h2h3h4h5MobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify <subtitle> with <h1,h2,h3,h4,h5>
+    @Test(testName = "Mobile: Verify <subtitle> properties", dataProvider = "subtitle Test Data", groups = "mobile-regression")
+    private void subtitleWithh1h2h3h4h5MobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    // Verify Para
+    @Test(testName = "Mobile: Verify Para properties", dataProvider = "para Test Data", groups = "mobile-regression")
+    private void paraMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify Copy
+    @Test(testName = "Mobile: Verify Copy Properties", dataProvider = "copy Test Data", groups = "mobile-regression")
+    private void copyMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify Lead
+    @Test(testName = "Mobile: Verify Lead Properties", dataProvider = "lead Test Data", groups = "mobile-regression")
+    private void leadMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify Page Level Headings
+    @Test(testName = "Mobile: Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = "mobile-regression")
+    private void pageTitleMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify Section Headings
+    @Test(testName = "Mobile: Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = "mobile-regression")
+    private void sectionTitleMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify Labels
+    @Test(testName = "Mobile: Verify Label properties", dataProvider = "label Test Data", groups = "mobile-regression")
+    private void labelMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Inline elements
+    //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
+    @Test(testName = "Mobile: Inline: Abbr Test", groups = {"mobile-regression"})
+    private void abbrMobileTest() {
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration", "mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
+        Assert.assertTrue(isTextDecoration);
+    }
+
+    @Test(testName = "Mobile: Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "mobile-regression")
+    private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
+
+        if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
+            js = (JavascriptExecutor) appium;
+            jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContAttribute + "').getPropertyValue('content');";
+            jQueryReturnValue = (String) js.executeScript(jQueryScript);
+            isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
+            if (isPseudoContent == false) {
+                log.info("pseudo '" + pseudoContAttribute + "' value for insTag is incorrect, actual: " + isPseudoContent);
+            }
+            Assert.assertTrue(isPseudoContent);
+        }
+        Assert.assertTrue(isTextDecoration);
+    }
+
+    @Test(testName = "Mobile: Inline: mark Test", groups = {"mobile-regression"})
+    private void markMobileTest() {
+
+        backgroundColor = commonUtils.getCSSValue(typoPgObj.mark, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")});
+        if (!isBackgroundColor) {
+            log.info("mark 'background-color' is not as per the spec, actual: " + backgroundColor);
+        }
+        color = commonUtils.getCSSValue(typoPgObj.mark, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{"rgb(0, 0, 0)", "rgba(0, 0, 0, 1)"});
+        if (!isColor) {
+            log.info("mark 'color' is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isBackgroundColor && isColor);
+    }
+
+    @Test(testName = "Mobile: Inline: strong Test", groups = {"mobile-regression"})
+    private void strongMobileTest() {
+        fontWeight = commonUtils.getCSSValue(typoPgObj.strongTag, "font-weight", "mobile");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
+        if (!isFontWeight) {
+            log.info("font-weight for strongTag is not as per the spec, actual: " + fontWeight);
+        }
+        Assert.assertTrue(isFontWeight);
+    }
+
+    @Test(testName = "Mobile: Inline: SuperAndSubScript Test", dataProvider = "SuperAndSubScript Test Data", groups = {"mobile-regression"})
+    private void superAndSubScriptTagMobileTest(By element, String type, String[] expInlineFontSize, String[] expInlineTop, String expInlinePosition, String expVerticalAlign) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties(type, fontSize, expInlineFontSize);
+        if (!isFontSize) {
+            log.info("font-size for '" + type + "' is not as per the spec, actual: " + fontSize);
+        }
+        top = commonUtils.getCSSValue(element, "top", "mobile");
+        isTop = commonUtils.assertCSSProperties(type, top, expInlineTop);
+        if (!isTop) {
+            log.info("top value for '" + type + "' is not as per the spec, actual: " + top);
+        }
+        position = commonUtils.getCSSValue(element, "position", "mobile");
+        isPosition = commonUtils.assertValue(position, expInlinePosition, "position value for '" + type + "' is not as per spec");
+        verticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
+        isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical-align value for '" + type + "' is not as per spec");
+        Assert.assertTrue(isFontSize && isTop && isPosition && isVerticalAlign);
+    }
+
+    //Verify Code
+    @Test(testName = "Mobile: Verify Code Test", dataProvider = "Code Test Data", groups = "mobile-regression")
+    private void codeMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily) {
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expBackgroundColor, expPaddingTop, expPaddingBottom, expPaddingLeft, expPaddingRight, expFontFamily, "mobile");
+        Assert.assertTrue(result);
+    }
+
+    //Verify pe-list
+    @Test(testName = "Mobile: Verify pe-list", groups = "mobile-regression")
+    private void listMobileTest() {
+        marginTop = commonUtils.getCSSValue(typoPgObj.list, "margin-top", "mobile");
+        isMarginTop = commonUtils.assertValue(marginTop, "12px", "margin-top for pe-list is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(typoPgObj.list, "margin-bottom", "mobile");
+        isMarginBottom = commonUtils.assertValue(marginBottom, "12px", "margin-bottom for pe-list is not as per the spec");
+        marginLeft = commonUtils.getCSSValue(typoPgObj.list, "margin-left", "mobile");
+        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", "margin-left for pe-list is not as per the spec");
+        marginRight = commonUtils.getCSSValue(typoPgObj.list, "margin-right", "mobile");
+        isMarginRight = commonUtils.assertValue(marginRight, "0px", "margin-right for pe-list is not as per the spec");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.list, "padding-left", "mobile");
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"26px", "25.99995994567871px"});
+        if (!isPaddingLeft) {
+            log.info("padding-left for pe-list is not as per the spec");
+        }
+        Assert.assertTrue(isMarginTop && isMarginBottom && isMarginLeft && isMarginRight && isPaddingLeft);
+    }
+
+    //Verify pe-unstyled
+    @Test(testName = "Mobile: Verify unstyled-list", groups = "mobile-regression")
+    private void unstyledListMobileTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.unstyledList, "list-style-type", "mobile");
+        isListStyle = commonUtils.assertValue(listStyle, "none", "list-style for unstyled-list is not as per the spec");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.unstyledList, "padding-left", "mobile");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, "0px", "padding-left for unstyled-list is not as per the spec");
+        Assert.assertTrue(isListStyle && isPaddingLeft);
+    }
+
+    //Verify Nested ordered lists
+    @Test(testName = "Mobile: Verify ordered-list", groups = "mobile-regression")
+    private void orderedListMobileTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.orderedList, "list-style-type", "mobile");
+        isListStyle = commonUtils.assertValue(listStyle, "decimal", "list-style for ordered-list is not as per the spec");
+        Assert.assertTrue(isListStyle);
+    }
+
+    //Verify Nested unordered lists
+    @Test(testName = "Mobile: Verify unordered-list", groups = "mobile-regression")
+    private void unorderedListMobileTest() {
+        listStyle = commonUtils.getCSSValue(typoPgObj.unorderedList, "list-style-type", "mobile");
+        isListStyle = commonUtils.assertValue(listStyle, "disc", "list-style for unordered-list is not as per the spec");
+        Assert.assertTrue(isListStyle);
+    }
+
+    //Verify Nested ordered/unordered lists following a heading
+    @Test(testName = "Mobile: Verify heading-ordered-list", dataProvider = "list following Heading Test Data", groups = "mobile-regression")
+    private void headingOrderedListMobileTest(String type, By element, String expListStyle, String expMarginTop) {
+        listStyle = commonUtils.getCSSValue(element, "list-style-type", "mobile");
+        isListStyle = commonUtils.assertValue(listStyle, expListStyle, "list-style for " + type + " is not as per the spec");
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        Assert.assertTrue(isListStyle && isMarginTop);
+    }
+
+    //Verify Links
+    @Test(testName = "Mobile: Verify link states", dataProvider = "link state Test Data", groups = "mobile-regression")
+    private void linkStateMobileTest(String state, By element, String[] expColor, String expTextDecoration) {
+        if (state.equals("hover")) {
+            throw new SkipException("hover operation not permitted");
+        }
+        if (state.equals("focus")) {
+            commonUtils.focusOnElementById("link", "mobile");
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("link color for " + state + " is not as per the spec, actual: " + color);
+        }
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
+        Assert.assertTrue(isColor && isTextDecoration);
+    }
+
+    //Common methods
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "padding-top for " + type + " is not as per the spec");
+
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding-bottom for " + type + " is not as per the spec");
+
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "padding-left for " + type + " is not as per the spec");
+
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding-right for " + type + " is not as per the spec");
+
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+        if (!isFontFamily) {
+            log.info("font-family for " + type + " is not as per the spec, actual: " + fontFamily);
+        }
+        return (isFontSize && isLineHeight && isColor && isBackgroundColor && isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isFontFamily);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "padding-top for " + type + " is not as per the spec");
+
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding-bottom for " + type + " is not as per the spec");
+
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "padding-left for " + type + " is not as per the spec");
+
+        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding-right for " + type + " is not as per the spec");
+
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+        if (!isFontFamily) {
+            log.info("font-family for " + type + " is not as per the spec, actual: " + fontFamily);
+        }
+        return (isFontSize && isLineHeight && isColor && isBackgroundColor && isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isFontFamily);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        fontWeight = commonUtils.getCSSValue(element, "font-weight");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, expFontWeight);
+        if (!isFontWeight) {
+            log.info("font-weight for " + type + " is not as per the spec, actual: " + fontWeight);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "margin-bottom for " + type + " is not as per the spec");
+        return (isFontSize && isLineHeight && isFontWeight && isColor && isMarginTop && isMarginBottom);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        fontWeight = commonUtils.getCSSValue(element, "font-weight", "mobile");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, expFontWeight);
+        if (!isFontWeight) {
+            log.info("font-weight for " + type + " is not as per the spec, actual: " + fontWeight);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "margin-bottom for " + type + " is not as per the spec");
+        return (isFontSize && isLineHeight && isFontWeight && isColor && isMarginTop && isMarginBottom);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        fontWeight = commonUtils.getCSSValue(element, "font-weight");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, expFontWeight);
+        if (!isFontWeight) {
+            log.info("font-weight for " + type + " is not as per the spec, actual: " + fontWeight);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        return (isFontSize && isLineHeight && isFontWeight && isColor);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        fontWeight = commonUtils.getCSSValue(element, "font-weight", "mobile");
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, expFontWeight);
+        if (!isFontWeight) {
+            log.info("font-weight for " + type + " is not as per the spec, actual: " + fontWeight);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        return (isFontSize && isLineHeight && isFontWeight && isColor);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        return (isFontSize && isLineHeight && isColor);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        return (isFontSize && isLineHeight && isColor);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expMarginBottom);
+        if (!isMarginBottom) {
+            log.info("margin-bottom for " + type + " is not as per the spec, actual: " + marginBottom);
+        }
+        return (isFontSize && isLineHeight && isColor && isMarginTop && isMarginBottom);
+    }
+
+    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+        isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expMarginBottom);
+        if (!isMarginBottom) {
+            log.info("margin-bottom for " + type + " is not as per the spec, actual: " + marginBottom);
+        }
+        return (isFontSize && isLineHeight && isColor && isMarginTop && isMarginBottom);
     }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        if (setDesktop.equals("on")) {
+            commonUtils.getUrl(url);
+        } else if (setMobile.equals("on")) {
+            commonUtils.getUrl(url, "mobile");
+        }
     }
 
     @AfterMethod(alwaysRun = true)
