@@ -26,7 +26,7 @@ public class TypographyTest extends BaseClass {
 
     @Parameters({"runEnv", "desktop", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void TypographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
+    private void typographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
         env = runEnv;
         setDesktop = desktop;
         mobileDevice = mobDeviceName;

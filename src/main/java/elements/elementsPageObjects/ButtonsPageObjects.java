@@ -28,9 +28,9 @@ public class ButtonsPageObjects {
     public By primaryBtnHover=By.id("primaryBtnHover");
     public By primaryBtnDisabled=By.id("primaryBtnDisabled");
 
-    public By linkBtn=By.id("linkBtn");
-    public By linkBtnHover=By.id("linkBtnHover");
-    public By linkBtnDisabled=By.id("linkBtnDisabled");
+    public By ctaBtn=By.id("ctaBtn");
+    public By ctaBtnHover=By.id("ctaBtnHover");
+    public By ctaBtnDisabled=By.id("ctaBtnDisabled");
 
     //Fake buttons
     public By divBtn=By.id("divBtn");
@@ -45,5 +45,6 @@ public class ButtonsPageObjects {
     //Sizes
     public By smallBtn=By.id("smallBtn");
     public By largeBtn=By.id("largeBtn");
+    public By xLargeBtn=By.id("xLargeBtn");
 
 }

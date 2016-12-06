@@ -13,6 +13,7 @@ npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elementsNoPlain.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elements/css/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
 
 install_appHeader(){
@@ -75,6 +76,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearso
 }
 
 install_slider(){
+echo -e "******************************\\n    Installing slider    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/slider.git
 cd slider
 git checkout $1

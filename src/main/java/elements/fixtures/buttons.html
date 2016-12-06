@@ -7,35 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
 <!-- Default -->
 <br><button id="defaultBtn" class="pe-btn">DefaultBtn</button>
-<button id="defaultBtnHover" class="pe-btn">DefaultBtn-hover</button>
+<div id="defaultBtnHover" class="pe-btn" role="button">DIV type-DefaultBtn-hover</div>
 <button id="defaultBtnDisabled" class="pe-btn" disabled>DefaultBtn-disabled</button><br>
 
 <!-- Primary -->
-<br><button  id="primaryBtn" class="pe-btn pe-btn--primary">Primary</button>
-<button  id="primaryBtnHover" class="pe-btn pe-btn--primary">PrimaryBtn-hover</button>
-<button id="primaryBtnDisabled" class="pe-btn pe-btn--primary" disabled>PrimaryBtn-disabled</button><br>
+<br><button  id="primaryBtn" class="pe-btn__primary">PrimaryBtn</button>
+<a id="primaryBtnHover" class="pe-btn__primary" role="button">Link type-PrimaryBtn-hover</a>
+<button id="primaryBtnDisabled" class="pe-btn__primary pe-btn--disabled">PrimaryBtn-disabled</button><br>
 
-<!-- looks like a link -->
-<br><button id="linkBtn" class="pe-btn pe-btn--link">Link</button>
-<button id="linkBtnHover" class="pe-btn pe-btn--link">Link-hover</button>
-<button id="linkBtnDisabled" class="pe-btn pe-btn--link" disabled>Link-disabled</button><br>
-
-<!-- Fakes -->
-<br><div id="divBtn" class="pe-btn" tabindex="0" role="button">DivBtn</div>
-<div id="divBtnDisabled" class="pe-btn pe-btn--disabled" role="button" aria-disabled="true">Div Not a button Disabled</div>
-
-<br><a id="anchorBtn" href="#" class="pe-btn" role="button">AnchorBtn</a>
-<a id="anchorBtnDisabled" class="pe-btn pe-btn--disabled" role="button" aria-disabled="true">Anchor Not a button Disabled</a>
-
-<br><input id="inputBtn" type="submit" value="InputBtn" class="pe-btn">
-<input id="inputBtnDisabled" type="submit" value="Input Not a button Disabled" class="pe-btn" disabled><br>
+<!-- CTA -->
+<br><button id="ctaBtn" class="pe-btn__cta">CTABtn</button>
+<input id="ctaBtnHover" class="pe-btn__cta" type="submit" value="Input type-CTA-hover">
+<button id="ctaBtnDisabled" class="pe-btn__cta" disabled>CTA-disabled</button><br>
 
 <!-- Sizes -->
-<br><button id="smallBtn" class="pe-btn pe-btn--small">SmallBtn</button>
-<button id="largeBtn" class="pe-btn pe-btn--large">LargeBtn</button><br>
-
+<br><button id="smallBtn" class="pe-btn--btn_small">SmallBtn</button>
+<button id="largeBtn" class="pe-btn--btn_large">LargeBtn</button>
+<button id="xLargeBtn" class="pe-btn--btn_xlarge">xLargeBtn</button>
 </body>
 </html>
