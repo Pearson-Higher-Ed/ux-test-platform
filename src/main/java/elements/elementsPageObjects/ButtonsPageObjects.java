@@ -47,4 +47,5 @@ public class ButtonsPageObjects {
     public By largeBtn=By.id("largeBtn");
     public By xLargeBtn=By.id("xLargeBtn");
 
+    public By largeBtnDisabled=By.id("largeBtnDisabled");
 }

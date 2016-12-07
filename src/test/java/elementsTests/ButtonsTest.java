@@ -321,7 +321,6 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-
     @DataProvider(name = "CTA Button-Hover state Test Data")
     public Object[][] getCTAButtonHoverStateTestData() {
         return new Object[][]{
@@ -403,7 +402,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Large Button Test", dataProvider = "Large Button Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Large Button Test", dataProvider = "Large Button Test Data", groups = {"desktop-ci"})
     private void largeButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.largeBtn, cssProperty);
@@ -435,6 +434,17 @@ public class ButtonsTest extends BaseClass {
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for xLarge button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Verify large Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression"})
+    private void largeButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.largeBtnDisabled, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for large Disabled button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
@@ -528,6 +538,17 @@ public class ButtonsTest extends BaseClass {
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for xLarge button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify large Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"mobile-regression"})
+    private void largeButtonDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.largeBtnDisabled, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for large Disabled button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
