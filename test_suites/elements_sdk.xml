@@ -32,6 +32,7 @@
             <class name="elementsTests.TemplatesTest"/>
             <class name="elementsTests.GridTest"/>
             <class name="elementsTests.PresentationStrategyTest"/>
+            <class name="elementsTests.ButtonsTest"/>
         </classes>
     </test>
 </suite>

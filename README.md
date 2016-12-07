@@ -16,7 +16,6 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
     </pre>
 
 * __origami_v2__:
-    *  Run python -m SimpleHTTPServer or npm install and npm start from the root directory of ux-test-platform. This will start localhost:8000
     *  Install origami v2 component(eg. app-header) on your local machine and copy the dist.app-header.js file to /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
     *  <pre>
     git clone https://github.com/Pearson-Higher-Ed/app-header.git
@@ -32,6 +31,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
 
 * Go to ux-test-platform directory
     * git checkout _rebrand_
+    * Run python -m SimpleHTTPServer or npm install and npm start from the root directory of ux-test-platform. This will start localhost:8000
     * In test_suites/&lt;&lt;component&gt;&gt;.xml set the below values, and leave the rest to default:
     * For CI tests -> set name="desktop-ci"
     * For Regression tests -> set name="desktop-regression"
