@@ -17,22 +17,20 @@ public class InputsPageObjects {
         this.appium = appium;
     }
 
-    public By input_text_active = By.id("input-text-active");
-    public By input_text_active_placeholder = By.id("input-text-active-PH");
-    public By input_text_active_small = By.id("input-text-active-small");
-    public By input_text_active_small_placeholder = By.id("input-text-active-small-PH");
-
-    public By input_text_readonly = By.id("input-text-readonly");
-    public By input_text_readonly_small = By.id("input-text-readonly-small");
-
-    public By input_text_disable = By.id("input-text-disabled");
-    public By input_text_disable_small = By.id("input-text-disabled-small");
-
-    public By input_text_error1 = By.id("input-text-error1");
-    public By input_text_error2 = By.id("input-text-error2");
-
-    public By input_text_error1_small1 = By.id("input-text-error1-small");
-    public By input_text_error1_small2 = By.id("input-text-error2-small");
+    //Inputs
+    public By inputWrapper=By.id("input-wrapper");
+    public By textLabelInput=By.id("sl-text-label-input");
+    public By slTextInput=By.id("sl-text-input");
+    public By slTextInputWithouValue=By.id("sl-text-input-without-value");
+    public By slTextLabelInput=By.id("sl-text-label-input");
+    public By slTextInputErrored=By.id("sl-text-input-error");
+    public By slTextLabelInputErrored=By.id("sl-text-label-input-error");
+    public By slTextInputDisabled=By.id("sl-text-input-disabled");
+    public By slTextLabelInputDisabled=By.id("sl-text-label-input-disabled");
+    public By slTextInputReadOnly=By.id("sl-text-input-readonly");
+    public By slTextLableInputReadOnly=By.id("sl-text-label-input-readonly");
+    public By slUnderlineInput=By.id("input-underline");
+    public By slUnderLineInputError=By.id("input-underline-error");
 
     //Checkboxes
     public By checkedCheckBox = By.id("checkedCheckBox");

@@ -7,225 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<form action="demo_form.asp">
-    <h1>Input - Select</h1>
-    <br>
-
-    <div class="pe-select">
-        <label for="selectbox-normal">Active basic selectbox: </label>
-        <select id="selectbox-normal">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
+<!-- Inputs (single line) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line)</h2>
+<div class="inputWrapper">Inputs (single line)
+    <div id="input-wrapper" class="pe-input-wrapper">
+        <label id="sl-text-label-input" class="pe-textLabelInput__label" for="a">First Name</label>
+        <input id="sl-text-input" type="text" class="pe-textInput" id="a" placeholder="First Name" value="First Name">
+        <span id="input-underline" class="pe-input_underline"></span>
     </div>
-    <br> <br>
-
-    <div class="pe-select pe-select--small">
-        <label for="selectbox-small">Active small selectbox: </label>
-        <select id="selectbox-small">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
+</div>
+<div class="inputWrapper">Inputs (single line) without value
+    <div class="pe-input-wrapper">
+        <label class="pe-textLabelInput__label" for="g">First Name</label>
+        <input id="sl-text-input-without-value" type="text" class="pe-textInput" id="g" placeholder="First Name" >
+        <span class="pe-input_underline"></span>
     </div>
-    <br> <br>
-
-    <div class="pe-select pe-select--readonly">
-        <label for="selectbox-readonly">Readonly basic selectbox: </label>
-        <select id="selectbox-readonly">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
-    </div>
-    <br> <br>
-
-    <div class="pe-select pe-select--disabled">
-        <label for="selectbox-disabled">Disabled basic selectbox: </label>
-        <select disabled id="selectbox-disabled">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
-    </div>
-    <br> <br>
-
-    <div class="pe-select pe-select--error">
-        <label for="selectbox-error">Error basic selectbox: </label>
-        <select id="selectbox-error">
-            <option value="error">Error</option>
-        </select>
-    </div>
-</form>
-<br> <br>
-
-<h1>Input - Select</h1>
-<br>
-
-<form action="demo_form.asp">
-    <div class="pe-input">
-        <label for="input-text-active">Active Basic text input :</label>
-        <input type="text" id="input-text-active">
-    </div>
-    <div class="pe-input">
-        <label for="input-text-active-PH">Active Basic text input with placeholder :</label>
-        <input type="text" id="input-text-active-PH" placeholder="Basic text input field" value="">
-    </div>
-    <div class="pe-input pe-input--small">
-        <label for="input-text-active-placeholder-small">Active small text input :</label>
-        <input type="text" id="input-text-active-small">
-    </div>
-    <div class="pe-input pe-input--small">
-        <label for="input-text-active-placeholder-small-PH">Active small text input with placeholder :</label>
-        <input type="text" id="input-text-active-small-PH" placeholder="Basic text input field small" value="">
-    </div>
-    <div class="pe-input pe-input--readonly">
-        <label for="input-text-readonly">Read-only text input :</label>
-        <input type="text" id="input-text-readonly" readonly>
-    </div>
-    <div class="pe-input pe-input--readonly pe-input--small">
-        <label for="input-text-readonly-small">Read-only small text input :</label>
-        <input type="text" id="input-text-readonly-small" readonly>
-    </div>
-    <div class="pe-input pe-input--disabled">
-        <label for="input-text-disabled">Disabled text input :</label>
-        <input type="text" id="input-text-disabled">
-    </div>
-    <div class="pe-input pe-input--disabled pe-input--small">
-        <label for="input-text-disabled-small">Disabled small text input :</label>
-        <input type="text" id="input-text-disabled-small">
-    </div>
-    <div class="pe-input pe-input--error">
-        <label for="input-text-error1">Error input text 1 : <span
-                class="pe-error-text">something went wrong!</span></label>
-        <input type="text" id="input-text-error1" value="Error">
-    </div>
-    <div class="pe-input pe-input--error">
-        <label for="input-text-error2">Error input text 2 : </label>
-        <input type="text" id="input-text-error2" aria-describedby="input-text-error2-error" value="Error">
-
-        <p id="input-text-error2-error" class="pe-error-text">Something went wrong again!</p>
-    </div>
-    <div class="pe-input pe-input--error pe-input--small">
-        <label for="input-text-error1-small">Error small input text 1: <span
-                class="pe-error-text">something went wrong!</span></label>
-        <input type="text" id="input-text-error1-small" value="Error">
-    </div>
-    <div class="pe-input pe-input--error pe-input--small">
-        <label for="input-text-error2-small">Error small input text 2: </label>
-        <input type="text" id="input-text-error2-small" aria-describedby="input-text-error2-small-error" value="Error">
-
-        <p id="input-text-error2-error-small" class="pe-error-text">Something went wrong again!</p>
-    </div>
-</form>
-
-<!-- CheckBoxes -->
-<div class="pe-checkbox">
-    <input type="checkbox" name="Checked" id="checkedCheckBox" value="" checked>
-    <label id="labelForCheckedCheckBox" for="checkedCheckBox">Checked</label>
 </div>
 
-<div class="pe-checkbox">
-    <input type="checkbox" name="UnChecked" id="unCheckedCheckBox" value="">
-    <label id="labelForUnCheckedCheckBox" for="unCheckedCheckBox">UnChecked</label>
+<!-- Inputs (single line - error) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - error)</h2>
+<div class="inputWrapper">
+    <div class="pe-input-wrapper">
+        <label id="sl-text-label-input-error" class="pe-textLabelInput__label--label_error" for="b">First Name</label>
+        <input id="sl-text-input-error" type="text" class="pe-textInput--input_error" id="b" placeholder="First Name" value="First Name"/>
+        <span id="input-underline-error" class="pe-inputError_underline"></span>
+    </div>
 </div>
 
-<div class="pe-checkbox">
-    <input type="checkbox" name="Read only/Disabled" id="readDisabledUncheckedCheckBox" value="" disabled>
-    <label id="labelForReadDisabledUncheckedCheckBox" for="readDisabledUncheckedCheckBox">Read only/Disabled</label>
+<!-- Inputs (single line - disabled) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - disabled)</h2>
+<div class="inputWrapper">
+    <div class="pe-input-wrapper">
+        <label id="sl-text-label-input-disabled" class="pe-textLabelInput__label--label-disabled" for="c">First Name</label>
+        <input id="sl-text-input-disabled" type="text" class="pe-textInput" id="c" value="Donald" disabled/>
+    </div>
 </div>
 
-<div class="pe-checkbox">
-    <input type="checkbox" name="Read only/Disabled (checked)" id="readDisabledCheckedCheckBox" value="" disabled
-           checked>
-    <label id="labelForReadDisabledCheckedCheckBox" for="readDisabledCheckedCheckBox">Read
-        only/Disabled(checked)</label>
-</div>
-
-<div class="pe-checkbox pe-checkbox--small">
-    <input type="checkbox" name="Small checkbox" id="smallCheckedCheckBox" value="">
-    <label id="labelForSmallCheckedCheckBox" for="smallCheckedCheckBox">Small checkbox</label>
-</div>
-<br><br>
-
-<!-- Radio -->
-<div class="pe-radio">
-    <input type="radio" name="checked" id="checkedRadio" value="" checked>
-    <label id="labelForCheckedRadio" for="checkedRadio">Checked</label>
-</div>
-
-<div class="pe-radio">
-    <input type="radio" name="unchecked" id="unCheckedRadio" value="">
-    <label id="labelForUnCheckedRadio" for="unCheckedRadio">UnChecked</label>
-</div>
-
-<div class="pe-radio">
-    <input type="radio" name="Read only/Disabled" id="readDisabledUncheckedRadio" value="" disabled>
-    <label id="labelForReadDisabledUncheckedRadio" for="readDisabledUncheckedRadio">Read only/Disabled</label>
-</div>
-
-<div class="pe-radio">
-    <input type="radio" name="Read only/Disabled(checked)" id="readDisabledCheckedRadio" value="" disabled checked>
-    <label id="labelForReadDisabledCheckedRadio" for="readDisabledCheckedRadio">Read only/Disabled(checked)</label>
-</div>
-
-<div class="pe-radio pe-radio--small">
-    <input type="radio" name="Small radio button" id="smallCheckedRadio" value="">
-    <label id="labelForSmallCheckedRadio" for="smallCheckedRadio">Small radio button</label>
-</div>
-
-<!-- Large Size text area -->
-<div class="pe-textarea">
-    <label id="labelForLargeSizeTextArea" for="ta1">Large Size text area label</label>
-    <textarea id="largeSizeTextArea" name="largetext" rows="4" cols="50" id="ta1">Multiple lines of text entry are supported with the textarea element</textarea>
-</div>
-
-<!-- Small Size Textarea -->
-<div class="pe-textarea pe-textarea--small">
-    <label id="labelForSmallSizeTextArea" for="ta2">Small Size Textarea label</label>
-    <textarea id="smallSizeTextArea" name="smalltext" id="ta2">Text area</textarea>
-</div>
-
-<!-- Textarea with placeholder -->
-<div class="pe-textarea pe-textarea--small">
-    <label id="labelForPlaceholderTextArea" for="ta3">Textarea with placeholder</label>
-    <textarea id="placeholderTextArea" name="smalltext" id="ta3" placeholder="Textarea placeholder"></textarea>
-</div>
-
-<!-- Disabled text area -->
-<div class="pe-textarea pe-textarea--disabled">
-    <label id="labelForDisabledTextArea" for="ta4">Textarea label</label>
-    <textarea id="disabledTextArea" name="largetext" rows="4" cols="50" id="ta4" disabled>Textarea element...Disabled</textarea>
-</div>
-
-<!-- Readonly text area -->
-<div class="pe-textarea pe-textarea--readonly">
-    <label id="labelForReadOnlyTextArea" for="ta5">Terms and Conditions</label>
-    <textarea id="readOnlyTextArea" name="readonlytext" rows="4" cols="50" id="ta5" readonly>Read only text here...</textarea>
-</div>
-
-<!-- Error text area -->
-<div class="pe-textarea pe-textarea--error">
-    <label id="labelForErrorTextArea" for="ta6">Textarea label</label>
-    <textarea id="errorTextArea" name="errortext" rows="4" cols="50" id="ta6" aria-describedby="labelForErrorTextArea-error">Bad text here</textarea>
-    <p id="labelForErrorTextArea-error" class="pe-error-text">Something went wrong!</p>
-</div>
-
-<!-- Input Group -->
-<p>Example as search: </p>
-<div class="pe-input-group">
-    <div class="pe-input">
-        <label for="i2">Search our site</label>
-        <input id="input-group" type="text" id="i2" placeholder="course number, course name, instructor">
-        <button id="button-input-group" class="pe-btn pe-btn--medium">
-            <i class="pe-icon--search" aria-hidden="true"></i>
-            <span class="pe-sr-only">Search</span>
-        </button>
+<!-- Inputs (single line - read only) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - read only)</h2>
+<div class="inputWrapper">
+    <div class="pe-input-wrapper">
+        <label id="sl-text-label-input-readonly" class="pe-textLabelInput__label" for="d">First Name</label>
+        <input id="sl-text-input-readonly" type="text" class="pe-textInput--input_readonly" id="d" value="Donald" readonly/>
     </div>
 </div>
 </body>
