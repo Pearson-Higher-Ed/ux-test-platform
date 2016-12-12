@@ -22,8 +22,8 @@ public class ContextualHelpPageObjects {
     public By contextualHelpDrawer = By.xpath("//div[@id='o-contextual-help-drawer']");
     public By contextualHelpHeader= By.xpath("//div[@class='o-contextual-help__header']/h2");
     public By contextualHelpDrawerHeader = By.xpath("//div[@class='o-contextual-help__header']");
-    public By contextualHelpDrawerCloseIcon=By.xpath("//button[@class='close-help']/*[local-name() = 'svg']");
-    public By contextualHelpDrawerCloseButton=By.xpath("//button[@class='close-help']");
+    public By contextualHelpDrawerCloseIcon=By.xpath("//button[@class='pe-icon--btn close-help']/*[local-name() = 'svg']");
+    public By contextualHelpDrawerCloseButton=By.xpath("//button[@class='pe-icon--btn close-help']");
     public By contextualHelpDrawerHelpTopicDetailCloseButton=By.xpath("//div[@id='o-contextual-help-drawer']/div[2]/div/button/*[local-name() = 'svg']");
     public By contextualHelpDrawerOpen=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer exists-o-header o-drawer o-drawer-open']");
     public By contextualHelpDrawerOpenWithoutAppHeader=By.xpath("//div[@class='o-drawer-right o-drawer-animated o-contextual-help__drawer o-drawer o-drawer-open']");
@@ -55,9 +55,9 @@ public class ContextualHelpPageObjects {
     public By helpTopicContentHeader=By.xpath("//div[@id='o-contextual-help-topic-content-target']/h4");
     public By helpTopicContent=By.xpath("//div[@id='o-contextual-help-topic-content-target']");
     public By backtoHelpTopicsLink=By.xpath("//button[@class='pe-label pe-label--large back-to-help']");
-    public By backToHelpTopicsButton = By.xpath("//button[@class='back-to-help']");
-    public By backToHelpTopicsIcon=By.xpath("//*[@class='back-to-help']/*[local-name() = 'svg']");
-    public By backToHelpTopicsSpan=By.xpath("//button[@class='back-to-help']/span");
+    public By backToHelpTopicsButton = By.xpath("//button[@class='pe-icon--btn back-to-help']");
+    public By backToHelpTopicsIcon=By.xpath("//*[@class='pe-icon--btn back-to-help']/*[local-name() = 'svg']");
+    public By backToHelpTopicsSpan=By.xpath("//button[@class='pe-icon--btn back-to-help']/span");
     public By helpContentTopicDetailTitle=By.xpath("//*[@id='o-contextual-help-topic-content-target']/h2");
     public By helpContentTopicDetailText=By.xpath("//*[@id='o-contextual-help-topic-content-target']/div/p");
     public By labelDemo=By.id("demo");
