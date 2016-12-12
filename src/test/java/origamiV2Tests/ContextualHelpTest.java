@@ -409,7 +409,7 @@ public class ContextualHelpTest extends BaseClass {
 
         //verify if close button is focused by default
         focused = driver.switchTo().activeElement().getAttribute("class");
-        isFocused = commonUtils.assertValue(focused, "close-help", " by default the focus is not on the X button");
+        isFocused = commonUtils.assertValue(focused, "pe-icon--btn close-help", " by default the focus is not on the X button");
         Assert.assertTrue(isFocused);
 
         //tab forward -> focus trap in
@@ -448,7 +448,7 @@ public class ContextualHelpTest extends BaseClass {
 
         //2. verify if close button is focused by default
         focused = driver.switchTo().activeElement().getAttribute("class");
-        isFocused = commonUtils.assertValue(focused, "close-help", " by default the focus is not on the X button");
+        isFocused = commonUtils.assertValue(focused, "pe-icon--btn close-help", " by default the focus is not on the X button");
         Assert.assertTrue(isFocused);
 
         //3. tab backward -> focus trap in
@@ -725,13 +725,13 @@ public class ContextualHelpTest extends BaseClass {
     @DataProvider(name = "Verify SVG icon style test data")
     public Object[][] getSVGIconTestData() {
         return new Object[][]{
-                {"closeHelpIcon", "14px", "14px"},
-                {"backToHelpTopicsIcon", "14px", "14px"}
+                {"closeHelpIcon", "14px", "14px", "2px"},
+                {"backToHelpTopicsIcon", "14px", "14px", "2px"}
         };
     }
 
     @Test(testName = "Verify styles for SVG icon test", dataProvider = "Verify SVG icon style test data", groups = "desktop-regression")
-    private void styleForSVGTest(String icon, String expWidth, String expHeight) {
+    private void styleForSVGTest(String icon, String expWidth, String expHeight, String expMarginTop) {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
@@ -739,7 +739,9 @@ public class ContextualHelpTest extends BaseClass {
         isWidth = commonUtils.assertValue(width, expWidth, " width of svg " + icon + " is not as per the spec");
         height = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "height");
         isHeight = commonUtils.assertValue(height, expHeight, " height of svg " + icon + " is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight);
+        marginTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "margin-top");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, " margin-top of svg " + icon + " is not as per the spec");
+        Assert.assertTrue(isWidth && isHeight && isMarginTop);
     }
 
     @Test(testName = "Verify styles for Back to Help Topics Button Test", groups = "desktop-regression")
@@ -1213,7 +1215,7 @@ public class ContextualHelpTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Verify styles for SVG icon test", dataProvider = "Verify SVG icon style test data", groups = "mobile-regression")
-    private void styleForSVGMobileTest(String icon, String expWidth, String expHeight) {
+    private void styleForSVGMobileTest(String icon, String expWidth, String expHeight, String expMarginTop) {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
         commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
@@ -1221,7 +1223,9 @@ public class ContextualHelpTest extends BaseClass {
         isWidth = commonUtils.assertValue(width, expWidth, " width of svg " + icon + " is not as per the spec");
         height = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "height", "mobile");
         isHeight = commonUtils.assertValue(height, expHeight, " height of svg " + icon + " is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight);
+        marginTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "margin-top", "mobile");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, " margin-top of svg " + icon + " is not as per the spec");
+        Assert.assertTrue(isWidth && isHeight && isMarginTop);
     }
 
     @Test(testName = "Mobile: Verify styles for Back to Help Topics Button Test", groups = "mobile-regression")
