@@ -25,7 +25,6 @@ script:
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
 - mvn -Dtest_suite_xml=elements_sdk.xml test
-
 notifications:
   email:
     recipients:
