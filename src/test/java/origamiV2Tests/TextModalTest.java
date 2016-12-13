@@ -429,7 +429,7 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Validate the modal title and content", dataProvider = "Mobile : Template config Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Validate the modal title and content", dataProvider = "Mobile : Template config Test Data", groups = {"1mobile-regression"})
     private void modalTitleMobileTest1(ScreenOrientation mode, String[] expWidth, String[] titleFontSize, String[] titleLineHeight, String contentFontSize, String contentLineHeight, String contentColor) throws Exception {
         appium.rotate(mode);
         commonUtils.click(textModalPgObj.initiateBtn, "mobile");
