@@ -23,7 +23,7 @@ Install _elements sdk_ on your local machine and copy the _elements.css_ file to
     npm install
     npm run build
     cp app-header/build/dist.app-header.js /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
-    cp app-header/node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
+    cp app-header/node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/origamiV2/css/appHeader/
     cp -R app-header/node_modules/pearson-elements/dist/fonts /ux-test-platform/    
     </pre>
 
