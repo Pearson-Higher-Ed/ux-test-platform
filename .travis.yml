@@ -20,11 +20,12 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
-- export feature_branch=v1
+- export component=text-modal
+- export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=text_modal.xml test
+
 notifications:
   email:
     recipients:

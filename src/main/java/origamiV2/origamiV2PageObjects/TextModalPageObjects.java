@@ -25,8 +25,8 @@ public class TextModalPageObjects {
     public By modal = By.xpath("/html/body/div[2]/div/div");
     public By greyLayover = By.xpath("/html/body/div[2]");
     public By xBtn = By.xpath("//*[@id='modalHeader']/button");
-    public By footer = By.xpath("//*[@id='modalFooter']");
+    public By footer = By.xpath("//*[@id='modalContent']/div[3]");
     public By title = By.id("modalHeaderText");
-    public By content = By.id("modalBodyText");
-    public By wrapper = By.id("wrapper");
+    public By content = By.xpath("//*[@id='modalContent']/div[2]");
+    public By wrapper = By.xpath("//*[@id='wrapper']");
 }
