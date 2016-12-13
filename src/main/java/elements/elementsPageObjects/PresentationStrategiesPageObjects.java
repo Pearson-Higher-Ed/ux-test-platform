@@ -48,5 +48,15 @@ public class PresentationStrategiesPageObjects {
     public By largeCenteredGap2 = By.id("centered-largegap2");
     public By largeCenteredGap3 = By.id("centered-largegap3");
 
+    // Basic Grid - Small
+    public By gridSmallCol2 = By.id("basic-grid-small-2col");
+    public By gridSmallCol3 = By.id("basic-grid-small-3col");
+    public By gridSmallCol4 = By.id("basic-grid-small-4col");
+
+    // Basic Grid - Large
+    public By gridLargeCol2 = By.id("basic-grid-large-2col");
+    public By gridLargeCol3 = By.id("basic-grid-large-3col");
+    public By gridLargeCol4 = By.id("basic-grid-large-4col");
+
 
 }

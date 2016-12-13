@@ -17,12 +17,10 @@ import java.lang.reflect.Method;
  */
 public class PresentationStrategyTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/presentation-strategies.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/presentation-strategies.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
     private static String env;
     private static String mobileDevice;
-    String marginRight, marginLeft, marginBottom, marginTop;
-    boolean isMarginLeft, isMarginRight, isMarginBottom, isMarginTop;
+    String marginRight, marginLeft, marginBottom, marginTop, paddingRight, paddingLeft, colWidth;
+    boolean isMarginLeft, isMarginRight, isMarginBottom, isMarginTop, ispaddingRight, ispaddingLeft, isColWidth;
     final static Logger log = Logger.getLogger(PresentationStrategyTest.class.getName());
 
     @Parameters({"runEnv", "mobDeviceName"})
@@ -50,7 +48,6 @@ public class PresentationStrategyTest extends BaseClass {
 
     @Test(testName = "Default Strategy Test", dataProvider = "Default Strategy Test Data", groups = {"desktop-regression", "desktop-ci"})
     private void setDefaultStrategyTest(int width, int height, By element, String expMarginRight, String expMarginLeft) {
-        chooseEnv();
         commonUtils.setWindowSize(width, height);
         marginLeft = commonUtils.getCSSValue(element, "margin-left");
         marginRight = commonUtils.getCSSValue(element, "margin-right");
@@ -64,7 +61,6 @@ public class PresentationStrategyTest extends BaseClass {
     //Centered
     @Test(testName = "Centered Strategy Test", groups = {"desktop-regression"})
     private void setCenteredStrategyTest() {
-        chooseEnv();
         marginLeft = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-left");
         marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right");
 
@@ -102,7 +98,6 @@ public class PresentationStrategyTest extends BaseClass {
     //Left/Right
     @Test(testName = "Left Right Strategy Test", dataProvider = "Left Right Strategy Test Data", groups = {"desktop-regression"})
     private void setLeftRightStrategyTest(int width, int height, By element, String expMarginLeft, String expMarginRight) {
-        chooseEnv();
         commonUtils.setWindowSize(width, height);
 
         marginLeft = commonUtils.getCSSValue(element, "margin-left");
@@ -129,7 +124,6 @@ public class PresentationStrategyTest extends BaseClass {
     // Default Spacing
     @Test(testName = "Spacing - Default Gap Test", dataProvider = "Spacing Default Gap Test Data", groups = {"desktop-regression"})
     private void setSpacingDefaultGapTest(String item, int width, int height) {
-        chooseEnv();
         commonUtils.setWindowSize(width, height);
         // Loop for the 3 centered strategy elements
         for (int j = 1; j <= 3; j++) {
@@ -185,7 +179,6 @@ public class PresentationStrategyTest extends BaseClass {
     // Small Gap Spacing
     @Test(testName = "Spacing - Small Gap Test", dataProvider = "Spacing Small Gap Test Data", groups = {"desktop-regression"})
     private void setSpacingSmallGapTest(String item, By element, int width, int height, String expMarginBottom, String expMarginTop) {
-        chooseEnv();
         commonUtils.setWindowSize(width, height);
         marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
         marginTop = commonUtils.getCSSValue(element, "margin-top");
@@ -238,7 +231,6 @@ public class PresentationStrategyTest extends BaseClass {
     //Large Gap Spacing
     @Test(testName = "Spacing - Large Gap Test", dataProvider = "Spacing Large Gap Test Data", groups = {"desktop-regression"})
     private void setSpacingLargeGapTest(String item, By element, int width, int height, String expMarginBottom, String expMarginTop) {
-        chooseEnv();
         commonUtils.setWindowSize(width, height);
         marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
         marginTop = commonUtils.getCSSValue(element, "margin-top");
@@ -263,6 +255,230 @@ public class PresentationStrategyTest extends BaseClass {
             Assert.assertTrue(isMarginLeft && isMarginRight);
         }
         Assert.assertTrue(isMarginBottom && isMarginTop);
+    }
+
+    @DataProvider(name = "BasicGrid - Col 2 Test Data")
+    private Object[][] getGridSmallCol2Data() {
+        return new Object[][]{
+                {479, 800, new String[]{"239.5px"}, "-10px", "-10px"},
+                {480, 800, new String[]{"240px"}, "-20px", "-20px"},
+                {768, 800, new String[]{"384px"}, "-20px", "-20px"},
+                {1024, 800, new String[]{"512px"}, "-40px", "-40px"},
+                {1140, 800, new String[]{"570px"}, "-40px", "-40px"},
+        };
+    }
+
+    @Test(testName = "BasicGrid - Small Col 2", dataProvider = "BasicGrid - Col 2 Test Data", groups = {"desktop-regression"})
+    private void setGridSmallCol2Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -smallCol2 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -smallCol2 is not as per spec");
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col2 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col2 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width of contentArea" + i + " of small grid col2 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @DataProvider(name = "BasicGrid - Col 3 Test Data")
+    private Object[][] getGridSmallCol3Data() {
+        return new Object[][]{
+                {479, 800, new String[]{"159.656px", "159.65px", "159.65625px"}, "-10px", "-10px"},
+                {480, 800, new String[]{"159.984px", "159.983px", "159.984375px"}, "-20px", "-20px"},
+                {768, 800, new String[]{"255.984px", "255.983px", "255.984375px"}, "-20px", "-20px"},
+                {1024, 800, new String[]{"341.328px", "341.317px", "341.328125px"}, "-40px", "-40px"},
+                {1140, 800, new String[]{"379.984px", "379.983px", "379.984375px"}, "-40px", "-40px"},
+        };
+    }
+
+    @Test(testName = "BasicGrid - Small Col 3", dataProvider = "BasicGrid - Col 3 Test Data", groups = {"desktop-regression"})
+    private void setGridSmallCol3Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -smallCol3 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -smallCol3 is not as per spec");
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col3 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col3 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + "of contentArea" + i + " of small grid col3 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @DataProvider(name = "BasicGrid - Col 4 Test Data")
+    private Object[][] getGridSmallCol4Data() {
+        return new Object[][]{
+                {479, 800, new String[]{"119.75px"}, "-10px", "-10px"},
+                {480, 800, new String[]{"120px"}, "-20px", "-20px"},
+                {768, 800, new String[]{"192px"}, "-20px", "-20px"},
+                {1024, 800, new String[]{"256px"}, "-40px", "-40px"},
+                {1140, 800, new String[]{"285px"}, "-40px", "-40px"},
+        };
+    }
+
+    @Test(testName = "BasicGrid - Small Col 4", dataProvider = "BasicGrid - Col 4 Test Data", groups = {"desktop-regression"})
+    private void setGridSmallCol4Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -smallCol4 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -smallCol4 is not as per spec");
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col4 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col4 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col4 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+
+    @Test(testName = "BasicGrid - Large Col 2", dataProvider = "BasicGrid - Col 2 Test Data", groups = {"desktop-regression"})
+    private void setGridLargeCol2Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -largeCol2 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -largeCol2 is not as per spec");
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of large grid col2 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of large grid col2 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + "of contentArea" + i + " of large grid col2 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+
+    @Test(testName = "BasicGrid - Large Col 3", dataProvider = "BasicGrid - Col 3 Test Data", groups = {"desktop-regression"})
+    private void setGridLargeCol3Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -largeCol3 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -largeCol3 is not as per spec");
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of large grid col3 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of large grid col3 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col3 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+
+    @Test(testName = "BasicGrid - Large Col 4", dataProvider = "BasicGrid - Col 4 Test Data", groups = {"desktop-regression"})
+    private void setGridLargeCol4Test(int width, int height, String[] expColWidth, String expMarginLeft, String expMarginRight) {
+        commonUtils.setWindowSize(width, height);
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-right");
+
+        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin-left for basic grid -largeCol4 is not as per spec");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Margin-right for basic grid -largeCol4 is not as per spec");
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of large grid col4 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of large grid col4 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + "of contentArea" + i + " of large grid col4 is not as spec exp :" + expColWidth + " act: " + colWidth);
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
     }
 
     /*************
@@ -374,11 +590,11 @@ public class PresentationStrategyTest extends BaseClass {
         marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right", "mobile");
         System.out.println(marginLeft);
         System.out.println(marginRight);
-        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"60px","80px", "90px"});
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"60px", "80px", "90px"});
         if (!isMarginLeft) {
             log.info("centered strategy: margin-left for centered element is not as per the spec");
         }
-        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"60px", "80px","90px"});
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"60px", "80px", "90px"});
         if (!isMarginRight) {
             log.info("centered strategy: margin-right for centered element is not as per the spec");
         }
@@ -479,23 +695,23 @@ public class PresentationStrategyTest extends BaseClass {
         commonUtils.getUrl(url, "mobile");
         appium.rotate(mode);
         for (int j = 1; j <= 3; j++) {
-            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom","mobile");
-            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top","mobile");
+            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom", "mobile");
+            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top", "mobile");
 
-            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin bottom value for" + item+j + "is not as per the spec");
-            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin top value for value for" + item+j + "is not as per the spec");
+            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin bottom value for" + item + j + "is not as per the spec");
+            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin top value for value for" + item + j + "is not as per the spec");
 
             for (int i = 1; i <= 2; i++) {
-                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right","mobile");
-                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left","mobile");
+                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right", "mobile");
+                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left", "mobile");
 
                 isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
                 if (isMarginRight == false) {
-                    log.info("Small Gap content area element for" + item+j + " margin-right at " + mode + " is not as per the spec");
+                    log.info("Small Gap content area element for" + item + j + " margin-right at " + mode + " is not as per the spec");
                 }
                 isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
                 if (isMarginLeft == false) {
-                    log.info("Small Gap content area element for" + item+j + " margin-left at " + mode + " is not as per the spec");
+                    log.info("Small Gap content area element for" + item + j + " margin-left at " + mode + " is not as per the spec");
                 }
                 Assert.assertTrue(isMarginLeft && isMarginRight);
             }
@@ -587,21 +803,279 @@ public class PresentationStrategyTest extends BaseClass {
         Assert.assertTrue(isMarginBottom && isMarginTop);
     }
 
+    @DataProvider(name = "Mobile : BasicGrid - Col 2 Test Data")
+    private Object[][] getGridSmallCol2DataMobile() {
+        return new Object[][]{
+                {ScreenOrientation.PORTRAIT, new String[]{"207px", "384px", "300.5px"}, new String[]{"-10px", "-20px"}, new String[]{"-10px", "-20px"}},
+                {ScreenOrientation.LANDSCAPE, new String[]{"368px", "512px", "481px"}, new String[]{"-40px", "-20px"}, new String[]{"-40px", "-20px"}},
+
+        };
+    }
+
+    @Test(testName = "Mobile : BasicGrid - Small Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regression"})
+    private void setGridSmallCol2MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid small Col2 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid small Col2 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col2 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col2 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col2 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @DataProvider(name = "Mobile : BasicGrid - Col 3 Test Data")
+    private Object[][] getGridSmallCol3DataMobile() {
+        return new Object[][]{
+                {ScreenOrientation.LANDSCAPE, new String[]{"245.328125px", "341.328125px", "320.65625px"}, new String[]{"-20px", "-40px"}, new String[]{"-20px", "-40px"}},
+                {ScreenOrientation.PORTRAIT, new String[]{"137.984375px", "255.984375px", "200.328125px"}, new String[]{"-10px", "-20px"}, new String[]{"-10px", "-20px"}},
+        };
+    }
+
+    @Test(testName = "Mobile : BasicGrid - Small Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regression"})
+    private void setGridSmallCol3MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid small Col3 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid small Col3 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col3 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col3 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col3 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @DataProvider(name = "Mobile : BasicGrid - Col 4 Test Data")
+    private Object[][] getGridSmallCol4DataMobile() {
+        return new Object[][]{
+                {ScreenOrientation.LANDSCAPE, new String[]{"184px", "256px", "240.5px"}, new String[]{"-40px", "-20px"}, new String[]{"-40px", "-20px"}},
+                {ScreenOrientation.PORTRAIT, new String[]{"103.5px", "192px", "150.25px"}, new String[]{"-10px", "-20px"}, new String[]{"-10px", "-20px"}},
+
+        };
+    }
+
+    @Test(testName = "Mobile : BasicGrid - Small Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regression"})
+    private void setGridSmallCol4MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid small Col4 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid small Col4 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of small grid col4 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "5px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of small grid col4 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + "of small grid col4 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+
+    @Test(testName = "Mobile : BasicGrid - Large Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regression"})
+    private void setGridLargeCol2MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid large Col2 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid large Col2 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding" + paddingLeft + " of contentArea" + i + " of large grid col2 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding" + paddingRight + " of contentArea" + i + " of large grid col2 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col2 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @Test(testName = "Mobile : BasicGrid - Large Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regression"})
+    private void setGridLargeCol3MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid large Col3 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid large Col3 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding of contentArea" + i + " of large grid col3 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding of contentArea" + i + " of large grid col3 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col3 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
+
+    @Test(testName = "Mobile : BasicGrid - Large Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regression"})
+    private void setGridLargeCol4MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
+        commonUtils.getUrl(url, "mobile");
+        appium.rotate(mode);
+
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-left", "mobile");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-right", "mobile");
+
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
+        if (isMarginLeft == false) {
+            log.info("Margin-left" + marginLeft + "for basic grid large Col4 at" + mode + "is not as per spec");
+        }
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, expMarginRight);
+        if (isMarginRight == false) {
+            log.info("Margin-right" + marginRight + "for basic grid large Col4 at" + mode + "is not as per spec");
+        }
+
+        for (int i = 1; i <= 12; i++) {
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left", "mobile");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right", "mobile");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width", "mobile");
+
+            ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
+            if (ispaddingLeft == false) {
+                log.info("left padding" + paddingLeft + "of contentArea" + i + " of large grid col4 is not as per specs");
+            }
+            ispaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"0px", "10px"});
+            if (ispaddingRight == false) {
+                log.info("right padding" + paddingRight + "of contentArea" + i + " of large grid col4 is not as per specs");
+            }
+            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
+            if (isColWidth == false) {
+                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col4 is not as spec");
+            }
+            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+        }
+        Assert.assertTrue(isMarginLeft && isMarginRight);
+    }
 
     /****************
      * Common Methods
      ****************/
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
-        }
-    }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        if (setDesktop.equals("on")) {
+            commonUtils.getUrl(url);
+        } else if (setMobile.equals("on")) {
+            commonUtils.getUrl(url, "mobile");
+        }
     }
 
     @AfterMethod(alwaysRun = true)

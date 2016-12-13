@@ -23,10 +23,13 @@
     <test name="Elements SDK V1 Tests">
         <groups>
             <run>
-                <include name="desktop-ci"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
         <classes>
+            <class name="elementsTests.PresentationStrategyTest"/>
+        </classes>
+    <!--    <classes>
             <class name="elementsTests.TypographyTest"/>
             <class name="elementsTests.ResponsiveUtilitiesTest"/>
             <class name="elementsTests.TemplatesTest"/>
@@ -34,7 +37,7 @@
             <class name="elementsTests.PresentationStrategyTest"/>
             <class name="elementsTests.ButtonsTest"/>
             <class name="elementsTests.InputsTest"/>
-        </classes>
+        </classes> -->
     </test>
 </suite>
 
@@ -55,6 +58,6 @@ Mobile:-
         |appiumDriver  | mobDeviceName              | mobilePlatformVer | mobBrowser | appiumVer|
         |android       | iPhone 7 Plus Simulator    | 10.0              | Safari     | 1.6.0    |
         |iOS           | iPhone 6 Plus              | 9.3               | Safari     | 1.6.0    |
-        |iOS           | iPad Air                   | 9.2               | Safari     | 1.6.0    |
+        |iOS           | iPad Air                   | 9.3               | Safari     | 1.6.0    |
         |android       | Google Nexus 7 HD Emulator | 4.4               | Browser    | 1.5.3    | Few orientation tests works only in Android Phones
 -->
