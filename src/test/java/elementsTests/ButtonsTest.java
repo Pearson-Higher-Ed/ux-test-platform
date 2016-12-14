@@ -23,7 +23,8 @@ public class ButtonsTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private static String env;
     private static String setMobile;
-    boolean isCSSProperty = false;
+    private String color = "", backgroundColor = "";
+    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false;
     Actions action;
     TouchAction mAction;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
@@ -123,7 +124,7 @@ public class ButtonsTest extends BaseClass {
     @Test(testName = "Verify Default Button Test-Focus state", dataProvider = "Default Button-Focus state Test Data", groups = {"desktop-regression"})
     private void defaultButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("defaultBtn");
+        commonUtils.focusOnElementById("default-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -235,7 +236,7 @@ public class ButtonsTest extends BaseClass {
     @Test(testName = "Verify Primary Button Test-Focus state", dataProvider = "Primary Button-Focus state Test Data", groups = {"desktop-regression"})
     private void primaryButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("primaryBtn");
+        commonUtils.focusOnElementById("primary-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -352,7 +353,7 @@ public class ButtonsTest extends BaseClass {
     @Test(testName = "Verify CTA Button Test-Focus state", dataProvider = "CTA Button-Focus state Test Data", groups = {"desktop-regression"})
     private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("ctaBtn");
+        commonUtils.focusOnElementById("cta-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -402,7 +403,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Large Button Test", dataProvider = "Large Button Test Data", groups = {"desktop-ci"})
+    @Test(testName = "Verify Large Button Test", dataProvider = "Large Button Test Data", groups = {"desktop-regression"})
     private void largeButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.largeBtn, cssProperty);
@@ -447,6 +448,31 @@ public class ButtonsTest extends BaseClass {
             log.info("'" + cssPropertyType + "' :for large Disabled button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
+    }
+
+    //Mix and Match
+    @DataProvider(name = "Mix and Match Buttons Test Data")
+    public Object[][] getSmallButtonWithCTATestData() {
+        return new Object[][]{
+                {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+        };
+    }
+
+    @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci"})
+    private void mixAndMatchButtonsTest(String type, By element, String[] expBackgroundColor, String[] expColor) throws Exception {
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for this type: " + type + " is not as per the spec, actual: " + color);
+        }
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for this type: " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor);
     }
 
     /***************
@@ -551,6 +577,21 @@ public class ButtonsTest extends BaseClass {
             log.info("'" + cssPropertyType + "' :for large Disabled button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"mobile-regression"})
+    private void mixAndMatchButtonsMobileTest(String type, By element, String[] expBackgroundColor, String[] expColor) throws Exception {
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for this type: " + type + " is not as per the spec, actual: " + color);
+        }
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for this type: " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor);
     }
 
     /*************
