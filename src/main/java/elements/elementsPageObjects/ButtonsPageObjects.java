@@ -20,32 +20,37 @@ public class ButtonsPageObjects {
         this.appium = appium;
     }
 
-    public By defaultBtn=By.id("defaultBtn");
-    public By defaultBtnHover=By.id("defaultBtnHover");
-    public By defaultBtnDisabled=By.id("defaultBtnDisabled");
+    public By defaultBtn=By.id("default-btn");
+    public By defaultBtnHover=By.id("default-btn-hover");
+    public By defaultBtnDisabled=By.id("default-btn-disabled");
 
-    public By primaryBtn=By.id("primaryBtn");
-    public By primaryBtnHover=By.id("primaryBtnHover");
-    public By primaryBtnDisabled=By.id("primaryBtnDisabled");
+    public By primaryBtn=By.id("primary-btn");
+    public By primaryBtnHover=By.id("primary-btn-hover");
+    public By primaryBtnDisabled=By.id("primary-btn-disabled");
 
-    public By ctaBtn=By.id("ctaBtn");
-    public By ctaBtnHover=By.id("ctaBtnHover");
-    public By ctaBtnDisabled=By.id("ctaBtnDisabled");
+    public By ctaBtn=By.id("cta-btn");
+    public By ctaBtnHover=By.id("cta-btn-hover");
+    public By ctaBtnDisabled=By.id("cta-btn-disabled");
 
     //Fake buttons
     public By divBtn=By.id("divBtn");
-    public By divBtnDisabled=By.id("divBtnDisabled");
+    public By divBtnDisabled=By.id("div-btn-disabled");
 
     public By anchorBtn=By.id("anchorBtn");
-    public By anchorBtnDisabled=By.id("anchorBtnDisabled");
+    public By anchorBtnDisabled=By.id("anchor-btn-disabled");
 
     public By inputBtn=By.id("inputBtn");
-    public By inputBtnDisabled=By.id("inputBtnDisabled");
+    public By inputBtnDisabled=By.id("input-btn-disabled");
 
     //Sizes
-    public By smallBtn=By.id("smallBtn");
-    public By largeBtn=By.id("largeBtn");
-    public By xLargeBtn=By.id("xLargeBtn");
+    public By smallBtn=By.id("small-btn");
+    public By largeBtn=By.id("large-btn");
+    public By xLargeBtn=By.id("xLarge-btn");
 
-    public By largeBtnDisabled=By.id("largeBtnDisabled");
+    //Mix and Match
+    public By largeBtnDisabled=By.id("large-btn-disabled");
+    public By smallBtnWithCTA=By.id("small-btn-withCTA");
+    public By xLargeBtnWithPrimary=By.id("xLarge-btn-withPrimary");
+    public By largeBtnWithPrimaryDisabled = By.id("large-btn-withPrimary-disabled");
+
 }

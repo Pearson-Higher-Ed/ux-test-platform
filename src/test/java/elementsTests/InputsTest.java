@@ -5,6 +5,7 @@ import java.io.File;
 
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
+import org.apache.log4j.varia.StringMatchFilter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.internal.Streams;
 import org.openqa.selenium.interactions.Actions;
@@ -30,8 +31,8 @@ public class InputsTest extends BaseClass {
     private static String setMobile;
     private static String browser;
     private static String lBrowser;
-    String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", height = "", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "";
-    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTrainsitionTimingFunc = false, isTransitionDuration = false;
+    String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", height = "", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "";
+    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTrainsitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false;
     int roundedTransValue, len, lastIndexOf;
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
@@ -166,14 +167,14 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Single Line Input - Focus state Test Data")
     public Object[][] getDefaultButtonFocusStateTestData() {
         return new Object[][]{
-                {"sl-text-input", inputsPgObj.slTextInput, "sl-text-input", "none", "input-underline", inputsPgObj.slUnderlineInput, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", "ease"},
-                {"sl-text-input-error", inputsPgObj.slTextInputErrored, "sl-text-input-error", "none", "input-underline-error", inputsPgObj.slUnderLineInputError, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", "ease"},
-                {"sl-text-label-input-readonly", inputsPgObj.slTextLableInputReadOnly, "sl-text-label-input-readonly", "none", "", By.xpath(""), new String[]{""}, "", new String[]{""}, new String[]{""}, new String[]{""}, "", ""}
+                {"sl-text-input", inputsPgObj.slTextInput, "sl-text-input", "none", "input-underline", inputsPgObj.slUnderlineInput, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", new String[]{"ease", "cubic-bezier(0.25, 0.1, 0.25, 1)"}},
+                {"sl-text-input-error", inputsPgObj.slTextInputErrored, "sl-text-input-error", "none", "input-underline-error", inputsPgObj.slUnderLineInputError, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", new String[]{"ease", "cubic-bezier(0.25, 0.1, 0.25, 1)"}},
+                {"sl-text-label-input-readonly", inputsPgObj.slTextLableInputReadOnly, "sl-text-label-input-readonly", "none", "", By.xpath(""), new String[]{""}, "", new String[]{""}, new String[]{""}, new String[]{""}, "", new String[]{""}}
         };
     }
 
     @Test(testName = "Verify Single Line Input - Focus state", dataProvider = "Single Line Input - Focus state Test Data", groups = {"desktop-regression"})
-    private void singleLineInputFocusStateTest(String type, By element, String id, String expOutlineStyle, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
+    private void singleLineInputFocusStateTest(String type, By element, String id, String expOutlineStyle, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String[] expUnderlineTransitionTimingFunc) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari/ie browser drivers");
         }
@@ -217,20 +218,12 @@ public class InputsTest extends BaseClass {
             transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property");
             isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
             trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function");
-            isTrainsitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+            isTrainsitionTimingFunc = commonUtils.assertCSSProperties("transition-timing-function", trainsitionTimingFunc, expUnderlineTransitionTimingFunc);
+            if(!isTrainsitionTimingFunc){
+                log.info("'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec, actual: "+expUnderlineTransitionTimingFunc);
+            }
             Assert.assertTrue(isOutlineStyle && isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTrainsitionTimingFunc);
         }
-    }
-
-    //Text Input wrapper
-    @Test(testName = "Text Input Wrapper", groups = "desktop-regression")
-    private void textInputWrapperTest() {
-        minHeight = commonUtils.getCSSValue(inputsPgObj.inputWrapper, "min-height");
-        isMinHeight = commonUtils.assertCSSProperties("min-height", minHeight, new String[]{"52px"});
-        if (!isMinHeight) {
-            log.info("min-height for text input wrapper is not as per the spec, actual: " + minHeight);
-        }
-        Assert.assertTrue(isMinHeight);
     }
 
     //Text Label Input
@@ -257,6 +250,145 @@ public class InputsTest extends BaseClass {
             log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
+    }
+
+    //Check Boxes
+    @DataProvider(name = "Check Box - Normal State Test Data")
+    public Object[][] getCheckBoxNormalStateTestData() {
+        return new Object[][]{
+                {"z-index", new String[]{"-1"}},
+                {"position", new String[]{"absolute"}},
+                {"left", new String[]{"0px"}},
+                {"height", new String[]{"16px", "14px"}},//ie renders it as 14px, other browsers it looks good.
+                {"width", new String[]{"16px", "14px"}},
+                {"border-top-width", new String[]{"1px"}},
+                {"border-bottom-width", new String[]{"1px"}},
+                {"border-left-width", new String[]{"1px"}},
+                {"border-right-width", new String[]{"1px"}},
+                {"border-bottom-style", new String[]{"solid"}},
+                {"border-top-style", new String[]{"solid"}},
+                {"border-left-style", new String[]{"solid"}},
+                {"border-right-style", new String[]{"solid"}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-top-left-radius", new String[]{"2px"}},
+                {"border-top-right-radius", new String[]{"2px"}},
+                {"border-bottom-left-radius", new String[]{"2px"}},
+                {"border-bottom-right-radius", new String[]{"2px"}}
+        };
+    }
+
+    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "desktop-ci")
+    private void checkboxNormalStateTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Check Box - Focus State Test Data")
+    public Object[][] getCheckBoxFocusStateTestData() {
+        return new Object[][]{
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}}
+        };
+    }
+
+    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "desktop-regression")
+    private void checkboxFocusStateTest(String cssProperty, String[] expectedCSSValue) {
+        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.focusOnElementById("checkboxInput-state");
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Check Box - Disabled State Test Data")
+    public Object[][] getCheckBoxDisabledStateTestData() {
+        return new Object[][]{
+                {"background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
+                {"border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+        };
+    }
+
+    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
+    private void checkboxDisabledStateTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Check Box - SVG Icon Test Data")
+    public Object[][] getCheckBoxSVGIconTestData() {
+        return new Object[][]{
+                {"unchecked", inputsPgObj.checkBoxUncheckedInput, inputsPgObj.checkBoxUncheckedIcon, "1", new String[]{"16px"}, new String[]{"16px"}},
+                {"checked", inputsPgObj.checkBoxCheckedInput, inputsPgObj.checkBoxCheckedIcon, "0", new String[]{"16px"}, new String[]{"16px"}},
+                {"unchecked-focus", inputsPgObj.checkBoxUnCheckedFocusInput, inputsPgObj.checkBoxUnCheckedFocusIcon, "1", new String[]{"16px"}, new String[]{"16px"}},
+                {"checked-focus", inputsPgObj.checkBoxCheckedFocusInput, inputsPgObj.checkBoxCheckedFocusIcon, "0", new String[]{"16px"}, new String[]{"16px"}},
+        };
+    }
+
+    @Test(testName = "Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = "desktop-ci")
+    private void svgIconForCheckBoxTest(String type, By element, By iconElement, String expOpacity, String[] expHeight, String[] expWidth) throws Exception {
+        commonUtils.click(element);
+        opacity = commonUtils.getCSSValue(iconElement, "opacity");
+        isOpacity = commonUtils.assertValue(opacity, expOpacity, "check-box for " + type + " is not clicked and the opacity value is not as per the spec");
+        height = commonUtils.getCSSValue(iconElement, "height");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height of icon for check-box " + type + " is not as per the spec, actual: " + height);
+        }
+        width = commonUtils.getCSSValue(iconElement, "width");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width of icon for check-box " + type + " is not as per the spec, actual: " + width);
+        }
+        Assert.assertTrue(isOpacity && isHeight && isWidth);
+    }
+
+    @DataProvider(name = "Check Box - Label Test Data")
+    public Object[][] getCheckBoxLabelTestData() {
+        return new Object[][]{
+                {"checkbox-unchecked", inputsPgObj.checkBoxUncheckedLabel, new String[]{"28px"}},
+                {"checkbox-checked", inputsPgObj.checkBoxCheckedLabel, new String[]{"28px"}},
+                {"checkbox-unchecked-focus", inputsPgObj.checkBoxUnCheckedFocusLabel, new String[]{"28px"}},
+                {"checkbox-checked-focus", inputsPgObj.checkBoxCheckedFocusLabel, new String[]{"28px"}},
+                {"checkbox-unchecked-disabled", inputsPgObj.checkBoxUnCheckedDisabledLabel, new String[]{"28px"}},
+                {"checkbox-checked-disabled", inputsPgObj.checkBoxCheckedDisabledLabel, new String[]{"28px"}},
+        };
+    }
+
+    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
+    private void labelForCheckBoxTest(String type, By element, String[] expPaddingLeft) {
+        if (type.contains("focus")) {
+            commonUtils.focusOnElementById(type);
+        }
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
+        if (!isPaddingLeft) {
+            log.info("padding-left for checkbox label of " + type + " type is not as per the spec, actual: " + paddingLeft);
+        }
+        Assert.assertTrue(isPaddingLeft);
     }
 
     /**************
@@ -318,16 +450,6 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Text Input Wrapper", groups = "mobile-regression")
-    private void textInputWrapperMobileTest() {
-        minHeight = commonUtils.getCSSValue(inputsPgObj.inputWrapper, "min-height", "mobile");
-        isMinHeight = commonUtils.assertCSSProperties("min-height", minHeight, new String[]{"52px"});
-        if (!isMinHeight) {
-            log.info("min-height for text input wrapper is not as per the spec, actual: " + minHeight);
-        }
-        Assert.assertTrue(isMinHeight);
-    }
-
     @Test(testName = "Mobile: Verify Text Label Input", dataProvider = "Text Label Input Test Data", groups = "mobile-regression")
     private void textLabelInputMobileTest(String type, By element, String[] expFontSize, String[] expColor) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
@@ -351,8 +473,8 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile: Verify Single Line Input -underline", dataProvider = "Single Line Input - underline Test Data", groups = {"mobile-regression1"})
-    private void singleLineInputUnderlineTest(String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) {
+    @Test(testName = "Mobile: Verify Single Line Input -underline", dataProvider = "Single Line Input - underline Test Data", groups = {"mobile-regression"})
+    private void singleLineInputUnderlineMobileTest(String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) {
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
         if (!isBackgroundColor) {
@@ -380,6 +502,71 @@ public class InputsTest extends BaseClass {
         trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
         isTrainsitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
         Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTrainsitionTimingFunc);
+    }
+
+    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "mobile-regression")
+    private void checkboxNormalStateMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "mobile-regression")
+    private void checkboxFocusStateMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        commonUtils.focusOnElementById("checkboxInput-state", "mobile");
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
+    private void checkboxDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = "mobile-regression")
+    private void svgIconForCheckBoxMobileTest(String type, By element, By iconElement, String expOpacity, String[] expHeight, String[] expWidth) throws Exception {
+        commonUtils.click(element, "mobile");
+        opacity = commonUtils.getCSSValue(iconElement, "opacity", "mobile");
+        isOpacity = commonUtils.assertValue(opacity, expOpacity, "check-box for " + type + " is not clicked and the opacity value is not as per the spec");
+        height = commonUtils.getCSSValue(iconElement, "height", "mobile");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height of icon for check-box " + type + " is not as per the spec, actual: " + height);
+        }
+        width = commonUtils.getCSSValue(iconElement, "width", "mobile");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width of icon for check-box " + type + " is not as per the spec, actual: " + width);
+        }
+        Assert.assertTrue(isOpacity && isHeight && isWidth);
+    }
+
+    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
+    private void labelForCheckBoxMobileTest(String type, By element, String[] expPaddingLeft) {
+        if (type.contains("focus")) {
+            commonUtils.focusOnElementById(type, "mobile");
+        }
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
+        if (!isPaddingLeft) {
+            log.info("padding-left for checkbox label of " + type + " type is not as per the spec, actual: " + paddingLeft);
+        }
+        Assert.assertTrue(isPaddingLeft);
     }
 
     @BeforeMethod(alwaysRun = true)
