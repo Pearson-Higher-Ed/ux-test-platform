@@ -96,6 +96,7 @@ git clone https://github.com/Pearson-Higher-Ed/text-modal.git
 cd text-modal
 git checkout $1
 npm install &>/dev/null
+npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/build/dist.text-modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
