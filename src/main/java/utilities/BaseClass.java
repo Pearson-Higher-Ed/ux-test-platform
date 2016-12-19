@@ -25,27 +25,28 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  */
 public class BaseClass {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
-    public ResponsiveUtilitiesPageObjects respPgObj;
-    public TypographyPageObjects typoPgObj;
-    public InputsPageObjects inputsPgObj;
-    public ButtonsPageObjects btnPgObj;
-    public CalendarPageObjects clndrPgObj;
-    public ColorsPageObjects colorsPgObj;
-    public NoPlainCSSPageObjects noPlainCSSPgObj;
-    public MeterPageObjects meterPgObj;
-    public GridPageObjects gridPgObj;
-    public PresentationStrategiesPageObjects preStratPgObj;
-    public AppHeaderPageObjects appHeaderPgObj;
-    public ContextualHelpPageObjects conxHelpPgObj;
-    public DrawerPageObjects drawerPgObj;
-    public ComponentArchetypePageObjects compArchtypePgObj;
-    public AvatarDisplayPageObjects avatarDisplayPgObj;
-    public TemplatesPageObjects templatePgObj;
-    public SliderPageObjects sliderPgObj;
-    public TextModalPageObjects textModalPgObj;
-    public CommonUtils commonUtils;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
+    public ResponsiveUtilitiesPageObjects respPgObj = null;
+    public TypographyPageObjects typoPgObj = null;
+    public InputsPageObjects inputsPgObj = null;
+    public ButtonsPageObjects btnPgObj = null;
+    public CalendarPageObjects clndrPgObj = null;
+    public ColorsPageObjects colorsPgObj = null;
+    public NoPlainCSSPageObjects noPlainCSSPgObj = null;
+    public MeterPageObjects meterPgObj = null;
+    public GridPageObjects gridPgObj = null;
+    public PresentationStrategiesPageObjects preStratPgObj = null;
+    public IconsPageObjects iconPgObj = null;
+    public AppHeaderPageObjects appHeaderPgObj = null;
+    public ContextualHelpPageObjects conxHelpPgObj = null;
+    public DrawerPageObjects drawerPgObj = null;
+    public ComponentArchetypePageObjects compArchtypePgObj = null;
+    public AvatarDisplayPageObjects avatarDisplayPgObj = null;
+    public TemplatesPageObjects templatePgObj = null;
+    public SliderPageObjects sliderPgObj = null;
+    public TextModalPageObjects textModalPgObj = null;
+    public CommonUtils commonUtils = null;
     public String setDesktop = "";
     public String setMobile = "";
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
@@ -106,7 +107,6 @@ public class BaseClass {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
                 includePageObjects();
-
             }
         }
         //The below else condition is to launch browser driver on your local machine. In elements_sdk.xml -> set runEnv != sauce
@@ -155,6 +155,7 @@ public class BaseClass {
             gridPgObj = new GridPageObjects(driver);
             templatePgObj = new TemplatesPageObjects(driver);
             preStratPgObj = new PresentationStrategiesPageObjects(driver);
+            iconPgObj = new IconsPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
@@ -176,6 +177,7 @@ public class BaseClass {
             gridPgObj = new GridPageObjects(appium);
             templatePgObj = new TemplatesPageObjects(appium);
             preStratPgObj = new PresentationStrategiesPageObjects(appium);
+            iconPgObj = new IconsPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);
