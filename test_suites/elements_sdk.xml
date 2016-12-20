@@ -23,13 +23,10 @@
     <test name="Elements SDK V1 Tests">
         <groups>
             <run>
-                <include name="desktop-regression"/>
+                <include name="desktop-ci"/>
             </run>
         </groups>
-        <classes>
-            <class name="elementsTests.PresentationStrategyTest"/>
-        </classes>
-    <!--    <classes>
+      <classes>
             <class name="elementsTests.TypographyTest"/>
             <class name="elementsTests.ResponsiveUtilitiesTest"/>
             <class name="elementsTests.TemplatesTest"/>
@@ -37,7 +34,7 @@
             <class name="elementsTests.PresentationStrategyTest"/>
             <class name="elementsTests.ButtonsTest"/>
             <class name="elementsTests.InputsTest"/>
-        </classes> -->
+     </classes>
     </test>
 </suite>
 
