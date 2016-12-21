@@ -34,7 +34,8 @@
             <class name="elementsTests.PresentationStrategyTest"/>
             <class name="elementsTests.ButtonsTest"/>
             <class name="elementsTests.InputsTest"/>
-     </classes>
+            <class name="elementsTests.IconsTest"/>
+        </classes>
     </test>
 </suite>
 

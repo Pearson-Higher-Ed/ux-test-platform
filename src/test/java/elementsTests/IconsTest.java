@@ -1,171 +1,179 @@
 package elementsTests;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 
 /**
  * Created by umahaea on 2/15/16.
  */
 public class IconsTest extends BaseClass {
-
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/icons.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/icons.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
-    private static String env, mobileDevice, setMobile, browser, mBrowser;
-    String fetchCharacter, content, actualContent, code;
-    boolean result;
+    private static String setDesktop, setMobile;
+    private String color = "", width = "", height = "";
+    double svgfileSize = 84.00, kilobytes;
+    boolean isColor = false, isWidth = false, isHeight = false;
+    File file = null;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
-    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
+    @Parameters({"desktop", "mobile"})
     @BeforeClass(alwaysRun = true)
-    private void iconsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
-        browser = sauceBrowser;
-        mBrowser = mobBrowser;
+    private void typographyTestBeforeClass(String desktop, String mobile) {
+        setDesktop = desktop;
         setMobile = mobile;
     }
 
-    @DataProvider(name = "Icons Test Data - Set 1")
-    private Object[][] getIconsSet1TestData() {
-        return new Object[][]{
-                {"check", "\\f00c"},
-                {"chevron-down", "\\f078"},
-                {"chevron-up", "\\f077"},
-                {"chevron-right", "\\f058"},
-                {"chevron-left", "\\f056"},
-                {"cog", "\\f013"},
-                {"envelope", "\\f0e0"},
-                {"plus-circle", "\\f055"},
-                {"search", "\\f002"},
-                {"thumb-tack", "\\f08d"},
-                {"times", "\\f00d"},
-                {"times-circle-o", "\\f05c"},
-                {"trash-o", "\\f014"},
-                {"users", "\\f0c0"},
-                {"info-circle", "\\f05a"},
-                {"user", "\\f007"},
-                {"file-o", "\\f016"},
-                {"calendar", "\\f073"},
-                {"square-o", "\\f096"},
-                {"check-square-o", "\\f046"}
-        };
-    }
-
-    @Test(testName = "Icons Set 1 Test", dataProvider = "Icons Test Data - Set 1", groups = {"desktop-ci", "desktop-regression"})
-    private void iconsSet1Test(String testIcon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
-        chooseEnv();
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
-        actualContent = getCode(fetchCharacter);
-        result = assertUnicode(actualContent, expectedContent, testIcon);
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "Icons Test Data - Set 2")
-    private Object[][] getIconsSet2TestData() {
-        return new Object[][]{
-                {"ban", "\\f05e"},
-                {"camera", "\\f030"},
-                {"clock-o", "\\f017"},
-                {"exclamation-circle", "\\f06a"},
-                {"bell", "\\f0f3"},
-                {"archive", "\\f187"},
-                {"question-circle", "\\f059"},
-                {"heart", "\\f004"},
-                {"heart-o", "\\f08a"},
-                {"laptop", "\\f109"},
-                {"book", "\\f02d"},
-                {"list-ul", "\\f0ca"},
-                {"th-large", "\\f009"},
-                {"newspaper-o", "\\f1ea"},
-                {"video-camera", "\\f03d"},
-                {"picture-o", "\\f03e"},
-                {"caret-right", "\\f0da"},
-                {"caret-down", "\\f0d7"},
-                {"lightbulb-o", "\\f0eb"},
-                {"shopping-cart", "\\f07a"}
-        };
-    }
-
-    @Test(testName = "Icons Set 2 Test", dataProvider = "Icons Test Data - Set 2", groups = {"desktop-regression"})
-    private void iconsSet2Test(String testIcon, String expectedContent) throws InterruptedException, UnsupportedEncodingException {
-        chooseEnv();
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
-        actualContent = getCode(fetchCharacter);
-        result = assertUnicode(actualContent, expectedContent, testIcon);
-        Assert.assertTrue(result);
-    }
-
-    /*****************************************************************************************************************************************
-     * MOBILE TESTS
-     *****************************************************************************************************************************************/
-
-    //For iOS or Android
-    @Test(testName = "Mobile: Icons Set 1 Test", dataProvider = "Icons Test Data - Set 1", groups = {"mobile-regression"})
-    private void mobileIconsSet1Test(String testIcon, String expectedContent) {
-        commonUtils.getUrl(url, "mobile");
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
-        actualContent = getCode(fetchCharacter);
-        result = assertUnicode(actualContent, expectedContent, testIcon);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: Icons Set 2 Test", dataProvider = "Icons Test Data - Set 2", groups = {"mobile-regression"})
-    private void mobileIconsSet2Test(String testIcon, String expectedContent) {
-        commonUtils.getUrl(url, "mobile");
-        fetchCharacter = "return window.getComputedStyle(document.querySelector('.pe-icon--" + testIcon + "'), ':before').getPropertyValue('content')";
-        actualContent = getCode(fetchCharacter);
-        result = assertUnicode(actualContent, expectedContent, testIcon);
-        Assert.assertTrue(result);
-    }
-
-    private String getCode(String script) {
-        JavascriptExecutor js = null;
-        if (setMobile.equals("on")) {
-            js = (JavascriptExecutor) appium;
-            content = (String) js.executeScript(script);
-            int codePointAt0 = Character.codePointAt(content, 0);
-            code = String.format("%x", (int) codePointAt0).toLowerCase();
-            return "\\" + code;
-
-        } else {
-            js = (JavascriptExecutor) driver;
-            content = (String) js.executeScript(script);
-            if (browser.equals("safari")) {
-                int codePointAt0 = Character.codePointAt(content, 0);
-                code = String.format("%x", (int) codePointAt0).toLowerCase();
+    /**************
+     * Desktop Tests
+     **************/
+    //Get file size
+    @Test(testName = "Verify size of SVG file", groups = "desktop-regression")
+    private void getFileSizeOfSpriteTest() {
+        file = new File("icons/p-icons-sprite-1.1.svg");
+        if (file.exists()) {
+            kilobytes = (file.length() / 1024);
+            System.out.println("kilobytes: " + kilobytes);
+            if (kilobytes >= svgfileSize) {
+                Assert.assertTrue(true);
             } else {
-                int codePointAt1 = Character.codePointAt(content, 1);
-                code = String.format("%x", (int) codePointAt1).toLowerCase();
+                log.info("Some data is missing from the SVG file");
+                Assert.assertTrue(false);
             }
-            return "\\" + code;
-        }
-    }
-
-    private boolean assertUnicode(Object actual, Object expected, String icon) {
-        boolean assertResult = false;
-        assertResult = commonUtils.assertValue(actual, expected, "The icon " + icon + " is not as per the SPEC");
-        return assertResult;
-    }
-
-    private void chooseEnv() throws InterruptedException {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
         } else {
-            commonUtils.getUrl("file:///" + localUrl);
+            log.info("SVG file does not exists");
+            Assert.assertTrue(false);
         }
+    }
+
+    @DataProvider(name = "Icons Size Test Data")
+    private Object[][] getIconsSizeTestData() {
+        return new Object[][]{
+                {"regular-icon-size-18", iconPgObj.iconSize18, new String[]{"18px"}, new String[]{"18px"}},
+                {"regular-icon-size-24", iconPgObj.iconSize24, new String[]{"24px"}, new String[]{"24px"}},
+                {"font-setting-icon-18", iconPgObj.fontSetting18, new String[]{"24px"}, new String[]{"18px"}},
+                {"font-setting-icon-24", iconPgObj.fontSetting24, new String[]{"32px"}, new String[]{"24px"}},
+                {"icon-in-a-button", iconPgObj.iconInAButton, new String[]{"18px"}, new String[]{"18px"}}
+        };
+    }
+
+    //Size
+    @Test(testName = "Verify the size of icons", dataProvider = "Icons Size Test Data", groups = "desktop-ci")
+    private void iconSizeTest(String iconType, By element, String[] expWidth, String[] expHeight) {
+        width = commonUtils.getCSSValue(element, "width");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width for icon type: '" + iconType + "' is not as per the spec, actual: " + width);
+        }
+        height = commonUtils.getCSSValue(element, "height");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height for icon type: '" + iconType + "' is not as per the spec, actual: " + height);
+        }
+        Assert.assertTrue(isWidth && isHeight);
+    }
+
+    @DataProvider(name = "Icons Fill Color Test Data")
+    private Object[][] getIconFillColorTestData() {
+        return new Object[][]{
+                {"icon-fill-color-18", iconPgObj.iconFillColor18, new String[]{commonUtils.hex2Rgb("#db0020"), commonUtils.hex2RgbWithoutTransparency("#db0020")}},
+                {"icon-fill-color-24", iconPgObj.iconFillColor24, new String[]{commonUtils.hex2Rgb("#ffb81c"), commonUtils.hex2RgbWithoutTransparency("#ffb81c")}},
+                {"icon-default-color-18", iconPgObj.iconDefaultColor18, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"icon-default-color-24", iconPgObj.iconDefaultColor24, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}}
+        };
+    }
+
+    //Fill Color
+    @Test(testName = "Verify if Icon fills parent's color", dataProvider = "Icons Fill Color Test Data", groups = "desktop-regression")
+    private void iconFillColorTest(String iconType, By element, String[] expColor) {
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("The icon for the type: '" + iconType + "' is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isColor);
+    }
+
+    //Change the class and href
+    @DataProvider(name = "Change Class and href Test Data")
+    private Object[][] getIconsChangeClassAndHrefTestData() {
+        return new Object[][]{
+                {"class-18-href-24", iconPgObj.iconClass18Href24, new String[]{"18px"}, new String[]{"18px"}},
+                {"class-24-href-18", iconPgObj.iconClass24Href18, new String[]{"24px"}, new String[]{"24px"}}
+        };
+    }
+
+    @Test(testName = "Verify change of class and href for icons", dataProvider = "Change Class and href Test Data", groups = "desktop-regression")
+    private void iconChangeClassAndHrefTest(String iconType, By element, String[] expWidth, String[] expHeight) {
+        width = commonUtils.getCSSValue(element, "width");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width for icon type: '" + iconType + "' is not as per the spec ,actual:" + width);
+        }
+        height = commonUtils.getCSSValue(element, "height");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height for icon type: '" + iconType + "' is not as per the spec ,actual:" + height);
+        }
+        Assert.assertTrue(isWidth && isHeight);
+    }
+
+    /**************
+     * Mobile Tests
+     **************/
+    @Test(testName = "Mobile: Verify the size of icons", dataProvider = "Icons Size Test Data", groups = "mobile-regression")
+    private void iconSizeMobileTest(String iconType, By element, String[] expWidth, String[] expHeight) {
+        width = commonUtils.getCSSValue(element, "width", "mobile");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width for icon type: '" + iconType + "' is not as per the spec, actual: " + width);
+        }
+        height = commonUtils.getCSSValue(element, "height", "mobile");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height for icon type: '" + iconType + "' is not as per the spec, actual: " + height);
+        }
+        Assert.assertTrue(isWidth && isHeight);
+    }
+
+    //Fill Color
+    @Test(testName = "Mobile: Verify if Icon fills parent's color", dataProvider = "Icons Fill Color Test Data", groups = "mobile-regression")
+    private void iconFillColorMobileTest(String iconType, By element, String[] expColor) {
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("The icon for the type: '" + iconType + "' is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isColor);
+    }
+
+    @Test(testName = "Mobile: Verify change of class and href for icons", dataProvider = "Change Class and href Test Data", groups = "mobile-regression")
+    private void iconChangeClassAndHrefMobileTest(String iconType, By element, String[] expWidth, String[] expHeight) {
+        width = commonUtils.getCSSValue(element, "width", "mobile");
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+        if (!isWidth) {
+            log.info("width for icon type: '" + iconType + "' is not as per the spec ,actual: " + width);
+        }
+        height = commonUtils.getCSSValue(element, "height", "mobile");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("height for icon type: '" + iconType + "' is not as per the spec ,actual: " + height);
+        }
+        Assert.assertTrue(isWidth && isHeight);
     }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        if (setDesktop.equals("on")) {
+            commonUtils.getUrl(url);
+        } else if (setMobile.equals("on")) {
+            commonUtils.getUrl(url, "mobile");
+        }
     }
 
     @AfterMethod(alwaysRun = true)

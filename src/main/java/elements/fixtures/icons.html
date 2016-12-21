@@ -4,147 +4,143 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../css/elements.css"/>
-
-    <style>
-        div.icons {
-            position: relative;
-            top: 50px;
-            left: 100px;
-        }
-    </style>
 </head>
-
 <body>
-<div class="icons">
-    <!--pe-icon-->
-    <span id="peIcon" class="pe-icon--"></span>
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
+<h1 id="page-title" class="pe-page-title">Icons</h1>
+<div class="icons" style="position: relative;top:50px;left: 100px">
+    Fill Color-18
+    <p name="icon-fill-color-18" style="color:#db0020">
+        <svg id="icon-fill-color-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--warning-18">
+            <use xlink:href="#warning-18"></use>
+        </svg>
+    </p>
+    Fill Color-24
+    <p name="icon-fill-color-24" style="color:#ffb81c">
+        <svg id="icon-fill-color-24" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--warning-24">
+            <use xlink:href="#warning-24"></use>
+        </svg>
+    </p>
 
-    <!--icon-check-->
-    <span id="check" class="pe-icon--check"></span>
+    Default Color-18
+    <p name="icon-default-color-18">
+        <svg id="icon-default-color-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--warning-18">
+            <use xlink:href="#warning-18"></use>
+        </svg>
+    </p>
 
-    <!--icon-chevron-down-->
-    <span id="chevronDown" class="pe-icon--chevron-down"></span>
+    Default Color-24
+    <p name="icon-default-color-24">
+        <svg id="icon-default-color-24" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--warning-24">
+            <use xlink:href="#warning-24"></use>
+        </svg>
+    </p>
 
-    <!--icon-chevron-up-->
-    <span id="chevronUp" class="pe-icon--chevron-up"></span>
+    Size-18
+    <p name="icon-size-18">
+        <svg id="icon-size-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--calendar-18">
+            <use xlink:href="#calendar-18"></use>
+        </svg>
+    </p>
 
-    <!--icon-chevron-left-->
-    <span id="chevronLeft" class="pe-icon--chevron-left"></span>
+    Size-24
+    <p name="icon-size-24">
+        <svg id="icon-size-24" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--calendar-24">
+            <use xlink:href="#calendar-24"></use>
+        </svg>
+    </p>
 
-    <!--icon-chevron-right-->
-    <span id="chevronRight" class="pe-icon--chevron-right"></span>
+    font-setting-18
+    <p name="icon-font-setting-18">
+        <svg id="icon-font-setting-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--font-setting-18">
+            <use xlink:href="#font-setting-18"></use>
+        </svg>
+    </p>
 
-    <!--icon-cog-->
-    <span id="cog" class="pe-icon--cog"></span>
+    font-setting-24
+    <p name="icon-font-setting-24">
+        <svg id="icon-font-setting-24" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--font-setting-24">
+            <use xlink:href="#font-setting-24"></use>
+        </svg>
+    </p>
 
-    <!--icon-envelope-->
-    <span id="envelope" class="pe-icon--envelope"></span>
+    change class and href 18:24
+    <p name="icon-change-class-18-href-24">
+        <svg id="icon-change-class-18-href-24" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--zoom-in-18">
+            <use xlink:href="#zoom-in-24"></use>
+        </svg>
+    </p>
 
-    <!--icon-plus-circle-->
-    <span id="plusCircle" class="pe-icon--plus-circle"></span>
+    change class and href 24:18
+    <p name="icon-change-class-24-href-18">
+        <svg id="icon-change-class-24-href-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--zoom-in-24">
+            <use xlink:href="#zoom-in-18"></use>
+        </svg>
+    </p>
 
-    <!--icon-search-->
-    <span id="search" class="pe-icon--search"></span>
-
-    <!--icon-thumb-tack-->
-    <span id="thumbTack" class="pe-icon--thumb-tack"></span>
-
-    <!--icon-times-->
-    <span id="times" class="pe-icon--times"></span>
-
-    <!--icon-times-circle-o-->
-    <span id="timesCircle" class="pe-icon--times-circle-o"></span>
-
-    <!--icon-trash-o-->
-    <span id="trashO" class="pe-icon--trash-o"></span>
-
-    <!--icon-users-->
-    <span id="users" class="pe-icon--users"></span>
-
-    <!--icon-user-->
-    <span id="user" class="pe-icon--user"></span>
-
-    <!--icon-info-circle-->
-    <span id="infoCircle" class="pe-icon--info-circle"></span>
-
-    <!--icon-file-o-->
-    <span id="file-o" class="pe-icon--file-o"></span>
-
-    <!--icon-calendar-->
-    <span id="calendar" class="pe-icon--calendar"></span>
-
-    <!--icon-chevron-right -->
-    <span id="chevron-right" class="pe-icon--chevron-right"></span>
-
-    <!--icon-chevron-left -->
-    <span id="chevron-left" class="pe-icon--chevron-left"></span><br>
-
-    <!--icon-square-o -->
-    <span id="square-o" class="pe-icon--square-o"></span>
-
-    <!--icon-check-square-o -->
-    <span id="check-square-o" class="pe-icon--check-square-o"></span>
-
-    <!--icon-ban-->
-    <span id="ban" class="pe-icon--ban"></span>
-
-    <!--icon-camera -->
-    <span id="camera" class="pe-icon--camera"></span>
-
-    <!--icon-exclamation-circle -->
-    <span id="exclamation-circle" class="pe-icon--exclamation-circle"></span>
-
-    <!--icon-clock-o -->
-    <span id="clock-o" class="pe-icon--clock-o"></span>
-    
-    <!--icon-bell-->
-    <span id="bell" class="pe-icon--bell"></span>
-	
-	<!--icon-archive-->
-    <span id="archive" class="pe-icon--archive"></span>
-
-    <!--icon-question-circle -->
-    <span id="question-circle" class="pe-icon--question-circle"></span>
-
-    <!--icon-heart-->
-    <span id="heart" class="pe-icon--heart"></span>
-
-    <!--icon-heart-o-->
-    <span id="heart-o" class="pe-icon--heart-o"></span>
-
-    <!--icon-laptop-->
-    <span id="laptop" class="pe-icon--laptop"></span>
-
-    <!--icon-book-->
-    <span id="book" class="pe-icon--book"></span>
-
-    <!--icon-list-ul-->
-    <span id="list-ul" class="pe-icon--list-ul"></span>
-
-    <!--icon-th-large-->
-    <span id="th-large" class="pe-icon--th-large"></span>
-
-    <!--icon-newspaper-o-->
-    <span id="newspaper-o" class="pe-icon--newspaper-o"></span>
-
-    <!--icon-video-camera-->
-    <span id="video-camera" class="pe-icon--video-camera"></span>
-
-    <!--icon-picture-o-->
-    <span id="picture-o" class="pe-icon--picture-o"></span>
-
-    <!--icon-caret-right-->
-    <span id="caret-right" class="pe-icon--caret-right"></span>
-
-    <!--icon-caret-down-->
-    <span id="caret-down" class="pe-icon--caret-down"></span>
-
-    <!--icon-lightbulb-o-->
-    <span id="lightbulb-o" class="pe-icon--lightbulb-o"></span>
-
-    <!--icon-shopping-cart-->
-    <span id="shopping-cart" class="pe-icon--shopping-cart"></span>
-
+    Icon in a button
+    <button name="icon-in-a-button" type="button" class="pe-icon--btn">
+        <svg id="icon-change-class-24-href-18" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             aria-hidden="true"
+             class="pe-icon--remove-sm-18">
+            <use xlink:href="#remove-sm-18"></use>
+        </svg>
+    </button>
 </div>
 </body>
 </html>
