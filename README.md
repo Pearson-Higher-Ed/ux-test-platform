@@ -6,6 +6,7 @@
 
     <details>
     <summary> Pre-requisite to run tests on local: </summary>
+    * Have <a href="https://nodejs.org/en/download/">node </a> and <a href="http://maven.apache.org/install.html">maven</a> installed on your machine
       * __elements sdk__:
     <details> 
       <summary>Install _elements sdk_ on your local machine and copy the _elements.css_ file to /ux-test-       platform/src/main/java/elements/css/ </summary>
@@ -18,8 +19,7 @@
         cp elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/
         </pre>
     </details>
-
-    * __origami_v2__:
+        * __origami_v2__:
     <details> 
       <summary>Install origami v2 component(eg. app-header) on your local machine and copy the dist.app-header.js file to /ux-test- platform/src/main/java/origamiV2/jsfiles/appHeader/
     </summary>
@@ -41,7 +41,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
 * Go to ux-test-platform directory
 <pre>
     cd ux-test-platform
-    git checkout _rebrand_
+    git checkout rebrand
     npm install
     npm run elements-assets
     npm start 
@@ -49,7 +49,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
     * In test_suites/&lt;&lt;component&gt;&gt;.xml set the below values, and leave the rest to default:
     <details>
     <summary>For CI tests:</summary>
-    <pre>
+        <pre>
     &lt;parameter name="runEnv" value="local"&gt;&lt;/parameter&gt;
     &lt;parameter name="desktop" value="on">&lt;/parameter&gt;
     &lt;parameter name="mobile" value="off"&gt;
@@ -58,7 +58,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
                 &lt;include name="desktop-ci"/&gt;
             &lt;/run&gt;
         &lt;/groups&gt;
-</pre>
+    </pre>
 </details>
 <details>
 <summary>For Regression tests:</summary>
