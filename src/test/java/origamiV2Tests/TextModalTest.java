@@ -2,6 +2,7 @@ package origamiV2Tests;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -27,11 +28,16 @@ public class TextModalTest extends BaseClass {
     private final String textModalJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/text-modal.js";
     private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/temp.js";
     private final String textModalDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/dist.text-modal.js";
+
+    /*private final String textModalJSPath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/text-modal.js";
+    private final String tempJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/temp.js";
+    private final String textModalDistJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/dist.text-modal.js";
+*/
     private String defaultConfig = "detail: { elementId: 'app', contentTemplateLarge: true, footerVisible: true, successBtnCallback: function() { console.log('¡¡success button pressed!!') }}";
     final static Logger log = Logger.getLogger(TextModalTest.class.getName());
-    private String actInitiateBtnVal, actTitleFontSize, actTitleLineHeight, actContentFontSize, actContentLineHeight, actContentColor, actModalWidth, actCancelBtnClass, actSuccessBtnClass, initiateBtnAccessible,actXBtnClass;
+    private String actInitiateBtnVal, actTitleFontSize, actTitleLineHeight, actContentFontSize, actContentLineHeight, actContentColor, actModalWidth, actCancelBtnClass, actSuccessBtnClass, initiateBtnAccessible, actXBtnClass;
     private boolean isInitiateBtnAccessible, result, isCSSProperty, isTitleFontSize, isTitleLineHeight, isContentFontSize;
-    private boolean isContentLineHeight, isContentColor, isModalWidth, isCancelBtnClass, isSuccessBtnClass, isModalExpanded,isXBtnClass;
+    private boolean isContentLineHeight, isContentColor, isModalWidth, isCancelBtnClass, isSuccessBtnClass, isModalExpanded, isXBtnClass;
     private String mobile, browser, platform, browserLogs, content, code, fetchCharacter, actualContent;
     private List<String> newLines;
     private BufferedReader br;
@@ -139,7 +145,7 @@ public class TextModalTest extends BaseClass {
         Assert.assertTrue(isModalExpanded);
     }
 
-    @Test(testName = "'X' Button Test",groups = "desktop-regression")
+    @Test(testName = "'X' Button Test", groups = "desktop-regression")
     private void clickXButtonTest() throws Exception {
         commonUtils.click(textModalPgObj.initiateBtn);
         actXBtnClass = commonUtils.getAttributeValue(textModalPgObj.xBtn, "class");
@@ -181,13 +187,14 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Validate the modal title and content", dataProvider = "Modal Title,Content CSS data", groups = {"1desktop-regression"})
-    private void modalTitleTest(int width, int height, String[] expWidth, String[] titleFontSize, String titleLineHeight, String contentFontSize, String contentLineHeight, String[] contentColor) {
+    @Test(testName = "Validate the modal title and content", dataProvider = "Modal Title,Content CSS data", groups = {"desktop-regression"})
+    private void modalTitleTest(int width, int height, String[] expWidth, String[] titleFontSize, String titleLineHeight, String contentFontSize, String contentLineHeight, String[] contentColor) throws InterruptedException {
         if (platform.contains("Windows")) {
             throw new SkipException("Saucelabs does not support responsive behavior on Windows");
         }
-        commonUtils.setWindowSize(width, height);
         commonUtils.click(textModalPgObj.initiateBtn);
+        Thread.sleep(2000);
+        commonUtils.setWindowSize(width, height);
 
         String templateName = commonUtils.getAttributeValue(textModalPgObj.modal, "class");
         result = templateName.contains("pe-template__static-large");
@@ -203,6 +210,7 @@ public class TextModalTest extends BaseClass {
 
         actTitleFontSize = commonUtils.getCSSValue(textModalPgObj.title, "font-size");
         actTitleLineHeight = commonUtils.getCSSValue(textModalPgObj.title, "line-height");
+        actInitiateBtnVal = commonUtils.getAttributeValue(textModalPgObj.initiateBtn, "aria-expanded");
 
         actContentFontSize = commonUtils.getCSSValue(textModalPgObj.content, "font-size");
         actContentLineHeight = commonUtils.getCSSValue(textModalPgObj.content, "line-height");
@@ -220,8 +228,8 @@ public class TextModalTest extends BaseClass {
         if (isContentColor == false) {
             log.info("At" + width + "The Title's font size" + actContentColor + "is not as per the expected spec");
         }
-
-        Assert.assertTrue(isModalWidth && isTitleFontSize && isTitleLineHeight && isContentFontSize && isContentLineHeight && isContentColor &&result);
+        commonUtils.click(textModalPgObj.cancelBtn);
+        Assert.assertTrue(isModalWidth && isTitleFontSize && isTitleLineHeight && isContentFontSize && isContentLineHeight && isContentColor && result);
     }
 
     @DataProvider(name = "InlineCSS Property Test Data")
@@ -276,7 +284,7 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Small Template config Test", dataProvider = "Small Template config Test Data", groups = {"1desktop-regression"})
+    @Test(testName = "Small Template config Test", dataProvider = "Small Template config Test Data", groups = {"desktop-regression"})
     private void smTemplateConfigTest(int width, int height, String[] expWidth, String titleFontSize, String titleLineHeight, String contentFontSize, String contentLineHeight, String contentColor, String Config) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
@@ -318,6 +326,7 @@ public class TextModalTest extends BaseClass {
         isContentLineHeight = commonUtils.assertValue(actContentLineHeight, contentLineHeight, "at width" + width + "line-height of content is not as per spec");
         isContentColor = commonUtils.assertValue(actContentColor, contentColor, "at width" + width + "color of content is not as per spec");
         writeInitialConfig(textModalJSPath);
+        commonUtils.click(textModalPgObj.cancelBtn);
         Assert.assertTrue(result && isModalWidth);
     }
 
@@ -341,6 +350,7 @@ public class TextModalTest extends BaseClass {
         Thread.sleep(1000);
         result = commonUtils.isElementsVisibleOnPage(textModalPgObj.footer);
         writeInitialConfig(textModalJSPath);
+        commonUtils.click(textModalPgObj.xBtn);
         Assert.assertFalse(result);
     }
 
@@ -429,8 +439,8 @@ public class TextModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Validate the modal title and content", dataProvider = "Mobile : Template config Test Data", groups = {"1mobile-regression"})
-    private void modalTitleMobileTest1(ScreenOrientation mode, String[] expWidth, String[] titleFontSize, String[] titleLineHeight, String contentFontSize, String contentLineHeight, String contentColor) throws Exception {
+    @Test(testName = "Validate the modal title and content", dataProvider = "Mobile : Template config Test Data", groups = {"mobile-regression"})
+    private void modalTitleMobileTest(ScreenOrientation mode, String[] expWidth, String[] titleFontSize, String[] titleLineHeight, String contentFontSize, String contentLineHeight, String contentColor) throws Exception {
         appium.rotate(mode);
         commonUtils.click(textModalPgObj.initiateBtn, "mobile");
 
