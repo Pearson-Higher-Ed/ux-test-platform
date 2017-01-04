@@ -3,13 +3,13 @@
 <suite name="Origami v2 - Slider Test Suite">
 
     <parameter name="runEnv" value="sauce"></parameter>
-    <parameter name="travis" value="off"></parameter>
+    <parameter name="travis" value="on"></parameter>
 
     <!-- For Desktop -->
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="51.0"></parameter><!-- browser version on sauce machine -->
+    <parameter name="sauceBrowserVer" value="54.0"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="chrome"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
