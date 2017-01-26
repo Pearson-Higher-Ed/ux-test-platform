@@ -39,12 +39,13 @@ public class CommonUtils {
     Actions action;
     JavascriptExecutor js = null;
     MobileElement mobWebElement;
-    boolean elementVisible = false;
+    boolean elementVisible = false, isForValue;
     List<WebElement> listWebElements;
     List<MobileElement> listMobWebElements;
     LogEntries browserLogs;
     StringBuffer sb = null;
     Color c = null;
+    String labelContains;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -264,6 +265,22 @@ public class CommonUtils {
             elementVisible = false;
             return elementVisible;
         }
+    }
+
+    public boolean checkLabelForVal(By element, By target) {
+        webElement = driver.findElement(element);
+        labelContains = webElement.getAttribute("for");
+        webElement = driver.findElement(target);
+        isForValue = labelContains.equals(webElement.getAttribute("id"));
+        return isForValue;
+    }
+
+    public boolean checkLabelForVal(By element, By target, String mobile) {
+        webElement = appium.findElement(element);
+        labelContains = webElement.getAttribute("for");
+        webElement = appium.findElement(target);
+        isForValue = labelContains.equals(webElement.getAttribute("id"));
+        return isForValue;
     }
 
     public static void setupChromeDriver() {

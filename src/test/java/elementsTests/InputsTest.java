@@ -32,7 +32,9 @@ public class InputsTest extends BaseClass {
     private static String browser;
     private static String lBrowser;
     String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", height = "", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "";
-    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTrainsitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false;
+    String paddingBottom, paddingTop, pwdUnderLineHeight, borderBottom, borderBottomColor, borderBottomStyle, pwdUnderLineColor, pwdTextLabel, pwdTextLabelColor, pwdUnderLineWidth, showBtnColor, showBtnWidth, showBtnMarginTop, showBtnFloat, labelFor;
+    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false;
+    boolean isPaddingBottom, isPaddingTop, isBorderBottom, isBorderBottomColor, isBorderBottomStyle, isPwdUnderLineColor, isPwdTextLabel, isPwdTextLabelColor, isPwdBorderStyle, isPwdUnderLineWidth, isShowBtnColor, isShowBtnWidth, isShowBtnMarginTop, isShowBtnFloat, isLabelFor;
     int roundedTransValue, len, lastIndexOf;
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
@@ -218,11 +220,11 @@ public class InputsTest extends BaseClass {
             transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property");
             isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
             trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function");
-            isTrainsitionTimingFunc = commonUtils.assertCSSProperties("transition-timing-function", trainsitionTimingFunc, expUnderlineTransitionTimingFunc);
-            if(!isTrainsitionTimingFunc){
-                log.info("'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec, actual: "+expUnderlineTransitionTimingFunc);
+            isTransitionTimingFunc = commonUtils.assertCSSProperties("transition-timing-function", trainsitionTimingFunc, expUnderlineTransitionTimingFunc);
+            if (!isTransitionTimingFunc) {
+                log.info("'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec, actual: " + expUnderlineTransitionTimingFunc);
             }
-            Assert.assertTrue(isOutlineStyle && isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTrainsitionTimingFunc);
+            Assert.assertTrue(isOutlineStyle && isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
         }
     }
 
@@ -391,6 +393,92 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft);
     }
 
+    @DataProvider(name = "Input Box - Password Show")
+    private Object[][] getInputBoxPasswordShowTestData() {
+        return new Object[][]{
+                {"12px", new String[]{"rgba(106, 112, 112, 1)", "rgb(106, 112, 112)"}, "10px", "8px", "1px", new String[]{"rgba(106, 112, 112, 1)", "rgb(106, 112, 112)"},
+                        "solid", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "rgb(4, 122, 156)"}, "-32px", "40px", "right"},
+        };
+    }
+
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Show", groups = "desktop-regression")
+    private void inputBoxPasswordShowTest(String expPwdTextLabel, String[] expPwdTextLabelColor, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle, String[] expShowBtnColor, String expShowBtnTopMargin, String expShowBtnWidth, String expShowBtnFloat) {
+
+        pwdTextLabel = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "font-size");
+        pwdTextLabelColor = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "color");
+        isPwdTextLabel = commonUtils.assertValue(pwdTextLabel, expPwdTextLabel, "The font size of the Label is not as per spec");
+        isPwdTextLabelColor = commonUtils.assertCSSProperties("color", pwdTextLabelColor, expPwdTextLabelColor);
+        if (isPwdTextLabelColor == false) {
+            log.info("Pwd text label color is not as per spec,found" + pwdTextLabelColor);
+        }
+        isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.passwordTextLabel, inputsPgObj.passwordField);
+        if (isLabelFor == false) {
+            log.info("the password label is not mapped correctly to the password field");
+        }
+
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.passwordField, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.passwordField, "padding-top");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "The padding-bottom of the pwd field is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "The padding-top of the pwd field is not as per spec");
+
+        showBtnColor = commonUtils.getCSSValue(inputsPgObj.showbutton, "color");
+        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
+        if (isShowBtnColor == false) {
+            log.info("Show Button color is not as per spec,found " + showBtnColor);
+        }
+        showBtnMarginTop = commonUtils.getCSSValue(inputsPgObj.showbutton, "margin-top");
+        isShowBtnMarginTop = commonUtils.assertValue(showBtnMarginTop, "-32px", "The top margin value of show btn is not as per specs");
+        showBtnWidth = commonUtils.getCSSValue(inputsPgObj.showbutton, "width");
+        isShowBtnWidth = commonUtils.assertValue(showBtnWidth, "40px", "The width of show btn is not as per specs");
+        showBtnFloat = commonUtils.getCSSValue(inputsPgObj.showbutton, "float");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn is not on aligned on the right side");
+
+        borderBottom = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-width");
+        borderBottomColor = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-color");
+        borderBottomStyle = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-style");
+        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "The bottom border width is not as per spec");
+        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
+        if (isBorderBottomColor == false) {
+            log.info("Bottom border color is not as per spec,found " + borderBottomColor);
+        }
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "The bottom border style is not as per spec");
+
+        Assert.assertTrue(isPwdTextLabel && isPwdTextLabelColor && isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
+
+    }
+
+    @DataProvider(name = "Input Box - Password Hide")
+    private Object[][] getInputBoxPasswordHideTestData() {
+        return new Object[][]{
+
+                {480, 800, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "rgb(4, 122, 156)"}, "480px"},
+                {768, 800, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "rgb(4, 122, 156)"}, "768px"},
+                {1024, 800, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "rgb(4, 122, 156)"}, "1024px"},
+                {1140, 800, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "(4, 122, 156, 0.92549)", "rgb(4, 122, 156)"}, "1140px"}
+        };
+    }
+
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Hide", groups = "desktop-regression")
+    private void inputBoxPasswordHideTest(int width, int height, String expUnderlineHeight, String[] expUnderlineColor, String expUnderlineWidth) throws InterruptedException {
+        commonUtils.setWindowSize(width, height);
+        commonUtils.click(inputsPgObj.passwordField);
+        Thread.sleep(1000);
+
+        pwdUnderLineHeight = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "height");
+        pwdUnderLineColor = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "background-color");
+        pwdUnderLineWidth = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "width");
+
+        isHeight = commonUtils.assertValue(pwdUnderLineHeight, expUnderlineHeight, "The underline height is not as per spec");
+        isPwdUnderLineColor = commonUtils.assertCSSProperties("background-color", pwdUnderLineColor, expUnderlineColor);
+        if (isPwdUnderLineColor == false) {
+            log.info("Underline color is not as per spec,found " + pwdUnderLineColor + " at width " + width);
+        }
+        isPwdUnderLineWidth = commonUtils.assertValue(pwdUnderLineWidth, expUnderlineWidth, "The underline width is not as per spec");
+
+        Assert.assertTrue(isHeight && isPwdUnderLineColor && isPwdUnderLineWidth);
+    }
+
+
     /**************
      * Mobile Tests
      **************/
@@ -500,9 +588,89 @@ public class InputsTest extends BaseClass {
         transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property", "mobile");
         isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
         trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
-        isTrainsitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
-        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTrainsitionTimingFunc);
+        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
     }
+
+    @DataProvider(name = "Mobile : Input Box - Password Show")
+    private Object[][] getInputBoxPasswordShowMobileTestData() {
+        return new Object[][]{
+                {"12px", "rgba(106, 112, 112, 1)", "10px", "8px", "1px", "rgba(106, 112, 112, 1)", "solid",
+                        new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)", "rgb(4, 122, 156)"}},
+        };
+    }
+
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Show", groups = "mobile-regression")
+    private void inputBoxPasswordShowMobileTest(String expPwdTextLabel, String expPwdTextLabelColor, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String expBorderBtmColor, String expBorderBtmStyle, String[] expShowBtnColor) {
+
+        pwdTextLabel = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "font-size", "mobile");
+        pwdTextLabelColor = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "color", "mobile");
+        isPwdTextLabel = commonUtils.assertValue(pwdTextLabel, expPwdTextLabel, "The font size of the Label is not as per spec");
+        isPwdTextLabelColor = commonUtils.assertValue(pwdTextLabelColor, expPwdTextLabelColor, "The color of the Label is not as per spec");
+        isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.passwordTextLabel, inputsPgObj.passwordField, "mobile");
+        if (isLabelFor == false) {
+            log.info("the password label is not mapped correctly to the password field");
+        }
+
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.passwordField, "padding-bottom", "mobile");
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.passwordField, "padding-top", "mobile");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "The padding-bottom of the pwd field is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "The padding-top of the pwd field is not as per spec");
+
+        showBtnColor = commonUtils.getCSSValue(inputsPgObj.showbutton, "color", "mobile");
+        showBtnMarginTop = commonUtils.getCSSValue(inputsPgObj.showbutton, "margin-top", "mobile");
+        showBtnWidth = commonUtils.getCSSValue(inputsPgObj.showbutton, "width", "mobile");
+        showBtnFloat = commonUtils.getCSSValue(inputsPgObj.showbutton, "float", "mobile");
+        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
+        if (isShowBtnColor == false) {
+            log.info("Show Button color is not as per spec,found " + showBtnColor);
+        }
+        isShowBtnMarginTop = commonUtils.assertValue(showBtnMarginTop, "-32px", "The top margin value of show btn is not as per specs");
+        isShowBtnWidth = commonUtils.assertValue(showBtnWidth, "40px", "The width of show btn is not as per specs");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn is not on aligned on the right side");
+
+        borderBottom = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-width", "mobile");
+        borderBottomColor = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-color", "mobile");
+        borderBottomStyle = commonUtils.getCSSValue(inputsPgObj.passwordField, "border-bottom-style", "mobile");
+        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "The bottom border width is not as per spec");
+        isBorderBottomColor = commonUtils.assertValue(borderBottomColor, expBorderBtmColor, "The bottom border color is not as per spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "The bottom border style is not as per spec");
+
+        Assert.assertTrue(isPwdTextLabel && isPwdTextLabelColor && isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
+
+    }
+
+    @DataProvider(name = "Mobile : Input Box - Password Hide")
+    private Object[][] getInputBoxPasswordHideMobileTestData() {
+        return new Object[][]{
+
+                {ScreenOrientation.PORTRAIT, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)"}, new String[]{"414px", "768px", "601px"}},
+                {ScreenOrientation.LANDSCAPE, "4px", new String[]{"rgba(4, 122, 156, 1)", "rgba(4, 122, 156, 0.803922)"}, new String[]{"736px", "1024px", "962px"}},
+        };
+    }
+
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Hide", groups = "mobile-regression")
+    private void inputBoxPasswordHideMobileTest(ScreenOrientation mode, String expUnderlineHeight, String[] expUnderlineColor, String[] expUnderlineWidth) throws InterruptedException {
+        appium.rotate(mode);
+        commonUtils.click(inputsPgObj.passwordField, "mobile");
+        Thread.sleep(1000);
+
+        pwdUnderLineHeight = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "height", "mobile");
+        pwdUnderLineColor = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "background-color", "mobile");
+        pwdUnderLineWidth = commonUtils.getCSSValue(inputsPgObj.passwordUnderLine, "width", "mobile");
+
+        isHeight = commonUtils.assertValue(pwdUnderLineHeight, expUnderlineHeight, "The underline height is not as per spec");
+        isPwdUnderLineColor = commonUtils.assertCSSProperties("background-color", pwdUnderLineColor, expUnderlineColor);
+        if (isPwdUnderLineColor == false) {
+            log.info("Underline color is not as per spec,found " + pwdUnderLineColor + " at mode " + mode);
+        }
+        isPwdUnderLineWidth = commonUtils.assertCSSProperties("width", pwdUnderLineWidth, expUnderlineWidth);
+        if (isPwdUnderLineWidth == false) {
+            log.info("Underline width is not as per spec,found " + pwdUnderLineWidth + " at mode " + mode);
+        }
+        Assert.assertTrue(isHeight && isPwdUnderLineColor && isPwdUnderLineWidth);
+    }
+
 
     @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "mobile-regression")
     private void checkboxNormalStateMobileTest(String cssProperty, String[] expectedCSSValue) {
