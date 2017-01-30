@@ -28,11 +28,6 @@ public class TextModalTest extends BaseClass {
     private final String textModalJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/text-modal.js";
     private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/temp.js";
     private final String textModalDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/dist.text-modal.js";
-
-    /*private final String textModalJSPath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/text-modal.js";
-    private final String tempJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/temp.js";
-    private final String textModalDistJSFilePath = "/Users/udhadpa/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/dist.text-modal.js";
-*/
     private String defaultConfig = "detail: { elementId: 'app', contentTemplateLarge: true, footerVisible: true, successBtnCallback: function() { console.log('¡¡success button pressed!!') }}";
     final static Logger log = Logger.getLogger(TextModalTest.class.getName());
     private String actInitiateBtnVal, actTitleFontSize, actTitleLineHeight, actContentFontSize, actContentLineHeight, actContentColor, actModalWidth, actCancelBtnClass, actSuccessBtnClass, initiateBtnAccessible, actXBtnClass;

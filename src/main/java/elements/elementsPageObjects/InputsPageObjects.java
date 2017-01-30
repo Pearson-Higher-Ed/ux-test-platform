@@ -63,4 +63,11 @@ public class InputsPageObjects {
     public By checkBoxCheckedDisabledIcon = By.xpath("//span[@id='checkbox-checked-disabled']/*[local-name() = 'svg']");
 
     public By checkBoxState = By.id("checkbox-state");
+
+    public By passwordTextLabel = By.id("textLabelInput");
+    public By passwordField = By.id("e");
+    public By passwordUnderLine = By.id("password-input-underline");
+    public By showbutton = By.id("showbutton");
+
+
 }

@@ -7,50 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+
 <!-- Inputs (single line) -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line)</h2>
-<div >Inputs (single line)
-        <label id="sl-text-label-input" class="pe-textLabelInput__label" for="a">First Name</label>
-        <input id="sl-text-input" type="text" class="pe-textInput" id="a" placeholder="First Name" value="First Name">
-        <span id="input-underline" class="pe-input_underline"></span>
+<div>Inputs (single line)
+    <label id="sl-text-label-input" class="pe-textLabelInput__label" for="a">First Name</label>
+    <input id="sl-text-input" type="text" class="pe-textInput" id="a" placeholder="First Name" value="First Name">
+    <span id="input-underline" class="pe-input_underline"></span>
 </div>
-<div >Inputs (single line) without value
-        <label class="pe-textLabelInput__label" for="g">First Name</label>
-        <input id="sl-text-input-without-value" type="text" class="pe-textInput" id="g" placeholder="First Name" >
-        <span class="pe-input_underline"></span>
+<div>Inputs (single line) without value
+    <label class="pe-textLabelInput__label" for="g">First Name</label>
+    <input id="sl-text-input-without-value" type="text" class="pe-textInput" id="g" placeholder="First Name">
+    <span class="pe-input_underline"></span>
 </div>
 
 <!-- Inputs (single line - error) -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - error)</h2>
-<div >
-        <label id="sl-text-label-input-error" class="pe-textLabelInput__label--label_error" for="b">First Name</label>
-        <input id="sl-text-input-error" type="text" class="pe-textInput--input_error" id="b" placeholder="First Name" value="First Name"/>
-        <span id="input-underline-error" class="pe-inputError_underline"></span>
+<div>
+    <label id="sl-text-label-input-error" class="pe-textLabelInput__label--label_error" for="b">First Name</label>
+    <input id="sl-text-input-error" type="text" class="pe-textInput--input_error" id="b" placeholder="First Name"
+           value="First Name"/>
+    <span id="input-underline-error" class="pe-inputError_underline"></span>
 </div>
 
 <!-- Inputs (single line - disabled) -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - disabled)</h2>
-<div >
-        <label id="sl-text-label-input-disabled" class="pe-textLabelInput__label--label-disabled" for="c">First Name</label>
-        <input id="sl-text-input-disabled" type="text" class="pe-textInput" id="c" value="Donald" disabled/>
+<div>
+    <label id="sl-text-label-input-disabled" class="pe-textLabelInput__label--label-disabled" for="c">First Name</label>
+    <input id="sl-text-input-disabled" type="text" class="pe-textInput" id="c" value="Donald" disabled/>
 </div>
 
 <!-- Inputs (single line - read only) -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line - read only)</h2>
-<div >
-        <label id="sl-text-label-input-readonly" class="pe-textLabelInput__label" for="d">First Name</label>
-        <input id="sl-text-input-readonly" type="text" class="pe-textInput--input_readonly" id="d" value="Donald" readonly/>
+<div>
+    <label id="sl-text-label-input-readonly" class="pe-textLabelInput__label" for="d">First Name</label>
+    <input id="sl-text-input-readonly" type="text" class="pe-textInput--input_readonly" id="d" value="Donald" readonly/>
+</div>
+
+<!-- Password -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password)</h2>
+<div>
+<label id="textLabelInput" class="pe-textLabelInput__label" for="e">Password</label>
+<input type="password" class="pe-textInput" id="e" placeholder="Password"/>
+<span id="password-input-underline" class="pe-input_underline"></span>
+<button id="showbutton" onclick="" class="pe-textInput__showButton">show</button>
 </div>
 
 <!--Check Boxes -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Check Box</h2>
 <h3>Unchecked and Checked - Normal</h3>
-<div >
+<div>
     <p>Unchecked</p>
     <div class="pe-checkbox">
-        <input type="checkbox"  id="checkboxInput-unchecked" value="1" />
+        <input type="checkbox" id="checkboxInput-unchecked" value="1"/>
         <label for="checkboxInput-unchecked">Bacon</label>
-      <span id="checkbox-unchecked">
+        <span id="checkbox-unchecked">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -61,13 +73,13 @@
       </span>
     </div>
 </div>
-<br />
-<div >
+<br/>
+<div>
     <p>Checked</p>
     <div class="pe-checkbox">
         <input type="checkbox" id="checkboxInput-checked" value="1" checked/>
         <label for="checkboxInput-checked">Pastrami</label>
-      <span id="checkbox-checked">
+        <span id="checkbox-checked">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -80,12 +92,12 @@
 </div>
 <br/>
 <h3>Unchecked and Checked - Focus</h3>
-<div >
+<div>
     <p>Unchecked Focus</p>
     <div class="pe-checkbox">
-        <input type="checkbox" id="checkboxInput-unchecked-focus" value="1" />
+        <input type="checkbox" id="checkboxInput-unchecked-focus" value="1"/>
         <label for="checkboxInput-unchecked-focus">Ham</label>
-      <span id="checkbox-unchecked-focus">
+        <span id="checkbox-unchecked-focus">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -97,12 +109,12 @@
     </div>
 </div>
 <br/>
-<div >
+<div>
     <p>Checked Focus</p>
     <div class="pe-checkbox">
         <input type="checkbox" id="checkboxInput-checked-focus" value="1" checked/>
         <label for="checkboxInput-checked-focus">Steak</label>
-      <span id="checkbox-checked-focus">
+        <span id="checkbox-checked-focus">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -115,12 +127,12 @@
 </div>
 <br/>
 <h3>Unchecked and Checked - Disabled</h3>
-<div >
+<div>
     <p>Disabled Checked</p>
     <div class="pe-checkbox">
         <input type="checkbox" id="checkboxInput-unchecked-disabled" value="1" checked disabled/>
         <label for="checkboxInput-unchecked-disabled">Tripe</label>
-      <span id="checkbox-checked-disabled">
+        <span id="checkbox-checked-disabled">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -132,12 +144,12 @@
     </div>
 </div>
 <br/>
-<div >
+<div>
     <p>Disabled Unchecked</p>
     <div class="pe-checkbox">
         <input type="checkbox" id="checkboxInput-checked-disabled" value="1" disabled/>
         <label for="checkboxInput-checked-disabled">Meatball</label>
-      <span id="checkbox-unchecked-disabled">
+        <span id="checkbox-unchecked-disabled">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -149,11 +161,11 @@
     </div>
 </div>
 <h3>CheckBox State</h3>
-<div >
+<div>
     <div class="pe-checkbox">
-        <input type="checkbox"  id="checkboxInput-state" value="1" />
+        <input type="checkbox" id="checkboxInput-state" value="1"/>
         <label for="checkboxInput-unchecked">Test State</label>
-      <span id="checkbox-state">
+        <span id="checkbox-state">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
