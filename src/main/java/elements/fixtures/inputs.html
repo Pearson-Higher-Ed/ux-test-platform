@@ -48,10 +48,10 @@
 <!-- Password -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password)</h2>
 <div>
-<label id="textLabelInput" class="pe-textLabelInput__label" for="e">Password</label>
-<input type="password" class="pe-textInput" id="e" placeholder="Password"/>
-<span id="password-input-underline" class="pe-input_underline"></span>
-<button id="showbutton" onclick="" class="pe-textInput__showButton">show</button>
+    <label id="textLabelInput" class="pe-textLabelInput__label" for="e">Password</label>
+    <input type="password" class="pe-textInput" id="e" placeholder="Password"/>
+    <span id="password-input-underline" class="pe-input_underline"></span>
+    <button id="showbutton" onclick="" class="pe-textInput__showButton">show</button>
 </div>
 
 <!--Check Boxes -->
@@ -176,6 +176,22 @@
       </span>
     </div>
 </div>
+<div>
+    <h3>Inputs - Basic (single line)</h3>
+    <label id="basic-sl-label" class="pe-textLabelInput__label" for="z">Label</label>
+    <input type="text" class="pe-textInput--basic" id="z" placeholder="Placeholder"/>
+</div>
 
+<div>
+    <h3>Inputs - Basic (single line - error)</h3>
+    <label id="basic-error-label" class="pe-textLabelInput__label--label_error" for="y">Email address</label>
+    <input type="text" class="pe-textInput--basic_error" id="y" placeholder="Error"/>
+</div>
+
+<div>
+    <h3>Inputs - Basic (single line - disabled)</h3>
+    <label id="basic-disabled-label" class="pe-textLabelInput__label--label-disabled" for="x">Label</label>
+    <input type="text" class="pe-textInput--basic" id="x" placeholder="Disabled" disabled/>
+</div>
 </body>
 </html>
