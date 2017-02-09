@@ -1,6 +1,9 @@
 language: java
 sudo: false
 
+jdk:
+  - oraclejdk8
+
 env:
   global:
   - secure: UX8IPlfuE1XvcEJwZiv6eM4rsPO3cxapgywxLqOObVt2wypsSiHo0NkkYJet5MfgpPYIviy8FP2poZUG3PkSc+x+zWtNf+usYBMeuhjbaW4sUvjznwhOpq5qphEhBlf7L9OCGd5Qv0qZjoHNSD5stfSOJd8Z53miFJ4O4KjpRNVFCJYfn1ple5WCoCjATbMl6bZqbigYU3s0jaXp9oue8cYVCttm/ahyQ+O9ya/NvGr93mr+dIr0scXDAMDM3aUTB8VZcRJ46Y9jy8MJ3nQTlJr1/+Gm2ujdpzgloVlQ2nBgSPAjvxJv3RQIZZsIYm4SoRntpSilYR91KZFEirUkZON7E6/bhb8N4mJTnqo5UPcHJl/8teF+SfdURiYDc7XQ3i94aiWKzOdzNBWi0OZsAU483jn0+kuTMafsTZ3EOGMMequZecdfn4PG47Ahq29Qy2s/92CECNoFiZL8BXCAbb4ecnS0fShe/79qsbG7OyTHkJlDPYhoQY+2eCVv0Wnrprv/sThzmnrs8QpAyPWAQ4siJ0y8Q8mIeDUWWZ4C5cll4Mincom7tdOOapuCsNLCxWn2LJeyCRPzpbgJBW4I2R76Ed2yjR1yuh4l5W0HB1604rRh+ImPpHn8ZYDYxrk284aI2RzhSNkUU6bdx2tgheJs2uFtDgXKIpZtlw1Kqks=
@@ -26,17 +29,17 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
-- export feature_branch=v1
+- export component=compounds_sdk
+- export feature_branch=v0
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=compounds_sdk.xml test
 
 notifications:
   email:
     recipients:
     - eajazali.mahaboobbasha@pearson.com
-    - payal.dhadge@pearson.com
+    #- payal.dhadge@pearson.com
     on_success: always
     on_failure: always
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476

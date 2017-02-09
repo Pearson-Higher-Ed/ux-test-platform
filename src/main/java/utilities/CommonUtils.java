@@ -15,13 +15,19 @@ import org.testng.SkipException;
 
 import java.awt.*;
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.MalformedInputException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,6 +52,8 @@ public class CommonUtils {
     StringBuffer sb = null;
     Color c = null;
     String labelContains;
+    BufferedReader br = null;
+    private List<String> newLines, fileContent;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -284,7 +292,6 @@ public class CommonUtils {
     }
 
     public static void setupChromeDriver() {
-
         String ChromProp = "webdriver.chrome.driver";
         File targetChromedriver = null;
         String osType = System.getProperty("os.name");
@@ -310,5 +317,66 @@ public class CommonUtils {
     public Object browserLogs() {
         browserLogs = driver.manage().logs().get("browser");
         return browserLogs.filter(Level.ALL);
+    }
+
+    //Read all the lines from a file
+    public void readInitialConfig(String jsFilePath, String tempJSFilePath) {
+        newLines = new ArrayList<String>();
+        try {
+            for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
+                newLines.add(line);
+            }
+            Files.write(Paths.get(tempJSFilePath), newLines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            log.info("Error in reading the file");
+        }
+    }
+
+    //Write all the lines to a file
+    public void writeInitialConfig(String tempJSFilePath, String jsFilePath) throws IOException, InterruptedException {
+        try {
+            newLines = new ArrayList<String>();
+            for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
+                newLines.add(line);
+            }
+            Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            log.info("Error in writing to file");
+        }
+    }
+
+    //Overwrite a file
+    public void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
+        try {
+            newLines = new ArrayList<String>();
+            for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
+                newLines.add(line.replace(getDefaultConfig, getTestConfig));
+            }
+            Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            log.info("Error in changing the config");
+        }
+    }
+
+    //Replace a particular line in a file
+    public void replaceLineInAFile(String jsFilePath, String currentString, String newString) throws Exception {
+        fileContent = new ArrayList<String>(Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8));
+
+        for (int i = 0; i < fileContent.size(); i++) {
+            if (fileContent.get(i).contains(currentString)) {
+                fileContent.set(i, newString);
+                break;
+            }
+        }
+        Files.write(Paths.get(jsFilePath), fileContent, StandardCharsets.UTF_8);
+    }
+
+    //Print all the contents from a file
+    public void printFileContents(String jsFilePath) throws Exception {
+        br = new BufferedReader(new FileReader(jsFilePath));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
     }
 }
