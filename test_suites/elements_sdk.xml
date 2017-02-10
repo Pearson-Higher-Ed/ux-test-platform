@@ -27,14 +27,14 @@
             </run>
         </groups>
       <classes>
-           <class name="elementsTests.TypographyTest"/>
-           <class name="elementsTests.ResponsiveUtilitiesTest"/>
-           <class name="elementsTests.TemplatesTest"/>
-           <class name="elementsTests.GridTest"/>
-           <class name="elementsTests.PresentationStrategyTest"/>
-           <class name="elementsTests.ButtonsTest"/>
-           <class name="elementsTests.InputsTest"/>
-           <class name="elementsTests.IconsTest"/>
+            <class name="elementsTests.TypographyTest"/>
+            <class name="elementsTests.ResponsiveUtilitiesTest"/>
+            <class name="elementsTests.TemplatesTest"/>
+            <class name="elementsTests.GridTest"/>
+            <class name="elementsTests.PresentationStrategyTest"/>
+            <class name="elementsTests.ButtonsTest"/>
+            <class name="elementsTests.InputsTest"/>
+            <class name="elementsTests.IconsTest"/>
         </classes>
     </test>
 </suite>
@@ -54,8 +54,8 @@ Desktop:-
         |Windows 10  |edge         |14.14393|
 Mobile:-
         |appiumDriver  | mobDeviceName              | mobilePlatformVer | mobBrowser | appiumVer|
-        |android       | iPhone 7 Plus Simulator    | 10.0              | Safari     | 1.6.0    |
-        |iOS           | iPhone 6 Plus              | 9.3               | Safari     | 1.6.0    |
-        |iOS           | iPad Air                   | 9.3               | Safari     | 1.6.0    |
+        |iOS           | iPhone 7 Plus Simulator    | 10.0              | Safari     | 1.6.3    |
+        |iOS           | iPhone 6 Plus              | 9.3               | Safari     | 1.6.3    |
+        |iOS           | iPad Air                   | 9.3               | Safari     | 1.6.3    |
         |android       | Google Nexus 7 HD Emulator | 4.4               | Browser    | 1.5.3    | Few orientation tests works only in Android Phones
 -->

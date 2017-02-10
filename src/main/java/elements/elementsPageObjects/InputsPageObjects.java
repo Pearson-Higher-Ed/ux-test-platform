@@ -69,5 +69,11 @@ public class InputsPageObjects {
     public By passwordUnderLine = By.id("password-input-underline");
     public By showbutton = By.id("showbutton");
 
+    public By inputBasicSingleLine = By.id("z");
+    public By inputBasicSingleLabel = By.id("basic-sl-label");
+    public By inputBasicError = By.id("y");
+    public By inputBasicErrorLabel = By.id("basic-error-label");
+    public By inputBasicDisabled = By.id("x");
+    public By inputBasicDisabledLabel = By.id("basic-disabled-label");
 
 }
