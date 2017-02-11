@@ -46,6 +46,8 @@ public class BaseClass {
     public TemplatesPageObjects templatePgObj = null;
     public SliderPageObjects sliderPgObj = null;
     public TextModalPageObjects textModalPgObj = null;
+    public FormsPageObjects formsPgObj = null;
+
     public CommonUtils commonUtils = null;
     public String setDesktop = "";
     public String setMobile = "";
@@ -160,6 +162,7 @@ public class BaseClass {
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
             textModalPgObj = new TextModalPageObjects(driver);
+            formsPgObj = new FormsPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -182,6 +185,7 @@ public class BaseClass {
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);
             textModalPgObj = new TextModalPageObjects(appium);
+            formsPgObj = new FormsPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
