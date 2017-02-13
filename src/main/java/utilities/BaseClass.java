@@ -50,6 +50,7 @@ public class BaseClass {
     public TextModalPageObjects textModalPgObj = null;
     public FormsPageObjects formsPgObj = null;
     public AlertsPageObjects alertsPgObj = null;
+    public PaginationPageObjects paginationPgObj = null;
     public CommonUtils commonUtils = null;
     public String setDesktop = "";
     public String setMobile = "";
@@ -168,6 +169,7 @@ public class BaseClass {
             textModalPgObj = new TextModalPageObjects(driver);
             formsPgObj = new FormsPageObjects(driver);
             alertsPgObj = new AlertsPageObjects(driver);
+            paginationPgObj = new PaginationPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -194,6 +196,7 @@ public class BaseClass {
             textModalPgObj = new TextModalPageObjects(appium);
             formsPgObj = new FormsPageObjects(appium);
             alertsPgObj = new AlertsPageObjects(appium);
+            paginationPgObj = new PaginationPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }

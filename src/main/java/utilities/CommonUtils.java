@@ -103,14 +103,49 @@ public class CommonUtils {
 
     //is element present
     public boolean isElementPresent(By element) {
+        try {
             webElement = driver.findElement(element);
-            return webElement.findElement(element).isDisplayed();
+            return webElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isElementDisplayed(By element) {
+        try {
+            return driver.findElement(element).isDisplayed();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isElementEnabled(By element) {
+        try {
+            return driver.findElement(element).isEnabled();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
     }
 
     //is element present
     public boolean isElementPresent(By element, String mobile) {
         mobWebElement = (MobileElement) appium.findElement(element);
-        return mobWebElement.findElement(element).isDisplayed();
+        return mobWebElement.isDisplayed();
+    }
+
+    //is element displayed
+    public boolean isElementDisplayed(By element, String mobile) {
+        mobWebElement = (MobileElement) appium.findElement(element);
+        return mobWebElement.isDisplayed();
+    }
+
+    //is element Enabled
+    public boolean isElementEnabled(By element, String mobile) {
+        mobWebElement = (MobileElement) appium.findElement(element);
+        return mobWebElement.isEnabled();
     }
 
     //get url
@@ -284,6 +319,16 @@ public class CommonUtils {
         webElement = appium.findElement(elem);
         isForValue = labelContains.equals(webElement.getAttribute("id"));
         return isForValue;
+    }
+
+    public int countNumberOfItems(By element) {
+        int numberOfItems = driver.findElements(element).size();
+        return numberOfItems;
+    }
+
+    public int countNumberOfItems(By element, String mobile) {
+        int numberOfItems = appium.findElements(element).size();
+        return numberOfItems;
     }
 
     public static void setupChromeDriver() {
