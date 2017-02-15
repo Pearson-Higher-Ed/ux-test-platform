@@ -118,7 +118,7 @@ public class FormsTest extends BaseClass {
         isSubmitBtnClass = commonUtils.assertValue(submitBtnClass, "pe-btn__cta", "Submit Btn does not inherit from pe-btn__cta ");
         isSubmitBtnColor = commonUtils.assertCSSProperties("background-color", submitBtnColor, expSubmitBtnColor);
         if (isSubmitBtnColor == false) {
-            log.info("Background-color of Submit Btn label is not as per spec, actual " + submitBtnColor);
+            log.info("Background-color of Submit Button is not as per spec, actual " + submitBtnColor);
         }
         Assert.assertTrue(isErrorDescColor && isFirstNameLabelFontColor && isFirstNameLabelFontSize && isLastNameLabelFontColor && isLastNameLabelFontSize && isFirstNameLabelLineHt && isLastNameLabelLineHt && isSubmitBtnClass && isSubmitBtnColor);
     }
@@ -258,7 +258,7 @@ public class FormsTest extends BaseClass {
         isSubmitBtnColor = commonUtils.assertCSSProperties("background-color", submitBtnColor, expSubmitBtnColor);
         isSubmitBtnClass = commonUtils.assertValue(submitBtnClass, "pe-btn__cta", "Submit Btn does not inherit from pe-btn__cta");
         if (isSubmitBtnColor == false) {
-            log.info("Background-color of Submit Btn label is not as per spec, actual " + submitBtnColor);
+            log.info("Background-color of Submit Button is not as per spec, actual " + submitBtnColor);
         }
         Assert.assertTrue(isErrorDescColor && isFirstNameLabelFontColor && isFirstNameLabelFontSize && isLastNameLabelFontColor && isLastNameLabelFontSize && isFirstNameLabelLineHt && isLastNameLabelLineHt && isSubmitBtnClass && isSubmitBtnColor);
     }
