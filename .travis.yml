@@ -29,17 +29,17 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=compounds_sdk
-- export feature_branch=v0
+- export component=elements_sdk
+- export feature_branch=v1
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=compounds_sdk.xml test
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 
 notifications:
   email:
     recipients:
     - eajazali.mahaboobbasha@pearson.com
-    #- payal.dhadge@pearson.com
+    - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476
