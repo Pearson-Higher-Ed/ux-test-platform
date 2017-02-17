@@ -31,7 +31,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-
 cd ..
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
-git checkout ButtonFix
+git checkout v1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
