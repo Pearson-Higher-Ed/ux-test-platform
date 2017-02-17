@@ -1,4 +1,4 @@
- <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Elements sdk V1 Test Suite" parallel="classes">
 

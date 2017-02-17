@@ -42,6 +42,4 @@ public class IconsPageObjects {
 
     //icon-in-a-button
     public By iconInAButton=By.xpath("//button[@name='icon-in-a-button']/*[local-name() = 'svg']");
-
-
 }

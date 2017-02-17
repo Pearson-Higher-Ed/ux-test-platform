@@ -1,6 +1,7 @@
 package utilities;
 
 import elements.elementsPageObjects.*;
+import compounds.compoundsPageObjects.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -19,7 +20,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-
 /**
  * Created by umahaea on 2/3/16.
  */
@@ -31,6 +31,7 @@ public class BaseClass {
     public TypographyPageObjects typoPgObj = null;
     public InputsPageObjects inputsPgObj = null;
     public ButtonsPageObjects btnPgObj = null;
+    public CompoundsButtonsPageObjects compBtnPgObj = null;
     public CalendarPageObjects clndrPgObj = null;
     public ColorsPageObjects colorsPgObj = null;
     public NoPlainCSSPageObjects noPlainCSSPgObj = null;
@@ -38,6 +39,7 @@ public class BaseClass {
     public GridPageObjects gridPgObj = null;
     public PresentationStrategiesPageObjects preStratPgObj = null;
     public IconsPageObjects iconPgObj = null;
+    public CompoundsIconsPageObjects compIconsPgObj = null;
     public AppHeaderPageObjects appHeaderPgObj = null;
     public ContextualHelpPageObjects conxHelpPgObj = null;
     public DrawerPageObjects drawerPgObj = null;
@@ -47,7 +49,6 @@ public class BaseClass {
     public SliderPageObjects sliderPgObj = null;
     public TextModalPageObjects textModalPgObj = null;
     public FormsPageObjects formsPgObj = null;
-
     public CommonUtils commonUtils = null;
     public String setDesktop = "";
     public String setMobile = "";
@@ -146,6 +147,7 @@ public class BaseClass {
             respPgObj = new ResponsiveUtilitiesPageObjects(driver);
             typoPgObj = new TypographyPageObjects(driver);
             btnPgObj = new ButtonsPageObjects(driver);
+            compBtnPgObj = new CompoundsButtonsPageObjects(driver);
             appHeaderPgObj = new AppHeaderPageObjects(driver);
             conxHelpPgObj = new ContextualHelpPageObjects(driver);
             drawerPgObj = new DrawerPageObjects(driver);
@@ -158,6 +160,7 @@ public class BaseClass {
             templatePgObj = new TemplatesPageObjects(driver);
             preStratPgObj = new PresentationStrategiesPageObjects(driver);
             iconPgObj = new IconsPageObjects(driver);
+            compIconsPgObj = new CompoundsIconsPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
@@ -169,6 +172,7 @@ public class BaseClass {
             respPgObj = new ResponsiveUtilitiesPageObjects(appium);
             typoPgObj = new TypographyPageObjects(appium);
             btnPgObj = new ButtonsPageObjects(appium);
+            compBtnPgObj = new CompoundsButtonsPageObjects(appium);
             appHeaderPgObj = new AppHeaderPageObjects(appium);
             conxHelpPgObj = new ContextualHelpPageObjects(appium);
             drawerPgObj = new DrawerPageObjects(appium);
@@ -181,6 +185,7 @@ public class BaseClass {
             templatePgObj = new TemplatesPageObjects(appium);
             preStratPgObj = new PresentationStrategiesPageObjects(appium);
             iconPgObj = new IconsPageObjects(appium);
+            compIconsPgObj = new CompoundsIconsPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);

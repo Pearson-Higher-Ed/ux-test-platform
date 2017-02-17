@@ -16,6 +16,27 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pea
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
 
+install_compounds_sdk() {
+echo -e "******************************\\n    Installing compounds sdk V0   \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/compounds.git
+cd compounds
+git checkout $1
+npm install &>/dev/null
+npm run copy-utils
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+#cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
+cd ..
+git clone https://github.com/Pearson-Higher-Ed/elements.git
+cd elements
+git checkout ButtonFix
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
+}
+
 install_appHeader(){
 echo -e "******************************\\n    Installing app-header    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
@@ -108,6 +129,10 @@ if [[ $component == "elements_sdk" ]]
 then
 install_elements_sdk $feature_branch
 
+elif [[ $component == "compounds_sdk" ]]
+then
+install_compounds_sdk $feature_branch
+
 elif [[ $component == "app-header" ]]
 then
 install_appHeader $feature_branch
@@ -156,4 +181,6 @@ cd ..
 install_textModal master
 cd ..
 install_elements_sdk v1
+cd ..
+install_compounds_sdk v0
 fi
