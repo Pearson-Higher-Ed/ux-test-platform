@@ -9,7 +9,7 @@
     <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
     <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
     <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="54.0"></parameter><!-- browser version on sauce machine -->
+    <parameter name="sauceBrowserVer" value="56.0"></parameter><!-- browser version on sauce machine -->
     <parameter name="localBrowser" value="chrome"></parameter><!-- browser on your local. eg firefox -->
 
     <!-- For Mobile -->
@@ -46,11 +46,11 @@ https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/#/
 Eg.
 Desktop:-
         |platform    |sauceBrowser |version |
-        |OS X 10.11  |chrome       |54.0    |
-        |OS X 10.11  |firefox      |49.0    |
+        |OS X 10.11  |chrome       |56.0    |
+        |OS X 10.11  |firefox      |51.0    |
         |OS X 10.11  |safari       |10.0    |
-        |Windows 10  |chrome       |54.0    |
-        |Windows 10  |firefox      |49.0    |
+        |Windows 10  |chrome       |56.0    |
+        |Windows 10  |firefox      |51.0    |
         |Windows 10  |ie           |11.103  |
         |Windows 10  |edge         |14.14393|
 Mobile:-
