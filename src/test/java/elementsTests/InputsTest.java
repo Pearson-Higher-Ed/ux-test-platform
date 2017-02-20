@@ -10,6 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.internal.Streams;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Command;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
@@ -39,14 +40,13 @@ public class InputsTest extends BaseClass {
     String paddingBottom, paddingTop, paddingRight, pwdUnderLineHeight, borderBottom, borderBottomColor, borderBottomStyle, pwdUnderLineColor, pwdTextLabel, pwdTextLabelColor, pwdUnderLineWidth, showBtnColor, showBtnWidth, showBtnMarginTop, showBtnFloat, labelFor;
     boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false;
     boolean isPaddingBottom, isPaddingTop, isPaddingRight, isBorderBottom, isBorderBottomColor, isBorderBottomStyle, isPwdUnderLineColor, isPwdTextLabel, isPwdTextLabelColor, isPwdBorderStyle, isPwdUnderLineWidth, isShowBtnColor, isShowBtnWidth, isShowBtnMarginTop, isShowBtnFloat, isLabelFor;
-    String basicInputBgColor, marginTop, basicInputBorder, basicInputHeight, basicInputBorderRadius, labelColor, labelFontSize, basicInputBoxShadow, basicInputFontSize, basicInputLineheight, basicInputValueColor;
-    boolean isMarginTop, isBasicInputBorder, isBasicInputHeight, isBasicInputBorderRadius, isLabelColor, isLabelFontSize, isBasicInputBoxShadow, isBasicInputFontSize, isBasicInputLineheight, isBasicInputValueColor;
+    String basicInputBgColor, marginTop, basicInputBorder, basicInputHeight, basicInputBorderRadius, labelColor, labelFontSize, basicInputBoxShadow, basicInputFontSize, basicInputLineheight, basicInputValueColor, labelLineHeight, actIconClass, boxShadow;
+    boolean isMarginTop, isBasicInputBorder, isBasicInputHeight, isBasicInputBorderRadius, isLabelColor, isLabelFontSize, isBasicInputBoxShadow, isBasicInputFontSize, isBasicInputLineheight, isBasicInputValueColor, islabelLineHeight, isIconClass, isBoxShadow;
     int roundedTransValue, len, lastIndexOf;
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
     List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
     List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
-
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
     @Parameters({"mobile", "sauceBrowser", "localBrowser", "platform", "appiumDriver"})
@@ -495,7 +495,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Inputs - Basic (single line - Active)")
     public Object[][] getBasicInputActiveTestData() {
         return new Object[][]{
-                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"),commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"),commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#6A7070"),commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"}
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"}
         };
     }
 
@@ -551,11 +551,13 @@ public class InputsTest extends BaseClass {
 
         labelColor = commonUtils.getCSSValue(inputsPgObj.inputBasicSingleLabel, "color");
         labelFontSize = commonUtils.getCSSValue(inputsPgObj.inputBasicSingleLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.inputBasicSingleLabel, "line-height");
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Single Line (Active) label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (isLabelColor == false) {
             log.info("Label color of Input-Basic Single Line (Active)is not as per spec actual actual " + labelColor);
         }
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "16px", "Line-height of Input-Basic Single Line (Active) label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicSingleLabel, inputsPgObj.inputBasicSingleLine);
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isBasicInputFontSize && isBasicInputLineheight && isLabelColor && isLabelFontSize && isLabelFor);
     }
@@ -563,7 +565,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Inputs - Basic (single line - Error)")
     public Object[][] getBasicInputErrorTestData() {
         return new Object[][]{
-                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"),commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"),commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#DB0020"),commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px"}
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px"}
         };
     }
 
@@ -622,11 +624,13 @@ public class InputsTest extends BaseClass {
 
         labelColor = commonUtils.getCSSValue(inputsPgObj.inputBasicErrorLabel, "color");
         labelFontSize = commonUtils.getCSSValue(inputsPgObj.inputBasicErrorLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.inputBasicErrorLabel, "line-height");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (isLabelColor == false) {
             log.info("Label color of Input-Basic Error label is not as per spec actual " + labelColor);
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Error label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "16px", "Line-height of Input-Basic Error label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicErrorLabel, inputsPgObj.inputBasicError);
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isBasicInputFontSize && isBasicInputLineheight && isLabelColor && isLabelFontSize && isLabelFor);
     }
@@ -634,7 +638,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Inputs - Basic (single line - disabled)")
     public Object[][] getBasicInputDisabledTestData() {
         return new Object[][]{
-                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"),commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"),commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{commonUtils.hex2Rgb("#C7C7C7"),commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px"}
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px"}
         };
     }
 
@@ -684,11 +688,13 @@ public class InputsTest extends BaseClass {
 
         labelColor = commonUtils.getCSSValue(inputsPgObj.inputBasicDisabledLabel, "color");
         labelFontSize = commonUtils.getCSSValue(inputsPgObj.inputBasicDisabledLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.inputBasicDisabledLabel, "line-height");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (isLabelColor == false) {
             log.info("Label color of Input-Basic disabled label is not as per spec, actual " + labelColor);
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic disabled label is not as per spe,");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "16px", "Line-height of Input-Basic disabled label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicDisabledLabel, inputsPgObj.inputBasicDisabled);
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isLabelColor && isLabelFontSize && isLabelFor);
     }
@@ -697,7 +703,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Inputs - Basic (single line - Focus)")
     public Object[][] getBasicInputFocusTestData() {
         return new Object[][]{
-                {new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px"}, new String[]{"1px solid rgb(4, 122, 156)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"),commonUtils.hex2RgbWithoutTransparency("#252525")}, "12px"}
+                {new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px"}, new String[]{"1px solid rgb(4, 122, 156)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "12px"}
         };
     }
 
@@ -737,7 +743,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Inputs - Basic (single line - Error Focus)")
     public Object[][] getBasicInputErrorFocusTestData() {
         return new Object[][]{
-                {new String[]{"rgb(219, 0, 32) 0px 0px 4px 0px"}, new String[]{"1px solid rgb(219, 0, 32)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"),commonUtils.hex2RgbWithoutTransparency("#252525")}, commonUtils.hex2Rgb("#DB0020"), "12px"}
+                {new String[]{"rgb(219, 0, 32) 0px 0px 4px 0px"}, new String[]{"1px solid rgb(219, 0, 32)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, commonUtils.hex2Rgb("#DB0020"), "12px"}
         };
     }
 
@@ -775,6 +781,122 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBasicInputBoxShadow && isBasicInputBorder && isBasicInputBorderRadius && isBasicInputValueColor && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
+    @DataProvider(name = "Basic Select Input Test Data")
+    public Object[][] getBasicSelectInputData() {
+        return new Object[][]{
+                {new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", new String[]{"18px", "20px", "17px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"}
+        };
+    }
+
+    @Test(testName = "Basic Select Input Test", dataProvider = "Basic Select Input Test Data", groups = {"desktop-regression"})
+    private void basicSelectInputTest(String[] expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String[] expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
+        // Select Input
+        basicInputHeight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "height");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "padding-left");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "padding-right");
+        marginTop = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "margin-top");
+        basicInputFontSize = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "font-size");
+        basicInputLineheight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "line-height");
+        basicInputValueColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "color");
+        basicInputBgColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "background-color");
+
+        isBasicInputHeight = commonUtils.assertCSSProperties("height", basicInputHeight, expInputHt);
+        if (isBasicInputHeight == false) {
+            log.info("Height of Select Input Box is not as per spec, actual " + basicInputHeight);
+        }
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of Select Input Box is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of Select Input Box is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin-top of Select Input Box is not as per spec");
+        isBasicInputFontSize = commonUtils.assertValue(basicInputFontSize, expInputFontSize, "Font-size of Select Input Value is not as per spec");
+        isBasicInputLineheight = commonUtils.assertCSSProperties("line-height", basicInputLineheight, expInputLineHt);
+        if (isBasicInputLineheight == false) {
+            log.info("Line-height of Select Input Value is not as per spec, actual " + basicInputLineheight);
+        }
+        isBasicInputValueColor = commonUtils.assertCSSProperties("color", basicInputValueColor, expInputValueColor);
+        if (isBasicInputValueColor == false) {
+            log.info("Color of Select Input Value is not as per spec, actual " + basicInputValueColor);
+        }
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", basicInputBgColor, expBgColor);
+        if (isBackgroundColor == false) {
+            log.info("Background-Color of Select Input Value is not as per spec, actual " + basicInputBgColor);
+        }
+
+        // Select Input : Border
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Select Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Select Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Select Input is not as per spec");
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+
+        // Select Input Label
+        labelColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "color");
+        labelFontSize = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "line-height");
+
+        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
+        if (isLabelColor == false) {
+            log.info("Label color of Select input is not as per spec, actual " + labelColor);
+        }
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of Select Input Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of Select Input Label is not as per spec");
+        isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInput);
+
+        // icon
+        actIconClass = commonUtils.getAttributeValue(inputsPgObj.basicSelectInputIcon, "class");
+        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-18", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-18\"");
+
+        Assert.assertTrue(isBasicInputHeight && isPaddingLeft && isPaddingRight && isMarginTop && isBasicInputFontSize && isBasicInputLineheight && isBasicInputValueColor && isBackgroundColor && isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
+    }
+
+    @DataProvider(name = "Basic Select Input Test Data Focus")
+    public Object[][] getBasicSelectInputFocusData() {
+        return new Object[][]{
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, "rgb(4, 122, 156) 0px 0px 5px 0px", "14px", commonUtils.hex2Rgb("#252525"), "18px"}
+        };
+    }
+
+    @Test(testName = "Basic Select Input Test Focus", dataProvider = "Basic Select Input Test Data Focus", groups = {"desktop-regression"})
+    private void basicSelectInputFocusTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBoxShadow, String expOptionFontSize, String expOptionColor, String expOptionLineHt) throws InterruptedException {
+        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || lBrowser.equals("firefox")) {
+            throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
+        }
+        int i = 1;
+        commonUtils.focusOnElementById("w");
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Select Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Select Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Select Input (Focus) field is not as per spec");
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        boxShadow = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "box-shadow");
+        isBoxShadow = commonUtils.assertValue(boxShadow, expBoxShadow, "Box-shadow of Select Input (Focus) is not as per spec");
+        Assert.assertTrue(isBoxShadow);
+    }
 
     /**************
      * Mobile Tests
@@ -1277,6 +1399,112 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Error (Focus) label is not as per spe");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicErrorLabel, inputsPgObj.inputBasicError, "mobile");
         Assert.assertTrue(isBasicInputBoxShadow && isBasicInputBorder && isBasicInputBorderRadius && isBasicInputValueColor && isLabelColor && isLabelFontSize && isLabelFor);
+    }
+
+    @DataProvider(name = "Mobile : Basic Select Input Test Data")
+    public Object[][] getBasicSelectInputMobileData() {
+        return new Object[][]{
+                {ScreenOrientation.LANDSCAPE, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {ScreenOrientation.PORTRAIT, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"}
+        };
+    }
+
+    @Test(testName = "Mobile : Basic Select Input Test", dataProvider = "Mobile : Basic Select Input Test Data", groups = {"mobile-regression"})
+    private void basicSelectInputMobileTest(ScreenOrientation mode, String expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
+        appium.rotate(mode);
+        // Select Input
+        basicInputHeight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "height", "mobile");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "padding-left", "mobile");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "padding-right", "mobile");
+        marginTop = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "margin-top", "mobile");
+        basicInputFontSize = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "font-size", "mobile");
+        basicInputLineheight = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "line-height", "mobile");
+        basicInputValueColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "color", "mobile");
+        basicInputBgColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "background-color", "mobile");
+
+        isBasicInputHeight = commonUtils.assertValue(basicInputHeight, expInputHt, "Height of Select Input Box is not as per spec at mode " + mode);
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of Select Input Box is not as per spec at mode " + mode);
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of Select Input Box is not as per spec at mode " + mode);
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin-top of Select Input Box is not as per spec at mode " + mode);
+        isBasicInputFontSize = commonUtils.assertValue(basicInputFontSize, expInputFontSize, "Font-size of Select Input Value is not as per spec at mode " + mode);
+        isBasicInputLineheight = commonUtils.assertValue(basicInputLineheight, expInputLineHt, "Line-height of Select Input Value is not as per spec at mode " + mode);
+        isBasicInputValueColor = commonUtils.assertCSSProperties("color", basicInputValueColor, expInputValueColor);
+        if (isBasicInputValueColor == false) {
+            log.info("Color of Select Input Value is not as per spec, actual " + basicInputValueColor + " at mode " + mode);
+        }
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", basicInputBgColor, expBgColor);
+        if (isBackgroundColor == false) {
+            log.info("Background-Color of Select Input Value is not as per spec, actual " + basicInputBgColor + " at mode " + mode);
+        }
+
+        // Select Input - Border
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Select Input is not as per spec at mode " + mode);
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Select Input is not as per spec at mode " + mode);
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Select Input is not as per spec at mode " + mode);
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+
+        // Select Input - Label
+        labelColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "color", "mobile");
+        labelFontSize = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "font-size", "mobile");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.basicSelectInputLabel, "line-height", "mobile");
+
+        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
+        if (isLabelColor == false) {
+            log.info("Label color of Select input is not as per spec, actual " + labelColor + " at mode " + mode);
+        }
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of Select Input Label is not as per spec at mode " + mode);
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of Select Input Label is not as per spec at mode " + mode);
+        isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInput, "mobile");
+
+        // Icon
+        actIconClass = commonUtils.getAttributeValue(inputsPgObj.basicSelectInputIcon, "class", "mobile");
+        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-18", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-18\" spec at mode " + mode);
+
+        Assert.assertTrue(isBasicInputHeight && isPaddingLeft && isPaddingRight && isMarginTop && isBasicInputFontSize && isBasicInputLineheight && isBasicInputValueColor && isBackgroundColor && isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
+    }
+
+    @Test(testName = "Mobile : Basic Select Input Test Focus", dataProvider = "Basic Select Input Test Data Focus", groups = {"mobile-regression"})
+    private void basicSelectInputFocusMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBoxShadow, String expOptionFontSize, String expOptionColor, String expOptionLineHt) throws InterruptedException {
+        if (setAppium.equals("iOS")) {
+            throw new SkipException("the focus-box shadow operation is not supported on iOS");
+        }
+        int i = 1;
+        commonUtils.focusOnElementById("w", "mobile");
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Select Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Select Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Select Input (Focus) field is not as per spec ");
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        boxShadow = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "box-shadow", "mobile");
+        isBoxShadow = commonUtils.assertValue(boxShadow, expBoxShadow, "Box-shadow of Select Input (Focus) is not as per spec ");
+        Assert.assertTrue(isBoxShadow);
     }
 
 
