@@ -193,5 +193,41 @@
     <label id="basic-disabled-label" class="pe-textLabelInput__label--label-disabled" for="x">Label</label>
     <input type="text" class="pe-textInput--basic" id="x" placeholder="Disabled" disabled/>
 </div>
+
+// Select Input
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+
+</script>
+<div><label id="select-input-label" class="pe-textLabelInput__label" for="w">Send message to</label>
+    <span class="pe-select-container">
+  <select class="pe-selectInput--basic" id="w">
+    <option id="basic-line">Which option will you choose?</option>
+    <option id="option-one">One</option>
+    <option id="option-two">Two</option>
+    <option id="option-three">Three</option>
+  </select>
+  <svg id="icon-dropdown-open-18"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       aria-hidden="true"
+       focusable="false"
+       class="pe-icon--dropdown-open-18">
+  <use xlink:href="#dropdown-open-18"></use>
+  </svg>
+    </span>
+</div>
 </body>
 </html>
