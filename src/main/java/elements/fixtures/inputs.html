@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
 
 <!-- Inputs (single line) -->
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (single line)</h2>
@@ -55,7 +69,7 @@
 </div>
 
 <!--Check Boxes -->
-<h2 style="background-color: #C7C7C7;margin-right: 300px">Check Box</h2>
+<h2 style="background-color: lightpink;margin-right: 300px">Check Box</h2>
 <h3>Unchecked and Checked - Normal</h3>
 <div>
     <p>Unchecked</p>
@@ -68,7 +82,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -85,7 +99,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -103,7 +117,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -120,7 +134,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -138,7 +152,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -155,7 +169,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
@@ -171,45 +185,47 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              aria-hidden="true"
              class="pe-icon--check-sm-18">
-          <use xlink:href="../../../../../icons/p-icons-sprite-1.1.svg#check-sm-18"></use>
+          <use xlink:href="#check-sm-18"></use>
         </svg>
       </span>
     </div>
 </div>
+
+<h3>CheckBox With Long Label</h3>
 <div>
-    <h3>Inputs - Basic (single line)</h3>
+    <div class="pe-checkbox" style="width: 150px";out>
+        <input type="checkbox" id="longLabel" value="1"/>
+        <label for="longLabel">Check box with long long long long label</label>
+        <span>
+        <svg aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line)</h2>
+<div>
     <label id="basic-sl-label" class="pe-textLabelInput__label" for="z">Label</label>
     <input type="text" class="pe-textInput--basic" id="z" placeholder="Placeholder"/>
 </div>
 
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line - error)</h2>
 <div>
-    <h3>Inputs - Basic (single line - error)</h3>
     <label id="basic-error-label" class="pe-textLabelInput__label--label_error" for="y">Email address</label>
     <input type="text" class="pe-textInput--basic_error" id="y" placeholder="Error"/>
 </div>
 
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line - disabled)</h2>
 <div>
-    <h3>Inputs - Basic (single line - disabled)</h3>
     <label id="basic-disabled-label" class="pe-textLabelInput__label--label-disabled" for="x">Label</label>
     <input type="text" class="pe-textInput--basic" id="x" placeholder="Disabled" disabled/>
 </div>
 
-// Select Input
-<script>
-    if (!document.getElementById('pe-icons-sprite')) {
-        var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
-        pe_ajax.responseType = "document";
-        pe_ajax.onload = function (e) {
-            document.body.insertBefore(
-                    pe_ajax.responseXML.documentElement,
-                    document.body.childNodes[0]
-            );
-        }
-        pe_ajax.send();
-    }
-
-</script>
+<h2 style="background-color: lightgoldenrodyellow;margin-right: 300px">Select Input </h2>
 <div><label id="select-input-label" class="pe-textLabelInput__label" for="w">Send message to</label>
     <span class="pe-select-container">
   <select class="pe-selectInput--basic" id="w">

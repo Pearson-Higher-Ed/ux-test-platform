@@ -495,7 +495,7 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     @Test(testName = "Mobile(iOS) : XS And SM Default Strategy Test", dataProvider = "iOS: XS And SM Default Strategy Test Data", groups = {"mobile-regression"})
-    private void getXSAndSMStrategyiOSTestData(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
+    private void getXSAndSMStrategyiOSMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
@@ -519,7 +519,7 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     @Test(testName = "Mobile(iOS) : MD And LG Default Strategy Test", dataProvider = "iOS: MD and LG Default Strategy Test Data", groups = {"mobile-regression"})
-    private void getMDAndLGDefaultStrategyiOSTestData(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
+    private void getMDAndLGDefaultStrategyiOSTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
@@ -542,7 +542,7 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     @Test(testName = "Mobile(iOS): XLG Default Strategy Test", dataProvider = "iOS: XLG Default Strategy Test Data", groups = {"mobile-regression"})
-    private void getXLGDefaultStrategyiOSTestData(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
+    private void getXLGDefaultStrategyiOSMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
@@ -566,7 +566,7 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     @Test(testName = "Mobile(Android): SM And MD Default Strategy Test", dataProvider = "Android: SM And MD Default Strategy Test Data", groups = {"mobile-regression"})
-    private void getSMAndMDDefaultStrategyAndroidTestData(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
+    private void getSMAndMDDefaultStrategyAndroidMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
@@ -614,7 +614,7 @@ public class PresentationStrategyTest extends BaseClass {
 
     //Left/Right
     @Test(testName = "Mobile(iOS) : XS and SM Left/Right Strategy Test", dataProvider = "iOS: XS and SM Left/Right Strategy Test Data", groups = {"mobile-regression"})
-    private void setXSandSMLeftRightStrategyTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
+    private void setXSandSMLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
@@ -641,7 +641,7 @@ public class PresentationStrategyTest extends BaseClass {
 
     //Left/Right
     @Test(testName = "Mobile(iOS) : MD and LG Left/Right Strategy Test", dataProvider = "iOS: MD and LG Left/Right Strategy Test Data", groups = {"mobile-regression"})
-    private void setMDandLGLeftRightStrategyTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
+    private void setMDandLGLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
@@ -666,7 +666,7 @@ public class PresentationStrategyTest extends BaseClass {
 
     //Left/Right
     @Test(testName = "Mobile(iOS) : XLG Left/Right Strategy Test", dataProvider = "iOS: XLG Left/Right Strategy Test Data", groups = {"mobile-regression"})
-    private void setXLGLeftRightStrategyTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
+    private void setXLGLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }

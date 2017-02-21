@@ -81,4 +81,5 @@ public class InputsPageObjects {
     public By basicSelectInputIcon = By.id("icon-dropdown-open-18");
     public By basicLine = By.id("basic-line");
 
+    public By checkBoxWithLongLabel=By.xpath("//label[@for='longLabel']");
 }
