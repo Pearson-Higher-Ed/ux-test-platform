@@ -36,9 +36,9 @@ public class InputsTest extends BaseClass {
     private static String lBrowser;
     private static String setPlatform;
     private static String setAppium;
-    String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", height = "", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "";
+    String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", height = "", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "", textDecoration = "";
     String paddingBottom, paddingTop, paddingRight, pwdUnderLineHeight, borderBottom, borderBottomColor, borderBottomStyle, pwdUnderLineColor, pwdTextLabel, pwdTextLabelColor, pwdUnderLineWidth, showBtnColor, showBtnWidth, showBtnMarginTop, showBtnFloat, labelFor;
-    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false;
+    boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false, isTextDecoration = false;
     boolean isPaddingBottom, isPaddingTop, isPaddingRight, isBorderBottom, isBorderBottomColor, isBorderBottomStyle, isPwdUnderLineColor, isPwdTextLabel, isPwdTextLabelColor, isPwdBorderStyle, isPwdUnderLineWidth, isShowBtnColor, isShowBtnWidth, isShowBtnMarginTop, isShowBtnFloat, isLabelFor;
     String basicInputBgColor, marginTop, basicInputBorder, basicInputHeight, basicInputBorderRadius, labelColor, labelFontSize, basicInputBoxShadow, basicInputFontSize, basicInputLineheight, basicInputValueColor, labelLineHeight, actIconClass, boxShadow;
     boolean isMarginTop, isBasicInputBorder, isBasicInputHeight, isBasicInputBorderRadius, isLabelColor, isLabelFontSize, isBasicInputBoxShadow, isBasicInputFontSize, isBasicInputLineheight, isBasicInputValueColor, islabelLineHeight, isIconClass, isBoxShadow;
@@ -383,17 +383,18 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Check Box - Label Test Data")
     public Object[][] getCheckBoxLabelTestData() {
         return new Object[][]{
-                {"checkbox-unchecked", inputsPgObj.checkBoxUncheckedLabel, new String[]{"28px"}},
-                {"checkbox-checked", inputsPgObj.checkBoxCheckedLabel, new String[]{"28px"}},
-                {"checkbox-unchecked-focus", inputsPgObj.checkBoxUnCheckedFocusLabel, new String[]{"28px"}},
-                {"checkbox-checked-focus", inputsPgObj.checkBoxCheckedFocusLabel, new String[]{"28px"}},
-                {"checkbox-unchecked-disabled", inputsPgObj.checkBoxUnCheckedDisabledLabel, new String[]{"28px"}},
-                {"checkbox-checked-disabled", inputsPgObj.checkBoxCheckedDisabledLabel, new String[]{"28px"}},
+                {"checkbox-unchecked", inputsPgObj.checkBoxUncheckedLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-checked", inputsPgObj.checkBoxCheckedLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-unchecked-focus", inputsPgObj.checkBoxUnCheckedFocusLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-checked-focus", inputsPgObj.checkBoxCheckedFocusLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-unchecked-disabled", inputsPgObj.checkBoxUnCheckedDisabledLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-checked-disabled", inputsPgObj.checkBoxCheckedDisabledLabel, new String[]{"28px"}, "inline-block"},
+                {"checkbox-long-label", inputsPgObj.checkBoxWithLongLabel, new String[]{"28px"}, "inline-block"},
         };
     }
 
     @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
-    private void labelForCheckBoxTest(String type, By element, String[] expPaddingLeft) {
+    private void labelForCheckBoxTest(String type, By element, String[] expPaddingLeft, String expDisplay) {
         if (type.contains("focus")) {
             commonUtils.focusOnElementById(type);
         }
@@ -402,7 +403,10 @@ public class InputsTest extends BaseClass {
         if (!isPaddingLeft) {
             log.info("padding-left for checkbox label of " + type + " type is not as per the spec, actual: " + paddingLeft);
         }
-        Assert.assertTrue(isPaddingLeft);
+        display = commonUtils.getCSSValue(element, "display");
+        isDisplay = commonUtils.assertValue(display, expDisplay, "'display' for checkbox label of '" + type + "' type is not as per the spec");
+
+        Assert.assertTrue(isPaddingLeft && isDisplay);
     }
 
     @DataProvider(name = "Input Box - Password Show")
@@ -456,6 +460,32 @@ public class InputsTest extends BaseClass {
         isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "The bottom border style is not as per spec");
 
         Assert.assertTrue(isPwdTextLabel && isPwdTextLabelColor && isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
+    }
+
+    @Test(testName = "Verify Padding for Show Password", groups = "desktop-regression")
+    private void inputBoxShowPasswordPaddingTest() {
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-top");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-left");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-right");
+
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, "2px", "padding-bottom for text-input-show-button is not as per the spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, "2px", "padding-Top for text-input-show-button is not as per the spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, "2px", "padding-Left for text-input-show-button is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, "2px", "padding-Right for text-input-show-button is not as per the spec");
+        Assert.assertTrue(isPaddingBottom && isPaddingTop && isPaddingLeft && isPaddingRight);
+    }
+
+    @Test(testName = "Verify Focus state on Show Password", groups = "desktop-regression")
+    private void inputBoxShowPasswordFocusStateTest() throws InterruptedException {
+        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("the focus operation is not supported on firefox/safari drivers");
+        }
+        commonUtils.focusOnElementById("showbutton");
+        Thread.sleep(2000);
+        textDecoration = commonUtils.getCSSValue(inputsPgObj.showbutton, "text-decoration");
+        isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "text-decoration for Show Password Button is not as per the link");
+        Assert.assertTrue(isTextDecoration);
     }
 
     @DataProvider(name = "Input Box - Password Hide")
@@ -1019,7 +1049,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Show", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Show", groups = "mobile-regression")
     private void inputBoxPasswordShowMobileTest(String expPwdTextLabel, String expPwdTextLabelColor, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String expBorderBtmColor, String expBorderBtmStyle, String[] expShowBtnColor) {
 
         pwdTextLabel = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "font-size", "mobile");
@@ -1058,6 +1088,29 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isPwdTextLabel && isPwdTextLabelColor && isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
     }
 
+    @Test(testName = "Mobile: Verify Padding for Show Password", groups = "mobile-regression")
+    private void inputBoxShowPasswordPaddingMobileTest() {
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-bottom", "mobile");
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-left", "mobile");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.showbutton, "padding-right", "mobile");
+
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, "2px", "padding-bottom for text-input-show-button is not as per the spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, "2px", "padding-Top for text-input-show-button is not as per the spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, "2px", "padding-Left for text-input-show-button is not as per the spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, "2px", "padding-Right for text-input-show-button is not as per the spec");
+        Assert.assertTrue(isPaddingBottom && isPaddingTop && isPaddingLeft && isPaddingRight);
+    }
+
+    @Test(testName = "Mobile: Verify Focus state on Show Password", groups = "mobile-regression")
+    private void inputBoxShowPasswordFocusStateMobileTest() throws InterruptedException {
+        commonUtils.focusOnElementById("showbutton", "mobile");
+        Thread.sleep(2000);
+        textDecoration = commonUtils.getCSSValue(inputsPgObj.showbutton, "text-decoration", "mobile");
+        isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "text-decoration for Show Password Button is not as per the link");
+        Assert.assertTrue(isTextDecoration);
+    }
+
     @DataProvider(name = "Mobile : Input Box - Password Hide")
     private Object[][] getInputBoxPasswordHideMobileTestData() {
         return new Object[][]{
@@ -1067,7 +1120,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Hide", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Hide", groups = "mobile-regression")
     private void inputBoxPasswordHideMobileTest(ScreenOrientation mode, String expUnderlineHeight, String[] expUnderlineColor, String[] expUnderlineWidth) throws InterruptedException {
         appium.rotate(mode);
         commonUtils.click(inputsPgObj.passwordField, "mobile");
@@ -1144,7 +1197,7 @@ public class InputsTest extends BaseClass {
 
 
     @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
-    private void labelForCheckBoxMobileTest(String type, By element, String[] expPaddingLeft) {
+    private void labelForCheckBoxMobileTest(String type, By element, String[] expPaddingLeft, String expDisplay) {
         if (type.contains("focus")) {
             commonUtils.focusOnElementById(type, "mobile");
         }
@@ -1153,7 +1206,9 @@ public class InputsTest extends BaseClass {
         if (!isPaddingLeft) {
             log.info("padding-left for checkbox label of " + type + " type is not as per the spec, actual: " + paddingLeft);
         }
-        Assert.assertTrue(isPaddingLeft);
+        display = commonUtils.getCSSValue(element, "display", "mobile");
+        isDisplay = commonUtils.assertValue(display, expDisplay, "'display' for checkbox label of '" + type + "' type is not as per the spec");
+        Assert.assertTrue(isPaddingLeft && isDisplay);
     }
 
     @Test(testName = "Mobile: Verify Basic Input - Active ", dataProvider = "Inputs - Basic (single line - Active)", groups = "mobile-regression")
