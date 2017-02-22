@@ -32,6 +32,9 @@ public class ButtonsPageObjects {
     public By ctaBtnHover=By.id("cta-btn-hover");
     public By ctaBtnDisabled=By.id("cta-btn-disabled");
 
+    public By linkBtn=By.id("link-btn");
+    public By linkBtnHover=By.id("link-btn-hover");
+
     //Fake buttons
     public By divBtn=By.id("divBtn");
     public By divBtnDisabled=By.id("div-btn-disabled");
