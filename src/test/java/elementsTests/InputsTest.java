@@ -409,7 +409,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isDisplay);
     }
 
-    @DataProvider(name = "Input Box - Password Show")
+    @DataProvider(name = "Input Box - Password Show Test Data")
     private Object[][] getInputBoxPasswordShowTestData() {
         return new Object[][]{
                 {"12px", new String[]{"rgba(106, 112, 112, 1)", "rgb(106, 112, 112)"}, "10px", "8px", "1px", new String[]{"rgba(106, 112, 112, 1)", "rgb(106, 112, 112)"},
@@ -417,7 +417,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Show", groups = "desktop-regression")
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Show Test Data", groups = "desktop-regression")
     private void inputBoxPasswordShowTest(String expPwdTextLabel, String[] expPwdTextLabelColor, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle, String[] expShowBtnColor, String expShowBtnTopMargin, String expShowBtnWidth, String expShowBtnFloat) {
 
         pwdTextLabel = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "font-size");
@@ -488,7 +488,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isTextDecoration);
     }
 
-    @DataProvider(name = "Input Box - Password Hide")
+    @DataProvider(name = "Input Box - Password Hide Test Data")
     private Object[][] getInputBoxPasswordHideTestData() {
         return new Object[][]{
 
@@ -499,7 +499,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Hide", groups = "desktop-regression")
+    @Test(testName = "Verify Input Box - password Show", dataProvider = "Input Box - Password Hide Test Data", groups = "desktop-regression")
     private void inputBoxPasswordHideTest(int width, int height, String expUnderlineHeight, String[] expUnderlineColor, String expUnderlineWidth) throws InterruptedException {
         if (setPlatform.contains("Windows")) {
             throw new SkipException("the functionality is not supported on firefox/safari/ie for Windows");
@@ -522,14 +522,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isHeight && isPwdUnderLineColor && isPwdUnderLineWidth);
     }
 
-    @DataProvider(name = "Inputs - Basic (single line - Active)")
+    @DataProvider(name = "Inputs - Basic (single line - Active) Test Data")
     public Object[][] getBasicInputActiveTestData() {
         return new Object[][]{
                 {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"}
         };
     }
 
-    @Test(testName = "Verify Basic Input - Active ", dataProvider = "Inputs - Basic (single line - Active)", groups = "desktop-regression")
+    @Test(testName = "Verify Basic Input - Active ", dataProvider = "Inputs - Basic (single line - Active) Test Data", groups = "desktop-regression")
     private void basicInputActiveTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt, String[] expLabelColor, String expLabelFontSize) {
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.inputBasicSingleLine, cssProperty);
@@ -592,14 +592,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isBasicInputFontSize && isBasicInputLineheight && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
-    @DataProvider(name = "Inputs - Basic (single line - Error)")
+    @DataProvider(name = "Inputs - Basic (single line - Error) Test Data")
     public Object[][] getBasicInputErrorTestData() {
         return new Object[][]{
                 {"1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{"14px", "13.93px", "18.66px"}, "18px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px"}
         };
     }
 
-    @Test(testName = "Verify Basic Input - Error", dataProvider = "Inputs - Basic (single line - Error)", groups = "desktop-regression")
+    @Test(testName = "Verify Basic Input - Error", dataProvider = "Inputs - Basic (single line - Error) Test Data", groups = "desktop-regression")
     private void basicInputErrorTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt, String[] expLabelColor, String expLabelFontSize) {
 
         for (String cssProperty : borderWidths) {
@@ -665,14 +665,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isBasicInputFontSize && isBasicInputLineheight && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
-    @DataProvider(name = "Inputs - Basic (single line - disabled)")
+    @DataProvider(name = "Inputs - Basic (single line - disabled) Test Data")
     public Object[][] getBasicInputDisabledTestData() {
         return new Object[][]{
                 {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "6px", "14px", "14px", new String[]{"36px", "34px"}, "3px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px"}
         };
     }
 
-    @Test(testName = "Verify Basic Input - Disabled", dataProvider = "Inputs - Basic (single line - disabled)", groups = "desktop-regression")
+    @Test(testName = "Verify Basic Input - Disabled", dataProvider = "Inputs - Basic (single line - disabled) Test Data", groups = "desktop-regression")
     private void basicInputDisabledTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expLabelColor, String expLabelFontSize) {
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.inputBasicDisabled, cssProperty);
@@ -730,14 +730,14 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @DataProvider(name = "Inputs - Basic (single line - Focus)")
+    @DataProvider(name = "Inputs - Basic (single line - Focus) Test Data")
     public Object[][] getBasicInputFocusTestData() {
         return new Object[][]{
                 {new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px"}, new String[]{"1px solid rgb(4, 122, 156)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "12px"}
         };
     }
 
-    @Test(testName = "Verify Basic Input - Focus ", dataProvider = "Inputs - Basic (single line - Focus)", groups = "desktop-regression")
+    @Test(testName = "Verify Basic Input - Focus ", dataProvider = "Inputs - Basic (single line - Focus) Test Data", groups = "desktop-regression")
     private void basicInputFocusTest(String[] expBoxShadow, String[] expBorder, String expBorderRad, String[] expValueCol, String expLabelFontSize) throws InterruptedException {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -770,14 +770,14 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @DataProvider(name = "Inputs - Basic (single line - Error Focus)")
+    @DataProvider(name = "Inputs - Basic (single line - Error Focus) Test Data")
     public Object[][] getBasicInputErrorFocusTestData() {
         return new Object[][]{
                 {new String[]{"rgb(219, 0, 32) 0px 0px 4px 0px"}, new String[]{"1px solid rgb(219, 0, 32)"}, "3px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, commonUtils.hex2Rgb("#DB0020"), "12px"}
         };
     }
 
-    @Test(testName = "Verify Basic Input - Error Focus ", dataProvider = "Inputs - Basic (single line - Error Focus)", groups = "desktop-regression")
+    @Test(testName = "Verify Basic Input - Error Focus ", dataProvider = "Inputs - Basic (single line - Error Focus) Test Data", groups = "desktop-regression")
     private void basicInputErrorFocusTest(String[] expBoxShadow, String[] expBorder, String expBorderRad, String[] expValueCol, String expLabelColor, String expLabelFontSize) throws InterruptedException {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -814,7 +814,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Basic Select Input Test Data")
     public Object[][] getBasicSelectInputData() {
         return new Object[][]{
-                {new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", new String[]{"18px", "20px", "17px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"}
+                {new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", new String[]{"18px", "20px", "17px","19px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"}
         };
     }
 
@@ -891,14 +891,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBasicInputHeight && isPaddingLeft && isPaddingRight && isMarginTop && isBasicInputFontSize && isBasicInputLineheight && isBasicInputValueColor && isBackgroundColor && isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
-    @DataProvider(name = "Basic Select Input Test Data Focus")
+    @DataProvider(name = "Basic Select Input (Focus) Test Data")
     public Object[][] getBasicSelectInputFocusData() {
         return new Object[][]{
                 {"1px", "solid", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, "rgb(4, 122, 156) 0px 0px 5px 0px", "14px", commonUtils.hex2Rgb("#252525"), "18px"}
         };
     }
 
-    @Test(testName = "Basic Select Input Test Focus", dataProvider = "Basic Select Input Test Data Focus", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Test Focus", dataProvider = "Basic Select Input (Focus) Test Data", groups = {"desktop-regression"})
     private void basicSelectInputFocusTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBoxShadow, String expOptionFontSize, String expOptionColor, String expOptionLineHt) throws InterruptedException {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -925,6 +925,112 @@ public class InputsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, "box-shadow");
         isBoxShadow = commonUtils.assertValue(boxShadow, expBoxShadow, "Box-shadow of Select Input (Focus) is not as per spec");
+        Assert.assertTrue(isBoxShadow);
+    }
+
+    @DataProvider(name = "MultiLine Input Text Test Data")
+    private Object[][] multLineInputTextData() {
+        return new Object[][]{
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "9px", "14px", "6px", "14px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "18px", "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+        };
+    }
+
+    @Test(testName = "MultiLine Text Input", dataProvider = "MultiLine Input Text Test Data", groups = {"desktop-regression"})
+    private void multiLineTextInputTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expPaddingTopBtm, String expPaddingLeftRight, String expTopMargin, String expFontSize, String[] expBgColor, String[] expValColor, String expLineHt, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws InterruptedException {
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Multi Text Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Multi Text Input is not as per spec, actual " + basicInputBorder);
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-top");
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-bottom");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-left");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-right");
+        marginTop = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "margin-top");
+        fontSize = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "font-size");
+        basicInputBgColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "background-color");
+        basicInputValueColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "color");
+        basicInputLineheight = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "line-height");
+
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTopBtm, "Padding-top of Multi Text Input is not as per spec");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTopBtm, "Padding-bottom of Multi Text Input is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Padding-left of Multi Text Input is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Padding-right of Multi Text Input is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expTopMargin, "Margin-top of Multi Text Input is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of Multi Text Input is not as per spec");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", basicInputBgColor, expBgColor);
+        if (isBackgroundColor == false) {
+            log.info("Background-color of Multi Text Input Label is not as per spec, actual " + basicInputBgColor);
+        }
+        isBasicInputValueColor = commonUtils.assertCSSProperties("color", basicInputValueColor, expValColor);
+        if (isBasicInputValueColor == false) {
+            log.info("Value color of Multi Text Input Label is not as per spec, actual " + basicInputValueColor);
+        }
+        isBasicInputLineheight = commonUtils.assertValue(basicInputLineheight, expLineHt, "line height of Multi Text Input is not as per spec");
+
+        labelFontSize = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "line-height");
+        labelColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "color");
+
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of Multi Text Input Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of Multi Text Input Label is not as per spec");
+        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
+        if (isLabelColor == false) {
+            log.info("Font-color of Multi Text Input Label is not as per spec, actual " + labelColor);
+        }
+
+        Assert.assertTrue(isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isMarginTop && isFontSize && isBackgroundColor && isBasicInputValueColor && isBasicInputLineheight && isLabelFontSize && islabelLineHeight && isLabelColor);
+    }
+
+    @DataProvider(name = "Multi Text Input (Focus) Test Data")
+    public Object[][] getMultiTextInputFocusData() {
+        return new Object[][]{
+                {"1px", "solid", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px", "0px 0px 5px 0px #047a9c"}}
+        };
+    }
+
+    @Test(testName = "MultiLine Input Text Data Focus", dataProvider = "Multi Text Input (Focus) Test Data", groups = {"desktop-regression"})
+    private void multiTextInputFocusTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) {
+        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("the focus operation is not supported on firefox/safari drivers");
+        }
+        commonUtils.focusOnElementById("zz");
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Multi Text Input (Focus) field is not as per spec, actual " + basicInputBorder);
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        boxShadow = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "box-shadow");
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
+        if (isBoxShadow == false) {
+            log.info("Box-shadow of Multi Text Input (Focus) is not as per spec, actual " + boxShadow);
+        }
         Assert.assertTrue(isBoxShadow);
     }
 
@@ -1041,7 +1147,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
     }
 
-    @DataProvider(name = "Mobile : Input Box - Password Show")
+    @DataProvider(name = "Mobile : Input Box - Password Show Test Data")
     private Object[][] getInputBoxPasswordShowMobileTestData() {
         return new Object[][]{
                 {"12px", "rgba(106, 112, 112, 1)", "10px", "8px", "1px", "rgba(106, 112, 112, 1)", "solid",
@@ -1049,7 +1155,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Show", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Show Test Data", groups = "mobile-regression")
     private void inputBoxPasswordShowMobileTest(String expPwdTextLabel, String expPwdTextLabelColor, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String expBorderBtmColor, String expBorderBtmStyle, String[] expShowBtnColor) {
 
         pwdTextLabel = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, "font-size", "mobile");
@@ -1111,7 +1217,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isTextDecoration);
     }
 
-    @DataProvider(name = "Mobile : Input Box - Password Hide")
+    @DataProvider(name = "Mobile : Input Box - Password Hide Test Data")
     private Object[][] getInputBoxPasswordHideMobileTestData() {
         return new Object[][]{
 
@@ -1120,7 +1226,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Hide", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Input Box - password Show", dataProvider = "Mobile : Input Box - Password Hide Test Data", groups = "mobile-regression")
     private void inputBoxPasswordHideMobileTest(ScreenOrientation mode, String expUnderlineHeight, String[] expUnderlineColor, String[] expUnderlineWidth) throws InterruptedException {
         appium.rotate(mode);
         commonUtils.click(inputsPgObj.passwordField, "mobile");
@@ -1211,7 +1317,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isDisplay);
     }
 
-    @Test(testName = "Mobile: Verify Basic Input - Active ", dataProvider = "Inputs - Basic (single line - Active)", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Basic Input - Active ", dataProvider = "Inputs - Basic (single line - Active) Test Data", groups = "mobile-regression")
     private void basicInputActiveMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt, String[] expLabelColor, String expLabelFontSize) {
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.inputBasicSingleLine, cssProperty, "mobile");
@@ -1272,7 +1378,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isBasicInputFontSize && isBasicInputLineheight && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
-    @Test(testName = "Mobile: Verify Basic Input - Error", dataProvider = "Inputs - Basic (single line - Error)", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Basic Input - Error", dataProvider = "Inputs - Basic (single line - Error) Test Data", groups = "mobile-regression")
     private void basicInputErrorMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt, String[] expLabelColor, String expLabelFontSize) {
 
         for (String cssProperty : borderWidths) {
@@ -1337,7 +1443,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify Basic Input - Disabled", dataProvider = "Inputs - Basic (single line - disabled)", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Basic Input - Disabled", dataProvider = "Inputs - Basic (single line - disabled) Test Data", groups = "mobile-regression")
     private void basicInputDisabledMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expLabelColor, String expLabelFontSize) {
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.inputBasicDisabled, cssProperty, "mobile");
@@ -1392,7 +1498,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isBasicInputHeight && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
-    @Test(testName = "Mobile: Verify Basic Input - Focus ", dataProvider = "Inputs - Basic (single line - Focus)", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Basic Input - Focus ", dataProvider = "Inputs - Basic (single line - Focus) Test Data", groups = "mobile-regression")
     private void basicInputFocusMobileTest(String[] expBoxShadow, String[] expBorder, String expBorderRad, String[] expValueCol, String expLabelFontSize) {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
@@ -1423,7 +1529,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBasicInputBoxShadow && isBasicInputBorder && isBasicInputBorderRadius && isBasicInputValueColor && isLabelFontSize && isLabelFor);
     }
 
-    @Test(testName = "Verify Basic Input - Error Focus ", dataProvider = "Inputs - Basic (single line - Error Focus)", groups = "mobile-regression")
+    @Test(testName = "Verify Basic Input - Error Focus ", dataProvider = "Inputs - Basic (single line - Error Focus) Test Data", groups = "mobile-regression")
     private void basicInputErrorFocusMobileTest(String[] expBoxShadow, String[] expBorder, String expBorderRad, String[] expValueCol, String expLabelColor, String expLabelFontSize) {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
@@ -1532,7 +1638,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBasicInputHeight && isPaddingLeft && isPaddingRight && isMarginTop && isBasicInputFontSize && isBasicInputLineheight && isBasicInputValueColor && isBackgroundColor && isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
-    @Test(testName = "Mobile : Basic Select Input Test Focus", dataProvider = "Basic Select Input Test Data Focus", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Basic Select Input Test Focus", dataProvider = "Basic Select Input Test (Focus) Test Data", groups = {"mobile-regression"})
     private void basicSelectInputFocusMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBoxShadow, String expOptionFontSize, String expOptionColor, String expOptionLineHt) throws InterruptedException {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
@@ -1562,6 +1668,97 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBoxShadow);
     }
 
+    @Test(testName = "Mobile : MultiLine Text Input", dataProvider = "MultiLine Input Text Test Data", groups = {"mobile-regression"})
+    private void multiLineTextInputMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expPaddingTopBtm, String expPaddingLeftRight, String expTopMargin, String expFontSize, String[] expBgColor, String[] expValColor, String expLineHt, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) {
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Multi Text Input is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Multi Text Input (Focus) field is not as per spec, actual " + basicInputBorder);
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        paddingTop = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-top", "mobile");
+        paddingBottom = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-bottom", "mobile");
+        paddingLeft = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-left", "mobile");
+        paddingRight = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "padding-right", "mobile");
+        marginTop = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "margin-top", "mobile");
+        fontSize = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "font-size", "mobile");
+        basicInputBgColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "background-color", "mobile");
+        basicInputValueColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "color", "mobile");
+        basicInputLineheight = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "line-height", "mobile");
+
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTopBtm, "Padding-top of Multi Text Input is not as per spec");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTopBtm, "Padding-bottom of Multi Text Input is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Padding-left of Multi Text Input is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Padding-right of Multi Text Input is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expTopMargin, "Margin-top of Multi Text Input is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of Multi Text Input is not as per spec");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", basicInputBgColor, expBgColor);
+        if (isBackgroundColor == false) {
+            log.info("Background-color of Multi Text Input Label is not as per spec, actual " + basicInputBgColor );
+        }
+        isBasicInputValueColor = commonUtils.assertCSSProperties("color", basicInputValueColor, expValColor);
+        if (isBasicInputValueColor == false) {
+            log.info("Value color of Multi Text Input Label is not as per spec, actual " + basicInputValueColor );
+        }
+        isBasicInputLineheight = commonUtils.assertValue(basicInputLineheight, expLineHt, "line height of Multi Text Input is not as per spec");
+
+        labelFontSize = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "font-size", "mobile");
+        labelLineHeight = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "line-height", "mobile");
+        labelColor = commonUtils.getCSSValue(inputsPgObj.multiLineTextLabel, "color", "mobile");
+
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of Multi Text Input Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of Multi Text Input Label is not as per spec");
+        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
+        if (isLabelColor == false) {
+            log.info("Font-color of Multi Text Input Label is not as per spec, actual " + labelColor);
+        }
+
+        Assert.assertTrue(isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isMarginTop && isFontSize && isBackgroundColor && isBasicInputValueColor && isBasicInputLineheight && isLabelFontSize && islabelLineHeight && isLabelColor);
+    }
+
+    @Test(testName = "Mobile: MultiLine Input Text Data Focus", dataProvider = "Multi Text Input (Focus) Test Data", groups = {"mobile-regression"})
+    private void multiTextInputFocusMobileTest(String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) {
+        if (setAppium.equals("iOS")) {
+            throw new SkipException("the focus-box shadow operation is not supported on iOS");
+        }
+        commonUtils.focusOnElementById("zz", "mobile");
+        for (String cssProperty : borderWidths) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderStyles) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderStyle, "Border style " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        for (String cssProperty : borderColors) {
+            basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
+            isBasicInputBorder = commonUtils.assertCSSProperties(cssProperty, basicInputBorder, expBorderColor);
+            if (isBasicInputBorder == false) {
+                log.info("Border color " + cssProperty + " of Multi Text Input (Focus) field is not as per spec, actual " + basicInputBorder);
+            }
+            Assert.assertTrue(isBasicInputBorder);
+        }
+        boxShadow = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, "box-shadow", "mobile");
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
+        if (isBoxShadow == false) {
+            log.info("Box-shadow of Multi Text Input (Focus) is not as per spec, actual " + boxShadow);
+        }
+        Assert.assertTrue(isBoxShadow);
+    }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {

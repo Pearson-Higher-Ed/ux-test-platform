@@ -82,4 +82,7 @@ public class InputsPageObjects {
     public By basicLine = By.id("basic-line");
 
     public By checkBoxWithLongLabel=By.xpath("//label[@for='longLabel']");
+
+    public By multiLineTextLabel = By.id("multitext-Input-Label");
+    public By multiLineTextInput = By.id("multiLine-text-input");
 }
