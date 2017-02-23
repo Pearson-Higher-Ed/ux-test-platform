@@ -1007,7 +1007,7 @@ public class InputsTest extends BaseClass {
         if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari drivers");
         }
-        commonUtils.focusOnElementById("zz");
+        commonUtils.focusOnElementById("multiLine-text-input");
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty);
             isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
@@ -1733,7 +1733,7 @@ public class InputsTest extends BaseClass {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
         }
-        commonUtils.focusOnElementById("zz", "mobile");
+        commonUtils.focusOnElementById("multiLine-text-input", "mobile");
         for (String cssProperty : borderWidths) {
             basicInputBorder = commonUtils.getCSSValue(inputsPgObj.multiLineTextInput, cssProperty, "mobile");
             isBasicInputBorder = commonUtils.assertValue(basicInputBorder, expBorderWidth, "Border width " + cssProperty + " of Multi Text Input (Focus) field is not as per spec");
