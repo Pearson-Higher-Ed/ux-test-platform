@@ -3,16 +3,12 @@ package elementsTests;
 import io.appium.java_client.TouchAction;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import io.appium.java_client.TouchAction.*;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
-import java.io.File;
 import java.lang.reflect.Method;
 
 /**
@@ -21,7 +17,7 @@ import java.lang.reflect.Method;
 public class ButtonsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
-    private static String env;
+    private static String env, browser, lBrowser, device;
     private static String setMobile;
     private String color = "", backgroundColor = "";
     boolean isCSSProperty = false, isColor = false, isBackgroundColor = false;
@@ -29,11 +25,14 @@ public class ButtonsTest extends BaseClass {
     TouchAction mAction;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
 
-    @Parameters({"runEnv", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
+    @Parameters({"runEnv", "mobile", "appiumDriver", "sauceBrowser", "localBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void buttonsTestBeforeClass(String runEnv, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
+    private void buttonsTestBeforeClass(String runEnv, String mobile, String appiumDriver, String sauceBrowser, String localBrowser, String mobBrowser) {
         env = runEnv;
         setMobile = mobile;
+        browser = sauceBrowser;
+        lBrowser = localBrowser;
+        device = appiumDriver;
         if (setMobile.equals("on")) {
             mAction = new TouchAction(appium);
         } else {
@@ -103,6 +102,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Verify Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"desktop-regression"})
     private void defaultButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.hoverOnElement(btnPgObj.defaultBtnHover);
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtnHover, cssProperty);
@@ -123,6 +125,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Verify Default Button Test-Focus state", dataProvider = "Default Button-Focus state Test Data", groups = {"desktop-regression"})
     private void defaultButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.focusOnElementById("default-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
@@ -215,6 +220,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Verify Primary Button Test-Hover state", dataProvider = "Primary Button-Hover state Test Data", groups = {"desktop-regression"})
     private void primaryButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.hoverOnElement(btnPgObj.primaryBtnHover);
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtnHover, cssProperty);
@@ -235,6 +243,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Verify Primary Button Test-Focus state", dataProvider = "Primary Button-Focus state Test Data", groups = {"desktop-regression"})
     private void primaryButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.focusOnElementById("primary-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty);
@@ -312,7 +323,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Verify CTA Button Test", dataProvider = "CTA Button Test Data", groups = {"desktop-regression"})
-    private void linkButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void ctaButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -331,7 +342,10 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Verify CTA Button Test-Hover state", dataProvider = "CTA Button-Hover state Test Data", groups = {"desktop-regression"})
-    private void linkButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void ctaButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.hoverOnElement(btnPgObj.ctaBtnHover);
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtnHover, cssProperty);
@@ -351,7 +365,10 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Verify CTA Button Test-Focus state", dataProvider = "CTA Button-Focus state Test Data", groups = {"desktop-regression"})
-    private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void ctaButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
+        }
         String cssPropertyType = cssProperty;
         commonUtils.focusOnElementById("cta-btn");
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty);
@@ -362,6 +379,87 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
     //No disabled state for CTA button
+
+    //Link buttons
+    @DataProvider(name = "Link Button Test Data")
+    public Object[][] getLinkButtonTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"background-color", new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}},
+                {"background-image", new String[]{"none"}},
+
+                {"border-top-width", new String[]{"0px"}},
+                {"border-bottom-width", new String[]{"0px"}},
+                {"border-left-width", new String[]{"0px"}},
+                {"border-right-width", new String[]{"0px"}},
+
+                {"text-decoration", new String[]{"underline"}},
+                {"cursor", new String[]{"pointer"}},
+
+                {"padding-top", new String[]{"0px"}},
+                {"padding-bottom", new String[]{"0px"}},
+                {"padding-left", new String[]{"0px"}},
+                {"padding-right", new String[]{"0px"}}
+        };
+    }
+
+    @Test(testName = "Verify Link Button Test", dataProvider = "Link Button Test Data", groups = {"desktop-regression"})
+    private void linkButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Link Button-Hover state Test Data")
+    public Object[][] getLinkButtonHoverStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
+                {"text-decoration", new String[]{"none"}}
+        };
+    }
+
+    @Test(testName = "Verify Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"desktop-regression"})
+    private void linkButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.hoverOnElement(btnPgObj.linkBtnHover);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtnHover, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link Hovered button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Link Button-Focus state Test Data")
+    public Object[][] getLinkButtonFocusStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
+                {"text-decoration", new String[]{"none"}}
+        };
+    }
+
+    @Test(testName = "Verify Link Button Test-Focus state", dataProvider = "Link Button-Focus state Test Data", groups = {"desktop-regression"})
+    private void linkButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.focusOnElementById("link-btn");
+        Thread.sleep(1000);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link Focus state button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
 
     //Sizes
     @DataProvider(name = "Small Button Test Data")
@@ -523,12 +621,51 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Verify CTA Button Test", dataProvider = "CTA Button Test Data", groups = {"mobile-regression"})
-    private void linkButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void ctaButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for CTA button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Link Button Test", dataProvider = "Link Button Test Data", groups = {"mobile-regression"})
+    private void linkButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"mobile-regression"})
+    private void linkButtonHoverStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (device.equals("iOS")) {
+            throw new SkipException("Hover operation not yet supported in iOS appium drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.hoverOnElement(btnPgObj.linkBtnHover, "mobile");
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtnHover, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link Hovered button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Link Button Test-Focus state", dataProvider = "Link Button-Focus state Test Data", groups = {"mobile-regression"})
+    private void linkButtonFocusStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        commonUtils.focusOnElementById("link-btn", "mobile");
+        Thread.sleep(1000);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link Focus state button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
