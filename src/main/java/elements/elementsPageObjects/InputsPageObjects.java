@@ -85,4 +85,36 @@ public class InputsPageObjects {
 
     public By multiLineTextLabel = By.id("multitext-Input-Label");
     public By multiLineTextInput = By.id("multiLine-text-input");
+
+    public By unselectedRadioBtn = By.id("unselected-radio-div");
+    public By unselectedRadioBtnLabel = By.id("label-unselected");
+    public By unselectedRadioBtnSpan = By.id("unselected-span");
+    public By unselectedRadioBtnSvg = By.id("unselected-svg");
+    public By selectedRadioBtn = By.id("selected-radio-div");
+    public By selectedRadioBtnLabel = By.id("label-selected");
+    public By selectedRadioBtnSpan = By.id("selected-span");
+    public By selectedRadioBtnSpanSvg = By.id("selected-svg");
+    public By disabledUnselectedRadioBtn = By.id("disabled-unselected-radio-div");
+    public By disabledUnselectedRadioBtnLabel = By.id("label-disabled-unselected");
+    public By disabledUnselectedRadioBtnSpan = By.id("disabled-unselected-span");
+    public By disabledUnselectedRadioBtnSvg = By.id("disabled-unselected-svg");
+
+    public By unselectedFocusRadioBtn = By.id("unselected-focus-radio-div");
+    public By unselectedFocusRadioBtnLabel = By.id("label-unselected-focus");
+    public By unselectedFocusRadioBtnSpan = By.id("unselected-focus-span");
+    public By unselectedFocusRadioBtnSvg = By.id("unselected-focus-svg");
+    public By disabledSelectedRadioBtn = By.id("disabled-selected-radio-div");
+    public By disabledSelectedRadioBtnLabel = By.id("label-disabled-selected");
+    public By disabledSelectedRadioBtnSpan = By.id("disabled-selected-span");
+    public By disabledSelectedRadioBtnSvg = By.id("disabled-selected-svg");
+
+    public By unselectedRadioBtn2 = By.id("unselected-radio-btn-div");
+    public By unselectedRadioBtnLabel2 = By.id("label-unselected-btn");
+    public By unselectedRadioBtnSpan2 = By.id("unselected-radio-btn-span");
+    public By unselectedRadioBtnSvg2 = By.id("unselected-radio-btn-svg");
+    public By selectedFocusRadioBtn = By.id("selected-focus-radio-div");
+    public By selectedFocusRadioBtnLabel = By.id("label-selected-focus");
+    public By selectedFocusRadioBtnSpan = By.id("selected-focus-span");
+    public By selectedFocusRadioBtnSvg = By.id("selected-focus-svg");
+
 }
