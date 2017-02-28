@@ -27,18 +27,11 @@ npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-#cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
-cd ..
-git clone https://github.com/Pearson-Higher-Ed/elements.git
-cd elements
-git checkout v1
-npm install &>/dev/null
-npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/css/
 }
 
 install_appHeader(){
-echo -e "******************************\\n    Installing app-header    \\n******************************"
+echo -e "******************************\\n    Installing app-header V2  \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
 cd app-header
 git checkout $1
@@ -47,6 +40,7 @@ npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/build/dist.app-header.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/appHeader/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/img ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/
 }
 
 install_contextualHelp(){

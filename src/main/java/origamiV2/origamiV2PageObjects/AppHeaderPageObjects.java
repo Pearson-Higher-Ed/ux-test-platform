@@ -23,19 +23,23 @@ public class AppHeaderPageObjects {
     public By headerBanner=By.xpath("//header");
 
     //Signed Out Mode Page Objects
-    public By pearsonLogo = By.xpath("//div[@class='o-header__logo o-header__logo--pearson']");
-    public By clickablePearsonLogo=By.xpath("//div[@class='o-header__brand']/a/div");
-    public By helpLink = By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']");
+    public By pearsonLogo = By.xpath("//div[@class='o-header__logo o-header__logo--pearson']/img[@alt='console home']");
+    public By clickablePearsonLogo=By.xpath("//div[@class='o-header__brand']/a/div/img[@alt='console home']");
+    public By helpLink = By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']/a/i/img[@alt='help button']");
     public By clickableHelpLink=By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']/a");
+    public By styledHelpLink=By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']");
     public By signInLink = By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-sign-in']");
+    public By clickableSignInLink = By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-sign-in']/a");
 
     //Basic Mode Page Objects
     public By desktopViewUserMenu=By.xpath("//span[@class='o-app-header__username o-app-header--truncate o-header__viewport-tablet--visible o-header__viewport-desktop--visible']");
-    public By mobileViewUserMenu=By.xpath("//span[@class='o-header__viewport-tablet--hidden o-header__viewport-desktop--hidden']");
+    public By clickableDesktopViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/a");
+    public By mobileViewUserMenu=By.xpath("//span[@class='o-header__viewport-tablet--hidden o-header__viewport-desktop--hidden']/i/img[@alt='account button']");
+    public By clickableMobileViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/a");
     public By chevronUpIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-up']");
     public By chevronDownIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-down']");
-    public By myAccount  =By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']");
-    public By clickableMyAccount = By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
+    public By accountSettings  =By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
+    //public By clickableMyAccount = By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
     public By signOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']");
     public By clickableSignOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']/a");
     public By menuItems=By.xpath("//ul[@class='o-dropdown-menu__menu-items']");
