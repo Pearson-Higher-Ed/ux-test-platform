@@ -76,10 +76,10 @@ public class InputsPageObjects {
     public By inputBasicDisabled = By.id("x");
     public By inputBasicDisabledLabel = By.id("basic-disabled-label");
 
-    public By basicSelectInput = By.id("w");
+    public By basicSelectInput = By.id("select-input-basic");
+    public By basicSelectInputContainer = By.id("select-input-div");
     public By basicSelectInputLabel = By.id("select-input-label");
     public By basicSelectInputIcon = By.id("icon-dropdown-open-18");
-    public By basicLine = By.id("basic-line");
 
     public By checkBoxWithLongLabel=By.xpath("//label[@for='longLabel']");
 
