@@ -30,7 +30,7 @@ before_script:
 
 script:
 - export component=elements_sdk
-- export feature_branch=DES-577
+- export feature_branch=v1
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
 - mvn -Dtest_suite_xml=elements_sdk.xml test
