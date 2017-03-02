@@ -21,6 +21,7 @@
         }
         pe_ajax.send();
     }
+
 </script>
 
 <!-- Inputs (single line) -->
@@ -235,9 +236,9 @@
 
 <h2 style="background-color: lightgoldenrodyellow;margin-right: 300px">Select Input </h2>
 
-// Select Input
+<!-- Select Input -->
 <label id="select-input-label" class="pe-textLabelInput__label" for="select-input-basic">Send message to</label>
-<div id = "select-input-div" class="pe-select-container">
+<div id="select-input-div" class="pe-select-container">
     <select class="pe-selectInput--basic" id="select-input-basic">
         <option>Which option will you choose?</option>
         <option>One</option>
@@ -245,22 +246,130 @@
         <option>Three</option>
     </select>
     <svg id="icon-dropdown-open-18"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            aria-hidden="true"
-            focusable="false"
-            class="pe-icon--dropdown-open-18">
+         version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         aria-hidden="true"
+         focusable="false"
+         class="pe-icon--dropdown-open-18">
         <use xlink:href="#dropdown-open-18"></use>
     </svg>
 </div>
 
-// Multiple Line text
+<!-- Multiple Line text -->
 <div>
-    <label id = "multitext-Input-Label" class="pe-textLabelInput__label" for="zz">Multi-line label</label>
+    <label id="multitext-Input-Label" class="pe-textLabelInput__label" for="multiLine-text-input">Multi-line
+        label</label>
     <textarea class="pe-multiLineText" id="multiLine-text-input" cols="30" rows="5"
               placeholder="Many words displayed over multiple lines.">
     </textarea>
+</div>
+
+<!-- Radio Buttons -->
+<!-- unselected, selected, and disabled unselected-->
+<h4 style="color:blue;"> unselected, selected, and disabled unselected </h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Which scotch do you like with your cookies?</legend>
+        <div id="unselected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="unselected-radio">
+            <label id="label-unselected" for="unselected-radio">T&#233; Bheag (unselected)</label>
+            <span id="unselected-span">
+      <svg id="unselected-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+
+        <div id="selected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="selected-radio" checked="checked">
+            <label id="label-selected" for="selected-radio">Monkey Shoulder (selected)</label>
+            <span id="selected-span">
+      <svg id="selected-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+
+        <div id="disabled-unselected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="disabled-unselected-radio" disabled>
+            <label id="label-disabled-unselected" for="disabled-unselected-radio">Talisker 18 years (disabled
+                unselected)</label>
+            <span id="disabled-unselected-span">
+      <svg id="disabled-unselected-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+    </fieldset>
+</div>
+
+<!-- unselected and disabled selected versions-->
+<h4 style="color:blue;">unselected and disabled selected versions</h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Which kinds of cookies do you like with your scotch?</legend>
+        <div id="unselected-focus-radio-div" class="pe-radio">
+            <input type="radio" name="cookie" id="unselected-focus-radio">
+            <label id="label-unselected-focus" for="unselected-focus-radio">Chocolate Chip (unselected)</label>
+            <span id="unselected-focus-span" style="border-color:#047a9c;">
+      <svg id="unselected-focus-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+
+        <div id="disabled-selected-radio-div" class="pe-radio">
+            <input type="radio" name="cookie" id="disabled-selected-radio" disabled checked>
+            <label id="label-disabled-selected" for="disabled-selected-radio">Oreo (disabled selected)</label>
+            <span id="disabled-selected-span">
+      <svg id="disabled-selected-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+    </fieldset>
+</div>
+<!-- unselected and focused selected versions -->
+
+<h4 style="color:blue;">unselected and focused selected versions</h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Choose a meat</legend>
+        <div id="unselected-radio-btn-div" class="pe-radio">
+            <input type="radio" name="meat" id="unselected-radio-btn">
+            <label id="label-unselected-btn" for="unselected-radio-btn">Bacon (unselected)</label>
+            <span id="unselected-radio-btn-span">
+      <svg id="unselected-radio-btn-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+
+        <div id="selected-focus-radio-div" class="pe-radio">
+            <input type="radio" name="meat" id="selected-focus-radio" checked>
+            <label id="label-selected-focus" for="selected-focus-radio">Short Ribs (focused selected)</label>
+            <span id="selected-focus-span" style="border-color:#047a9c;">
+      <svg id="selected-focus-svg" aria-hidden="true"
+           focusable="false"
+           class="pe-icon--radio-dot">
+        <use xlink:href="#new-notification-9"></use>
+      </svg>
+    </span>
+        </div>
+    </fieldset>
 </div>
 
 </body>

@@ -275,18 +275,18 @@ public class CommonUtils {
         }
     }
 
-    public boolean checkLabelForVal(By element, By target) {
-        webElement = driver.findElement(element);
+    public boolean checkLabelForVal(By label, By elem) {
+        webElement = driver.findElement(label);
         labelContains = webElement.getAttribute("for");
-        webElement = driver.findElement(target);
+        webElement = driver.findElement(elem);
         isForValue = labelContains.equals(webElement.getAttribute("id"));
         return isForValue;
     }
 
-    public boolean checkLabelForVal(By element, By target, String mobile) {
-        webElement = appium.findElement(element);
+    public boolean checkLabelForVal(By label, By elem, String mobile) {
+        webElement = appium.findElement(label);
         labelContains = webElement.getAttribute("for");
-        webElement = appium.findElement(target);
+        webElement = appium.findElement(elem);
         isForValue = labelContains.equals(webElement.getAttribute("id"));
         return isForValue;
     }
