@@ -28,15 +28,21 @@ public class AppHeaderTest extends BaseClass {
     private final String basicModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/appHeader/app-header-BasicMode.html";
     private final String courseModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/appHeader/app-header-CourseMode.html";
     private final String integModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/appHeader/app-header-IntegMode.html";
-    private final String signedOutJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/signedout.js";
-    private final String basicJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/basic.js";
-    private final String courseJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/course.js";
-    private final String integJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/integ.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/temp.js";
+    private String absPathForSignedOutJS = new File("origamiV2/jsfiles/appHeader/signedout.js").getAbsolutePath();
+    private String absPathForBasicJS = new File("origamiV2/jsfiles/appHeader/basic.js").getAbsolutePath();
+    private String absPathForCourseJS = new File("origamiV2/jsfiles/appHeader/course.js").getAbsolutePath();
+    private String absPathForIntegJS = new File("origamiV2/jsfiles/appHeader/integ.js").getAbsolutePath();
+    private String absPathForTempJS = new File("origamiV2/jsfiles/appHeader/temp.js").getAbsolutePath();
+    private final String signedOutJSFilePath = constructPath(absPathForSignedOutJS);
+    private final String basicJSFilePath = constructPath(absPathForBasicJS);
+    private final String courseJSFilePath = constructPath(absPathForCourseJS);
+    private final String integJSFilePath = constructPath(absPathForIntegJS);
+    private final String tempJSFilePath = constructPath(absPathForTempJS);
+
     JsonObject jsonObject;
     private String testConfig = "";
     private String userName = "";
-    private String marginTop = "", fontSize = "", lineHeight = "";
+    private String marginTop = "", fontSize = "", lineHeight = "", browserLogs = "";
     boolean isUserName = false;
     boolean pearsonLogoVisible = false;
     boolean helpLinkVisible = false;
@@ -614,7 +620,17 @@ public class AppHeaderTest extends BaseClass {
     /*************************
      * Course Mode Tests *
      *************************/
-
+    @Test(testName = "Verify Course Mode is not present Test", groups = {"desktop-regression"})
+    private void courseModeNotPresentTest() throws Exception {
+        if (!browser.equals("chrome")) {
+            throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
+        }
+        commonUtils.getUrl(courseModeUrl);
+        Thread.sleep(1000);
+        browserLogs = commonUtils.browserLogs().toString();
+        result = commonUtils.assertValue(browserLogs.contains("Unrecognized mode, 'Course'"), true, "'Course Mode is seen which is not as per SPEC");
+        Assert.assertTrue(result);
+    }
     /*@Test(testName = "Default Course Mode in Desktop View", groups = {"desktop-regression"})
     private void courseModeDesktopViewDefaultTest() throws Exception {
 
@@ -1930,6 +1946,11 @@ public class AppHeaderTest extends BaseClass {
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
         result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
         Assert.assertTrue(result);
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 
     @BeforeMethod(alwaysRun = true)
