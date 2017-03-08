@@ -103,13 +103,8 @@ public class CommonUtils {
 
     //is element present
     public boolean isElementPresent(By element) {
-        try {
             webElement = driver.findElement(element);
             return webElement.findElement(element).isDisplayed();
-        } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
-            return false;
-        }
     }
 
     //is element present
