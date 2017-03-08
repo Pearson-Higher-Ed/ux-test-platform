@@ -731,7 +731,6 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isLabelColor && isLabelFontSize && isLabelFor);
     }
 
-
     @DataProvider(name = "Inputs - Basic (single line - Focus) Test Data")
     public Object[][] getBasicInputFocusTestData() {
         return new Object[][]{
@@ -770,7 +769,6 @@ public class InputsTest extends BaseClass {
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicSingleLabel, inputsPgObj.inputBasicSingleLine);
         Assert.assertTrue(isBoxShadow && isBasicInputBorder && isBorderRadius && isBasicInputValueColor && isLabelFontSize && isLabelFor);
     }
-
 
     @DataProvider(name = "Inputs - Basic (single line - Error Focus) Test Data")
     public Object[][] getBasicInputErrorFocusTestData() {
@@ -811,6 +809,40 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Error (Focus) label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicErrorLabel, inputsPgObj.inputBasicError);
         Assert.assertTrue(isBoxShadow && isBasicInputBorder && isBorderRadius && isBasicInputValueColor && isLabelColor && isLabelFontSize && isLabelFor);
+    }
+
+    //input--error_message
+    @DataProvider(name = "Input Error Message Test Data")
+    public Object[][] getInputErrorMessageTestData() {
+        return new Object[][]{
+                {"pe-input--error_message-fancy", inputsPgObj.slInputErrorMessageFancy, new String[]{"3px"}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{"12px"}, new String[]{"16px"}},
+                {"pe-input--error_message-basic", inputsPgObj.slInputErrorMessageBasic, new String[]{"3px"}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{"12px"}, new String[]{"16px"}}
+        };
+    }
+
+    @Test(testName = "Verify Input Error Message Test", dataProvider = "Input Error Message Test Data", groups = "desktop-regression")
+    private void inputErrorMessageTest(String type, By element, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) {
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
+        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
+        if (!isPaddingTop) {
+            log.info("padding-top for " + type + " is not as per the spec, actual: " + paddingTop);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
 
     @DataProvider(name = "Basic Select Input Test Data")
@@ -1651,6 +1683,31 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Error (Focus) label is not as per spe");
         isLabelFor = commonUtils.checkLabelForVal(inputsPgObj.inputBasicErrorLabel, inputsPgObj.inputBasicError, "mobile");
         Assert.assertTrue(isBoxShadow && isBasicInputBorder && isBorderRadius && isBasicInputValueColor && isLabelColor && isLabelFontSize && isLabelFor);
+    }
+
+    @Test(testName = "Mobile: Verify Input Error Message Test", dataProvider = "Input Error Message Test Data", groups = "mobile-regression")
+    private void inputErrorMessageMobileTest(String type, By element, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) {
+        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
+        if (!isPaddingTop) {
+            log.info("padding-top for " + type + " is not as per the spec, actual: " + paddingTop);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
 
     @DataProvider(name = "Mobile : Basic Select Input Test Data")
