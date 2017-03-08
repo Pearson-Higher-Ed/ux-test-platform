@@ -18,6 +18,7 @@ public class InputsPageObjects {
     }
 
     //Inputs
+    //fancy
     public By textLabelInput = By.id("sl-text-label-input");
     public By slTextInput = By.id("sl-text-input");
     public By slTextInputWithouValue = By.id("sl-text-input-without-value");
@@ -30,6 +31,16 @@ public class InputsPageObjects {
     public By slTextLableInputReadOnly = By.id("sl-text-label-input-readonly");
     public By slUnderlineInput = By.id("input-underline");
     public By slUnderLineInputError = By.id("input-underline-error");
+    public By slInputErrorMessageFancy=By.id("pe-input--error_message-fancy");
+
+    //basic
+    public By inputBasicSingleLine = By.id("z");
+    public By inputBasicSingleLabel = By.id("basic-sl-label");
+    public By inputBasicError = By.id("y");
+    public By inputBasicErrorLabel = By.id("basic-error-label");
+    public By inputBasicDisabled = By.id("x");
+    public By inputBasicDisabledLabel = By.id("basic-disabled-label");
+    public By slInputErrorMessageBasic=By.id("pe-input--error_message-basic");
 
     //Checkboxes
     public By checkBoxUncheckedInput = By.id("checkboxInput-unchecked");
@@ -68,13 +79,6 @@ public class InputsPageObjects {
     public By passwordField = By.id("e");
     public By passwordUnderLine = By.id("password-input-underline");
     public By showbutton = By.id("showbutton");
-
-    public By inputBasicSingleLine = By.id("z");
-    public By inputBasicSingleLabel = By.id("basic-sl-label");
-    public By inputBasicError = By.id("y");
-    public By inputBasicErrorLabel = By.id("basic-error-label");
-    public By inputBasicDisabled = By.id("x");
-    public By inputBasicDisabledLabel = By.id("basic-disabled-label");
 
     public By basicSelectInput = By.id("select-input-basic");
     public By basicSelectInputContainer = By.id("select-input-div");
