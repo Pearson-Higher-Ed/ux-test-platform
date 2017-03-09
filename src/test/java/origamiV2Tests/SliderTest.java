@@ -9,6 +9,7 @@ import utilities.BaseClass;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.*;
@@ -26,9 +27,13 @@ import javax.naming.directory.NoSuchAttributeException;
 public class SliderTest extends BaseClass {
 
     private final String basicModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/slider/slider.html";
-    private final String sliderJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/slider.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/temp.js";
-    private final String sliderDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/slider/dist.slider.js";
+    private final String absSliderDistJSFilePath =  new File("origamiV2/jsfiles/slider/dist.slider.js").getAbsolutePath();
+    private final String sliderDistJSFilePath = constructPath(absSliderDistJSFilePath);
+    private final String absSliderJSFilePath = new File("origamiV2/jsfiles/slider/slider.js").getAbsolutePath();
+    private final String absTempJSFilePath = new File("origamiV2/jsfiles/slider/temp.js").getAbsolutePath();
+    private final String sliderJSFilePath = constructPath(absSliderJSFilePath);
+    private final String tempJSFilePath = constructPath(absTempJSFilePath);
+
     final static Logger log = Logger.getLogger(SliderTest.class.getName());
     private boolean isSliderVal, isLabelPresent, isForPresent, isForValue;
     private String actSliderVal, labelContains;
@@ -287,6 +292,11 @@ public class SliderTest extends BaseClass {
             commonUtils.getUrl(basicModeUrl,"mobile");
             slider = appium.findElement(By.id("numInput"));
         }
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 
     @AfterMethod(alwaysRun = true)

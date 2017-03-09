@@ -1948,14 +1948,14 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    public String constructPath(String absolutePath) {
-        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
-        return path;
-    }
-
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 
     @AfterMethod(alwaysRun = true)

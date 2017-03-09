@@ -8,10 +8,7 @@ import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -25,9 +22,13 @@ import java.util.List;
  */
 public class TextModalTest extends BaseClass {
     private final String textModalUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/textModal/text-modal.html";
-    private final String textModalJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/text-modal.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/temp.js";
-    private final String textModalDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/dist.text-modal.js";
+    private final String absTextModalJSPath = new File("origamiV2/jsfiles/textModal/text-modal.js").getAbsolutePath();
+    private final String absTempJSFilePath =  new File("origamiV2/jsfiles/textModal/temp.js").getAbsolutePath();
+    private final String absTextModalDistJSFilePath = new File("origamiV2/jsfiles/textModal/dist.text-modal.js").getAbsolutePath();
+    private final String textModalJSPath = constructPath(absTextModalJSPath);
+    private final String tempJSFilePath = constructPath(absTempJSFilePath);
+    private final String textModalDistJSFilePath = constructPath(absTextModalDistJSFilePath);
+
     private String defaultConfig = "detail: { elementId: 'app', contentTemplateLarge: true, footerVisible: true, successBtnCallback: function() { console.log('¡¡success button pressed!!') }}";
     final static Logger log = Logger.getLogger(TextModalTest.class.getName());
     private String actInitiateBtnVal, actTitleFontSize, actTitleLineHeight, actContentFontSize, actContentLineHeight, actContentColor, actModalWidth, actCancelBtnClass, actSuccessBtnClass, initiateBtnAccessible, actXBtnClass;
@@ -288,8 +289,8 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("Saucelabs does not support responsive behavior on Windows");
         }
         result = true;
-        readInitialConfig(textModalJSPath);
-        changeConfig(textModalJSPath, defaultConfig, Config);
+        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         Thread.sleep(1000);
         commonUtils.getUrl(textModalUrl);
         commonUtils.setWindowSize(width, height);
@@ -320,7 +321,7 @@ public class TextModalTest extends BaseClass {
         isContentFontSize = commonUtils.assertValue(actContentFontSize, contentFontSize, "at width" + width + "font-size of content is not as per spec");
         isContentLineHeight = commonUtils.assertValue(actContentLineHeight, contentLineHeight, "at width" + width + "line-height of content is not as per spec");
         isContentColor = commonUtils.assertValue(actContentColor, contentColor, "at width" + width + "color of content is not as per spec");
-        writeInitialConfig(textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
         commonUtils.click(textModalPgObj.cancelBtn);
         Assert.assertTrue(result && isModalWidth);
     }
@@ -338,13 +339,13 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
         }
         Thread.sleep(1000);
-        readInitialConfig(textModalJSPath);
-        changeConfig(textModalJSPath, defaultConfig, Config);
+        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         commonUtils.getUrl(textModalUrl);
         commonUtils.click(textModalPgObj.initiateBtn);
         Thread.sleep(1000);
         result = commonUtils.isElementsVisibleOnPage(textModalPgObj.footer);
-        writeInitialConfig(textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
         commonUtils.click(textModalPgObj.xBtn);
         Assert.assertFalse(result);
     }
@@ -362,13 +363,13 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
         }
         Thread.sleep(1000);
-        readInitialConfig(textModalJSPath);
-        changeConfig(textModalJSPath, defaultConfig, Config);
+        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         Thread.sleep(1000);
         commonUtils.getUrl(textModalUrl);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
-        writeInitialConfig(textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
         Assert.assertTrue(result);
     }
 
@@ -476,30 +477,7 @@ public class TextModalTest extends BaseClass {
     /*
     Common Methods
      */
-    private void readInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(tempJSFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void writeInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws Exception {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line.replace(getDefaultConfig, getTestConfig));
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
+    
     private String getCode(String script) {
         JavascriptExecutor js = null;
         if (setMobile.equals("on")) {
@@ -533,6 +511,11 @@ public class TextModalTest extends BaseClass {
         } else {
             commonUtils.getUrl(textModalUrl, "mobile");
         }
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 
     @AfterMethod(alwaysRun = true)

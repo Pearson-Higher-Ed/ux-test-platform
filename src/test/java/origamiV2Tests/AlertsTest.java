@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utilities.BaseClass;
+
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +17,10 @@ import java.util.List;
 
 public class AlertsTest extends BaseClass {
     private final String basicModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/alerts/alerts.html";
-    private final String sliderJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/alerts/alerts.js";
-    private final String sliderDistJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/alerts/dist.alerts.js";
+    private final String absAlertJSFilePath = new File("origamiV2/jsfiles/alerts/alerts.js").getAbsolutePath();
+    private final String alertJSFilePath = constructPath(absAlertJSFilePath);
+    private final String absSliderDistJSFilePath = new File("origamiV2/jsfiles/alerts/dist.alerts.js").getAbsolutePath();
+    private final String alertDistJSFilePath = constructPath(absSliderDistJSFilePath);
     String marginTop, borderTopWidth, borderTopStyle, borderTopColor, bgColor, titleFontSize, titleFontColor, titleLineHt, textFontSize, textFontColor, textLineHt, padding, paddingTop;
     boolean isMarginTop, isBorderTopWidth, isBorderTopStyle, isBorderTopColor, isBgColor, isTitleFontSize, isTitleFontColor, isTitleLineHt, isTextFontSize, isTextFontColor, isTextLineHt, isPadding, isPaddingTop, isElemPresent;
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
@@ -271,10 +275,14 @@ public class AlertsTest extends BaseClass {
         }
     }
 
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
+    }
+
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
     }
-
 }
 

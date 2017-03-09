@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -23,8 +24,11 @@ import java.util.List;
 public class AvatarDisplayTest extends BaseClass {
 
     private final String avatarDisplayUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/avatarDisplay/avatar-display.html";
-    private final String avatarDisplayJSPath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/avatarDisplay/avatar-display.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/avatarDisplay/temp.js";
+    private final String absPathForAvatarDisplayJS = new File("origamiV2/jsfiles/avatarDisplay/avatar-display.js").getAbsolutePath();
+    private final String avatarDisplayJSPath = constructPath(absPathForAvatarDisplayJS);
+    private final String absPathForTempJS = new File("origamiV2/jsfiles/avatarDisplay/temp.js").getAbsolutePath();
+    private final String tempJSFilePath = constructPath(absPathForTempJS);
+
     private String avatarURLText = "http://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/profile_user.jpg";
     private String testConfig = "";
     private static String browser = "";
@@ -57,13 +61,13 @@ public class AvatarDisplayTest extends BaseClass {
 
     @Test(testName = "avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarSizeTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
         result = verifyAvatarSizeProperties(size, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, height, width);
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
 
@@ -78,14 +82,14 @@ public class AvatarDisplayTest extends BaseClass {
 
     @Test(testName = "avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarShapeTest(String size) throws Exception {
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
         shape = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "class");
         isShape = commonUtils.assertValue(shape, "avatar-display-img avatar-display-round", size + "-size avatar shape is not as per the spec");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isShape);
     }
 
@@ -103,18 +107,18 @@ public class AvatarDisplayTest extends BaseClass {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
         }
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
 
@@ -135,13 +139,13 @@ public class AvatarDisplayTest extends BaseClass {
             throw new SkipException("browser console logs apis are still not implemented for this browser driver'");
         }
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height");
@@ -154,12 +158,12 @@ public class AvatarDisplayTest extends BaseClass {
         if (isWidth == false) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
         if ((browser.equals("chrome")) && configType.equals("invalidAvatarURLText")) {
             browserLogs = commonUtils.browserLogs().toString();
             result = commonUtils.assertValue(browserLogs.contains("404"), true, "'404 not found' error msg is NOT seen as per SPEC");
-            writeInitialConfig(avatarDisplayJSPath);
+            commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
             Assert.assertTrue(result);
         }
     }
@@ -176,18 +180,18 @@ public class AvatarDisplayTest extends BaseClass {
     @Test(testName = "avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarALTTextConfigTest(String configType, String[] configArray, String avatarALTText) throws Exception {
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
         altText = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "alt");
         result = commonUtils.assertValue(altText, avatarALTText, "avatarALTText for - " + configType + " is not as per the spec");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
 
@@ -204,13 +208,13 @@ public class AvatarDisplayTest extends BaseClass {
     @Test(testName = "avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"desktop-regression", "origamiV2"})
     private void avatarSizeConfigTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
 
@@ -224,7 +228,7 @@ public class AvatarDisplayTest extends BaseClass {
         if (isWidth == false) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
     }
     /***************
@@ -232,26 +236,26 @@ public class AvatarDisplayTest extends BaseClass {
      **************/
     @Test(testName = "Mobile: avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarSizeMobileTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl, "mobile");
         Thread.sleep(2000);
         result = verifyAvatarSizeProperties(size, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, height, width, "mobile");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Mobile: avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarShapeMobileTest(String size) throws Exception {
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl, "mobile");
         Thread.sleep(2000);
         shape = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "class", "mobile");
         isShape = commonUtils.assertValue(shape, "avatar-display-img avatar-display-round", size + "-size avatar shape is not as per the spec");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isShape);
     }
 
@@ -261,13 +265,13 @@ public class AvatarDisplayTest extends BaseClass {
             throw new SkipException("browser console logs apis are still not implemented for this driver'");
         }
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl, "mobile");
         Thread.sleep(2000);
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height", "mobile");
@@ -280,38 +284,38 @@ public class AvatarDisplayTest extends BaseClass {
         if (isWidth == false) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
     }
 
     @Test(testName = "Mobile: avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarALTTextConfigMobileTest(String configType, String[] configArray, String avatarALTText) throws Exception {
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl, "mobile");
         Thread.sleep(2000);
         altText = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "alt", "mobile");
         result = commonUtils.assertValue(altText, avatarALTText, "avatarALTText for - " + configType + " is not as per the spec");
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Mobile: avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"mobile-regression", "origamiV2"})
     private void avatarSizeConfigMobileTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         int i;
-        readInitialConfig(avatarDisplayJSPath);
+        commonUtils.readInitialConfig(avatarDisplayJSPath,tempJSFilePath);
         list = new ArrayList<String>();
         for (i = 0; i < configArray.length; i++) {
             list.add(configArray[i]);
         }
         testConfig = buildJSONObject(list);
-        changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
+        commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
         commonUtils.getUrl(avatarDisplayUrl, "mobile");
         Thread.sleep(2000);
 
@@ -325,7 +329,7 @@ public class AvatarDisplayTest extends BaseClass {
         if (isWidth == false) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
-        writeInitialConfig(avatarDisplayJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
     }
     /****************
@@ -438,31 +442,7 @@ public class AvatarDisplayTest extends BaseClass {
         }
         return (isBorderTopLeftRadius && isBorderTopRightRadius && isBorderBottomLeftRadius && isBorderBottomRightRadius && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isHeight && isWidth);
     }
-
-    private void readInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(tempJSFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void writeInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line.replace(getDefaultConfig, getTestConfig));
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
+    
     private void printFileContents(String jsFilePath) throws Exception {
         try {
             BufferedReader br = new BufferedReader(new FileReader(jsFilePath));
@@ -473,6 +453,11 @@ public class AvatarDisplayTest extends BaseClass {
         } catch (Exception e) {
             log.info(e.getMessage());
         }
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 
     @BeforeMethod(alwaysRun = true)
