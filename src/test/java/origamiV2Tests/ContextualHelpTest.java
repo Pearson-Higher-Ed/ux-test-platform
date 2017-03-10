@@ -11,6 +11,7 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -33,8 +34,10 @@ public class ContextualHelpTest extends BaseClass {
     private final String contextualHelpUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/contextualHelp/contextual-help.html";
     private final String contextualHelpWithoutAppHeaderUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/contextualHelp/contextual-help-woAppHeader.html";
 
-    private final String contextualHelpJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/contextualHelp/contextual-help.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/contextualHelp/temp.js";
+    private final String absContextualHelpJSFilePath = new File("origamiV2/jsfiles/contextualHelp/contextual-help.js").getAbsolutePath();
+    private final String contextualHelpJSFilePath =  constructPath(absContextualHelpJSFilePath);
+    private final String absTempJSFilePath = new File("origamiV2/jsfiles/contextualHelp/temp.js").getAbsolutePath();
+    private final String tempJSFilePath = constructPath(absTempJSFilePath);
     private final String initialConfig = "var newTopics = [\"testcontent/student/deletedcourse\", \"testcontent/student/droppedcourse\", \"testcontent/student/freetrial\"];";
 
     private String xpathForHelpTopics = "";
@@ -112,14 +115,14 @@ public class ContextualHelpTest extends BaseClass {
 
     @Test(testName = "Display Instructor only help topics", groups = {"desktop-regression"})
     private void displayInstructorHelpTopicsTest() throws Exception {
-        readInitialConfig(contextualHelpJSFilePath);
+        commonUtils.readInitialConfig(contextualHelpJSFilePath,tempJSFilePath);
         int i;
         helpTopicsList = new ArrayList<String>();
         helpTopicsList.add("testcontent/instructor/courseregsettings");
         helpTopicsList.add("testcontent/instructor/educatorresources");
         testConfig = buildJsonArrayForHelpTopics(helpTopicsList);
 
-        changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
+        commonUtils.changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
 
@@ -127,7 +130,7 @@ public class ContextualHelpTest extends BaseClass {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
             isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics));
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Instructor");
-            writeInitialConfig(contextualHelpJSFilePath);
+            commonUtils.writeInitialConfig(tempJSFilePath,contextualHelpJSFilePath);
             Assert.assertTrue(result);
         }
     }
@@ -848,14 +851,14 @@ public class ContextualHelpTest extends BaseClass {
 
     @Test(testName = "Mobile: Display Instructor only help topics", groups = {"mobile-regression"})
     private void displayInstructorHelpTopicsMobileTest() throws Exception {
-        readInitialConfig(contextualHelpJSFilePath);
+        commonUtils.readInitialConfig(contextualHelpJSFilePath,tempJSFilePath);
         int i;
         helpTopicsList = new ArrayList<String>();
         helpTopicsList.add("testcontent/instructor/courseregsettings");
         helpTopicsList.add("testcontent/instructor/educatorresources");
         testConfig = buildJsonArrayForHelpTopics(helpTopicsList);
 
-        changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
+        commonUtils.changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
 
@@ -863,7 +866,7 @@ public class ContextualHelpTest extends BaseClass {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
             isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics), "mobile");
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Instructor");
-            writeInitialConfig(contextualHelpJSFilePath);
+            commonUtils.writeInitialConfig(tempJSFilePath,contextualHelpJSFilePath);
             Assert.assertTrue(result);
         }
     }
@@ -1327,31 +1330,7 @@ public class ContextualHelpTest extends BaseClass {
         }
         return "var newTopics = " + jsonArray.toString() + ";";
     }
-
-    private void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
-        List<String> newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line.replace(getDefaultConfig, getTestConfig));
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void readInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        List<String> newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(tempJSFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void writeInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        List<String> newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
+   
     private void printFileContents(String jsFilePath) throws Exception {
         try {
             BufferedReader br = new BufferedReader(new FileReader(jsFilePath));
@@ -1362,5 +1341,10 @@ public class ContextualHelpTest extends BaseClass {
         } catch (Exception e) {
             log.info(e.getMessage());
         }
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
     }
 }
