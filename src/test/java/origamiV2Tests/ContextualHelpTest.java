@@ -5,19 +5,14 @@ import com.google.gson.JsonPrimitive;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +69,7 @@ public class ContextualHelpTest extends BaseClass {
     private boolean isIcon = false;
     private boolean isPanel = false;
     private boolean isFontSize = false, isLineHeight = false, isFocused = false, isBackgroundColor = false, isPaddingLeft = false, isPaddingRight = false, isPaddingTop = false, isPaddingBottom = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isBorderBottomColor = false, isOverflowX = false, isOverflowY = false, isMarginLeft = false, isMarginRight = false, isMarginTop = false, isMarginBottom = false, isTextAlign = false, isWidth = false, isHeight = false, isBorderTopWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFloat = false, isDisplay = false, isFontWeight = false, isBoxShadow = false;
-    private static String setMobile;
+    private static String setMobile, mobileDevice;
 
     final static Logger log = Logger.getLogger(ContextualHelpTest.class.getName());
     JsonArray jsonArray;
@@ -85,7 +80,7 @@ public class ContextualHelpTest extends BaseClass {
         return new Object[][]{
                 {"signed out", cxHelpWiAppHeaderSignOutModeUrl},
                 {"basic", cxHelpWiAppHeaderBasicModeUrl},
-                {"course", cxHelpWiAppHeaderCourseModeUrl},
+                //{"course", cxHelpWiAppHeaderCourseModeUrl}, no more course mode
                 {"interation", cxHelpWiAppHeaderIntegModeUrl}
         };
     }
@@ -801,13 +796,15 @@ public class ContextualHelpTest extends BaseClass {
     @DataProvider(name = "Contextual-Help Drawer padding-top wi/wo app-header test data")
     public Object[][] getStyleForContextualHelpDrawerPaddingTopTestData() {
         return new Object[][]{
-                {"withAppHeader", contextualHelpUrl, "48px"},
-                {"withoutAppHeader", contextualHelpWithoutAppHeaderUrl, "0px"},
+                {768, 800, "withAppHeader", contextualHelpUrl, "70px", "iPad Air", ScreenOrientation.PORTRAIT},
+                {767, 800, "withAppHeader", contextualHelpUrl, "60px", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE},
+                {768, 800, "withoutAppHeader", contextualHelpWithoutAppHeaderUrl, "0px", "iPhone 6 Plus", ScreenOrientation.PORTRAIT},
         };
     }
 
     @Test(testName = "Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "desktop-regression")
-    private void styleForRoomHeaderTest(String type, String url, String expPaddingTop) {
+    private void styleForRoomHeaderTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
+        commonUtils.setWindowSize(width,height);
         commonUtils.getUrl(url);
         if (type.equals("withAppHeader")) {
             commonUtils.click(appHeaderPgObj.clickableHelpLink);
@@ -851,6 +848,9 @@ public class ContextualHelpTest extends BaseClass {
 
     @Test(testName = "Mobile: Display Instructor only help topics", groups = {"mobile-regression"})
     private void displayInstructorHelpTopicsMobileTest() throws Exception {
+        if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
         commonUtils.readInitialConfig(contextualHelpJSFilePath,tempJSFilePath);
         int i;
         helpTopicsList = new ArrayList<String>();
@@ -1282,8 +1282,33 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isWidth && isHeight && isFloat);
     }
 
-    @Test(testName = "Mobile: Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "mobile-regression")
-    private void styleForRoomHeaderMobileTest(String type, String url, String expPaddingTop) {
+    @Test(testName = "Mobile: iPhone 6 Plus Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "mobile-regression")
+    private void styleForRoomHeaderiPhone6PlusMobileTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
+        if (!(mobileDevice.contains(device))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6S plus'");
+        }
+        appium.rotate(mode);
+        commonUtils.getUrl(url, "mobile");
+        if (type.equals("withAppHeader")) {
+            commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
+            Assert.assertTrue(isContextualHelpDrawerOpen);
+        } else {
+            commonUtils.click(conxHelpPgObj.toggleHelpDrawerButton, "mobile");
+            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpenWithoutAppHeader, "mobile");
+            Assert.assertTrue(isContextualHelpDrawerOpen);
+        }
+        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "padding-top", "mobile");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, " padding-top to contextual-help-drawer is not as per the spec");
+        Assert.assertTrue(isPaddingTop);
+    }
+
+    @Test(testName = "Mobile: iPad Air Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "mobile-regression")
+    private void styleForRoomHeaderiPadAirMobileTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
+        if (!(mobileDevice.contains(device))) {
+            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
+        }
+        appium.rotate(mode);
         commonUtils.getUrl(url, "mobile");
         if (type.equals("withAppHeader")) {
             commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
@@ -1309,9 +1334,10 @@ public class ContextualHelpTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
-    @Parameters({"runEnv", "sauceBrowser", "localBrowser"})
+    @Parameters({"runEnv", "sauceBrowser", "localBrowser", "mobile", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void contextualHelpTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser) throws Exception {
+    private void contextualHelpTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser,String mobile, String mobDeviceName) throws Exception {
+        mobileDevice = mobDeviceName;
         if (!runEnv.equals("sauce")) {
             browser = localBrowser;
         } else {
@@ -1329,18 +1355,6 @@ public class ContextualHelpTest extends BaseClass {
             jsonArray.add(new JsonPrimitive(s));
         }
         return "var newTopics = " + jsonArray.toString() + ";";
-    }
-   
-    private void printFileContents(String jsFilePath) throws Exception {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(jsFilePath));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        }
     }
 
     public String constructPath(String absolutePath) {
