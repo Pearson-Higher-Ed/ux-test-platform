@@ -19,8 +19,8 @@ public class ButtonsTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private static String env, browser, lBrowser, device;
     private static String setMobile;
-    private String color = "", backgroundColor = "";
-    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false;
+    private String color = "", backgroundColor = "", lineHeight = "";
+    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false;
     Actions action;
     TouchAction mAction;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
@@ -467,7 +467,7 @@ public class ButtonsTest extends BaseClass {
         return new Object[][]{
                 {"font-size", new String[]{"14px"}},
                 {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"18px"}},
+                {"line-height", new String[]{"28px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -492,7 +492,7 @@ public class ButtonsTest extends BaseClass {
         return new Object[][]{
                 {"font-size", new String[]{"16px"}},
                 {"height", new String[]{"36px"}},
-                {"line-height", new String[]{"20px"}},
+                {"line-height", new String[]{"36px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -517,7 +517,7 @@ public class ButtonsTest extends BaseClass {
         return new Object[][]{
                 {"font-size", new String[]{"16px"}},
                 {"height", new String[]{"44px"}},
-                {"line-height", new String[]{"20px"}},
+                {"line-height", new String[]{"44px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -552,14 +552,14 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Mix and Match Buttons Test Data")
     public Object[][] getSmallButtonWithCTATestData() {
         return new Object[][]{
-                {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+                {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"28px"}},
+                {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"44px"}},
+                {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{"36px"}}
         };
     }
 
     @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci"})
-    private void mixAndMatchButtonsTest(String type, By element, String[] expBackgroundColor, String[] expColor) throws Exception {
+    private void mixAndMatchButtonsTest(String type, By element, String[] expBackgroundColor, String[] expColor, String[] expLineHeight) throws Exception {
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
@@ -570,7 +570,12 @@ public class ButtonsTest extends BaseClass {
         if (!isBackgroundColor) {
             log.info("background-color for this type: " + type + " is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isColor && isBackgroundColor);
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for this type: " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor && isLineHeight);
     }
 
     /***************
@@ -717,7 +722,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"mobile-regression"})
-    private void mixAndMatchButtonsMobileTest(String type, By element, String[] expBackgroundColor, String[] expColor) throws Exception {
+    private void mixAndMatchButtonsMobileTest(String type, By element, String[] expBackgroundColor, String[] expColor, String[] expLineHeight) throws Exception {
         color = commonUtils.getCSSValue(element, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
@@ -728,7 +733,12 @@ public class ButtonsTest extends BaseClass {
         if (!isBackgroundColor) {
             log.info("background-color for this type: " + type + " is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isColor && isBackgroundColor);
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for this type: " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor && isLineHeight);
     }
 
     /*************
