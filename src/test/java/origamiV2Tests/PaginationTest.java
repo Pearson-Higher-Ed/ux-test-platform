@@ -176,8 +176,8 @@ public class PaginationTest extends BaseClass {
         precedentBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn);
         isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
         /** writing back original value to pagination.js file **/
-        writeInitialConfig(paginationJSFilePath);
         Assert.assertTrue(isPrecedent);
+        writeInitialConfig(paginationJSFilePath);
         commonUtils.getUrl(baseUrl);
         /** validating English Language **/
         nextbtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
@@ -193,6 +193,7 @@ public class PaginationTest extends BaseClass {
     @Test(testName = "Validate default max button", groups = {"desktop-regression"})
     public void validateDefaultMaxBtnTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
+        Thread.sleep(2000);
         readInitialConfig(paginationJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
