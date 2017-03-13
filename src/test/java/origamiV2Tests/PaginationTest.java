@@ -2,26 +2,18 @@ package origamiV2Tests;
 
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by Kiran Mohare on 2/13/17.
@@ -64,7 +56,7 @@ public class PaginationTest extends BaseClass {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         if (mobile.equals("off")) {
             commonUtils.getUrl(baseUrl);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } else {
             commonUtils.getUrl(baseUrl, "mobile");
         }
@@ -72,13 +64,6 @@ public class PaginationTest extends BaseClass {
 
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
-        try {
-            writeInitialConfig(paginationJSFilePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.out.println("_________________________________________________");
     }
 
@@ -159,15 +144,15 @@ public class PaginationTest extends BaseClass {
     @Test(testName = "Validate Internationalization", groups = {"desktop-regression"})
     public void validateInternationalizationTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         getDefaultConfig = "en";
         getTestConfig = "fr";
         word = "locale";
 
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl);
-
         /** validating French Language **/
         prochainBtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
         isProchain = commonUtils.assertValue(prochainBtn, "Prochain", "French language didnt appear for next btn!!!");
@@ -177,7 +162,8 @@ public class PaginationTest extends BaseClass {
         isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
         /** writing back original value to pagination.js file **/
         Assert.assertTrue(isPrecedent);
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl);
         /** validating English Language **/
         nextbtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
@@ -194,39 +180,41 @@ public class PaginationTest extends BaseClass {
     public void validateDefaultMaxBtnTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
         Thread.sleep(2000);
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
 
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl);
 
         /** validating for default max buttons by checking ellipse **/
         defaultMaxBtn = commonUtils.getText(paginationPgObj.paginationDefaultMaxBtn);
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
         /** writing back original value to pagination.js file **/
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Validate Negative Values", groups = {"desktop-regression"})
     public void validateNegativeJsValueTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         getDefaultConfig = "10";
         getTestConfig = "-10";
         word = "items";
 
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl);
 
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn);
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is not visible!!!");
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
@@ -313,9 +301,10 @@ public class PaginationTest extends BaseClass {
         getTestConfig = "fr";
         word = "locale";
         /** reading initial config and saving in temp.js file **/
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl, "mobile");
 
         /** validating French Language **/
@@ -326,7 +315,8 @@ public class PaginationTest extends BaseClass {
         precedentBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn, "mobile");
         isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
         /** writing back original value to pagination.js file **/
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        Thread.sleep(1000);
         Assert.assertTrue(isPrecedent);
         commonUtils.getUrl(baseUrl, "mobile");
         /** validating English Language **/
@@ -343,13 +333,14 @@ public class PaginationTest extends BaseClass {
     public void validateDefaultMaxBtnMobileTest() throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
 
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl, "mobile");
 
         /** validating for default max buttons by checking ellipse **/
@@ -357,7 +348,7 @@ public class PaginationTest extends BaseClass {
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
 
         /** writing back original value to pagination.js file **/
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
@@ -365,19 +356,20 @@ public class PaginationTest extends BaseClass {
     public void validateNegativeJsValueMobileTest() throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        readInitialConfig(paginationJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
         getDefaultConfig = "10";
         getTestConfig = "-10";
         word = "items";
 
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        Thread.sleep(1000);
         commonUtils.getUrl(baseUrl, "mobile");
 
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationItems, "mobile");
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is visible!!!");
-        writeInitialConfig(paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
         Assert.assertFalse(result);
     }
 
@@ -408,22 +400,6 @@ public class PaginationTest extends BaseClass {
         return jsonObject.toString();
     }
 
-    private void readInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(tempJSFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void writeInitialConfig(String jsFilePath) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line);
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
     private void changeSingleLineConfig(String jsFilePath, String getDefaultConfig, String getTestConfig, String word) throws IOException, InterruptedException {
         newLines = new ArrayList<String>();
         for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
@@ -432,14 +408,6 @@ public class PaginationTest extends BaseClass {
             } else {
                 newLines.add(line);
             }
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    private void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            newLines.add(line.replace(getDefaultConfig, getTestConfig));
         }
         Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
     }
