@@ -30,6 +30,7 @@ public class BaseClass {
     public ResponsiveUtilitiesPageObjects respPgObj = null;
     public TypographyPageObjects typoPgObj = null;
     public InputsPageObjects inputsPgObj = null;
+    public CompoundsInputsPageObjects compInputsPgObj = null;
     public ButtonsPageObjects btnPgObj = null;
     public CompoundsButtonsPageObjects compBtnPgObj = null;
     public CalendarPageObjects clndrPgObj = null;
@@ -154,6 +155,7 @@ public class BaseClass {
             conxHelpPgObj = new ContextualHelpPageObjects(driver);
             drawerPgObj = new DrawerPageObjects(driver);
             inputsPgObj = new InputsPageObjects(driver);
+            compInputsPgObj = new CompoundsInputsPageObjects(driver);
             clndrPgObj = new CalendarPageObjects(driver);
             colorsPgObj = new ColorsPageObjects(driver);
             noPlainCSSPgObj = new NoPlainCSSPageObjects(driver);
@@ -181,6 +183,7 @@ public class BaseClass {
             conxHelpPgObj = new ContextualHelpPageObjects(appium);
             drawerPgObj = new DrawerPageObjects(appium);
             inputsPgObj = new InputsPageObjects(appium);
+            compInputsPgObj = new CompoundsInputsPageObjects(appium);
             clndrPgObj = new CalendarPageObjects(appium);
             colorsPgObj = new ColorsPageObjects(appium);
             noPlainCSSPgObj = new NoPlainCSSPageObjects(appium);

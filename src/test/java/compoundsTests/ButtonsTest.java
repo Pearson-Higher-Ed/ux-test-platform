@@ -9,6 +9,7 @@ import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
+import java.io.File;
 import java.lang.reflect.Method;
 
 /**
@@ -18,8 +19,11 @@ import java.lang.reflect.Method;
 public class ButtonsTest extends BaseClass {
 
     private final String buttonsUrl = "http://localhost:8000/src/main/java/compounds/fixtures/buttons.html";
-    private final String buttonsJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/buttons/buttons.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/buttons/temp.js";
+    private final String absButtonsJSFilePath = new File("compounds/jsfiles/buttons/buttons.js").getAbsolutePath();
+    private final String buttonsJSFilePath= constructPath(absButtonsJSFilePath);
+    private final String absTempJSFilePath = new File("compounds/jsfiles/buttons/temp.js").getAbsolutePath();
+    private final String tempJSFilePath = constructPath(absTempJSFilePath);
+
     private String attribute = "", browserLogs = "", backgroundColor = "", lineHeight = "", height = "", fontSize = "", alertText = "";
     private static String browser = "";
     boolean isBackgroundColor = false, isAttribute = false, result = false, isLineHeight = false, isHeight = false, isFontSize = false, isAlertText = false;
@@ -299,6 +303,11 @@ public class ButtonsTest extends BaseClass {
         }
         commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
         Assert.assertFalse(isBackgroundColor && isHeight);
+    }
+
+    private String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("compounds")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("compounds"));
+        return path;
     }
 
     @BeforeMethod(alwaysRun = true)

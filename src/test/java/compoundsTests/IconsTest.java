@@ -7,6 +7,7 @@ import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
+import java.io.File;
 import java.lang.reflect.Method;
 
 /**
@@ -15,8 +16,11 @@ import java.lang.reflect.Method;
 public class IconsTest extends BaseClass {
 
     private final String iconsUrl = "http://localhost:8000/src/main/java/compounds/fixtures/icons.html";
-    private final String iconsJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/icon/icons.js";
-    private final String tempJSFilePath = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/icon/temp.js";
+    private final String absIconsJSFilePath = new File("compounds/jsfiles/icon/icons.js").getAbsolutePath();
+    private final String iconsJSFilePath = constructPath(absIconsJSFilePath);
+    private final String absTempJSFilePath = new File("compounds/jsfiles/icon/temp.js").getAbsolutePath();
+    private final String tempJSFilePath = constructPath(absTempJSFilePath);
+
     private String browserLogs = "", height = "", width = "";
     private static String browser = "";
     boolean result = false, isHeight = false, isWidth = false;
@@ -69,6 +73,7 @@ public class IconsTest extends BaseClass {
         }
         commonUtils.readInitialConfig(iconsJSFilePath, tempJSFilePath);
         commonUtils.replaceLineInAFile(iconsJSFilePath, "elementId: 'icon-target'", "elementId: 'xyz-target',");
+        commonUtils.printFileContents(iconsJSFilePath);
         commonUtils.getUrl(iconsUrl);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
@@ -125,6 +130,11 @@ public class IconsTest extends BaseClass {
         }
         commonUtils.writeInitialConfig(tempJSFilePath, iconsJSFilePath);
         Assert.assertTrue(isWidth && isHeight);
+    }
+
+    private String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("compounds")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("compounds"));
+        return path;
     }
 
     @BeforeMethod(alwaysRun = true)

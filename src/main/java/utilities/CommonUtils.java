@@ -8,22 +8,14 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.support.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 
-import java.awt.*;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -45,13 +37,14 @@ public class CommonUtils {
     Actions action;
     JavascriptExecutor js = null;
     MobileElement mobWebElement;
-    boolean elementVisible = false, isForValue = false ,isAriaDescByContains = false;
+    boolean elementVisible = false, isForValue = false, isAriaDescByContains = false;
     List<WebElement> listWebElements;
     List<MobileElement> listMobWebElements;
     LogEntries browserLogs;
-    StringBuffer sb = null;
+    StringBuffer strBuffer = null;
+    StringBuilder strBuilder = null;
     Color c = null;
-    String labelContains,ariaDescByContains;
+    String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
     private List<String> newLines, fileContent;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
@@ -112,6 +105,12 @@ public class CommonUtils {
         }
     }
 
+    public boolean isElementPresent(By element, String mobile) {
+        mobWebElement = (MobileElement) appium.findElement(element);
+        return mobWebElement.isDisplayed();
+    }
+
+    //is element displayed
     public boolean isElementDisplayed(By element) {
         try {
             return driver.findElement(element).isDisplayed();
@@ -121,28 +120,22 @@ public class CommonUtils {
         }
     }
 
-    public boolean isElementEnabled(By element) {
-        try {
-            return driver.findElement(element).isEnabled();
-        } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
-            return false;
-        }
-    }
-
-    //is element present
-    public boolean isElementPresent(By element, String mobile) {
-        mobWebElement = (MobileElement) appium.findElement(element);
-        return mobWebElement.isDisplayed();
-    }
-
-    //is element displayed
     public boolean isElementDisplayed(By element, String mobile) {
         mobWebElement = (MobileElement) appium.findElement(element);
         return mobWebElement.isDisplayed();
     }
 
     //is element Enabled
+    public boolean isElementEnabled(By element) {
+        try {
+            webElement = driver.findElement(element);
+            return webElement.isEnabled();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
+    }
+
     public boolean isElementEnabled(By element, String mobile) {
         mobWebElement = (MobileElement) appium.findElement(element);
         return mobWebElement.isEnabled();
@@ -242,30 +235,30 @@ public class CommonUtils {
 
     public String hex2Rgb(String colorStr) {
         c = new Color(Integer.valueOf(colorStr.substring(1, 3), 16), Integer.valueOf(colorStr.substring(3, 5), 16), Integer.valueOf(colorStr.substring(5, 7), 16));
-        sb = new StringBuffer();
-        sb.append("rgba(");
-        sb.append(c.getRed());
-        sb.append(", ");
-        sb.append(c.getGreen());
-        sb.append(", ");
-        sb.append(c.getBlue());
-        sb.append(", ");
-        sb.append(c.getTransparency());
-        sb.append(")");
-        return sb.toString();
+        strBuffer = new StringBuffer();
+        strBuffer.append("rgba(");
+        strBuffer.append(c.getRed());
+        strBuffer.append(", ");
+        strBuffer.append(c.getGreen());
+        strBuffer.append(", ");
+        strBuffer.append(c.getBlue());
+        strBuffer.append(", ");
+        strBuffer.append(c.getTransparency());
+        strBuffer.append(")");
+        return strBuffer.toString();
     }
 
     public String hex2RgbWithoutTransparency(String colorStr) {
         c = new Color(Integer.valueOf(colorStr.substring(1, 3), 16), Integer.valueOf(colorStr.substring(3, 5), 16), Integer.valueOf(colorStr.substring(5, 7), 16));
-        sb = new StringBuffer();
-        sb.append("rgb(");
-        sb.append(c.getRed());
-        sb.append(", ");
-        sb.append(c.getGreen());
-        sb.append(", ");
-        sb.append(c.getBlue());
-        sb.append(")");
-        return sb.toString();
+        strBuffer = new StringBuffer();
+        strBuffer.append("rgb(");
+        strBuffer.append(c.getRed());
+        strBuffer.append(", ");
+        strBuffer.append(c.getGreen());
+        strBuffer.append(", ");
+        strBuffer.append(c.getBlue());
+        strBuffer.append(")");
+        return strBuffer.toString();
     }
 
     public boolean assertCSSProperties(String propertyType, String expectedValue, Object[] arr) {
@@ -328,8 +321,8 @@ public class CommonUtils {
     }
 
     public boolean checkAriaDescribedBy(By accessibleDesc, By element, String mobile) {
-        ariaDescByContains = getAttributeValue(element, "aria-describedby",mobile);
-        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id",mobile));
+        ariaDescByContains = getAttributeValue(element, "aria-describedby", mobile);
+        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id", mobile));
         return isAriaDescByContains;
     }
 
@@ -397,13 +390,24 @@ public class CommonUtils {
         }
     }
 
-    //Overwrite a file
+    //Override a file contents with new config
     public void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
         try {
             newLines = new ArrayList<String>();
             for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
                 newLines.add(line.replace(getDefaultConfig, getTestConfig));
             }
+            Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            log.info("Error in changing the config");
+        }
+    }
+
+    //Override a file contents with new config
+    public void changeConfig(String jsFilePath, String getTestConfig) throws IOException, InterruptedException {
+        try {
+            newLines = new ArrayList<String>();
+            newLines.add(getTestConfig);
             Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.info("Error in changing the config");
@@ -430,5 +434,38 @@ public class CommonUtils {
         while ((line = br.readLine()) != null) {
             System.out.println(line);
         }
+    }
+
+    //Return a file as a string
+    public String readFileAsString(String fileName) throws IOException {
+        br = new BufferedReader(new FileReader(fileName));
+        try {
+            strBuilder = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                strBuilder.append(line);
+                strBuilder.append(System.getProperty("line.separator"));
+                line = br.readLine();
+            }
+            return strBuilder.toString();
+        } finally {
+            br.close();
+        }
+    }
+
+    //Return nth occurrence of a string in a string
+    public static int nthIndexOf(String str, String subStr, int n) {
+        int index = str.indexOf(subStr);
+        if (index == -1) {
+            return -1;
+        }
+        for (int i = 1; i < n; i++) {
+            index = str.indexOf(subStr, index + 1);
+            if (index == -1) {
+                return -1;
+            }
+        }
+        return index;
     }
 }
