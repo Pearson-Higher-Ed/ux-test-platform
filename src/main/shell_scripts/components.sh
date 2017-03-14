@@ -118,7 +118,6 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/node_modules/pearson
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/textModal/
 }
 
-
 install_alerts(){
 echo -e "******************************\\n    Installing alerts    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/alerts.git
@@ -131,6 +130,19 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/build/dist.alerts.js ~/buil
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/alerts/
+}
+
+install_pagination(){
+echo -e "******************************\\n    Installing pagination    \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/pagination.git
+cd pagination
+git checkout $1
+npm install &>/dev/null
+npm run copy-utils
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/dist.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/pagination/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/pagination/
 }
 
 # Below conditions are to install the components specific to its feature branch.
@@ -176,6 +188,10 @@ elif [[ $component == "alerts" ]]
 then
 install_alerts $feature_branch
 
+elif [[ $component == "pagination" ]]
+then
+install_pagination $feature_branch
+
 # Below condition is to install all the "master" branch of components for the regression test run
 elif [[ $component == "regression" ]]
 then
@@ -194,6 +210,8 @@ cd ..
 install_textModal master
 cd ..
 install_alerts master
+cd ..
+install_pagination master
 cd ..
 install_elements_sdk v1
 cd ..
