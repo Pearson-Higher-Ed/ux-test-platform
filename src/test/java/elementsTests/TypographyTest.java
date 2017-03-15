@@ -11,6 +11,8 @@ import utilities.BaseClass;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by umahaea on 11/30/16.
@@ -21,18 +23,20 @@ public class TypographyTest extends BaseClass {
     private static String env, setDesktop, mobileDevice, setMobile, browser, mBrowser;
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
     boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;
-    private String color = "", fontSize = "", fontWeight = "", lineHeight = "", rgbValue = "", borderBottomWidth = "", borderBottomStyle = "", textDecoration = "", fontStyle = "", display = "", jQueryScript = "", jQueryReturnValue = "", boxSizing = "", position = "", top = "", listStyle = "", pseudoContent = "", marginLeft = "", marginRight = "", marginBottom = "", marginTop = "", backgroundColor = "", verticalAlign = "", fontFamily = "", winChromeFontFamily = "Monaco, \"Lucida Console\", monospace", macChromeFontFamily = "Monaco, 'Lucida Console', monospace", ieFontFamily="monaco, \"lucida console\", monospace", ffFontFamily = "Monaco,\"Lucida Console\",monospace", paddingTop = "", paddingBottom = "", paddingLeft = "", paddingRight = "";
+    private String color = "", fontSize = "", fontWeight = "", lineHeight = "", rgbValue = "", borderBottomWidth = "", borderBottomStyle = "", textDecoration = "", fontStyle = "", display = "", jQueryScript = "", jQueryReturnValue = "", boxSizing = "", position = "", top = "", listStyle = "", pseudoContent = "", marginLeft = "", marginRight = "", marginBottom = "", marginTop = "", backgroundColor = "", verticalAlign = "", fontFamily = "", winChromeFontFamily = "Monaco, \"Lucida Console\", monospace", macChromeFontFamily = "Monaco, 'Lucida Console', monospace", ieFontFamily = "monaco, \"lucida console\", monospace", ffFontFamily = "Monaco,\"Lucida Console\",monospace", paddingTop = "", paddingBottom = "", paddingLeft = "", paddingRight = "";
     JavascriptExecutor js = null;
+    private static String lBrowser;
 
-    @Parameters({"runEnv", "desktop", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser"})
+    @Parameters({"runEnv", "desktop", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser", "localBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void typographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser) {
+    private void typographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser, String localBrowser) {
         env = runEnv;
         setDesktop = desktop;
         mobileDevice = mobDeviceName;
         browser = sauceBrowser;
         mBrowser = mobBrowser;
         setMobile = mobile;
+        lBrowser = localBrowser;
     }
 
     //Desktop Tests
@@ -48,11 +52,11 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "h1h2h3h4h5 Test Data")
     private Object[][] getH1H2H3H4H5TestData() {
         return new Object[][]{
-                {"h1", typoPgObj.h1, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "20px", "6px"},
-                {"h2", typoPgObj.h2, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px", ""}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "40px", "6px"},
-                {"h3", typoPgObj.h3, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
-                {"h4", typoPgObj.h4, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
-                {"h5", typoPgObj.h5, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"}
+                {"h1", typoPgObj.h1, new String[]{"28px", "27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "20px", "6px"},
+                {"h2", typoPgObj.h2, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px", ""}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "40px", "6px"},
+                {"h3", typoPgObj.h3, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
+                {"h4", typoPgObj.h4, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"},
+                {"h5", typoPgObj.h5, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "6px", "6px"}
         };
     }
 
@@ -66,11 +70,11 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "subtitle Test Data")
     private Object[][] getSubTitleAndH1H2H3H4H5TestData() {
         return new Object[][]{
-                {"subtitle-1", typoPgObj.subtitle1, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "34px", "6px"},
-                {"subtitle-2", typoPgObj.subtitle2, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
-                {"subtitle-3", typoPgObj.subtitle3, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
-                {"subtitle-4", typoPgObj.subtitle4, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
-                {"subtitle-5", typoPgObj.subtitle5, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"}
+                {"subtitle-1", typoPgObj.subtitle1, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "34px", "6px"},
+                {"subtitle-2", typoPgObj.subtitle2, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-3", typoPgObj.subtitle3, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-4", typoPgObj.subtitle4, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"},
+                {"subtitle-5", typoPgObj.subtitle5, new String[]{"16px", "16.00004005432129px", "15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", "6px"}
         };
     }
 
@@ -84,8 +88,8 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "para Test Data")
     private Object[][] getParaTestData() {
         return new Object[][]{
-                {"para", typoPgObj.para, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"12px", "11.999959945678711px","11.84px"}},
-                {"para-last", typoPgObj.paraLast, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"0px"}}
+                {"para", typoPgObj.para, new String[]{"14px", "13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"12px", "11.999959945678711px", "11.84px"}},
+                {"para-last", typoPgObj.paraLast, new String[]{"14px", "13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "0px", new String[]{"0px"}}
         };
     }
 
@@ -99,10 +103,10 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "copy Test Data")
     private Object[][] getCopyTestData() {
         return new Object[][]{
-                {"copy", typoPgObj.copy, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"copy-small", typoPgObj.copySmall, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"copy-large", typoPgObj.copyLarge, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"copy-secondary", typoPgObj.copySecondary, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}}
+                {"copy", typoPgObj.copy, new String[]{"14px", "13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-small", typoPgObj.copySmall, new String[]{"12px", "11.999959945678711px", "11.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-large", typoPgObj.copyLarge, new String[]{"16px", "16.00004005432129px", "15.86px"}, new String[]{"24.0001px", "24.000059127807617px", "24px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"copy-secondary", typoPgObj.copySecondary, new String[]{"14px", "13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}}
         };
     }
 
@@ -116,7 +120,7 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "lead Test Data")
     private Object[][] getLeadTestData() {
         return new Object[][]{
-                {"lead", typoPgObj.lead, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"28px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"lead", typoPgObj.lead, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"28px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
         };
     }
 
@@ -130,10 +134,10 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "page Title Test Data")
     private Object[][] getPageTitleTestData() {
         return new Object[][]{
-                {"page-title", typoPgObj.pageTitle, new String[]{"38.0001px", "38px", "38.00006103515625px","37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"page-title-secondary", typoPgObj.pageTitleSecondary, new String[]{"38.0001px", "38px", "38.00006103515625px","37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"page-title-small", typoPgObj.pageTitleSmall, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"page-title-small-secondary", typoPgObj.pageTitleSmallSecondary, new String[]{"28px","27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"page-title", typoPgObj.pageTitle, new String[]{"38.0001px", "38px", "38.00006103515625px", "37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"page-title-secondary", typoPgObj.pageTitleSecondary, new String[]{"38.0001px", "38px", "38.00006103515625px", "37.73px"}, new String[]{"52.0001px", "52.00006103515625px", "52px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"page-title-small", typoPgObj.pageTitleSmall, new String[]{"28px", "27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"page-title-small-secondary", typoPgObj.pageTitleSmallSecondary, new String[]{"28px", "27.86px"}, new String[]{"38.0001px", "38.00006103515625px", "38px"}, new String[]{"100"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
 
@@ -147,15 +151,15 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "section Title Test Data")
     private Object[][] getSectionTitleTestData() {
         return new Object[][]{
-                {"section-title", typoPgObj.sectionTitle, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-bold", typoPgObj.sectionTitleBold, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-secondary", typoPgObj.sectionTitleSecondary, new String[]{"20px", "19.999980926513672px","19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"section-title-small", typoPgObj.sectionTitleSmall, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-small-bold", typoPgObj.sectionTitleSmallBold, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-small-secondary", typoPgObj.sectionTitleSmallSecondary, new String[]{"17.9999px", "18px", "17.999940872192383px","17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"section-title-large", typoPgObj.sectionTitleLarge, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-large-bold", typoPgObj.sectionTitleLargeBold, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-large-secondary", typoPgObj.sectionTitleLargeSecondary, new String[]{"24.0001px", "24px", "24.000059127807617px","23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"section-title", typoPgObj.sectionTitle, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-bold", typoPgObj.sectionTitleBold, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-secondary", typoPgObj.sectionTitleSecondary, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"section-title-small", typoPgObj.sectionTitleSmall, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-small-bold", typoPgObj.sectionTitleSmallBold, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-small-secondary", typoPgObj.sectionTitleSmallSecondary, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"section-title-large", typoPgObj.sectionTitleLarge, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-large-bold", typoPgObj.sectionTitleLargeBold, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-large-secondary", typoPgObj.sectionTitleLargeSecondary, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
 
@@ -169,15 +173,15 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "label Test Data")
     private Object[][] getLabelTestData() {
         return new Object[][]{
-                {"label", typoPgObj.label, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"label-secondary", typoPgObj.labelSecondary, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"label-bold", typoPgObj.labelBold, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"600", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"label-small", typoPgObj.labelSmall, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"label-small-secondary", typoPgObj.labelSmallSecondary, new String[]{"12px", "11.999959945678711px","11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"label-large", typoPgObj.labelLarge, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"label-large-secondary", typoPgObj.labelLargeSecondary, new String[]{"16px", "16.00004005432129px","15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"label-inverse", typoPgObj.labelInverse, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"label-inverse-secondary", typoPgObj.labelInverseSecondary, new String[]{"14px","13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}}
+                {"label", typoPgObj.label, new String[]{"14px", "13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-secondary", typoPgObj.labelSecondary, new String[]{"14px", "13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-bold", typoPgObj.labelBold, new String[]{"14px", "13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"600", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-small", typoPgObj.labelSmall, new String[]{"12px", "11.999959945678711px", "11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-small-secondary", typoPgObj.labelSmallSecondary, new String[]{"12px", "11.999959945678711px", "11.86px"}, new String[]{"16px", "16.00004005432129px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-large", typoPgObj.labelLarge, new String[]{"16px", "16.00004005432129px", "15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"label-large-secondary", typoPgObj.labelLargeSecondary, new String[]{"16px", "16.00004005432129px", "15.86px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
+                {"label-inverse", typoPgObj.labelInverse, new String[]{"14px", "13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"label-inverse-secondary", typoPgObj.labelInverseSecondary, new String[]{"14px", "13.93px"}, new String[]{"17.9999px", "17.999940872192383px", "17.984375px", "18px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}}
         };
     }
 
@@ -253,8 +257,8 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "SuperAndSubScript Test Data")
     public Object[][] getSuperAndSubScriptTestData() {
         return new Object[][]{
-                {typoPgObj.superscript, "superscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px","10.46px"}, new String[]{"-2.8px", "-3.20000004768372px", "-2.799999952316284px","-2.78px"}, "relative", "baseline"},
-                {typoPgObj.subscript, "subscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px","10.46px"}, new String[]{"2.8px", "3.20000004768372px", "2.799999952316284px","2.78px"}, "relative", "baseline"}
+                {typoPgObj.superscript, "superscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px", "10.46px"}, new String[]{"-2.8px", "-3.20000004768372px", "-2.799999952316284px", "-2.78px"}, "relative", "baseline"},
+                {typoPgObj.subscript, "subscript", new String[]{"12.6px", "14.3999996185303px", "13px", "12.600000381469727px", "10.46px"}, new String[]{"2.8px", "3.20000004768372px", "2.799999952316284px", "2.78px"}, "relative", "baseline"}
         };
     }
 
@@ -281,9 +285,9 @@ public class TypographyTest extends BaseClass {
     @DataProvider(name = "Code Test Data")
     public Object[][] getCodeTestData() {
         return new Object[][]{
-                {"code-block", typoPgObj.code, new String[]{"14px","13.93px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}, new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}, "30px", "30px", "50px", "50px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}},
-                {"code-inline", typoPgObj.codeInline, new String[]{"14px","13.93px"}, new String[]{"16.1px", "16px","16.01px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}},
-                {"kdd", typoPgObj.kbd, new String[]{"14px","13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily,ieFontFamily}}
+                {"code-block", typoPgObj.code, new String[]{"14px", "13.93px"}, new String[]{"20px", "19.999980926513672px", "19.984375px"}, new String[]{commonUtils.hex2Rgb("#F5F5F5"), commonUtils.hex2RgbWithoutTransparency("#F5F5F5")}, new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}, "30px", "30px", "50px", "50px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily, ieFontFamily}},
+                {"code-inline", typoPgObj.codeInline, new String[]{"14px", "13.93px"}, new String[]{"16.1px", "16px", "16.01px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily, ieFontFamily}},
+                {"kdd", typoPgObj.kbd, new String[]{"14px", "13.93px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, "0px", "0px", "4px", "4px", new String[]{macChromeFontFamily, winChromeFontFamily, ffFontFamily, ieFontFamily}}
         };
     }
 
@@ -305,9 +309,17 @@ public class TypographyTest extends BaseClass {
         marginRight = commonUtils.getCSSValue(typoPgObj.list, "margin-right");
         isMarginRight = commonUtils.assertValue(marginRight, "0px", "margin-right for pe-list is not as per the spec");
         paddingLeft = commonUtils.getCSSValue(typoPgObj.list, "padding-left");
-        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"25.99995994567871px", "26px","25.77px"});
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"25.99995994567871px", "26px", "25.77px"});
         if (!isPaddingLeft) {
-            log.info("padding-left for pe-list is not as per the spec, actual:"+paddingLeft);
+            log.info("padding-left for pe-list is not as per the spec, actual:" + paddingLeft);
+        }
+        for (int i = 1; i <= 3; i++) {
+            lineHeight = commonUtils.getCSSValue(By.id("list-option" + i), "line-height");
+            isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"22px", "22.000019073486328px"});
+            if (!isLineHeight) {
+                log.info("Line-height for list option " + i + " of pe-list is not as per the spec, actual " + lineHeight);
+            }
+            Assert.assertTrue(isLineHeight);
         }
         Assert.assertTrue(isMarginTop && isMarginBottom && isMarginLeft && isMarginRight && isPaddingLeft);
     }
@@ -368,6 +380,9 @@ public class TypographyTest extends BaseClass {
     //Verify Links
     @Test(testName = "Verify link states", dataProvider = "link state Test Data", groups = "desktop-regression")
     private void linkStateTest(String state, By element, String[] expColor, String expTextDecoration) {
+        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("the focus operation is not supported on firefox/safari drivers");
+        }
         if (state.equals("hover")) {
             commonUtils.hoverOnElement(typoPgObj.link);
         }
@@ -547,7 +562,15 @@ public class TypographyTest extends BaseClass {
         if (!isPaddingLeft) {
             log.info("padding-left for pe-list is not as per the spec");
         }
-        Assert.assertTrue(isMarginTop && isMarginBottom && isMarginLeft && isMarginRight && isPaddingLeft);
+        for (int i = 1; i <= 3; i++) {
+            lineHeight = commonUtils.getCSSValue(By.id("list-option" + i), "line-height", "mobile");
+            isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"22px", "22.000019073486328px"});
+            if (!isLineHeight) {
+                log.info("Line-height for list option " + i + " of pe-list is not as per the spec, actual " + lineHeight );
+            }
+            Assert.assertTrue(isLineHeight);
+        }
+        Assert.assertTrue(isMarginTop && isMarginBottom && isMarginLeft && isMarginRight && isPaddingLeft && isLineHeight);
     }
 
     //Verify pe-unstyled

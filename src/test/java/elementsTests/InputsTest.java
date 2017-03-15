@@ -40,8 +40,8 @@ public class InputsTest extends BaseClass {
     String paddingBottom, paddingTop, paddingRight, pwdUnderLineHeight, borderBottom, borderBottomColor, borderBottomStyle, pwdUnderLineColor, pwdTextLabel, pwdTextLabelColor, pwdUnderLineWidth, showBtnColor, showBtnWidth, showBtnMarginTop, showBtnFloat, labelFor;
     boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false, isTextDecoration = false;
     boolean isPaddingBottom, isPaddingTop, isPaddingRight, isBorderBottom, isBorderBottomColor, isBorderBottomStyle, isPwdUnderLineColor, isPwdTextLabel, isPwdTextLabelColor, isPwdBorderStyle, isPwdUnderLineWidth, isShowBtnColor, isShowBtnWidth, isShowBtnMarginTop, isShowBtnFloat, isLabelFor;
-    String  marginTop, height,basicInputBorder, labelColor, labelFontSize, lineHeight, basicInputValueColor, labelLineHeight, actIconClass, boxShadow, marginBottom, borderColor, borderWidth, borderStyle,borderRadius ,radioBtnPadding, bgColor, radioBtnSelectedColor;
-    boolean isMarginTop, isBasicInputBorder, isLabelColor, isLabelFontSize,isLineHeight, isBasicInputValueColor, islabelLineHeight, isIconClass, isBoxShadow, isMarginBottom, isBorderColor, isBorderWidth, isBorderStyle, isBorderRadius, isRadioBtnPadding, isBgColor, isRadioBtnSelectedColor;
+    String marginTop, height, basicInputBorder, labelColor, labelFontSize, lineHeight, basicInputValueColor, labelLineHeight, actIconClass, boxShadow, marginBottom, borderColor, borderWidth, borderStyle, borderRadius, radioBtnPadding, bgColor, radioBtnSelectedColor;
+    boolean isMarginTop, isBasicInputBorder, isLabelColor, isLabelFontSize, isLineHeight, isBasicInputValueColor, islabelLineHeight, isIconClass, isBoxShadow, isMarginBottom, isBorderColor, isBorderWidth, isBorderStyle, isBorderRadius, isRadioBtnPadding, isBgColor, isRadioBtnSelectedColor, isAriaDescByContains;
     int roundedTransValue, len, lastIndexOf;
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
     List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
@@ -842,6 +842,13 @@ public class InputsTest extends BaseClass {
         if (!isLineHeight) {
             log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
         }
+        if (type.equals("pe-input--error_message-fancy")) {
+            isAriaDescByContains = commonUtils.checkAriaDescribedBy(element, inputsPgObj.slTextInputErrored);
+            if (!isAriaDescByContains) {
+                log.info("The error text is not accessible description of Inputs - Fancy (single line - error)");
+            }
+            Assert.assertTrue(isAriaDescByContains);
+        }
         Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
 
@@ -900,7 +907,7 @@ public class InputsTest extends BaseClass {
             borderColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInputContainer, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (isBorderColor == false) {
-                log.info("Border color " + cssProperty + " of Select Input is not as per spec, actual " + borderColor) ;
+                log.info("Border color " + cssProperty + " of Select Input is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
@@ -953,7 +960,7 @@ public class InputsTest extends BaseClass {
             borderColor = commonUtils.getCSSValue(inputsPgObj.basicSelectInput, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (isBasicInputBorder == false) {
-                log.info("Border color " + cssProperty + " of Select Input (Focus) field is not as per spec, actual " + borderColor );
+                log.info("Border color " + cssProperty + " of Select Input (Focus) field is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
@@ -1137,7 +1144,7 @@ public class InputsTest extends BaseClass {
         if (isLabelFontSize == false) {
             log.info("Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
         }
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight,"18px","Label line height of " + elemType + "is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Label line height of " + elemType + "is not as per spec");
         isHeight = commonUtils.assertValue(height, expHtWidth, "Height of " + elemType + " is not as per spec");
         isWidth = commonUtils.assertValue(width, expHtWidth, "width of " + elemType + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
@@ -1706,6 +1713,13 @@ public class InputsTest extends BaseClass {
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
         if (!isLineHeight) {
             log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        if (type.equals("pe-input--error_message-fancy")) {
+            isAriaDescByContains = commonUtils.checkAriaDescribedBy(element, inputsPgObj.slTextInputErrored, "mobile");
+            if (!isAriaDescByContains) {
+                log.info("The error text is not accessible description of Inputs - Fancy (single line - error)");
+            }
+            Assert.assertTrue(isAriaDescByContains);
         }
         Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }

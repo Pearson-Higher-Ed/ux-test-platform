@@ -45,13 +45,13 @@ public class CommonUtils {
     Actions action;
     JavascriptExecutor js = null;
     MobileElement mobWebElement;
-    boolean elementVisible = false, isForValue;
+    boolean elementVisible = false, isForValue = false ,isAriaDescByContains = false;
     List<WebElement> listWebElements;
     List<MobileElement> listMobWebElements;
     LogEntries browserLogs;
     StringBuffer sb = null;
     Color c = null;
-    String labelContains;
+    String labelContains,ariaDescByContains;
     BufferedReader br = null;
     private List<String> newLines, fileContent;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
@@ -319,6 +319,18 @@ public class CommonUtils {
         webElement = appium.findElement(elem);
         isForValue = labelContains.equals(webElement.getAttribute("id"));
         return isForValue;
+    }
+
+    public boolean checkAriaDescribedBy(By accessibleDesc, By element) {
+        ariaDescByContains = getAttributeValue(element, "aria-describedby");
+        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id"));
+        return isAriaDescByContains;
+    }
+
+    public boolean checkAriaDescribedBy(By accessibleDesc, By element, String mobile) {
+        ariaDescByContains = getAttributeValue(element, "aria-describedby",mobile);
+        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id",mobile));
+        return isAriaDescByContains;
     }
 
     public int countNumberOfItems(By element) {
