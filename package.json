@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "local-web-server": "^1.2.6",
-        "pearson-elements": "^1.0.6"
+        "pearson-elements": "^1.0.6",
+        "@pearson-components/app-header": "^2.0.1"
     }
 }
