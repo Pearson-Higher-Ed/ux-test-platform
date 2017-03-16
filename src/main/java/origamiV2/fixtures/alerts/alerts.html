@@ -3,6 +3,18 @@
 <head>
     <title>Alerts Demo</title>
     <meta charset="UTF-8">
+    <script>
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function(e) {
+          document.body.insertBefore(
+            pe_ajax.responseXML.documentElement,
+            document.body.childNodes[0]
+          );
+        }
+        pe_ajax.send();
+</script>
     <link rel="stylesheet" href="../../css/alerts/elements.css"/>
     <style>
       .banner {
@@ -45,12 +57,12 @@
 </div>
 
 <div class="buttonGroup">
-    <button id="success-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('success')">Success
+    <button id="success-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Success')">Success
         Alert
     </button>
     <br/>
     <br/>
-    <button id="error-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('error')">Error Alert
+    <button id="error-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Error')">Error Alert
     </button>
     <br/>
     <br/>
@@ -74,10 +86,10 @@
 // -----------------------------------------------------------------------------
 // @param detail       <Object> on event (ie. ref e.detail)
 // @param alertList    <Array>  array of event Objects (ie. [{},{},...])
-// @param alertType    <String> 'success' || 'error'
+// @param alertType    <String> 'Success' || 'Error'
 // @param alertMessage <String> 'user specified string'
 // -----------------------------------------------------------------------------
-          if(type === 'success' || type === 'error') {
+          if(type === 'Success' || type === 'Error') {
             document.body.dispatchEvent(new CustomEvent('triggerAlert', {
                 "detail":{
                   "alertList":[{
@@ -94,21 +106,6 @@
           }
 // =============================================================================
       }
-
-</script>
-<script>
-      if (document.body.children[0].nodeName !== 'svg') {
-        var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "../../../../../../icons/p-icons-sprite-1.1.svg", true);
-        pe_ajax.responseType = "document";
-        pe_ajax.onload = function(e) {
-          document.body.insertBefore(
-            pe_ajax.responseXML.documentElement,
-            document.body.childNodes[0]
-          );
-        }
-        pe_ajax.send();
-      }
 
 </script>
 <!-- External dependencies for React -->

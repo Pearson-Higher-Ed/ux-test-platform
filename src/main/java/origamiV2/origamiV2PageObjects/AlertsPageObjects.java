@@ -21,17 +21,17 @@ public class AlertsPageObjects {
 
     public By successAlertBtn = By.id("success-alert");
     public By errorAlertBtn = By.id("error-alert");
-    public By successAlert = By.id("alert-success-0");
-    public By successAlertTitle = By.xpath("//*[@id='alert-success-0']/strong");
-    public By successAlertText = By.xpath("//*[@id='alert-success-0']/span");
-    public By successAlertXIcon = By.xpath("//*[@id='alert-success-0']/button");
-    public By errorAlert = By.id("alert-error-0");
-    public By errorAlertTitle = By.xpath("//*[@id='alert-error-0']/strong");
-    public By errorAlertText = By.xpath("//*[@id='alert-error-0']/span");
-    public By errorAlertXIcon = By.xpath("//*[@id='alert-error-0']/button");
-    public By multiAlert1 = By.id("alert-success-0");
-    public By multiAlert2 = By.id("alert-success-1");
-    public By multiAlert3 = By.id("alert-error-2");
+    public By successAlert = By.id("alert-Success-0");
+    public By successAlertTitle = By.xpath("//*[@id='alert-Success-0']/strong");
+    public By successAlertText = By.xpath("//*[@id='alert-Success-0']/span");
+    public By successAlertXIcon = By.xpath("//*[@id='alert-Success-0']/button");
+    public By errorAlert = By.id("alert-Error-0");
+    public By errorAlertTitle = By.xpath("//*[@id='alert-Error-0']/strong");
+    public By errorAlertText = By.xpath("//*[@id='alert-Error-0']/span");
+    public By errorAlertXIcon = By.xpath("//*[@id='alert-Error-0']/button");
+    public By multiAlert1 = By.id("alert-Success-0");
+    public By multiAlert2 = By.id("alert-Success-1");
+    public By multiAlert3 = By.id("alert-Error-2");
 
 
 

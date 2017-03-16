@@ -21,8 +21,8 @@ public class AlertsTest extends BaseClass {
     private final String alertJSFilePath = constructPath(absAlertJSFilePath);
     private final String absSliderDistJSFilePath = new File("origamiV2/jsfiles/alerts/dist.alerts.js").getAbsolutePath();
     private final String alertDistJSFilePath = constructPath(absSliderDistJSFilePath);
-    String marginTop, borderTopWidth, borderTopStyle, borderTopColor, bgColor, titleFontSize, titleFontColor, titleLineHt, textFontSize, textFontColor, textLineHt, padding, paddingTop;
-    boolean isMarginTop, isBorderTopWidth, isBorderTopStyle, isBorderTopColor, isBgColor, isTitleFontSize, isTitleFontColor, isTitleLineHt, isTextFontSize, isTextFontColor, isTextLineHt, isPadding, isPaddingTop, isElemPresent;
+    String marginTop, borderTopWidth, borderTopStyle, borderTopColor, bgColor, titleFontSize, titleFontColor, titleLineHt, textFontSize, textFontColor, textLineHt, padding, paddingTop, boxShadow;
+    boolean isMarginTop, isBorderTopWidth, isBorderTopStyle, isBorderTopColor, isBgColor, isTitleFontSize, isTitleFontColor, isTitleLineHt, isTextFontSize, isTextFontColor, isTextLineHt, isPadding, isPaddingTop, isElemPresent, isBoxShadow;
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
     final static Logger log = Logger.getLogger(AlertsTest.class.getName());
     private static String browser, mobile;
@@ -37,19 +37,20 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "Success and Error Alerts Test Data")
     public Object[][] getSuccessErrorAlertButtonTestData() {
         return new Object[][]{
-                {alertsPgObj.successAlertBtn, "success-alert", alertsPgObj.successAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#038238"), commonUtils.hex2RgbWithoutTransparency("#038238")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.successAlertTitle, alertsPgObj.successAlertText, "8px"},
-                {alertsPgObj.errorAlertBtn, "error-alert", alertsPgObj.errorAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#db0020"), commonUtils.hex2RgbWithoutTransparency("#db0020")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.errorAlertTitle, alertsPgObj.errorAlertText, "8px"},
+                {alertsPgObj.successAlertBtn, "success-alert", alertsPgObj.successAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#038238"), commonUtils.hex2RgbWithoutTransparency("#038238")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.successAlertTitle, alertsPgObj.successAlertText, "8px",new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px","0px 1px 1px 1px #f5f5f5"}},
+                {alertsPgObj.errorAlertBtn, "error-alert", alertsPgObj.errorAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#db0020"), commonUtils.hex2RgbWithoutTransparency("#db0020")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.errorAlertTitle, alertsPgObj.errorAlertText, "8px",new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px","0px 1px 1px 1px #f5f5f5"}},
         };
     }
 
     @Test(testName = "Verify Success and Error Alerts", dataProvider = "Success and Error Alerts Test Data", groups = {"desktop-regression"})
-    private void successErrorAlertsTest(By button, String alertType, By alert, String expMarginTop, String expBorderTopWidth, String expBorderTopStyle, String[] expColor, String[] expBgColor, By alertTitle, By alertText, String expPaddingTop) {
+    private void successErrorAlertsTest(By button, String alertType, By alert, String expMarginTop, String expBorderTopWidth, String expBorderTopStyle, String[] expColor, String[] expBgColor, By alertTitle, By alertText, String expPaddingTop, String[] expBoxShadow) {
         commonUtils.click(button);
         marginTop = commonUtils.getCSSValue(alert, "margin-top");
         borderTopWidth = commonUtils.getCSSValue(alert, "border-top-width");
         borderTopStyle = commonUtils.getCSSValue(alert, "border-top-style");
         borderTopColor = commonUtils.getCSSValue(alert, "border-top-color");
         bgColor = commonUtils.getCSSValue(alert, "background-color");
+        boxShadow = commonUtils.getCSSValue(alert,"box-shadow");
 
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(alert, cssProperty);
@@ -70,6 +71,10 @@ public class AlertsTest extends BaseClass {
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
         if (!isBgColor) {
             log.info("background-color of " + alertType + " is not as per spec, actual " + bgColor);
+        }
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow",boxShadow,expBoxShadow);
+        if(!isBoxShadow){
+            log.info("Box-shadow of " + alertType + " is not as per spec, actual " + boxShadow);
         }
 
         // Title
@@ -110,7 +115,7 @@ public class AlertsTest extends BaseClass {
         }
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Padding-bottom of text for " + alertType + " is not as per spec");
 
-        Assert.assertTrue(isMarginTop && isBorderTopWidth && isBorderTopStyle && isBorderTopColor && isBgColor && isTitleFontColor && isTitleFontSize && isTitleLineHt && isTextFontColor && isTextFontSize && isTextLineHt && isPaddingTop);
+        Assert.assertTrue(isMarginTop && isBorderTopWidth && isBorderTopStyle && isBorderTopColor && isBgColor && isBoxShadow && isTitleFontColor && isTitleFontSize && isTitleLineHt && isTextFontColor && isTextFontSize && isTextLineHt && isPaddingTop);
     }
 
     @DataProvider(name = "Click on 'X' icon Test Data")
@@ -166,13 +171,14 @@ public class AlertsTest extends BaseClass {
      */
 
     @Test(testName = "Mobile : Verify Success and Error Alert", dataProvider = "Success and Error Alerts Test Data", groups = {"mobile-regression"})
-    private void successErrorAlertsMobileTest(By button, String alertType, By alert, String expMarginTop, String expBorderTopWidth, String expBorderTopStyle, String[] expColor, String[] expBgColor, By alertTitle, By alertText, String expPaddingTop) {
+    private void successErrorAlertsMobileTest(By button, String alertType, By alert, String expMarginTop, String expBorderTopWidth, String expBorderTopStyle, String[] expColor, String[] expBgColor, By alertTitle, By alertText, String expPaddingTop, String[] expBoxShadow) {
         commonUtils.clickUsingJS(button, "mobile");
         marginTop = commonUtils.getCSSValue(alert, "margin-top", "mobile");
         borderTopWidth = commonUtils.getCSSValue(alert, "border-top-width", "mobile");
         borderTopStyle = commonUtils.getCSSValue(alert, "border-top-style", "mobile");
         borderTopColor = commonUtils.getCSSValue(alert, "border-top-color", "mobile");
         bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
+        boxShadow = commonUtils.getCSSValue(alert,"box-shadow","mobile");
 
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(alert, cssProperty, "mobile");
@@ -194,7 +200,10 @@ public class AlertsTest extends BaseClass {
         if (!isBgColor) {
             log.info("background-color of " + alertType + " is not as per spec, actual " + bgColor);
         }
-
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow",boxShadow,expBoxShadow);
+        if(!isBoxShadow){
+            log.info("Box-shadow of " + alertType + " is not as per spec, actual " + boxShadow);
+        }
         // Title
         titleFontColor = commonUtils.getCSSValue(alertTitle, "color", "mobile");
         titleFontSize = commonUtils.getCSSValue(alertTitle, "font-size", "mobile");
@@ -227,7 +236,7 @@ public class AlertsTest extends BaseClass {
         }
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Padding-bottom of text for " + alertType + " is not as per spec");
 
-        Assert.assertTrue(isMarginTop && isBorderTopWidth && isBorderTopStyle && isBorderTopColor && isBgColor && isTitleFontColor && isTitleFontSize && isTitleLineHt && isTextFontColor && isTextFontSize && isTextLineHt && isPaddingTop);
+        Assert.assertTrue(isMarginTop && isBorderTopWidth && isBorderTopStyle && isBorderTopColor && isBgColor && isBoxShadow && isTitleFontColor && isTitleFontSize && isTitleLineHt && isTextFontColor && isTextFontSize && isTextLineHt && isPaddingTop);
     }
 
     @Test(testName = "Mobile : Click on 'X' icon", dataProvider = "Click on 'X' icon Test Data", groups = "mobile-regression")
