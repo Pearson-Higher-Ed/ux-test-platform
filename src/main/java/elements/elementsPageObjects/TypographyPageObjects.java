@@ -94,6 +94,10 @@ public class TypographyPageObjects {
 
     //Lists
     public By list = By.id("list");
+    public By listOption1 = By.id("list-option-one");
+    public By listOption2 = By.id("list-option-two");
+    public By listOption3 = By.id("list-option-three");
+
     public By unstyledList = By.id("unstyled-list");
     public By orderedList = By.id("ordered-list");
     public By unorderedList = By.id("unordered-list");
