@@ -55,19 +55,19 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formError, "margin-bottom");
 
         isFontColor = commonUtils.assertCSSProperties("color", fontColor, expTopErrorFontColor);
-        if (isFontColor == false) {
+        if (!isFontColor) {
             log.info("Font-color of Top error is not as per spec, actual " + fontColor);
         }
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expTopErrorFontSize);
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("Font-size of top Error is not as per the spec, actual " + fontSize);
         }
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expTopErrorLineHt);
-        if (isLineHeight == false) {
+        if (!isLineHeight) {
             log.info("Line-Height of top Error is not as per the spec, actual " + lineHeight);
         }
         isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expTopErrorBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("Margin-bottom of top Error is not as per the spec, actual " + marginBottom);
         }
         Assert.assertTrue(isFontColor && isFontSize && isLineHeight && isMarginBottom);
@@ -76,7 +76,7 @@ public class FormsTest extends BaseClass {
         errorDescColor = commonUtils.getCSSValue(formsPgObj.formDesc, "color");
         marginBottom = commonUtils.getCSSValue(formsPgObj.formDesc, "margin-bottom");
         isErrorDescColor = commonUtils.assertCSSProperties("color", errorDescColor, expErrorDescColor);
-        if (isErrorDescColor == false) {
+        if (!isErrorDescColor) {
             log.info("Error Desc color is not as per spec, actual " + errorDescColor);
         }
         isMarginBottom = commonUtils.assertValue(marginBottom, expBottomMargin, "Margin-Bottom of Error desc is not as per the spec");
@@ -89,7 +89,7 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formGroupTop, "margin-bottom");
 
         isFirstNameLabelFontColor = commonUtils.assertCSSProperties("color", firstNameLabelFontColor, expLabelColor);
-        if (isFirstNameLabelFontColor == false) {
+        if (!isFirstNameLabelFontColor) {
             log.info("Font-color of FirstName label is not as per spec, actual " + firstNameLabelFontColor);
         }
         isFirstNameLabelFontSize = commonUtils.assertValue(firstNameLabelFontSize, expLabelFontSize, "Font-Size of FirstName label is not as per spec");
@@ -104,7 +104,7 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formGroupBottom, "margin-bottom");
 
         isLastNameLabelFontColor = commonUtils.assertCSSProperties("color", lastNameLabelFontColor, expLabelColor);
-        if (isLastNameLabelFontColor == false) {
+        if (!isLastNameLabelFontColor) {
             log.info("Font-color of LastName label is not as per spec, actual " + lastNameLabelFontColor);
         }
         isLastNameLabelFontSize = commonUtils.assertValue(lastNameLabelFontSize, expLabelFontSize, "Font-Size of LastName label is not as per spec");
@@ -117,7 +117,7 @@ public class FormsTest extends BaseClass {
         submitBtnColor = commonUtils.getCSSValue(formsPgObj.submitBtn, "background-color");
         isSubmitBtnClass = commonUtils.assertValue(submitBtnClass, "pe-btn__cta", "Submit Btn does not inherit from pe-btn__cta ");
         isSubmitBtnColor = commonUtils.assertCSSProperties("background-color", submitBtnColor, expSubmitBtnColor);
-        if (isSubmitBtnColor == false) {
+        if (!isSubmitBtnColor) {
             log.info("Background-color of Submit Button is not as per spec, actual " + submitBtnColor);
         }
         Assert.assertTrue(isErrorDescColor && isFirstNameLabelFontColor && isFirstNameLabelFontSize && isLastNameLabelFontColor && isLastNameLabelFontSize && isFirstNameLabelLineHt && isLastNameLabelLineHt && isSubmitBtnClass && isSubmitBtnColor);
@@ -140,7 +140,7 @@ public class FormsTest extends BaseClass {
         isInputBorderStyle = commonUtils.assertValue(inputBorderStyle, expBorderWidth, "Border-bottom-style of " + field + " input field is not as per spec");
         isInputBorderWidth = commonUtils.assertValue(inputBorderWidth, expBorderStyle, "Border-bottom-width of " + field + " input field is not as per spec");
         isInputBorderColor = commonUtils.assertCSSProperties("border-bottom-color", inputBorderColor, expBorderColor);
-        if (isInputBorderColor == false) {
+        if (!isInputBorderColor) {
             log.info("Border-bottom-color of " + field + " is not as per spec, actual" + inputBorderColor);
         }
 
@@ -154,11 +154,11 @@ public class FormsTest extends BaseClass {
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Padding-top of " + field + " input field is not as per spec");
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Padding-bottom of " + field + " input field is not as per spec");
         isInputFontSize = commonUtils.assertCSSProperties("font-size", inputFontSize, expFontSize);
-        if (isInputFontSize == false) {
+        if (!isInputFontSize) {
             log.info("Font-size of " + field + " input input field is not as per spec, actual " + inputFontSize);
         }
         isInputValueColor = commonUtils.assertCSSProperties("color", inputValueColor, expFontColor);
-        if (isInputValueColor == false) {
+        if (!isInputValueColor) {
             log.info("Input Value color of " + field + " input field is not as per spec, actual " + inputValueColor);
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line-height of " + field + " input filed is not as per spec");
@@ -198,16 +198,16 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formError, "margin-bottom", "mobile");
 
         isFontColor = commonUtils.assertCSSProperties("color", fontColor, expTopErrorFontColor);
-        if (isFontColor == false) {
+        if (!isFontColor) {
             log.info("Font-color of Top error is not as per spec, actual " + fontColor);
         }
         isFontSize = commonUtils.assertValue(fontSize, expTopErrorFontSize, "Font-size of top Error is not as per the spec");
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expTopErrorLineHt);
-        if (isLineHeight == false) {
+        if (!isLineHeight) {
             log.info("Line-Height of top Error is not as per the spec, actual " + lineHeight);
         }
         isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expTopErrorBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("Margin-bottom of top Error is not as per the spec, actual " + marginBottom);
         }
         Assert.assertTrue(isFontColor && isFontSize && isMarginBottom && isLineHeight);
@@ -216,7 +216,7 @@ public class FormsTest extends BaseClass {
         errorDescColor = commonUtils.getCSSValue(formsPgObj.formDesc, "color", "mobile");
         marginBottom = commonUtils.getCSSValue(formsPgObj.formDesc, "margin-bottom", "mobile");
         isErrorDescColor = commonUtils.assertCSSProperties("color", errorDescColor, expErrorDescColor);
-        if (isErrorDescColor == false) {
+        if (!isErrorDescColor) {
             log.info("Error Desc color is not as per spec, actual " + errorDescColor);
         }
         isMarginBottom = commonUtils.assertValue(marginBottom, expBottomMargin, "Margin-Bottom of bottom Error is not as per the spec");
@@ -229,7 +229,7 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formGroupTop, "margin-bottom", "mobile");
 
         isFirstNameLabelFontColor = commonUtils.assertCSSProperties("color", firstNameLabelFontColor, expLabelColor);
-        if (isFirstNameLabelFontColor == false) {
+        if (!isFirstNameLabelFontColor) {
             log.info("Font-color of FirstName label is not as per spec, actual " + firstNameLabelFontColor);
         }
         isFirstNameLabelFontSize = commonUtils.assertValue(firstNameLabelFontSize, expLabelFontSize, "Font-Size of FirstName label is not as per spec");
@@ -244,7 +244,7 @@ public class FormsTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(formsPgObj.formGroupBottom, "margin-bottom", "mobile");
 
         isLastNameLabelFontColor = commonUtils.assertCSSProperties("color", lastNameLabelFontColor, expLabelColor);
-        if (isLastNameLabelFontColor == false) {
+        if (!isLastNameLabelFontColor) {
             log.info("Font-color of LastName label is not as per spec, actual " + lastNameLabelFontColor);
         }
         isLastNameLabelFontSize = commonUtils.assertValue(lastNameLabelFontSize, expLabelFontSize, "Font-Size of LastName label is not as per spec");
@@ -257,7 +257,7 @@ public class FormsTest extends BaseClass {
         submitBtnColor = commonUtils.getCSSValue(formsPgObj.submitBtn, "background-color", "mobile");
         isSubmitBtnColor = commonUtils.assertCSSProperties("background-color", submitBtnColor, expSubmitBtnColor);
         isSubmitBtnClass = commonUtils.assertValue(submitBtnClass, "pe-btn__cta", "Submit Btn does not inherit from pe-btn__cta");
-        if (isSubmitBtnColor == false) {
+        if (!isSubmitBtnColor) {
             log.info("Background-color of Submit Button is not as per spec, actual " + submitBtnColor);
         }
         Assert.assertTrue(isErrorDescColor && isFirstNameLabelFontColor && isFirstNameLabelFontSize && isLastNameLabelFontColor && isLastNameLabelFontSize && isFirstNameLabelLineHt && isLastNameLabelLineHt && isSubmitBtnClass && isSubmitBtnColor);
@@ -272,7 +272,7 @@ public class FormsTest extends BaseClass {
         isInputBorderStyle = commonUtils.assertValue(inputBorderStyle, expBorderWidth, "Border-bottom-style of " + field + " input field is not as per spec");
         isInputBorderWidth = commonUtils.assertValue(inputBorderWidth, expBorderStyle, "Border-bottom-width of " + field + " input field is not as per spec");
         isInputBorderColor = commonUtils.assertCSSProperties("border-bottom-color", inputBorderColor, expBorderColor);
-        if (isInputBorderColor == false) {
+        if (!isInputBorderColor) {
             log.info("Border-bottom-color of " + field + " is not as per spec, actual" + inputBorderColor);
         }
 
@@ -285,11 +285,11 @@ public class FormsTest extends BaseClass {
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Padding-top of " + field + " input field is not as per spec");
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Padding-bottom of " + field + " input field is not as per spec");
         isInputFontSize = commonUtils.assertCSSProperties("font-size", inputFontSize, expFontSize);
-        if (isInputFontSize == false) {
+        if (!isInputFontSize) {
             log.info("Font-size of " + field + " input input field is not as per spec, actual " + inputFontSize);
         }
         isInputValueColor = commonUtils.assertCSSProperties("color", inputValueColor, expFontColor);
-        if (isInputValueColor == false) {
+        if (!isInputValueColor) {
             log.info("Input Value color of " + field + " input field is not as per spec, actual " + inputValueColor);
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line-height of " + field + " input filed is not as per spec");

@@ -108,19 +108,19 @@ public class NoPlainCSSTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height");
 
         isMarginRight = commonUtils.assertCSSProperties(checkBoxType.toString(), marginRight, expMarginRight);
-        if (isMarginRight == false) {
+        if (!isMarginRight) {
             log.info("margin right for " + checkBoxType + " is not as per the spec");
         }
         isMarginLeft = commonUtils.assertCSSProperties(checkBoxType.toString(), marginLeft, expMarginLeft);
-        if (isMarginLeft == false) {
+        if (!isMarginLeft) {
             log.info("margin left for " + checkBoxType + " is not as per the spec");
         }
         isMarginTop = commonUtils.assertCSSProperties(checkBoxType.toString(), marginTop, expMarginTop);
-        if (isMarginTop == false) {
+        if (!isMarginTop) {
             log.info("margin top for " + checkBoxType + " is not as per the spec");
         }
         isMarginBottom = commonUtils.assertCSSProperties(checkBoxType.toString(), marginBottom, expMarginBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("margin bottom for " + checkBoxType + " is not as per the spec");
         }
         isDisplay = commonUtils.assertValue(display, expDisplay, "display for " + checkBoxType + "is not as per the spec");
@@ -131,7 +131,7 @@ public class NoPlainCSSTest extends BaseClass {
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding bottom for " + checkBoxType + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding right for " + checkBoxType + " is not as per the spec");
         isFontSize = commonUtils.assertCSSProperties(checkBoxType.toString(), fontSize, expLabelFontSize);
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("label font size for " + checkBoxType + " is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + checkBoxType + " is not as per the spec");
@@ -159,19 +159,19 @@ public class NoPlainCSSTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(labelElement, "font-size", "mobile");
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height", "mobile");
         isMarginRight = commonUtils.assertCSSProperties(checkBoxType.toString(), marginRight, expMarginRight);
-        if (isMarginRight == false) {
+        if (!isMarginRight) {
             log.info("margin right for " + checkBoxType + " is not as per the spec");
         }
         isMarginLeft = commonUtils.assertCSSProperties(checkBoxType.toString(), marginLeft, expMarginLeft);
-        if (isMarginLeft == false) {
+        if (!isMarginLeft) {
             log.info("margin left for " + checkBoxType + " is not as per the spec");
         }
         isMarginTop = commonUtils.assertCSSProperties(checkBoxType.toString(), marginTop, expMarginTop);
-        if (isMarginTop == false) {
+        if (!isMarginTop) {
             log.info("margin top for " + checkBoxType + " is not as per the spec");
         }
         isMarginBottom = commonUtils.assertCSSProperties(checkBoxType.toString(), marginBottom, expMarginBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("margin bottom for " + checkBoxType + " is not as per the spec");
         }
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + checkBoxType + "is not as per the spec");
@@ -182,7 +182,7 @@ public class NoPlainCSSTest extends BaseClass {
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding bottom for " + checkBoxType + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding right for " + checkBoxType + " is not as per the spec");
         isFontSize = commonUtils.assertCSSProperties(checkBoxType.toString(), fontSize, expLabelFontSize);
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("label font size for " + checkBoxType + " is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + checkBoxType + " is not as per the spec");
@@ -210,19 +210,19 @@ public class NoPlainCSSTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height");
 
         isMarginRight = commonUtils.assertCSSProperties(radioType.toString(), marginRight, expMarginRight);
-        if (isMarginRight == false) {
+        if (!isMarginRight) {
             log.info("margin right for " + radioType + " is not as per the spec");
         }
         isMarginLeft = commonUtils.assertCSSProperties(radioType.toString(), marginLeft, expMarginLeft);
-        if (isMarginLeft == false) {
+        if (!isMarginLeft) {
             log.info("margin left for " + radioType + " is not as per the spec");
         }
         isMarginTop = commonUtils.assertCSSProperties(radioType.toString(), marginTop, expMarginTop);
-        if (isMarginTop == false) {
+        if (!isMarginTop) {
             log.info("margin top for " + radioType + " is not as per the spec");
         }
         isMarginBottom = commonUtils.assertCSSProperties(radioType.toString(), marginBottom, expMarginBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("margin bottom for " + radioType + " is not as per the spec");
         }
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + radioType + "is not as per the spec");
@@ -233,7 +233,7 @@ public class NoPlainCSSTest extends BaseClass {
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding bottom for " + radioType + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding right for " + radioType + " is not as per the spec");
         isFontSize = commonUtils.assertCSSProperties(radioType.toString(), fontSize, expLabelFontSize);
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("label font size for " + radioType + " is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + radioType + " is not as per the spec");
@@ -264,19 +264,19 @@ public class NoPlainCSSTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(labelElement, "line-height", "mobile");
 
         isMarginRight = commonUtils.assertCSSProperties(radioType.toString(), marginRight, expMarginRight);
-        if (isMarginRight == false) {
+        if (!isMarginRight) {
             log.info("margin right for " + radioType + " is not as per the spec");
         }
         isMarginLeft = commonUtils.assertCSSProperties(radioType.toString(), marginLeft, expMarginLeft);
-        if (isMarginLeft == false) {
+        if (!isMarginLeft) {
             log.info("margin left for " + radioType + " is not as per the spec");
         }
         isMarginTop = commonUtils.assertCSSProperties(radioType.toString(), marginTop, expMarginTop);
-        if (isMarginTop == false) {
+        if (!isMarginTop) {
             log.info("margin top for " + radioType + " is not as per the spec");
         }
         isMarginBottom = commonUtils.assertCSSProperties(radioType.toString(), marginBottom, expMarginBottom);
-        if (isMarginBottom == false) {
+        if (!isMarginBottom) {
             log.info("margin bottom for " + radioType + " is not as per the spec");
         }
         isDisplay = commonUtils.assertValue(expDisplay, display, "display for " + radioType + "is not as per the spec");
@@ -287,7 +287,7 @@ public class NoPlainCSSTest extends BaseClass {
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding bottom for " + radioType + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding right for " + radioType + " is not as per the spec");
         isFontSize = commonUtils.assertCSSProperties(radioType.toString(), fontSize, expLabelFontSize);
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("label font size for " + radioType + " is not as per the spec");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLabelLineHeight, "line height for " + radioType + " is not as per the spec");

@@ -112,7 +112,7 @@ public class DrawerTest extends BaseClass {
         contentInDrawer = commonUtils.getText(drawerPgObj.rightDrawerOpened);
 
         isContentInDrawer = commonUtils.assertCSSProperties(contentInDrawer.toString(), contentInDrawer, new String[]{"Using data-target instead of href.", "Using data-target instead of href. "});
-        if (isContentInDrawer == false) {
+        if (!isContentInDrawer) {
             log.info("Error: Data Target is not working as per the spec");
         }
         Assert.assertTrue(isContentInDrawer);

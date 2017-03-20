@@ -63,7 +63,7 @@ public class SliderTest extends BaseClass {
             new Actions(driver).dragAndDropBy(slider, moveByXOffset, 0).perform();
             actSliderVal = commonUtils.getAttributeValue(element, "aria-valuenow");
             isSliderVal = commonUtils.assertCSSProperties("aria-valuenow", actSliderVal, expVal);
-            if (isSliderVal == false) {
+            if (!isSliderVal) {
                 log.info("Slider value at X-Offset " + moveByXOffset + "is not as per the spec" + actSliderVal + "expected val :" + expVal[1]);
             }
             Assert.assertTrue(isSliderVal);
@@ -85,7 +85,7 @@ public class SliderTest extends BaseClass {
             new Actions(driver).dragAndDropBy(slider, moveByXOffset, 0).perform();
             actSliderVal = commonUtils.getAttributeValue(sliderPgObj.slider, "aria-valuenow");
             isSliderVal = commonUtils.assertCSSProperties("aria-valuenow", actSliderVal, expVal);
-            if (isSliderVal == false) {
+            if (!isSliderVal) {
                 log.info("Slider value at X-Offset " + moveByXOffset + "is not as per the spec" + actSliderVal + "expected val :" + expVal[1]);
             }
             Assert.assertTrue(isSliderVal);

@@ -77,7 +77,7 @@ public class TextModalTest extends BaseClass {
         commonUtils.click(textModalPgObj.initiateBtn);
         actCancelBtnClass = commonUtils.getAttributeValue(textModalPgObj.cancelBtn, "class");
         isCancelBtnClass = actCancelBtnClass.contains("pe-btn");
-        if (isCancelBtnClass == false) {
+        if (!isCancelBtnClass) {
             log.info("Cancel button does not comply to the default button class");
         }
         commonUtils.click(textModalPgObj.cancelBtn);
@@ -92,7 +92,7 @@ public class TextModalTest extends BaseClass {
         commonUtils.click(textModalPgObj.initiateBtn);
         actSuccessBtnClass = commonUtils.getAttributeValue(textModalPgObj.successBtn, "class");
         isSuccessBtnClass = actSuccessBtnClass.contains("pe-btn pe-btn--primary");
-        if (isSuccessBtnClass == false) {
+        if (!isSuccessBtnClass) {
             log.info("Success button does not comply to the primary button class");
         }
         commonUtils.click(textModalPgObj.successBtn);
@@ -194,13 +194,13 @@ public class TextModalTest extends BaseClass {
 
         String templateName = commonUtils.getAttributeValue(textModalPgObj.modal, "class");
         result = templateName.contains("pe-template__static-large");
-        if (result == false) {
+        if (!result) {
             log.info("The modal does not use the static large template specs");
         }
 
         actModalWidth = commonUtils.getCSSValue(textModalPgObj.modal, "width");
         isModalWidth = commonUtils.assertCSSProperties("width", actModalWidth, expWidth);
-        if (isModalWidth == false) {
+        if (!isModalWidth) {
             log.info("At" + width + " The Title's modal width" + actModalWidth + "is not as per the expected spec");
         }
 
@@ -213,7 +213,7 @@ public class TextModalTest extends BaseClass {
         actContentColor = commonUtils.getCSSValue(textModalPgObj.content, "color");
 
         isTitleFontSize = commonUtils.assertCSSProperties("font-size", actTitleFontSize, titleFontSize);
-        if (isTitleFontSize == false) {
+        if (!isTitleFontSize) {
             log.info("At" + width + "The Title's font size" + actTitleFontSize + "is not as per the expected spec");
         }
         isTitleLineHeight = commonUtils.assertValue(actTitleLineHeight, titleLineHeight, "at width" + width + "line-height of title is not as per spec");
@@ -221,7 +221,7 @@ public class TextModalTest extends BaseClass {
         isContentFontSize = commonUtils.assertValue(actContentFontSize, contentFontSize, "at width" + width + "font-size of content is not as per spec");
         isContentLineHeight = commonUtils.assertValue(actContentLineHeight, contentLineHeight, "at width" + width + "line-height of content is not as per spec");
         isContentColor = commonUtils.assertCSSProperties("color", actContentColor, contentColor);
-        if (isContentColor == false) {
+        if (!isContentColor) {
             log.info("At" + width + "The Title's font size" + actContentColor + "is not as per the expected spec");
         }
         commonUtils.click(textModalPgObj.cancelBtn);
@@ -264,7 +264,7 @@ public class TextModalTest extends BaseClass {
                 log.info(e.getMessage());
             }
         }
-        if (isCSSProperty == false) {
+        if (!isCSSProperty) {
             log.info(inlineCSSProperty + " for " + element + " is not as per the spec");
         }
         Assert.assertTrue(isCSSProperty);
@@ -298,13 +298,13 @@ public class TextModalTest extends BaseClass {
 
         String templateName = commonUtils.getAttributeValue(textModalPgObj.modal, "class");
         result = templateName.contains("pe-template__static-small");
-        if (result == false) {
+        if (!result) {
             log.info("The modal does not use the static Small template specs");
         }
 
         actModalWidth = commonUtils.getCSSValue(textModalPgObj.modal, "width");
         isModalWidth = commonUtils.assertCSSProperties("width", actModalWidth, expWidth);
-        if (isModalWidth == false) {
+        if (!isModalWidth) {
             log.info("At" + width + " The Title's modal width" + actModalWidth + "is not as per the expected spec");
         }
 
@@ -391,7 +391,7 @@ public class TextModalTest extends BaseClass {
         commonUtils.click(textModalPgObj.initiateBtn, "mobile");
         actCancelBtnClass = commonUtils.getAttributeValue(textModalPgObj.cancelBtn, "class", "mobile");
         isCancelBtnClass = actCancelBtnClass.contains("pe-btn");
-        if (isCancelBtnClass == false) {
+        if (!isCancelBtnClass) {
             log.info("Cancel button does not comply to the default button class");
         }
         commonUtils.click(textModalPgObj.cancelBtn, "mobile");
@@ -417,7 +417,7 @@ public class TextModalTest extends BaseClass {
         commonUtils.click(textModalPgObj.initiateBtn, "mobile");
         actSuccessBtnClass = commonUtils.getAttributeValue(textModalPgObj.successBtn, "class", "mobile");
         isSuccessBtnClass = actSuccessBtnClass.contains("pe-btn pe-btn--primary");
-        if (isSuccessBtnClass == false) {
+        if (!isSuccessBtnClass) {
             log.info("Success button does not comply to the primary button class");
         }
         commonUtils.click(textModalPgObj.successBtn, "mobile");
@@ -442,24 +442,24 @@ public class TextModalTest extends BaseClass {
 
         String templateName = commonUtils.getAttributeValue(textModalPgObj.modal, "class", "mobile");
         result = templateName.contains("pe-template__static-large");
-        if (result == false) {
+        if (!result) {
             log.info("The modal does not use the static large template specs");
         }
 
         actModalWidth = commonUtils.getCSSValue(textModalPgObj.modal, "width", "mobile");
         isModalWidth = commonUtils.assertCSSProperties("width", actModalWidth, expWidth);
-        if (isModalWidth == false) {
+        if (!isModalWidth) {
             log.info("At" + mode + " The Title's modal width" + actModalWidth + "is not as per the expected spec");
         }
 
         actTitleFontSize = commonUtils.getCSSValue(textModalPgObj.title, "font-size", "mobile");
         isTitleFontSize = commonUtils.assertCSSProperties("font-size", actTitleFontSize, titleFontSize);
-        if (isTitleFontSize == false) {
+        if (!isTitleFontSize) {
             log.info("At" + mode + "The Title's font size" + actTitleFontSize + "is not as per the expected spec");
         }
         actTitleLineHeight = commonUtils.getCSSValue(textModalPgObj.title, "line-height", "mobile");
         isTitleLineHeight = commonUtils.assertCSSProperties("line-height", actTitleLineHeight, titleLineHeight);
-        if (isTitleLineHeight == false) {
+        if (!isTitleLineHeight) {
             log.info("At" + mode + "The Title's line height" + actTitleLineHeight + "is not as per the expected spec");
         }
 
