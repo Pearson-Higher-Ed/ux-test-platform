@@ -414,6 +414,39 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
+    @DataProvider(name = "Link Button 2.0 Test Data")
+    public Object[][] getLinkButton2TestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"background-color", new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}},
+                {"background-image", new String[]{"none"}},
+
+                {"border-top-width", new String[]{"0px"}},
+                {"border-bottom-width", new String[]{"0px"}},
+                {"border-left-width", new String[]{"0px"}},
+                {"border-right-width", new String[]{"0px"}},
+
+                {"text-decoration", new String[]{"underline"}},
+                {"cursor", new String[]{"pointer"}},
+
+                {"padding-top", new String[]{"4px"}},
+                {"padding-bottom", new String[]{"4px"}},
+                {"padding-left", new String[]{"4px"}},
+                {"padding-right", new String[]{"4px"}}
+        };
+    }
+
+    @Test(testName = "Verify Link Button 2.0 Test", dataProvider = "Link Button 2.0 Test Data", groups = {"desktop-regression"})
+    private void linkButton2Test(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link button 2.0 is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
     @DataProvider(name = "Link Button-Hover state Test Data")
     public Object[][] getLinkButtonHoverStateTestData() {
         return new Object[][]{
@@ -643,6 +676,17 @@ public class ButtonsTest extends BaseClass {
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Link button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Link Button 2.0 Test", dataProvider = "Link Button 2.0 Test Data", groups = {"mobile-regression"})
+    private void linkButton2MobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Link button 2.0 is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }

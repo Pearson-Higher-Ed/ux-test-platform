@@ -34,6 +34,7 @@ public class ButtonsPageObjects {
 
     public By linkBtn=By.id("link-btn");
     public By linkBtnHover=By.id("link-btn-hover");
+    public By linkBtn2 = By.id("link-btn-2.0");
 
     //Fake buttons
     public By divBtn=By.id("divBtn");
