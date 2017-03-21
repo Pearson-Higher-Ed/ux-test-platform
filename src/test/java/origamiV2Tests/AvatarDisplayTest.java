@@ -151,11 +151,11 @@ public class AvatarDisplayTest extends BaseClass {
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height");
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
         }
         isWidth = commonUtils.assertCSSProperties(configType, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
         commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
@@ -221,11 +221,11 @@ public class AvatarDisplayTest extends BaseClass {
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height");
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
         }
         isWidth = commonUtils.assertCSSProperties(configType, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
         commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
@@ -277,11 +277,11 @@ public class AvatarDisplayTest extends BaseClass {
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height", "mobile");
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width", "mobile");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
         }
         isWidth = commonUtils.assertCSSProperties(configType, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
         commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
@@ -322,11 +322,11 @@ public class AvatarDisplayTest extends BaseClass {
         height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height", "mobile");
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width", "mobile");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
         }
         isWidth = commonUtils.assertCSSProperties(configType, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("Width for avatar for config type " + configType + " is not as per the spec");
         }
         commonUtils.writeInitialConfig(tempJSFilePath,avatarDisplayJSPath);
@@ -370,19 +370,19 @@ public class AvatarDisplayTest extends BaseClass {
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width");
 
         isBorderTopLeftRadius = commonUtils.assertCSSProperties(avSize, borderTopLeftRadius, avBorderTopLeftRadius);
-        if (isBorderTopLeftRadius == false) {
+        if (!isBorderTopLeftRadius) {
             log.info("border-top-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderTopRightRadius = commonUtils.assertCSSProperties(avSize, borderTopRightRadius, avBorderTopRightRadius);
-        if (isBorderTopRightRadius == false) {
+        if (!isBorderTopRightRadius) {
             log.info("border-top-right-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderBottomLeftRadius = commonUtils.assertCSSProperties(avSize, borderBottomLeftRadius, avBorderBottomLeftRadius);
-        if (isBorderBottomLeftRadius == false) {
+        if (!isBorderBottomLeftRadius) {
             log.info("border-bottom-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderBottomRightRadius = commonUtils.assertCSSProperties(avSize, borderBottomRightRadius, avBorderBottomRightRadius);
-        if (isBorderBottomRightRadius == false) {
+        if (!isBorderBottomRightRadius) {
             log.info("border-bottom-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderTopWidth = commonUtils.assertValue(borderTopWidth, avBorderTopWidth, "border-top-width for " + avSize + " is not as per SPEC");
@@ -390,11 +390,11 @@ public class AvatarDisplayTest extends BaseClass {
         isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, avBorderLeftWidth, "border-left-width for " + avSize + " is not as per SPEC");
         isBorderRightWidth = commonUtils.assertValue(borderRightWidth, avBorderRightWidth, "border-right-width for " + avSize + " is not as per SPEC");
         isHeight = commonUtils.assertCSSProperties(avSize, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("height for " + avSize + " avatar is not as per SPEC");
         }
         isWidth = commonUtils.assertCSSProperties(avSize, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("width for " + avSize + " avatar is not as per SPEC");
         }
         return (isBorderTopLeftRadius && isBorderTopRightRadius && isBorderBottomLeftRadius && isBorderBottomRightRadius && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isHeight && isWidth);
@@ -413,19 +413,19 @@ public class AvatarDisplayTest extends BaseClass {
         width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width", "mobile");
 
         isBorderTopLeftRadius = commonUtils.assertCSSProperties(avSize, borderTopLeftRadius, avBorderTopLeftRadius);
-        if (isBorderTopLeftRadius == false) {
+        if (!isBorderTopLeftRadius) {
             log.info("border-top-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderTopRightRadius = commonUtils.assertCSSProperties(avSize, borderTopRightRadius, avBorderTopRightRadius);
-        if (isBorderTopRightRadius == false) {
+        if (!isBorderTopRightRadius) {
             log.info("border-top-right-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderBottomLeftRadius = commonUtils.assertCSSProperties(avSize, borderBottomLeftRadius, avBorderBottomLeftRadius);
-        if (isBorderBottomLeftRadius == false) {
+        if (!isBorderBottomLeftRadius) {
             log.info("border-bottom-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderBottomRightRadius = commonUtils.assertCSSProperties(avSize, borderBottomRightRadius, avBorderBottomRightRadius);
-        if (isBorderBottomRightRadius == false) {
+        if (!isBorderBottomRightRadius) {
             log.info("border-bottom-left-radius for " + avSize + " avatar is not as per SPEC");
         }
         isBorderTopWidth = commonUtils.assertValue(borderTopWidth, avBorderTopWidth, "border-top-width for " + avSize + " is not as per SPEC");
@@ -433,11 +433,11 @@ public class AvatarDisplayTest extends BaseClass {
         isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, avBorderLeftWidth, "border-left-width for " + avSize + " is not as per SPEC");
         isBorderRightWidth = commonUtils.assertValue(borderRightWidth, avBorderRightWidth, "border-right-width for " + avSize + " is not as per SPEC");
         isHeight = commonUtils.assertCSSProperties(avSize, height, avHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("height for " + avSize + " avatar is not as per SPEC");
         }
         isWidth = commonUtils.assertCSSProperties(avSize, width, avWidth);
-        if (isWidth == false) {
+        if (!isWidth) {
             log.info("width for " + avSize + " avatar is not as per SPEC");
         }
         return (isBorderTopLeftRadius && isBorderTopRightRadius && isBorderBottomLeftRadius && isBorderBottomRightRadius && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isHeight && isWidth);

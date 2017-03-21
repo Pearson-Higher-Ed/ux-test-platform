@@ -48,11 +48,11 @@ public class MeterTest extends BaseClass {
         backgroundColor = commonUtils.getCSSValue(element, cssProperty);
 
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("height for " + state + "is not as per the SPEC");
         }
         isBackgroundColor = commonUtils.assertCSSProperties(state, backgroundColor, expBackgroundColor);
-        if (isBackgroundColor == false) {
+        if (!isBackgroundColor) {
             log.info("background-color for " + state + " is not as per the spec");
         }
         Assert.assertTrue(isHeight && isBackgroundColor);
@@ -93,16 +93,16 @@ public class MeterTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(meterPgObj.meterLabel, "margin-bottom");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, new String[]{"14px", "13.93px"});
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("meter font-size is not from basic label as per the SPEC");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, "16px", "meter line-height is not from basic label as per the SPEC");
         isFontWeight = commonUtils.assertCSSProperties("fontWeight", fontWeight, new String[]{"normal", "400"});
-        if (isFontWeight == false) {
+        if (!isFontWeight) {
             log.info("meter font-weight is not from basic label as per the spec");
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")});
-        if (isColor == false) {
+        if (!isColor) {
             log.info("meter color is not from basic label as per the spec");
         }
         isMarginBottom = commonUtils.assertValue(marginBottom, "8px", "meter margin bottom is not as per the SPEC");
@@ -120,11 +120,11 @@ public class MeterTest extends BaseClass {
         backgroundColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
 
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (isHeight == false) {
+        if (!isHeight) {
             log.info("height for " + state + "is not as per the SPEC");
         }
         isBackgroundColor = commonUtils.assertCSSProperties(state, backgroundColor, expBackgroundColor);
-        if (isBackgroundColor == false) {
+        if (!isBackgroundColor) {
             log.info("background-color for " + state + " is not as per the spec");
         }
         Assert.assertTrue(isHeight && isBackgroundColor);
@@ -147,16 +147,16 @@ public class MeterTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(meterPgObj.meterLabel, "margin-bottom", "mobile");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, new String[]{"14px", "13.93px"});
-        if (isFontSize == false) {
+        if (!isFontSize) {
             log.info("meter font-size is not from basic label as per the SPEC");
         }
         isLineHeight = commonUtils.assertValue(lineHeight, "16px", "meter line-height is not from basic label as per the SPEC");
         isFontWeight = commonUtils.assertCSSProperties("fontWeight", fontWeight, new String[]{"normal", "400"});
-        if (isFontWeight == false) {
+        if (isFontWeight) {
             log.info("meter font-weight is not from basic label as per the spec");
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#231f20"), commonUtils.hex2RgbWithoutTransparency("#231f20")});
-        if (isColor == false) {
+        if (!isColor) {
             log.info("meter color is not from basic label as per the spec");
         }
         isMarginBottom = commonUtils.assertValue(marginBottom, "8px", "meter margin bottom is not as per the SPEC");
@@ -183,19 +183,19 @@ public class MeterTest extends BaseClass {
         borderRightWidth = commonUtils.getCSSValue(element, "border-right-width");
 
         isBorderTopColor = commonUtils.assertCSSProperties("meter", borderTopColor, expBorderTopColor);
-        if (isBorderTopColor == false) {
+        if (!isBorderTopColor) {
             log.info("border-top-color for meter is not as per the SPEC");
         }
         isBorderBottomColor = commonUtils.assertCSSProperties("meter", borderBottomColor, expBorderBottomColor);
-        if (isBorderBottomColor == false) {
+        if (!isBorderBottomColor) {
             log.info("border-bottom-color for meter is not as per the SPEC");
         }
         isBorderLeftColor = commonUtils.assertCSSProperties("meter", borderLeftColor, expBorderLeftColor);
-        if (isBorderLeftColor == false) {
+        if (!isBorderLeftColor) {
             log.info("border-left-color for meter is not as per the SPEC");
         }
         isBorderRightColor = commonUtils.assertCSSProperties("meter", borderRightColor, expBorderRightColor);
-        if (isBorderRightColor == false) {
+        if (!isBorderRightColor) {
             log.info("border-right-color for meter is not as per the SPEC");
         }
 
@@ -228,19 +228,19 @@ public class MeterTest extends BaseClass {
         borderRightWidth = commonUtils.getCSSValue(element, "border-right-width", "mobile");
 
         isBorderTopColor = commonUtils.assertCSSProperties("meter", borderTopColor, expBorderTopColor);
-        if (isBorderTopColor == false) {
+        if (!isBorderTopColor) {
             log.info("border-top-color for meter is not as per the SPEC");
         }
         isBorderBottomColor = commonUtils.assertCSSProperties("meter", borderBottomColor, expBorderBottomColor);
-        if (isBorderBottomColor == false) {
+        if (!isBorderBottomColor) {
             log.info("border-bottom-color for meter is not as per the SPEC");
         }
         isBorderLeftColor = commonUtils.assertCSSProperties("meter", borderLeftColor, expBorderLeftColor);
-        if (isBorderLeftColor == false) {
+        if (!isBorderLeftColor) {
             log.info("border-left-color for meter is not as per the SPEC");
         }
         isBorderRightColor = commonUtils.assertCSSProperties("meter", borderRightColor, expBorderRightColor);
-        if (isBorderRightColor == false) {
+        if (!isBorderRightColor) {
             log.info("border-right-color for meter is not as per the SPEC");
         }
 

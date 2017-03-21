@@ -77,7 +77,7 @@ public class TemplatesTest extends BaseClass {
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("column width for windows size " + width + " is not as per the spec");
         }
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "column padding-bottom for window size " + width + " is not as per the spec");
@@ -133,7 +133,7 @@ public class TemplatesTest extends BaseClass {
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("column width for windows size " + width + " is not as per the spec");
         }
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "column padding-bottom for window size " + width + " is not as per the spec");
@@ -188,7 +188,7 @@ public class TemplatesTest extends BaseClass {
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("column width for windows size " + width + " is not as per the spec");
         }
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "column padding-bottom for window size " + width + " is not as per the spec");
@@ -244,7 +244,7 @@ public class TemplatesTest extends BaseClass {
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("column width for windows size " + width + " is not as per the spec");
         }
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "column padding-bottom for window size " + width + " is not as per the spec");
@@ -300,7 +300,7 @@ public class TemplatesTest extends BaseClass {
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + width + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + width + " is not as per the spec");
         isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("column width for windows size " + width + " is not as per the spec");
         }
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "column padding-bottom for window size " + width + " is not as per the spec");

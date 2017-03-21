@@ -192,7 +192,7 @@ public class GridTest extends BaseClass {
 
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colName, colWidth, expColWidth);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info("'" + colWidth + "' :for container 3 and column" + colName + "is not as per the spec");
         }
         Assert.assertTrue(isColWidth);
@@ -221,7 +221,7 @@ public class GridTest extends BaseClass {
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info(" Column width for container 3 and column " + colName + " is not as per the spec");
         }
         Assert.assertTrue(isColWidth);
@@ -251,7 +251,7 @@ public class GridTest extends BaseClass {
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info(" Column width for container 3 and column " + colName + " is not as per the spec");
         }
         Assert.assertTrue(isColWidth);
@@ -281,7 +281,7 @@ public class GridTest extends BaseClass {
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info(" Column width for container 3 and column" + colName + " is not as per the spec");
         }
         Assert.assertTrue(isColWidth);
@@ -311,7 +311,7 @@ public class GridTest extends BaseClass {
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
-        if (isColWidth == false) {
+        if (!isColWidth) {
             log.info(" Column width for container 3 and column " + colName + " is not as per the spec");
         }
         Assert.assertTrue(isColWidth);

@@ -220,7 +220,7 @@ public class TypographyTest extends BaseClass {
             jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContAttribute + "').getPropertyValue('content');";
             jQueryReturnValue = (String) js.executeScript(jQueryScript);
             isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
-            if (isPseudoContent == false) {
+            if (!isPseudoContent) {
                 log.info("pseudo '" + pseudoContAttribute + "' value for insTag is incorrect");
             }
             Assert.assertTrue(isPseudoContent);
@@ -486,7 +486,7 @@ public class TypographyTest extends BaseClass {
             jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContAttribute + "').getPropertyValue('content');";
             jQueryReturnValue = (String) js.executeScript(jQueryScript);
             isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
-            if (isPseudoContent == false) {
+            if (!isPseudoContent) {
                 log.info("pseudo '" + pseudoContAttribute + "' value for insTag is incorrect, actual: " + isPseudoContent);
             }
             Assert.assertTrue(isPseudoContent);
