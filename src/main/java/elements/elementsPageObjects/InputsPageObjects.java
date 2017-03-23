@@ -85,6 +85,11 @@ public class InputsPageObjects {
     public By basicSelectInputLabel = By.id("select-input-label");
     public By basicSelectInputIcon = By.id("icon-dropdown-open-18");
 
+    public By basicSelectInputError = By.id("select-input-basic-error");
+    public By basicSelectInputErrorContainer = By.id("select-input-error-div");
+    public By basicSelectInputErrorLabel = By.id("select-input-label-error");
+    public By basicSelectInputErrorIcon = By.id("select-input-error-icon");
+
     public By checkBoxWithLongLabel=By.xpath("//label[@for='longLabel']");
 
     public By multiLineTextLabel = By.id("multitext-Input-Label");

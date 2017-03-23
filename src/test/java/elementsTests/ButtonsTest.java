@@ -10,6 +10,8 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by umahaea on 4/13/16.
@@ -19,11 +21,13 @@ public class ButtonsTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private static String env, browser, lBrowser, device;
     private static String setMobile;
-    private String color = "", backgroundColor = "", lineHeight = "";
-    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false;
+    private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor= "", padding = "";
+    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false;
     Actions action;
     TouchAction mAction;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
+    List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
+    List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
 
     @Parameters({"runEnv", "mobile", "appiumDriver", "sauceBrowser", "localBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
@@ -417,34 +421,46 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button 2.0 Test Data")
     public Object[][] getLinkButton2TestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
-                {"background-color", new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}},
-                {"background-image", new String[]{"none"}},
+                {"link-button-2.0",btnPgObj.linkBtn2,new String[]{commonUtils.hex2Rgb("#047A9C"),commonUtils.hex2RgbWithoutTransparency("#047A9C")},new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)","transparent"}, "none", "underline","pointer"},
+                {"link-button-2.0-disabled",btnPgObj.linkBtn2Disabled,new String[]{commonUtils.hex2Rgb("#6A7070"),commonUtils.hex2RgbWithoutTransparency("#6A7070")},new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)","transparent"}, "none", "underline","pointer"}
 
-                {"border-top-width", new String[]{"0px"}},
-                {"border-bottom-width", new String[]{"0px"}},
-                {"border-left-width", new String[]{"0px"}},
-                {"border-right-width", new String[]{"0px"}},
-
-                {"text-decoration", new String[]{"underline"}},
-                {"cursor", new String[]{"pointer"}},
-
-                {"padding-top", new String[]{"4px"}},
-                {"padding-bottom", new String[]{"4px"}},
-                {"padding-left", new String[]{"4px"}},
-                {"padding-right", new String[]{"4px"}}
         };
     }
 
     @Test(testName = "Verify Link Button 2.0 Test", dataProvider = "Link Button 2.0 Test Data", groups = {"desktop-regression"})
-    private void linkButton2Test(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link button 2.0 is not as per the spec, actual: " + cssProperty);
+    private void linkButton2Test(String type,By elem,String[] expColor,String[] expBgColor, String expBgImg, String expTextDecoration, String expCursor) throws Exception {
+        color = commonUtils.getCSSValue(elem,"color");
+        backgroundColor = commonUtils.getCSSValue(elem,"background-color");
+        backgroundImg = commonUtils.getCSSValue(elem,"background-image");
+        textDecoration = commonUtils.getCSSValue(elem,"text-decoration");
+        cursor = commonUtils.getCSSValue(elem,"cursor");
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(elem, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, "0px", cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderWidth);
         }
-        Assert.assertTrue(isCSSProperty);
+        for (String cssProperty : paddings) {
+            padding = commonUtils.getCSSValue(elem, cssProperty);
+            isPadding = commonUtils.assertValue(padding,"4px",cssProperty + " of " + type + " is not as per spec");
+            if (!isPadding) {
+                log.info(cssProperty + " of " + type + " is not as per spec, actual " + padding);
+            }
+            Assert.assertTrue(isPadding);
+        }
+
+        isColor = commonUtils.assertCSSProperties("color",color,expColor);
+        if(!isColor){
+            log.info("Color of " + type + " is not as per spec, actual " + color);
+        }
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color",backgroundColor,expBgColor);
+        if(!isBackgroundColor){
+            log.info("Color of " + type + " is not as per spec, actual " + backgroundColor);
+        }
+        isBackgrounImg = commonUtils.assertValue(backgroundImg,expBgImg,"Background- Img of " + type + " is not as per spec");
+        isTextDecoration = commonUtils.assertValue(textDecoration,expTextDecoration,"Text-decoration of " + type + " is not as per spec");
+        isCursor = commonUtils.assertValue(cursor,expCursor,"Cursor of " + type + " is not as per spec");
+
+        Assert.assertTrue(isColor && isBackgroundColor && isBackgrounImg && isTextDecoration && isCursor);
     }
 
     @DataProvider(name = "Link Button-Hover state Test Data")
@@ -681,14 +697,39 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Verify Link Button 2.0 Test", dataProvider = "Link Button 2.0 Test Data", groups = {"mobile-regression"})
-    private void linkButton2MobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link button 2.0 is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
+    private void linkButton2MobileTest(String type,By elem,String[] expColor,String[] expBgColor, String expBgImg, String expTextDecoration, String expCursor) throws Exception {
+            color = commonUtils.getCSSValue(elem,"color","mobile");
+            backgroundColor = commonUtils.getCSSValue(elem,"background-color","mobile");
+            backgroundImg = commonUtils.getCSSValue(elem,"background-image","mobile");
+            textDecoration = commonUtils.getCSSValue(elem,"text-decoration","mobile");
+            cursor = commonUtils.getCSSValue(elem,"cursor","mobile");
+            for (String cssProperty : borderWidths) {
+                borderWidth = commonUtils.getCSSValue(elem, cssProperty,"mobile");
+                isBorderWidth = commonUtils.assertValue(borderWidth, "0px", cssProperty + " of " + type + " is not as per spec");
+                Assert.assertTrue(isBorderWidth);
+            }
+            for (String cssProperty : paddings) {
+                padding = commonUtils.getCSSValue(elem, cssProperty,"mobile");
+                isPadding = commonUtils.assertValue(padding,"4px",cssProperty + " of " + type + " is not as per spec");
+                if (!isPadding) {
+                    log.info(cssProperty + " of " + type + " is not as per spec, actual " + padding);
+                }
+                Assert.assertTrue(isPadding);
+            }
+
+            isColor = commonUtils.assertCSSProperties("color",color,expColor);
+            if(!isColor){
+                log.info("Color of " + type + " is not as per spec, actual " + color);
+            }
+            isBackgroundColor = commonUtils.assertCSSProperties("background-color",backgroundColor,expBgColor);
+            if(!isBackgroundColor){
+                log.info("Color of " + type + " is not as per spec, actual " + backgroundColor);
+            }
+            isBackgrounImg = commonUtils.assertValue(backgroundImg,expBgImg,"Background- Img of " + type + " is not as per spec");
+            isTextDecoration = commonUtils.assertValue(textDecoration,expTextDecoration,"Text-decoration of " + type + " is not as per spec");
+            isCursor = commonUtils.assertValue(cursor,expCursor,"Cursor of " + type + " is not as per spec");
+
+            Assert.assertTrue(isColor && isBackgroundColor && isBackgrounImg && isTextDecoration && isCursor);
     }
 
     @Test(testName = "Mobile: Verify Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"mobile-regression"})
