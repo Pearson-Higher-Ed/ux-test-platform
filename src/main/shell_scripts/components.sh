@@ -22,7 +22,7 @@ git clone https://github.com/Pearson-Higher-Ed/compounds.git
 cd compounds
 git checkout $1
 npm install &>/dev/null
-npm run copy-utils
+#npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dev.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/compounds/jsfiles/
