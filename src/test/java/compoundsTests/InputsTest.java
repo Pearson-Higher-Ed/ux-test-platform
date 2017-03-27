@@ -75,7 +75,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
         }
@@ -112,9 +112,6 @@ public class InputsTest extends BaseClass {
     //Fancy - Inputs (single line - error)
     @Test(testName = "Fancy - Verify Single Line Input - Errored", dataProvider = "Fancy - Single Line Input Errored Test Data", groups = "desktop-regression")
     private void fancySingleLineInputErroredTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("transition") && browser.equals("edge")) {
-
-        }
         String[] detailsPropertiesList = new String[]{"elementId", "inputs-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "label", "Last Name", "inputType", "error", "placeholder", "Last Name"};
         testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
@@ -122,7 +119,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
         }
@@ -151,7 +148,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
         }
@@ -187,7 +184,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
         }
@@ -227,7 +224,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.showbutton, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Password Input-Show Button is not as per the spec, actual: " + cssProperty);
         }
@@ -253,7 +250,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl);
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Password Input-Custom Label is not as per the spec, actual: " + cssProperty);
         }
@@ -366,7 +363,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
         }
@@ -383,7 +380,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
         }
@@ -401,7 +398,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
         }
@@ -418,7 +415,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
         }
@@ -435,7 +432,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.showbutton, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Password Input-Show Button is not as per the spec, actual: " + cssProperty);
         }
@@ -452,7 +449,7 @@ public class InputsTest extends BaseClass {
         commonUtils.getUrl(inputsUrl, "mobile");
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.passwordTextLabel, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("Compounds-> '" + cssPropertyType + "' :for Password Input-Custom Label is not as per the spec, actual: " + cssProperty);
         }
