@@ -29,8 +29,9 @@ public class InputsPageObjects {
     public By slTextLabelInputDisabled = By.id("sl-text-label-input-disabled");
     public By slTextInputReadOnly = By.id("sl-text-input-readonly");
     public By slTextLableInputReadOnly = By.id("sl-text-label-input-readonly");
-    public By slUnderlineInput = By.id("input-underline");
-    public By slUnderLineInputError = By.id("input-underline-error");
+    //public By slUnderlineInput = By.id("input-underline");
+    public By slUnderlineInput = By.xpath("//span[@class='pe-input_underline']");
+    public By slUnderLineInputError = By.xpath("//span[@class='pe-inputError_underline']");
     public By slInputErrorMessageFancy=By.id("pe-input--error_message-fancy");
 
     //basic
@@ -75,7 +76,7 @@ public class InputsPageObjects {
 
     public By checkBoxState = By.id("checkbox-state");
 
-    public By passwordTextLabel = By.id("textLabelInput");
+    public By passwordTextLabel = By.xpath("//label[@class='pe-textLabelInput__label']");
     public By passwordField = By.id("e");
     public By passwordUnderLine = By.id("password-input-underline");
     public By showbutton = By.id("showbutton");
