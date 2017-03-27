@@ -456,7 +456,6 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-
     /*****************
      * Common methods
      *****************/
