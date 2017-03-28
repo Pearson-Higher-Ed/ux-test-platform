@@ -17,17 +17,16 @@ import java.lang.reflect.Method;
  */
 public class PresentationStrategyTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/presentation-strategies.html";
-    private static String env;
-    private static String mobileDevice;
-    String marginRight, marginLeft, marginBottom, marginTop, paddingRight, paddingLeft, colWidth;
-    boolean isMarginLeft, isMarginRight, isMarginBottom, isMarginTop, ispaddingRight, ispaddingLeft, isColWidth;
+    private static String env = "", mobileDevice = "", setDesktop = "";
+    private String marginRight = "", marginLeft = "", marginBottom = "", marginTop = "", paddingRight = "", paddingLeft = "", colWidth;
+    private boolean isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, ispaddingRight = false, ispaddingLeft = false, isColWidth;
     final static Logger log = Logger.getLogger(PresentationStrategyTest.class.getName());
 
-    @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String runEnv, String mobDeviceName) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
+    private void beforeClass() {
+        env = BaseClass.runEnv;
+        mobileDevice = BaseClass.mobDeviceName;
+        setDesktop = BaseClass.desktop;
     }
 
     /***************

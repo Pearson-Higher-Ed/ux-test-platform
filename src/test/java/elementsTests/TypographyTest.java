@@ -20,23 +20,21 @@ import java.util.List;
 public class TypographyTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/typography.html";
-    private static String env, setDesktop, mobileDevice, setMobile, browser, mBrowser;
+    private static String env = "", setDesktop = "", mobileDevice = "", setMobile = "", browser = "", mBrowser = "", lBrowser = "";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
-    boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;
+    private boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;
     private String color = "", fontSize = "", fontWeight = "", lineHeight = "", rgbValue = "", borderBottomWidth = "", borderBottomStyle = "", textDecoration = "", fontStyle = "", display = "", jQueryScript = "", jQueryReturnValue = "", boxSizing = "", position = "", top = "", listStyle = "", pseudoContent = "", marginLeft = "", marginRight = "", marginBottom = "", marginTop = "", backgroundColor = "", verticalAlign = "", fontFamily = "", winChromeFontFamily = "Monaco, \"Lucida Console\", monospace", macChromeFontFamily = "Monaco, 'Lucida Console', monospace", ieFontFamily = "monaco, \"lucida console\", monospace", ffFontFamily = "Monaco,\"Lucida Console\",monospace", paddingTop = "", paddingBottom = "", paddingLeft = "", paddingRight = "";
     JavascriptExecutor js = null;
-    private static String lBrowser;
 
-    @Parameters({"runEnv", "desktop", "mobile", "mobDeviceName", "sauceBrowser", "mobBrowser", "localBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void typographyTestBeforeClass(String runEnv, String desktop, String mobile, String mobDeviceName, String sauceBrowser, String mobBrowser, String localBrowser) {
-        env = runEnv;
-        setDesktop = desktop;
-        mobileDevice = mobDeviceName;
-        browser = sauceBrowser;
-        mBrowser = mobBrowser;
-        setMobile = mobile;
-        lBrowser = localBrowser;
+    private void typographyTestBeforeClass() {
+        env = BaseClass.runEnv;
+        setDesktop = BaseClass.desktop;
+        mobileDevice = BaseClass.mobDeviceName;
+        browser = BaseClass.sauceBrowser;
+        mBrowser = BaseClass.mobBrowser;
+        setMobile = BaseClass.mobile;
+        lBrowser = BaseClass.localBrowser;
     }
 
     //Desktop Tests
@@ -566,7 +564,7 @@ public class TypographyTest extends BaseClass {
             lineHeight = commonUtils.getCSSValue(By.id("list-option" + i), "line-height", "mobile");
             isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"22px", "22.000019073486328px"});
             if (!isLineHeight) {
-                log.info("Line-height for list option " + i + " of pe-list is not as per the spec, actual " + lineHeight );
+                log.info("Line-height for list option " + i + " of pe-list is not as per the spec, actual " + lineHeight);
             }
             Assert.assertTrue(isLineHeight);
         }

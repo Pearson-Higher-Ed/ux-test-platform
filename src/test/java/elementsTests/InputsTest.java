@@ -1,28 +1,17 @@
 
 package elementsTests;
 
-import java.io.File;
-
-import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
-import org.apache.log4j.varia.StringMatchFilter;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.internal.Streams;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.Command;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,18 +20,14 @@ import utilities.BaseClass;
 public class InputsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/inputs.html";
-    private static String setMobile;
-    private static String browser;
-    private static String lBrowser;
-    private static String setPlatform;
-    private static String setAppium;
-    String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "", textDecoration = "";
-    String paddingBottom, paddingTop, paddingRight, pwdUnderLineHeight, borderBottom, borderBottomColor, borderBottomStyle, pwdUnderLineColor, pwdTextLabel, pwdTextLabelColor, pwdUnderLineWidth, showBtnColor, showBtnWidth, showBtnMarginTop, showBtnFloat, labelFor;
+    private static String setMobile = "", setDesktop= "", browser = "", lBrowser = "", setPlatform = "", setAppium = "";
+    private String display = "", fontSize = "", outlineStyle = "", minHeight = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "", textDecoration = "";
+    private String paddingBottom = "", paddingTop = "", paddingRight = "", pwdUnderLineHeight = "", borderBottom = "", borderBottomColor = "", borderBottomStyle = "", pwdUnderLineColor = "", pwdTextLabel = "", pwdTextLabelColor = "", pwdUnderLineWidth = "", showBtnColor = "", showBtnWidth = "", showBtnMarginTop = "", showBtnFloat = "", labelFor = "";
     boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isMinHeight = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, result = false, isOpacity = false, isLeft = false, isPosition = false, isZIndex = false, isPaddingLeft = false, isWidth = false, isTextDecoration = false;
-    boolean isPaddingBottom, isPaddingTop, isPaddingRight, isBorderBottom, isBorderBottomColor, isBorderBottomStyle, isPwdUnderLineColor, isPwdTextLabel, isPwdTextLabelColor, isPwdBorderStyle, isPwdUnderLineWidth, isShowBtnColor, isShowBtnWidth, isShowBtnMarginTop, isShowBtnFloat, isLabelFor;
-    String marginTop, height, basicInputBorder, labelColor, labelFontSize, lineHeight, basicInputValueColor, labelLineHeight, actIconClass, boxShadow, marginBottom, borderColor, borderWidth, borderStyle, borderRadius, radioBtnPadding, bgColor, radioBtnSelectedColor;
-    boolean isMarginTop, isBasicInputBorder, isLabelColor, isLabelFontSize, isLineHeight, isBasicInputValueColor, islabelLineHeight, isIconClass, isBoxShadow, isMarginBottom, isBorderColor, isBorderWidth, isBorderStyle, isBorderRadius, isRadioBtnPadding, isBgColor, isRadioBtnSelectedColor, isAriaDescByContains;
-    int roundedTransValue, len, lastIndexOf;
+    boolean isPaddingBottom = false, isPaddingTop = false, isPaddingRight = false, isBorderBottom = false, isBorderBottomColor = false, isBorderBottomStyle = false, isPwdUnderLineColor = false, isPwdTextLabel = false, isPwdTextLabelColor = false, isPwdBorderStyle = false, isPwdUnderLineWidth = false, isShowBtnColor = false, isShowBtnWidth = false, isShowBtnMarginTop = false, isShowBtnFloat = false, isLabelFor = false;
+    private String marginTop = "", height = "", basicInputBorder = "", labelColor = "", labelFontSize = "", lineHeight = "", basicInputValueColor = "", labelLineHeight = "", actIconClass = "", boxShadow = "", marginBottom = "", borderColor = "", borderWidth = "", borderStyle = "", borderRadius = "", radioBtnPadding = "", bgColor = "", radioBtnSelectedColor = "";
+    private boolean isMarginTop = false, isBasicInputBorder = false, isLabelColor = false, isLabelFontSize = false, isLineHeight = false, isBasicInputValueColor = false, islabelLineHeight = false, isIconClass = false, isBoxShadow = false, isMarginBottom = false, isBorderColor = false, isBorderWidth = false, isBorderStyle = false, isBorderRadius = false, isRadioBtnPadding = false, isBgColor = false, isRadioBtnSelectedColor = false, isAriaDescByContains = false;
+    int roundedTransValue = 0, len = 0, lastIndexOf = 0;
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
     List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
     List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
@@ -51,14 +36,15 @@ public class InputsTest extends BaseClass {
 
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
-    @Parameters({"mobile", "sauceBrowser", "localBrowser", "platform", "appiumDriver"})
+    //@Parameters({"mobile", "sauceBrowser", "localBrowser", "platform", "appiumDriver"})
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass(String mobile, String sauceBrowser, String localBrowser, String platform, String appiumDriver) {
-        browser = sauceBrowser;
-        lBrowser = localBrowser;
-        setMobile = mobile;
-        setPlatform = platform;
-        setAppium = appiumDriver;
+    private void InputsTestBeforeClass() {
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
+        setMobile = BaseClass.mobile;
+        setDesktop = BaseClass.desktop;
+        setPlatform = BaseClass.platform;
+        setAppium = BaseClass.appiumDriver;
     }
 
     /****************
@@ -855,13 +841,13 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Basic Select Input and Error Test Data")
     public Object[][] getBasicSelectInputData() {
         return new Object[][]{
-                {"select-input-basic",inputsPgObj.basicSelectInputContainer,inputsPgObj.basicSelectInput,inputsPgObj.basicSelectInputLabel,inputsPgObj.basicSelectInputIcon,new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
-                {"select-input-basic-error",inputsPgObj.basicSelectInputErrorContainer,inputsPgObj.basicSelectInputError,inputsPgObj.basicSelectInputErrorLabel,inputsPgObj.basicSelectInputErrorIcon,new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"}
+                {"select-input-basic", inputsPgObj.basicSelectInputContainer, inputsPgObj.basicSelectInput, inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInputIcon, new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {"select-input-basic-error", inputsPgObj.basicSelectInputErrorContainer, inputsPgObj.basicSelectInputError, inputsPgObj.basicSelectInputErrorLabel, inputsPgObj.basicSelectInputErrorIcon, new String[]{"36px", "34px"}, "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"}
         };
     }
 
     @Test(testName = "Basic Select Input and Error Test", dataProvider = "Basic Select Input and Error Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputTest(String type,By selectInputContainer, By elem, By selectInputLabel, By selectInputIcon,String[] expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String[] expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
+    private void basicSelectInputTest(String type, By selectInputContainer, By elem, By selectInputLabel, By selectInputIcon, String[] expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String[] expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
         // Select Input
         height = commonUtils.getCSSValue(selectInputContainer, "height");
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
@@ -925,7 +911,7 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(selectInputLabel, elem);
-        if(!isLabelFor){
+        if (!isLabelFor) {
             log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         // icon
@@ -938,13 +924,13 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Basic Select Input and Error (Focus) Test Data")
     public Object[][] getBasicSelectInputFocusData() {
         return new Object[][]{
-                {"select-input-basic",inputsPgObj.basicSelectInput,"1px", "solid", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px", "0px 0px 5px 0px #047a9c"}},
-                {"select-input-basic-error",inputsPgObj.basicSelectInputError,"1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{"rgb(219, 0, 32) 0px 0px 4px 0px", "0px 0px 4px 0px #db0020"}}
+                {"select-input-basic", inputsPgObj.basicSelectInput, "1px", "solid", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgb(4, 122, 156) 0px 0px 5px 0px", "0px 0px 5px 0px #047a9c"}},
+                {"select-input-basic-error", inputsPgObj.basicSelectInputError, "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, new String[]{"rgb(219, 0, 32) 0px 0px 4px 0px", "0px 0px 4px 0px #db0020"}}
         };
     }
 
     @Test(testName = "Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input and Error (Focus) Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputFocusTest(String type, By elem,String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException {
+    private void basicSelectInputFocusTest(String type, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException {
         if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
@@ -1730,16 +1716,16 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Mobile : Basic Select Input and Error Test Data")
     public Object[][] getBasicSelectInputMobileData() {
         return new Object[][]{
-                {"select-input-basic",inputsPgObj.basicSelectInputContainer,inputsPgObj.basicSelectInput,inputsPgObj.basicSelectInputLabel,inputsPgObj.basicSelectInputIcon,ScreenOrientation.LANDSCAPE, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
-                {"select-input-basic",inputsPgObj.basicSelectInputContainer,inputsPgObj.basicSelectInput,inputsPgObj.basicSelectInputLabel,inputsPgObj.basicSelectInputIcon,ScreenOrientation.PORTRAIT, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
-                {"select-input-basic-error",inputsPgObj.basicSelectInputErrorContainer,inputsPgObj.basicSelectInputError,inputsPgObj.basicSelectInputErrorLabel,inputsPgObj.basicSelectInputErrorIcon,ScreenOrientation.LANDSCAPE, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"},
-                {"select-input-basic-error",inputsPgObj.basicSelectInputErrorContainer,inputsPgObj.basicSelectInputError,inputsPgObj.basicSelectInputErrorLabel,inputsPgObj.basicSelectInputErrorIcon,ScreenOrientation.PORTRAIT, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"}
+                {"select-input-basic", inputsPgObj.basicSelectInputContainer, inputsPgObj.basicSelectInput, inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInputIcon, ScreenOrientation.LANDSCAPE, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {"select-input-basic", inputsPgObj.basicSelectInputContainer, inputsPgObj.basicSelectInput, inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInputIcon, ScreenOrientation.PORTRAIT, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {"select-input-basic-error", inputsPgObj.basicSelectInputErrorContainer, inputsPgObj.basicSelectInputError, inputsPgObj.basicSelectInputErrorLabel, inputsPgObj.basicSelectInputErrorIcon, ScreenOrientation.LANDSCAPE, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"},
+                {"select-input-basic-error", inputsPgObj.basicSelectInputErrorContainer, inputsPgObj.basicSelectInputError, inputsPgObj.basicSelectInputErrorLabel, inputsPgObj.basicSelectInputErrorIcon, ScreenOrientation.PORTRAIT, "36px", "14px", "14px", "6px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "14px", "18px", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"}
 
         };
     }
 
     @Test(testName = "Mobile : Basic Select Input and Error Test", dataProvider = "Mobile : Basic Select Input and Error Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputMobileTest(String type,By selectInputContainer, By elem, By selectInputLabel, By selectInputIcon,ScreenOrientation mode, String expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
+    private void basicSelectInputMobileTest(String type, By selectInputContainer, By elem, By selectInputLabel, By selectInputIcon, ScreenOrientation mode, String expInputHt, String expPaddingLeft, String expPaddingRight, String expMarginTop, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expInputFontSize, String expInputLineHt, String[] expBgColor, String[] expInputValueColor, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
         appium.rotate(mode);
         // Select Input
         height = commonUtils.getCSSValue(selectInputContainer, "height", "mobile");
@@ -1797,8 +1783,8 @@ public class InputsTest extends BaseClass {
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec at mode " + mode);
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec at mode " + mode);
-        isLabelFor = commonUtils.checkLabelForVal(selectInputLabel,elem, "mobile");
-        if(!isLabelFor){
+        isLabelFor = commonUtils.checkLabelForVal(selectInputLabel, elem, "mobile");
+        if (!isLabelFor) {
             log.info("Label for " + type + " is not tagged to the appropriate input");
         }
 
@@ -1810,7 +1796,7 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input and Error (Focus) Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputFocusMobileTest(String type,By elem,String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException {
+    private void basicSelectInputFocusMobileTest(String type, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
         }

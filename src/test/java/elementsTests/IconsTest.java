@@ -14,18 +14,17 @@ import java.lang.reflect.Method;
  */
 public class IconsTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/icons.html";
-    private static String setDesktop, setMobile;
+    private static String setDesktop = "", setMobile = "";
     private String color = "", width = "", height = "";
-    double svgfileSize = 84.00, kilobytes;
+    double svgfileSize = 84.00, kilobytes = 0.0;
     boolean isColor = false, isWidth = false, isHeight = false;
     File file = null;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
-    @Parameters({"desktop", "mobile"})
     @BeforeClass(alwaysRun = true)
-    private void typographyTestBeforeClass(String desktop, String mobile) {
-        setDesktop = desktop;
-        setMobile = mobile;
+    private void typographyTestBeforeClass() {
+        setDesktop = BaseClass.desktop;
+        setMobile = BaseClass.mobile;
     }
 
     /**************

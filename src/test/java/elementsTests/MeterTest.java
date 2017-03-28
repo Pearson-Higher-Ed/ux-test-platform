@@ -15,11 +15,9 @@ import java.lang.reflect.Method;
 public class MeterTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/meter.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/meter.html";
-    private final String localUrl = new File(inputFilePath).getAbsolutePath();
-    private static String env;
-    private String backgroundColor, height, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, fontSize, fontWeight, lineHeight, color, marginBottom;
-    private boolean result, isBackgroundColor, isHeight, isBorderTopColor, isBorderBottomColor, isBorderLeftColor, isBorderRightColor, isBorderTopStyle, isBorderBottomStyle, isBorderLeftStyle, isBorderRightStyle, isBorderTopWidth, isBorderBottomWidth, isBorderLeftWidth, isBorderRightWidth, isFontSize, isLineHeight, isFontWeight, isMarginBottom, isColor;
+    private static String env = "";
+    private String backgroundColor = "", height = "", borderTopColor = "", borderBottomColor = "", borderLeftColor = "", borderRightColor = "", borderTopStyle = "", borderBottomStyle = "", borderLeftStyle = "", borderRightStyle = "", borderTopWidth = "", borderBottomWidth = "", borderLeftWidth = "", borderRightWidth = "", fontSize = "", fontWeight = "", lineHeight = "", color = "", marginBottom = "";
+    private boolean result = false, isBackgroundColor = false, isHeight = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderLeftColor = false, isBorderRightColor = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBorderLeftStyle = false, isBorderRightStyle = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isColor = false;
     final static Logger log = Logger.getLogger(MeterTest.class.getName());
 
     @Parameters("runEnv")
@@ -43,7 +41,7 @@ public class MeterTest extends BaseClass {
 
     @Test(testName = "Height and Color Test", dataProvider = "Meter Test Data", groups = {"desktop-regression"})
     private void meterTest(String state, By element, String cssProperty, String[] expHeight, String[] expBackgroundColor) throws Exception {
-        chooseEnv();
+        commonUtils.getUrl(url);
         height = commonUtils.getCSSValue(element, "height"); //18px is being returned by IE and Edge, all other 20px.
         backgroundColor = commonUtils.getCSSValue(element, cssProperty);
 
@@ -78,14 +76,14 @@ public class MeterTest extends BaseClass {
 
     @Test(testName = "Border Properties Test", dataProvider = "Meter Border Properties Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void meterBorderPropertiesTest(By element, String[] borderTopColor, String[] borderBottomColor, String[] borderLeftColor, String[] borderRightColor, String borderTopStyle, String borderBottomStyle, String borderLeftStyle, String borderRightStyle, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = verifyMeterBorderProperties(element, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Meter-Basic Label Test", groups = {"desktop-regression"})
     private void useBasicLabelTest() {
-        chooseEnv();
+        commonUtils.getUrl(url);
         fontSize = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-size");
         lineHeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "line-height");
         fontWeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-weight");
@@ -254,14 +252,6 @@ public class MeterTest extends BaseClass {
         isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, expBorderLeftWidth, "border-left-width for meter is not as per the SPEC");
         isBorderRightWidth = commonUtils.assertValue(borderRightWidth, expBorderRightWidth, "border-right-width for meter is not as per the SPEC");
         return (isBorderTopColor && isBorderBottomColor && isBorderLeftColor && isBorderRightColor && isBorderTopStyle && isBorderBottomStyle && isBorderLeftStyle && isBorderRightStyle && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth);
-    }
-
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file://" + localUrl);
-        }
     }
 
     @BeforeMethod(alwaysRun = true)

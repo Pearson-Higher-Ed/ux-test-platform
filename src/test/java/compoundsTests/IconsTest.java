@@ -26,13 +26,12 @@ public class IconsTest extends BaseClass {
     boolean result = false, isHeight = false, isWidth = false;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
 
-    @Parameters({"runEnv", "sauceBrowser", "localBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void avatarDisplayTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser) {
+    private void IconsTestBeforeClass() {
         if (!runEnv.equals("sauce")) {
-            browser = localBrowser;
+            browser = BaseClass.localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = BaseClass.sauceBrowser;
         }
     }
 
@@ -73,7 +72,6 @@ public class IconsTest extends BaseClass {
         }
         commonUtils.readInitialConfig(iconsJSFilePath, tempJSFilePath);
         commonUtils.replaceLineInAFile(iconsJSFilePath, "elementId: 'icon-target'", "elementId: 'xyz-target',");
-        commonUtils.printFileContents(iconsJSFilePath);
         commonUtils.getUrl(iconsUrl);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");

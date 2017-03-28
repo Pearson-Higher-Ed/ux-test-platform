@@ -25,30 +25,29 @@ public class PaginationTest extends BaseClass {
     private String absPathForTempJS = new File("origamiV2/jsfiles/pagination/temp.js").getAbsolutePath();
     private final String paginationJSFilePath = constructPath(absPathForPaginationJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
-
-    String getDefaultConfig = "", getTestConfig = "", word = "";
-
+    private String getDefaultConfig = "", getTestConfig = "", word = "";
     final static Logger log = Logger.getLogger(PaginationTest.class.getName());
-    private String browser, mobile;
-    JsonObject jsonObject;
-    private List<String> newLines;
+    private String browser, mobile = "";
+    JsonObject jsonObject = null;
+    private List<String> newLines = null;
 
-    boolean firstItemVisible = false, isFirstItemVisibleOnMiddle = false, isFirstItemVisibleOnLast = false, isBlankScreenDisplayed = false;
-    boolean lastItemvisible = false, isLastItemVisibleOnMiddle = false, isLastItemVisibleOnLast = false;
-    boolean nextBtnEnabled = false;
-    boolean btnEnabledResult = false, isActive = false, isActiveBtn = false, isBeforeLastItem = false, isAfterFirstItem = false, ellipseCount = false, firstItemFirstPresent = false, firstItemLastPresent = false;
-    boolean middleItemFirstPresent = false, middleItemLastPresent = false, lastItemFirstPresent = false, lastItemLastPresent = false, isProchain = false, isPrecedent = false, isNext = false, isPrev = false, result = false;
-    String activeFirstItem = "", activeSecondItem = "";
-    String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "";
-    String prochainBtn = "", precedentBtn = "", nextbtn = "", prevBtn = "", defaultMaxBtn = "";
+    private boolean firstItemVisible = false, isFirstItemVisibleOnMiddle = false, isFirstItemVisibleOnLast = false, isBlankScreenDisplayed = false;
+    private boolean lastItemvisible = false, isLastItemVisibleOnMiddle = false, isLastItemVisibleOnLast = false;
+    private boolean nextBtnEnabled = false;
+    private boolean btnEnabledResult = false, isActive = false, isActiveBtn = false, isBeforeLastItem = false, isAfterFirstItem = false, ellipseCount = false, firstItemFirstPresent = false, firstItemLastPresent = false;
+    private boolean middleItemFirstPresent = false, middleItemLastPresent = false, lastItemFirstPresent = false, lastItemLastPresent = false, isProchain = false, isPrecedent = false, isNext = false, isPrev = false, result = false;
+    private String activeFirstItem = "", activeSecondItem = "";
+    private String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "";
+    private String prochainBtn = "", precedentBtn = "", nextbtn = "", prevBtn = "", defaultMaxBtn = "";
 
-    /*************** Before Class ****************/
+    /***************
+     * Before Class
+     ****************/
 
-    @Parameters({"desktop", "mobile"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String localBrowser, String mobile) {
-        this.browser = localBrowser;
-        this.mobile = mobile;
+    private void beforeClass() {
+        browser = BaseClass.localBrowser;
+        mobile = BaseClass.mobile;
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -67,7 +66,9 @@ public class PaginationTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
-    /*************** DESKTOP TESTS ***************/
+    /***************
+     * DESKTOP TESTS
+     ***************/
 
     @Test(testName = "Validate Active Button on Pagination", groups = {"desktop-regression"})
     public void validateActiveBtnOnPaginationTest() throws Exception {
@@ -144,7 +145,7 @@ public class PaginationTest extends BaseClass {
     @Test(testName = "Validate Internationalization", groups = {"desktop-regression"})
     public void validateInternationalizationTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "en";
         getTestConfig = "fr";
         word = "locale";
@@ -162,7 +163,7 @@ public class PaginationTest extends BaseClass {
         isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
         /** writing back original value to pagination.js file **/
         Assert.assertTrue(isPrecedent);
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Thread.sleep(1000);
         commonUtils.getUrl(baseUrl);
         /** validating English Language **/
@@ -180,7 +181,7 @@ public class PaginationTest extends BaseClass {
     public void validateDefaultMaxBtnTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
         Thread.sleep(2000);
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
@@ -194,14 +195,14 @@ public class PaginationTest extends BaseClass {
         defaultMaxBtn = commonUtils.getText(paginationPgObj.paginationDefaultMaxBtn);
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
         /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Validate Negative Values", groups = {"desktop-regression"})
     public void validateNegativeJsValueTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "10";
         getTestConfig = "-10";
         word = "items";
@@ -214,11 +215,13 @@ public class PaginationTest extends BaseClass {
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn);
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is not visible!!!");
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
-    /*************** MOBLIE TESTS ***************/
+    /***************
+     * MOBLIE TESTS
+     ***************/
 
     @Test(testName = "Mobile:Validate Active Button on Pagination", groups = {"mobile-regression"})
     public void validateActiveBtnOnPaginationMobileTest() throws Exception {
@@ -301,7 +304,7 @@ public class PaginationTest extends BaseClass {
         getTestConfig = "fr";
         word = "locale";
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         /** changing config **/
         changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
         Thread.sleep(1000);
@@ -315,7 +318,7 @@ public class PaginationTest extends BaseClass {
         precedentBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn, "mobile");
         isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
         /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Thread.sleep(1000);
         Assert.assertTrue(isPrecedent);
         commonUtils.getUrl(baseUrl, "mobile");
@@ -333,7 +336,7 @@ public class PaginationTest extends BaseClass {
     public void validateDefaultMaxBtnMobileTest() throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
@@ -348,7 +351,7 @@ public class PaginationTest extends BaseClass {
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
 
         /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
@@ -356,7 +359,7 @@ public class PaginationTest extends BaseClass {
     public void validateNegativeJsValueMobileTest() throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "10";
         getTestConfig = "-10";
         word = "items";
@@ -369,7 +372,7 @@ public class PaginationTest extends BaseClass {
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationItems, "mobile");
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is visible!!!");
-        commonUtils.writeInitialConfig(tempJSFilePath,paginationJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertFalse(result);
     }
 

@@ -1,25 +1,6 @@
- <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="React Components: Component Archetype Test Suite">
-
-    <parameter name="runEnv" value="sauce"></parameter>
-    <parameter name="travis" value="on"></parameter>
-
-    <!-- For Desktop -->
-    <parameter name="desktop" value="on"></parameter><!-- Set the tests to run Desktop -->
-    <parameter name="platform" value="OS X 10.11"></parameter><!-- MAC or Windows -->
-    <parameter name="sauceBrowser" value="chrome"></parameter><!-- browser on sauce machine, eg. safari, chrome, ie -->
-    <parameter name="sauceBrowserVer" value="51.0"></parameter><!-- browser version on sauce machine -->
-    <parameter name="localBrowser" value="firefox"></parameter><!-- browser on your local. eg firefox -->
-
-    <!-- For Mobile -->
-    <parameter name="mobile" value="off"></parameter><!-- set the tests to run on mobile devices -->
-    <parameter name="appiumDriver" value="iOS"></parameter> <!-- appium driver - iosDriver or Android Driver -->
-    <parameter name="mobDeviceName" value="iPhone 6 Plus"></parameter><!-- Android or iOS : iPhone 6 Plus/iPad Air/ iPad Pro -->
-    <parameter name="mobilePlatformVer" value="9.3"></parameter><!-- mobile OS version -->
-    <parameter name="mobBrowser" value="Safari"></parameter><!-- browser eg.safari, chrome -->
-    <parameter name="appiumVer" value="1.5.3"></parameter><!-- version of appium on sauce -->
-
     <test name="origamiV2Test - Component Archetype">
         <groups>
             <run>
@@ -31,24 +12,3 @@
         </classes>
     </test>
 </suite>
-
-<!--
-Test Platform Config:
-https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/#/
-Eg.
-Desktop:-
-        |platform    |sauceBrowser |version |
-        |OS X 10.11  |chrome       |54.0    |
-        |OS X 10.11  |firefox      |49.0    |
-        |OS X 10.11  |safari       |10.0    |
-        |Windows 10  |chrome       |54.0    |
-        |Windows 10  |firefox      |49.0    |
-        |Windows 10  |ie           |11.103  |
-        |Windows 10  |edge         |14.14393|
-Mobile:-
-        |appiumDriver  | mobDeviceName                        | mobilePlatformVer | mobBrowser | appiumVer|
-        |iOS           | iPhone 7 Plus Simulator              | 10.0              | Safari     | 1.6.0    |
-        |iOS           | iPhone 6 Plus                        | 9.3               | Safari     | 1.6.0    |
-        |iOS           | iPad Air Simulator                   | 10.0              | Safari     | 1.6.0    |
-        |android       | Google Nexus 7 HD Emulator           | 4.4               | Browser    | 1.5.3    | Few orientation tests works only in Android Phones
--->

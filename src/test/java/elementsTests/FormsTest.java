@@ -5,6 +5,7 @@ package elementsTests;
  */
 
 import java.lang.reflect.Method;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,18 +14,16 @@ import utilities.BaseClass;
 
 public class FormsTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/forms.html";
-    private static String env;
-    private static String mobileDevice;
+    private static String env = "", mobileDevice = "", setDesktop = "";
     final static Logger log = Logger.getLogger(FormsTest.class.getName());
-    String fontSize, lineHeight, fontWeight, marginBottom, fontColor, marginTop, errorDescColor, firstNameLabelFontSize, firstNameLabelFontColor, firstNameLabelLineHt, lastNameLabelFontSize, lastNameLabelFontColor, lastNameLabelLineHt, inputClassName, submitBtnClass, submitBtnColor, inputFontSize, underlineClass, underlineHt, inputBorderWidth, inputBorderColor, inputBorderStyle, paddingTop, paddingBottom, inputValueColor;
-    boolean isFontSize, isLineHeight, isFontWeight, isMarginBottom, isFontColor, isMarginTop, isErrorDescColor, isFirstNameLabelFontSize, isFirstNameLabelFontColor, isFirstNameLabelLineHt, isLastNameLabelFontSize, isLastNameLabelFontColor, isLastNameLabelLineHt, isInputClassName, isSubmitBtnClass, isSubmitBtnColor, isInputFontSize, isUnderlineClass, isUnderlineHt, isInputBorderWidth, isInputBorderStyle, isInputBorderColor, isPaddingBottom, isPaddingTop, isInputValueColor;
+    private String fontSize = "", lineHeight = "", fontWeight = "", marginBottom = "", fontColor = "", marginTop = "", errorDescColor = "", firstNameLabelFontSize = "", firstNameLabelFontColor = "", firstNameLabelLineHt = "", lastNameLabelFontSize = "", lastNameLabelFontColor = "", lastNameLabelLineHt = "", inputClassName = "", submitBtnClass = "", submitBtnColor = "", inputFontSize = "", underlineClass = "", underlineHt = "", inputBorderWidth = "", inputBorderColor = "", inputBorderStyle = "", paddingTop = "", paddingBottom = "", inputValueColor = "";
+    private boolean isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isFontColor = false, isMarginTop = false, isErrorDescColor = false, isFirstNameLabelFontSize = false, isFirstNameLabelFontColor = false, isFirstNameLabelLineHt = false, isLastNameLabelFontSize = false, isLastNameLabelFontColor = false, isLastNameLabelLineHt = false, isInputClassName = false, isSubmitBtnClass = false, isSubmitBtnColor = false, isInputFontSize = false, isUnderlineClass = false, isUnderlineHt = false, isInputBorderWidth = false, isInputBorderStyle = false, isInputBorderColor = false, isPaddingBottom = false, isPaddingTop = false, isInputValueColor;
 
-
-    @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String runEnv, String mobDeviceName) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
+    private void beforeClass() {
+        env = BaseClass.runEnv;
+        mobileDevice = BaseClass.mobDeviceName;
+        setDesktop = BaseClass.desktop;
     }
 
     @DataProvider(name = "Forms Data")

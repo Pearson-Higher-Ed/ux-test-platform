@@ -13,18 +13,14 @@ import java.lang.reflect.Method;
 public class ResponsiveUtilitiesTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/responsive.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/responsive.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
-    private String responsiveValue_1, responsiveValue_2, responsiveValue_3;
-    private static String env;
-    private static String mobileDevice;
+    private String responsiveValue_1 = "", responsiveValue_2 = "", responsiveValue_3;
+    private static String env = "", mobileDevice = "";
     Boolean result = false, result_1 = false, result_2 = false, result_3 = false;
 
-    @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String runEnv, String mobDeviceName) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
+    private void beforeClass() {
+        env = BaseClass.runEnv;
+        mobileDevice = BaseClass.mobDeviceName;
     }
 
     @DataProvider(name = "LGTestData")
@@ -44,7 +40,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 
     @Test(testName = "LG Test", dataProvider = "LGTestData", groups = {"desktop-regression"})
     private void lgTest(int width, int height, By element, String visible, String color, String display) throws InterruptedException {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = performRespEval(width, height, element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -60,9 +56,9 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "XL Test", dataProvider = "XLTestData", groups = {"desktop-ci", "desktop-regression"})
     private void xlTest(int width, int height, By element, String visible, String color, String display) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = performRespEval(width, height, element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -84,7 +80,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
 
     @Test(testName = "SM Test", dataProvider = "SMTestData", groups = {"desktop-regression"})
     private void smTest(int width, int height, By element, String visible, String color, String display) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = performRespEval(width, height, element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -105,19 +101,11 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "MD Test", dataProvider = "MDTestData", groups = {"desktop-ci", "desktop-regression"})
     private void mdTest(int width, int height, By element, String visible, String color, String display) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = performRespEval(width, height, element, visible, color, display);
         Assert.assertTrue(result);
-    }
-
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
-        }
     }
 
     @DataProvider(name = "XSTestData")
@@ -131,9 +119,9 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "XS Test", dataProvider = "XSTestData", groups = {"desktop-ci", "desktop-regression"})
     private void xsTest(int width, int height, By element, String visible, String color, String display) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         result = performRespEval(width, height, element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -148,11 +136,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         result_2 = commonUtils.assertValue(responsiveValue_2, color, "Responsive Failed");
         result_3 = commonUtils.assertValue(responsiveValue_3, display, " Responsive Failed");
 
-        if ((result_1 && result_2 && result_3) == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return (result_1 && result_2 && result_3);
     }
 
     private boolean performRespForMobileEval(By element, String visible, String color, String display) {
@@ -163,11 +147,7 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         result_2 = commonUtils.assertValue(responsiveValue_2, color, visible + " Responsive Failed");
         result_3 = commonUtils.assertValue(responsiveValue_3, display, visible + " Responsive Failed");
 
-        if ((result_1 && result_2 && result_3) == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return (result_1 && result_2 && result_3);
     }
 
     /*****************************************************************************************************************************************

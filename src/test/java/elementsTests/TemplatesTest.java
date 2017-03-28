@@ -16,19 +16,15 @@ import utilities.BaseClass;
 public class TemplatesTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/templates.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/templates.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
-    private static String env;
-    private static String mobileDevice;
-    private String paddingRight, paddingLeft, colWidth, paddingBottom, paddingTop;
-    private boolean isPaddingRight, isPaddingLeft, isColWidth, isPaddingBottom, isPaddingTop;
+    private static String env = "", mobileDevice = "";
+    private String paddingRight = "", paddingLeft = "", colWidth = "", paddingBottom = "", paddingTop;
+    private boolean isPaddingRight = false, isPaddingLeft = false, isColWidth = false, isPaddingBottom = false, isPaddingTop;
     final static Logger log = Logger.getLogger(TemplatesTest.class.getName());
 
-    @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String runEnv, String mobDeviceName) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
+    private void beforeClass() {
+        env = BaseClass.runEnv;
+        mobileDevice = BaseClass.mobDeviceName;
     }
 
     @DataProvider(name = "XS Template Test Data")
@@ -66,7 +62,7 @@ public class TemplatesTest extends BaseClass {
 
     @Test(testName = "XS Template Test", dataProvider = "XS Template Test Data", groups = "desktop-regression")
     private void xsTemplateDataTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String[] expColWidth, String expPaddingBottom, String expPaddingTop) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -97,8 +93,8 @@ public class TemplatesTest extends BaseClass {
                 {480, 800, templatePgObj.doubleColumnMainLeft, "20px", "20px", new String[]{"480px"}, "0px", "0px"},
                 {480, 800, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", new String[]{"480px"}, "40px", "0px"},
 
-                {480, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"399.984px", "400px","399.984375px"}, "0px", "0px"},
-                {480, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"399.984px", "400px","399.984375px"}, "0px", "0px"},
+                {480, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"399.984px", "400px", "399.984375px"}, "0px", "0px"},
+                {480, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"399.984px", "400px", "399.984375px"}, "0px", "0px"},
 
                 {480, 800, templatePgObj.adjoinSingleColumn, "20px", "20px", new String[]{"480px"}, "0px", "0px"},
                 {480, 800, templatePgObj.adjoinDoubleColumn, "20px", "20px", new String[]{"480px"}, "40px", "0px"},
@@ -122,7 +118,7 @@ public class TemplatesTest extends BaseClass {
 
     @Test(testName = "SM Template Test", dataProvider = "SM Template Test Data", groups = "desktop-regression")
     private void smTemplateDataTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String[] expColWidth, String expPaddingBottom, String expPaddingTop) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -153,8 +149,8 @@ public class TemplatesTest extends BaseClass {
                 {768, 800, templatePgObj.doubleColumnMainLeft, "20px", "20px", new String[]{"768px"}, "0px", "0px"},
                 {768, 800, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", new String[]{"768px"}, "40px", "0px"},
 
-                {768, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"639.984px", "640px","639.984375px"}, "0px", "0px"},
-                {768, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"639.984px", "640px","639.984375px"}, "0px", "0px"},
+                {768, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"639.984px", "640px", "639.984375px"}, "0px", "0px"},
+                {768, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"639.984px", "640px", "639.984375px"}, "0px", "0px"},
 
                 {768, 800, templatePgObj.adjoinSingleColumn, "20px", "20px", new String[]{"768px"}, "0px", "0px"},
                 {768, 800, templatePgObj.adjoinDoubleColumn, "20px", "20px", new String[]{"768px"}, "40px", "0px"},
@@ -177,7 +173,7 @@ public class TemplatesTest extends BaseClass {
 
     @Test(testName = "MD Template Test", dataProvider = "MD Template Test Data", groups = "desktop-regression")
     private void mdTemplateDataTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String[] expColWidth, String expPaddingBottom, String expPaddingTop) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -203,37 +199,37 @@ public class TemplatesTest extends BaseClass {
         return new Object[][]{
                 {1024, 800, templatePgObj.singleColumn, "40px", "40px", new String[]{"1024px"}, "0px", "0px"},
 
-                {1024, 800, templatePgObj.doubleColumnMain, "40px", "0px", new String[]{"682.656px", "682.667px", "682px","682.65625px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.doubleColumnSidebar, "40px", "40px", new String[]{"341.328px", "341.317px", "341px","341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.doubleColumnMain, "40px", "0px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.doubleColumnSidebar, "40px", "40px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
 
-                {1024, 800, templatePgObj.doubleColumnMainLeft, "40px", "40px", new String[]{"682.656px", "682.667px", "682px","682.65625px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"341.328px", "341.317px", "341px","341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.doubleColumnMainLeft, "40px", "40px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
 
                 {1024, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"480px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"800px"}, "0px", "0px"},
 
                 {1024, 800, templatePgObj.adjoinSingleColumn, "40px", "40px", new String[]{"1024px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.adjoinDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px","682.65625px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.adjoinSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px","341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.adjoinDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.adjoinSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.adjoinSingleColumnBottom, "40px", "40px", new String[]{"1024px"}, "0px", "0px"},
 
                 {1024, 800, templatePgObj.smallSpaceSingleColumn, "40px", "40px", new String[]{"1024px"}, "20px", "0px"},
                 {1024, 800, templatePgObj.smallDoubleTemplate, "0px", "0px", new String[]{"1024px"}, "20px", "20px"},
-                {1024, 800, templatePgObj.smallSpaceDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px","682.65625px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.smallSpaceSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px","341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.smallSpaceDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.smallSpaceSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.smallSpaceSingleColumnBottom, "40px", "40px", new String[]{"1024px"}, "0px", "20px"},
 
                 {1024, 800, templatePgObj.largeSpaceSingleColumn, "40px", "40px", new String[]{"1024px"}, "40px", "0px"},
                 {1024, 800, templatePgObj.largeDoubleTemplate, "0px", "0px", new String[]{"1024px"}, "40px", "40px"},
-                {1024, 800, templatePgObj.largeSpaceDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px","682.65625px"}, "0px", "0px"},
-                {1024, 800, templatePgObj.largeSpaceSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px","341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.largeSpaceDoubleColumn, "40px", "0px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.largeSpaceSidebarColumn, "40px", "40px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.largeSpaceSingleColumnBottom, "40px", "40px", new String[]{"1024px"}, "0px", "40px"},
         };
     }
 
     @Test(testName = "LG Template Test", dataProvider = "LG Template Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void lgTemplateDataTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String[] expColWidth, String expPaddingBottom, String expPaddingTop) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -260,36 +256,36 @@ public class TemplatesTest extends BaseClass {
                 {1140, 800, templatePgObj.singleColumn, "40px", "40px", new String[]{"1140px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.doubleColumnMain, "40px", "0px", new String[]{"760px", "759px"}, "0px", "0px"},
-                {1140, 800, templatePgObj.doubleColumnSidebar, "40px", "40px", new String[]{"379.984px", "379.983px", "379px","379.984375px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.doubleColumnSidebar, "40px", "40px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.doubleColumnMainLeft, "40px", "40px", new String[]{"760px", "759px"}, "0px", "0px"},
-                {1140, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"379.984px", "379.983px", "379px","379.984375px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"480px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"800px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.adjoinSingleColumn, "40px", "40px", new String[]{"1140px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.adjoinDoubleColumn, "40px", "0px", new String[]{"760px", "759px"}, "0px", "0px"},
-                {1140, 800, templatePgObj.adjoinSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px","379.984375px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.adjoinSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.adjoinSingleColumnBottom, "40px", "40px", new String[]{"1140px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.smallSpaceSingleColumn, "40px", "40px", new String[]{"1140px"}, "20px", "0px"},
                 {1140, 800, templatePgObj.smallDoubleTemplate, "0px", "0px", new String[]{"1140px"}, "20px", "20px"},
                 {1140, 800, templatePgObj.smallSpaceDoubleColumn, "40px", "0px", new String[]{"760px", "759px"}, "0px", "0px"},
-                {1140, 800, templatePgObj.smallSpaceSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px","379.984375px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.smallSpaceSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.smallSpaceSingleColumnBottom, "40px", "40px", new String[]{"1140px"}, "0px", "20px"},
 
                 {1140, 800, templatePgObj.largeSpaceSingleColumn, "40px", "40px", new String[]{"1140px"}, "40px", "0px"},
                 {1140, 800, templatePgObj.largeDoubleTemplate, "0px", "0px", new String[]{"1140px"}, "40px", "40px"},
                 {1140, 800, templatePgObj.largeSpaceDoubleColumn, "40px", "0px", new String[]{"760px", "759px"}, "0px", "0px"},
-                {1140, 800, templatePgObj.largeSpaceSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px","379.984375px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.largeSpaceSidebarColumn, "40px", "40px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.largeSpaceSingleColumnBottom, "40px", "40px", new String[]{"1140px"}, "0px", "40px"},
         };
     }
 
     @Test(testName = "XL Template Test", dataProvider = "XL Template Test Data", groups = "desktop-regression")
     private void xlTemplateDataTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String[] expColWidth, String expPaddingBottom, String expPaddingTop) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -702,13 +698,6 @@ public class TemplatesTest extends BaseClass {
     /****************
      * Common Methods
      ****************/
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
-        }
-    }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {

@@ -39,7 +39,7 @@ public class AppHeaderTest extends BaseClass {
     private final String integJSFilePath = constructPath(absPathForIntegJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
 
-    JsonObject jsonObject;
+    JsonObject jsonObject = null;
     private String testConfig = "";
     private String userName = "";
     private String marginTop = "", fontSize = "", lineHeight = "", browserLogs = "";
@@ -64,8 +64,7 @@ public class AppHeaderTest extends BaseClass {
     private String attributeValue = "";
     private String themeON = "\"theme\": \"light\"";
     private String themeOFF = "\"theme\": \"off\"";
-    private static String setMobile;
-    private static String mobileDevice, browser, lBrowser;
+    private static String mobileDevice = "", browser = "", lBrowser = "", setMobile;
     BufferedReader br = null;
     JavascriptExecutor js = null;
     WebElement element = null;
@@ -631,6 +630,7 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue(browserLogs.contains("Unrecognized mode, 'Course'"), true, "'Course Mode is seen which is not as per SPEC");
         Assert.assertTrue(result);
     }
+
     /*@Test(testName = "Default Course Mode in Desktop View", groups = {"desktop-regression"})
     private void courseModeDesktopViewDefaultTest() throws Exception {
 
@@ -1963,14 +1963,13 @@ public class AppHeaderTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
-    @Parameters({"sauceBrowser", "localBrowser", "mobile", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String sauceBrowser, String localBrowser, String mobile, String mobDeviceName) throws IOException {
-        browser = sauceBrowser;
-        lBrowser = localBrowser;
-        setMobile = mobile;
+    private void beforeClass() throws IOException {
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
+        setMobile = BaseClass.mobile;
         if (setMobile.equals("on")) {
-            mobileDevice = mobDeviceName;
+            mobileDevice = BaseClass.mobDeviceName;
             appium.manage().deleteAllCookies();
         } else {
             driver.manage().deleteAllCookies();

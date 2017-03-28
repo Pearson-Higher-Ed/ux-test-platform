@@ -2,9 +2,7 @@ package origamiV2Tests;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utilities.BaseClass;
@@ -21,7 +19,7 @@ public class DrawerTest extends BaseClass {
     private boolean isDrawerClosed = false;
     private String contentInDrawer = "";
     private boolean isContentInDrawer = false;
-    private static String setMobile;
+    private static String setMobile = "";
     private String ariaExpanded = "", focused = "";
     private boolean isAriaExpanded = false, isFocused = false;
 
@@ -34,6 +32,7 @@ public class DrawerTest extends BaseClass {
                 {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.rightDrawerOpened}
         };
     }
+
     //Open Drawer
     @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression", "origamiV2"})
     private void openDrawerTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
@@ -51,6 +50,7 @@ public class DrawerTest extends BaseClass {
                 {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.toggleRightDrawerLink, drawerPgObj.closeRightDrawerLink, drawerPgObj.rightDrawerOpened, drawerPgObj.rightDrawerClosed}
         };
     }
+
     //Toggle Drawer
     @Test(testName = "Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"desktop-regression", "origamiV2"})
     private void toggleDrawerTest(String drawerType, By openDrawerLinkElement, By toggleDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
@@ -83,6 +83,7 @@ public class DrawerTest extends BaseClass {
                 {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.closeRightDrawerLink, drawerPgObj.rightDrawerOpened, drawerPgObj.rightDrawerClosed}
         };
     }
+
     //Close Drawer
     @Test(testName = "Close Drawer Test", dataProvider = "Close Drawer Test Data", groups = {"desktop-regression", "origamiV2"})
     private void closeDrawerTest(String drawerType, By openDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
@@ -125,6 +126,7 @@ public class DrawerTest extends BaseClass {
                 {"right drawer", drawerPgObj.toggleRightDrawerLink}
         };
     }
+
     //Use API
     @Test(testName = "Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"desktop-regression", "origamiV2"})
     private void useAPIDrawerTest(String drawerType, By element) throws Exception {
@@ -154,6 +156,7 @@ public class DrawerTest extends BaseClass {
                 {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.rightDrawerOpened, drawerPgObj.rightDrawerClosed, drawerPgObj.otherRightDrawerLink, drawerPgObj.otherRightDrawerOpened, drawerPgObj.otherRightDrawerClosed}
         };
     }
+
     //close other drawers
     @Test(testName = "Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"desktop-regression", "origamiV2"})
     private void otherDrawerTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
@@ -201,11 +204,11 @@ public class DrawerTest extends BaseClass {
 
         //2. Verify for focus trap within the drawer (for eg. 6 tabs)
         String tabOrderArr[] = {"random-link-in-" + drawerId, "focusables-input-in-" + drawerId, "", "close-link-in-" + drawerId, "random-link-in-" + drawerId, "focusables-input-in-" + drawerId, ""};
-        int i=0;
-        while(i <= 6){
+        int i = 0;
+        while (i <= 6) {
             commonUtils.keyOperationOnActiveElement(Keys.TAB);
             focused = driver.switchTo().activeElement().getAttribute("id");
-            isFocused = commonUtils.assertValue(focused, tabOrderArr[i]," focus trap is not as per the spec");
+            isFocused = commonUtils.assertValue(focused, tabOrderArr[i], " focus trap is not as per the spec");
             Assert.assertTrue(isFocused);
             i++;
         }
@@ -230,13 +233,13 @@ public class DrawerTest extends BaseClass {
         Assert.assertTrue(isDrawerOpened);
 
         //2. Focus backward
-        String reverseTabOrderArr[] = {"", "focusables-input-in-" + drawerId, "random-link-in-" + drawerId,"close-link-in-" + drawerId, "", "focusables-input-in-" + drawerId, "random-link-in-" + drawerId, "close-link-in-" + drawerId};
+        String reverseTabOrderArr[] = {"", "focusables-input-in-" + drawerId, "random-link-in-" + drawerId, "close-link-in-" + drawerId, "", "focusables-input-in-" + drawerId, "random-link-in-" + drawerId, "close-link-in-" + drawerId};
         int i = 0;
         String press = Keys.chord(Keys.SHIFT, Keys.TAB);
         while (i <= 7) {
             driver.switchTo().activeElement().sendKeys(press);
             focused = driver.switchTo().activeElement().getAttribute("id");
-            isFocused = commonUtils.assertValue(focused, reverseTabOrderArr[i]," Shift+Tab backward focus is not as per the spec");
+            isFocused = commonUtils.assertValue(focused, reverseTabOrderArr[i], " Shift+Tab backward focus is not as per the spec");
             i++;
             Assert.assertTrue(isFocused);
         }
@@ -282,7 +285,7 @@ public class DrawerTest extends BaseClass {
     }
 
     @Test(testName = "Not Return Focus to where user left off (closed from outside the drawer)", dataProvider = "Not Return Focus Test Data", groups = {"desktop-regression"})
-    private void notReturnFocusTest(String drawer, String openDrawerLink, By openDrawerLinkElement, By drawerOpenStatusElement, By closeDrawerLink) throws Exception{
+    private void notReturnFocusTest(String drawer, String openDrawerLink, By openDrawerLinkElement, By drawerOpenStatusElement, By closeDrawerLink) throws Exception {
         commonUtils.getUrl(drawerUrl);
 
         //1. Open the Drawer
@@ -292,7 +295,7 @@ public class DrawerTest extends BaseClass {
 
         //2. Click on Close from outside the drawer
         commonUtils.click(closeDrawerLink);
-        isFocused = commonUtils.assertValue(driver.switchTo().activeElement().getAttribute("id").equals(openDrawerLink),false," focus is returned to original caller "+openDrawerLink);
+        isFocused = commonUtils.assertValue(driver.switchTo().activeElement().getAttribute("id").equals(openDrawerLink), false, " focus is returned to original caller " + openDrawerLink);
         Assert.assertTrue(isFocused);
     }
 
@@ -382,23 +385,23 @@ public class DrawerTest extends BaseClass {
     //close other drawers
     @Test(testName = "Mobile: Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"mobile-regression", "origamiV2"})
     private void otherDrawerMobileTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
-        commonUtils.getUrl(drawerUrl,"mobile");
+        commonUtils.getUrl(drawerUrl, "mobile");
 
         //Open Drawer
-        commonUtils.clickUsingJS(openDrawerLinkElement,"mobile");
+        commonUtils.clickUsingJS(openDrawerLinkElement, "mobile");
         Thread.sleep(1000);
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement,"mobile");
+        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
         Assert.assertTrue(isDrawerOpened);
 
         //Open other Drawer
-        commonUtils.clickUsingJS(otherDrawerLinkElement,"mobile");
+        commonUtils.clickUsingJS(otherDrawerLinkElement, "mobile");
         Thread.sleep(1000);
-        isDrawerOpened = commonUtils.isElementPresent(otherDrawerOpenedStatusElement,"mobile");
+        isDrawerOpened = commonUtils.isElementPresent(otherDrawerOpenedStatusElement, "mobile");
         Assert.assertTrue(isDrawerOpened);
 
         //Verify if the first drawer is closed
         Thread.sleep(1000);
-        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement,"mobile");
+        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement, "mobile");
         Assert.assertTrue(isDrawerClosed);
     }
 
@@ -412,11 +415,10 @@ public class DrawerTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
-    @Parameters({"mobile"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String mobile) throws Exception {
+    private void beforeClass() throws Exception {
         Thread.sleep(3000);
-        setMobile = mobile;
+        setMobile = BaseClass.mobile;
         if (setMobile.equals("on")) {
             appium.manage().deleteAllCookies();
         } else {
