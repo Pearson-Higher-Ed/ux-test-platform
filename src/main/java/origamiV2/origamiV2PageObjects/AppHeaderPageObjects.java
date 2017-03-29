@@ -38,7 +38,9 @@ public class AppHeaderPageObjects {
     public By clickableMobileViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/a");
     public By chevronUpIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-up']");
     public By chevronDownIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-down']");
+    public By dropDownCloseButton = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/ul/li/div/button[@class='dropdown-close-button']");
     public By accountSettings  =By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
+    public By accountSettingsInOpenDropDown  =By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/ul/li[5]/a");
     //public By clickableMyAccount = By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
     public By signOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']");
     public By clickableSignOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']/a");
