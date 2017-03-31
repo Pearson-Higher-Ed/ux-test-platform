@@ -56,5 +56,4 @@
             <class name="compoundsTests.IconsTest"/>
         </classes>
     </test>
-
 </suite>

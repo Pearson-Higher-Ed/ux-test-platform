@@ -35,10 +35,13 @@ script:
 - ./src/main/shell_scripts/components.sh
 - mvn test
 
+after_success:
+- chmod 777 /home/travis/build/Pearson-Higher-Ed/ux-test-platform/target/surefire-reports/testng-results.xml
+- cat /home/travis/build/Pearson-Higher-Ed/ux-test-platform/target/surefire-reports/testng-results.xml
+
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
