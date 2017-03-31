@@ -2,7 +2,6 @@ package origamiV2Tests;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -10,10 +9,6 @@ import utilities.BaseClass;
 
 import java.io.*;
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,7 +18,7 @@ import java.util.List;
 public class TextModalTest extends BaseClass {
     private final String textModalUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/textModal/text-modal.html";
     private final String absTextModalJSPath = new File("origamiV2/jsfiles/textModal/text-modal.js").getAbsolutePath();
-    private final String absTempJSFilePath =  new File("origamiV2/jsfiles/textModal/temp.js").getAbsolutePath();
+    private final String absTempJSFilePath = new File("origamiV2/jsfiles/textModal/temp.js").getAbsolutePath();
     private final String absTextModalDistJSFilePath = new File("origamiV2/jsfiles/textModal/dist.text-modal.js").getAbsolutePath();
     private final String textModalJSPath = constructPath(absTextModalJSPath);
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
@@ -31,22 +26,22 @@ public class TextModalTest extends BaseClass {
 
     private String defaultConfig = "detail: { elementId: 'app', contentTemplateLarge: true, footerVisible: true, successBtnCallback: function() { console.log('¡¡success button pressed!!') }}";
     final static Logger log = Logger.getLogger(TextModalTest.class.getName());
-    private String actInitiateBtnVal, actTitleFontSize, actTitleLineHeight, actContentFontSize, actContentLineHeight, actContentColor, actModalWidth, actCancelBtnClass, actSuccessBtnClass, initiateBtnAccessible, actXBtnClass;
-    private boolean isInitiateBtnAccessible, result, isCSSProperty, isTitleFontSize, isTitleLineHeight, isContentFontSize;
-    private boolean isContentLineHeight, isContentColor, isModalWidth, isCancelBtnClass, isSuccessBtnClass, isModalExpanded, isXBtnClass;
-    private String mobile, browser, platform, browserLogs, content, code, fetchCharacter, actualContent;
-    private List<String> newLines;
-    private BufferedReader br;
+    private String actInitiateBtnVal = "", actTitleFontSize = "", actTitleLineHeight = "", actContentFontSize = "", actContentLineHeight = "", actContentColor = "", actModalWidth = "", actCancelBtnClass = "", actSuccessBtnClass = "", initiateBtnAccessible = "", actXBtnClass;
+    private boolean isInitiateBtnAccessible = false, result = false, isCSSProperty = false, isTitleFontSize = false, isTitleLineHeight = false, isContentFontSize = false;
+    private boolean isContentLineHeight = false, isContentColor = false, isModalWidth = false, isCancelBtnClass = false, isSuccessBtnClass = false, isModalExpanded = false, isXBtnClass = false;
+    private static String mobile = "", browser = "", platform = "";
+    private String browserLogs = "", content = "", code = "", fetchCharacter = "", actualContent = "";
+    private List<String> newLines = null;
+    private BufferedReader br = null;
 
-    @Parameters({"runEnv", "sauceBrowser", "localBrowser", "mobile", "platform"})
     @BeforeClass(alwaysRun = true)
-    private void textModalTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser, String mobile, String saucePlatform) {
-        this.mobile = mobile;
-        platform = saucePlatform;
+    private void textModalTestBeforeClass() {
+        mobile = BaseClass.mobile;
+        platform = BaseClass.platform;
         if (!runEnv.equals("sauce")) {
-            browser = localBrowser;
+            browser = BaseClass.localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = BaseClass.sauceBrowser;
         }
     }
 
@@ -289,7 +284,7 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("Saucelabs does not support responsive behavior on Windows");
         }
         result = true;
-        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.readInitialConfig(textModalJSPath, tempJSFilePath);
         commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         Thread.sleep(1000);
         commonUtils.getUrl(textModalUrl);
@@ -321,7 +316,7 @@ public class TextModalTest extends BaseClass {
         isContentFontSize = commonUtils.assertValue(actContentFontSize, contentFontSize, "at width" + width + "font-size of content is not as per spec");
         isContentLineHeight = commonUtils.assertValue(actContentLineHeight, contentLineHeight, "at width" + width + "line-height of content is not as per spec");
         isContentColor = commonUtils.assertValue(actContentColor, contentColor, "at width" + width + "color of content is not as per spec");
-        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath, textModalJSPath);
         commonUtils.click(textModalPgObj.cancelBtn);
         Assert.assertTrue(result && isModalWidth);
     }
@@ -339,13 +334,13 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
         }
         Thread.sleep(1000);
-        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.readInitialConfig(textModalJSPath, tempJSFilePath);
         commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         commonUtils.getUrl(textModalUrl);
         commonUtils.click(textModalPgObj.initiateBtn);
         Thread.sleep(1000);
         result = commonUtils.isElementsVisibleOnPage(textModalPgObj.footer);
-        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath, textModalJSPath);
         commonUtils.click(textModalPgObj.xBtn);
         Assert.assertFalse(result);
     }
@@ -363,13 +358,13 @@ public class TextModalTest extends BaseClass {
             throw new SkipException("browser console logs apis are not yet implemented for this browserdriver'");
         }
         Thread.sleep(1000);
-        commonUtils.readInitialConfig(textModalJSPath,tempJSFilePath);
+        commonUtils.readInitialConfig(textModalJSPath, tempJSFilePath);
         commonUtils.changeConfig(textModalJSPath, defaultConfig, Config);
         Thread.sleep(1000);
         commonUtils.getUrl(textModalUrl);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
-        commonUtils.writeInitialConfig(tempJSFilePath,textModalJSPath);
+        commonUtils.writeInitialConfig(tempJSFilePath, textModalJSPath);
         Assert.assertTrue(result);
     }
 
@@ -477,7 +472,7 @@ public class TextModalTest extends BaseClass {
     /*
     Common Methods
      */
-    
+
     private String getCode(String script) {
         JavascriptExecutor js = null;
         if (setMobile.equals("on")) {
@@ -525,6 +520,4 @@ public class TextModalTest extends BaseClass {
             driver.manage().deleteAllCookies();
         }
     }
-
-
 }

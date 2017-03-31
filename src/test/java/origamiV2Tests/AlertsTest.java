@@ -21,24 +21,23 @@ public class AlertsTest extends BaseClass {
     private final String alertJSFilePath = constructPath(absAlertJSFilePath);
     private final String absSliderDistJSFilePath = new File("origamiV2/jsfiles/alerts/dist.alerts.js").getAbsolutePath();
     private final String alertDistJSFilePath = constructPath(absSliderDistJSFilePath);
-    String marginTop, borderTopWidth, borderTopStyle, borderTopColor, bgColor, titleFontSize, titleFontColor, titleLineHt, textFontSize, textFontColor, textLineHt, padding, paddingTop, boxShadow;
-    boolean isMarginTop, isBorderTopWidth, isBorderTopStyle, isBorderTopColor, isBgColor, isTitleFontSize, isTitleFontColor, isTitleLineHt, isTextFontSize, isTextFontColor, isTextLineHt, isPadding, isPaddingTop, isElemPresent, isBoxShadow;
+    private String marginTop = "", borderTopWidth = "", borderTopStyle = "", borderTopColor = "", bgColor = "", titleFontSize = "", titleFontColor = "", titleLineHt = "", textFontSize = "", textFontColor = "", textLineHt = "", padding = "", paddingTop = "", boxShadow;
+    private boolean isMarginTop = false, isBorderTopWidth = false, isBorderTopStyle = false, isBorderTopColor = false, isBgColor = false, isTitleFontSize = false, isTitleFontColor = false, isTitleLineHt = false, isTextFontSize = false, isTextFontColor = false, isTextLineHt = false, isPadding = false, isPaddingTop = false, isElemPresent = false, isBoxShadow;
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
     final static Logger log = Logger.getLogger(AlertsTest.class.getName());
-    private static String browser, mobile;
+    private static String browser = "", mobile = "";
 
-    @Parameters({"sauceBrowser", "mobile"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String sauceBrowser, String mobile) {
-        browser = sauceBrowser;
-        this.mobile = mobile;
+    private void beforeClass() {
+        browser = BaseClass.sauceBrowser;
+        mobile = BaseClass.mobile;
     }
 
     @DataProvider(name = "Success and Error Alerts Test Data")
     public Object[][] getSuccessErrorAlertButtonTestData() {
         return new Object[][]{
-                {alertsPgObj.successAlertBtn, "success-alert", alertsPgObj.successAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#038238"), commonUtils.hex2RgbWithoutTransparency("#038238")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.successAlertTitle, alertsPgObj.successAlertText, "8px",new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px","0px 1px 1px 1px #f5f5f5"}},
-                {alertsPgObj.errorAlertBtn, "error-alert", alertsPgObj.errorAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#db0020"), commonUtils.hex2RgbWithoutTransparency("#db0020")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.errorAlertTitle, alertsPgObj.errorAlertText, "8px",new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px","0px 1px 1px 1px #f5f5f5"}},
+                {alertsPgObj.successAlertBtn, "success-alert", alertsPgObj.successAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#038238"), commonUtils.hex2RgbWithoutTransparency("#038238")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.successAlertTitle, alertsPgObj.successAlertText, "8px", new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px", "0px 1px 1px 1px #f5f5f5"}},
+                {alertsPgObj.errorAlertBtn, "error-alert", alertsPgObj.errorAlert, "50px", "6px", "solid", new String[]{commonUtils.hex2Rgb("#db0020"), commonUtils.hex2RgbWithoutTransparency("#db0020")}, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, alertsPgObj.errorAlertTitle, alertsPgObj.errorAlertText, "8px", new String[]{"rgb(245, 245, 245) 0px 1px 1px 1px", "0px 1px 1px 1px #f5f5f5"}},
         };
     }
 
@@ -50,7 +49,7 @@ public class AlertsTest extends BaseClass {
         borderTopStyle = commonUtils.getCSSValue(alert, "border-top-style");
         borderTopColor = commonUtils.getCSSValue(alert, "border-top-color");
         bgColor = commonUtils.getCSSValue(alert, "background-color");
-        boxShadow = commonUtils.getCSSValue(alert,"box-shadow");
+        boxShadow = commonUtils.getCSSValue(alert, "box-shadow");
 
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(alert, cssProperty);
@@ -72,8 +71,8 @@ public class AlertsTest extends BaseClass {
         if (!isBgColor) {
             log.info("background-color of " + alertType + " is not as per spec, actual " + bgColor);
         }
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow",boxShadow,expBoxShadow);
-        if(!isBoxShadow){
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
+        if (!isBoxShadow) {
             log.info("Box-shadow of " + alertType + " is not as per spec, actual " + boxShadow);
         }
 
@@ -122,7 +121,7 @@ public class AlertsTest extends BaseClass {
     public Object[][] getCliclXIconTestData() {
         return new Object[][]{
                 {"success-alert", alertsPgObj.successAlertBtn, alertsPgObj.successAlert, alertsPgObj.successAlertXIcon},
-                {"error-alert", alertsPgObj.errorAlertBtn,alertsPgObj.errorAlert,alertsPgObj.errorAlertXIcon},
+                {"error-alert", alertsPgObj.errorAlertBtn, alertsPgObj.errorAlert, alertsPgObj.errorAlertXIcon},
         };
     }
 
@@ -178,7 +177,7 @@ public class AlertsTest extends BaseClass {
         borderTopStyle = commonUtils.getCSSValue(alert, "border-top-style", "mobile");
         borderTopColor = commonUtils.getCSSValue(alert, "border-top-color", "mobile");
         bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
-        boxShadow = commonUtils.getCSSValue(alert,"box-shadow","mobile");
+        boxShadow = commonUtils.getCSSValue(alert, "box-shadow", "mobile");
 
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(alert, cssProperty, "mobile");
@@ -200,8 +199,8 @@ public class AlertsTest extends BaseClass {
         if (!isBgColor) {
             log.info("background-color of " + alertType + " is not as per spec, actual " + bgColor);
         }
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow",boxShadow,expBoxShadow);
-        if(!isBoxShadow){
+        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
+        if (!isBoxShadow) {
             log.info("Box-shadow of " + alertType + " is not as per spec, actual " + boxShadow);
         }
         // Title

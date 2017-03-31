@@ -16,10 +16,8 @@ import java.lang.reflect.Method;
 public class ComponentArchetypeTest extends BaseClass {
 
     private final String demoUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/componentArchetype/component-archetype.html";
-    String placeHolderText = "";
-    boolean isPlaceHolderText = false;
-    String translatedText = "";
-    boolean isTranslatedText = false;
+    private String placeHolderText = "", translatedText = "";
+    private boolean isPlaceHolderText = false, isTranslatedText = false;
 
     /****************
      * Desktop Tests
@@ -51,8 +49,8 @@ public class ComponentArchetypeTest extends BaseClass {
 
     @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "origamiV2"})
     private void componentArchetypeDemoMobileTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
-        commonUtils.getUrl(demoUrl,"mobile");
-        placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder","mobile");
+        commonUtils.getUrl(demoUrl, "mobile");
+        placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder", "mobile");
         System.out.println(placeHolderText);
         isPlaceHolderText = commonUtils.assertValue(placeHolderText, expPlaceHolder, "Place Holder for " + target + " is not as per the Spec");
         /*commonUtils.click(element,);

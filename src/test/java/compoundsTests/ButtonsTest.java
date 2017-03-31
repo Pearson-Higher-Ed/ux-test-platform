@@ -32,13 +32,12 @@ public class ButtonsTest extends BaseClass {
     Alert alert = null;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
 
-    @Parameters({"runEnv", "sauceBrowser", "localBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void avatarDisplayTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser) {
+    private void buttonsTestBeforeClass() {
         if (!runEnv.equals("sauce")) {
-            browser = localBrowser;
+            browser = BaseClass.localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = BaseClass.sauceBrowser;
         }
     }
 

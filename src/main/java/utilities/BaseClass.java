@@ -7,11 +7,18 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
+import org.testng.ITestContext;
 import org.testng.annotations.*;
+import org.testng.xml.XmlSuite;
 import origamiV2.origamiV2PageObjects.*;
 
 import org.openqa.selenium.WebDriver;
@@ -53,25 +60,30 @@ public class BaseClass {
     public AlertsPageObjects alertsPgObj = null;
     public PaginationPageObjects paginationPgObj = null;
     public CommonUtils commonUtils = null;
-    public String setDesktop = "";
-    public String setMobile = "";
+    public String setDesktop = "", setMobile = "", groupsInclude = "";
+    private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
+    private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
+    private final String errorColorCode = "\u001B[31m";
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-    DesiredCapabilities caps;
+    DesiredCapabilities caps = null;
+    Properties prop = null;
+    ITestContext testContext = null;
+    final static Logger log = Logger.getLogger(BaseClass.class.getName());
+    public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
 
-    @Parameters({"runEnv", "travis", "desktop", "platform", "sauceBrowser", "sauceBrowserVer", "localBrowser", "mobile", "appiumDriver", "mobDeviceName", "mobilePlatformVer", "mobBrowser", "appiumVer"})
     @BeforeClass(alwaysRun = true)
-    protected void setUp(String runEnv, String travis, String desktop, String platform, String sauceBrowser, String sauceBrowserVer, String localBrowser, String mobile, String appiumDriver, String mobDeviceName, String mobilePlatformVer, String mobBrowser, String appiumVer) throws MalformedURLException {
+    protected void setUp() throws MalformedURLException {
         caps = new DesiredCapabilities();
         setDesktop = desktop;
         setMobile = mobile;
 
-        //The below conditions is to set capabilities for desktop run and in elements_sdk/compounds_sdk/origami_v2/.xml -> set mobile to 'off'/groups to 'desktop' and desktop to 'on' and followed by platform details
-        if (runEnv.equals("sauce")) {
+        //The below conditions is to run the desktop tests on Sauce via Travis CI
+        if (runEnv.equals("travis")) {
 
             if (desktop.equals("on")) {
-                //The below conditions is to launch the respective browser driver on Sauce machine
+                //The below conditions is to launch the respective browser driver on Sauce machine via Travis CI
                 if (sauceBrowser.equals("chrome")) {
                     caps = DesiredCapabilities.chrome();
                 } else if (sauceBrowser.equals("firefox")) {
@@ -98,7 +110,7 @@ public class BaseClass {
                 includePageObjects();
             }
 
-            //The below conditions is to set capabilities for mob device and in elements_sdk/compounds_sdk/origami_v2/.xml -> set desktop to 'off'/groups to 'mobile' and mobile to 'on' and followed by platform details
+            //The below conditions is to run the mobile tests on Sauce via Travis CI
             else if (mobile.equals("on")) {
                 caps.setCapability(MobileCapabilityType.DEVICE_NAME, mobDeviceName);
                 caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);
@@ -115,7 +127,7 @@ public class BaseClass {
                 includePageObjects();
             }
         }
-        //The below else condition is to launch browser driver on your local machine. In elements_sdk.xml -> set runEnv != sauce
+        //The below else condition is to launch browser driver on your local machine.
         else {
             if (desktop.equals("on")) {
                 if (localBrowser.equals("firefox")) {
@@ -128,6 +140,7 @@ public class BaseClass {
                     includePageObjects();
                 }
             }
+            //The below else condition is to run tests no sauce from your local machine
             if (mobile.equals("on")) {
                 caps.setCapability(MobileCapabilityType.DEVICE_NAME, mobDeviceName);
                 caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer);
@@ -205,15 +218,64 @@ public class BaseClass {
         }
     }
 
-    @Parameters({"mobile"})
+    //@Parameters({"mobile"})
     @AfterClass(alwaysRun = true)
-    public void tearDown(String mobile) {
+    public void tearDown() {
         if (mobile.equals("on")) {
             appium.closeApp();
             appium.quit();
         } else {
             driver.close();
             driver.quit();
+        }
+    }
+
+    @BeforeSuite(alwaysRun = true)
+    public void readConfig(final ITestContext testContext) throws InterruptedException {
+        XmlSuite suite = testContext.getSuite().getXmlSuite();
+        groupsInclude = suite.getTests().get(0).getIncludedGroups().get(0);
+        prop = new Properties();
+        InputStream input = null;
+        try {
+            input = new FileInputStream("src/main/resources/environment.properties");
+            prop.load(input);
+            System.out.println(String.valueOf(System.getenv().get("USER")).equals("travis"));
+            if (String.valueOf(System.getenv().get("USER")).equals("travis")) {
+                runEnv = "travis";
+            } else {
+                runEnv = "local";
+            }
+            if (groupsInclude.startsWith("desktop")) {
+                desktop = "on";
+                mobile = "off";
+            } else if (groupsInclude.startsWith("mobile")) {
+                desktop = "off";
+                mobile = "on";
+            }
+            platform = prop.getProperty("platform");
+            sauceBrowser = prop.getProperty("sauceBrowser");
+            sauceBrowserVer = prop.getProperty("sauceBrowserVer");
+            localBrowser = prop.getProperty("localBrowser");
+            appiumDriver = prop.getProperty("appiumDriver");
+            mobDeviceName = prop.getProperty("mobDeviceName");
+            mobilePlatformVer = prop.getProperty("mobilePlatformVer");
+            mobBrowser = prop.getProperty("mobBrowser");
+            appiumVer = prop.getProperty("appiumVer");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        log.info(groupsInclude);
+        if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
+            System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + desktopGroupErrorMessage + "\n" + "\t- " + mobileGroupErrorMessage + errorColorCode);
+            System.exit(1);
         }
     }
 }

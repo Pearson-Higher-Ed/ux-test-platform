@@ -30,7 +30,7 @@ public class ContextualHelpTest extends BaseClass {
     private final String contextualHelpWithoutAppHeaderUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/contextualHelp/contextual-help-woAppHeader.html";
 
     private final String absContextualHelpJSFilePath = new File("origamiV2/jsfiles/contextualHelp/contextual-help.js").getAbsolutePath();
-    private final String contextualHelpJSFilePath =  constructPath(absContextualHelpJSFilePath);
+    private final String contextualHelpJSFilePath = constructPath(absContextualHelpJSFilePath);
     private final String absTempJSFilePath = new File("origamiV2/jsfiles/contextualHelp/temp.js").getAbsolutePath();
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
     private final String initialConfig = "var newTopics = [\"testcontent/student/deletedcourse\", \"testcontent/student/droppedcourse\", \"testcontent/student/freetrial\"];";
@@ -47,7 +47,6 @@ public class ContextualHelpTest extends BaseClass {
     private String icon = "";
     private String panel = "";
     private String color = "", fontSize = "", lineHeight = "", focused = "", backgroundColor = "", paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", borderBottomWidth = "", borderBottomStyle = "", borderBottomColor = "", overflowX = "", overflowY = "", marginLeft = "", marginRight = "", marginTop = "", marginBottom = "", textAlign = "", width = "", height = "", borderTopWidth = "", borderRightWidth = "", borderLeftWidth = "", floatProp = "", display = "", fontWeight = "", boxShadow = "";
-    private static String browser = "";
 
     private boolean isConxHelpHeader = false;
     private boolean result = false;
@@ -69,7 +68,7 @@ public class ContextualHelpTest extends BaseClass {
     private boolean isIcon = false;
     private boolean isPanel = false;
     private boolean isFontSize = false, isLineHeight = false, isFocused = false, isBackgroundColor = false, isPaddingLeft = false, isPaddingRight = false, isPaddingTop = false, isPaddingBottom = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isBorderBottomColor = false, isOverflowX = false, isOverflowY = false, isMarginLeft = false, isMarginRight = false, isMarginTop = false, isMarginBottom = false, isTextAlign = false, isWidth = false, isHeight = false, isBorderTopWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFloat = false, isDisplay = false, isFontWeight = false, isBoxShadow = false;
-    private static String setMobile, mobileDevice;
+    private static String setMobile = "", mobileDevice = "", browser = "";
 
     final static Logger log = Logger.getLogger(ContextualHelpTest.class.getName());
     JsonArray jsonArray;
@@ -110,7 +109,7 @@ public class ContextualHelpTest extends BaseClass {
 
     @Test(testName = "Display Instructor only help topics", groups = {"desktop-regression"})
     private void displayInstructorHelpTopicsTest() throws Exception {
-        commonUtils.readInitialConfig(contextualHelpJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(contextualHelpJSFilePath, tempJSFilePath);
         int i;
         helpTopicsList = new ArrayList<String>();
         helpTopicsList.add("testcontent/instructor/courseregsettings");
@@ -125,7 +124,7 @@ public class ContextualHelpTest extends BaseClass {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
             isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics));
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Instructor");
-            commonUtils.writeInitialConfig(tempJSFilePath,contextualHelpJSFilePath);
+            commonUtils.writeInitialConfig(tempJSFilePath, contextualHelpJSFilePath);
             Assert.assertTrue(result);
         }
     }
@@ -804,7 +803,7 @@ public class ContextualHelpTest extends BaseClass {
 
     @Test(testName = "Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "desktop-regression")
     private void styleForRoomHeaderTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
-        commonUtils.setWindowSize(width,height);
+        commonUtils.setWindowSize(width, height);
         commonUtils.getUrl(url);
         if (type.equals("withAppHeader")) {
             commonUtils.click(appHeaderPgObj.clickableHelpLink);
@@ -851,7 +850,7 @@ public class ContextualHelpTest extends BaseClass {
         if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
         }
-        commonUtils.readInitialConfig(contextualHelpJSFilePath,tempJSFilePath);
+        commonUtils.readInitialConfig(contextualHelpJSFilePath, tempJSFilePath);
         int i;
         helpTopicsList = new ArrayList<String>();
         helpTopicsList.add("testcontent/instructor/courseregsettings");
@@ -866,7 +865,7 @@ public class ContextualHelpTest extends BaseClass {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
             isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics), "mobile");
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Instructor");
-            commonUtils.writeInitialConfig(tempJSFilePath,contextualHelpJSFilePath);
+            commonUtils.writeInitialConfig(tempJSFilePath, contextualHelpJSFilePath);
             Assert.assertTrue(result);
         }
     }
@@ -1334,14 +1333,13 @@ public class ContextualHelpTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 
-    @Parameters({"runEnv", "sauceBrowser", "localBrowser", "mobile", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void contextualHelpTestBeforeClass(String runEnv, String sauceBrowser, String localBrowser,String mobile, String mobDeviceName) throws Exception {
-        mobileDevice = mobDeviceName;
+    private void contextualHelpTestBeforeClass() throws Exception {
+        mobileDevice = BaseClass.mobDeviceName;
         if (!runEnv.equals("sauce")) {
-            browser = localBrowser;
+            browser = BaseClass.localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = BaseClass.sauceBrowser;
         }
     }
 

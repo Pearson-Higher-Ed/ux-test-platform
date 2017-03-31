@@ -19,24 +19,23 @@ import java.util.List;
 public class ButtonsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
-    private static String env, browser, lBrowser, device;
-    private static String setMobile;
+    private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
     private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "";
     boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false;
-    Actions action;
-    TouchAction mAction;
+    Actions action = null;
+    TouchAction mAction = null;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
 
-    @Parameters({"runEnv", "mobile", "appiumDriver", "sauceBrowser", "localBrowser", "mobBrowser"})
     @BeforeClass(alwaysRun = true)
-    private void buttonsTestBeforeClass(String runEnv, String mobile, String appiumDriver, String sauceBrowser, String localBrowser, String mobBrowser) {
-        env = runEnv;
-        setMobile = mobile;
-        browser = sauceBrowser;
-        lBrowser = localBrowser;
-        device = appiumDriver;
+    private void buttonsTestBeforeClass() {
+        env = BaseClass.runEnv;
+        setMobile = BaseClass.mobile;
+        setDesktop = BaseClass.desktop;
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
+        device = BaseClass.appiumDriver;
         if (setMobile.equals("on")) {
             mAction = new TouchAction(appium);
         } else {

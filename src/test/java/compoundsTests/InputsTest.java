@@ -24,7 +24,7 @@ public class InputsTest extends BaseClass {
     private final String absTempJSFilePath = new File("compounds/jsfiles/inputs/temp.js").getAbsolutePath();
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
-    private static String browser, lBrowser, setPlatform, setAppium, setMobile;
+    private static String browser= "", lBrowser= "", setPlatform= "", setAppium= "", setMobile;
     private String browserLogs = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "open sans,calibri,tahoma,sans-serif", edgeFontFamily = "Open Sans,Calibri,Tahoma,sans-serif", cssPropertyType = "", outlineStyle = "", backgroundColor = "", unroundedTransValue = "", display = "", height = "", transitionDelay = "", transitionDuration = "", transitionProp = "", trainsitionTimingFunc = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0;
     boolean isCSSProperty = false, isOutlineStyle = false, isBackgroundColor = false, isDisplay = false, isHeight = false, isTransitionDelay = false, isTransitionDuration = false, isTransitionProp = false, isTransitionTimingFunc = false, result = false;
@@ -36,14 +36,13 @@ public class InputsTest extends BaseClass {
 
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
 
-    @Parameters({"mobile", "sauceBrowser", "localBrowser", "platform", "appiumDriver"})
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass(String mobile, String sauceBrowser, String localBrowser, String platform, String appiumDriver) {
-        browser = sauceBrowser;
-        lBrowser = localBrowser;
-        setMobile = mobile;
-        setPlatform = platform;
-        setAppium = appiumDriver;
+    private void InputsTestBeforeClass() {
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
+        setMobile = BaseClass.mobile;
+        setPlatform = BaseClass.platform;
+        setAppium = BaseClass.appiumDriver;
     }
 
     @DataProvider(name = "Single Line Input Test Data")

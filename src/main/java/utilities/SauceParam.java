@@ -18,7 +18,7 @@ public class SauceParam {
     public static final String SAUCE_ACCESS_KEY;
     public static final String SAUCE_TUNNEL;
     public static final String TEST_ROOT_DIR;
-    private static final String PROP_FILE = "SauceParam.properties";
+    private static final String PROP_FILE = "src/main/resources/SauceParam.properties";
     private static Properties properties = new Properties();
 
     static {

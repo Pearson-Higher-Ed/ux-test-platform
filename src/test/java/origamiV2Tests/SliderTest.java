@@ -1,6 +1,5 @@
 package origamiV2Tests;
 
-import io.appium.java_client.TouchShortcuts;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.Assert;
@@ -14,11 +13,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.*;
 import java.lang.reflect.Method;
-import java.util.Dictionary;
 
 import org.openqa.selenium.interactions.*;
 
-import javax.naming.directory.NoSuchAttributeException;
 
 /**
  * Created by udhadpa on 9/27/16.
@@ -27,7 +24,7 @@ import javax.naming.directory.NoSuchAttributeException;
 public class SliderTest extends BaseClass {
 
     private final String basicModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/slider/slider.html";
-    private final String absSliderDistJSFilePath =  new File("origamiV2/jsfiles/slider/dist.slider.js").getAbsolutePath();
+    private final String absSliderDistJSFilePath = new File("origamiV2/jsfiles/slider/dist.slider.js").getAbsolutePath();
     private final String sliderDistJSFilePath = constructPath(absSliderDistJSFilePath);
     private final String absSliderJSFilePath = new File("origamiV2/jsfiles/slider/slider.js").getAbsolutePath();
     private final String absTempJSFilePath = new File("origamiV2/jsfiles/slider/temp.js").getAbsolutePath();
@@ -35,24 +32,23 @@ public class SliderTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     final static Logger log = Logger.getLogger(SliderTest.class.getName());
-    private boolean isSliderVal, isLabelPresent, isForPresent, isForValue;
-    private String actSliderVal, labelContains;
-    private WebElement slider, label;
-    private String browser, mobile;
+    private boolean isSliderVal = false, isLabelPresent = false, isForPresent = false, isForValue = false;
+    private String actSliderVal, labelContains = "";
+    private WebElement slider, label = null;
+    private static String browser = "", mobile = "";
     BufferedReader br = null;
 
-    @Parameters({"sauceBrowser", "mobile"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String sauceBrowser, String mobile) {
-        browser = sauceBrowser;
-        this.mobile = mobile;
+    private void beforeClass() {
+        browser = BaseClass.sauceBrowser;
+        mobile = BaseClass.mobile;
     }
 
     @DataProvider(name = "Drag to Left Test Data")
     public Object[][] getDataDragLeft() {
         return new Object[][]{
-                {sliderPgObj.slider, -11, new String[]{"45", "41","38"}},
-                {sliderPgObj.slider, -33, new String[]{"35", "34", "24", "23","16"}},
+                {sliderPgObj.slider, -11, new String[]{"45", "41", "38"}},
+                {sliderPgObj.slider, -33, new String[]{"35", "34", "24", "23", "16"}},
                 {sliderPgObj.slider, -99, new String[]{"5", "4", "0"}},
         };
     }
@@ -73,8 +69,8 @@ public class SliderTest extends BaseClass {
     @DataProvider(name = "Drag to Right Test Data")
     public Object[][] getDataDragRight() {
         return new Object[][]{
-                {sliderPgObj.slider, 11, new String[]{"55", "59","61"}},
-                {sliderPgObj.slider, 33, new String[]{"65", "75", "76", "77","83"}},
+                {sliderPgObj.slider, 11, new String[]{"55", "59", "61"}},
+                {sliderPgObj.slider, 33, new String[]{"65", "75", "76", "77", "83"}},
                 {sliderPgObj.slider, 99, new String[]{"95", "100", "96"}},
         };
     }
@@ -206,8 +202,8 @@ public class SliderTest extends BaseClass {
             Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", label);
             String s = attributes.toString();
             isForPresent = s.contains("for");
-            commonUtils.assertValue(isForPresent,true,"Label does not contain 'for' attribute");
-            if(isForPresent) {
+            commonUtils.assertValue(isForPresent, true, "Label does not contain 'for' attribute");
+            if (isForPresent) {
                 labelContains = commonUtils.getAttributeValue(sliderPgObj.label, "for");
                 isForValue = labelContains.equals(slider.getAttribute("id"));
                 commonUtils.assertValue(isForValue, true, "Label's 'for' attribute value does not match input id");
@@ -216,7 +212,7 @@ public class SliderTest extends BaseClass {
             isLabelPresent = false;
             log.info("Label is not present");
         }
-        Assert.assertTrue(isLabelPresent &&isForPresent && isForValue);
+        Assert.assertTrue(isLabelPresent && isForPresent && isForValue);
 
     }
 
@@ -264,9 +260,9 @@ public class SliderTest extends BaseClass {
             Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", label);
             String s = attributes.toString();
             isForPresent = s.contains("for");
-            commonUtils.assertValue(isForPresent,true,"Label does not contain 'for' attribute");
-            if(isForPresent) {
-                labelContains = commonUtils.getAttributeValue(sliderPgObj.label, "for",mobile);
+            commonUtils.assertValue(isForPresent, true, "Label does not contain 'for' attribute");
+            if (isForPresent) {
+                labelContains = commonUtils.getAttributeValue(sliderPgObj.label, "for", mobile);
                 isForValue = labelContains.equals(slider.getAttribute("id"));
                 commonUtils.assertValue(isForValue, true, "Label's 'for' attribute value does not match input id");
             }
@@ -274,7 +270,7 @@ public class SliderTest extends BaseClass {
             isLabelPresent = false;
             log.info("Label is not present");
         }
-        Assert.assertTrue(isLabelPresent &&isForPresent && isForValue);
+        Assert.assertTrue(isLabelPresent && isForPresent && isForValue);
     }
 
     /****************
@@ -287,9 +283,8 @@ public class SliderTest extends BaseClass {
         if (mobile.equals("off")) {
             commonUtils.getUrl(basicModeUrl);
             slider = driver.findElement(By.id("numInput"));
-        }
-        else{
-            commonUtils.getUrl(basicModeUrl,"mobile");
+        } else {
+            commonUtils.getUrl(basicModeUrl, "mobile");
             slider = appium.findElement(By.id("numInput"));
         }
     }

@@ -16,19 +16,15 @@ import java.lang.reflect.Method;
  */
 public class GridTest extends BaseClass {
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/grid.html";
-    private String inputFilePath = "src/main/java/elements/fixtures/grid.html";
-    private String localUrl = new File(inputFilePath).getAbsolutePath();
-    private static String env;
-    private static String mobileDevice;
-    String paddingRight, paddingLeft, containerWidth, colWidth, marginRight, marginLeft;
-    boolean isPaddingRight, isPaddingLeft, isContainerWidth, isColWidth, isMarginLeft, isMarginRight;
+    private static String env = "", mobileDevice = "";
+    private String paddingRight = "", paddingLeft = "", containerWidth = "", colWidth = "", marginRight = "", marginLeft = "";
+    private boolean isPaddingRight = false, isPaddingLeft = false, isContainerWidth = false, isColWidth = false, isMarginLeft = false, isMarginRight = false;
     final static Logger log = Logger.getLogger(GridTest.class.getName());
 
-    @Parameters({"runEnv", "mobDeviceName"})
     @BeforeClass(alwaysRun = true)
-    private void beforeClass(String runEnv, String mobDeviceName) {
-        env = runEnv;
-        mobileDevice = mobDeviceName;
+    private void beforeClass() {
+        env = BaseClass.runEnv;
+        mobileDevice = BaseClass.mobDeviceName;
     }
 
     @DataProvider(name = "Container1 Test Data")
@@ -43,7 +39,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "Container Test for Equal Columns", dataProvider = "Container1 Test Data", groups = "desktop-regression")
     private void containerForEqualColumnsTest(int width, int height, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -67,9 +63,9 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Equal Columns Test", dataProvider = "Span Equal Columns Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Equal Columns Test", dataProvider = "Span Equal Columns Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void spanEqualColumnsTest(int width, int height, String expColumn, String expPaddingLeft, String expPaddingRight) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         int i;
         for (i = 1; i <= 12; i++) {
@@ -108,7 +104,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "Span Multiple Columns Test", dataProvider = "Span Multiple Columns Test Data", groups = "desktop-regression")
     private void spanMultipleColumnsTest(String column, int width, int height, By element, String expPaddingLeft, String expPaddingRight) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -146,7 +142,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "Row Test", dataProvider = "Row Test Data", groups = {"desktop-regression"})
     private void rowTest(String rowName, int width, int height, String expRow, String expMarginLeft, String expMarginRight) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         int i;
         if (rowName.equals("Container3-Row")) {
@@ -187,7 +183,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "XS Span Column Width Test", dataProvider = "XS Span Column Width Test Data", groups = {"desktop-regression"})
     private void xsSpanColumnWidthTest(String colName, String colWidth, int width, int height, By element, String[] expColWidth) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
 
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -208,7 +204,7 @@ public class GridTest extends BaseClass {
                 {"Column5", 480, 800, gridPgObj.cont3Col5, new String[]{"191.656px", "191.667px", "191.65625px"}},
                 {"Column6", 480, 800, gridPgObj.cont3Col6, new String[]{"230px", "231px"}},
                 {"Column7", 480, 800, gridPgObj.cont3Col7, new String[]{"268.328px", "268.317px", "268.328125px"}},
-                {"Column8", 480, 800, gridPgObj.cont3Col8, new String[]{"306.656px", "306.667px","306.65625px"}},
+                {"Column8", 480, 800, gridPgObj.cont3Col8, new String[]{"306.656px", "306.667px", "306.65625px"}},
                 {"Column9", 480, 800, gridPgObj.cont3Col9, new String[]{"345px", "346.5px"}},
                 {"Column10", 480, 800, gridPgObj.cont3Col10, new String[]{"383.328px", "383.333px", "383.328125px"}},
                 {"Column11", 480, 800, gridPgObj.cont3Col11, new String[]{"421.656px", "421.667px", "421.65625px"}},
@@ -217,7 +213,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "SM Span Column Width Test", dataProvider = "SM Span Column Width Test Data", groups = {"desktop-regression"})
     private void smSpanColumnWidthTest(String colName, int width, int height, By element, String[] expectedCSSValue) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
@@ -247,7 +243,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "MD Span Column Width Test", dataProvider = "MD Span Column Width Test Data", groups = {"desktop-regression"})
     private void mdSpanColumnWidthTest(String colName, int width, int height, By element, String[] expectedCSSValue) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
@@ -277,7 +273,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "LG Span Column Width Test", dataProvider = "LG Span Column Width Test Data", groups = {"desktop-regression"})
     private void lgSpanColumnWidthTest(String colName, int width, int height, By element, String[] expectedCSSValue) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
@@ -307,7 +303,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "XLG Span Column Width Test", dataProvider = "XLG Span Column Width Test Data", groups = {"desktop-regression"})
     private void xlgSpanColumnWidthTest(String colName, int width, int height, By element, String[] expectedCSSValue) {
-        chooseEnv();
+        commonUtils.getUrl(url);
         commonUtils.setWindowSize(width, height);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertCSSProperties(colWidth.toString(), colWidth, expectedCSSValue);
@@ -847,13 +843,6 @@ public class GridTest extends BaseClass {
     /****************
      * Common Methods
      ****************/
-    private void chooseEnv() {
-        if (env.equals("sauce")) {
-            commonUtils.getUrl(url);
-        } else {
-            commonUtils.getUrl("file:///" + localUrl);
-        }
-    }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
