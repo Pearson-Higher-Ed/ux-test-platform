@@ -279,8 +279,6 @@ public class AppHeaderTest extends BaseClass {
 
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        Thread.sleep(1000);
-        commonUtils.printFileContents(basicJSFilePath);
         commonUtils.getUrl(basicModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
