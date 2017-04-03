@@ -118,7 +118,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
 
 ### How to set browser config properties:
 * Go to src/main/resources/environment.properties
-* Replace the default values to new values. Make sure the config properites are case-sensitive as accepted by Sauce. Refer [How to set the correct platform config](#How-to-set-the-correct-platform-config:) section.
+* Replace the default values to new values. Make sure the config properites are case-sensitive as accepted by Sauce. Refer [How to set the correct platform config](#How-to-set-the-correct-platform-config) section.
 
 ### Shell_Scripts for npm intall:
 * If there is a component that you would want to npm install on this ux-test-platform
@@ -144,7 +144,7 @@ Tests would not run as the Sauce Connect secured encrypted user name and auth_ke
     </details>
 * Now commit this and push to your forked repo. It will work as expected.
 
-## How to set the correct platform config:
+## How to set the correct platform config
 Go this link: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
 * The Copy Code section is the right config platform. The same config should be used as Desired Capabilities in Test Code. Anything else would throw an error on Sauce and tests wouldn't run.
         Refer <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/rebrand/src/main/java/utilities/BaseClass.java">Base Class </a> where desired Capabilities are set.
