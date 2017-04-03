@@ -4,10 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -42,7 +39,7 @@ public class AppHeaderTest extends BaseClass {
     JsonObject jsonObject = null;
     private String testConfig = "";
     private String userName = "";
-    private String marginTop = "", fontSize = "", lineHeight = "", browserLogs = "";
+    private String marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "";
     boolean isUserName = false;
     boolean pearsonLogoVisible = false;
     boolean helpLinkVisible = false;
@@ -55,7 +52,7 @@ public class AppHeaderTest extends BaseClass {
     boolean mobileViewUserMenuVisible = false;
     boolean accountSettingsVisible = false;
     boolean signOutVisible = false;
-    boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false;
+    boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false, isFocused = false;
     boolean isbackgroundColor = false;
     boolean isThemeRight = false;
     boolean isCSSProperty = false;
@@ -271,7 +268,7 @@ public class AppHeaderTest extends BaseClass {
      * Basic Mode Tests *
      *************************/
 
-    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-regression"})
+    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-regression1"})
     private void basicModeDesktopViewDefaultTest() throws Exception {
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -282,6 +279,7 @@ public class AppHeaderTest extends BaseClass {
 
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        Thread.sleep(1000);
         commonUtils.getUrl(basicModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
@@ -591,6 +589,87 @@ public class AppHeaderTest extends BaseClass {
             log.info("Basic Mode: line-height :for app-header in " + type + " is not as per the spec, actual: " + lineHeight);
         }
         Assert.assertTrue(isMarginTop && isFontSize && isLineHeight);
+    }
+
+    @DataProvider(name = "DropDown Menu CloseButton Focusable Test Data")
+    private Object[][] getDropDownMenuCloseButtonFocusableTestData() {
+        return new Object[][]{
+                {"desktop-view", 768, 800},
+                {"mobile-view", 767, 800}
+        };
+    }
+
+    @Test(testName = "Verify Drop Down Close Button is focusable", dataProvider = "DropDown Menu CloseButton Focusable Test Data", groups = "desktop-regression")
+    private void dropDownMenuCloseButtonFocusableTest(String viewMode, int width, int height) throws Exception {
+        commonUtils.setWindowSize(width, height);
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.focusOnElementById("header-nav-link-account");
+        commonUtils.keyOperationOnActiveElement(Keys.ENTER);
+        commonUtils.keyOperationOnActiveElement(Keys.TAB);
+        commonUtils.keyOperationOnActiveElement(Keys.ENTER);
+        accountSettingsVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettingsInOpenDropDown);
+        result = commonUtils.assertValue(accountSettingsVisible, false, "Error: In " + viewMode + " Drop Down Menu is not closed");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "Forward Tab Flow in Drop Down Test Data")
+    private Object[][] getForwardTabFlowInDropDownTestData() {
+        return new Object[][]{
+                {"desktop-view", 768, 800, new String[]{"", "Account Settings", "Sign Out"}},
+                {"mobile-view", 767, 800, new String[]{"", "Physics", "Chemistry", "Account Settings", "Sign Out"}}
+        };
+    }
+
+    @Test(testName = "Verify Forward Tab flow and Dismiss Drop Down Test", dataProvider = "Forward Tab Flow in Drop Down Test Data", groups = "desktop-regression")
+    private void forwardTabFlowAndDismissDropDownTest(String viewMode, int width, int height, String[] tabOrder) throws Exception {
+        int i = 0;
+        commonUtils.setWindowSize(width, height);
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.focusOnElementById("header-nav-link-account");
+        commonUtils.keyOperationOnActiveElement(Keys.ENTER);
+        for (i = 0; i < tabOrder.length; i++) {
+            commonUtils.keyOperationOnActiveElement(Keys.TAB);
+            focused = driver.switchTo().activeElement().getText();
+            isFocused = commonUtils.assertValue(focused, tabOrder[i], "Error: In " + viewMode + " the focus flow is not correct as per the spec");
+            Assert.assertTrue(isFocused);
+        }
+        commonUtils.keyOperationOnActiveElement(Keys.TAB);
+        accountSettingsVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettingsInOpenDropDown);
+        result = commonUtils.assertValue(accountSettingsVisible, false, "Error: In " + viewMode + " Drop Down Menu is not closed");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "Backward Tab Flow in Drop Down Test Data")
+    private Object[][] getBackwardTabFlowInDropDownTestData() {
+        return new Object[][]{
+                {"desktop-view", 768, 800, new String[]{"Sign Out", "Account Settings", "", "User account menu\n" +
+                        "Steve"}},
+                {"mobile-view", 767, 800, new String[]{"Sign Out", "Account Settings", "Chemistry", "Physics", "", "User account menu"}}
+        };
+    }
+
+    @Test(testName = "Verify Backward Tab flow and Drop Down Test", dataProvider = "Backward Tab Flow in Drop Down Test Data", groups = "desktop-regression")
+    private void backwardTabFlowAndDismissDropDownTest(String viewMode, int width, int height, String[] tabOrder) throws Exception {
+        int i = 0;
+        commonUtils.setWindowSize(width, height);
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.focusOnElementById("header-nav-link-account");
+        commonUtils.keyOperationOnActiveElement(Keys.ENTER);
+        js = (JavascriptExecutor) driver;
+        element = driver.findElement(appHeaderPgObj.clickableSignOut);
+        js.executeScript("arguments[0].setAttribute('id', 'sign-out')", element);
+        commonUtils.focusOnElementById("sign-out");
+        String press = Keys.chord(Keys.SHIFT, Keys.TAB);
+        for (i = 0; i < tabOrder.length; i++) {
+            focused = driver.switchTo().activeElement().getText();
+            isFocused = commonUtils.assertValue(focused, tabOrder[i], "Error: In " + viewMode + " the backward tab flow is not correct as per the spec");
+            Assert.assertTrue(isFocused);
+            driver.switchTo().activeElement().sendKeys(press);
+        }
+        driver.switchTo().activeElement().sendKeys(press);
+        accountSettingsVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettingsInOpenDropDown);
+        result = commonUtils.assertValue(accountSettingsVisible, true, "Error: In " + viewMode + " Drop Down Menu is closed");
+        Assert.assertTrue(result);
     }
 
     public String buildJSONObjectForBasicMode(String mode, String userName, Map<String, String> courses) {
