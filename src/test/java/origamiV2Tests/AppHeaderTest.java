@@ -268,7 +268,7 @@ public class AppHeaderTest extends BaseClass {
      * Basic Mode Tests *
      *************************/
 
-    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-regression"})
+    @Test(testName = "Default Basic Mode in Desktop View", groups = {"desktop-regression1"})
     private void basicModeDesktopViewDefaultTest() throws Exception {
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -279,6 +279,7 @@ public class AppHeaderTest extends BaseClass {
 
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        Thread.sleep(1000);
         commonUtils.getUrl(basicModeUrl);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
