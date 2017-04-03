@@ -37,11 +37,13 @@ script:
 
 after_success:
 - chmod 777 /home/travis/build/Pearson-Higher-Ed/ux-test-platform/target/surefire-reports/testng-results.xml
-- cat /home/travis/build/Pearson-Higher-Ed/ux-test-platform/target/surefire-reports/testng-results.xml
+- mvn -Dtest=TestNgXMLUpdater test
+- cat /home/travis/build/Pearson-Higher-Ed/ux-test-platform/src/test/java/testNgXMLUpdater/outputFilePath.xml
 
 notifications:
   email:
     recipients:
+    - eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always

@@ -10,14 +10,14 @@
         </groups>
         <classes>
             <class name="elementsTests.InputsTest"/>
-       <!-- <class name="elementsTests.CalendarTest"/>-->
+            <!-- <class name="elementsTests.CalendarTest"/>-->
             <class name="elementsTests.ButtonsTest"/>
             <class name="elementsTests.TypographyTest"/>
             <class name="elementsTests.ResponsiveUtilitiesTest"/>
             <class name="elementsTests.IconsTest"/>
-       <!-- <class name="elementsTests.ColorsTest"/>
-            <class name="elementsTests.MeterTest"/>
-            <class name="elementsTests.NoPlainCSSTest"/>-->
+            <!-- <class name="elementsTests.ColorsTest"/>
+                 <class name="elementsTests.MeterTest"/>
+                 <class name="elementsTests.NoPlainCSSTest"/>-->
             <class name="elementsTests.GridTest"/>
             <class name="elementsTests.TemplatesTest"/>
             <class name="elementsTests.PresentationStrategyTest"/>
