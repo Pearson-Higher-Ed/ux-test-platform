@@ -118,7 +118,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
 
 ### How to set browser config properties:
 * Go to src/main/resources/environment.properties
-* Replace the default values to new values. Make sure the config properites are case-sensitive as accepted by Sauce. Refer [How to set the correct platform config:](#How-to-set-the-correct-platform-config) section.
+* Replace the default values to new values. Make sure the config properites are case-sensitive as accepted by Sauce. Refer [How to set the correct platform config:](#How-to-set-the-correct-platform-config:) section.
 
 ### Shell_Scripts for npm intall:
 * If there is a component that you would want to npm install on this ux-test-platform
