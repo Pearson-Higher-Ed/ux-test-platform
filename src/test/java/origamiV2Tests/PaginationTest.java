@@ -36,6 +36,7 @@ public class PaginationTest extends BaseClass {
     private boolean nextBtnEnabled = false;
     private boolean btnEnabledResult = false, isActive = false, isActiveBtn = false, isBeforeLastItem = false, isAfterFirstItem = false, ellipseCount = false, firstItemFirstPresent = false, firstItemLastPresent = false;
     private boolean middleItemFirstPresent = false, middleItemLastPresent = false, lastItemFirstPresent = false, lastItemLastPresent = false, isProchain = false, isPrecedent = false, isNext = false, isPrev = false, result = false;
+    private boolean isCSSProperty = false;
     private String activeFirstItem = "", activeSecondItem = "";
     private String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "";
     private String prochainBtn = "", precedentBtn = "", nextbtn = "", prevBtn = "", defaultMaxBtn = "";
@@ -219,6 +220,71 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @DataProvider(name = "Pagination Item Test Data")
+    public Object[][] getPaginationItemTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}}
+        };
+    }
+
+    @Test(testName = "Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"desktop-regression"})
+    private void defaultPaginationItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationNextBtn(), cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for active button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Default Button-Hover state Test Data")
+    public Object[][] getDefaultButtonHoverStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+        };
+    }
+
+    @Test(testName = "Verify Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"desktop-regression"})
+    private void defaultButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        commonUtils.hoverOnElement(paginationPgObj.paginationActiveBtn);
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationActiveBtn, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for default Hovered button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "Default Button-Disabled Test Data")
+    public Object[][] getDefaultButtonDisabledStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+                {"border-top-width", new String[]{"0px"}},
+                {"border-bottom-width", new String[]{"0px"}},
+                {"border-left-width", new String[]{"0px"}},
+                {"border-right-width", new String[]{"0px"}},
+                {"box-shadow", new String[]{"none"}},
+                {"cursor", new String[]{"default"}}
+        };
+    }
+
+    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression"})
+    private void defaultButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        commonUtils.click(paginationPgObj.paginationNextBtn());
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Default Disabled button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
     /***************
      * MOBLIE TESTS
      ***************/
@@ -370,10 +436,48 @@ public class PaginationTest extends BaseClass {
         commonUtils.getUrl(baseUrl, "mobile");
 
         /** validating for default max buttons by checking ellipse **/
-        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationItems, "mobile");
+        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn, "mobile");
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is visible!!!");
         commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
-        Assert.assertFalse(result);
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile:Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"mobile-regression"})
+    private void defaultPaginationMobileItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        commonUtils.getUrl(baseUrl, "mobile");
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationNextBtn(), cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for active button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile:Verify Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"mobile-regression"})
+    private void defaultMobileButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        commonUtils.getUrl(baseUrl, "mobile");
+        String cssPropertyType = cssProperty;
+        commonUtils.hoverOnElement(paginationPgObj.paginationActiveBtn);
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationActiveBtn, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for default Hovered button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile:Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"mobile-regression"})
+    private void defaultMobileButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        commonUtils.getUrl(baseUrl, "mobile");
+        commonUtils.click(paginationPgObj.paginationNextBtn(),"mobile");
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Default Disabled button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
     }
 
     /****************
