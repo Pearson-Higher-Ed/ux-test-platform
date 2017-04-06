@@ -87,4 +87,5 @@ public class PaginationPageObjects {
 
     public By ellipseCountItem = By.xpath(".//*[@id='pagination']/nav[@class='paginationGroup']/button[@class='pe-btn pagination' and @disabled='']");
 
+    public By disabledItem = By.xpath(".//*[@class='pe-btn pagination' and @disabled='']");
 }
