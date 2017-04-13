@@ -239,7 +239,6 @@ public class BaseClass {
         try {
             input = new FileInputStream("src/main/resources/environment.properties");
             prop.load(input);
-            System.out.println(String.valueOf(System.getenv().get("USER")).equals("travis"));
             if (String.valueOf(System.getenv().get("USER")).equals("travis")) {
                 runEnv = "travis";
             } else {
@@ -272,9 +271,9 @@ public class BaseClass {
                 }
             }
         }
-        log.info(groupsInclude);
+        System.out.println(("\u001B[32m" + "Running '" + groupsInclude + "' tests"));
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
-            System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + desktopGroupErrorMessage + "\n" + "\t- " + mobileGroupErrorMessage + errorColorCode);
+            System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);
         }
     }

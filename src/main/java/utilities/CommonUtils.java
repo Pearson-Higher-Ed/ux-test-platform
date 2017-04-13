@@ -223,6 +223,11 @@ public class CommonUtils {
         js.executeScript("document.getElementById('" + element + "').focus()");
     }
 
+    public void unFocusOnElementById(String element) {
+        js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('" + element + "').blur()");
+    }
+
     public void focusOnElementById(String element, String mobile) {
         js = (JavascriptExecutor) appium;
         js.executeScript("document.getElementById('" + element + "').focus()");
