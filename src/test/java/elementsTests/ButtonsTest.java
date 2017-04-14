@@ -668,6 +668,9 @@ public class ButtonsTest extends BaseClass {
      ***************/
     @Test(testName = "Mobile: Verify Default Button Test", dataProvider = "Default Button Test Data", groups = {"mobile-regression"})
     private void defaultButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -690,6 +693,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify Primary Button Test", dataProvider = "Primary Button Test Data", groups = {"mobile-regression"})
     private void primaryButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -701,6 +707,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify Primary Button Test-Disabled", dataProvider = "Primary Button-Disabled Test Data", groups = {"mobile-regression"})
     private void primaryButtonDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtnDisabled, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
@@ -712,6 +721,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify CTA Button Test", dataProvider = "CTA Button Test Data", groups = {"mobile-regression"})
     private void ctaButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -723,6 +735,9 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify Link Button Test", dataProvider = "Link Button Test Data", groups = {"mobile-regression"})
     private void linkButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -737,7 +752,7 @@ public class ButtonsTest extends BaseClass {
         color = commonUtils.getCSSValue(elem, "color", "mobile");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         backgroundImg = commonUtils.getCSSValue(elem, "background-image", "mobile");
-        textDecoration = commonUtils.getCSSValue(elem, "text-decoration-line", "mobile");
+        textDecoration = commonUtils.getCSSValue(elem, "text-decoration", "mobile");
         cursor = commonUtils.getCSSValue(elem, "cursor", "mobile");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
@@ -783,19 +798,6 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Link Button Test-Focus state", dataProvider = "Link Button-Focus state Test Data", groups = {"mobile-regression"})
-    private void linkButtonFocusStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("link-btn", "mobile");
-        Thread.sleep(1000);
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link Focus state button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
     @Test(testName = "Mobile: Verify Link Button 2.0 Test-Hover state", dataProvider = "Link Button 2.0 -Hover and Focus state Test Data", groups = {"mobile-regression"})
     private void linkButton2HoverStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         if (device.equals("iOS")) {
@@ -807,19 +809,6 @@ public class ButtonsTest extends BaseClass {
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Link Hovered button 2.0 is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Link Button 2.0 Test-Focus state", dataProvider = "Link Button 2.0 -Hover and Focus state Test Data", groups = {"mobile-regression"})
-    private void linkButton2FocusStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("link-btn-2.0", "mobile");
-        Thread.sleep(1000);
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link Focus state button 2.0 is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }

@@ -1,6 +1,4 @@
 {
-    "name": "local-web-server",
-    "version": "1.0.0",
     "local-web-server": {
         "port": "8000",
         "forbid": "*.json"

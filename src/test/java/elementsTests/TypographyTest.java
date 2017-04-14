@@ -469,14 +469,14 @@ public class TypographyTest extends BaseClass {
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Mobile: Inline: Abbr Test", groups = {"mobile-regression"})
     private void abbrMobileTest() {
-        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line", "mobile");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
         Assert.assertTrue(isTextDecoration);
     }
 
     @Test(testName = "Mobile: Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "mobile-regression")
     private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
 
         if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
@@ -621,7 +621,7 @@ public class TypographyTest extends BaseClass {
         if (!isColor) {
             log.info("link color for " + state + " is not as per the spec, actual: " + color);
         }
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
         Assert.assertTrue(isColor && isTextDecoration);
     }
