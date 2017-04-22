@@ -59,13 +59,23 @@ public class CommonUtils {
 
     //click
     public void click(By element) {
-        webElement = driver.findElement(element);
-        webElement.click();
+        try {
+            webElement = driver.findElement(element);
+            webElement.click();
+        }
+        catch (NoSuchElementException e){
+            log.info(e.getMessage());
+        }
     }
 
     public void click(By element, String mobile) {
-        webElement = appium.findElement(element);
-        webElement.click();
+        try {
+            webElement = appium.findElement(element);
+            webElement.click();
+        }
+        catch (NoSuchElementException e){
+            log.info(e.getMessage());
+        }
     }
 
     //click using js
@@ -94,6 +104,18 @@ public class CommonUtils {
         webElement.sendKeys(text);
     }
 
+    public void tabSpace(By element) {
+        webElement = driver.findElement(element);
+        webElement.sendKeys(Keys.TAB);
+        webElement.sendKeys(Keys.SPACE);
+    }
+
+    public void tabSpaceAction(By element) {
+        webElement = driver.findElement(element);
+        Actions action = new Actions(driver);
+        action.sendKeys(webElement,Keys.SPACE).build().perform();
+    }
+
     //is element present
     public boolean isElementPresent(By element) {
         try {
@@ -106,8 +128,13 @@ public class CommonUtils {
     }
 
     public boolean isElementPresent(By element, String mobile) {
-        mobWebElement = (MobileElement) appium.findElement(element);
-        return mobWebElement.isDisplayed();
+        try {
+            mobWebElement = (MobileElement) appium.findElement(element);
+            return mobWebElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
     }
 
     //is element displayed
