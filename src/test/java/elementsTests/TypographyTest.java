@@ -150,13 +150,13 @@ public class TypographyTest extends BaseClass {
     private Object[][] getSectionTitleTestData() {
         return new Object[][]{
                 {"section-title", typoPgObj.sectionTitle, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-bold", typoPgObj.sectionTitleBold, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-bold", typoPgObj.sectionTitleBold, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"bold", "600"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
                 {"section-title-secondary", typoPgObj.sectionTitleSecondary, new String[]{"20px", "19.999980926513672px", "19.8px"}, new String[]{"26px", "25.99995994567871px", "25.984375px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"section-title-small", typoPgObj.sectionTitleSmall, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-small-bold", typoPgObj.sectionTitleSmallBold, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-small-bold", typoPgObj.sectionTitleSmallBold, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"bold", "600"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
                 {"section-title-small-secondary", typoPgObj.sectionTitleSmallSecondary, new String[]{"17.9999px", "18px", "17.999940872192383px", "17.86px"}, new String[]{"22px", "22.000019073486328px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"section-title-large", typoPgObj.sectionTitleLarge, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"section-title-large-bold", typoPgObj.sectionTitleLargeBold, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"bold", "700"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+                {"section-title-large-bold", typoPgObj.sectionTitleLargeBold, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"bold", "600"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
                 {"section-title-large-secondary", typoPgObj.sectionTitleLargeSecondary, new String[]{"24.0001px", "24px", "24.000059127807617px", "23.8px"}, new String[]{"28px"}, new String[]{"normal", "400"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -193,7 +193,7 @@ public class TypographyTest extends BaseClass {
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression"})
     private void abbrTest() {
-        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line");
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
         Assert.assertTrue(isTextDecoration);
     }
@@ -210,7 +210,7 @@ public class TypographyTest extends BaseClass {
 
     @Test(testName = "Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "desktop-regression")
     private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line");
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
 
         if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
@@ -392,7 +392,7 @@ public class TypographyTest extends BaseClass {
         if (!isColor) {
             log.info("link color for " + state + " is not as per the spec, actual: " + color);
         }
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
         Assert.assertTrue(isColor && isTextDecoration);
     }
@@ -469,14 +469,14 @@ public class TypographyTest extends BaseClass {
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Mobile: Inline: Abbr Test", groups = {"mobile-regression"})
     private void abbrMobileTest() {
-        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
         Assert.assertTrue(isTextDecoration);
     }
 
     @Test(testName = "Mobile: Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "mobile-regression")
     private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
 
         if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
@@ -621,7 +621,7 @@ public class TypographyTest extends BaseClass {
         if (!isColor) {
             log.info("link color for " + state + " is not as per the spec, actual: " + color);
         }
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line", "mobile");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
         Assert.assertTrue(isColor && isTextDecoration);
     }

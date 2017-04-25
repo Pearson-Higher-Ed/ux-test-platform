@@ -65,7 +65,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-top-left-radius", new String[]{"2px"}},
                 {"border-top-right-radius", new String[]{"2px"}},
 
-                {"text-decoration", new String[]{"none"}},
+                {"text-decoration-line", new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"overflow-x", new String[]{"hidden"}},
@@ -185,7 +185,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-top-left-radius", new String[]{"2px"}},
                 {"border-top-right-radius", new String[]{"2px"}},
 
-                {"text-decoration", new String[]{"none"}},
+                {"text-decoration-line", new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"display", new String[]{"inline-block"}},
@@ -271,7 +271,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-right-width", new String[]{"0px"}},
                 {"box-shadow", new String[]{"none"}},
 
-                {"text-decoration", new String[]{"none"}},
+                {"text-decoration-line", new String[]{"none"}},
                 {"cursor", new String[]{"default"}}
         };
     }
@@ -305,7 +305,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-top-left-radius", new String[]{"2px"}},
                 {"border-top-right-radius", new String[]{"2px"}},
 
-                {"text-decoration", new String[]{"none"}},
+                {"text-decoration-line", new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"overflow-x", new String[]{"hidden"}},
@@ -396,7 +396,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-left-width", new String[]{"0px"}},
                 {"border-right-width", new String[]{"0px"}},
 
-                {"text-decoration", new String[]{"underline"}},
+                {"text-decoration-line", new String[]{"underline"}},
                 {"cursor", new String[]{"pointer"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -430,7 +430,7 @@ public class ButtonsTest extends BaseClass {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         backgroundImg = commonUtils.getCSSValue(elem, "background-image");
-        textDecoration = commonUtils.getCSSValue(elem, "text-decoration");
+        textDecoration = commonUtils.getCSSValue(elem, "text-decoration-line");
         cursor = commonUtils.getCSSValue(elem, "cursor");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty);
@@ -465,7 +465,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLinkButtonHoverStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
-                {"text-decoration", new String[]{"none"}}
+                {"text-decoration-line", new String[]{"none"}}
         };
     }
 
@@ -488,7 +488,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLinkButtonFocusStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
-                {"text-decoration", new String[]{"none"}}
+                {"text-decoration-line", new String[]{"none"}}
         };
     }
 
@@ -511,7 +511,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button 2.0 -Hover and Focus state Test Data")
     public Object[][] getLinkButton2HoverStateTestData() {
         return new Object[][]{
-                {"text-decoration", new String[]{"none"}}
+                {"text-decoration-line", new String[]{"none"}}
         };
     }
 
@@ -737,7 +737,7 @@ public class ButtonsTest extends BaseClass {
         color = commonUtils.getCSSValue(elem, "color", "mobile");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         backgroundImg = commonUtils.getCSSValue(elem, "background-image", "mobile");
-        textDecoration = commonUtils.getCSSValue(elem, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(elem, "text-decoration-line", "mobile");
         cursor = commonUtils.getCSSValue(elem, "cursor", "mobile");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");

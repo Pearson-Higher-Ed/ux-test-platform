@@ -714,7 +714,7 @@ public class InputsTest extends BaseClass {
         if (!(browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox"))) {
             commonUtils.focusOnElementById(type);
             Thread.sleep(2000);
-            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration");
+            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line");
             if (type.equals("password-input-basic-disabled-showbutton")) {
                 isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + type + " is not as per the spec");
             } else {
@@ -839,7 +839,7 @@ public class InputsTest extends BaseClass {
         if (!(browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox"))) {
             commonUtils.focusOnElementById(type);
             Thread.sleep(2000);
-            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration");
+            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line");
             if (type.equals("password-input-fancy-disabled-showbutton")) {
                 isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + type + " is not as per the spec");
             } else {
@@ -2086,7 +2086,7 @@ public class InputsTest extends BaseClass {
         if (!setAppium.equals("iOS")) {
             commonUtils.focusOnElementById(type, "mobile");
             Thread.sleep(2000);
-            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration", "mobile");
+            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line", "mobile");
             if (type.equals("password-input-basic-disabled-showbutton")) {
                 isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + type + " is not as per the spec");
             } else {
@@ -2154,7 +2154,7 @@ public class InputsTest extends BaseClass {
         if (!setAppium.equals("iOS")) {
             commonUtils.focusOnElementById(type, "mobile");
             Thread.sleep(2000);
-            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration", "mobile");
+            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line", "mobile");
             if (type.equals("password-input-fancy-disabled-showbutton")) {
                 isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + type + " is not as per the spec");
             } else {
