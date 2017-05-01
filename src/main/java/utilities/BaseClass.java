@@ -59,6 +59,7 @@ public class BaseClass {
     public FormsPageObjects formsPgObj = null;
     public AlertsPageObjects alertsPgObj = null;
     public PaginationPageObjects paginationPgObj = null;
+    public CompoundsDropdownPageObjects dropdownPgObj = null;
     public CommonUtils commonUtils = null;
     public String setDesktop = "", setMobile = "", groupsInclude = "";
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
@@ -185,6 +186,7 @@ public class BaseClass {
             formsPgObj = new FormsPageObjects(driver);
             alertsPgObj = new AlertsPageObjects(driver);
             paginationPgObj = new PaginationPageObjects(driver);
+            dropdownPgObj = new CompoundsDropdownPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -213,6 +215,7 @@ public class BaseClass {
             formsPgObj = new FormsPageObjects(appium);
             alertsPgObj = new AlertsPageObjects(appium);
             paginationPgObj = new PaginationPageObjects(appium);
+            dropdownPgObj = new CompoundsDropdownPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
