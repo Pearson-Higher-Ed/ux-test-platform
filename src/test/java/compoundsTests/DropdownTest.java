@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -30,9 +31,9 @@ public class DropdownTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "";
+    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "",browserLogs="";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
-    boolean isCSSProperty = false, isBackgroundColor = false;
+    boolean isCSSProperty = false, isBackgroundColor = false,result= false;
     private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
     private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null;
@@ -132,7 +133,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "desktop-regression")
+    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "desktop-ci")
     private void optionsLabelDropdownTest(String dropdownType, String type, By elem, By trigger, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String expLineHt) throws InterruptedException, IOException {
         String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
         setConfig(dropdownType);
@@ -464,7 +465,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Select Options with Click Test", dataProvider = "Select Options with Click Test Data", groups = "desktop-regression")
+    @Test(testName = "Select Options with Click Test", dataProvider = "Select Options with Click Test Data", groups = "desktop-ci")
     private void selectOptionsWithClickTest(String dropdownType, By trigger, By option, String expClassName, By optionText) throws IOException, InterruptedException {
         if (browser.equals("edge")) {
             System.out.println(errorColorCode + "Test needs to be debugged for Edge browser");
@@ -563,13 +564,44 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isRole);
     }
 
+    @Test(testName = "Verify incorrect Element ID Dropdown Test", groups = "desktop-regression")
+    private void incorrectElementIdDropdownTest() throws Exception {
+        if (!browser.equals("chrome")) {
+            throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
+        }
+        commonUtils.readInitialConfig(dropdownJSFilePath, tempJSFilePath);
+        //Provide an incorrect element ID
+        commonUtils.replaceLineInAFile(dropdownJSFilePath, "elementId:'dropdown-target',", "elementId: 'xyz-target',");
+        commonUtils.getUrl(dropdownUrl);
+        browserLogs = commonUtils.browserLogs().toString();
+        result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
+        commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Verify incorrect Component Name Dropdown Test", groups = "desktop-regression")
+    private void incorrectComponentNameDropdownTest() throws Exception {
+        if (!browser.equals("chrome")) {
+            throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
+        }
+        commonUtils.readInitialConfig(dropdownJSFilePath, tempJSFilePath);
+        //Provide an incorrect component name
+        commonUtils.replaceLineInAFile(dropdownJSFilePath, "componentName:'Dropdown'", "componentName: 'xyz',");
+        commonUtils.getUrl(dropdownUrl);
+        browserLogs = commonUtils.browserLogs().toString();
+        result = commonUtils.assertValue(browserLogs.contains("type is invalid "), true, "'type is invalid' error msg is NOT seen as per SPEC");
+        commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
+        Assert.assertTrue(result);
+    }
+
+
     /******************************
      *
      * Mobile Tests
      *
      ******************************/
 
-    @DataProvider(name = "Dropdown Header Mobile Test Data")
+    @DataProvider(name = "Mobile : Dropdown Header Test Data")
     public Object[][] getHeaderLabelDropdownMobileTestData() {
         return new Object[][]{
                 {dropdownPgObj.mobileHeader, "padding-top", new String[]{"24px"}},
@@ -587,11 +619,12 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Label Dropdown Header Mobile Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Label Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
     private void headerLabelDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("label");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerLabel, "mobile");
@@ -604,11 +637,12 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Button Dropdown Header Mobile Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
     private void headerButtonDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("button");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerBtnIcon, "mobile");
@@ -621,10 +655,11 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Dropdown Options Mobile Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
     private void optionsLabelDropdownMobileTest(String dropdownType, String type, By elem, By trigger, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String expLineHt) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+            //throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+            appium.rotate(ScreenOrientation.LANDSCAPE);
         }
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
@@ -647,7 +682,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight);
     }
 
-    @DataProvider(name = "Dropdown Options Responsive Mobile Test Data")
+    @DataProvider(name = "Mobile : Dropdown Options Responsive Test Data")
     public Object[][] getDataOptionsDropdownMobileTestData() {
         return new Object[][]{
                 {"label", "option-one", dropdownPgObj.optionBtn1, dropdownPgObj.triggerLabel, "16px", "20px", "24px", "12px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
@@ -661,11 +696,12 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown Options Responsive  Mobile Test", dataProvider = "Dropdown Options Responsive Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Dropdown Options Responsive Test", dataProvider = "Mobile : Dropdown Options Responsive Test Data", groups = "mobile-regression")
     private void optionsLabelDropdownResponsiveMobileTest(String dropdownType, String type, By elem, By trigger, String expFontSize, String expLineHt, String expPaddingLeftRight, String expPaddingTopBtm, String[] expColor) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
         Thread.sleep(1000);
@@ -693,11 +729,12 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight && isColor);
     }
 
-    @Test(testName = "Icon Dropdown Header Mobile Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Icon Dropdown Header Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
     private void headericonDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerIcon, "mobile");
@@ -711,7 +748,7 @@ public class DropdownTest extends BaseClass {
     }
 
 
-    @DataProvider(name = "Icon Dropdown Divider Responsive Mobile Test Data")
+    @DataProvider(name = "Mobile : Icon Dropdown Divider Responsive Mobile Data")
     public Object[][] getDividerIconDropdownMobileTestData() {
         return new Object[][]{
                 {dropdownPgObj.dividerContainer, "margin-top", new String[]{"12px"}},
@@ -724,11 +761,12 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icon Dropdown Divider Responsive Mobile Test ", dataProvider = "Icon Dropdown Divider Responsive Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Icon Dropdown Divider Responsive Test ", dataProvider = "Mobile : Icon Dropdown Divider Responsive Mobile Data", groups = "mobile-regression")
     public void dividerIconDropdownResponsiveMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerIcon, "mobile");
@@ -741,10 +779,11 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Icon Dropdown Divider Mobile Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Icon Dropdown Divider Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "mobile-regression")
     public void dividerIconDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+           // throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+            appium.rotate(ScreenOrientation.LANDSCAPE);
         }
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
@@ -758,7 +797,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Click On The trigger Mobile Test", dataProvider = "Click On The trigger Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "mobile-regression")
     private void clickOnTriggerMobileTest(String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
         setConfig(dropdownType);
@@ -774,7 +813,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isDropdownListBox && isClassName);
     }
 
-    @DataProvider(name = "Click On Close Btn Mobile Test Data")
+    @DataProvider(name = "Mobile : Click On Close Btn Test Data")
     public Object[][] closeBtnMobileTestData() {
         return new Object[][]{
                 {"label", dropdownPgObj.triggerLabel},
@@ -784,11 +823,12 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Click On Close Btn Mobile Test", dataProvider = "Click On Close Btn Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression")
     private void clickOnCloseBtnMobileTest(String dropdownType, By trigger) throws IOException, InterruptedException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+        if (!(mobileDevice.equals("iPhone 6s Plus Simulator")|| mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
+        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(trigger, "mobile");
@@ -892,23 +932,6 @@ public class DropdownTest extends BaseClass {
         return path;
     }
 
-    private void focusOnOptions(By option) {
-        WebElement elem = driver.findElement(option);
-        new Actions(driver).moveToElement(elem).perform();
-    }
-
-    //Override a file contents with new config
-    public void changeConfig(String jsFilePath, String getTestConfig) throws IOException, InterruptedException {
-        List<String> newLines, fileContent;
-        try {
-            newLines = new ArrayList<String>();
-            newLines.add(getTestConfig);
-            Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            log.info("Error in changing the config");
-        }
-    }
-
     private void setConfig(String dropdownType) throws IOException, InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
         if (!dropdownType.equals("icon")) {
@@ -918,7 +941,7 @@ public class DropdownTest extends BaseClass {
             String[] propsPropertiesList = new String[]{"presentationType", "icon", "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         }
-        changeConfig(dropdownJSFilePath, testConfig);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
     }
 
     @BeforeMethod(alwaysRun = true)

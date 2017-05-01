@@ -10,7 +10,6 @@ function init() {
 				id: 'a',
 				label: 'FirstName',
 				inputType: 'default',
-				fancy: false,
 				placeholder: 'FirstName'
 			}
 		}
