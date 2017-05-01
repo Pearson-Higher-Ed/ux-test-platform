@@ -7,11 +7,8 @@
                 <include name="desktop-regression"/>
             </run>
         </groups>
-        <classes>
-            <class name="compoundsTests.DropdownTest"/>
-        </classes>
-        <!--<packages>
+        <packages>
             <package name="compoundsTests"></package>
-        </packages> -->
+        </packages>
     </test>
 </suite>
