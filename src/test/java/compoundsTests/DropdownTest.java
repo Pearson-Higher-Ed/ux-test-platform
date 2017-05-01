@@ -31,9 +31,9 @@ public class DropdownTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "",browserLogs="";
+    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
-    boolean isCSSProperty = false, isBackgroundColor = false,result= false;
+    boolean isCSSProperty = false, isBackgroundColor = false, result = false;
     private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
     private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null;
@@ -624,7 +624,6 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("label");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerLabel, "mobile");
@@ -642,7 +641,6 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("button");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerBtnIcon, "mobile");
@@ -658,8 +656,7 @@ public class DropdownTest extends BaseClass {
     @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
     private void optionsLabelDropdownMobileTest(String dropdownType, String type, By elem, By trigger, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String expLineHt) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-            //throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-            appium.rotate(ScreenOrientation.LANDSCAPE);
+            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
@@ -701,7 +698,6 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
         Thread.sleep(1000);
@@ -734,7 +730,6 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerIcon, "mobile");
@@ -766,7 +761,6 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.triggerIcon, "mobile");
@@ -782,8 +776,7 @@ public class DropdownTest extends BaseClass {
     @Test(testName = "Mobile : Icon Dropdown Divider Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "mobile-regression")
     public void dividerIconDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-           // throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-            appium.rotate(ScreenOrientation.LANDSCAPE);
+            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl, "mobile");
@@ -825,10 +818,9 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression")
     private void clickOnCloseBtnMobileTest(String dropdownType, By trigger) throws IOException, InterruptedException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator")|| mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        appium.rotate(ScreenOrientation.PORTRAIT);
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(trigger, "mobile");
