@@ -61,7 +61,7 @@ public class BaseClass {
     public PaginationPageObjects paginationPgObj = null;
     public CompoundsDropdownPageObjects dropdownPgObj = null;
     public CommonUtils commonUtils = null;
-    public String setDesktop = "", setMobile = "", groupsInclude = "";
+    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite="";
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
@@ -237,6 +237,8 @@ public class BaseClass {
     public void readConfig(final ITestContext testContext) throws InterruptedException {
         XmlSuite suite = testContext.getSuite().getXmlSuite();
         groupsInclude = suite.getTests().get(0).getIncludedGroups().get(0);
+        testSuite = suite.getName();
+
         prop = new Properties();
         InputStream input = null;
         try {
@@ -274,7 +276,7 @@ public class BaseClass {
                 }
             }
         }
-        System.out.println(("\u001B[32m" + "Running '" + groupsInclude + "' tests"));
+        System.out.println(("\u001B[32m" + "Running " + testSuite +": '"+ groupsInclude + "' tests"));
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);

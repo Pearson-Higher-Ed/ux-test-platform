@@ -1,6 +1,7 @@
 package compounds.compoundsPageObjects;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -18,4 +19,7 @@ public class CompoundsInputsPageObjects {
     public CompoundsInputsPageObjects(AppiumDriver appium) {
         this.appium = appium;
     }
+
+    public By label = By.xpath("//*[@id='select-target']/div/label");
+    public By icon = By.cssSelector("#select-target > div > div > svg");
 }

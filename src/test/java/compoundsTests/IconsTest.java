@@ -45,7 +45,7 @@ public class IconsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Valid Icon Prop Types Test", dataProvider = "Valid Icon Prop Types Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Valid Icon Prop Types Test", dataProvider = "Valid Icon Prop Types Test Data", groups = {"desktop-ci","desktop-regression"})
     private void validIconPropTypesTest(String iconType, String icon, By element, String[] expWidth, String[] expHeight) throws Exception {
         commonUtils.readInitialConfig(iconsJSFilePath, tempJSFilePath);
         //modify the config with prop types values
@@ -93,7 +93,7 @@ public class IconsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Verify Invalid Icon Prop Types Test", groups = "desktop-regression")
+    @Test(testName = "Verify Invalid Icon Prop Types Test", groups = "bug-desktop-regression")
     private void invalidIconPropTypesTest() throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");

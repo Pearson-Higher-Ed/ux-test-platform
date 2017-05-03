@@ -63,9 +63,14 @@
 </div>
 
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line)</h2>
-<div>
+<div>Inputs - Basic (single line) without value
     <label id="basic-sl-label" class="pe-textLabelInput__label" for="z">Label</label>
     <input type="text" class="pe-textInput--basic" id="z" placeholder="Placeholder"/>
+</div>
+
+<div>Inputs - Basic (single line) with value
+    <label class="pe-textLabelInput__label" for="z-without-value">Label</label>
+    <input type="text" class="pe-textInput--basic" id="z-without-value" placeholder="Placeholder" value="First Name"/>
 </div>
 
 <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line - error)</h2>
@@ -332,8 +337,8 @@
 <div>
     <label id="select-input-label-disabled" class="pe-textLabelInput__label--label-disabled"
            for="select-input-basic-disabled">Error label</label>
-    <div id="select-input-disabled-div" class="pe-select-container">
-        <select class="pe-selectInput--basic" id="select-input-basic-disabled" disabled>
+    <div id="select-input-disabled-div" class="pe-select-container-disabled">
+        <select class="pe-select-container-disabled" id="select-input-basic-disabled" disabled>
             <option value="uno">One</option>
             <option value="dos">Two</option>
             <option value="tres">Three</option>
