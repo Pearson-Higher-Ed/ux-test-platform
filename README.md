@@ -16,7 +16,7 @@
         git checkout branch-name
         npm install
         npm run build
-        cp elements/dist/css/elements.css /ux-test-platform/src/main/java/elements/css/</pre>
+        cp dist/css/elements.css /ux-test-platform/src/main/java/elements/css/</pre>
     </details>
 	2. origami_v2:
     <details> 
@@ -28,9 +28,9 @@
         git checkout branch-name
         npm install
         npm run build
-        cp app-header/build/dist.app-header.js /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
-        cp app-header/node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/origamiV2/css/appHeader/
-        cp -R app-header/node_modules/pearson-elements/dist/fonts /ux-test-platform/</pre>
+        cp build/dist.app-header.js /ux-test-platform/src/main/java/origamiV2/jsfiles/appHeader/
+        cp node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/origamiV2/css/appHeader/
+        cp -R node_modules/pearson-elements/dist/fonts /ux-test-platform/</pre>
     </details>
 	3. compounds_sdk:
 	<details>
@@ -41,9 +41,9 @@
         git checkout branch-name
         npm install
         npm run build
-        cp compounds/build/dist.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
-        cp compounds/build/dev.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
-        cp compounds/node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/compounds/css/</pre>		
+        cp build/dist.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
+        cp build/dev.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
+        cp node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/compounds/css/</pre>		
 	</details>
     </details>
 
@@ -68,7 +68,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
     </details>
 
 * Run mode configuration:
-	* Run it as a maven test:<pre>mvn test</pre>
+	* Run it as a maven test(for eg. elements_sdk):<pre>mvn -Dtest_suite_xml=elements_sdk.xml</pre>
 	* Run it as a testng suite. test_suites/<component.xml>
 	
 ## How to run your tests in sauce via Travis CI:
