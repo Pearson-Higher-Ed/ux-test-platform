@@ -29,16 +29,15 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
-- export feature_branch=v1
+- export component=drawer
+- export feature_branch=DES-632
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=drawer.xml test
 
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
