@@ -75,9 +75,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputWiWoValuesTest(String type, By element, String[] expColor, String[] expFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -116,9 +114,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -160,9 +157,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputErroredTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -189,9 +185,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputDisabledTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -225,9 +220,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputReadOnlyTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -254,9 +248,7 @@ public class InputsTest extends BaseClass {
         }
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(id);
         outlineStyle = commonUtils.getCSSValue(element, "outline-style");
@@ -317,9 +309,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputUnderlineTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
@@ -365,9 +355,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputInputTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -396,9 +384,7 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         bgColor = commonUtils.getCSSValue(element, "background-color");
         marginTop = commonUtils.getCSSValue(element, "margin-top");
@@ -446,10 +432,8 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputBordersTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        commonUtils.getUrl(inputsUrl);
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(element, cssProperty);
             isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
@@ -483,9 +467,7 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputLabelTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(elementForLabel);
@@ -520,9 +502,7 @@ public class InputsTest extends BaseClass {
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(id);
         boxShadow = commonUtils.getCSSValue(element, "box-shadow");
@@ -561,9 +541,7 @@ public class InputsTest extends BaseClass {
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "infoMessage", "Info message", "errorMessage", "Error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(element);
@@ -607,9 +585,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(labelClass);
@@ -674,9 +650,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         Thread.sleep(500);
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
@@ -715,9 +689,7 @@ public class InputsTest extends BaseClass {
         }
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(showButtonId);
         Thread.sleep(2000);
@@ -744,9 +716,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom");
         paddingTop = commonUtils.getCSSValue(elem, "padding-top");
@@ -779,9 +749,8 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputUnderlineTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         commonUtils.click(elem);
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(underlineElementClass);
@@ -813,9 +782,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(labelClass);
@@ -875,10 +842,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         Thread.sleep(500);
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
@@ -920,9 +884,7 @@ public class InputsTest extends BaseClass {
         }
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(showButtonId);
         Thread.sleep(1000);
@@ -948,10 +910,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
-
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
         paddingRight = commonUtils.getCSSValue(elem, "padding-right");
@@ -1008,9 +967,8 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -1035,9 +993,7 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1065,9 +1021,8 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -1092,9 +1047,7 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1119,9 +1072,7 @@ public class InputsTest extends BaseClass {
     private void multiTextInputLabelTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(labelClass);
@@ -1156,9 +1107,7 @@ public class InputsTest extends BaseClass {
 
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Multi-line label", "inputState", inputState, "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(type);
         for (String cssProperty : borderWidths) {
@@ -1208,12 +1157,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container--fancy"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
@@ -1246,12 +1194,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-fancy-error"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
@@ -1284,12 +1231,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-fancy-disabled"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
@@ -1321,12 +1267,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-fancy-readonly"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
@@ -1350,12 +1295,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxLabelTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws InterruptedException, IOException {
+    private void fancySelectInputBoxLabelTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         labelColor = commonUtils.getCSSValue(label, "color");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height");
@@ -1391,12 +1335,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxMsgTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws InterruptedException, IOException {
+    private void fancySelectInputBoxMsgTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + msgType + "')", webElement);
@@ -1421,15 +1364,14 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Fancy Select Input in Focus Mode Test", dataProvider = "Fancy Select Input(Focus) Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputFocusTest(String type, String className, String id, String state, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws InterruptedException, IOException {
+    private void fancySelectInputFocusTest(String type, String className, String id, String state, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
@@ -1467,9 +1409,8 @@ public class InputsTest extends BaseClass {
     private void basicSelectInputTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container"));
         js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
@@ -1497,12 +1438,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-error"));
         js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
@@ -1530,12 +1470,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-disabled"));
         js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
@@ -1564,12 +1503,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className("pe-select-container-readonly"));
         js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
@@ -1593,12 +1531,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputBoxBorderTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws InterruptedException, IOException {
+    private void basicSelectInputBoxBorderTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
@@ -1641,13 +1578,12 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws InterruptedException, IOException {
+    private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
         // Select Input Label
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         labelColor = commonUtils.getCSSValue(label, "color");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height");
@@ -1679,15 +1615,14 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input(Focus) Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputFocusTest(String type, String state, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException, IOException {
+    private void basicSelectInputFocusTest(String type, String state, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
         commonUtils.focusOnElementById(type);
         Thread.sleep(1000);
         for (String cssProperty : borderWidths) {
@@ -1731,9 +1666,7 @@ public class InputsTest extends BaseClass {
     private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(element);
@@ -1779,9 +1712,7 @@ public class InputsTest extends BaseClass {
     private void checkboxNormalStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath("//span"));
@@ -1813,9 +1744,7 @@ public class InputsTest extends BaseClass {
         }
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath("//span"));
@@ -1847,10 +1776,7 @@ public class InputsTest extends BaseClass {
     private void checkboxDisabledStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath("//div[2]/span"));
@@ -1881,9 +1807,7 @@ public class InputsTest extends BaseClass {
     private void labelForCheckBoxTest(String id, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath(loc));
@@ -1917,9 +1841,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledSVGTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath(spanXpath));
@@ -1993,9 +1915,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledLabelTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath(labelXpath));
@@ -2028,9 +1948,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledRadioDivTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath(divXpath));
@@ -2050,9 +1968,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputWiWoValuesMobileTest(String type, By element, String[] expColor, String[] expFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -2072,9 +1988,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2089,9 +2004,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputErroredMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2106,9 +2020,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2123,9 +2036,8 @@ public class InputsTest extends BaseClass {
     private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2139,9 +2051,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputUnderlineMobileTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
@@ -2176,9 +2086,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -2198,9 +2106,7 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputMobileTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
         marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
@@ -2239,10 +2145,8 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputBordersMobileTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        commonUtils.getUrl(inputsUrl, "mobile");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
             isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
@@ -2267,9 +2171,7 @@ public class InputsTest extends BaseClass {
     private void basicSingleLineTextInputLabelMobileTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(elementForLabel);
@@ -2293,9 +2195,7 @@ public class InputsTest extends BaseClass {
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "infoMessage", "Info message", "errorMessage", "Error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(element);
@@ -2329,9 +2229,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(labelClass);
@@ -2386,9 +2284,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         Thread.sleep(500);
         showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
@@ -2414,9 +2310,7 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
         paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
@@ -2442,9 +2336,8 @@ public class InputsTest extends BaseClass {
     private void fancyPasswordInputUnderlineMobileTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         commonUtils.click(elem, "mobile");
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(underlineElementClass);
@@ -2466,9 +2359,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(labelClass);
@@ -2518,10 +2409,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         Thread.sleep(500);
         showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
@@ -2549,9 +2437,7 @@ public class InputsTest extends BaseClass {
     private void basicPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
         paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
@@ -2581,9 +2467,8 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2597,9 +2482,7 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
@@ -2614,9 +2497,8 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
@@ -2630,9 +2512,7 @@ public class InputsTest extends BaseClass {
     private void multiLineInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
@@ -2647,9 +2527,7 @@ public class InputsTest extends BaseClass {
     private void multiTextInputLabelMobileTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(labelClass);
@@ -2670,12 +2548,11 @@ public class InputsTest extends BaseClass {
 
     //Fancy - Select Input
     @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container--fancy"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
@@ -2689,12 +2566,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-fancy-error"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
@@ -2708,12 +2584,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-fancy-disabled"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
@@ -2727,12 +2602,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-fancy-readonly"));
         js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
@@ -2746,12 +2620,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxLabelMobileTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws InterruptedException, IOException {
+    private void fancySelectInputBoxLabelMobileTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
@@ -2770,12 +2643,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxMsgMobileTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws InterruptedException, IOException {
+    private void fancySelectInputBoxMsgMobileTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + msgType + "')", webElement);
@@ -2792,15 +2664,14 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Fancy Select Input in Focus Mode Test", dataProvider = "Fancy Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputFocusMobileTest(String type, String className, String id, String state, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws InterruptedException, IOException {
+    private void fancySelectInputFocusMobileTest(String type, String className, String id, String state, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws Exception {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
@@ -2821,12 +2692,11 @@ public class InputsTest extends BaseClass {
 
     //Basic - Select Input
     @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container"));
         js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
@@ -2840,12 +2710,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-error"));
         js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
@@ -2859,12 +2728,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-disabled"));
         js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
@@ -2878,12 +2746,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className("pe-select-container-readonly"));
         js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
@@ -2897,12 +2764,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputBoxBorderMobileTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws InterruptedException, IOException {
+    private void basicSelectInputBoxBorderMobileTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
@@ -2934,12 +2800,11 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws InterruptedException, IOException {
+    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         // Select Input Label
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
@@ -2964,15 +2829,14 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputFocusMobileTest(String type, String state, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException, IOException {
+    private void basicSelectInputFocusMobileTest(String type, String state, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws Exception {
         if (setAppium.equals("iOS")) {
             throw new SkipException("the focus-box shadow operation is not supported on iOS");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
         commonUtils.focusOnElementById(type, "mobile");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
@@ -3005,9 +2869,7 @@ public class InputsTest extends BaseClass {
     private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(element);
@@ -3026,9 +2888,7 @@ public class InputsTest extends BaseClass {
     private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath("//span"));
@@ -3047,10 +2907,7 @@ public class InputsTest extends BaseClass {
     private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath("//div[2]/span"));
@@ -3070,12 +2927,9 @@ public class InputsTest extends BaseClass {
         if (id.contains("focus")) {
             throw new SkipException("Focus operation tests not needed for mobile devices");
         }
-
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath(loc));
@@ -3097,9 +2951,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath(spanXpath));
@@ -3163,9 +3015,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath(labelXpath));
@@ -3188,9 +3038,7 @@ public class InputsTest extends BaseClass {
     private void radioButtonsUnselectedSelectedDisabledRadioDivMobileTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.getUrl(inputsUrl, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath(divXpath));
@@ -3241,10 +3089,7 @@ public class InputsTest extends BaseClass {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox")))) {
             throw new SkipException("Compounds-> Focus operation not yet supported in firefox/safari/ie browser drivers");
         }
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
-        commonUtils.changeConfig(inputsJSFilePath, testConfig);
-        commonUtils.printFileContents(inputsJSFilePath);
-        commonUtils.getUrl(inputsUrl);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains(errorMessage), true, "right error msg is NOT seen as per SPEC");
@@ -3310,6 +3155,18 @@ public class InputsTest extends BaseClass {
             finalConfig = finalFormat;
             return finalConfig;
         }
+    }
+
+    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
+        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
+        commonUtils.changeConfig(inputsJSFilePath, testConfig);
+        commonUtils.getUrl(inputsUrl);
+    }
+
+    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList, String mobile) throws Exception {
+        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
+        commonUtils.changeConfig(inputsJSFilePath, testConfig);
+        commonUtils.getUrl(inputsUrl, "mobile");
     }
 
     private String constructPath(String absolutePath) {
