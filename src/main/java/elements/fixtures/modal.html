@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/elements.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h2> Modals </h2>
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent"></script>
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
+
+<button id="button-modal-with-footer" , class="pe-btn__cta_t--btn_xlarge" onclick="toggleModal('modalPortalWithFooter')">ToggleModal With Footer</button>
+<div id="modalPortalWithFooter" class="modalPortal" style="display:none;">
+    <div class="modalOverlay">
+        <div id="modal-with-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog"
+             aria-label="Modal" aria-labelledby="modalContent">
+            <div id="modal-header" class="modalHeader">
+                <h2 id="modal-header-title-text" class="modalHeaderText pe-title">Terms and Conditions(Basic Title)</h2>
+            </div>
+            <div id="modal-body" class="modalBody" tabindex="0">
+                <p id="text-for-modal-with-footer">Lorem ipsum dolor sit amet</p>
+            </div>
+            <div class="modalFooter">
+                <button id="cancel-btn" class="modalCancel pe-btn--btn_large"
+                        onclick="toggleModal('modalPortalWithFooter')">Cancel
+                </button>
+                <button id="save-btn" class="modalSave pe-btn__cta_t--btn_large">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="button-modal-without-footer" class="pe-btn__primary--btn_xlarge" onclick="toggleModal('modalPortalWithoutFooter')">ToggleModal Without Footer </button>
+<div id="modalPortalWithoutFooter" class="modalPortal" style="display:none;">
+    <div class="modalOverlay">
+        <div id="modal-without-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog" aria-label="Modal"
+             aria-labelledby="modalContent">
+            <div id="modalHeader" class="modalHeader">
+                <button id="modal-close" class="modalClose pe-icon--btn" onclick="toggleModal('modalPortalWithoutFooter')">
+                    <svg class="pe-icon--remove-sm-24" focusable="false" role="img" aria-hidden="false"
+                         aria-labelledby="_3d82fc60-2926-11e7-8bd0-375a85c4a530">
+                        <title id="_3d82fc60-2926-11e7-8bd0-375a85c4a530">close dialog</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#remove-sm-24"></use>
+                    </svg>
+                </button>
+                <h2 id="modalHeaderText" class="modalHeaderText pe-title">Terms and Conditions (Basic Title)</h2>
+            </div>
+            <div id="modalBody1" class="modalBody" tabindex="0">
+                <p id="text-for-modal-without-footer">Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo, Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolorsit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibusdui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus  nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus <p/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function heightCalc() {
+        // apply padding based on clientHeight for first modal on the page...
+        var modalBody = document.getElementsByClassName('modalBody')[0];
+        var modalContent = document.getElementsByClassName('modalContent')[0];
+        var modalOverlay = document.getElementsByClassName('modalOverlay')[0];
+        var header = document.getElementsByClassName('modalHeader')[0];
+        var footer = document.getElementsByClassName('modalFooter')[0];
+
+        var windowHeight = window.innerHeight;
+        var contentHeight = modalContent.getBoundingClientRect().height;
+        var paddingHeight = (windowHeight - contentHeight) / 2;
+        var padding = paddingHeight > 60 ? paddingHeight : 60;
+        var headerHeight = header.getBoundingClientRect().height;
+        var footerHeight = footer ? footer.getBoundingClientRect().height : 0;
+
+        // apply padding based on clientHeight for second modal on the page...
+        var modalBody2 = document.getElementsByClassName('modalBody')[1];
+        var modalOverlay2 = document.getElementsByClassName('modalOverlay')[1];
+        var header2 = document.getElementsByClassName('modalHeader')[1];
+        var modalContent2 = document.getElementsByClassName('modalContent')[1];
+
+        var contentHeight2 = modalContent2.getBoundingClientRect().height;
+        var paddingHeight2 = (windowHeight - contentHeight2) / 2;
+        var padding2 = paddingHeight2 > 60 ? paddingHeight2 : 60;
+        var headerHeight2 = header2.getBoundingClientRect().height;
+
+        // calculate body max...
+        modalBody.style.maxHeight = windowHeight - (headerHeight + footerHeight + 120) + 'px';
+        modalOverlay.style.paddingTop = padding + 'px';
+        modalOverlay.style.paddingBottom = padding + 'px';
+
+        modalBody2.style.maxHeight = windowHeight - (headerHeight2 + 120) + 'px';
+        modalOverlay2.style.paddingTop = padding2 + 'px';
+        modalOverlay.style.paddingBottom = padding2 + 'px';
+
+        // conditional borders on modalbody if scrollbar is present...
+        modalBody.className = modalBody.clientHeight < modalBody.scrollHeight ? 'modalBody modalBody_border' : 'modalBody modalBody_border_normal';
+        modalBody2.className = modalBody2.clientHeight < modalBody2.scrollHeight ? 'modalBody modalBody_border' : 'modalBody modalBody_border_normal';
+    }
+
+    function toggleModal(target) {
+        var portal = document.getElementById(target);
+        var footerCloseButton = document.getElementsByClassName('modalCancel')[0];
+        var headerCloseButton = document.getElementsByClassName('modalClose')[1];
+
+        // toggle modal...
+        portal.style.display = portal.style.display === "none" ? "" : "none";
+
+        //*****MODAL OPEN**************
+        if (portal.style.display === "") {
+
+            // calulate max-height for modalBody
+            // and apply conditional scrollbars....
+            heightCalc();
+
+            // detect ESC KeyPress...
+            document.addEventListener("keyup", function (e) {
+                return e.keyCode == 27 ? portal.style.display = "none" : null;
+            });
+
+            // apply focus to close button...
+            headerCloseButton ? headerCloseButton.focus() : null;
+            footerCloseButton ? footerCloseButton.focus() : null;
+
+            // if open stop page underneath from scrolling...
+            document.body.style = "overflow:hidden;";
+        }
+
+        //*****MODAL CLOSED**************
+        portal.style.display === "none" ? document.body.style = "" : null;
+    }
+</script>
+</body>
+</html>

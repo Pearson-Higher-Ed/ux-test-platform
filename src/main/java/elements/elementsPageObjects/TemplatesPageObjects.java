@@ -29,6 +29,7 @@ public class TemplatesPageObjects {
     public By doubleColumnSidebarLeft = By.id("template-double-sidebar-left");
     // Static Column
     public By staticSmall = By.id("template-static-small");
+    public By staticMedium = By.id("template-static-medium");
     public By staticLarge = By.id("template-static-large");
     // Adjoin Default
     public By adjoinSingleColumn = By.id("template-single-adjoin");

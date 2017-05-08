@@ -48,6 +48,7 @@ public class BaseClass {
     public PresentationStrategiesPageObjects preStratPgObj = null;
     public IconsPageObjects iconPgObj = null;
     public CompoundsIconsPageObjects compIconsPgObj = null;
+    public ModalPageObjects modalPgObj = null;
     public AppHeaderPageObjects appHeaderPgObj = null;
     public ContextualHelpPageObjects conxHelpPgObj = null;
     public DrawerPageObjects drawerPgObj = null;
@@ -101,7 +102,7 @@ public class BaseClass {
                 caps.setCapability("version", sauceBrowserVer);
                 caps.setCapability("maxDuration", "10800");
                 if (platform.startsWith("Windows")) {
-                    caps.setCapability("screenResolution", "1280x1024");
+                    caps.setCapability("screenResolution", "2560x1600");
                 } else if (platform.startsWith("OS X")) {
                     caps.setCapability("screenResolution", "2048x1536");
                 }
@@ -179,6 +180,7 @@ public class BaseClass {
             preStratPgObj = new PresentationStrategiesPageObjects(driver);
             iconPgObj = new IconsPageObjects(driver);
             compIconsPgObj = new CompoundsIconsPageObjects(driver);
+            modalPgObj = new ModalPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
@@ -208,6 +210,7 @@ public class BaseClass {
             preStratPgObj = new PresentationStrategiesPageObjects(appium);
             iconPgObj = new IconsPageObjects(appium);
             compIconsPgObj = new CompoundsIconsPageObjects(appium);
+            modalPgObj = new ModalPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);
