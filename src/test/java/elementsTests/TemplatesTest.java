@@ -38,6 +38,10 @@ public class TemplatesTest extends BaseClass {
                 {479, 800, templatePgObj.doubleColumnMainLeft, "10px", "10px", new String[]{"479px"}, "0px", "0px"},
                 {479, 800, templatePgObj.doubleColumnSidebarLeft, "10px", "10px", new String[]{"479px"}, "40px", "0px"},
 
+                {479, 800, templatePgObj.tripleColumnFirstColumn, "10px", "10px", new String[]{"479px"}, "40px", "0px"},
+                {479, 800, templatePgObj.tripleColumnMiddleColumn, "10px", "10px", new String[]{"479px"}, "40px", "0px"},
+                {479, 800, templatePgObj.tripleColumnLastColumn, "10px", "10px", new String[]{"479px"}, "0px", "0px"},
+
                 {479, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"479px"}, "0px", "0px"},
                 {479, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"479px"}, "0px", "0px"},
 
@@ -92,6 +96,10 @@ public class TemplatesTest extends BaseClass {
 
                 {480, 800, templatePgObj.doubleColumnMainLeft, "20px", "20px", new String[]{"480px"}, "0px", "0px"},
                 {480, 800, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", new String[]{"480px"}, "40px", "0px"},
+
+                {480, 800, templatePgObj.tripleColumnFirstColumn, "20px", "20px", new String[]{"480px"}, "40px", "0px"},
+                {480, 800, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", new String[]{"480px"}, "40px", "0px"},
+                {480, 800, templatePgObj.tripleColumnLastColumn, "20px", "20px", new String[]{"480px"}, "0px", "0px"},
 
                 {480, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"399.984px", "400px", "399.984375px"}, "0px", "0px"},
                 {480, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"399.984px", "400px", "399.984375px"}, "0px", "0px"},
@@ -149,6 +157,10 @@ public class TemplatesTest extends BaseClass {
                 {768, 800, templatePgObj.doubleColumnMainLeft, "20px", "20px", new String[]{"768px"}, "0px", "0px"},
                 {768, 800, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", new String[]{"768px"}, "40px", "0px"},
 
+                {768, 800, templatePgObj.tripleColumnFirstColumn, "20px", "0px", new String[]{"256px"}, "0px", "0px"},
+                {768, 800, templatePgObj.tripleColumnMiddleColumn, "10px", "10px", new String[]{"256px"}, "0px", "0px"},
+                {768, 800, templatePgObj.tripleColumnLastColumn, "0px", "20px", new String[]{"256px"}, "0px", "0px"},
+
                 {768, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"639.984px", "640px", "639.984375px"}, "0px", "0px"},
                 {768, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"639.984px", "640px", "639.984375px"}, "0px", "0px"},
 
@@ -205,6 +217,10 @@ public class TemplatesTest extends BaseClass {
                 {1024, 800, templatePgObj.doubleColumnMainLeft, "40px", "40px", new String[]{"682.656px", "682.667px", "682px", "682.65625px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
 
+                {1024, 800, templatePgObj.tripleColumnFirstColumn, "40px", "0px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
+                {1024, 800, templatePgObj.tripleColumnLastColumn, "0px", "40px", new String[]{"341.328px", "341.317px", "341px", "341.328125px"}, "0px", "0px"},
+
                 {1024, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"480px"}, "0px", "0px"},
                 {1024, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"800px"}, "0px", "0px"},
 
@@ -260,6 +276,10 @@ public class TemplatesTest extends BaseClass {
 
                 {1140, 800, templatePgObj.doubleColumnMainLeft, "40px", "40px", new String[]{"760px", "759px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", new String[]{"379.984px", "379.983px", "379px", "379.984375px"}, "0px", "0px"},
+
+                {1140, 800, templatePgObj.tripleColumnFirstColumn, "40px", "0px", new String[]{"380px", "379px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", new String[]{"380px", "379px"}, "0px", "0px"},
+                {1140, 800, templatePgObj.tripleColumnLastColumn, "0px", "40px", new String[]{"380px", "379px"}, "0px", "0px"},
 
                 {1140, 800, templatePgObj.staticSmall, "0px", "0px", new String[]{"480px"}, "0px", "0px"},
                 {1140, 800, templatePgObj.staticLarge, "0px", "0px", new String[]{"800px"}, "0px", "0px"},
@@ -320,6 +340,10 @@ public class TemplatesTest extends BaseClass {
                 {ScreenOrientation.PORTRAIT, templatePgObj.doubleColumnMainLeft, "10px", "10px", "414px", "0px", "0px"},
                 {ScreenOrientation.PORTRAIT, templatePgObj.doubleColumnSidebarLeft, "10px", "10px", "414px", "40px", "0px"},
 
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnFirstColumn, "10px", "10px", "414px", "40px", "0px"},
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnMiddleColumn, "10px", "10px", "414px", "40px", "0px"},
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnLastColumn, "10px", "10px", "414px", "0px", "0px"},
+
                 {ScreenOrientation.PORTRAIT, templatePgObj.staticSmall, "0px", "0px", "414px", "0px", "0px"},
                 {ScreenOrientation.PORTRAIT, templatePgObj.staticLarge, "0px", "0px", "414px", "0px", "0px"},
 
@@ -375,6 +399,10 @@ public class TemplatesTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnMainLeft, "20px", "20px", "736px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", "736px", "40px", "0px"},
 
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnFirstColumn, "20px", "20px", "736px", "40px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", "736px", "40px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnLastColumn, "20px", "20px", "736px", "0px", "0px"},
+
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticSmall, "0px", "0px", "613.328125px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticLarge, "0px", "0px", "613.328125px", "0px", "0px"},
 
@@ -429,6 +457,10 @@ public class TemplatesTest extends BaseClass {
 
                 {ScreenOrientation.PORTRAIT, templatePgObj.doubleColumnMainLeft, "20px", "20px", "768px", "0px", "0px"},
                 {ScreenOrientation.PORTRAIT, templatePgObj.doubleColumnSidebarLeft, "20px", "20px", "768px", "40px", "0px"},
+
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnFirstColumn, "20px", "0px", "256px", "0px", "0px"},
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnMiddleColumn, "10px", "10px", "256px", "0px", "0px"},
+                {ScreenOrientation.PORTRAIT, templatePgObj.tripleColumnLastColumn, "0px", "20px", "256px", "0px", "0px"},
 
                 {ScreenOrientation.PORTRAIT, templatePgObj.staticSmall, "0px", "0px", "639.984375px", "0px", "0px"},
                 {ScreenOrientation.PORTRAIT, templatePgObj.staticLarge, "0px", "0px", "639.984375px", "0px", "0px"},
@@ -486,6 +518,10 @@ public class TemplatesTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnMainLeft, "40px", "40px", "682.65625px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", "341.328125px", "0px", "0px"},
 
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnFirstColumn, "40px", "0px", "341.328px", "0px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", "341.328px", "0px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnLastColumn, "0px", "40px", "341.328px", "0px", "0px"},
+
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticSmall, "0px", "0px", "480px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticLarge, "0px", "0px", "800px", "0px", "0px"},
 
@@ -540,6 +576,10 @@ public class TemplatesTest extends BaseClass {
 
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnMainLeft, "40px", "40px", "910.65625px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.doubleColumnSidebarLeft, "40px", "0px", "455.328125px", "0px", "0px"},
+
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnFirstColumn, "40px", "0px", "380px", "0px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnMiddleColumn, "20px", "20px", "380px", "0px", "0px"},
+                {ScreenOrientation.LANDSCAPE, templatePgObj.tripleColumnLastColumn, "0px", "40px", "380px", "0px", "0px"},
 
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticSmall, "0px", "0px", "480px", "0px", "0px"},
                 {ScreenOrientation.LANDSCAPE, templatePgObj.staticLarge, "0px", "0px", "800px", "0px", "0px"},

@@ -49,5 +49,10 @@ public class TemplatesPageObjects {
     public By largeSpaceSingleColumnBottom = By.id("template-single-largegap-bottom");
     public By largeDoubleTemplate = By.id("template-double-largegap");
 
+    // Triple Column
+    public By tripleColumnFirstColumn = By.id("template-triple-first");
+    public By tripleColumnMiddleColumn = By.id("template-triple-second");
+    public By tripleColumnLastColumn = By.id("template-triple-third");
+
 }
 
