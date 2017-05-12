@@ -43,7 +43,7 @@ public class DropdownTest extends BaseClass {
     JavascriptExecutor js = null;
     WebElement element = null;
     private final String errorColorCode = "\u001B[31m";
-    final static Logger log = Logger.getLogger(InputsTest.class.getName());
+    final static Logger log = Logger.getLogger(DropdownTest.class.getName());
 
     @BeforeClass(alwaysRun = true)
     private void InputsTestBeforeClass() {
