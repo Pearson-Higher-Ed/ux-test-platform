@@ -32,6 +32,8 @@ public class DropdownTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
     private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "";
+    private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
+    private final String incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
     boolean isCSSProperty = false, isBackgroundColor = false, result = false;
     private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
@@ -574,7 +576,7 @@ public class DropdownTest extends BaseClass {
         commonUtils.replaceLineInAFile(dropdownJSFilePath, "elementId:'dropdown-target',", "elementId: 'xyz-target',");
         commonUtils.getUrl(dropdownUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectElementIdErrorMsg), true, incorrectElementIdErrorMsg+ "error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
         Assert.assertTrue(result);
     }
@@ -589,7 +591,7 @@ public class DropdownTest extends BaseClass {
         commonUtils.replaceLineInAFile(dropdownJSFilePath, "componentName:'Dropdown'", "componentName: 'xyz',");
         commonUtils.getUrl(dropdownUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains("type is invalid "), true, "'type is invalid' error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectComponentNameErrorMsg), true, incorrectComponentNameErrorMsg+" error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
         Assert.assertTrue(result);
     }

@@ -46,6 +46,9 @@ public class ModalTest extends BaseClass {
 
         backgroundColor = commonUtils.getCSSValue(modalPgObj.modalOverlay, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{"rgba(25, 25, 25, 0.6)", "rgb(25, 25, 25, 0.6)"});
+        if (!isBackgroundColor) {
+            log.info("'background color for modal overlay is not as per the spec, actual: " + backgroundColor);
+        }
         Assert.assertTrue(isBackgroundColor);
     }
 
@@ -111,14 +114,14 @@ public class ModalTest extends BaseClass {
     @DataProvider(name = "Modal Header Text Test Data")
     private Object[][] getModalHeaderTextTestData() {
         return new Object[][]{
-                {"md", 768, 800, modalPgObj.modalHeaderTitleText, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"24px"}, new String[]{"28px"}, new String[]{"0px"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 800, modalPgObj.modalHeaderTitleText, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"20px"}, new String[]{"26px"}, new String[]{"0px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, modalPgObj.modalHeaderTitleText, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"20px"}, new String[]{"26px"}, new String[]{"0px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"md", 768, 800, modalPgObj.modalHeaderTitleText, new String[]{"0px", "0px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"24px"}, new String[]{"28px"}, new String[]{"0px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 800, modalPgObj.modalHeaderTitleText, new String[]{"0px", "0px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"20px"}, new String[]{"26px"}, new String[]{"0px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"xs", 320, 800, modalPgObj.modalHeaderTitleText, new String[]{"0px", "0px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"20px"}, new String[]{"26px"}, new String[]{"0px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
         };
     }
 
     @Test(testName = "Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "desktop-regression")
-    private void modalHeaderTextTest(String size, int width, int height, By modalHeaderTextElement, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String device, ScreenOrientation mode) {
+    private void modalHeaderTextTest(String size, int width, int height, By modalHeaderTextElement, String[] expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String device, ScreenOrientation mode) {
         commonUtils.click(modalPgObj.buttonModalWithFooter);
         commonUtils.setWindowSize(width, height);
         color = commonUtils.getCSSValue(modalHeaderTextElement, "color");
@@ -144,6 +147,15 @@ public class ModalTest extends BaseClass {
             log.info("'modal header text' - margin-bottom for " + size + " is not as per the spec, actual: " + marginBottom);
         }
         Assert.assertTrue(isColor && isFontSize && isLineHeight && isMarginBottom);
+
+        for (int i = 0; i < margins.length; i++) {
+            margin = commonUtils.getCSSValue(modalHeaderTextElement, margins[i]);
+            isMargin = commonUtils.assertValue(margin, expMarginValue[i], margins[i] + " for " + size + " size is not as per the spec");
+            if (!isMargin) {
+                log.info("'modal header text - " + margins[i] + " for " + size + " is not as per the spec, actual: " + margin);
+            }
+            Assert.assertTrue(isMargin);
+        }
     }
 
     //Modal body
@@ -164,7 +176,7 @@ public class ModalTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(modalBodyElement, "font-size");
         lineHeight = commonUtils.getCSSValue(modalBodyElement, "line-height");
         outlineStyle = commonUtils.getCSSValue(modalBodyElement, "outline-style");
-        color = commonUtils.getCSSValue(modalBodyWithFooterTextElement, "color");
+        color = commonUtils.getCSSValue(modalBodyElement, "color");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -291,12 +303,12 @@ public class ModalTest extends BaseClass {
                 {"md", 768, 800, "'cancel'", modalPgObj.modalCancelBtn, "auto", new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {"sm", 480, 800, "'cancel'", modalPgObj.modalCancelBtn, "auto", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
                 {"sm", 480, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, "'cancel'", modalPgObj.modalCancelBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto","50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
-                {"xs", 320, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto","50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
+                {"xs", 320, 800, "'cancel'", modalPgObj.modalCancelBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto", "50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"xs", 320, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto", "50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
         };
     }
 
-    @Test(testName = "", dataProvider = "Modal Buttons Test Data", groups = "desktop-regression")
+    @Test(testName = "Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "desktop-regression")
     private void buttonsInModalTest(String size, int windowWidth, int windowHeight, String type, By buttonElement, String expOutlineStyle, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String device, ScreenOrientation mode) throws Exception {
         commonUtils.click(modalPgObj.buttonModalWithFooter);
         commonUtils.setWindowSize(windowWidth, windowHeight);
@@ -449,7 +461,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regression")
-    private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String device, ScreenOrientation mode) {
+    private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[] expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -478,6 +490,15 @@ public class ModalTest extends BaseClass {
             log.info("'modal header text' - margin-bottom for " + size + " is not as per the spec, actual: " + marginBottom);
         }
         Assert.assertTrue(isColor && isFontSize && isLineHeight && isMarginBottom);
+
+        for (int i = 0; i < margins.length; i++) {
+            margin = commonUtils.getCSSValue(modalHeaderTextElement, margins[i]);
+            isMargin = commonUtils.assertValue(margin, expMarginValue[i], margins[i] + " for " + size + " size is not as per the spec");
+            if (!isMargin) {
+                log.info("'modal header text - " + margins[i] + " for " + size + " is not as per the spec, actual: " + margin);
+            }
+            Assert.assertTrue(isMargin);
+        }
     }
 
     @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regression")
