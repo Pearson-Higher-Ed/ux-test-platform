@@ -287,9 +287,9 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    //Torquise buttons
-    @DataProvider(name = "Torquise Button Test Data")
-    public Object[][] getTorquiseButtonTestData() {
+    //turquoise buttons
+    @DataProvider(name = "turquoise Button Test Data")
+    public Object[][] getturquoiseButtonTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
                 {"background-color", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}},
@@ -325,63 +325,63 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Torquise Button Test", dataProvider = "Torquise Button Test Data", groups = {"desktop-regression"})
-    private void torquiseButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.torquiseBtn, cssProperty);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Torquise button is not as per the spec, actual: " + cssProperty);
+            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
 
-    @DataProvider(name = "Torquise Button-Hover state Test Data")
-    public Object[][] getTorquiseButtonHoverStateTestData() {
+    @DataProvider(name = "turquoise Button-Hover state Test Data")
+    public Object[][] getturquoiseButtonHoverStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
                 {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
         };
     }
 
-    @Test(testName = "Verify Torquise Button Test-Hover state", dataProvider = "Torquise Button-Hover state Test Data", groups = {"desktop-regression"})
-    private void torquiseButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Verify turquoise Button Test-Hover state", dataProvider = "turquoise Button-Hover state Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
         }
         String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(btnPgObj.torquiseBtnHover);
-        cssProperty = commonUtils.getCSSValue(btnPgObj.torquiseBtnHover, cssProperty);
+        commonUtils.hoverOnElement(btnPgObj.turquoiseBtnHover);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtnHover, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Torquise Hovered button is not as per the spec, actual: " + cssProperty);
+            log.info("'" + cssPropertyType + "' :for turquoise Hovered button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
 
-    @DataProvider(name = "Torquise Button-Focus state Test Data")
-    public Object[][] getTorquiseButtonFocusStateTestData() {
+    @DataProvider(name = "turquoise Button-Focus state Test Data")
+    public Object[][] getturquoiseButtonFocusStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
                 {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
         };
     }
 
-    @Test(testName = "Verify Torquise Button Test-Focus state", dataProvider = "Torquise Button-Focus state Test Data", groups = {"desktop-regression"})
-    private void torquiseButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Verify turquoise Button Test-Focus state", dataProvider = "turquoise Button-Focus state Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
         }
         String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("torquise-btn");
-        cssProperty = commonUtils.getCSSValue(btnPgObj.torquiseBtn, cssProperty);
+        commonUtils.focusOnElementById("turquoise-btn");
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Torquise Focus state button is not as per the spec, actual: " + cssProperty);
+            log.info("'" + cssPropertyType + "' :for turquoise Focus state button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
-    //No disabled state for Torquise button
+    //No disabled state for turquoise button
 
     //CTA buttons
     @DataProvider(name = "CTA Button Test Data")
@@ -477,7 +477,7 @@ public class ButtonsTest extends BaseClass {
         }
         Assert.assertTrue(isCSSProperty);
     }
-    //No disabled state for Torquise button
+    //No disabled state for turquoise button
 
     //Link buttons
     @DataProvider(name = "Link Button Test Data")
@@ -734,6 +734,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getSmallButtonWithCTATestData() {
         return new Object[][]{
                 {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"28px"}},
+                {"small-with-turquoise", btnPgObj.smallBtnWithTurquoise, new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"28px"}},
                 {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"44px"}},
                 {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{"36px"}}
         };
@@ -815,16 +816,16 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Torquise Button Test", dataProvider = "Torquise Button Test Data", groups = {"mobile-regression"})
-    private void torquiseButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"mobile-regression"})
+    private void turquoiseButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         if (cssProperty.equals("text-decoration-line")) {
             cssProperty = "text-decoration";
         }
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.torquiseBtn, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Torquise button is not as per the spec, actual: " + cssProperty);
+            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
