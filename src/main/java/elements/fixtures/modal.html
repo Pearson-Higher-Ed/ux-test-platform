@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<body id="body">
 <h2> Modals </h2>
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent"></script>
 <script>
@@ -28,12 +28,11 @@
 <button id="button-modal-with-footer" , class="pe-btn__cta_t--btn_xlarge" onclick="toggleModal('modalPortalWithFooter')">ToggleModal With Footer</button>
 <div id="modalPortalWithFooter" class="modalPortal" style="display:none;">
     <div class="modalOverlay">
-        <div id="modal-with-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog"
-             aria-label="Modal" aria-labelledby="modalContent">
+        <div id="modal-with-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog" aria-label="Modal">
             <div id="modal-header" class="modalHeader">
                 <h2 id="modal-header-title-text" class="modalHeaderText pe-title">Terms and Conditions(Basic Title)</h2>
             </div>
-            <div id="modal-body" class="modalBody" tabindex="0">
+            <div id="modal-body" class="modalBody">
                 <p id="text-for-modal-with-footer">Lorem ipsum dolor sit amet</p>
             </div>
             <div class="modalFooter">
@@ -49,20 +48,18 @@
 <button id="button-modal-without-footer" class="pe-btn__primary--btn_xlarge" onclick="toggleModal('modalPortalWithoutFooter')">ToggleModal Without Footer </button>
 <div id="modalPortalWithoutFooter" class="modalPortal" style="display:none;">
     <div class="modalOverlay">
-        <div id="modal-without-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog" aria-label="Modal"
-             aria-labelledby="modalContent">
+        <div id="modal-without-footer-template" class="pe-template__static-medium modalContent" tabindex="-1" role="dialog" aria-label="Modal">
             <div id="modalHeader" class="modalHeader">
                 <button id="modal-close" class="modalClose pe-icon--btn" onclick="toggleModal('modalPortalWithoutFooter')">
-                    <svg class="pe-icon--remove-sm-24" focusable="false" role="img" aria-hidden="false"
-                         aria-labelledby="_3d82fc60-2926-11e7-8bd0-375a85c4a530">
+                    <svg class="pe-icon--remove-sm-24" focusable="false" role="img" aria-labelledby="_3d82fc60-2926-11e7-8bd0-375a85c4a530">
                         <title id="_3d82fc60-2926-11e7-8bd0-375a85c4a530">close dialog</title>
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#remove-sm-24"></use>
+                        <use xlink:href="#remove-sm-24"></use>
                     </svg>
                 </button>
                 <h2 id="modalHeaderText" class="modalHeaderText pe-title">Terms and Conditions (Basic Title)</h2>
             </div>
-            <div id="modalBody1" class="modalBody" tabindex="0">
-                <p id="text-for-modal-without-footer">Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo, Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolorsit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibusdui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus  nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus <p/>
+            <div id="modalBody1" class="modalBody">
+                <p id="text-for-modal-without-footer">Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo, Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolorsit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibusdui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus  nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus nibus dui sapien finibus justo,Lorem ipsum dolor sit amet, dui sapien finibus justo, vel tempus dolor tortor eu leo. dui sapien finibus </p>
             </div>
         </div>
     </div>

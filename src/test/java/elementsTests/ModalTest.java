@@ -684,6 +684,25 @@ public class ModalTest extends BaseClass {
         }
     }
 
+//    //Scroll test
+//    @Test(groups = "desktop-regression1")
+//    private void scrollTest() throws Exception{
+//        commonUtils.click(modalPgObj.buttonModalWithoutFooter);
+//        Thread.sleep(1000);
+//        //Check If vertical scroll Is present or not.
+//        js = (JavascriptExecutor) driver;
+//        element = driver.findElement(By.id("body"));
+//        Boolean b2 = (Boolean) js.executeScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;", element);
+//        System.out.println(b2);
+//
+//        Thread.sleep(1000);
+//        commonUtils.click(modalPgObj.modalCloseButton);
+//        js = (JavascriptExecutor) driver;
+//        element = driver.findElement(By.id("body"));
+//        Boolean b3 = (Boolean) js.executeScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;", element);
+//        System.out.println(b3);
+//    }
+
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
