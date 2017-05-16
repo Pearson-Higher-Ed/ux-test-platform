@@ -287,6 +287,102 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
+    //turquoise buttons
+    @DataProvider(name = "turquoise Button Test Data")
+    public Object[][] getturquoiseButtonTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}},
+                {"background-image", new String[]{"none"}},
+
+                {"border-top-style", new String[]{"none"}},
+                {"border-bottom-style", new String[]{"none"}},
+                {"border-left-style", new String[]{"none"}},
+                {"border-right-style", new String[]{"none"}},
+
+                {"border-bottom-left-radius", new String[]{"2px"}},
+                {"border-bottom-right-radius", new String[]{"2px"}},
+                {"border-top-left-radius", new String[]{"2px"}},
+                {"border-top-right-radius", new String[]{"2px"}},
+
+                {"text-decoration-line", new String[]{"none"}},
+                {"text-overflow", new String[]{"ellipsis"}},
+                {"white-space", new String[]{"nowrap"}},
+                {"overflow-x", new String[]{"hidden"}},
+                {"overflow-y", new String[]{"hidden"}},
+
+                {"display", new String[]{"inline-block"}},
+                {"vertical-align", new String[]{"middle"}},
+                {"cursor", new String[]{"pointer"}},
+                {"font-size", new String[]{"14px", "13.93px"}},
+                {"height", new String[]{"28px"}},
+                {"line-height", new String[]{"28px"}},
+
+                {"padding-top", new String[]{"0px"}},
+                {"padding-bottom", new String[]{"0px"}},
+                {"padding-left", new String[]{"12px"}},
+                {"padding-right", new String[]{"12px"}}
+        };
+    }
+
+    @Test(testName = "Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "turquoise Button-Hover state Test Data")
+    public Object[][] getturquoiseButtonHoverStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
+        };
+    }
+
+    @Test(testName = "Verify turquoise Button Test-Hover state", dataProvider = "turquoise Button-Hover state Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.hoverOnElement(btnPgObj.turquoiseBtnHover);
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtnHover, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for turquoise Hovered button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @DataProvider(name = "turquoise Button-Focus state Test Data")
+    public Object[][] getturquoiseButtonFocusStateTestData() {
+        return new Object[][]{
+                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
+        };
+    }
+
+    @Test(testName = "Verify turquoise Button Test-Focus state", dataProvider = "turquoise Button-Focus state Test Data", groups = {"desktop-regression"})
+    private void turquoiseButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
+            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
+        }
+        String cssPropertyType = cssProperty;
+        commonUtils.focusOnElementById("turquoise-btn");
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for turquoise Focus state button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+    //No disabled state for turquoise button
+
     //CTA buttons
     @DataProvider(name = "CTA Button Test Data")
     public Object[][] getCTAButtonTestData() {
@@ -381,7 +477,7 @@ public class ButtonsTest extends BaseClass {
         }
         Assert.assertTrue(isCSSProperty);
     }
-    //No disabled state for CTA button
+    //No disabled state for turquoise button
 
     //Link buttons
     @DataProvider(name = "Link Button Test Data")
@@ -638,6 +734,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getSmallButtonWithCTATestData() {
         return new Object[][]{
                 {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"28px"}},
+                {"small-with-turquoise", btnPgObj.smallBtnWithTurquoise, new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"28px"}},
                 {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"44px"}},
                 {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{"36px"}}
         };
@@ -719,6 +816,20 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
+    @Test(testName = "Mobile: Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"mobile-regression"})
+    private void turquoiseButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        if (cssProperty.equals("text-decoration-line")) {
+            cssProperty = "text-decoration";
+        }
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty, "mobile");
+        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
     @Test(testName = "Mobile: Verify CTA Button Test", dataProvider = "CTA Button Test Data", groups = {"mobile-regression"})
     private void ctaButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         if (cssProperty.equals("text-decoration-line")) {
@@ -781,36 +892,6 @@ public class ButtonsTest extends BaseClass {
         isCursor = commonUtils.assertValue(cursor, expCursor, "Cursor of " + type + " is not as per spec");
 
         Assert.assertTrue(isColor && isBackgroundColor && isBackgrounImg && isTextDecoration && isCursor);
-    }
-
-    @Test(testName = "Mobile: Verify Link Button Test-Hover state", dataProvider = "Link Button-Hover state Test Data", groups = {"mobile-regression"})
-    private void linkButtonHoverStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (device.equals("iOS")) {
-            throw new SkipException("Hover operation not yet supported in iOS appium drivers");
-        }
-        String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(btnPgObj.linkBtnHover, "mobile");
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtnHover, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link Hovered button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Link Button 2.0 Test-Hover state", dataProvider = "Link Button 2.0 -Hover and Focus state Test Data", groups = {"mobile-regression"})
-    private void linkButton2HoverStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (device.equals("iOS")) {
-            throw new SkipException("Hover operation not yet supported in iOS appium drivers");
-        }
-        String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(btnPgObj.linkBtn2, "mobile");
-        cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn2, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Link Hovered button 2.0 is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
     }
 
     @Test(testName = "Mobile: Verify Small Button Test", dataProvider = "Small Button Test Data", groups = {"mobile-regression"})

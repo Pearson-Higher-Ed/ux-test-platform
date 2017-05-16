@@ -2222,26 +2222,6 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
     }
 
-    @Test(testName = "Mobile : Fancy Select Input in Focus Mode Test", dataProvider = "Fancy Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputFocusMobileTest(String type, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws InterruptedException {
-        if (setAppium.equals("iOS")) {
-            throw new SkipException("the focus-box shadow operation is not supported on iOS");
-        }
-        commonUtils.focusOnElementById(type, "mobile");
-        bgColor = commonUtils.getCSSValue(underLine, "background-color", "mobile");
-        height = commonUtils.getCSSValue(underLine, "height", "mobile");
-        marginTop = commonUtils.getCSSValue(underLine, "margin-top", "mobile");
-
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBgColor) {
-            log.info("The underline background-color of " + type + " is not as per spec, actual " + bgColor);
-        }
-        isHeight = commonUtils.assertValue(height, expHeight, "height of underline for " + type + " is not as per spec");
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin Top of underline for " + type + " is not as per spec");
-
-        Assert.assertTrue(isBgColor && isHeight && isMarginTop);
-    }
-
     //Basic - Select Input
     @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
     private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
@@ -2341,38 +2321,6 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
-    @Test(testName = "Mobile : Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputFocusMobileTest(String type, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws InterruptedException {
-        if (setAppium.equals("iOS")) {
-            throw new SkipException("the focus-box shadow operation is not supported on iOS");
-        }
-        commonUtils.focusOnElementById(type, "mobile");
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-            if (!isBorderColor) {
-                log.info("Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
-            }
-            Assert.assertTrue(isBorderColor);
-        }
-        boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
-        if (!isBoxShadow) {
-            log.info("Box-shadow of " + type + " (Focus) is not as per spec, actual " + boxShadow);
-        }
-        Assert.assertTrue(isBoxShadow);
-    }
-
     //Check Box
     @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "mobile-regression")
     private void checkboxNormalStateMobileTest(String cssProperty, String[] expectedCSSValue) {
@@ -2385,25 +2333,13 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "mobile-regression")
-    private void checkboxFocusStateMobileTest(String cssProperty, String[] expectedCSSValue) {
-        String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("checkboxInput-state", "mobile");
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
     @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
     private void checkboxDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+            log.info("'" + cssPropertyType + "' :for checkbox in disabled state is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
@@ -2430,7 +2366,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
     private void labelForCheckBoxMobileTest(String type, By element, String[] expPaddingLeft, String expDisplay) {
         if (type.contains("focus")) {
-            commonUtils.focusOnElementById(type, "mobile");
+            throw new SkipException("Don't have to test focus operations on mobile");
         }
         paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
         isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
