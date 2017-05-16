@@ -58,7 +58,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = {"desktop-ci","desktop-regression"})
     private void h1h2h3h4h5Test(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
@@ -91,7 +91,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Para properties", dataProvider = "para Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify Para properties", dataProvider = "para Test Data", groups = {"desktop-ci","desktop-regression"})
     private void paraTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
@@ -108,7 +108,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Copy Properties", dataProvider = "copy Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify Copy Properties", dataProvider = "copy Test Data", groups = {"desktop-ci","desktop-regression"})
     private void copyTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor);
         Assert.assertTrue(result);
@@ -139,7 +139,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = {"desktop-ci","desktop-regression"})
     private void pageTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -161,7 +161,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = {"desktop-ci","desktop-regression"})
     private void sectionTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -183,7 +183,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Label properties", dataProvider = "label Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify Label properties", dataProvider = "label Test Data", groups = {"desktop-ci","desktop-regression"})
     private void labelTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
