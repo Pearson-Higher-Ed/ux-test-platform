@@ -38,6 +38,7 @@ script:
 notifications:
   email:
     recipients:
+    - eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
