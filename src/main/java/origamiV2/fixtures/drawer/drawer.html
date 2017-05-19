@@ -6,12 +6,13 @@
     <title></title>
 </head>
 <body>
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 <script src="../../jsfiles/drawer/dist.drawer.js"></script>
 <script src="../../jsfiles/drawer/drawer.js"></script>
 
 <!-- Drawers -->
-<div data-o-component="o-drawer" id="left-drawer-demo" class="o-drawer-animated">
-    <a id="close-link-in-left-drawer" href="#left-drawer-demo" data-toggle="o-drawer">close</a><br>
+<div data-o-component="o-drawer" id="left-drawer-demo" class="o-drawer-animated o-drawer o-drawer-left">
+    <button type="button" id="close-link-in-left-drawer" data-target="#left-drawer-demo" data-close="o-drawer">close</button>
     <h2>Hello Left Drawer</h2>
     <p>Drawer stuffs... just a Drawer, being a Drawer, doing Drawer things. <a id="random-link-in-left-drawer" href="#foo">Random link</a> and many other things.</p>
     <label for="focusables-input-in-left-drawer" style="display:block;">Bar: </label><input type="text" id="focusables-input-in-left-drawer" value="focusables">
@@ -22,10 +23,11 @@
     Other Left Drawer
 </div>
 
-<div data-o-component="o-drawer" id="right-drawer-demo" class="o-drawer-right o-drawer-animated">
-    <a id="close-link-in-right-drawer" href="#right-drawer-demo" data-toggle="o-drawer">close</a><br>
+<div data-o-component="o-drawer" id="right-drawer-demo" class="o-drawer-right o-drawer-animated o-drawer">
+    <button type="button" id="close-link-in-right-drawer" data-target="#right-drawer-demo" data-close="o-drawer">close</button>
     <h2>Hello Right Drawer</h2>
     <p>Drawer stuffs... just a Drawer, being a Drawer, doing Drawer things. <a id="random-link-in-right-drawer" href="#foo">Random link</a> and many other things.</p>
+
     <label for="focusables-input-in-right-drawer" style="display:block;">Bar: </label><input type="text" id="focusables-input-in-right-drawer" value="focusables">
 </div>
 
