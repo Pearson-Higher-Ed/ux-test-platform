@@ -288,8 +288,8 @@ public class ModalTest extends BaseClass {
     private Object[][] getModalButtonsTestData() {
         return new Object[][]{
                 {"md", 768, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"md", 768, 800, "'cancel'", modalPgObj.modalCancelBtn, "none", new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 800, "'cancel'", modalPgObj.modalCancelBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"md", 768, 800, "'cancel'", modalPgObj.modalCancelBtn, "auto", new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 800, "'cancel'", modalPgObj.modalCancelBtn, "auto", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
                 {"sm", 480, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
                 {"xs", 320, 800, "'cancel'", modalPgObj.modalCancelBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto","50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
                 {"xs", 320, 800, "'save'", modalPgObj.modalSaveBtn, "none", new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto","50%"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
