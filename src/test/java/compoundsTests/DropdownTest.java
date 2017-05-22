@@ -831,7 +831,7 @@ public class DropdownTest extends BaseClass {
         commonUtils.click(dropdownPgObj.closeBtn, "mobile");
         isDropdownListBox = commonUtils.isElementPresent(dropdownPgObj.box, "mobile");
         if (isDropdownListBox) {
-            log.info("Click on the trigger did not open the dropdown list for " + dropdownType + " dropdown");
+            log.info("Click on Close Btn, but Dropdown still open, " + dropdownType + " dropdown");
         }
         Assert.assertFalse(isDropdownListBox);
     }
