@@ -4,7 +4,7 @@
     <test name="Elements SDK V1 Tests">
         <groups>
             <run>
-                <include name="desktop-ci"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
         <classes>
