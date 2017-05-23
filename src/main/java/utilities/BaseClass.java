@@ -283,7 +283,11 @@ public class BaseClass {
                 }
             }
         }
-        System.out.println(("\u001B[32m" + "Running " + testSuite +": '"+ groupsInclude + "' tests"));
+        if(runEnv.equals("travis")) {
+            System.out.println(("\u001B[32m" + "Running " + testSuite + ": '" + groupsInclude + "tests on \nplatform: " + platform + " \nbrowser: " + sauceBrowser + "\nversion: " + sauceBrowserVer + "'"));
+        }else{
+            System.out.println(("\u001B[32m" + "Running " + testSuite + ": '" + groupsInclude +"tests on \nbrowser: "+ localBrowser));
+        }
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);

@@ -20,12 +20,15 @@ public class ButtonsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
-    private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "";
-    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false;
+    private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", textDecorationProperty = "";
+    boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false, isBorderStyle = false, isBorderColor = false, isBorderRadius = false;
     Actions action = null;
     TouchAction mAction = null;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
+    List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
+    List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
+    List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
 
     @BeforeClass(alwaysRun = true)
@@ -41,6 +44,11 @@ public class ButtonsTest extends BaseClass {
         } else {
             action = new Actions(driver);
         }
+        if (browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")) {
+            textDecorationProperty = "text-decoration";
+        } else {
+            textDecorationProperty = "text-decoration-line";
+        }
     }
 
     //Default buttons
@@ -48,24 +56,9 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getDefaultButtonTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
 
-                {"border-top-style", new String[]{"none"}},
-                {"border-bottom-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-
-                {"border-top-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"border-left-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"border-right-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-
-                {"border-bottom-left-radius", new String[]{"2px"}},
-                {"border-bottom-right-radius", new String[]{"2px"}},
-                {"border-top-left-radius", new String[]{"2px"}},
-                {"border-top-right-radius", new String[]{"2px"}},
-
-                {"text-decoration-line", new String[]{"none"}},
+                {textDecorationProperty, new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"overflow-x", new String[]{"hidden"}},
@@ -74,8 +67,8 @@ public class ButtonsTest extends BaseClass {
                 {"vertical-align", new String[]{"middle"}},
                 {"cursor", new String[]{"pointer"}},
                 {"font-size", new String[]{"14px", "13.93px"}},
-                {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"28px"}},
+                {"height", new String[]{"32px", "30px"}},
+                {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -99,7 +92,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getDefaultButtonHoverStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+                {"background-color", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}}
         };
     }
 
@@ -122,7 +115,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getDefaultButtonFocusStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
+                {"background-color", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}}
         };
     }
 
@@ -146,13 +139,7 @@ public class ButtonsTest extends BaseClass {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
                 {"background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
-
-                {"border-top-width", new String[]{"0px"}},
-                {"border-bottom-width", new String[]{"0px"}},
-                {"border-left-width", new String[]{"0px"}},
-                {"border-right-width", new String[]{"0px"}},
                 {"box-shadow", new String[]{"none"}},
-
                 {"cursor", new String[]{"default"}}
         };
     }
@@ -173,27 +160,17 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getPrimaryButtonTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}},
 
-                {"border-top-style", new String[]{"none"}},
-                {"border-bottom-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-
-                {"border-bottom-left-radius", new String[]{"2px"}},
-                {"border-bottom-right-radius", new String[]{"2px"}},
-                {"border-top-left-radius", new String[]{"2px"}},
-                {"border-top-right-radius", new String[]{"2px"}},
-
-                {"text-decoration-line", new String[]{"none"}},
+                {textDecorationProperty, new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"display", new String[]{"inline-block"}},
                 {"vertical-align", new String[]{"middle"}},
                 {"cursor", new String[]{"pointer"}},
                 {"font-size", new String[]{"14px", "13.93px"}},
-                {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"28px"}},
+                {"height", new String[]{"32px"}},
+                {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -217,7 +194,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getPrimaryButtonHoverStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}}
+                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
         };
     }
 
@@ -240,7 +217,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getPrimaryButtonFocusStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}}
+                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
         };
     }
 
@@ -259,130 +236,6 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @DataProvider(name = "Primary Button-Disabled Test Data")
-    public Object[][] getPrimaryButtonDisabledStateTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
-
-                {"border-top-width", new String[]{"0px"}},
-                {"border-bottom-width", new String[]{"0px"}},
-                {"border-left-width", new String[]{"0px"}},
-                {"border-right-width", new String[]{"0px"}},
-                {"box-shadow", new String[]{"none"}},
-
-                {"text-decoration-line", new String[]{"none"}},
-                {"cursor", new String[]{"default"}}
-        };
-    }
-
-    @Test(testName = "Verify Primary Button Test-Disabled", dataProvider = "Primary Button-Disabled Test Data", groups = {"desktop-regression"})
-    private void primaryButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtnDisabled, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Primary Disabled button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    //turquoise buttons
-    @DataProvider(name = "turquoise Button Test Data")
-    public Object[][] getturquoiseButtonTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}},
-                {"background-image", new String[]{"none"}},
-
-                {"border-top-style", new String[]{"none"}},
-                {"border-bottom-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-
-                {"border-bottom-left-radius", new String[]{"2px"}},
-                {"border-bottom-right-radius", new String[]{"2px"}},
-                {"border-top-left-radius", new String[]{"2px"}},
-                {"border-top-right-radius", new String[]{"2px"}},
-
-                {"text-decoration-line", new String[]{"none"}},
-                {"text-overflow", new String[]{"ellipsis"}},
-                {"white-space", new String[]{"nowrap"}},
-                {"overflow-x", new String[]{"hidden"}},
-                {"overflow-y", new String[]{"hidden"}},
-
-                {"display", new String[]{"inline-block"}},
-                {"vertical-align", new String[]{"middle"}},
-                {"cursor", new String[]{"pointer"}},
-                {"font-size", new String[]{"14px", "13.93px"}},
-                {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"28px"}},
-
-                {"padding-top", new String[]{"0px"}},
-                {"padding-bottom", new String[]{"0px"}},
-                {"padding-left", new String[]{"12px"}},
-                {"padding-right", new String[]{"12px"}}
-        };
-    }
-
-    @Test(testName = "Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"desktop-regression"})
-    private void turquoiseButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "turquoise Button-Hover state Test Data")
-    public Object[][] getturquoiseButtonHoverStateTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
-        };
-    }
-
-    @Test(testName = "Verify turquoise Button Test-Hover state", dataProvider = "turquoise Button-Hover state Test Data", groups = {"desktop-regression"})
-    private void turquoiseButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
-            throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
-        }
-        String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(btnPgObj.turquoiseBtnHover);
-        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtnHover, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for turquoise Hovered button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "turquoise Button-Focus state Test Data")
-    public Object[][] getturquoiseButtonFocusStateTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")}}
-        };
-    }
-
-    @Test(testName = "Verify turquoise Button Test-Focus state", dataProvider = "turquoise Button-Focus state Test Data", groups = {"desktop-regression"})
-    private void turquoiseButtonFocusStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
-            throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
-        }
-        String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("turquoise-btn");
-        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for turquoise Focus state button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-    //No disabled state for turquoise button
-
     //CTA buttons
     @DataProvider(name = "CTA Button Test Data")
     public Object[][] getCTAButtonTestData() {
@@ -391,17 +244,7 @@ public class ButtonsTest extends BaseClass {
                 {"background-color", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}},
                 {"background-image", new String[]{"none"}},
 
-                {"border-top-style", new String[]{"none"}},
-                {"border-bottom-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-
-                {"border-bottom-left-radius", new String[]{"2px"}},
-                {"border-bottom-right-radius", new String[]{"2px"}},
-                {"border-top-left-radius", new String[]{"2px"}},
-                {"border-top-right-radius", new String[]{"2px"}},
-
-                {"text-decoration-line", new String[]{"none"}},
+                {textDecorationProperty, new String[]{"none"}},
                 {"text-overflow", new String[]{"ellipsis"}},
                 {"white-space", new String[]{"nowrap"}},
                 {"overflow-x", new String[]{"hidden"}},
@@ -411,8 +254,8 @@ public class ButtonsTest extends BaseClass {
                 {"vertical-align", new String[]{"middle"}},
                 {"cursor", new String[]{"pointer"}},
                 {"font-size", new String[]{"14px", "13.93px"}},
-                {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"28px"}},
+                {"height", new String[]{"32px"}},
+                {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -477,7 +320,46 @@ public class ButtonsTest extends BaseClass {
         }
         Assert.assertTrue(isCSSProperty);
     }
-    //No disabled state for turquoise button
+
+    //Buttons borders
+    @DataProvider(name = "Buttons Borders Test Data")
+    public Object[][] getButtonsBordersTestData() {
+        return new Object[][]{
+                {"default", btnPgObj.defaultBtn, "solid"},
+                {"primary", btnPgObj.primaryBtn, "none"},
+                {"cta", btnPgObj.ctaBtn, "none"}
+        };
+    }
+
+    @Test(testName = "Verify Buttons Borders Test", dataProvider = "Buttons Borders Test Data", groups = "desktop-regression")
+    private void buttonBordersTest(String type, By buttonElement, String expBorderTopStyle) {
+        // for default n primary n cta
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(buttonElement, cssProperty);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderTopStyle, cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(buttonElement, cssProperty);
+            isBorderRadius = commonUtils.assertValue(borderRadius, "2px", cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
+        // only for default
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties("border-color", borderColor, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")});
+            if (!isBorderColor) {
+                log.info(cssProperty + " of " + type + " is not as per spec");
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        // only for default disabled
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(btnPgObj.defaultBtnDisabled, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, "0px", cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+    }
 
     //Link buttons
     @DataProvider(name = "Link Button Test Data")
@@ -492,7 +374,7 @@ public class ButtonsTest extends BaseClass {
                 {"border-left-width", new String[]{"0px"}},
                 {"border-right-width", new String[]{"0px"}},
 
-                {"text-decoration-line", new String[]{"underline"}},
+                {textDecorationProperty, new String[]{"underline"}},
                 {"cursor", new String[]{"pointer"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -526,7 +408,7 @@ public class ButtonsTest extends BaseClass {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         backgroundImg = commonUtils.getCSSValue(elem, "background-image");
-        textDecoration = commonUtils.getCSSValue(elem, "text-decoration-line");
+        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
         cursor = commonUtils.getCSSValue(elem, "cursor");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty);
@@ -561,7 +443,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLinkButtonHoverStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
-                {"text-decoration-line", new String[]{"none"}}
+                {textDecorationProperty, new String[]{"none"}}
         };
     }
 
@@ -584,7 +466,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLinkButtonFocusStateTestData() {
         return new Object[][]{
                 {"color", new String[]{commonUtils.hex2Rgb("#005A70"), commonUtils.hex2RgbWithoutTransparency("#005A70")}},
-                {"text-decoration-line", new String[]{"none"}}
+                {textDecorationProperty, new String[]{"none"}}
         };
     }
 
@@ -607,7 +489,7 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Link Button 2.0 -Hover and Focus state Test Data")
     public Object[][] getLinkButton2HoverStateTestData() {
         return new Object[][]{
-                {"text-decoration-line", new String[]{"none"}}
+                {textDecorationProperty, new String[]{"none"}}
         };
     }
 
@@ -647,8 +529,8 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getSmallButtonTestData() {
         return new Object[][]{
                 {"font-size", new String[]{"14px"}},
-                {"height", new String[]{"28px"}},
-                {"line-height", new String[]{"28px"}},
+                {"height", new String[]{"32px", "30px"}},
+                {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
@@ -671,14 +553,14 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Large Button Test Data")
     public Object[][] getLargeButtonTestData() {
         return new Object[][]{
-                {"font-size", new String[]{"16px"}},
-                {"height", new String[]{"36px"}},
+                {"font-size", new String[]{"14px"}},
+                {"height", new String[]{"36px", "34px"}},
                 {"line-height", new String[]{"36px"}},
 
                 {"padding-top", new String[]{"0px"}},
                 {"padding-bottom", new String[]{"0px"}},
-                {"padding-left", new String[]{"20px"}},
-                {"padding-right", new String[]{"20px"}}
+                {"padding-left", new String[]{"12px"}},
+                {"padding-right", new String[]{"12px"}}
         };
     }
 
@@ -696,8 +578,8 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "XLarge Button Test Data")
     public Object[][] getXLargeButtonTestData() {
         return new Object[][]{
-                {"font-size", new String[]{"16px"}},
-                {"height", new String[]{"44px"}},
+                {"font-size", new String[]{"18px"}},
+                {"height", new String[]{"44px", "42px"}},
                 {"line-height", new String[]{"44px"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -733,14 +615,12 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Mix and Match Buttons Test Data")
     public Object[][] getSmallButtonWithCTATestData() {
         return new Object[][]{
-                {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"28px"}},
-                {"small-with-turquoise", btnPgObj.smallBtnWithTurquoise, new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"28px"}},
-                {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"44px"}},
-                {"large-with-primary-disabled", btnPgObj.largeBtnWithPrimaryDisabled, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{"36px"}}
+                {"small-with-cta", btnPgObj.smallBtnWithCTA, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"32px"}},
+                {"xlarge-with-primary", btnPgObj.xLargeBtnWithPrimary, new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"44px"}},
         };
     }
 
-    @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci"})
+    @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void mixAndMatchButtonsTest(String type, By element, String[] expBackgroundColor, String[] expColor, String[] expLineHeight) throws Exception {
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
@@ -765,9 +645,6 @@ public class ButtonsTest extends BaseClass {
      ***************/
     @Test(testName = "Mobile: Verify Default Button Test", dataProvider = "Default Button Test Data", groups = {"mobile-regression"})
     private void defaultButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -790,9 +667,6 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify Primary Button Test", dataProvider = "Primary Button Test Data", groups = {"mobile-regression"})
     private void primaryButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -802,39 +676,8 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Primary Button Test-Disabled", dataProvider = "Primary Button-Disabled Test Data", groups = {"mobile-regression"})
-    private void primaryButtonDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.primaryBtnDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Primary Disabled button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify turquoise Button Test", dataProvider = "turquoise Button Test Data", groups = {"mobile-regression"})
-    private void turquoiseButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(btnPgObj.turquoiseBtn, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for turquoise button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
     @Test(testName = "Mobile: Verify CTA Button Test", dataProvider = "CTA Button Test Data", groups = {"mobile-regression"})
     private void ctaButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.ctaBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -844,11 +687,38 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
+    @Test(dataProvider = "Mobile: Buttons Borders Test Data", groups = "mobile-regression")
+    private void buttonBordersMobileTest(String type, By buttonElement, String expBorderTopStyle) {
+        // for default n primary n cta
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(buttonElement, cssProperty, "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderTopStyle, cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(buttonElement, cssProperty, "mobile");
+            isBorderRadius = commonUtils.assertValue(borderRadius, "2px", cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
+        // only for default
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties("border-color", borderColor, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")});
+            if (!isBorderColor) {
+                log.info(cssProperty + " of " + type + " is not as per spec");
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        // only for default disabled
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(btnPgObj.defaultBtnDisabled, cssProperty, "mobile");
+            isBorderWidth = commonUtils.assertValue(borderWidth, "0px", cssProperty + " of " + type + " is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+    }
+
     @Test(testName = "Mobile: Verify Link Button Test", dataProvider = "Link Button Test Data", groups = {"mobile-regression"})
     private void linkButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (cssProperty.equals("text-decoration-line")) {
-            cssProperty = "text-decoration";
-        }
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.linkBtn, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -863,7 +733,7 @@ public class ButtonsTest extends BaseClass {
         color = commonUtils.getCSSValue(elem, "color", "mobile");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         backgroundImg = commonUtils.getCSSValue(elem, "background-image", "mobile");
-        textDecoration = commonUtils.getCSSValue(elem, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty, "mobile");
         cursor = commonUtils.getCSSValue(elem, "cursor", "mobile");
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");

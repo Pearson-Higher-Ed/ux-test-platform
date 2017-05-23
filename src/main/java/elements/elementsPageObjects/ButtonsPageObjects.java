@@ -26,14 +26,9 @@ public class ButtonsPageObjects {
 
     public By primaryBtn=By.id("primary-btn");
     public By primaryBtnHover=By.id("primary-btn-hover");
-    public By primaryBtnDisabled=By.id("primary-btn-disabled");
 
     public By ctaBtn=By.id("cta-btn");
     public By ctaBtnHover=By.id("cta-btn-hover");
-    public By ctaBtnDisabled=By.id("cta-btn-disabled");
-
-    public By turquoiseBtn=By.id("turquoise-btn");
-    public By turquoiseBtnHover=By.id("turquoise-btn-hover");
 
     public By linkBtn=By.id("link-btn");
     public By linkBtnHover=By.id("link-btn-hover");
@@ -58,8 +53,5 @@ public class ButtonsPageObjects {
     //Mix and Match
     public By largeBtnDisabled=By.id("large-btn-disabled");
     public By smallBtnWithCTA=By.id("small-btn-withCTA");
-    public By smallBtnWithTurquoise=By.id("small-btn-with_turquoise");
     public By xLargeBtnWithPrimary=By.id("xLarge-btn-withPrimary");
-    public By largeBtnWithPrimaryDisabled = By.id("large-btn-withPrimary-disabled");
-
 }
