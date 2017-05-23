@@ -707,7 +707,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regression")
-    private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By buttonElement, String expOutlineStyle, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String device, ScreenOrientation mode) throws Exception {
+    private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By buttonElement, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -717,7 +717,6 @@ public class ModalTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
 
-        outlineStyle = commonUtils.getCSSValue(buttonElement, "outline-style", "mobile");
         flexGrow = commonUtils.getCSSValue(buttonElement, "flex-grow", "mobile");
         flexShrink = commonUtils.getCSSValue(buttonElement, "flex-shrink", "mobile");
         flexBasis = commonUtils.getCSSValue(buttonElement, "flex-basis", "mobile");
@@ -730,7 +729,6 @@ public class ModalTest extends BaseClass {
             }
             Assert.assertTrue(isMargin);
         }
-        isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, type + " btn - " + "outline-style for " + size + " is not as per the spec");
         isFlexGrow = commonUtils.assertCSSProperties("flex-grow", flexGrow, expFlexGrow);
         if (!isFlexGrow) {
             log.info("Compounds -> " + type + " btn - " + "flex-grow for " + size + " is not as per the spec, actual: " + flexGrow);
@@ -743,7 +741,7 @@ public class ModalTest extends BaseClass {
         if (!isFlexBasis) {
             log.info("Compounds -> " + type + " btn - " + "flex-basis for " + size + " is not as per the spec, actual: " + flexBasis);
         }
-        Assert.assertTrue(isOutlineStyle && isFlexGrow && isFlexShrink && isFlexBasis);
+        Assert.assertTrue(isFlexGrow && isFlexShrink && isFlexBasis);
     }
 
     @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regression")
@@ -764,7 +762,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regression")
-    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String expTextDecoration, String expOutlineStyle, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
+    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -778,13 +776,11 @@ public class ModalTest extends BaseClass {
         height = commonUtils.getCSSValue(modalCloseButton, "height", "mobile");
         closeButtonFloat = commonUtils.getCSSValue(modalCloseButton, "float", "mobile");
         textDecoration = commonUtils.getCSSValue(modalCloseButton, "text-decoration", "mobile");
-        outlineStyle = commonUtils.getCSSValue(modalCloseButton, "outline-style", "mobile");
 
         isWidth = commonUtils.assertValue(width, expWidth, "Compounds -> 'modal close' - width for size " + size + " is not as per the spec");
         isHeight = commonUtils.assertValue(height, expHeight, "Compounds -> 'modal close' - height for size " + size + " is not as per the spec");
         isCloseButtonFloat = commonUtils.assertValue(closeButtonFloat, expCloseButtonFloat, "Compounds -> 'modal close' - float for size " + size + " is not as per the spec");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "Compounds -> 'modal close' - text-decoration for size " + size + " is not as per the spec");
-        isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "Compounds -> 'modal - close' - outline-style for " + size + " is not as per the spec");
         for (int i = 0; i < margins.length; i++) {
             margin = commonUtils.getCSSValue(modalCloseButton, margins[i], "mobile");
             isMargin = commonUtils.assertValue(margin, expMarginValue[i], "Compounds -> 'modal - close' - " + margins[i] + "' for " + size + " size is not as per the spec");
