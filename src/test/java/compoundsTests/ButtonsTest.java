@@ -26,6 +26,8 @@ public class ButtonsTest extends BaseClass {
 
     private String attribute = "", browserLogs = "", backgroundColor = "", lineHeight = "", height = "", fontSize = "", alertText = "";
     private static String browser = "";
+    private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
+    private final String incorrectComponentNameErrorMsg = "type is invalid";
     boolean isBackgroundColor = false, isAttribute = false, result = false, isLineHeight = false, isHeight = false, isFontSize = false, isAlertText = false;
     JavascriptExecutor js = null;
     WebElement element = null;
@@ -213,7 +215,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Verify incorrect Element ID Button Test", groups = "desktop-regression")
-    private void incorrectElementIDButtonTest() throws Exception {
+    private void incorrectElementIdErrorMsgButtonTest() throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
         }
@@ -222,13 +224,13 @@ public class ButtonsTest extends BaseClass {
         commonUtils.replaceLineInAFile(buttonsJSFilePath, "elementId: 'button-target'", "elementId: 'xyz-target',");
         commonUtils.getUrl(buttonsUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains("Target container is not a DOM element"), true, "'Target container is not a DOM element' error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectElementIdErrorMsg), true, incorrectElementIdErrorMsg+ "error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Verify incorrect Component Name Button Test", groups = "desktop-regression")
-    private void incorrectComponentNameButtonTest() throws Exception {
+    private void incorrectComponentNameErrorMsgButtonTest() throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
         }
@@ -237,7 +239,7 @@ public class ButtonsTest extends BaseClass {
         commonUtils.replaceLineInAFile(buttonsJSFilePath, "componentName: 'Button'", "componentName: 'xyz',");
         commonUtils.getUrl(buttonsUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains("type is invalid "), true, "'type is invalid' error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectComponentNameErrorMsg), true, incorrectComponentNameErrorMsg+ "error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
         Assert.assertTrue(result);
     }
