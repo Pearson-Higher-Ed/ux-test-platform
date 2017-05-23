@@ -20,7 +20,7 @@ public class ButtonsTest extends BaseClass {
 
     private final String url = "http://localhost:8000/src/main/java/elements/fixtures/buttons.html";
     private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
-    private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", textDecorationProperty="";
+    private String color = "", backgroundColor = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", textDecorationProperty = "";
     boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false, isBorderStyle = false, isBorderColor = false, isBorderRadius = false;
     Actions action = null;
     TouchAction mAction = null;
@@ -44,10 +44,10 @@ public class ButtonsTest extends BaseClass {
         } else {
             action = new Actions(driver);
         }
-        if(browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")){
-            textDecorationProperty="text-decoration";
-        }else{
-            textDecorationProperty="text-decoration-line";
+        if (browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")) {
+            textDecorationProperty = "text-decoration";
+        } else {
+            textDecorationProperty = "text-decoration-line";
         }
     }
 
@@ -67,7 +67,7 @@ public class ButtonsTest extends BaseClass {
                 {"vertical-align", new String[]{"middle"}},
                 {"cursor", new String[]{"pointer"}},
                 {"font-size", new String[]{"14px", "13.93px"}},
-                {"height", new String[]{"32px","30px"}},
+                {"height", new String[]{"32px", "30px"}},
                 {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -529,7 +529,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getSmallButtonTestData() {
         return new Object[][]{
                 {"font-size", new String[]{"14px"}},
-                {"height", new String[]{"30px"}},
+                {"height", new String[]{"32px", "30px"}},
                 {"line-height", new String[]{"32px"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -554,7 +554,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getLargeButtonTestData() {
         return new Object[][]{
                 {"font-size", new String[]{"14px"}},
-                {"height", new String[]{"36px","34px"}},
+                {"height", new String[]{"36px", "34px"}},
                 {"line-height", new String[]{"36px"}},
 
                 {"padding-top", new String[]{"0px"}},
@@ -579,7 +579,7 @@ public class ButtonsTest extends BaseClass {
     public Object[][] getXLargeButtonTestData() {
         return new Object[][]{
                 {"font-size", new String[]{"18px"}},
-                {"height", new String[]{"44px","42px"}},
+                {"height", new String[]{"44px", "42px"}},
                 {"line-height", new String[]{"44px"}},
 
                 {"padding-top", new String[]{"0px"}},
