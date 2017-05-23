@@ -68,6 +68,7 @@ public class BaseClass {
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
+    private final String successColorCode = "\u001B[32m";
     final static String USERNAME = SauceParam.SAUCE_USERNAME;
     final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
     final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
@@ -284,9 +285,9 @@ public class BaseClass {
             }
         }
         if(runEnv.equals("travis")) {
-            System.out.println(("\u001B[32m" + "Running " + testSuite + ": '" + groupsInclude + "tests on \nplatform: " + platform + " \nbrowser: " + sauceBrowser + "\nversion: " + sauceBrowserVer + "'"));
+            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + " tests on "+successColorCode+"\nplatform: " + platform +successColorCode+"\nbrowser: " + sauceBrowser +successColorCode+"\nversion: " + sauceBrowserVer));
         }else{
-            System.out.println(("\u001B[32m" + "Running " + testSuite + ": '" + groupsInclude +"tests on \nbrowser: "+ localBrowser));
+            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude +"tests on \nbrowser: "+ localBrowser));
         }
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
