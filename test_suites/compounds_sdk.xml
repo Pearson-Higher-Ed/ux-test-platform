@@ -7,8 +7,15 @@
                 <include name="desktop-regression"/>
             </run>
         </groups>
-        <packages>
-            <package name="compoundsTests"></package>
-        </packages>
+        <!--<packages>-->
+            <!--<package name="compoundsTests"></package>-->
+        <!--</packages>-->
+        <classes>
+            <class name="compoundsTests.DropdownTest"/>
+            <class name="compoundsTests.LoadingIndicatorTest"/>
+            <class name="compoundsTests.InputsTest"></class>
+            <class name="compoundsTests.IconsTest"></class>
+            <class name="compoundsTests.ModalTest"></class>
+        </classes>
     </test>
 </suite>
