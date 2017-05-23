@@ -283,7 +283,7 @@ public class BaseClass {
                 }
             }
         }
-        System.out.println(("\u001B[32m" + "Running " + testSuite +": '"+ groupsInclude + "' tests"));
+        System.out.println(("\u001B[32m" + "Running " + testSuite +": '"+ groupsInclude + "' tests on: '"+platform+ "' on browser: '"+sauceBrowser+ "' version: '"+sauceBrowserVer+"'"));
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);
