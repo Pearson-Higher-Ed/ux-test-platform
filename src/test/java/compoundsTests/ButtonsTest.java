@@ -46,9 +46,9 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Append valid class names to Buttons Class Test Data")
     public Object[][] getAppendValidClassNames() {
         return new Object[][]{
-                {"btnType: '',", "btnSize: 'large',", "children: 'default-large',", "pe-btn--btn_large", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"36px"}, new String[]{"16px"}, new String[]{"36px"}},
-                {"btnType: 'primary',", "btnSize: 'xlarge',", "children: 'primary-xlarge',", "pe-btn__primary--btn_xlarge", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"44px"}, new String[]{"16px"}, new String[]{"44px"}},
-                {"btnType: 'cta',", "btnSize: 'small',", "children: 'cta-small',", "pe-btn__cta--btn_small", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}}
+                {"btnType: '',", "btnSize: 'large',", "children: 'default-large',", "pe-btn--btn_large", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"36px"}, new String[]{"14px"}, new String[]{"36px"}},
+                {"btnType: 'primary',", "btnSize: 'xlarge',", "children: 'primary-xlarge',", "pe-btn__primary--btn_xlarge", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"44px"}, new String[]{"18px"}, new String[]{"44px"}},
+                {"btnType: 'cta',", "btnSize: 'small',", "children: 'cta-small',", "pe-btn__cta--btn_small", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}}
         };
     }
 
@@ -107,26 +107,26 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Valid Button Prop Types Test Data")
     public Object[][] getButtonPropTypesTestData() {
         return new Object[][]{
-                {"btnType: '',", "btnSize: 'large',", "children: 'default-large',", "pe-btn--btn_large", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"36px"}, new String[]{"16px"}, new String[]{"36px"}},
-                {"btnType: '',", "btnSize: 'xlarge',", "children: 'default-xlarge',", "pe-btn--btn_xlarge", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"44px"}, new String[]{"16px"}, new String[]{"44px"}},
-                {"btnType: '',", "btnSize: 'small',", "children: 'default-small',", "pe-btn--btn_small", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: '',", "btnSize: '',", "children: 'just-default',", "pe-btn", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: '',", "", "children: 'default',", "pe-btn", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"", "", "", "pe-btn", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
+                {"btnType: '',", "btnSize: 'large',", "children: 'default-large',", "pe-btn--btn_large", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"36px"}, new String[]{"14px"}, new String[]{"36px"}},
+                {"btnType: '',", "btnSize: 'xlarge',", "children: 'default-xlarge',", "pe-btn--btn_xlarge", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"44px"}, new String[]{"18px"}, new String[]{"44px"}},
+                {"btnType: '',", "btnSize: 'small',", "children: 'default-small',", "pe-btn--btn_small", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: '',", "btnSize: '',", "children: 'just-default',", "pe-btn", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: '',", "", "children: 'default',", "pe-btn", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"", "", "", "pe-btn", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
 
-                {"btnType: 'primary',", "btnSize: 'large',", "children: 'primary-large',", "pe-btn__primary--btn_large", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"36px"}, new String[]{"16px"}, new String[]{"36px"}},
-                {"btnType: 'primary',", "btnSize: 'xlarge',", "children: 'primary-xlarge',", "pe-btn__primary--btn_xlarge", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"44px"}, new String[]{"16px"}, new String[]{"44px"}},
-                {"btnType: 'primary',", "btnSize: 'small',", "children: 'primary-small',", "pe-btn__primary--btn_small", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'primary',", "btnSize: '',", "children: 'just-primary',", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'primary',", "", "children: 'primary',", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'primary',", "", "", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
+                {"btnType: 'primary',", "btnSize: 'large',", "children: 'primary-large',", "pe-btn__primary--btn_large", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"36px"}, new String[]{"14px"}, new String[]{"36px"}},
+                {"btnType: 'primary',", "btnSize: 'xlarge',", "children: 'primary-xlarge',", "pe-btn__primary--btn_xlarge", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"44px"}, new String[]{"18px"}, new String[]{"44px"}},
+                {"btnType: 'primary',", "btnSize: 'small',", "children: 'primary-small',", "pe-btn__primary--btn_small", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'primary',", "btnSize: '',", "children: 'just-primary',", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'primary',", "", "children: 'primary',", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'primary',", "", "", "pe-btn__primary", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
 
-                {"btnType: 'cta',", "btnSize: 'large',", "children: 'cta-large',", "pe-btn__cta--btn_large", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"36px"}, new String[]{"16px"}, new String[]{"36px"}},
-                {"btnType: 'cta',", "btnSize: 'xlarge',", "children: 'cta-xlarge',", "pe-btn__cta--btn_xlarge", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"44px"}, new String[]{"16px"}, new String[]{"44px"}},
-                {"btnType: 'cta',", "btnSize: 'small',", "children: 'cta-small',", "pe-btn__cta--btn_small", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'cta',", "", "children: 'just-small',", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'cta',", "", "children: 'cta',", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}},
-                {"btnType: 'cta',", "", "", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"28px"}, new String[]{"14px"}, new String[]{"28px"}}
+                {"btnType: 'cta',", "btnSize: 'large',", "children: 'cta-large',", "pe-btn__cta--btn_large", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"36px"}, new String[]{"14px"}, new String[]{"36px"}},
+                {"btnType: 'cta',", "btnSize: 'xlarge',", "children: 'cta-xlarge',", "pe-btn__cta--btn_xlarge", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"44px"}, new String[]{"18px"}, new String[]{"44px"}},
+                {"btnType: 'cta',", "btnSize: 'small',", "children: 'cta-small',", "pe-btn__cta--btn_small", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'cta',", "", "children: 'just-small',", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'cta',", "", "children: 'cta',", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}},
+                {"btnType: 'cta',", "", "", "pe-btn__cta", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")}, new String[]{"32px"}, new String[]{"14px"}, new String[]{"32px"}}
         };
     }
 
@@ -168,26 +168,26 @@ public class ButtonsTest extends BaseClass {
     @DataProvider(name = "Invalid Button Prop Types Test Data")
     public Object[][] getButtonInvalidPropTypesTestData() {
         return new Object[][]{
-                {"btnType: 'somejunk',", "btnSize: 'large',", "children: 'default-large',", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2Rgb("#D9D9D9")}, new String[]{"36px"}},
-                {"btnType: 'somejunk',", "btnSize: 'xlarge',", "children: 'default-xlarge',", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2Rgb("#D9D9D9")}, new String[]{"44px"}},
-                {"btnType: 'somejunk',", "btnSize: 'small',", "children: 'default-small',", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2Rgb("#D9D9D9")}, new String[]{"28px"}},
-                {"btnType: 'somejunk',", "", "children: 'default-small',", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2Rgb("#D9D9D9")}, new String[]{"28px"}},
+                {"btnType: 'somejunk',", "btnSize: 'large',", "children: 'default-large',", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2Rgb("#E9E9E9")}, new String[]{"36px"}},
+                {"btnType: 'somejunk',", "btnSize: 'xlarge',", "children: 'default-xlarge',", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2Rgb("#E9E9E9")}, new String[]{"44px"}},
+                {"btnType: 'somejunk',", "btnSize: 'small',", "children: 'default-small',", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2Rgb("#E9E9E9")}, new String[]{"32px"}},
+                {"btnType: 'somejunk',", "", "children: 'default-small',", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2Rgb("#E9E9E9")}, new String[]{"32px"}},
 
-                {"btnType: 'primary',", "btnSize: 'largexyz',", "children: 'primary-large-xyz',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"36px"}},
-                {"btnType: 'primary',", "btnSize: 'xyzlarge',", "children: 'xyz-primary-large',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"36px"}},
-                {"btnType: 'primary',", "btnSize: 'xlargexyz',", "children: 'primary-xlarge-xyz',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"44px"}},
-                {"btnType: 'primary',", "btnSize: 'xyzxlarge',", "children: 'primary-xyz-xlarge',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"44px"}},
-                {"btnType: 'primary',", "btnSize: 'smallxyz',", "children: 'primary-small-xyz',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"28px"}},
-                {"btnType: 'primary',", "btnSize: 'xyzsmall',", "children: 'xyz-primary-small',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"28px"}},
-                {"btnType: 'primary',", "btnSize: 'xyz',", "children: 'just-primary-xyz',", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, new String[]{"28px"}},
+                {"btnType: 'primary',", "btnSize: 'largexyz',", "children: 'primary-large-xyz',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"36px"}},
+                {"btnType: 'primary',", "btnSize: 'xyzlarge',", "children: 'xyz-primary-large',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"36px"}},
+                {"btnType: 'primary',", "btnSize: 'xlargexyz',", "children: 'primary-xlarge-xyz',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"44px"}},
+                {"btnType: 'primary',", "btnSize: 'xyzxlarge',", "children: 'primary-xyz-xlarge',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"44px"}},
+                {"btnType: 'primary',", "btnSize: 'smallxyz',", "children: 'primary-small-xyz',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"32px"}},
+                {"btnType: 'primary',", "btnSize: 'xyzsmall',", "children: 'xyz-primary-small',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"32px"}},
+                {"btnType: 'primary',", "btnSize: 'xyz',", "children: 'just-primary-xyz',", new String[]{commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2Rgb("#19A6A4")}, new String[]{"32px"}},
 
                 {"btnType: 'cta',", "btnSize: 'largexyz',", "children: 'cta-large-xyz',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"36px"}},
                 {"btnType: 'cta',", "btnSize: 'xyzlargexyz',", "children: 'xyz-cta-large',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"36px"}},
                 {"btnType: 'cta',", "btnSize: 'xlargexyz',", "children: 'cta-xlarge-xyz',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"44px"}},
                 {"btnType: 'cta',", "btnSize: 'xyzxlarge',", "children: 'xyz-cta-xlarge',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"44px"}},
-                {"btnType: 'cta',", "btnSize: 'smallxyz',", "children: 'cta-small-xyz',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"28px"}},
-                {"btnType: 'cta',", "btnSize: 'xyzsmall',", "children: 'xyz-cta-small',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"28px"}},
-                {"btnType: 'cta',", "btnSize: 'xyz',", "children: 'just-small',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"28px"}}
+                {"btnType: 'cta',", "btnSize: 'smallxyz',", "children: 'cta-small-xyz',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"32px"}},
+                {"btnType: 'cta',", "btnSize: 'xyzsmall',", "children: 'xyz-cta-small',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"32px"}},
+                {"btnType: 'cta',", "btnSize: 'xyz',", "children: 'just-small',", new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2Rgb("#FFB81C")}, new String[]{"32px"}}
         };
     }
 
