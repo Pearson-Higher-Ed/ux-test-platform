@@ -43,7 +43,7 @@ public class AppHeaderPageObjects {
     public By accountSettingsInOpenDropDown  =By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/ul/li[5]/a");
     //public By clickableMyAccount = By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
     public By signOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']");
-    public By clickableSignOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']/a");
+    public By clickableSignOut=By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-sign-out']/button");
     public By menuItems=By.xpath("//ul[@class='o-dropdown-menu__menu-items']");
     public String xpathForUserMenuDropDownItems(String item, int x){
         return "//ul[@class='o-dropdown-menu__menu-items']/li"+"["+x+"]";

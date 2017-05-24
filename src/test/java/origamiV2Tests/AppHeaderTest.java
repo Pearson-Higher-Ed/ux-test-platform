@@ -27,48 +27,23 @@ public class AppHeaderTest extends BaseClass {
     private final String integModeUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/appHeader/app-header-IntegMode.html";
     private String absPathForSignedOutJS = new File("origamiV2/jsfiles/appHeader/signedout.js").getAbsolutePath();
     private String absPathForBasicJS = new File("origamiV2/jsfiles/appHeader/basic.js").getAbsolutePath();
-    private String absPathForCourseJS = new File("origamiV2/jsfiles/appHeader/course.js").getAbsolutePath();
-    private String absPathForIntegJS = new File("origamiV2/jsfiles/appHeader/integ.js").getAbsolutePath();
     private String absPathForTempJS = new File("origamiV2/jsfiles/appHeader/temp.js").getAbsolutePath();
     private final String signedOutJSFilePath = constructPath(absPathForSignedOutJS);
     private final String basicJSFilePath = constructPath(absPathForBasicJS);
-    private final String courseJSFilePath = constructPath(absPathForCourseJS);
-    private final String integJSFilePath = constructPath(absPathForIntegJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
 
-    JsonObject jsonObject = null;
-    private String testConfig = "";
-    private String userName = "";
-    private String marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "";
-    boolean isUserName = false;
-    boolean pearsonLogoVisible = false;
-    boolean helpLinkVisible = false;
-    boolean signInLinkVisible = false;
-    boolean pearsonLogoClickable = false;
-    boolean helpLinkClickable = false;
-    boolean accountSettingsClickable = false;
-    boolean signOutClickable = false;
-    boolean desktopViewUserMenuVisible = false;
-    boolean mobileViewUserMenuVisible = false;
-    boolean accountSettingsVisible = false;
-    boolean signOutVisible = false;
-    boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false, isFocused = false;
-    boolean isbackgroundColor = false;
-    boolean isThemeRight = false;
-    boolean isCSSProperty = false;
-    private String backgroundColor = "";
-    private String userNameTruncatable = "";
-    private String attributeValue = "";
-    private String themeON = "\"theme\": \"light\"";
-    private String themeOFF = "\"theme\": \"off\"";
+    private String testConfig = "", userName = "", marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "", textDecoration = "", textDecorationProperty = "", backgroundColor = "", color = "", textAlign = "", userNameTruncatable = "";
+    boolean helpLinkClickable = false, accountSettingsClickable = false, signOutClickable = false, desktopViewUserMenuVisible = false, mobileViewUserMenuVisible = false, signOutVisible = false, accountSettingsVisible = false, isUserName = false, pearsonLogoVisible = false, helpLinkVisible = false, signInLinkVisible = false, pearsonLogoClickable = false;
+    boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false, isFocused = false, isbackgroundColor = false, isColor = false, isTextDecoration = false, isTextAlign = false, isCSSProperty = false;
     private static String mobileDevice = "", browser = "", lBrowser = "", setMobile;
-    BufferedReader br = null;
+
+    JsonObject jsonObject = null;
     JavascriptExecutor js = null;
     WebElement element = null;
 
     //For Sign out mode
     private String defaultConfigSignoutMode = "var config = {\"mode\":\"Signed Out\",\"showLoginControls\": true};";
-    JsonObject user;
+    JsonObject user = null;
 
     //For basic mode
     private String defaultConfigBasicMode = "var config = {\"mode\":\"Basic\", \"user\":{\"givenName\":\"Steve\"},\"courseItems\":[{\"text\": \"Physics\", \"href\":\"https://example.com/physics\"},{\"text\": \"Chemistry\", \"href\":\"https://example.com/chemistry\"}]};";
@@ -79,39 +54,15 @@ public class AppHeaderTest extends BaseClass {
     String course4 = "{\"text\": \"Biology\", \"href\":\"https://example.com/biology\"}";
     String course5 = "{\"text\": \"English\", \"href\":\"https://example.com/english\"}";
     String course6 = "{\"text\": \"Computer\", \"href\":\"https://example.com/computer\"}";
-    private String xpathForUserMenuDropDownItems = "";
-    private boolean courseAdded = false;
-    private String courseTextAdded = "";
-    boolean courseClickable = false;
-    private String courseNameTruncatable = "";
-    JsonArray jsonCoursesArr;
-    Map<String, String> bModecourses;
+    private String xpathForUserMenuDropDownItems = "", courseNameTruncatable = "", courseTextAdded = "";
+    private boolean courseAdded = false, courseClickable = false;
+    JsonArray jsonCoursesArr = null;
+    Map<String, String> bModecourses = null;
 
     //For course mode
-    private String defaultConfigCourseMode = "var config = {\"mode\":\"Course\",\"user\":{\"givenName\":\"John\"},\"courseNav\":{\"heading\":{\"text\":\"Physics\",\"href\":\"https://example.com/physics\"},\"items\":[{\"text\":\"Performance\",\"href\":\"https://example.com/performance\",\"active\":false},{\"text\":\"Assessments\",\"href\":\"https://example.com/assessments\",\"active\":false}]}};";
-    private String courseConfig = "var config = {\"mode\":\"Course\",\"user\":{\"givenName\":\"Michel\"}";
-    private String courseNavHeading = "\"courseNav\":{\"heading\":{\"text\":\"Physics\",\"href\":\"https://example.com/physics\"},\"items\":[";
-    private String courseNavItem1 = "{\"text\":\"Performance\",\"href\":\"https://example.com/performance\",\"active\":false}";
-    private String courseNavItem2 = "{\"text\":\"Assessment\",\"href\":\"https://example.com/assessments\",\"active\":false}";
-    private String courseNavItem3 = "{\"text\":\"Score\",\"href\":\"https://example.com/score\",\"active\":false}";
-    private String courseNavItemDisabled = "{\"text\":\"Rank\",\"href\":\"https://example.com/rank\",\"active\":true}";
-    private String courseNavHeadingText = "";
-    private String courseNavItemText = "";
-    private boolean courseNavItemAdded = false;
-    private String xpathForCourseNavItem = "";
-    private boolean courseNavHeadingAdded = false;
-    private boolean courseNavItemClickable = false;
-    private String courseNavItemTruncatable = "";
     final static Logger log = Logger.getLogger(AppHeaderTest.class.getName());
-    JsonObject heading;
-    JsonObject courseNav;
-    JsonObject includeCourseNavItems;
-    JsonArray jsonCoursesNavItemsArr;
-    Map<String, String> cModeCourseNavItems;
-
-    //For Integration mode
-    private String getDefaultConfigIntegMode = "var config = {\"mode\": \"Integration\"};";
-    private String integConfig = "var config = {\"mode\": \"Integration\"";
+    JsonObject heading = null, courseNav = null, includeCourseNavItems = null;
+    JsonArray jsonCoursesNavItemsArr = null;
 
     /***************************
      * Signed Out Mode Tests *
@@ -427,7 +378,7 @@ public class AppHeaderTest extends BaseClass {
     @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression"})
     private void listAllCoursesInBasicModeTest() throws Exception {
 
-        String[] arr = {"Physics", "Chemistry", "Maths", "", "Account Settings", "Sign Out"};
+        String[] arr = {"Physics", "Chemistry", "Maths", "", "Account settings", "Terms of Use", "Privacy Policy", "Sign out"};
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         //testConfig = basicConfig + course1 + "," + course2 + "," + course3 + "]};";
 
@@ -483,7 +434,7 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 4);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
-        result = commonUtils.assertValue(courseTextAdded, "Account Settings", "Error: Course not removed");
+        result = commonUtils.assertValue(courseTextAdded, "Account settings", "Error: Course not removed");
         commonUtils.setWindowSize(768, 800);
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
@@ -505,10 +456,13 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
-        result = commonUtils.assertValue(courseTextAdded, "Account Settings", "Error: All Courses not removed");
+        result = commonUtils.assertValue(courseTextAdded, "Account settings", "Error: All Courses not removed");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("second", 3);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
-        result = commonUtils.assertValue(courseTextAdded, "Sign Out", "Error: All Courses not removed");
+        result = commonUtils.assertValue(courseTextAdded, "Terms of Use", "Error: All Courses not removed");
+        xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("third", 4);
+        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
+        result = commonUtils.assertValue(courseTextAdded, "Privacy Policy", "Error: All Courses not removed");
         commonUtils.setWindowSize(768, 800);
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
@@ -561,7 +515,7 @@ public class AppHeaderTest extends BaseClass {
     @DataProvider(name = "Styles for Basic Mode Test Data")
     public Object[][] getStylesForBasicModeTestData() {
         return new Object[][]{
-                {769, 800, "desktop-view-user-menu", appHeaderPgObj.desktopViewUserMenu, appHeaderPgObj.clickableSignOut, new String[]{"12px"}, new String[]{"14px"}, new String[]{"18px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {769, 800, "desktop-view-user-menu", appHeaderPgObj.desktopViewUserMenu, appHeaderPgObj.clickableSignOut, new String[]{"0px"}, new String[]{"18px"}, new String[]{"44px"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {767, 800, "mobile-view-user-menu", appHeaderPgObj.mobileViewUserMenu, By.xpath(appHeaderPgObj.xpathForUserMenuDropDownItems("", 3) + "/a"), new String[]{"12px"}, new String[]{"14px"}, new String[]{"18px"}, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE},
                 {767, 800, "mobile-view-user-menu", appHeaderPgObj.mobileViewUserMenu, By.xpath(appHeaderPgObj.xpathForUserMenuDropDownItems("", 6) + "/a"), new String[]{"12px"}, new String[]{"14px"}, new String[]{"18px"}, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE}
         };
@@ -577,6 +531,13 @@ public class AppHeaderTest extends BaseClass {
         if (!isMarginTop) {
             log.info("Basic Mode: margin-top :for app-header in" + type + " is not as per the spec, actual: " + marginTop);
         }
+        Assert.assertTrue(isMarginTop);
+        marginTop = commonUtils.getCSSValue(appHeaderPgObj.signOut, "margin-top");
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, new String[]{"30px"});
+        if (!isMarginTop) {
+            log.info("Basic Mode: margin-top :for app-header-sign out button in" + type + " is not as per the spec, actual: " + marginTop);
+        }
+        Assert.assertTrue(isMarginTop);
         fontSize = commonUtils.getCSSValue(itemElement, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -587,7 +548,41 @@ public class AppHeaderTest extends BaseClass {
         if (!isLineHeight) {
             log.info("Basic Mode: line-height :for app-header in " + type + " is not as per the spec, actual: " + lineHeight);
         }
-        Assert.assertTrue(isMarginTop && isFontSize && isLineHeight);
+
+        Assert.assertTrue(isFontSize && isLineHeight);
+    }
+
+    @Test(testName = "Sign Out Button Test", groups = "desktop-regression")
+    private void signOutButtonStylesTest() {
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
+        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color");
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#19A5A3"), commonUtils.hex2RgbWithoutTransparency("#19A5A3")});
+        if (!isbackgroundColor) {
+            log.info("background-color :for app-header-sign out button is not as per the spec, actual: " + backgroundColor);
+        }
+        color = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")});
+        if (!isColor) {
+            log.info("color :for app-header-sign out button is not as per the spec, actual: " + color);
+        }
+        textDecoration = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, textDecorationProperty);
+        isTextDecoration = commonUtils.assertCSSProperties("text-decoration", textDecoration, new String[]{"none"});
+        if (!isTextDecoration) {
+            log.info("text-decoration :for app-header-sign out button is not as per the spec, actual: " + textDecoration);
+        }
+        textAlign = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "text-align");
+        isTextAlign = commonUtils.assertValue(textAlign, "center", "text-align :for app-header-sign out button is not as per the spec");
+        Assert.assertTrue(isbackgroundColor && isColor && isTextDecoration && isTextAlign);
+
+        //hover on the button
+        commonUtils.hoverOnElement(appHeaderPgObj.clickableSignOut);
+        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color");
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")});
+        if (!isbackgroundColor) {
+            log.info("background-color :for app-header-sign out button in hover state is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isbackgroundColor);
     }
 
     @DataProvider(name = "DropDown Menu CloseButton Focusable Test Data")
@@ -614,8 +609,8 @@ public class AppHeaderTest extends BaseClass {
     @DataProvider(name = "Forward Tab Flow in Drop Down Test Data")
     private Object[][] getForwardTabFlowInDropDownTestData() {
         return new Object[][]{
-                {"desktop-view", 768, 800, new String[]{"", "Account Settings", "Sign Out"}},
-                {"mobile-view", 767, 800, new String[]{"", "Physics", "Chemistry", "Account Settings", "Sign Out"}}
+                {"desktop-view", 768, 800, new String[]{"", "Account settings", "Terms of Use", "Privacy Policy", "Sign out"}},
+                {"mobile-view", 767, 800, new String[]{"", "Physics", "Chemistry", "Account settings", "Terms of Use", "Privacy Policy", "Sign out"}}
         };
     }
 
@@ -641,9 +636,9 @@ public class AppHeaderTest extends BaseClass {
     @DataProvider(name = "Backward Tab Flow in Drop Down Test Data")
     private Object[][] getBackwardTabFlowInDropDownTestData() {
         return new Object[][]{
-                {"desktop-view", 768, 800, new String[]{"Sign Out", "Account Settings", "", "User account menu\n" +
+                {"desktop-view", 768, 800, new String[]{"Sign out", "Privacy Policy", "Terms of Use", "Account settings", "", "User account menu\n" +
                         "Steve"}},
-                {"mobile-view", 767, 800, new String[]{"Sign Out", "Account Settings", "Chemistry", "Physics", "", "User account menu"}}
+                {"mobile-view", 767, 800, new String[]{"Sign out", "Privacy Policy", "Terms of Use", "Account settings", "Chemistry", "Physics", "", "User account menu"}}
         };
     }
 
@@ -672,7 +667,6 @@ public class AppHeaderTest extends BaseClass {
     }
 
     public String buildJSONObjectForBasicMode(String mode, String userName, Map<String, String> courses) {
-
         jsonObject = new JsonObject();
         user = new JsonObject();
         String text, href;
@@ -709,408 +703,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    /*@Test(testName = "Default Course Mode in Desktop View", groups = {"desktop-regression"})
-    private void courseModeDesktopViewDefaultTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        Thread.sleep(1000);
-        commonUtils.getUrl(courseModeUrl);
-        pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
-        helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
-        desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
-        userName = commonUtils.getText(appHeaderPgObj.desktopViewUserMenu);
-        isUserName=commonUtils.assertValue(userName, "Michel", "Error: User name is incorrect");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(isUserName);
-        result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && desktopViewUserMenuVisible), true, "Error: Course Mode Desktop View");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Default Course Mode in Mobile View", groups = {"desktop-regression"})
-    private void courseModeMobileViewDefaultTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        printFileContents(courseJSFilePath);
-        commonUtils.setWindowSize(767, 800);
-        commonUtils.getUrl(courseModeUrl);
-        pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
-        helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
-        mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu);
-        userName = commonUtils.getText(appHeaderPgObj.mobileViewUserMenu);
-        isUserName=commonUtils.assertValue(userName, "", "First Name is not relabeled to ' '");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(isUserName);
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertEquals(userName, "");
-        result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && mobileViewUserMenuVisible), true, "Error: Course Mode Mobile View");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - Is Pearson Logo Clickable?", groups = {"desktop-regression"})
-    private void pearsonLogoClickableForCourseModeTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl);
-        pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo);
-        result = commonUtils.assertValue((pearsonLogoClickable), true, "Error: Pearson Logo is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - Is Help Link Clickable?", groups = {"desktop-regression"})
-    private void helpLinkClickableForCourseModeTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl);
-        helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink);
-        result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - Is Account Settings Clickable?", groups = {"desktop-regression"})
-    private void accountSettingsClickableForCourseModeTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
-        accountSettingsClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettings);
-        result = commonUtils.assertValue((accountSettingsClickable), true, "Error: Account Settings is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - Is Sign Out Clickable?", groups = {"desktop-regression"})
-    private void signOutClickableForCourseModeTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
-        signOutClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableSignOut);
-        result = commonUtils.assertValue((signOutClickable), true, "Error: Sign Out is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - User Menu Test", groups = {"desktop-regression"})
-    private void userMenuForCourseModeTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        Thread.sleep(500);
-        commonUtils.getUrl(courseModeUrl);
-        desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
-        userName = driver.findElement(appHeaderPgObj.desktopViewUserMenu).getText();
-        commonUtils.assertValue(userName, "Michel", "First Name is NOT seen");
-        chevronDownIconVisible = commonUtils.isElementPresent(appHeaderPgObj.chevronDownIcon);
-        userNameTruncatable = commonUtils.getCSSValue(appHeaderPgObj.desktopViewUserMenu, "text-overflow");
-        commonUtils.assertValue(userNameTruncatable, "ellipsis", "NOT truncatable");
-        commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
-        accountSettingsVisible = commonUtils.isElementPresent(appHeaderPgObj.accountSettings);
-        signOutVisible = commonUtils.isElementPresent(appHeaderPgObj.signOut);
-        result = commonUtils.assertValue((desktopViewUserMenuVisible && chevronDownIconVisible && accountSettingsVisible && signOutVisible), true, "Error: Course Mode User Menu issues");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "CourseMode-Add Course items")
-    private Object[][] getAddCourseItemsTestData() {
-        return new Object[][]{
-                {"1", courseNavItem1},
-                {"2", courseNavItem1 + "," + courseNavItem2},
-                {"3", courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3}
-        };
-    }
-
-    @Test(testName = "CourseMode - Add courses", dataProvider = "CourseMode-Add Course items", groups = {"desktop-regression"})
-    private void addCourseItemsForCourseModeTest(String noOfItems, String items) throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        testConfig = courseConfig + "," + courseNavHeading + "," + items + "," + "]}};";
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        Thread.sleep(1000);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        courseNavHeadingText = commonUtils.getText(appHeaderPgObj.courseNavHeading);
-        commonUtils.assertValue(courseNavHeadingText, "Physics", "Error: course Nav Heading is NOT right");
-        if (noOfItems.equals("1")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("1", 2);
-        } else if (noOfItems.equals("2")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("2", 3);
-        } else if (noOfItems.equals("3")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("3", 4);
-        }
-        courseNavItemAdded = commonUtils.isElementPresent(By.xpath(xpathForCourseNavItem));
-        result = commonUtils.assertValue(courseNavItemAdded, true, "Error: " + noOfItems + "th course not added");
-        courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem));
-        if (noOfItems.equals("1")) {
-            commonUtils.assertValue(courseNavItemText, "Performance", "Error: " + noOfItems + "item not added");
-        } else if (noOfItems.equals("2")) {
-            commonUtils.assertValue(courseNavItemText, "Assessment", "Error: " + noOfItems + "items not added");
-        } else if (noOfItems.equals("3")) {
-            commonUtils.assertValue(courseNavItemText, "Score", "Error: " + noOfItems + "items not added");
-        }
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - List all courses in order", groups = {"desktop-regression"})
-    private void listAllCourseNavItemsInCourseModeTest() throws Exception {
-
-        String[] arrCourses = {"All courses", "", "", "Account Settings", "Sign Out"};
-        String[] arrNavItems = {"Physics", "Performance", "Assessment", "Score"};
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        int i, j;
-        for (j = 1; j <= arrNavItems.length; j++) {
-            commonUtils.setWindowSize(767, 800);
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("1", j);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem));
-            result = commonUtils.assertValue(courseNavItemText, arrNavItems[j - 1], "Error: Item not on " + j + "th position");
-            writeInitialConfig(courseJSFilePath);
-            commonUtils.setWindowSize(768, 800);
-            Assert.assertTrue(result);
-        }
-        for (i = 1; i <= arrCourses.length; i++) {
-            commonUtils.setWindowSize(767, 800);
-            xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems(i + "", i);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
-            if (i == 3) {
-                result = commonUtils.assertValue("", arrCourses[i - 1], "Error: Item not on " + i + "th position");
-            } else {
-                result = commonUtils.assertValue(courseNavItemText, arrCourses[i - 1], "Error: Item not on " + i + "th position");
-            }
-            writeInitialConfig(courseJSFilePath);
-            commonUtils.setWindowSize(768, 800);
-            Assert.assertTrue(result);
-        }
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-    }
-
-    @Test(testName = "CourseMode - Remove one nav item", groups = {"desktop-regression"})
-    private void removeOneCourseNavItemForCourseModeTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //add a course
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        Thread.sleep(500);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("", 4);
-        courseNavItemAdded = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem));
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(courseNavItemAdded);
-
-        //remove a course
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("courseNavItem3", 4);
-        courseNavItemAdded = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem));
-        result = commonUtils.assertValue(courseNavItemAdded, false, "Error: Course not removed");
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "CourseMode - Remove All course", groups = {"desktop-regression"})
-    private void zeroCoursesForCourseModeTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        courseNavItemText = commonUtils.getText(appHeaderPgObj.courseNavItems);
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-        courseNavHeadingAdded = commonUtils.assertValue(courseNavItemText.contains("Physics"), true, "Course Nav Heading NOT present");
-        courseNavItemAdded = commonUtils.assertValue(courseNavItemText.contains("Performance") && courseNavItemText.contains("Assessments") && courseNavItemText.contains("Score"), false, "Course Nav items not removed");
-        Assert.assertTrue(courseNavHeadingAdded);
-        Assert.assertTrue(courseNavItemAdded);
-    }
-
-    @Test(testName = "CourseMode - Truncate course Nav Item names", groups = {"desktop-regression"})
-    private void truncateCourseNavItemForCourseModeTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        String veryLongCourseNavItem = "VeryLongCourseNavItemThatIsTruncatable";
-        //testConfig = courseConfig + "," + "\"courseNav\":{\"heading\":{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/physics\"},\"items\":[" + "," + "{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/performance\",\"active\":false}" + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put(veryLongCourseNavItem, "https://example.com/veryLongCourseNavItem");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", veryLongCourseNavItem, cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        Thread.sleep(500);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        int i;
-        for (i = 1; i <= 2; i++) {
-            commonUtils.setWindowSize(767, 800);
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("first", i);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem));
-            result = commonUtils.assertValue(courseNavItemText, veryLongCourseNavItem, "Error: Course Nav Item not added");
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-            courseNavItemTruncatable = commonUtils.getCSSValue(By.xpath(xpathForCourseNavItem + "/a"), "text-overflow");
-            commonUtils.setWindowSize(768, 800);
-            //writeInitialConfig(courseJSFilePath);
-            result = commonUtils.assertValue(courseNavItemTruncatable, "ellipsis", "Error: Course Nav item is not truncatable");
-            Assert.assertTrue(result);
-        }
-    }
-
-    @Test(testName = "CourseMode - Is Course Nav items Clickable?", groups = {"desktop-regression"})
-    private void courseNavItemClickableForCourseModeTest() throws IOException, InterruptedException {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/veryLongCourseNavItem");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        int i, j;
-        for (i = 1; i <= 3; i++) {
-            commonUtils.setWindowSize(767, 800);
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems(i + "", i);
-            courseNavItemClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem + "/a"));
-            result = commonUtils.assertValue((courseNavItemClickable), true, "Error: Course Nav Item is NOT clickable");
-            commonUtils.setWindowSize(768, 800);
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-        }
-        for (i = 1; i <= 5; i++) {
-            commonUtils.setWindowSize(767, 800);
-            xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems(i + "", i);
-            if (i == 3 || i == 2) {
-                result = commonUtils.assertValue("test", "test", "");
-            } else {
-                courseClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForUserMenuDropDownItems + "/a"));
-                result = commonUtils.assertValue((courseClickable), true, "Error: Course is NOT clickable");
-            }
-            writeInitialConfig(courseJSFilePath);
-            commonUtils.setWindowSize(768, 800);
-            Assert.assertTrue(result);
-        }
-    }
-
-    @Test(testName = "CourseMode - Is Course Nav items Enabled?", groups = {"desktop-regression"})
-    public void courseNavItemEnabledTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItemDisabled + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, true);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
-        Thread.sleep(500);
-        commonUtils.getUrl(courseModeUrl);
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("forDisabledCourse", 2);
-        attributeValue = commonUtils.getAttributeValue(By.xpath(xpathForCourseNavItem), "class");
-        result = commonUtils.assertValue(attributeValue.contains("o-app-header__menu-item-course-nav o-dropdown-menu__menu-item--disabled"), true, "Error: The course is not disabled");
-        commonUtils.setWindowSize(768, 800);
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "Set Theme Test Data")
-    private Object[][] getThemeTestData() {
-        return new Object[][]{
-
-                {"signout", signOutModeUrl, signedOutJSFilePath, defaultConfigSignoutMode, signOutConfig + "," + loginControlsFalse + ",", themeON + "};"},
-                {"signout", signOutModeUrl, signedOutJSFilePath, defaultConfigSignoutMode, signOutConfig + "," + loginControlsTrue + ",", themeOFF + "};"},
-                {"basic", basicModeUrl, basicJSFilePath, defaultConfigBasicMode, basicConfig + course1 + "],", themeON + "};"},
-                {"basic", basicModeUrl, basicJSFilePath, defaultConfigBasicMode, basicConfig + course1 + "],", themeOFF + "};"},
-                {"course", courseModeUrl, courseJSFilePath, defaultConfigCourseMode, courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]},", themeON + "};"},
-                {"course", courseModeUrl, courseJSFilePath, defaultConfigCourseMode, courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]},", themeOFF + "};"},
-                {"integration", integModeUrl, integJSFilePath, integJSFilePath, integConfig + ",", themeON + "};"},
-                {"integration", integModeUrl, integJSFilePath, integJSFilePath, integConfig + ",", themeOFF + "};"}
-        };
-    }
-
-    @Test(testName = "Mode - Theme On/Off?", dataProvider = "Set Theme Test Data", groups = {"desktop-regression"})
-    public void themeForAllModesTest(String mode, String modeUrl, String JSFilePath, String defaultConfig, String config, String theme) throws Exception {
-
-        readInitialConfig(JSFilePath);
-        testConfig = config + theme;
-
-        changeConfig(JSFilePath, defaultConfig, testConfig);
-        commonUtils.getUrl(modeUrl);
-
-        attributeValue = commonUtils.getAttributeValue(appHeaderPgObj.headerBanner, "class");
-        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.headerBanner, "background-color");
-
-        if (mode.equals("course") && theme.equals(themeON + "};")) {
-            isbackgroundColor = commonUtils.assertValue(backgroundColor, "rgba(242, 242, 242, 1)", "Error: Theme Background for " + mode.toUpperCase() + " is NOT set");
-            isThemeRight = commonUtils.assertValue(attributeValue.contains("o-app-header o-header o-header--fixed o-header--theme-light"), true, "Error: " + mode + " theme is NOT set");
-        } else {
-            isbackgroundColor = commonUtils.assertValue(backgroundColor, "rgba(0, 0, 0, 1)", "Error: Theme Background for " + mode.toUpperCase() + " is set");
-            isThemeRight = commonUtils.assertValue(attributeValue.contains("o-app-header o-header o-header--fixed"), true, "Error: " + mode + " theme is set");
-        }
-        writeInitialConfig(JSFilePath);
-        Assert.assertTrue(isbackgroundColor && isThemeRight);
-    }*/
     public String buildJSONObjectForCourseMode(String mode, String userName, String courseNavHeading, Map<String, String> courseNavItems, boolean active) {
-
         jsonObject = new JsonObject();
         user = new JsonObject();
         heading = new JsonObject();
@@ -1337,26 +930,10 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: iPhone6 Plus Verify Styles for Signed Out Mode Test", dataProvider = "Styles for Signed Out Mode Test Data", groups = "mobile-regression")
-    private void stylesForSignedOutModeiPhone6PlusMobileTest(int width, int height, By element, String type, String cssProperty, String[] expectedCSSValue, String device, ScreenOrientation mode) {
+    @Test(testName = "Mobile: Verify Styles for Signed Out Mode Test", dataProvider = "Styles for Signed Out Mode Test Data", groups = "mobile-regression")
+    private void stylesForSignedOutModeMobileTest(int width, int height, By element, String type, String cssProperty, String[] expectedCSSValue, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test specify mobile device as 'iPhone 6S plus'");
-        }
-        appium.rotate(mode);
-        commonUtils.getUrl(signOutModeUrl, "mobile");
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for app-header " + type + " is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: iPad Air Verify Styles for Signed Out Mode Test", dataProvider = "Styles for Signed Out Mode Test Data", groups = "mobile-regression")
-    private void stylesForSignedOutModeiPadAirMobileTest(int width, int height, By element, String type, String cssProperty, String[] expectedCSSValue, String device, ScreenOrientation mode) {
-        if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
+            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
         appium.rotate(mode);
         commonUtils.getUrl(signOutModeUrl, "mobile");
@@ -1623,10 +1200,10 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: iPhone 6 Plus Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regression")
-    private void stylesForBasicModeiPhone6PlusMobileTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
+    @Test(testName = "Mobile: Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regression")
+    private void stylesForBasicModeMobileTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test specify mobile device as 'iPhone 6S plus'");
+            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
         appium.rotate(mode);
         commonUtils.getUrl(basicModeUrl, "mobile");
@@ -1649,354 +1226,36 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(isMarginTop && isFontSize && isLineHeight);
     }
 
-    @Test(testName = "Mobile: iPad Air Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regression")
-    private void stylesForBasicModeiPadAirMobileTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
-        if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
-        }
-        appium.rotate(mode);
+    @Test(testName = "Mobile: Sign Out Button Test", groups = "mobile-regression")
+    private void signOutButtonStylesMobileTest() {
         commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(menuElement, "mobile");
-        marginTop = commonUtils.getCSSValue(itemElement, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
-        if (!isMarginTop) {
-            log.info("Basic Mode: margin-top :for app-header in" + type + " is not as per the spec, actual: " + marginTop);
+        if (mobileDevice.contains("iPhone 6")) {
+            appium.rotate(ScreenOrientation.LANDSCAPE);
+            commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
         }
-        fontSize = commonUtils.getCSSValue(itemElement, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Basic Mode: font-size :for app-header in " + type + " is not as per the spec, actual: " + fontSize);
+        if (mobileDevice.contains("iPad Air")) {
+            appium.rotate(ScreenOrientation.PORTRAIT);
+            commonUtils.click(appHeaderPgObj.desktopViewUserMenu, "mobile");
         }
-        lineHeight = commonUtils.getCSSValue(itemElement, "line-height", "mobile");
-        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("Basic Mode: line-height :for app-header in " + type + " is not as per the spec, actual: " + lineHeight);
+        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color", "mobile");
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#19A5A3"), commonUtils.hex2RgbWithoutTransparency("#19A5A3")});
+        if (!isbackgroundColor) {
+            log.info("background-color :for app-header-sign out button is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isMarginTop && isFontSize && isLineHeight);
-    }
-
-    /*************************************
-     * Course mode mobile tests *
-     *************************************/
-
-    /*@Test(testName = "Mobile: Default Course Mode in Mobile View", groups = {"mobile-regression", "origamiV2"})
-    private void courseModeDefaultMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo, "mobile");
-        helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink, "mobile");
-        mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        chevronDownIconVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.chevronDownIcon, "mobile");
-        userName = commonUtils.getText(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        commonUtils.assertValue(userName, "Menu", "First Name is not relabled to Menu");
-        result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && mobileViewUserMenuVisible && chevronDownIconVisible), true, "Error: Course Mode Mobile View");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Pearson Logo Clickable?", groups = {"mobile-regression", "origamiV2"})
-    private void pearsonLogoClickableForCourseModeMobileTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        pearsonLogoClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickablePearsonLogo, "mobile");
-        result = commonUtils.assertValue((pearsonLogoClickable), true, "Error: Pearson Logo is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Help Link Clickable?", groups = {"mobile-regression", "origamiV2"})
-    private void helpLinkClickableForCourseModeMobileTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
-        result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Account Settings Clickable?", groups = {"mobile-regression", "origamiV2"})
-    private void accountSettingsClickableForCourseModeMobileTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        accountSettingsClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettings, "mobile");
-        result = commonUtils.assertValue((accountSettingsClickable), true, "Error: Account Settings is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Sign Out Clickable?", groups = {"mobile-regression", "origamiV2"})
-    private void signOutClickableForCourseModeMobileTest() throws IOException, InterruptedException {
-
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        signOutClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableSignOut, "mobile");
-        result = commonUtils.assertValue((signOutClickable), true, "Error: Sign Out is NOT clickable");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - User Menu Test", groups = {"mobile-regression", "origamiV2"})
-    private void userMenuForCourseModeMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        userName = appium.findElement(appHeaderPgObj.mobileViewUserMenu).getText();
-        commonUtils.assertValue(userName, "Menu", "Menu is NOT seen");
-        chevronDownIconVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.chevronDownIcon, "mobile");
-        userNameTruncatable = commonUtils.getCSSValue(appHeaderPgObj.desktopViewUserMenu, "text-overflow", "mobile");
-        commonUtils.assertValue(userNameTruncatable, "ellipsis", "NOT truncatable");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        accountSettingsVisible = commonUtils.isElementPresent(appHeaderPgObj.accountSettings, "mobile");
-        signOutVisible = commonUtils.isElementPresent(appHeaderPgObj.signOut, "mobile");
-        result = commonUtils.assertValue((mobileViewUserMenuVisible && chevronDownIconVisible && accountSettingsVisible && signOutVisible), true, "Error: Course Mode User Menu issues");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Add courses", dataProvider = "CourseMode-Add Course items", groups = {"mobile-regression", "origamiV2"})
-    private void addCourseItemsForCourseModeMobileTest(String noOfItems, String items) throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        testConfig = courseConfig + "," + courseNavHeading + "," + items + "," + "]}};";
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        courseNavHeadingText = commonUtils.getText(appHeaderPgObj.courseNavHeading, "mobile");
-        commonUtils.assertValue(courseNavHeadingText, "Physics", "Error: course Nav Heading is NOT right");
-        if (noOfItems.equals("1")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("1", 2);
-        } else if (noOfItems.equals("2")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("2", 3);
-        } else if (noOfItems.equals("3")) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("3", 4);
+        color = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")});
+        if (!isColor) {
+            log.info("color :for app-header-sign out button is not as per the spec, actual: " + color);
         }
-        courseNavItemAdded = commonUtils.isElementPresent(By.xpath(xpathForCourseNavItem), "mobile");
-        result = commonUtils.assertValue(courseNavItemAdded, true, "Error: " + noOfItems + "th course not added");
-        courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem), "mobile");
-        if (noOfItems.equals("1")) {
-            commonUtils.assertValue(courseNavItemText, "Performance", "Error: " + noOfItems + "item not added");
-        } else if (noOfItems.equals("2")) {
-            commonUtils.assertValue(courseNavItemText, "Assessment", "Error: " + noOfItems + "items not added");
-        } else if (noOfItems.equals("3")) {
-            commonUtils.assertValue(courseNavItemText, "Score", "Error: " + noOfItems + "items not added");
+        textDecoration = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, textDecorationProperty, "mobile");
+        isTextDecoration = commonUtils.assertCSSProperties("text-decoration", textDecoration, new String[]{"none"});
+        if (!isTextDecoration) {
+            log.info("text-decoration :for app-header-sign out button is not as per the spec, actual: " + textDecoration);
         }
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
+        textAlign = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "text-align", "mobile");
+        isTextAlign = commonUtils.assertValue(textAlign, "center", "text-align :for app-header-sign out button is not as per the spec");
+        Assert.assertTrue(isbackgroundColor && isColor && isTextDecoration && isTextAlign);
     }
-
-    @Test(testName = "Mobile: CourseMode - List all courses in order", groups = {"mobile-regression", "origamiV2"})
-    private void listAllCourseNavItemsInCourseModeMobileTest() throws Exception {
-
-        String[] arrCourses = {"All courses", "", "", "Account Settings", "Sign Out"};
-        String[] arrNavItems = {"Physics", "Performance", "Assessment", "Score"};
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        int i, j;
-        for (j = 1; j <= arrNavItems.length; j++) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("1", j);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem), "mobile");
-            result = commonUtils.assertValue(courseNavItemText, arrNavItems[j - 1], "Error: Item not on " + j + "th position");
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-        }
-        for (i = 1; i <= arrCourses.length; i++) {
-            xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems(i + "", i);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems), "mobile");
-            if (i == 3) {
-                result = commonUtils.assertValue("", arrCourses[i - 1], "Error: Item not on " + i + "th position");
-            } else {
-                result = commonUtils.assertValue(courseNavItemText, arrCourses[i - 1], "Error: Item not on " + i + "th position");
-            }
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-        }
-        writeInitialConfig(courseJSFilePath);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Remove one nav item", groups = {"mobile-regression", "origamiV2"})
-    private void removeOneCourseNavItemForCourseModeMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //add a course
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("", 4);
-        courseNavItemAdded = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem), "mobile");
-        Assert.assertTrue(courseNavItemAdded);
-        writeInitialConfig(courseJSFilePath);
-
-        //remove a course
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("courseNavItem3", 4);
-        courseNavItemAdded = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem), "mobile");
-        result = commonUtils.assertValue(courseNavItemAdded, false, "Error: Course not removed");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Remove All course", groups = {"mobile-regression", "origamiV2"})
-    private void zeroCoursesForCourseModeMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        courseNavItemText = commonUtils.getText(appHeaderPgObj.courseNavItems, "mobile");
-        writeInitialConfig(courseJSFilePath);
-        courseNavHeadingAdded = commonUtils.assertValue(courseNavItemText.contains("Physics"), true, "Course Nav Heading NOT present");
-        courseNavItemAdded = commonUtils.assertValue(courseNavItemText.contains("Performance") && courseNavItemText.contains("Assessments") && courseNavItemText.contains("Score"), false, "Course Nav items not removed");
-        Assert.assertTrue(courseNavHeadingAdded);
-        Assert.assertTrue(courseNavItemAdded);
-    }
-
-    @Test(testName = "Mobile: CourseMode - Truncate course Nav Item names", groups = {"mobile-regression", "origamiV2"})
-    private void truncateCourseNavItemForCourseModeMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        String veryLongCourseNavItem = "VeryLongCourseNavItemThatIsTruncatable";
-        //testConfig = courseConfig + "," + "\"courseNav\":{\"heading\":{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/physics\"},\"items\":[" + "," + "{\"text\":\"" + veryLongCourseNavItem + "\",\"href\":\"https://example.com/performance\",\"active\":false}" + "," + courseNavItem2 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put(veryLongCourseNavItem, "https://example.com/veryLongCourseNavItem");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", veryLongCourseNavItem, cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        int i;
-        for (i = 1; i <= 2; i++) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("first", i);
-            courseNavItemText = commonUtils.getText(By.xpath(xpathForCourseNavItem), "mobile");
-            result = commonUtils.assertValue(courseNavItemText, veryLongCourseNavItem, "Error: Course Nav Item not added");
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-            courseNavItemTruncatable = commonUtils.getCSSValue(By.xpath(xpathForCourseNavItem + "/a"), "text-overflow", "mobile");
-            //writeInitialConfig(courseJSFilePath);
-            result = commonUtils.assertValue(courseNavItemTruncatable, "ellipsis", "Error: Course Nav item is not truncatable");
-            Assert.assertTrue(result);
-        }
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Course Nav items Clickable?", groups = {"mobile-regression", "origamiV2"})
-    private void courseNavItemClickableForCourseModeMobileTest() throws IOException, InterruptedException {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItem2 + "," + courseNavItem3 + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/veryLongCourseNavItem");
-        cModeCourseNavItems.put("Assessment", "https://example.com/assessment");
-        cModeCourseNavItems.put("Score", "https://example.com/score");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, false);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        int i, j;
-        for (i = 1; i <= 3; i++) {
-            xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems(i + "", i);
-            courseNavItemClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForCourseNavItem + "/a"), "mobile");
-            result = commonUtils.assertValue((courseNavItemClickable), true, "Error: Course Nav Item is NOT clickable");
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-        }
-        for (i = 1; i <= 5; i++) {
-            xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems(i + "", i);
-            if (i == 3 || i == 2) {
-                result = commonUtils.assertValue("test", "test", "");
-            } else {
-                courseClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForUserMenuDropDownItems + "/a"), "mobile");
-                result = commonUtils.assertValue((courseClickable), true, "Error: Course is NOT clickable");
-            }
-            writeInitialConfig(courseJSFilePath);
-            Assert.assertTrue(result);
-        }
-    }
-
-    @Test(testName = "Mobile: CourseMode - Is Course Nav items Enabled?", groups = {"mobile-regression", "origamiV2"})
-    public void courseNavItemEnabledMobileTest() throws Exception {
-
-        readInitialConfig(courseJSFilePath);
-        //testConfig = courseConfig + "," + courseNavHeading + "," + courseNavItem1 + "," + courseNavItemDisabled + "]}};";
-        cModeCourseNavItems = new LinkedHashMap<String, String>();
-        cModeCourseNavItems.put("Performance", "https://example.com/performance");
-        testConfig = buildJSONObjectForCourseMode("Course", "Michel", "Physics", cModeCourseNavItems, true);
-
-        changeConfig(courseJSFilePath, defaultConfigCourseMode, testConfig);
-        commonUtils.getUrl(courseModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
-        xpathForCourseNavItem = appHeaderPgObj.xpathForCourseNavItems("forDisabledCourse", 2);
-        attributeValue = commonUtils.getAttributeValue(By.xpath(xpathForCourseNavItem), "class", "mobile");
-        result = commonUtils.assertValue(attributeValue.contains("o-app-header__menu-item-course-nav o-dropdown-menu__menu-item--disabled"), true, "Error: The course is not disabled");
-        writeInitialConfig(courseJSFilePath);
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: Mode - Theme On/Off?", dataProvider = "Set Theme Test Data", groups = {"mobile-regression", "origamiV2"})
-    public void themeForAllModesMobileTest(String mode, String modeUrl, String JSFilePath, String defaultConfig, String config, String theme) throws Exception {
-
-        readInitialConfig(JSFilePath);
-        testConfig = config + theme;
-        changeConfig(JSFilePath, defaultConfig, testConfig);
-        commonUtils.getUrl(modeUrl, "mobile");
-
-        attributeValue = commonUtils.getAttributeValue(appHeaderPgObj.headerBanner, "class", "mobile");
-        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.headerBanner, "background-color", "mobile");
-
-        if (mode.equals("course") && theme.equals(themeON + "};")) {
-            isbackgroundColor = commonUtils.assertValue(backgroundColor, "rgba(242, 242, 242, 1)", "Error: Theme Background for " + mode.toUpperCase() + " is NOT set");
-            isThemeRight = commonUtils.assertValue(attributeValue.contains("o-app-header o-header o-header--fixed o-header--theme-light"), true, "Error: " + mode + " theme is NOT set");
-        } else {
-            isbackgroundColor = commonUtils.assertValue(backgroundColor, "rgba(0, 0, 0, 1)", "Error: Theme Background for " + mode.toUpperCase() + " is set");
-            isThemeRight = commonUtils.assertValue(attributeValue.contains("o-app-header o-header o-header--fixed"), true, "Error: " + mode + " theme is set");
-        }
-        writeInitialConfig(JSFilePath);
-        Assert.assertTrue(isbackgroundColor && isThemeRight);
-    }*/
 
     /*************************
      * Integration Mode Mobile Tests *
@@ -2051,6 +1310,11 @@ public class AppHeaderTest extends BaseClass {
             appium.manage().deleteAllCookies();
         } else {
             driver.manage().deleteAllCookies();
+        }
+        if (browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")) {
+            textDecorationProperty = "text-decoration";
+        } else {
+            textDecorationProperty = "text-decoration-line";
         }
     }
 }
