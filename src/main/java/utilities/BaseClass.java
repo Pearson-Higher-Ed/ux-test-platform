@@ -285,7 +285,7 @@ public class BaseClass {
             }
         }
         if(runEnv.equals("travis")) {
-            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + " tests on "+successColorCode+"\nplatform: " + platform +successColorCode+"\nbrowser: " + sauceBrowser +successColorCode+"\nversion: " + sauceBrowserVer));
+            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n"+successColorCode+"platform: " + platform +"\n"+successColorCode+"browser: " + sauceBrowser +"\n"+successColorCode+"version: " + sauceBrowserVer+"\n"));
         }else{
             System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude +"tests on \nbrowser: "+ localBrowser));
         }
