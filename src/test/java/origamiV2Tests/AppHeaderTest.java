@@ -515,7 +515,7 @@ public class AppHeaderTest extends BaseClass {
     @DataProvider(name = "Styles for Basic Mode Test Data")
     public Object[][] getStylesForBasicModeTestData() {
         return new Object[][]{
-                {769, 800, "desktop-view-user-menu", appHeaderPgObj.desktopViewUserMenu, appHeaderPgObj.clickableSignOut, new String[]{"0px"}, new String[]{"18px"}, new String[]{"44px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {769, 800, "desktop-view-user-menu", appHeaderPgObj.desktopViewUserMenu, appHeaderPgObj.clickableSignOut, new String[]{"12px"}, new String[]{"18px"}, new String[]{"44px"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {767, 800, "mobile-view-user-menu", appHeaderPgObj.mobileViewUserMenu, By.xpath(appHeaderPgObj.xpathForUserMenuDropDownItems("", 3) + "/a"), new String[]{"12px"}, new String[]{"14px"}, new String[]{"18px"}, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE},
                 {767, 800, "mobile-view-user-menu", appHeaderPgObj.mobileViewUserMenu, By.xpath(appHeaderPgObj.xpathForUserMenuDropDownItems("", 6) + "/a"), new String[]{"12px"}, new String[]{"14px"}, new String[]{"18px"}, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE}
         };
