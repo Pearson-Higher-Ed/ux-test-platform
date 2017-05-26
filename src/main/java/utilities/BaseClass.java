@@ -64,7 +64,7 @@ public class BaseClass {
     public CompoundsLoadingIndicatorPageObjects indicatorPgObj = null;
 
     public CommonUtils commonUtils = null;
-    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite="";
+    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
@@ -284,10 +284,18 @@ public class BaseClass {
                 }
             }
         }
-        if(runEnv.equals("travis")) {
-            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n"+successColorCode+"platform: " + platform +"\n"+successColorCode+"browser: " + sauceBrowser +"\n"+successColorCode+"version: " + sauceBrowserVer+"\n"));
-        }else{
-            System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude +"tests on \nbrowser: "+ localBrowser));
+        if (runEnv.equals("travis")) {
+            if (desktop.equals("on")) {
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + platform + "\n" + successColorCode + "browser: " + sauceBrowser + "\n" + successColorCode + "version: " + sauceBrowserVer + "\n"));
+            } else if (mobile.equals("on")) {
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + appiumDriver + "\n" + successColorCode + "device: " + mobDeviceName + "\n"));
+            }
+        } else {
+            if (desktop.equals("on")) {
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "tests on \nbrowser: " + localBrowser));
+            } else if (mobile.equals("on")) {
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + appiumDriver + "\n" + successColorCode + "device: " + mobDeviceName + "\n"));
+            }
         }
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
