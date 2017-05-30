@@ -20,7 +20,7 @@ addons:
         - g++-4.8
 
 install:
-- mvn install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
+- mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
 
 before_script:
 - nvm install 6.0
@@ -29,11 +29,11 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
-- export feature_branch=v1
+- export component=compounds_sdk
+- export feature_branch=DES-471
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=compounds_sdk.xml test
 
 notifications:
   email:
@@ -44,4 +44,3 @@ notifications:
     on_failure: always
 
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476
-

@@ -49,6 +49,7 @@ public class BaseClass {
     public IconsPageObjects iconPgObj = null;
     public CompoundsIconsPageObjects compIconsPgObj = null;
     public ModalPageObjects modalPgObj = null;
+    public CompoundsFooterPageObjects compFooterPgObj = null;
     public AppHeaderPageObjects appHeaderPgObj = null;
     public ContextualHelpPageObjects conxHelpPgObj = null;
     public DrawerPageObjects drawerPgObj = null;
@@ -184,6 +185,7 @@ public class BaseClass {
             iconPgObj = new IconsPageObjects(driver);
             compIconsPgObj = new CompoundsIconsPageObjects(driver);
             modalPgObj = new ModalPageObjects(driver);
+            compFooterPgObj = new CompoundsFooterPageObjects(driver);
             compArchtypePgObj = new ComponentArchetypePageObjects(driver);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
             sliderPgObj = new SliderPageObjects(driver);
@@ -215,6 +217,7 @@ public class BaseClass {
             iconPgObj = new IconsPageObjects(appium);
             compIconsPgObj = new CompoundsIconsPageObjects(appium);
             modalPgObj = new ModalPageObjects(appium);
+            compFooterPgObj = new CompoundsFooterPageObjects(appium);
             compArchtypePgObj = new ComponentArchetypePageObjects(appium);
             avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
             sliderPgObj = new SliderPageObjects(appium);
