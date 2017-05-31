@@ -20,7 +20,7 @@ addons:
         - g++-4.8
 
 install:
-- mvn install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
+- mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
 
 before_script:
 - nvm install 6.0
@@ -44,4 +44,3 @@ notifications:
     on_failure: always
 
   hipchat: pQrkiv99DE4e4K1I1KLrR8HZtoE8i3ZGg2bHYLrp@2846476
-
