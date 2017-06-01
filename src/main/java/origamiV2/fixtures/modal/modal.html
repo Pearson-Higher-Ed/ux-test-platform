@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Compounds Demo</title>
-    <link rel="stylesheet" type="text/css" href="../css/elements.css">
+    <title>Origami V2 Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../css/modal/elements.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<h2>Compounds - Modal</h2>
+<h2>Origami V2 - Modal</h2>
 <script>
     if (!document.getElementById('pe-icons-sprite')) {
         var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.open("GET", "../../../../../../icons/p-icons-sprite-1.1.svg", true);
         pe_ajax.responseType = "document";
         pe_ajax.onload = function (e) {
             document.body.insertBefore(
@@ -23,16 +23,16 @@
         pe_ajax.send();
     }
 </script>
-<div>
-    <div id="modal-target"/>
-</div>
+
+<div id="modal-target"></div>
+
 <script src="https://unpkg.com/react@15/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
 
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 
-<script type="text/javascript" src="../jsfiles/dist.compounds.js"></script>
-<script type="text/javascript" src="../jsfiles/dev.compounds.js"></script>
-<script type="text/javascript" src="../jsfiles/modal/modal.js"></script>
+<script type="text/javascript" src="../../jsfiles/modal/dist.modal.js"></script>
+<script type="text/javascript" src="../../jsfiles/modal/dev.modal.js"></script>
+<script type="text/javascript" src="../../jsfiles/modal/modal.js"></script>
 </body>
 </html>

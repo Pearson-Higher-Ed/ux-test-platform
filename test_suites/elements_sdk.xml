@@ -18,7 +18,6 @@
             <class name="elementsTests.InputsTest"/>
             <class name="elementsTests.IconsTest"/>
             <class name="elementsTests.FormsTest"/>
-            <class name="elementsTests.ModalTest"/>
         </classes>
     </test>
 </suite>

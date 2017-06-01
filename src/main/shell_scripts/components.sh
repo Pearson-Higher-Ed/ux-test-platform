@@ -146,6 +146,20 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/pagination/
 }
 
+install_modal(){
+echo -e "******************************\\n    Installing modal    \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/modal.git
+cd modal
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dist.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/modal/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dev.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/modal/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/modal/
+}
+
 # Below conditions are to install the components specific to its feature branch.
 if [[ $component == "elements_sdk" ]]
 then
@@ -193,6 +207,10 @@ elif [[ $component == "pagination" ]]
 then
 install_pagination $feature_branch
 
+elif [[ $component == "modal" ]]
+then
+install_modal $feature_branch
+
 # Below condition is to install all the "master" branch of components for the regression test run
 elif [[ $component == "regression" ]]
 then
@@ -213,6 +231,8 @@ cd ..
 install_alerts master
 cd ..
 install_pagination master
+cd ..
+install_modal master
 cd ..
 install_elements_sdk v1
 cd ..

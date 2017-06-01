@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Origami v2 - modal Test Suite">
+    <test name="origamiV2Test - Modal">
+        <groups>
+            <run>
+                <include name="desktop-regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="origamiV2Tests.ModalTest"/>
+        </classes>
+    </test>
+</suite>
