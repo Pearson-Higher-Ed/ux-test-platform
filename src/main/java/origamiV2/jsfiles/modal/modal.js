@@ -1,11 +1,12 @@
+/**
+ * Created by umahaea on 6/1/17.
+ */
 function init() {
-	document.body.dispatchEvent(new CustomEvent('o.InitComponents', {
+	document.body.dispatchEvent(new CustomEvent('o.InitModal', {
 		detail: {
 			elementId: 'modal-target',
-			componentName: 'Modal',
 			props: {
 				text: {
-					initiatingButtonText: 'any string',
 					headerTitle: 'Terms n Conditions (basic title)',
 					closeButtonSRText: 'close',
 					modalSaveButtonText: 'save',
