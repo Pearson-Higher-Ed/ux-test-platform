@@ -727,7 +727,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight && isColor);
     }
 
-    @Test(testName = "Mobile : Icon Dropdown Header Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Icon Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
     private void headericonDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
@@ -838,7 +838,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertFalse(isDropdownListBox);
     }
 
-    @Test(testName = "Select Options with Click Mobile Test", dataProvider = "Select Options with Click Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Select Options with Click Mobile Test", dataProvider = "Select Options with Click Test Data", groups = "mobile-regression")
     private void selectOptionsWithClickMobileTest(String dropdownType, By trigger, By option, String expClassName, By optionText) throws IOException, InterruptedException {
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
