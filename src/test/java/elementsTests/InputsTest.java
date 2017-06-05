@@ -294,7 +294,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"text-label-input", inputsPgObj.textLabelInput, new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"text-label-input-errored", inputsPgObj.slTextLabelInputErrored, new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"text-label-input-disabled", inputsPgObj.slTextLabelInputDisabled, new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"text-label-input-disabled", inputsPgObj.slTextLabelInputDisabled, new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"text-label-input-readonly", inputsPgObj.slTextLableInputReadOnly, new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}}
         };
     }
@@ -396,7 +396,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"Active", inputsPgObj.inputBasicSingleLabel, inputsPgObj.inputBasicSingleLine, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"},
                 {"Error", inputsPgObj.inputBasicErrorLabel, inputsPgObj.inputBasicError, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px"},
-                {"Disabled", inputsPgObj.inputBasicDisabledLabel, inputsPgObj.inputBasicDisabled, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "12px"}
+                {"Disabled", inputsPgObj.inputBasicDisabledLabel, inputsPgObj.inputBasicDisabled, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"}
         };
     }
 
@@ -496,7 +496,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"password-fancy", inputsPgObj.passwordFancyField, inputsPgObj.passwordFancyLabel, inputsPgObj.passwordFancyInfoMsg, inputsPgObj.passwordFancyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"password-fancy-error", inputsPgObj.passwordFancyErrorField, inputsPgObj.passwordFancyErrorLabel, inputsPgObj.passwordFancyErrorInfoMsg, inputsPgObj.passwordFancyErrorErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"password-fancy-disabled", inputsPgObj.passwordFancyDisabledField, inputsPgObj.passwordFancyDisabledLabel, inputsPgObj.passwordFancyDisabledInfoMsg, inputsPgObj.passwordFancyDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"password-fancy-disabled", inputsPgObj.passwordFancyDisabledField, inputsPgObj.passwordFancyDisabledLabel, inputsPgObj.passwordFancyDisabledInfoMsg, inputsPgObj.passwordFancyDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"password-fancy-readOnly", inputsPgObj.passwordFancyReadOnlyField, inputsPgObj.passwordFancyReadOnlyLabel, inputsPgObj.passwordFancyReadOnlyInfoMsg, inputsPgObj.passwordFancyReadOnlyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070,")}},
         };
     }
@@ -660,7 +660,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"password-basic", inputsPgObj.passwordBasicField, inputsPgObj.passwordBasicLabel, inputsPgObj.passwordBasicInfoMsg, inputsPgObj.passwordBasicErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"password-basic-error", inputsPgObj.passwordBasicErrorField, inputsPgObj.passwordBasicErrorLabel, inputsPgObj.passwordBasicErrorInfoMsg, inputsPgObj.passwordBasicErrorErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"password-basic-disabled", inputsPgObj.passwordBasicDisabledField, inputsPgObj.passwordBasicDisabledLabel, inputsPgObj.passwordBasicDisabledrInfoMsg, inputsPgObj.passwordBasicDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"password-basic-disabled", inputsPgObj.passwordBasicDisabledField, inputsPgObj.passwordBasicDisabledLabel, inputsPgObj.passwordBasicDisabledrInfoMsg, inputsPgObj.passwordBasicDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")}},
                 {"password-basic-readOnly", inputsPgObj.passwordBasicReadOnlyField, inputsPgObj.passwordBasicReadOnlyLabel, inputsPgObj.passwordBasicReadOnlyInfoMsg, inputsPgObj.passwordBasicReadOnlyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -919,7 +919,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"select-input-fancy", inputsPgObj.fancySelectInput, inputsPgObj.fancySelectInputLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-error", inputsPgObj.fancySelectInputError, inputsPgObj.fancySelectInputErrorLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"select-input-fancy-error", inputsPgObj.fancySelectInputDisabled, inputsPgObj.fancySelectInputDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"select-input-fancy-error", inputsPgObj.fancySelectInputDisabled, inputsPgObj.fancySelectInputDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-readOnly", inputsPgObj.fancySelectInputReadOnly, inputsPgObj.fancySelectInputReadOnlyLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -1151,7 +1151,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"select-input-basic", inputsPgObj.basicSelectInput, inputsPgObj.basicSelectInputLabel, inputsPgObj.basicSelectInputIcon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
                 {"select-input-basic-error", inputsPgObj.basicSelectInputError, inputsPgObj.basicSelectInputErrorLabel, inputsPgObj.basicSelectInputErrorIcon, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"},
-                {"select-input-basic-disabled", inputsPgObj.basicSelectInputDisabled, inputsPgObj.basicSelectInputDisabledLabel, inputsPgObj.basicSelectInputDisabledIcon, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "12px", "16px"},
+                {"select-input-basic-disabled", inputsPgObj.basicSelectInputDisabled, inputsPgObj.basicSelectInputDisabledLabel, inputsPgObj.basicSelectInputDisabledIcon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
                 {"select-input-basic-readOnly", inputsPgObj.basicSelectInputReadOnly, inputsPgObj.basicSelectInputReadOnlyLabel, inputsPgObj.basicSelectInputReadOnlyIcon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
         };
     }
@@ -1821,7 +1821,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"multiLine-text-input", inputsPgObj.multiLineTextLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"multiLine-text-input-error", inputsPgObj.multiLineTextErrorLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"multiLine-text-input-disabled", inputsPgObj.multiLineTextDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"multiLine-text-input-disabled", inputsPgObj.multiLineTextDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"multiLine-text-input-readOnly", inputsPgObj.multiLineTextReadOnlyLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
