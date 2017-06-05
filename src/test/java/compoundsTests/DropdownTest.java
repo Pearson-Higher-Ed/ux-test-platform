@@ -638,7 +638,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Dropdown Header Mobile Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
     private void headerButtonDropdownMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
