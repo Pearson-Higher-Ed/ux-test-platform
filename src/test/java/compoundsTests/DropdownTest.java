@@ -499,7 +499,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Select Options with Tab Enter Test", dataProvider = "Select Options with Tab Test Data", groups = "desktop-regressionT")
+    @Test(testName = "Select Options with Tab Enter Test", dataProvider = "Select Options with Tab Test Data", groups = "desktop-regression")
     private void selectOptionsWithTabEnterTest(String dropdownType, By trigger, By option) throws IOException, InterruptedException {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");
@@ -518,7 +518,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCheckmarkPresent);
     }
 
-    @Test(testName = "Select Options with Tab Space Test", dataProvider = "Select Options with Tab Test Data", groups = "desktop-regressionT")
+    @Test(testName = "Select Options with Tab Space Test", dataProvider = "Select Options with Tab Test Data", groups = "desktop-regression")
     private void selectOptionsWithTabSpaceTest(String dropdownType, By trigger, By option) throws IOException, InterruptedException {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");

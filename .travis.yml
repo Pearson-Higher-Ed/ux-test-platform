@@ -23,8 +23,8 @@ install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
 
 before_script:
-- nvm install 6.0
-- nvm use 6.0
+- nvm install 8.0
+- nvm use 8.0
 - npm install -g local-web-server &>/dev/null
 - ws --log-format none &
 
