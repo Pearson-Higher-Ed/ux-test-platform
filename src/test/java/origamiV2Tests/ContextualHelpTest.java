@@ -14,6 +14,7 @@ import utilities.BaseClass;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -47,7 +48,8 @@ public class ContextualHelpTest extends BaseClass {
     private String icon = "";
     private String panel = "";
     private String color = "", fontSize = "", lineHeight = "", focused = "", backgroundColor = "", paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", borderBottomWidth = "", borderBottomStyle = "", borderBottomColor = "", overflowX = "", overflowY = "", marginLeft = "", marginRight = "", marginTop = "", marginBottom = "", textAlign = "", width = "", height = "", borderTopWidth = "", borderRightWidth = "", borderLeftWidth = "", floatProp = "", display = "", fontWeight = "", boxShadow = "";
-
+    private String margin = "", cssPropertyType = "", padding = "", borderWidth = "", borderStyle = "", borderColor = "", top = "";
+    private boolean isMargin = false, isCSSProperty = false, isPadding = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isTop = false, isColor = false;
     private boolean isConxHelpHeader = false;
     private boolean result = false;
     private boolean isHelpTopicPresent = false;
@@ -68,13 +70,17 @@ public class ContextualHelpTest extends BaseClass {
     private boolean isIcon = false;
     private boolean isPanel = false;
     private boolean isFontSize = false, isLineHeight = false, isFocused = false, isBackgroundColor = false, isPaddingLeft = false, isPaddingRight = false, isPaddingTop = false, isPaddingBottom = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isBorderBottomColor = false, isOverflowX = false, isOverflowY = false, isMarginLeft = false, isMarginRight = false, isMarginTop = false, isMarginBottom = false, isTextAlign = false, isWidth = false, isHeight = false, isBorderTopWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFloat = false, isDisplay = false, isFontWeight = false, isBoxShadow = false;
-    private static String setMobile = "", mobileDevice = "", browser = "";
+    private static String setMobile = "", mobileDevice = "", browser = "", lBrowser = "";
+    List<String> margins = Arrays.asList("margin-top", "margin-bottom", "margin-right", "margin-left");
+    List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
+    List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
+    List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
 
     final static Logger log = Logger.getLogger(ContextualHelpTest.class.getName());
     JsonArray jsonArray;
     List<String> helpTopicsList;
 
-    @DataProvider(name = "ConxHelp with AppHeader Data")
+    @DataProvider(name = "ConxHelp with AppHeader Test Data")
     public Object[][] getConxHelpWithAppHeaderTestData() {
         return new Object[][]{
                 {"signed out", cxHelpWiAppHeaderSignOutModeUrl},
@@ -84,7 +90,7 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Open Contextual Help Thru AppHeader Modes", groups = {"desktop-regression"}, dataProvider = "ConxHelp with AppHeader Data")
+    @Test(testName = "Open Contextual Help Thru AppHeader Modes Test", groups = {"desktop-regression"}, dataProvider = "ConxHelp with AppHeader Test Data")
     private void openThruAppHeaderModeTest(String appHeaderMode, String url) throws Exception {
         commonUtils.getUrl(url);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
@@ -93,7 +99,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Display Student only help topics", groups = {"desktop-regression"})
+    @Test(testName = "Display Student only help topics Test", groups = {"desktop-regression"})
     private void displayStudentHelpTopicsTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
@@ -107,7 +113,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Display Instructor only help topics", groups = {"desktop-regression"})
+    @Test(testName = "Display Instructor only help topics Test", groups = {"desktop-regression"})
     private void displayInstructorHelpTopicsTest() throws Exception {
         commonUtils.readInitialConfig(contextualHelpJSFilePath, tempJSFilePath);
         int i;
@@ -129,7 +135,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify Contextual Help Drawer elements", groups = {"desktop-regression"})
+    @Test(testName = "Verify Contextual Help Drawer elements Test", groups = {"desktop-regression"})
     private void verifyContextualHelpDrawerTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
@@ -142,7 +148,7 @@ public class ContextualHelpTest extends BaseClass {
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
             fontSize = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "font-size");
             lineHeight = commonUtils.getCSSValue(By.xpath(xpathForHelpTopicsTitle), "line-height");
@@ -153,13 +159,13 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify X button functionality", groups = {"desktop-regression"})
+    @Test(testName = "Verify X button functionality Test", groups = {"desktop-regression"})
     private void verifyXButtonTest() throws Exception {
         commonUtils.getUrl(contextualHelpUrl);
         //Test1- Click 'X' button when contextual-help-drawer is opened
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         Thread.sleep(500);
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseIcon);
+        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton);
         isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose);
         Assert.assertTrue(isContextualHelpDrawerClose);
 
@@ -168,17 +174,19 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton);
+        isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen);
+        Assert.assertFalse(isHelpContentTopicDetailVisible);
 
+
+        System.out.println("here");
         //Test3 - Click 'X' button when user navigates into a help topic and now Open contextual-help-drawer
-        isHelpContentTopicDetailHidden = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailHidden);
-        Assert.assertTrue(isHelpContentTopicDetailHidden);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         Thread.sleep(500);
         isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
     }
 
-    @Test(testName = "Verify Toggle Contextual Help Drawer", groups = {"desktop-regression"})
+    @Test(testName = "Verify Toggle Contextual Help Drawer Test", groups = {"desktop-regression"})
     private void toggleContextualHelpDrawerTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
@@ -194,24 +202,24 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify Back to Help Topics link functionality", groups = {"desktop-regression"})
+    @Test(testName = "Verify Back to Help Topics link functionality Test", groups = {"desktop-regression"})
     private void backToHelpTopicsTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(2000);
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
-        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon);
+        commonUtils.click(conxHelpPgObj.backToHelpTopicsButton);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
 
         for (i = 1; i <= 4; i++) {
             Thread.sleep(500);
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt));
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -220,13 +228,21 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify one help topic details", groups = {"desktop-regression"})
-    private void verifyOneHelpTopicDetailsTest() throws Exception {
+    @DataProvider(name = "Verify one help topic details Test Data")
+    public Object[][] getOneHelpTopicDetailsTestData() {
+        return new Object[][]{
+                {conxHelpPgObj.helpTopicTitle},             // click on title
+                {By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic1", 1))} // click on para
+        };
+    }
+
+    @Test(testName = "Verify one help topic details Test", dataProvider = "Verify one help topic details Test Data", groups = {"desktop-regression"})
+    private void verifyOneHelpTopicDetailsTest(By elem) throws Exception {
         commonUtils.getUrl(contextualHelpUrl);
+        Thread.sleep(500);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(1000);
-        commonUtils.click(conxHelpPgObj.helpTopicTitle);
-        Thread.sleep(1000);
+        Thread.sleep(500);
+        commonUtils.click(elem);
         helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle);
         helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText);
         isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Test Contact Support", " HelpContentTopicDetailTitle is NOT correct");
@@ -234,43 +250,43 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isHelpContentTopicDetailTitle && isHelpContentTopicDetailText);
     }
 
-    @Test(testName = "Verify open and close state of contextual help drawer", groups = {"desktop-regression"})
+    @Test(testName = "Verify open and close state of contextual help drawer Test", groups = {"desktop-regression"})
     private void verifyOpenCloseStateTest() throws Exception {
         String demoText;
         commonUtils.getUrl(contextualHelpUrl);
         //open via clicking help
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is opened", "Open method is NOT eventing right"));
         //close via clicking help
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
         //close via clicking X button
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseIcon);
-        Thread.sleep(1000);
+        commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton);
+        Thread.sleep(500);
         demoText = commonUtils.getText(conxHelpPgObj.labelDemo);
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
     }
 
-    @Test(testName = "Verify open one specific Help topic only", groups = {"desktop-regression"})
+    @Test(testName = "Verify open one specific Help topic only Test", groups = {"desktop-regression"})
     private void openSpecificHelpTopicTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(conxHelpPgObj.openSpecificHelpTopic);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
-        commonUtils.click(conxHelpPgObj.backToHelpTopicsIcon);
+        commonUtils.click(conxHelpPgObj.backToHelpTopicsButton);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
 
         for (i = 1; i <= 4; i++) { //Iterating it 4 times because there are 4 help topics. They should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt));
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -279,7 +295,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Verify that setLanguage method will not make contextual detail visible", groups = {"desktop-regression"})
+    @Test(testName = "Verify that setLanguage method will not make contextual detail visible Test", groups = {"desktop-regression"})
     private void verifyContextualVisibilityImmuneToSetLanguageTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
@@ -292,7 +308,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(iscontextualHelpDrawerCloseIcon);
         for (i = 1; i <= 2; i++) { // Iterating it 2 times because there are 2 help topics. They should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle));
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt));
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -301,7 +317,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @DataProvider(name = "ConxHelp Remove Help Topics Data")
+    @DataProvider(name = "ConxHelp Remove Help Topics Test Data")
     public Object[][] getConxHelpRemoveHelpTopicsData() {
         return new Object[][]{
                 {"one", "'testcontent/student/freetrial'"},
@@ -310,14 +326,14 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Remove Help Topics Test", dataProvider = "ConxHelp Remove Help Topics Test Data", groups = {"desktop-regression"})
     private void openAndThenRemoveHelpTopicsTest(String noOfTopics, String topicToBeRemoved) throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
 
         if (noOfTopics.equals("two")) {
             commonUtils.click(conxHelpPgObj.openAndThenRemoveMoreThanOneTopic);
-            Thread.sleep(1000);
+            Thread.sleep(500);
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 3; i <= 4; i++) { //Iterating it 2 times because two help topics are removed. They should not be displayed
@@ -328,7 +344,7 @@ public class ContextualHelpTest extends BaseClass {
             }
         } else if (noOfTopics.equals("one")) {
             commonUtils.click(conxHelpPgObj.openAndThenRemoveOneTopic);
-            Thread.sleep(1000);
+            Thread.sleep(500);
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 4; i <= 4; i++) { //Iterating it 1 times because one help topics is removed. It should not be displayed
@@ -339,7 +355,7 @@ public class ContextualHelpTest extends BaseClass {
             }
         } else if (noOfTopics.equals("all")) {
             commonUtils.click(conxHelpPgObj.openAndThenRemoveAllHelpTopics);
-            Thread.sleep(1000);
+            Thread.sleep(500);
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
             Assert.assertTrue(isContextualHelpDrawerOpen);
             for (i = 1; i <= 4; i++) { //Iterating it 4 times because there were 4 help topics. They should not be displayed
@@ -351,11 +367,12 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Test Accordion Content", groups = "desktop-regression")
+    @Test(testName = "Test Accordion Content Test", groups = "desktop-regression")
     private void accordionContentTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
-        commonUtils.click(conxHelpPgObj.testAccordianContentLink);
+        commonUtils.click(conxHelpPgObj.testAccordionContentLink);
+        Thread.sleep(500);
 
         //Verify the properties in an accordion
         for (i = 1; i <= 4; i++) {
@@ -369,9 +386,10 @@ public class ContextualHelpTest extends BaseClass {
             //panel
             panel = commonUtils.getAttributeValue(By.xpath(conxHelpPgObj.xpathForItemPanel("item" + i, i)), "class");
             isPanel = commonUtils.assertValue(panel, "o-panel--closed", " before clicking the item " + i + " panel is not o-panel--closed");
-            Assert.assertTrue(isAriaExpanded);
-            Assert.assertTrue(isIcon);
-            Assert.assertTrue(isPanel);
+
+            marginRight = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForItemIcon("item" + i, i)), "margin-right");
+            isMarginRight = commonUtils.assertValue(marginRight, "3px", "Margin right value for item " + i + " icon is not as per spec");
+            Assert.assertTrue(isAriaExpanded && isIcon && isPanel && isMarginRight);
 
             //2. after click
             commonUtils.click(By.xpath(conxHelpPgObj.xpathForAccordionItemButton("item" + i, i)));
@@ -384,19 +402,16 @@ public class ContextualHelpTest extends BaseClass {
             //panel
             panel = commonUtils.getAttributeValue(By.xpath(conxHelpPgObj.xpathForItemPanel("item" + i, i)), "class");
             isPanel = commonUtils.assertValue(panel, "o-panel--open", " before clicking the item " + i + " panel is not o-panel--open");
-            Assert.assertTrue(isAriaExpanded);
-            Assert.assertTrue(isIcon);
-            Assert.assertTrue(isPanel);
+            Assert.assertTrue(isAriaExpanded && isIcon && isPanel);
         }
     }
 
     //a11y tests
-    @Test(testName = "Focus Forward Test in a Contextual Help Drawer", groups = "desktop-regression")
+    @Test(testName = "Focus Forward Test in a Contextual Help Drawer Test", groups = "desktop-regression")
     private void focusForwardTest() throws Exception {
-        if (browser.equals("safari") || browser.equals("firefox")) {
+        if (browser.equals("safari") || browser.equals("firefox") || lBrowser.equals("firefox")) {
             throw new SkipException("Need to manually set preferences for tabbing, so skip this test for safari/firefox");
         }
-
         int i = 1;
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.focusOnElementById("toggleHelpDrawer");
@@ -427,19 +442,18 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Focus Backward Test in a Contextual Help Drawer", groups = "desktop-regression")
+    @Test(testName = "Focus Backward Test in a Contextual Help Drawer Test", groups = "desktop-regression")
     private void focusBackwardTest() throws Exception {
-        if (browser.equals("safari") || browser.equals("firefox")) {
+        if (browser.equals("safari") || browser.equals("firefox") || lBrowser.equals("firefox")) {
             throw new SkipException("Need to manually set preferences for tabbing, so skip this test for safari/firefox");
         }
-
         int i = 1;
         commonUtils.getUrl(contextualHelpUrl);
         //1. Open contextual-help-drawer
         commonUtils.focusOnElementById("toggleHelpDrawer");
-        Thread.sleep(5000);
+        Thread.sleep(500);
         commonUtils.keyOperationOnActiveElement(Keys.ENTER);
-        Thread.sleep(5000);
+        Thread.sleep(500);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
 
@@ -467,9 +481,9 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Return Focus to where the user left off, outside conx-help-drawer", groups = {"desktop-regression"})
+    @Test(testName = "Return Focus to where the user left off, outside conx-help-drawer Test", groups = {"desktop-regression"})
     private void focusReturnOutsideContextualHelpDrawerTest() {
-        if (browser.equals("safari") || browser.equals("firefox")) {
+        if (browser.equals("safari") || browser.equals("firefox") || lBrowser.equals("firefox")) {
             throw new SkipException("Need to manually set preferences for tabbing, so skip this test for safari/firefox");
         }
 
@@ -492,9 +506,9 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isFocused);
     }
 
-    @Test(testName = "Return Focus to where the user left off, within conx-help-drawer", groups = {"desktop-regression"})
+    @Test(testName = "Return Focus to where the user left off, within conx-help-drawer Test", groups = {"desktop-regression"})
     private void focusReturnWithinContextualHelpDrawerTest() throws Exception {
-        if (browser.equals("safari") || browser.equals("firefox")) {
+        if (browser.equals("safari") || browser.equals("firefox") || lBrowser.equals("firefox")) {
             throw new SkipException("Need to manually set preferences for tabbing, so skip this test for safari/firefox");
         }
 
@@ -514,14 +528,14 @@ public class ContextualHelpTest extends BaseClass {
             isFocused = commonUtils.assertValue(focused, "a", " the focus is not on the next help topic link");
             Assert.assertTrue(isFocused);
             commonUtils.keyOperationOnActiveElement(Keys.ENTER);
-            Thread.sleep(1000);
+            Thread.sleep(500);
 
             focused = driver.switchTo().activeElement().getTagName();
             isFocused = commonUtils.assertValue(focused, "button", " the focus is not on the 'back to help topics button/link'");
             Assert.assertTrue(isFocused);
             commonUtils.keyOperationOnActiveElement(Keys.ENTER);
 
-            Thread.sleep(1000);
+            Thread.sleep(500);
             focused = driver.switchTo().activeElement().getTagName();
             isFocused = commonUtils.assertValue(focused, "a", " the focus is not on the next help topic link");
             Assert.assertTrue(isFocused);
@@ -531,21 +545,19 @@ public class ContextualHelpTest extends BaseClass {
     }
 
     @Test(testName = "Trap Focus Within Drawer In Help Topics Details Test", groups = "desktop-regression")
-    private void trapFocusWithinDrawerInHelpTopicsDetailTest() {
-        if (browser.equals("safari") || browser.equals("firefox")) {
+    private void trapFocusWithinDrawerInHelpTopicsDetailTest() throws InterruptedException {
+        if (browser.equals("safari") || browser.equals("firefox") || lBrowser.equals("firefox")) {
             throw new SkipException("Need to manually set preferences for tabbing, so skip this test for safari/firefox");
         }
         int i = 1;
         commonUtils.getUrl(contextualHelpUrl);
-
+        Thread.sleep(500);
         //1. Open a specific help topic detail
         commonUtils.focusOnElementById("openSpecificHelpTopic");
+        Thread.sleep(500);
         commonUtils.keyOperationOnActiveElement(Keys.ENTER);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
-
-        commonUtils.keyOperationOnActiveElement(Keys.TAB);
-        commonUtils.keyOperationOnActiveElement(Keys.ENTER);
 
         //2. Tab through to see if the focus is trapped in the help topic detail
         while (i <= 6) {
@@ -577,232 +589,346 @@ public class ContextualHelpTest extends BaseClass {
             log.info("help-topic p font-size is not as per the spec, actual: " + fontSize);
         }
         Assert.assertTrue(isFontSize);
+        for (int i = 1; i <= 4; i++) {
+            color = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "color");
+            marginBottom = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "margin-bottom");
+            marginTop = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "margin-top");
+
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+            if (!isColor) {
+                log.info("Color value for help-topic paragraph" + i + " is not as per spec, actual : " + color);
+            }
+            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin-bottom value for help-topic paragraph" + i + " is not as per spec");
+            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            Assert.assertTrue(isColor && isMarginBottom && isMarginTop);
+        }
     }
 
-    @Test(testName = "Verify styles for Help Topic Heading H3 test", groups = "desktop-regression")
+    @Test(testName = "Verify styles for Help Topic Excerpt Test", groups = "desktop-regression")
+    private void styleForHelpTopicExcerptTest() {
+        commonUtils.getUrl(contextualHelpUrl);
+        commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        for (int i = 1; i <= 4; i++) {
+            color = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerpt("topic", i)), "color");
+            marginTop = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerpt("topic", i)), "margin-top");
+
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
+            if (!isColor) {
+                log.info("Color value for help-topic paragraph" + i + " is not as per spec, actual : " + color);
+            }
+            if (i == 1) {
+                isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            } else {
+                isMarginTop = commonUtils.assertValue(marginTop, "25px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            }
+            Assert.assertTrue(isColor && isMarginTop);
+        }
+    }
+
+    @Test(testName = "Verify styles for Help Topic Heading H3 Test", groups = "desktop-regression")
     private void styleForHelpTopicHeadingH3Test() {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         fontSize = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " h3 heading font-size is not as per the spec");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, new String[]{"14px", "13.93px"});
+        if (!isFontSize) {
+            log.info(" h3 heading font-size is not as per the spec, actual " + fontSize);
+        }
         fontWeight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "font-weight");
-        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "600"});
         if (!isFontWeight) {
             log.info("h3 heading font-weight is not as per the spec, actual " + fontWeight);
         }
-        marginLeft = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-left");
-        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", " margin-left for contextual-help h3 is not as per the spec");
-        marginRight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-right");
-        isMarginRight = commonUtils.assertValue(marginRight, "0px", " margin-right for contextual-help h3 is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-top");
-        isMarginTop = commonUtils.assertValue(marginTop, "0px", " margin-top for contextual-help h3 is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-bottom");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "24px", " margin-bottom for contextual-help h3 is not as per the spec");
-        Assert.assertTrue(isFontSize && isFontWeight && isMarginLeft && isMarginRight && isMarginTop && isMarginBottom);
+        Assert.assertTrue(isFontSize && isFontWeight);
     }
 
     @Test(testName = "Verify styles for a specific Help Topic Layout Test", groups = "desktop-regression")
     private void styleForHelpTopicLayoutTest() {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-left");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "32px", " padding-left to contextual-help topic is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-right");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "32px", " padding-right to contextual-help topic is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "0px", " padding-top to contextual-help topic is not as per the spec");
-        paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-bottom");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "0px", " padding-right to contextual-help topic is not as per the spec");
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, cssProperty);
+            isPadding = commonUtils.assertValue(padding, "30px", cssProperty + " to contextual-help topic is not as per the spec ");
+            Assert.assertTrue(isPadding);
+        }
         borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-width");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", " border-bottom-width to contextual-help topic is not as per the spec");
+        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "0px", " border-bottom-width to contextual-help topic is not as per the spec");
         borderBottomStyle = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-style");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "solid", " border-bottom-width to contextual-help topic is not as per the spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "none", " border-bottom-style to contextual-help topic is not as per the spec");
         borderBottomColor = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-color");
-        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{"rgba(232, 232, 232, 1)", "rgb(232, 232, 232)"});
+        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{"rgba(37, 37, 37, 1)", "rgb(37, 37, 37)"});
         if (!isBorderBottomColor) {
             log.info("border-bottom-color to contextual-help topic is not as per the spec, actual " + borderBottomColor);
         }
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isBorderBottomStyle && isBorderBottomColor);
+        Assert.assertTrue(isBorderBottomStyle && isBorderBottomColor && isBorderBottomWidth);
     }
 
-    @Test(testName = "Verify styles for contextual-Help Drawer Test", groups = "desktop-regression")
-    private void styleForContextualHelpDrawerTest() {
-        commonUtils.getUrl(contextualHelpUrl);
-        commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " contextual-help-drawer font-size is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "background-color");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#f5f5f5"), commonUtils.hex2RgbWithoutTransparency("#f5f5f5")});
-        if (!isBackgroundColor) {
-            log.info("contextual-help-drawer background-color is not as per the spec, actual: " + backgroundColor);
-        }
-        boxShadow = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "box-shadow");
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, new String[]{"rgba(0, 0, 0, 0.298039) -1px 0px 8px 0px", "rgba(0, 0, 0, 0.3) -1px 0px 8px 0px", "-1px 0px 8px rgba(0,0,0,0.3)"});
-        if (!isBoxShadow) {
-            log.info("contextual-help-drawer box shadow is not as per the spec, actual: " + boxShadow);
-        }
-        Assert.assertTrue(isFontSize && isBackgroundColor && isBoxShadow);
-    }
-
-    @DataProvider(name = "Contextual-Help Drawer Header wi/wo app-header test data")
-    public Object[][] getStyleForContextualHelpDrawerHeader() {
+    @DataProvider(name = "Verify styles for contextual-Help Drawer Test Data")
+    public Object[][] getStylesConHelpDrawerData() {
         return new Object[][]{
-                {"withAppHeader", contextualHelpUrl},
-                {"withoutAppHeader", contextualHelpWithoutAppHeaderUrl},
+                {"position", new String[]{"fixed"}},
+                {"width", new String[]{"320px"}},
+                {"padding", new String[]{"30px"}},
+                {"box-sizing", new String[]{"border-box"}},
+                {"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
+                {"box-shadow", new String[]{"rgba(0, 0, 0, 0.298039) -1px 0px 8px 0px", "rgba(0, 0, 0, 0.3) -1px 0px 8px 0px", "-1px 0px 8px rgba(0,0,0,0.3)", "rgba(199, 199, 199, 0.7) 0px 3px 5px 0px", "rgba(198, 198, 198, 0.7) 0px 3px 5px 0px", "rgba(199, 199, 199, 0.701961) 0px 3px 5px 0px", "0px 3px 5px 0px hsla(0, 0%, 78%, 0.7)"}},
+                {"transition-property", new String[]{"left, right"}},
+                {"transition-duration", new String[]{"0.5s, 0.5s"}},
+                {"transition-timing-function", new String[]{"ease-in-out, ease-in-out", "cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)"}},
+                {"transition-delay", new String[]{"0s, 0s"}},
+                {"overflow-x", new String[]{"hidden"}},
+                {"overflow-y", new String[]{"auto"}},
+                {"border-left-width", new String[]{"1px"}},
+                {"top", new String[]{"0px"}},
         };
     }
 
-    @Test(testName = "Verify styles for contextual-Help Drawer Header Test", dataProvider = "Contextual-Help Drawer Header wi/wo app-header test data", groups = "desktop-regression")
-    private void styleForContextualHelpDrawerHeaderTest(String type, String url) {
+    @Test(testName = "Verify styles for contextual-Help Drawer Test", dataProvider = "Verify styles for contextual-Help Drawer Test Data", groups = "desktop-regression")
+    private void styleForContextualHelpDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
+        commonUtils.getUrl(contextualHelpUrl);
+        commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        if (cssProperty.equals("padding")) {
+            for (String prop : paddings) {
+                String cssPropertyType = cssProperty;
+                padding = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, prop);
+                isPadding = commonUtils.assertCSSProperties(cssPropertyType, padding, expectedCSSValue);
+                if (!isPadding) {
+                    log.info(cssPropertyType + " for contextual-help-drawer is not as per the spec, actual: " + padding);
+                }
+                Assert.assertTrue(isPadding);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, cssProperty);
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info(cssPropertyType + " :for contextual-help-drawer is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
+        }
+    }
+
+    @DataProvider(name = "Contextual-Help Drawer Header wi/wo app-header Test Data")
+    public Object[][] getStyleForContextualHelpDrawerHeader() {
+        return new Object[][]{
+                {"withAppHeader", contextualHelpUrl, "25px", "25px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#d9d9d9"), commonUtils.hex2RgbWithoutTransparency("#d9d9d9")}, new String[]{"14px", "13.93px"}},
+                {"withoutAppHeader", contextualHelpWithoutAppHeaderUrl, "25px", "25px", "1px", "solid", new String[]{commonUtils.hex2Rgb("#d9d9d9"), commonUtils.hex2RgbWithoutTransparency("#d9d9d9")}, new String[]{"14px", "13.93px"}},
+        };
+    }
+
+    @Test(testName = "Verify styles for contextual-Help Drawer Header Test", dataProvider = "Contextual-Help Drawer Header wi/wo app-header Test Data", groups = "desktop-regression")
+    private void styleForContextualHelpDrawerHeaderTest(String type, String url, String expPaddingBtm, String expMarginBtm, String expWidth, String expStyle, String[] expColor, String[] expFontSize) {
         commonUtils.getUrl(url);
         if (type.equals("withAppHeader")) {
             commonUtils.click(appHeaderPgObj.clickableHelpLink);
         } else {
             commonUtils.click(conxHelpPgObj.toggleHelpDrawerButton);
         }
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-left");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "32px", " padding-left to contextual-help-drawer header is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-right");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "24px", " padding-right to contextual-help-drawer header is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "20px", " padding-top to contextual-help-drawer header is not as per the spec");
         paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-bottom");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "20px", " padding-bottom to contextual-help-drawer header is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "background-color");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#e9e9e9"), commonUtils.hex2RgbWithoutTransparency("#e9e9e9")});
-        if (!isBackgroundColor) {
-            log.info("contextual-help-drawer header background-color is not as per the spec, actual: " + backgroundColor);
-        }
+        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom");
         borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-width");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", " border-bottom-width to contextual-help-drawer header is not as per the spec");
         borderBottomStyle = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-style");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "solid", " border-bottom-width to contextual-help-drawer header is not as per the spec");
         borderBottomColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-color");
-        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")});
+        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "font-size");
+
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBtm, " padding-bottom to contextual-help-drawer header is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBtm, "margin-bottom for contextual-help-drawer header is not as per the spec");
+        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, expWidth, " border-bottom-width to contextual-help-drawer header is not as per the spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expStyle, " border-bottom-width to contextual-help-drawer header is not as per the spec");
+        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expColor);
         if (!isBorderBottomColor) {
             log.info("contextual-help-drawer border-bottom-color is not as per the spec, actual: " + borderBottomColor);
         }
-        overflowX = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "overflow-x");
-        isOverflowX = commonUtils.assertValue(overflowX, "hidden", " overflow-x of contextual-help-drawer header is not as per the spec");
-        overflowY = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "overflow-y");
-        isOverflowY = commonUtils.assertValue(overflowY, "hidden", " overflow-y of contextual-help-drawer header is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "32px", "margin-bottom for contextual-help-drawer header is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "height");
-        isHeight = commonUtils.assertCSSProperties("height", height, new String[]{"56px", "57px"});
-        if (!isHeight) {
-            log.info("height for contextual-help-drawer header is not as per the spec, actual is: " + height);
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info(" contextual-help-drawer header font-size is not as per the spec, actual " + fontSize);
         }
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "32px", "margin-bottom for contextual-help-drawer header is not as per the spec");
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingBottom && isPaddingTop && isBackgroundColor && isBorderBottomColor && isBorderBottomStyle && isBorderBottomWidth && isOverflowX && isOverflowY && isMarginBottom && isHeight && isMarginBottom);
+
+        Assert.assertTrue(isPaddingBottom && isMarginBottom && isBorderBottomColor && isBorderBottomStyle && isBorderBottomWidth && isFontSize);
     }
 
-    @Test(testName = "Verify styles for contextual-Help Drawer Header Topic Heading Test", groups = "desktop-regression")
-    private void styleForContextualHelpDrawerHeaderTopicHeadingTest() {
-        commonUtils.getUrl(contextualHelpUrl);
-        commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        marginLeft = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-left");
-        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", " margin-left of contextual-help-drawer header is not as per the spec");
-        marginRight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-right");
-        isMarginRight = commonUtils.assertValue(marginRight, "0px", " margin-right of contextual-help-drawer header is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-top");
-        isMarginTop = commonUtils.assertValue(marginTop, "0px", " margin-top of contextual-help-drawer header is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-bottom");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "0px", " margin-bottom of contextual-help-drawer header is not as per the spec");
-        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " contextual-help-drawer header font-size is not as per the spec");
-        lineHeight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "line-height");
-        isLineHeight = commonUtils.assertValue(lineHeight, "16px", " contextual-help-drawer header line-height is not as per the spec");
-        textAlign = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "text-align");
-        isTextAlign = commonUtils.assertValue(textAlign, "center", " contextual-help-drawer header text-align is not as per the spec");
-        Assert.assertTrue(isMarginLeft && isMarginRight && isMarginTop && isMarginBottom && isFontSize && isLineHeight && isTextAlign);
-    }
 
-    @DataProvider(name = "Verify SVG icon style test data")
-    public Object[][] getSVGIconTestData() {
+    @DataProvider(name = "Verify styles for contextual-Help Drawer Header Topic Heading Test Data")
+    public Object[][] getstyleForContextualHelpDrawerHeaderTopicHeading() {
         return new Object[][]{
-                {"closeHelpIcon", "14px", "14px", "2px"},
-                {"backToHelpTopicsIcon", "14px", "14px", "2px"}
+                {"margin", new String[]{"0px"}},
+                {"font-size", new String[]{"20px", "19.999980926513672px", "19.8px"}},
+                {"font-weight", new String[]{"normal", "400"}},
+                {"line-height", new String[]{"26px", "25.99995994567871px", "25.984375px"}},
+                {"color", new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")}},
+                {"transition-property", new String[]{"margin-left"}},
+                {"transition-duration", new String[]{"0.3s"}},
+                {"transition-timing-function", new String[]{"ease-in-out", "cubic-bezier(0.42, 0, 0.58, 1)"}},
+                {"transition-delay", new String[]{"0.3s"}},
         };
     }
 
-    @Test(testName = "Verify styles for SVG icon test", dataProvider = "Verify SVG icon style test data", groups = "desktop-regression")
-    private void styleForSVGTest(String icon, String expWidth, String expHeight, String expMarginTop) {
+    @Test(testName = "Verify styles for contextual-Help Drawer Header Topic Heading Test", dataProvider = "Verify styles for contextual-Help Drawer Header Topic Heading Test Data", groups = "desktop-regression")
+    private void styleForContextualHelpDrawerHeaderTopicHeadingTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        commonUtils.click(conxHelpPgObj.helpTopicTitle);
-        width = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "width");
-        isWidth = commonUtils.assertValue(width, expWidth, " width of svg " + icon + " is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "height");
-        isHeight = commonUtils.assertValue(height, expHeight, " height of svg " + icon + " is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "margin-top");
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, " margin-top of svg " + icon + " is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight && isMarginTop);
+        if (cssProperty.equals("margin")) {
+            for (String prop : margins) {
+                margin = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, prop);
+                isMargin = commonUtils.assertCSSProperties(prop, margin, expectedCSSValue);
+                Assert.assertTrue(isMargin);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, cssProperty);
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info(cssPropertyType + "' :for contextual-Help Drawer Header Topic is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
+        }
     }
 
-    @Test(testName = "Verify styles for Back to Help Topics Button Test", groups = "desktop-regression")
-    private void styleForBackToHelpTopicsButtonTest() throws Exception {
+    @DataProvider(name = "Verify SVG icon style Test Data")
+    public Object[][] getSVGIconTestData() {
+        return new Object[][]{
+                {"backToHelpTopicsIcon", conxHelpPgObj.backToHelpTopicsIcon, "18px", "18px"},
+                {"closeHelpIcon", conxHelpPgObj.contextualHelpDrawerCloseIcon, "24px", "24px"}
+        };
+    }
+
+    @Test(testName = "Verify styles for SVG icon test", dataProvider = "Verify SVG icon style Test Data", groups = "desktop-regression")
+    private void styleForSVGTest(String icon, By elem, String expWidth, String expHeight) throws InterruptedException {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(500);
+
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-left");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "0px", " padding-left to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-right");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "0px", " padding-right to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "0px", " padding-top to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-bottom");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "0px", " padding-right to contextual-help-drawer back-to-help button is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "background-color");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{"rgba(0, 0, 0, 0)", "transparent"});
-        if (!isBackgroundColor) {
-            log.info("contextual-help-drawer back-to-help button background-color is not as per the spec, actual: " + backgroundColor);
+        width = commonUtils.getCSSValue(elem, "width");
+        isWidth = commonUtils.assertValue(width, expWidth, " width of svg " + icon + " is not as per the spec");
+        height = commonUtils.getCSSValue(elem, "height");
+        isHeight = commonUtils.assertValue(height, expHeight, " height of svg " + icon + " is not as per the spec");
+        Assert.assertTrue(isWidth && isHeight);
+    }
+
+    @DataProvider(name = "Verify styles for Back to Help Topics Button Test Data")
+    public Object[][] getStyleForBackToHelpTopicsButtonTestData() {
+        return new Object[][]{
+                {"padding", new String[]{"2px", "0px"}},
+                {"background-color", new String[]{"rgba(0, 0, 0, 0)", "transparent"}},
+                {"margin-left", new String[]{"0px", "0.21875px"}},
+                {"opacity", new String[]{"1", "0.8947275876998901", "0.9652445316314697", "0.9603422284126282"}},
+                {"transition-property", new String[]{"margin-left, opacity"}},
+                {"transition-duration", new String[]{"0.3s, 0.3s"}},
+                {"transition-timing-function", new String[]{"ease-in-out, initial", "ease-in-out, ease", "cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.25, 0.1, 0.25, 1)"}},
+                {"transition-delay", new String[]{"0.2s, 0.2s"}},
+        };
+    }
+
+    @Test(testName = "Verify styles for Back to Help Topics Button Test", dataProvider = "Verify styles for Back to Help Topics Button Test Data", groups = "desktop-regression")
+    private void styleForBackToHelpTopicsButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        commonUtils.getUrl(contextualHelpUrl);
+        commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(500);
+
+        commonUtils.click(conxHelpPgObj.helpTopicTitle);
+        if (cssProperty.equals("padding")) {
+            for (String prop : paddings) {
+                String cssPropertyType = cssProperty;
+                padding = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, prop);
+                isPadding = commonUtils.assertCSSProperties(cssPropertyType, padding, new String[]{"2px", "0px"});
+                if (!isPadding) {
+                    log.info("contextual-help-drawer back-to-help button " + cssPropertyType + " is not as per the spec, actual: " + padding);
+                }
+                Assert.assertTrue(isPadding);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, cssProperty);
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info("contextual-help-drawer back-to-help button " + cssPropertyType + " is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
         }
-        borderTopWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-top-width");
-        isBorderTopWidth = commonUtils.assertValue(borderTopWidth, "0px", " border-top-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-bottom-width");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "0px", " border-bottom-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderLeftWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-left-width");
-        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "0px", " border-left-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderRightWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-right-width");
-        isBorderRightWidth = commonUtils.assertValue(borderRightWidth, "0px", " border-right-width to contextual-help-drawer back-to-help button is not as per the spec");
-        width = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "width");
-        isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"248.395px", "248.391px", "248.4px", "248.390625px"});
-        if (!isWidth) {
-            log.info("width of close-help button is not as per the spec, actual: " + width);
-        }
-        display = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsSpan, "display");
-        isDisplay = commonUtils.assertValue(display, "block", " display for contextual-help-drawer back-to-help span is not as per the spec");
-        textAlign = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsSpan, "text-align");
-        isTextAlign = commonUtils.assertValue(textAlign, "center", " text-align for contextual-help-drawer back-to-help span is not as per the spec");
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isBackgroundColor && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isWidth && isDisplay && isTextAlign);
+
     }
 
     @Test(testName = "Verify styles for Close Help Button Test", groups = "desktop-regression")
     private void styleForCloseHelpTest() {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
-        width = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "width");
-        isWidth = commonUtils.assertValue(width, "16px", " width of close-help button is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "height");
-        isHeight = commonUtils.assertValue(height, "16px", " height of close-help button is not as per the spec");
         floatProp = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "float");
         isFloat = commonUtils.assertValue(floatProp, "right", " float value of close-help button is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight && isFloat);
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty);
+            isPadding = commonUtils.assertValue(padding, "0px", "Padding for contextual help Close Btn is not as per spec");
+            Assert.assertTrue(isPadding);
+        }
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, "0px", "");
+            if (!isBorderWidth) {
+                log.info("Border width for contextual help Close Btn is not as per spec, actual: " + borderWidth);
+            }
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty);
+            isBorderStyle = commonUtils.assertValue(borderStyle, "none", " Border style for contextual help Close Btn is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        Assert.assertTrue(isFloat);
     }
 
-    @DataProvider(name = "Contextual-Help Drawer padding-top wi/wo app-header test data")
-    public Object[][] getStyleForContextualHelpDrawerPaddingTopTestData() {
+    @DataProvider(name = "Verify Styles for Accordion Test Data")
+    public Object[][] getStylesforAccordionData() {
         return new Object[][]{
-                {768, 800, "withAppHeader", contextualHelpUrl, "70px", "iPad Air", ScreenOrientation.PORTRAIT},
-                {767, 800, "withAppHeader", contextualHelpUrl, "60px", "iPhone 6 Plus", ScreenOrientation.LANDSCAPE},
-                {768, 800, "withoutAppHeader", contextualHelpWithoutAppHeaderUrl, "0px", "iPhone 6 Plus", ScreenOrientation.PORTRAIT},
+                {"item1", By.xpath(conxHelpPgObj.xpathForAccordionItemButton("item1", 1)), "0px", "2px", new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")}, new String[]{"transparent", "rgba(0, 0, 0, 0)"}},
+                {"item2", By.xpath(conxHelpPgObj.xpathForAccordionItemButton("item2", 2)), "25px", "2px", new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")}, new String[]{"transparent", "rgba(0, 0, 0, 0)"}},
+                {"item3", By.xpath(conxHelpPgObj.xpathForAccordionItemButton("item3", 3)), "25px", "2px", new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")}, new String[]{"transparent", "rgba(0, 0, 0, 0)"}},
+                {"item4", By.xpath(conxHelpPgObj.xpathForAccordionItemButton("item4", 4)), "25px", "2px", new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")}, new String[]{"transparent", "rgba(0, 0, 0, 0)"}},
         };
     }
 
-    @Test(testName = "Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "desktop-regression")
-    private void styleForRoomHeaderTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
+    @Test(testName = "Verify Styles for Accordion Test", dataProvider = "Verify Styles for Accordion Test Data", groups = {"desktop-regression"})
+    private void getStylesforAccordionTest(String item, By elem, String expMarginTop, String expPadding, String[] expColor, String[] expBgColor) throws InterruptedException {
+        commonUtils.getUrl(contextualHelpUrl);
+        commonUtils.click(conxHelpPgObj.testAccordionContentLink);
+        Thread.sleep(500);
+
+        marginTop = commonUtils.getCSSValue(elem, "margin-top");
+        color = commonUtils.getCSSValue(elem, "color");
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color");
+
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(elem, cssProperty);
+            isPadding = commonUtils.assertValue(padding, expPadding, "Padding for for " + item + " accordion is not as per spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin Top value for " + item + " accordion is not as per spec");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("Color value for " + item + " accordion is not as per spec, actual: " + color);
+        }
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBgColor);
+        if (!isBackgroundColor) {
+            log.info("Background Color value for " + item + " accordion is not as per spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isMarginTop && isColor && isBackgroundColor);
+
+    }
+
+    @DataProvider(name = "Contextual-Help Drawer padding-top wi/wo app-header Test Data")
+    public Object[][] getStyleForContextualHelpDrawerPaddingTopTestData() {
+        return new Object[][]{
+                {768, 800, "withAppHeader", contextualHelpUrl, new String[]{"70px", "60px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {767, 800, "withAppHeader", contextualHelpUrl, new String[]{"60px"}, "iPhone 6 Plus", ScreenOrientation.LANDSCAPE},
+                {768, 800, "withoutAppHeader", contextualHelpWithoutAppHeaderUrl, new String[]{"0px"}, "iPhone 6 Plus", ScreenOrientation.PORTRAIT},
+        };
+    }
+
+    @Test(testName = "Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header Test Data", groups = "desktop-regression")
+    private void styleForRoomHeaderTest(int width, int height, String type, String url, String[] expPaddingTop, String device, ScreenOrientation mode) {
         commonUtils.setWindowSize(width, height);
         commonUtils.getUrl(url);
         if (type.equals("withAppHeader")) {
@@ -814,15 +940,25 @@ public class ContextualHelpTest extends BaseClass {
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpenWithoutAppHeader);
             Assert.assertTrue(isContextualHelpDrawerOpen);
         }
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, " padding-top to contextual-help-drawer for " + type + " is not as per the spec");
-        Assert.assertTrue(isPaddingTop);
+        top = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "top");
+        isTop = commonUtils.assertCSSProperties("top", top, expPaddingTop);
+        if (!isTop) {
+            log.info("top to contextual-help-drawer for " + type + " is not as per the spec, actual " + top);
+        }
+        Assert.assertTrue(isTop);
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, cssProperty);
+            isPadding = commonUtils.assertValue(padding, "30px", "Padding for contextual-help-drawer for " + type + " is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+
     }
 
     /*********************
      * Mobile Tests
      *********************/
-    @Test(testName = "Mobile: Open Contextual Help Thru AppHeader Modes", groups = {"mobile-regression"}, dataProvider = "ConxHelp with AppHeader Data")
+    @Test(testName = "Mobile: Open Contextual Help Thru AppHeader Modes", groups = {"mobile-regression"}, dataProvider = "ConxHelp with AppHeader Test Data")
     private void openThruAppHeaderSignedOutModeMobileTest(String appHeaderMode, String url) throws Exception {
         commonUtils.getUrl(url, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
@@ -831,7 +967,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Display Student only help topics", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Display Student only help topics Test", groups = {"mobile-regression"})
     private void displayStudentHelpTopicsMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -845,7 +981,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Display Instructor only help topics", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Display Instructor only help topics Test", groups = {"mobile-regression"})
     private void displayInstructorHelpTopicsMobileTest() throws Exception {
         if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
@@ -870,7 +1006,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify Contextual Help Drawer elements", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Contextual Help Drawer elements Test", groups = {"mobile-regression"})
     private void verifyContextualHelpDrawerMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -883,7 +1019,7 @@ public class ContextualHelpTest extends BaseClass {
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -892,7 +1028,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify X button functionality", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify X button functionality Test", groups = {"mobile-regression"})
     private void verifyXButtonMobileTest() throws Exception {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         //Test1- Click 'X' button when contextual-help-drawer is opened
@@ -905,7 +1041,7 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
         commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible, "mobile");
-        commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "mobile");
+        commonUtils.clickUsingJS(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton, "mobile");
 
         //Test3 - Click 'X' button when user navigates into a help topic and now Open contextual-help-drawer
         isHelpContentTopicDetailHidden = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailHidden, "mobile");
@@ -915,13 +1051,14 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isHelpContentTopicDetailVisible);
     }
 
-    @Test(testName = "Mobile: Verify Toggle Contextual Help Drawer", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Toggle Contextual Help Drawer Test", groups = {"mobile-regression"})
     private void toggleContextualHelpDrawerMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         for (i = 0; i < 4; i++) {
             //Test1- Click 'Help' to open the drawer
             commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+            Thread.sleep(500);
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
             //Test2- Click 'Help' to close the drawer
@@ -931,7 +1068,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify Back to Help Topics link functionality", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Back to Help Topics link functionality Test", groups = {"mobile-regression"})
     private void backToHelpTopicsMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -945,7 +1082,7 @@ public class ContextualHelpTest extends BaseClass {
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -954,11 +1091,11 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify one help topic details", groups = {"mobile-regression"})
-    private void verifyOneHelpTopicDetailsMobileTest() throws Exception {
+    @Test(testName = "Mobile: Verify one help topic details Test", dataProvider = "Verify one help topic details Test Data", groups = {"mobile-regression"})
+    private void verifyOneHelpTopicDetailsMobileTest(By elem) throws Exception {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
+        commonUtils.click(elem, "mobile");
         helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle, "mobile");
         helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText, "mobile");
         isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Test Contact Support", " HelpContentTopicDetailTitle is NOT correct");
@@ -967,7 +1104,7 @@ public class ContextualHelpTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify open and close state of contextual help drawer", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify open and close state of contextual help drawer Test", groups = {"mobile-regression"})
     private void verifyOpenCloseStateMobileTest() throws Exception {
         String demoText;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -987,7 +1124,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(commonUtils.assertValue(demoText, "Drawer is closed", "Close method is NOT eventing right"));
     }
 
-    @Test(testName = "Mobile: Verify open one specific Help topic only", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify open one specific Help topic only Test", groups = {"mobile-regression"})
     private void openSpecificHelpTopicMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -1000,7 +1137,7 @@ public class ContextualHelpTest extends BaseClass {
 
         for (i = 1; i <= 4; i++) { //Iterating it 4 times because there are 4 help topics. They should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -1009,7 +1146,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify that setLanguage method will not make contextual detail visible", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify that setLanguage method will not make contextual detail visible Test", groups = {"mobile-regression"})
     private void verifyContextualVisibilityImmuneToSetLanguageMobileTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -1024,7 +1161,7 @@ public class ContextualHelpTest extends BaseClass {
             // help topics. They
             // should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
-            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerpt("item" + i, i);
+            xpathForHelpTopicExcerpt = conxHelpPgObj.xpathForHelpTopicExcerptPara("item" + i, i);
             isHelpTopicTitlePresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopicsTitle), "mobile");
             helpTopicExcerpt = commonUtils.getText(By.xpath(xpathForHelpTopicExcerpt), "mobile");
             isHelpTopicExcerptEmpty = (!helpTopicExcerpt.isEmpty() && (helpTopicExcerpt != null));
@@ -1033,7 +1170,7 @@ public class ContextualHelpTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Remove Help Topics", dataProvider = "ConxHelp Remove Help Topics Test Data", groups = {"mobile-regression"})
     private void openAndThenRemoveHelpTopicsMobileTest(String noOfTopics, String topicToBeRemoved) throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl, "mobile");
@@ -1082,6 +1219,40 @@ public class ContextualHelpTest extends BaseClass {
             log.info("help-topic p font-size is not as per the spec, actual: " + fontSize);
         }
         Assert.assertTrue(isFontSize);
+        for (int i = 1; i <= 4; i++) {
+            color = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "color", "mobile");
+            marginBottom = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "margin-bottom", "mobile");
+            marginTop = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerptPara("topic", i)), "margin-top", "mobile");
+
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+            if (!isColor) {
+                log.info("Color value for help-topic paragraph" + i + " is not as per spec, actual : " + color);
+            }
+            isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin-bottom value for help-topic paragraph" + i + " is not as per spec");
+            isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            Assert.assertTrue(isColor && isMarginBottom && isMarginTop);
+        }
+    }
+
+    @Test(testName = "Mobile : Verify styles for Help Topic Excerpt Test", groups = "mobile-regression")
+    private void styleForHelpTopicExcerptMobileTest() {
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
+        for (int i = 1; i <= 4; i++) {
+            color = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerpt("topic", i)), "color", "mobile");
+            marginTop = commonUtils.getCSSValue(By.xpath(conxHelpPgObj.xpathForHelpTopicExcerpt("topic", i)), "margin-top", "mobile");
+
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
+            if (!isColor) {
+                log.info("Color value for help-topic paragraph" + i + " is not as per spec, actual : " + color);
+            }
+            if (i == 1) {
+                isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            } else {
+                isMarginTop = commonUtils.assertValue(marginTop, "25px", "Margin-top value for help-topic paragraph" + i + " is not as per spec");
+            }
+            Assert.assertTrue(isColor && isMarginTop);
+        }
     }
 
     @Test(testName = "Mobile: Verify styles for Help Topic Heading H3 test", groups = "mobile-regression")
@@ -1089,200 +1260,224 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
         fontSize = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " h3 heading font-size is not as per the spec");
+        isFontSize = commonUtils.assertValue(fontSize, "14px", " h3 heading font-size is not as per the spec");
         fontWeight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "font-weight", "mobile");
-        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
+        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "600"});
         if (!isFontWeight) {
             log.info("h3 heading font-weight is not as per the spec, actual " + fontWeight);
         }
-        marginLeft = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-left", "mobile");
-        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", " margin-left for contextual-help h3 is not as per the spec");
-        marginRight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-right", "mobile");
-        isMarginRight = commonUtils.assertValue(marginRight, "0px", " margin-right for contextual-help h3 is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertValue(marginTop, "0px", " margin-top for contextual-help h3 is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.helpTopicHeading, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "24px", " margin-bottom for contextual-help h3 is not as per the spec");
-        Assert.assertTrue(isFontSize && isFontWeight && isMarginLeft && isMarginRight && isMarginTop && isMarginBottom);
+        Assert.assertTrue(isFontSize && isFontWeight);
     }
 
     @Test(testName = "Mobile: Verify styles for a specific Help Topic Layout Test", groups = "mobile-regression")
     private void styleForHelpTopicLayoutMobileTest() {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-left", "mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "32px", " padding-left to contextual-help topic is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-right", "mobile");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "32px", " padding-right to contextual-help topic is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "0px", " padding-top to contextual-help topic is not as per the spec");
-        paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "padding-bottom", "mobile");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "0px", " padding-right to contextual-help topic is not as per the spec");
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, cssProperty, "mobile");
+            isPadding = commonUtils.assertValue(padding, "30px", cssProperty + " to contextual-help topic is not as per the spec ");
+            Assert.assertTrue(isPadding);
+        }
         borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-width", "mobile");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", " border-bottom-width to contextual-help topic is not as per the spec");
+        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "0px", " border-bottom-width to contextual-help topic is not as per the spec");
         borderBottomStyle = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-style", "mobile");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "solid", " border-bottom-width to contextual-help topic is not as per the spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "none", " border-bottom-style to contextual-help topic is not as per the spec");
         borderBottomColor = commonUtils.getCSSValue(conxHelpPgObj.helpTopicLayout, "border-bottom-color", "mobile");
-        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{"rgba(232, 232, 232, 1)", "rgb(232, 232, 232)"});
+        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{"rgba(37, 37, 37, 1)", "rgb(37, 37, 37)"});
         if (!isBorderBottomColor) {
             log.info("border-bottom-color to contextual-help topic is not as per the spec, actual " + borderBottomColor);
         }
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isBorderBottomStyle && isBorderBottomColor);
+        Assert.assertTrue(isBorderBottomStyle && isBorderBottomColor && isBorderBottomWidth);
     }
 
-    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Test", groups = "mobile-regression")
-    private void styleForContextualHelpDrawerMobileTest() {
+
+    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Test", dataProvider = "Verify styles for contextual-Help Drawer Test Data", groups = "mobile-regression")
+    private void styleForContextualHelpDrawerMobileTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " contextual-help-drawer font-size is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#f5f5f5"), commonUtils.hex2RgbWithoutTransparency("#f5f5f5")});
-        if (!isBackgroundColor) {
-            log.info("contextual-help-drawer background-color is not as per the spec, actual: " + backgroundColor);
+        if (cssProperty.equals("padding")) {
+            for (String prop : paddings) {
+                String cssPropertyType = cssProperty;
+                padding = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, prop, "mobile");
+                isPadding = commonUtils.assertCSSProperties(cssPropertyType, padding, expectedCSSValue);
+                if (!isPadding) {
+                    log.info(cssPropertyType + " for contextual-help-drawer is not as per the spec, actual: " + padding);
+                }
+                Assert.assertTrue(isPadding);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, cssProperty, "mobile");
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info(cssPropertyType + " :for contextual-help-drawer is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
         }
-        boxShadow = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerOpen, "box-shadow", "mobile");
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, new String[]{"rgba(0, 0, 0, 0.298039) -1px 0px 8px 0px", "rgba(0, 0, 0, 0.3) -1px 0px 8px 0px", "-1px 0px 8px rgba(0,0,0,0.3)"});
-        if (!isBoxShadow) {
-            log.info("contextual-help-drawer box shadow is not as per the spec, actual: " + boxShadow);
-        }
-        Assert.assertTrue(isFontSize && isBackgroundColor && isBoxShadow);
     }
 
-    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Header Test", dataProvider = "Contextual-Help Drawer Header wi/wo app-header test data", groups = "mobile-regression")
-    private void styleForContextualHelpDrawerHeaderMobileTest(String type, String url) {
+    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Header Test", dataProvider = "Contextual-Help Drawer Header wi/wo app-header Test Data", groups = "mobile-regression")
+    private void styleForContextualHelpDrawerHeaderMobileTest(String type, String url, String expPaddingBtm, String expMarginBtm, String expWidth, String expStyle, String[] expColor, String[] expFontSize) {
         commonUtils.getUrl(url, "mobile");
         if (type.equals("withAppHeader")) {
             commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
         } else {
             commonUtils.click(conxHelpPgObj.toggleHelpDrawerButton, "mobile");
         }
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-left", "mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "32px", " padding-left to contextual-help-drawer header is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-right", "mobile");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "24px", " padding-right to contextual-help-drawer header is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "20px", " padding-top to contextual-help-drawer header is not as per the spec");
         paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "padding-bottom", "mobile");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "20px", " padding-bottom to contextual-help-drawer header is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#e9e9e9"), commonUtils.hex2RgbWithoutTransparency("#e9e9e9")});
-        if (!isBackgroundColor) {
-            log.info("contextual-help-drawer header background-color is not as per the spec, actual: " + backgroundColor);
-        }
+        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom", "mobile");
         borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-width", "mobile");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "1px", " border-bottom-width to contextual-help-drawer header is not as per the spec");
         borderBottomStyle = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-style", "mobile");
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, "solid", " border-bottom-width to contextual-help-drawer header is not as per the spec");
         borderBottomColor = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "border-bottom-color", "mobile");
-        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")});
+        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "font-size", "mobile");
+
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBtm, " padding-bottom to contextual-help-drawer header is not as per the spec");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBtm, "margin-bottom for contextual-help-drawer header is not as per the spec");
+        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, expWidth, " border-bottom-width to contextual-help-drawer header is not as per the spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expStyle, " border-bottom-width to contextual-help-drawer header is not as per the spec");
+        isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expColor);
         if (!isBorderBottomColor) {
             log.info("contextual-help-drawer border-bottom-color is not as per the spec, actual: " + borderBottomColor);
         }
-        overflowX = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "overflow-x", "mobile");
-        isOverflowX = commonUtils.assertValue(overflowX, "hidden", " overflow-x of contextual-help-drawer header is not as per the spec");
-        overflowY = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "overflow-y", "mobile");
-        isOverflowY = commonUtils.assertValue(overflowY, "hidden", " overflow-y of contextual-help-drawer header is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "32px", "margin-bottom for contextual-help-drawer header is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "height", "mobile");
-        isHeight = commonUtils.assertCSSProperties("height", height, new String[]{"56px", "57px"});
-        if (!isHeight) {
-            log.info("height for contextual-help-drawer header is not as per the spec, actual is: " + height);
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info(" contextual-help-drawer header font-size is not as per the spec, actual " + fontSize);
         }
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerHeader, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "32px", "margin-bottom for contextual-help-drawer header is not as per the spec");
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingBottom && isPaddingTop && isBackgroundColor && isBorderBottomColor && isBorderBottomStyle && isBorderBottomWidth && isOverflowX && isOverflowY && isMarginBottom && isHeight && isMarginBottom);
+        Assert.assertTrue(isPaddingBottom && isMarginBottom && isBorderBottomColor && isBorderBottomStyle && isBorderBottomWidth && isFontSize);
     }
 
-    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Header Topic Heading Test", groups = "mobile-regression")
-    private void styleForContextualHelpDrawerHeaderTopicHeadingMobileTest() {
+    @Test(testName = "Mobile: Verify styles for contextual-Help Drawer Header Topic Heading Test", dataProvider = "Verify styles for contextual-Help Drawer Header Topic Heading Test Data", groups = "mobile-regression")
+    private void styleForContextualHelpDrawerHeaderTopicHeadingMobileTest(String cssProperty, String[] expectedCSSValue) {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        marginLeft = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-left", "mobile");
-        isMarginLeft = commonUtils.assertValue(marginLeft, "0px", " margin-left of contextual-help-drawer header is not as per the spec");
-        marginRight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-right", "mobile");
-        isMarginRight = commonUtils.assertValue(marginRight, "0px", " margin-right of contextual-help-drawer header is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertValue(marginTop, "0px", " margin-top of contextual-help-drawer header is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, "0px", " margin-bottom of contextual-help-drawer header is not as per the spec");
-        fontSize = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "16px", " contextual-help-drawer header font-size is not as per the spec");
-        lineHeight = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "line-height", "mobile");
-        isLineHeight = commonUtils.assertValue(lineHeight, "16px", " contextual-help-drawer header line-height is not as per the spec");
-        textAlign = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, "text-align", "mobile");
-        isTextAlign = commonUtils.assertValue(textAlign, "center", " contextual-help-drawer header text-align is not as per the spec");
-        Assert.assertTrue(isMarginLeft && isMarginRight && isMarginTop && isMarginBottom && isFontSize && isLineHeight && isTextAlign);
+        if (cssProperty.equals("margin")) {
+            for (String prop : margins) {
+                margin = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, prop, "mobile");
+                isMargin = commonUtils.assertCSSProperties(prop, margin, expectedCSSValue);
+                Assert.assertTrue(isMargin);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpHeader, cssProperty, "mobile");
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info(cssPropertyType + "' :for contextual-Help Drawer Header Topic is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
+        }
     }
 
-    @Test(testName = "Mobile: Verify styles for SVG icon test", dataProvider = "Verify SVG icon style test data", groups = "mobile-regression")
-    private void styleForSVGMobileTest(String icon, String expWidth, String expHeight, String expMarginTop) {
+    @Test(testName = "Mobile: Verify styles for SVG icon test", dataProvider = "Verify SVG icon style Test Data", groups = "mobile-regression")
+    private void styleForSVGMobileTest(String icon, By elem, String expWidth, String expHeight) {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
-        width = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "width", "mobile");
+        commonUtils.clickUsingJS(appHeaderPgObj.clickableHelpLink, "mobile");
+        commonUtils.clickUsingJS(conxHelpPgObj.helpTopicTitle, "mobile");
+        width = commonUtils.getCSSValue(elem, "width", "mobile");
         isWidth = commonUtils.assertValue(width, expWidth, " width of svg " + icon + " is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "height", "mobile");
+        height = commonUtils.getCSSValue(elem, "height", "mobile");
         isHeight = commonUtils.assertValue(height, expHeight, " height of svg " + icon + " is not as per the spec");
-        marginTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsIcon, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, " margin-top of svg " + icon + " is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight && isMarginTop);
+        Assert.assertTrue(isWidth && isHeight);
     }
 
-    @Test(testName = "Mobile: Verify styles for Back to Help Topics Button Test", groups = "mobile-regression")
-    private void styleForBackToHelpTopicsButtonMobileTest() throws Exception {
+    @DataProvider(name = "Mobile : Verify styles for Back to Help Topics Button Test Data")
+    public Object[][] getStyleForBackToHelpTopicsButtonMobileTestData() {
+        return new Object[][]{
+                {"padding", new String[]{"2px", "0px"}},
+                {"background-color", new String[]{"rgba(0, 0, 0, 0)", "transparent"}},
+                {"transition-property", new String[]{"margin-left, opacity"}},
+                {"transition-duration", new String[]{"0.3s, 0.3s"}},
+                {"transition-timing-function", new String[]{"ease-in-out, initial", "ease-in-out, ease", "cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.25, 0.1, 0.25, 1)"}},
+                {"transition-delay", new String[]{"0.2s, 0.2s"}},
+        };
+    }
+
+    @Test(testName = "Mobile: Verify styles for Back to Help Topics Button Test", dataProvider = "Mobile : Verify styles for Back to Help Topics Button Test Data", groups = "mobile-regression")
+    private void styleForBackToHelpTopicsButtonMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
         commonUtils.click(conxHelpPgObj.helpTopicTitle, "mobile");
-        paddingLeft = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-left", "mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, "0px", " padding-left to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingRight = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-right", "mobile");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "0px", " padding-right to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "0px", " padding-top to contextual-help-drawer back-to-help button is not as per the spec");
-        paddingBottom = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "padding-bottom", "mobile");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, "0px", " padding-right to contextual-help-drawer back-to-help button is not as per the spec");
-        backgroundColor = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{"rgba(0, 0, 0, 0)", "transparent"});
+        if (cssProperty.equals("padding")) {
+            for (String prop : paddings) {
+                String cssPropertyType = cssProperty;
+                padding = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, prop, "mobile");
+                isPadding = commonUtils.assertCSSProperties(cssPropertyType, padding, new String[]{"2px", "0px"});
+                if (!isPadding) {
+                    log.info("contextual-help-drawer back-to-help button " + cssPropertyType + " is not as per the spec, actual: " + padding);
+                }
+                Assert.assertTrue(isPadding);
+            }
+        } else {
+            cssPropertyType = cssProperty;
+            cssProperty = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, cssProperty, "mobile");
+            isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+            if (!isCSSProperty) {
+                log.info("contextual-help-drawer back-to-help button " + cssPropertyType + " is not as per the spec, actual: " + cssProperty);
+            }
+            Assert.assertTrue(isCSSProperty);
+        }
+    }
+
+    @Test(testName = "Mobile: Verify Styles for Accordion Test", dataProvider = "Verify Styles for Accordion Test Data", groups = {"mobile-regression"})
+    private void getStylesforAccordionMobileTest(String item, By elem, String expMarginTop, String expPadding, String[] expColor, String[] expBgColor) throws InterruptedException {
+        commonUtils.getUrl(contextualHelpUrl, "mobile");
+        commonUtils.click(conxHelpPgObj.testAccordionContentLink, "mobile");
+        Thread.sleep(500);
+
+        marginTop = commonUtils.getCSSValue(elem, "margin-top", "mobile");
+        color = commonUtils.getCSSValue(elem, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
+
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding, "Padding for for " + item + " accordion is not as per spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin Top value for " + item + " accordion is not as per spec");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("Color value for " + item + " accordion is not as per spec, actual: " + color);
+        }
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBgColor);
         if (!isBackgroundColor) {
-            log.info("contextual-help-drawer back-to-help button background-color is not as per the spec, actual: " + backgroundColor);
+            log.info("Background Color value for " + item + " accordion is not as per spec, actual: " + backgroundColor);
         }
-        borderTopWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-top-width", "mobile");
-        isBorderTopWidth = commonUtils.assertValue(borderTopWidth, "0px", " border-top-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderBottomWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-bottom-width", "mobile");
-        isBorderBottomWidth = commonUtils.assertValue(borderBottomWidth, "0px", " border-bottom-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderLeftWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-left-width", "mobile");
-        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "0px", " border-left-width to contextual-help-drawer back-to-help button is not as per the spec");
-        borderRightWidth = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "border-right-width", "mobile");
-        isBorderRightWidth = commonUtils.assertValue(borderRightWidth, "0px", " border-right-width to contextual-help-drawer back-to-help button is not as per the spec");
-        width = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, "width", "mobile");
-        isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"248.395px", "248.391px", "248.4px", "248.390625px", "322.1875px"});
-        if (!isWidth) {
-            log.info("width of close-help button is not as per the spec, actual: " + width);
-        }
-        display = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsSpan, "display", "mobile");
-        isDisplay = commonUtils.assertValue(display, "block", " display for contextual-help-drawer back-to-help span is not as per the spec");
-        textAlign = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsSpan, "text-align", "mobile");
-        isTextAlign = commonUtils.assertValue(textAlign, "center", " text-align for contextual-help-drawer back-to-help span is not as per the spec");
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isBackgroundColor && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isWidth && isDisplay && isTextAlign);
+        Assert.assertTrue(isMarginTop && isColor && isBackgroundColor);
+
     }
 
     @Test(testName = "Mobile: Verify styles for Close Help Button Test", groups = "mobile-regression")
     private void styleForCloseHelpMobileTest() {
         commonUtils.getUrl(contextualHelpUrl, "mobile");
         commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-        width = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "width", "mobile");
-        isWidth = commonUtils.assertValue(width, "16px", " width of close-help button is not as per the spec");
-        height = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "height", "mobile");
-        isHeight = commonUtils.assertValue(height, "16px", " height of close-help button is not as per the spec");
         floatProp = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, "float", "mobile");
         isFloat = commonUtils.assertValue(floatProp, "right", " float value of close-help button is not as per the spec");
-        Assert.assertTrue(isWidth && isHeight && isFloat);
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty, "mobile");
+            isPadding = commonUtils.assertValue(padding, "0px", "Padding for contextual help Close Btn is not as per spec");
+            Assert.assertTrue(isPadding);
+        }
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty, "mobile");
+            isBorderWidth = commonUtils.assertValue(borderWidth, "0px", "");
+            if (!isBorderWidth) {
+                log.info("Border width for contextual help Close Btn is not as per spec, actual: " + borderWidth);
+            }
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(conxHelpPgObj.contextualHelpDrawerCloseButton, cssProperty, "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, "none", " Border style for contextual help Close Btn is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        Assert.assertTrue(isFloat);
     }
 
-    @Test(testName = "Mobile: iPhone 6 Plus Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "mobile-regression")
-    private void styleForRoomHeaderiPhone6PlusMobileTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
+    @Test(testName = "Mobile: iPhone 6 Plus and Ipad Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header Test Data", groups = "mobile-regression")
+    private void styleForRoomHeaderiPhone6PlusIpadMobileTest(int width, int height, String type, String url, String[] expPaddingTop, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6S plus'");
         }
@@ -1297,30 +1492,18 @@ public class ContextualHelpTest extends BaseClass {
             isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpenWithoutAppHeader, "mobile");
             Assert.assertTrue(isContextualHelpDrawerOpen);
         }
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, " padding-top to contextual-help-drawer is not as per the spec");
-        Assert.assertTrue(isPaddingTop);
-    }
-
-    @Test(testName = "Mobile: iPad Air Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header test data", groups = "mobile-regression")
-    private void styleForRoomHeaderiPadAirMobileTest(int width, int height, String type, String url, String expPaddingTop, String device, ScreenOrientation mode) {
-        if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test specify mobile device as 'iPad Air'");
+        top = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "top", "mobile");
+        isTop = commonUtils.assertCSSProperties("top", top, expPaddingTop);
+        if (!isTop) {
+            log.info("top to contextual-help-drawer for " + type + " is not as per the spec, actual " + top);
         }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        if (type.equals("withAppHeader")) {
-            commonUtils.click(appHeaderPgObj.clickableHelpLink, "mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen, "mobile");
-            Assert.assertTrue(isContextualHelpDrawerOpen);
-        } else {
-            commonUtils.click(conxHelpPgObj.toggleHelpDrawerButton, "mobile");
-            isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpenWithoutAppHeader, "mobile");
-            Assert.assertTrue(isContextualHelpDrawerOpen);
+        Assert.assertTrue(isTop);
+        for (String cssProperty : paddings) {
+            String cssPropertyType = cssProperty;
+            padding = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, cssProperty, "mobile");
+            isPadding = commonUtils.assertValue(padding, "30px", "Padding for contextual-help-drawer for " + type + " is not as per the spec");
+            Assert.assertTrue(isPadding);
         }
-        paddingTop = commonUtils.getCSSValue(conxHelpPgObj.helpTopicsSection, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, " padding-top to contextual-help-drawer is not as per the spec");
-        Assert.assertTrue(isPaddingTop);
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -1336,11 +1519,8 @@ public class ContextualHelpTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void contextualHelpTestBeforeClass() throws Exception {
         mobileDevice = BaseClass.mobDeviceName;
-        if (!runEnv.equals("sauce")) {
-            browser = BaseClass.localBrowser;
-        } else {
-            browser = BaseClass.sauceBrowser;
-        }
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
     }
 
     /*******************************
