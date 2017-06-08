@@ -18,8 +18,9 @@ public class TemplatesPageObjects {
     }
 
     // Single Column
-
     public By singleColumn = By.id("template-single");
+    // Single 10 Column
+    public By single10Column = By.id("template-single-10col");
 
     // Double Column - right
     public By doubleColumnMain = By.id("template-double-main");
@@ -27,6 +28,12 @@ public class TemplatesPageObjects {
     // Double Column - left
     public By doubleColumnMainLeft = By.id("template-double-main-left");
     public By doubleColumnSidebarLeft = By.id("template-double-sidebar-left");
+    // Double Column 6/6 - Right
+    public By doubleColumn6By6MainRight = By.id("template-double-6By6-main-right");
+    public By doubleColumn6By6SidebarRight = By.id("template-double-6By6-sidebar-right");
+    // Double Column 6/6 - Left
+    public By doubleColumn6By6MainLeft = By.id("template-double-6By6-main-left");
+    public By doubleColumn6By6SidebarLeft = By.id("template-double-6By6-sidebar-left");
     // Static Column
     public By staticSmall = By.id("template-static-small");
     public By staticMedium = By.id("template-static-medium");
