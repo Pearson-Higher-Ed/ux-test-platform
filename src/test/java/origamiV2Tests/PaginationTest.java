@@ -239,26 +239,6 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @DataProvider(name = "Default Button-Hover state Test Data")
-    public Object[][] getDefaultButtonHoverStateTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
-        };
-    }
-
-    @Test(testName = "Verify Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"desktop-regression"})
-    private void defaultButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(paginationPgObj.paginationActiveBtn);
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationActiveBtn, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for default Hovered button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
     @DataProvider(name = "Default Button-Disabled Test Data")
     public Object[][] getDefaultButtonDisabledStateTestData() {
         return new Object[][]{
@@ -446,7 +426,7 @@ public class PaginationTest extends BaseClass {
     private void defaultPaginationMobileItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationNextBtn(), cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(paginationPgObj.mobilePaginationNextBtn(), cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for active button is not as per the spec, actual: " + cssProperty);
@@ -454,23 +434,10 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile:Verify Default Button Test-Hover state", dataProvider = "Default Button-Hover state Test Data", groups = {"mobile-regression"})
-    private void defaultMobileButtonHoverStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
-        String cssPropertyType = cssProperty;
-        commonUtils.hoverOnElement(paginationPgObj.paginationActiveBtn);
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationActiveBtn, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for default Hovered button is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
     @Test(testName = "Mobile:Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"mobile-regression"})
     private void defaultMobileButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(baseUrl, "mobile");
-        commonUtils.click(paginationPgObj.paginationNextBtn(),"mobile");
+        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(),"mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
