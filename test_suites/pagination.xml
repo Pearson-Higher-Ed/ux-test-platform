@@ -4,7 +4,7 @@
     <test name="origamiV2Test - Pagination">
         <groups>
             <run>
-                <include name="desktop-regression"/>
+                <include name="mobile-regression"/>
             </run>
         </groups>
         <classes>
