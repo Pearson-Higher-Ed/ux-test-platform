@@ -687,7 +687,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(dataProvider = "Mobile: Buttons Borders Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Buttons Borders Test", dataProvider = "Buttons Borders Test Data", groups = "mobile-regression")
     private void buttonBordersMobileTest(String type, By buttonElement, String expBorderTopStyle) {
         // for default n primary n cta
         for (String cssProperty : borderStyles) {
