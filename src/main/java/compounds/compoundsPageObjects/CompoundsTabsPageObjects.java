@@ -34,4 +34,6 @@ public class CompoundsTabsPageObjects extends BaseClass {
     public String xpathForTabLink(int x) {
         return "//ul[@class='tabs__labels']/li[" + x + "]/a";
     }
+
+    public By divForActiveTab=By.xpath("//*[@id='tabs-target']/div/div/div[@role='tabpanel']");
 }

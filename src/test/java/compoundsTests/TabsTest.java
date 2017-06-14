@@ -3,6 +3,9 @@ package compoundsTests;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -23,9 +26,9 @@ public class TabsTest extends BaseClass {
     private final String absTempJSFilePath = new File("compounds/jsfiles/tabs/temp.js").getAbsolutePath();
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
-    private static String browser = "", lBrowser = "", setMobile = "", mobileDevice = "";
-    private String testConfig = "", browserLogs = "", fontSize = "", lineHeight = "", beforeFinalFormat = "", fileContentsInAString = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", padding = "", borderBottom = "";
-    private boolean isColor = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isTabPresent = false, isTabActive = false, isTabLight = false, isPadding = false, isBorderBottom = false;
+    private static String browser = "", lBrowser = "", setMobile = "";
+    private String testConfig = "", browserLogs = "", fontSize = "", lineHeight = "", beforeFinalFormat = "", fileContentsInAString = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", padding = "", borderBottom = "", tabIndex = "", ariaSelected = "", id = "";
+    private boolean isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isTabPresent = false, isTabActive = false, isTabLight = false, isPadding = false, isBorderBottom = false, isTabIndex = false, isAriaSelected = false, isId = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element", incorrectComponentNameErrorMsg = "type is invalid";
     private String preConfigStr1 = "function init() {";
     private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
@@ -36,6 +39,8 @@ public class TabsTest extends BaseClass {
     Map<String, JsonObject> propsConfigMap = null;
     List<String> paneArrayList = null;
     JsonObject jsonPropsObject = null, jsonPropsPropertiesObject = null, jsonDetailObject = null, jsonDetailPropertiesObject = null;
+    JavascriptExecutor js = null;
+    WebElement element = null;
 
     String[] paneItems = null;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
@@ -44,7 +49,7 @@ public class TabsTest extends BaseClass {
     final static Logger log = Logger.getLogger(TabsTest.class.getName());
 
     @BeforeClass(alwaysRun = true)
-    private void buttonsTestBeforeClass() {
+    private void tabsTestBeforeClass() {
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
         if (!runEnv.equals("travis")) {
@@ -62,9 +67,9 @@ public class TabsTest extends BaseClass {
     @DataProvider(name = "Tabs Create Test Data")
     public Object[][] getTabsCreateTestData() {
         return new Object[][]{
-                {1, 1, true, "present"},
-                {100, 100, true, "present"},//Create 100 tabs
-                {0, 5, false, "not present"},
+                {1, 1, true, "not present"},
+                {100, 100, true, "not present"},//Create 100 tabs
+                {0, 5, false, "present"},
         };
     }
 
@@ -168,9 +173,9 @@ public class TabsTest extends BaseClass {
     @DataProvider(name = "Tabs States Styles Test Data")
     public Object[][] getTabsStatesStylesTestData() {
         return new Object[][]{
-                {"default", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px","17.984375px"}, compTabsPgObj.thirdTabLink, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, new String[]{"3px", "solid", "rgba(0, 0, 0, 0)"}, "none"},
-                {"hover", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px","17.984375px"}, compTabsPgObj.firstTabLink, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"3px", "solid", "#c7c7c7"}, "none"},
-                {"active", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px","17.984375px"}, compTabsPgObj.secondTabLink, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"3px", "solid", "#19a6a4"}, "none"},
+                {"default", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px", "17.984375px"}, compTabsPgObj.thirdTabLink, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, new String[]{"3px", "solid", "rgba(0, 0, 0, 0)"}, "none"},
+                {"hover", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px", "17.984375px"}, compTabsPgObj.firstTabLink, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"3px", "solid", "#c7c7c7"}, "none"},
+                {"active", "tab-link", new String[]{"14px", "13.93px"}, new String[]{"18px", "17.9999px", "17.999940872192383px", "17.984375px"}, compTabsPgObj.secondTabLink, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"3px", "solid", "#19a6a4"}, "none"},
         };
     }
 
@@ -268,6 +273,72 @@ public class TabsTest extends BaseClass {
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains(errorMessage), true, "right error msg for '" + errorMessage + "' is NOT seen as per SPEC");
         Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "a11y Test Data")
+    public Object[][] geta11yTestData() {
+        return new Object[][]{
+                {"selected", compTabsPgObj.firstTabLink, "0", "true",},
+                {"unselected", compTabsPgObj.secondTabLink, "-1", "false"},
+        };
+    }
+
+    //a11y tests
+    @Test(testName = "a11y Test", dataProvider = "a11y Test Data", groups = "desktop-regression")
+    private void a11yTest(String isSelected, By tabLinkElement, String expTabIndex, String expAriaSelected) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+        String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
+        String paneArray = buildPaneArray(3);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray);
+
+        tabIndex = commonUtils.getAttributeValue(tabLinkElement, "tabIndex");
+        ariaSelected = commonUtils.getAttributeValue(tabLinkElement, "aria-selected");
+
+        isTabIndex = commonUtils.assertValue(tabIndex, expTabIndex, "tabIndex for " + isSelected + " tab is not right");
+        isAriaSelected = commonUtils.assertValue(ariaSelected, expAriaSelected, "");
+
+        //before click
+        id = commonUtils.getAttributeValue(tabLinkElement, "id");
+        isId = commonUtils.assertValue(id, "", "id is not empty");
+        Assert.assertTrue(isId);
+
+        //after click
+        commonUtils.click(tabLinkElement);
+        String idForClickedTab = commonUtils.getAttributeValue(tabLinkElement, "id");
+        String idForActiveTabDiv = commonUtils.getAttributeValue(compTabsPgObj.divForActiveTab, "aria-describedby");
+        boolean isIdMatch = commonUtils.assertValue(idForClickedTab, idForActiveTabDiv, "id does not match for aria-describedby");
+        Assert.assertTrue(isTabIndex && isAriaSelected && isIdMatch);
+    }
+
+    @Test(testName = "Key Operations Test", groups = "desktop-regression")
+    private void keyOperationsTest() throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+        String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
+        String paneArray = buildPaneArray(4);
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray);
+
+        js = (JavascriptExecutor) driver;
+        element = driver.findElement(compTabsPgObj.firstTabLink);
+        js.executeScript("arguments[0].setAttribute('id', 'firstTabId')", element);
+
+        commonUtils.focusOnElementById("firstTabId");
+        int i;
+        //move right
+        for (i = 1; i <= 4; i++) {
+            Thread.sleep(500);
+            tabIndex = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(i)), "tabIndex");
+            isTabIndex = commonUtils.assertValue(tabIndex, "0", "right navigation: tabIndex for active tab " + i + " is not right");
+            commonUtils.keyOperationOnActiveElement(Keys.ARROW_RIGHT);
+            Assert.assertTrue(isTabIndex);
+        }
+        //move left
+        for (i = 4; i >= 1; i--) {
+            commonUtils.keyOperationOnActiveElement(Keys.ARROW_LEFT);
+            Thread.sleep(500);
+            tabIndex = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(i)), "tabIndex");
+            isTabIndex = commonUtils.assertValue(tabIndex, "0", "left navigation: tabIndex for active tab " + i + " is not right");
+            Assert.assertTrue(isTabIndex);
+        }
     }
 
     /*************
@@ -407,7 +478,7 @@ public class TabsTest extends BaseClass {
     //Common methods
     private String buildPaneArray(int paneArraySize) {
         paneArrayList = new ArrayList<String>();
-        paneItems = new String[]{"React.createElement", "'Pane'", "{label: 'Tab 0'}", "React.createElement('div',{},'Tab 0 Menu')"};
+        paneItems = new String[]{"React.createElement", "Pane", "{label: 'Tab 0'}", "React.createElement('div',{},'Tab 0 Menu')"};
 
         int i, j;
         for (j = 0; j < paneArraySize; j++) {
@@ -490,9 +561,6 @@ public class TabsTest extends BaseClass {
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         commonUtils.readInitialConfig(tabsJSFilePath, tempJSFilePath);
-        if (setMobile.equals("on")) {
-            mobileDevice = BaseClass.mobDeviceName;
-        }
     }
 
     @AfterMethod(alwaysRun = true)
