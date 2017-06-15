@@ -882,6 +882,21 @@ public class ModalTest extends BaseClass {
         }
     }
 
+    @Test(testName = "Mobile: SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "mobile-regression")
+    private void successButtonHandlerMobileTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        Thread.sleep(1000);
+
+        js = (JavascriptExecutor) appium;
+        element = appium.findElement(modalPgObj.modalSaveBtnReact);
+        Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", element);
+        result = commonUtils.assertValue(attributes.toString().contains("disabled"), isSuccessBtnDisabled, "Success button is " + msg + " as per the spec");
+        Assert.assertTrue(result);
+    }
+
     /*****************
      * Common methods
      *****************/
