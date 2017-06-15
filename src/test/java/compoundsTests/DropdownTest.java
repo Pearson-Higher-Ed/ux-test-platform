@@ -573,10 +573,10 @@ public class DropdownTest extends BaseClass {
         }
         commonUtils.readInitialConfig(dropdownJSFilePath, tempJSFilePath);
         //Provide an incorrect element ID
-        commonUtils.replaceLineInAFile(dropdownJSFilePath, "elementId:'dropdown-target',", "elementId: 'xyz-target',");
+        commonUtils.replaceLineInAFile(dropdownJSFilePath, "elementId: 'dropdown-target',", "elementId: 'xyz-target',");
         commonUtils.getUrl(dropdownUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains(incorrectElementIdErrorMsg), true, incorrectElementIdErrorMsg+ "error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectElementIdErrorMsg), true, incorrectElementIdErrorMsg + "error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
         Assert.assertTrue(result);
     }
@@ -588,10 +588,10 @@ public class DropdownTest extends BaseClass {
         }
         commonUtils.readInitialConfig(dropdownJSFilePath, tempJSFilePath);
         //Provide an incorrect component name
-        commonUtils.replaceLineInAFile(dropdownJSFilePath, "componentName:'Dropdown'", "componentName: 'xyz',");
+        commonUtils.replaceLineInAFile(dropdownJSFilePath, "componentName: 'Dropdown',", "componentName: 'xyz',");
         commonUtils.getUrl(dropdownUrl);
         browserLogs = commonUtils.browserLogs().toString();
-        result = commonUtils.assertValue(browserLogs.contains(incorrectComponentNameErrorMsg), true, incorrectComponentNameErrorMsg+" error msg is NOT seen as per SPEC");
+        result = commonUtils.assertValue(browserLogs.contains(incorrectComponentNameErrorMsg), true, incorrectComponentNameErrorMsg + " error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, dropdownJSFilePath);
         Assert.assertTrue(result);
     }
