@@ -2,8 +2,7 @@ package origamiV2Tests;
 
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -27,7 +26,7 @@ public class ModalTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setMobile = "", setDesktop = "", mobileDevice = "";
     private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "";
-    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false;
+    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
     String[] margins = {"margin-top", "margin-right", "margin-bottom", "margin-left"};
     String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
@@ -46,6 +45,8 @@ public class ModalTest extends BaseClass {
     Map<String, JsonObject> propsMap = null;
     Map<String, String> propsConfigMap = null;
     Map<String, String> propsTextConfigMap = null;
+    JavascriptExecutor js = null;
+    WebElement element = null;
     final static Logger log = Logger.getLogger(ModalTest.class.getName());
 
     @BeforeClass(alwaysRun = true)
@@ -520,6 +521,29 @@ public class ModalTest extends BaseClass {
 
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains(errorMessage), true, "right error msg for '" + errorMessage + "' is NOT seen as per SPEC");
+        Assert.assertTrue(result);
+    }
+
+    @DataProvider(name = "SuccessButtonHandler Test Data")
+    public Object[][] getSuccessButtonHandlerTestData() {
+        return new Object[][]{
+                {"true", true, "not disabled"},
+                {"false", false, "disabled"}
+        };
+    }
+
+    @Test(testName = "SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "desktop-regression")
+    private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+        Thread.sleep(1000);
+
+        js = (JavascriptExecutor) driver;
+        element = driver.findElement(modalPgObj.modalSaveBtnReact);
+        Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", element);
+        result = commonUtils.assertValue(attributes.toString().contains("disabled"), isSuccessBtnDisabled, "Success button is " + msg + " as per the spec");
         Assert.assertTrue(result);
     }
 
