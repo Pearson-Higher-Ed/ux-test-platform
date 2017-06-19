@@ -3,6 +3,7 @@
 <head>
     <title>Alerts Demo</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         var pe_ajax = new XMLHttpRequest();
         pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
@@ -14,7 +15,8 @@
           );
         }
         pe_ajax.send();
-</script>
+
+    </script>
     <link rel="stylesheet" href="../../css/alerts/elements.css"/>
     <style>
       .banner {
@@ -34,6 +36,7 @@
       .buttonGroup {
         margin-top: 175px;
       }
+
 
     </style>
 </head>
@@ -57,12 +60,16 @@
 </div>
 
 <div class="buttonGroup">
-    <button id="success-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Success')">Success
-        Alert
+    <button id="Success-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Success')">Success
     </button>
     <br/>
     <br/>
-    <button id="error-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Error')">Error Alert
+    <button id="Error-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Error')">Error/Warning
+    </button>
+    <br/>
+    <br/>
+    <button id="Information-alert" class="target pe-btn__primary--btn_small" onclick="buttonHandler('Information')">
+        Information
     </button>
     <br/>
     <br/>
@@ -86,16 +93,17 @@
 // -----------------------------------------------------------------------------
 // @param detail       <Object> on event (ie. ref e.detail)
 // @param alertList    <Array>  array of event Objects (ie. [{},{},...])
-// @param alertType    <String> 'Success' || 'Error'
+// @param alertType    <String> 'Success' || 'Error' || 'Information'
 // @param alertMessage <String> 'user specified string'
 // -----------------------------------------------------------------------------
-          if(type === 'Success' || type === 'Error') {
-            document.body.dispatchEvent(new CustomEvent('triggerAlert', {
-                "detail":{
-                  "alertList":[{
-                    "id"          : new Date().getTime(),
-                    "alertType"   : type,
-                    "alertMessage": type + ' test message'
+          if(type === 'Success' || type === 'Error' || type === 'Information') {
+              document.body.dispatchEvent(new CustomEvent('triggerAlert', {
+                  "detail":{
+                      "alertList":[{
+                          "id"          : new Date().getTime(),
+                          "alertType"   : type,
+                          "alertTitle"  : "Test title",
+                          "alertMessage": type + ' message. Adding more text to see it wrap to the second line!'
                   }]
                 }
             }));
@@ -106,6 +114,7 @@
           }
 // =============================================================================
       }
+
 
 </script>
 <!-- External dependencies for React -->
