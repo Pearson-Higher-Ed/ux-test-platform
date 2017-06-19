@@ -56,11 +56,11 @@ public class AlertsTest extends BaseClass {
         bgColor = commonUtils.getCSSValue(alert, "background-color");
         boxShadow = commonUtils.getCSSValue(alert, "box-shadow");
 
-        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Border-top-width of " + alertType + " is not as per spec");
-        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Border-top-style of " + alertType + " is not as per spec");
+        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Border-left-width of " + alertType + " is not as per spec");
+        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Border-left-style of " + alertType + " is not as per spec");
         isBorderLeftColor = commonUtils.assertCSSProperties("border-top-color", borderLeftColor, expColor);
         if (!isBorderLeftColor) {
-            log.info("border-top-color of " + alertType + " is not as per spec, actual " + borderLeftColor);
+            log.info("border-left-color of " + alertType + " is not as per spec, actual " + borderLeftColor);
         }
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")});
         if (!isBgColor) {
@@ -226,7 +226,7 @@ public class AlertsTest extends BaseClass {
         display = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "display");
 
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isTextFontColor) {
+        if (!isColor) {
             log.info("color of icon for " + alertType + " is not as per spec, actual " + color);
         }
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top of icon for " + alertType + " is not as per spec");
@@ -343,11 +343,11 @@ public class AlertsTest extends BaseClass {
         bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
         boxShadow = commonUtils.getCSSValue(alert, "box-shadow", "mobile");
 
-        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Border-top-width of " + alertType + " is not as per spec");
-        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Border-top-style of " + alertType + " is not as per spec");
+        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Border-left-width of " + alertType + " is not as per spec");
+        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Border-left-style of " + alertType + " is not as per spec");
         isBorderLeftColor = commonUtils.assertCSSProperties("border-left-color", borderLeftColor, expColor);
         if (!isBorderLeftColor) {
-            log.info("border-top-color of " + alertType + " is not as per spec, actual " + borderLeftColor);
+            log.info("border-left-color of " + alertType + " is not as per spec, actual " + borderLeftColor);
         }
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")});
         if (!isBgColor) {
@@ -560,4 +560,3 @@ public class AlertsTest extends BaseClass {
         System.out.println("_________________________________________________");
     }
 }
-
