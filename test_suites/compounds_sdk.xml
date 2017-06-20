@@ -4,11 +4,14 @@
     <test name="Compounds SDK V0 Tests">
         <groups>
             <run>
-                <include name="desktop-ci"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
-       <packages>
+        <classes>
+            <class name="compoundsTests.BannerAlertsTest"/>
+        </classes>
+       <!--<packages>
             <package name="compoundsTests"></package>
-        </packages>
+        </packages>-->
     </test>
 </suite>
