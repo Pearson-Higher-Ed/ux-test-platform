@@ -106,7 +106,7 @@ public class BaseClass {
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
                 caps.setCapability("maxDuration", "10800");
-                caps.setCapability("name", "elements_sdk");
+                caps.setCapability("name", this.getClass().getSimpleName());
                 if (platform.startsWith("Windows")) {
                     caps.setCapability("screenResolution", "2560x1600");
                 } else if (platform.startsWith("OS X")) {
