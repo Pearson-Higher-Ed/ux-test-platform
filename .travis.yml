@@ -29,7 +29,7 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=elements_sdk
+- export component=elements_sdk1
 - export feature_branch=v1
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
