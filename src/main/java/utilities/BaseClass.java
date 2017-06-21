@@ -106,6 +106,7 @@ public class BaseClass {
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
                 caps.setCapability("maxDuration", "10800");
+                caps.setCapability("name", this.getClass().getSimpleName());
                 if (platform.startsWith("Windows")) {
                     caps.setCapability("screenResolution", "2560x1600");
                 } else if (platform.startsWith("OS X")) {
@@ -126,6 +127,7 @@ public class BaseClass {
                 caps.setCapability("maxDuration", "10800");
                 caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
                 caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
+                caps.setCapability("name", this.getClass().getSimpleName());
                 if (appiumDriver.equalsIgnoreCase("iOS")) {
                     appium = new IOSDriver(new URL(URL), caps);
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
@@ -155,6 +157,7 @@ public class BaseClass {
                 caps.setCapability(MobileCapabilityType.APPIUM_VERSION, appiumVer);
                 caps.setCapability("maxDuration", "10800");
                 caps.setCapability("tunnel-identifier", SauceParam.SAUCE_TUNNEL);
+                caps.setCapability("name", this.getClass().getSimpleName());
                 if (appiumDriver.equalsIgnoreCase("iOS")) {
                     appium = new IOSDriver(new URL(URL), caps);
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
