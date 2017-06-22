@@ -9,6 +9,6 @@
         </groups>
        <packages>
             <package name="compoundsTests"></package>
-        </packages>
+       </packages>
     </test>
 </suite>
