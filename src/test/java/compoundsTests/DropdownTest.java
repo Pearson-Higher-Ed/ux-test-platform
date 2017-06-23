@@ -31,13 +31,13 @@ public class DropdownTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "";
+    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", dismiss = "";
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
     private final String incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
     boolean isCSSProperty = false, isBackgroundColor = false, result = false;
     private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
-    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false;
+    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null;
     Map<String, String> detailProperties = null;
     Map<String, String> propsProperties = null;
@@ -287,7 +287,7 @@ public class DropdownTest extends BaseClass {
     }
 
     @Test(testName = "Border - Icon Dropdown Test", dataProvider = "Border - Icon Dropdown Test Data", groups = "desktop-regression")
-    private void borderIconDropdownTest(String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
+    private void borderIconDropdownTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl);
         commonUtils.clickUsingJS(dropdownPgObj.triggerIcon);
@@ -368,7 +368,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icon Dropdown Divider Test Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "desktop-regression")
+    @Test(testName = "Icon Dropdown Divider Test", dataProvider = "Icon Dropdown Divider Test Data", groups = "desktop-regression")
     public void dividerIconDropdownTest(By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         setConfig("icon");
         commonUtils.getUrl(dropdownUrl);
@@ -596,11 +596,56 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @DataProvider(name = "Check DropUp and AlignRight Test Data")
+    public Object[][] checkDropUpAlignRightTestData() {
+        return new Object[][]{
+                {"label", dropdownPgObj.triggerLabel, "true", "true", true, "is not aligned right or dropped up"},
+                {"button", dropdownPgObj.triggerBtn, "true", "true", true, "is not aligned right or dropped up"},
+                {"button", dropdownPgObj.triggerBtnIcon, "true", "true", true, "is not aligned right or dropped up"},
+                {"icon", dropdownPgObj.triggerIconWithDivWrapper, "true", "true", true, "is not aligned right or dropped up"},
+                {"icon", dropdownPgObj.triggerIconWithDivWrapper, "true", "true", true, "is not aligned right or dropped up"},
+
+                {"label", dropdownPgObj.triggerLabel, "false", "false", false, "is aligned right or dropped down"},
+                {"button", dropdownPgObj.triggerBtn, "false", "false", false, "is aligned right or dropped down"},
+                {"button", dropdownPgObj.triggerBtnIcon, "false", "false", false, "is aligned right or dropped down"},
+                {"icon", dropdownPgObj.triggerIconWithDivWrapper, "false", "false", false, "is aligned right or dropped down"},
+                {"icon", dropdownPgObj.triggerIconWithDivWrapper, "false", "false", false, "is aligned right or dropped down"},
+        };
+    }
+
+    //new tests
+    @Test(testName = "Drop Up and Align Right Test", dataProvider = "Check DropUp and AlignRight Test Data", groups = "desktop-regression")
+    private void dropUpAlignRightTest(String dropdownType, By trigger, String dropUp, String alignRight, Boolean isContains, String msg) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
+        setConfig(dropdownType, dropUp, alignRight);
+        commonUtils.getUrl(dropdownUrl);
+
+        isRightAlign = commonUtils.getAttributeValue(dropdownPgObj.divWrapper, "class").contains("rightAlign");
+        result = commonUtils.assertValue(isRightAlign, isContains, "dropdown is " + msg);
+        Assert.assertTrue(result);
+
+        commonUtils.clickUsingJS(trigger);
+        isDropUp = commonUtils.getAttributeValue(dropdownPgObj.box, "class").contains("drop-up");
+        result = commonUtils.assertValue(isDropUp, isContains, "dropdown is " + msg);
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Dismiss Drop Down Test", groups = "desktop-regression")
+    public void dismissDropDownTest() throws Exception {
+        commonUtils.getUrl(dropdownUrl);
+        commonUtils.clickUsingJS(dropdownPgObj.triggerLabel);
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
+        Assert.assertTrue(isDismiss);
+
+        //click outside the dropdown to dismiss it
+        commonUtils.clickUsingJS(By.xpath("//html"));
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
+        result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
+        Assert.assertTrue(result);
+    }
 
     /******************************
-     *
      * Mobile Tests
-     *
      ******************************/
 
     @DataProvider(name = "Mobile : Dropdown Header Test Data")
@@ -858,6 +903,35 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCheckmarkPresent && isClassName && isPaddingLeft);
     }
 
+    @Test(testName = "Mobile: Drop Up and Align Right Test", dataProvider = "Check DropUp and AlignRight Test Data", groups = "mobile-regression")
+    private void dropUpAlignRightMobileTest(String dropdownType, By trigger, String dropUp, String alignRight, Boolean isContains, String msg) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
+        setConfig(dropdownType, dropUp, alignRight);
+        commonUtils.getUrl(dropdownUrl, "mobile");
+
+        isRightAlign = commonUtils.getAttributeValue(dropdownPgObj.divWrapper, "class", "mobile").contains("rightAlign");
+        result = commonUtils.assertValue(isRightAlign, isContains, "dropdown is " + msg);
+        Assert.assertTrue(result);
+
+        commonUtils.clickUsingJS(trigger, "mobile");
+        isDropUp = commonUtils.getAttributeValue(dropdownPgObj.box, "class", "mobile").contains("drop-up");
+        result = commonUtils.assertValue(isDropUp, isContains, "dropdown is " + msg);
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile: Dismiss Drop Down Test", groups = "mobile-regression")
+    public void dismissDropDownMobileTest() throws Exception {
+        commonUtils.getUrl(dropdownUrl, "mobile");
+        commonUtils.clickUsingJS(dropdownPgObj.triggerLabel, "mobile");
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box, "mobile");
+        Assert.assertTrue(isDismiss);
+
+        //click outside the dropdown to dismiss it
+        commonUtils.clickUsingJS(By.xpath("//html"), "mobile");
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box, "mobile");
+        result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
+        Assert.assertTrue(result);
+    }
 
     /*****************
      * Common methods
@@ -933,6 +1007,18 @@ public class DropdownTest extends BaseClass {
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         } else {
             String[] propsPropertiesList = new String[]{"presentationType", "icon", "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title"};
+            testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
+        }
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+    }
+
+    private void setConfig(String dropdownType, String isDropUp, String isAlignRight) throws IOException, InterruptedException {
+        String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
+        if (!dropdownType.equals("icon")) {
+            String[] propsPropertiesList = new String[]{"presentationType", dropdownType, "presentationText", dropdownType, "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Thing one', 'Thing two']", "mobileTitle", "Mobile title"};
+            testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
+        } else {
+            String[] propsPropertiesList = new String[]{"presentationType", "icon", "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         }
         commonUtils.changeConfig(dropdownJSFilePath, testConfig);
