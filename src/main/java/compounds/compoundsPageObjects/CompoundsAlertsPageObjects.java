@@ -7,17 +7,17 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by udhadpa on 6/20/17.
  */
-public class CompoundsBannerAlertsPageObjects {
+public class CompoundsAlertsPageObjects {
 
 
     public WebDriver driver;
     public AppiumDriver appium;
 
-    public CompoundsBannerAlertsPageObjects(WebDriver driver) {
+    public CompoundsAlertsPageObjects(WebDriver driver) {
         this.driver = driver;
     }
 
-    public CompoundsBannerAlertsPageObjects(AppiumDriver appium) {
+    public CompoundsAlertsPageObjects(AppiumDriver appium) {
         this.appium = appium;
     }
 

@@ -64,8 +64,7 @@ public class BaseClass {
     public PaginationPageObjects paginationPgObj = null;
     public CompoundsDropdownPageObjects dropdownPgObj = null;
     public CompoundsLoadingIndicatorPageObjects indicatorPgObj = null;
-    public CompoundsBannerAlertsPageObjects bannerAlertsPgObj = null;
-
+    public CompoundsAlertsPageObjects compAlertsPgObj = null;
 
     public CommonUtils commonUtils = null;
     public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
@@ -202,7 +201,7 @@ public class BaseClass {
             paginationPgObj = new PaginationPageObjects(driver);
             dropdownPgObj = new CompoundsDropdownPageObjects(driver);
             indicatorPgObj = new CompoundsLoadingIndicatorPageObjects(driver);
-            bannerAlertsPgObj = new CompoundsBannerAlertsPageObjects(driver);
+            compAlertsPgObj = new CompoundsAlertsPageObjects(driver);
             commonUtils = new CommonUtils(driver);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } else if (setMobile.equals("on")) {
@@ -236,7 +235,7 @@ public class BaseClass {
             paginationPgObj = new PaginationPageObjects(appium);
             dropdownPgObj = new CompoundsDropdownPageObjects(appium);
             indicatorPgObj = new CompoundsLoadingIndicatorPageObjects(appium);
-            bannerAlertsPgObj = new CompoundsBannerAlertsPageObjects(appium);
+            compAlertsPgObj = new CompoundsAlertsPageObjects(appium);
             commonUtils = new CommonUtils(appium);
             appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
