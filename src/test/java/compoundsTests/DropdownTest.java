@@ -467,7 +467,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Select Options with Click Test", dataProvider = "Select Options with Click Test Data", groups = "desktop-ci")
+    @Test(testName = "Select Options with Click Test", dataProvider = "Select Options with Click Test Data", groups = "desktop-regression")
     private void selectOptionsWithClickTest(String dropdownType, By trigger, By option, String expClassName, By optionText) throws IOException, InterruptedException {
         if (browser.equals("edge")) {
             System.out.println(errorColorCode + "Test needs to be debugged for Edge browser");
