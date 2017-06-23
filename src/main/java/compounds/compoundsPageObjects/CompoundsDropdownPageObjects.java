@@ -22,7 +22,7 @@ public class CompoundsDropdownPageObjects {
     public By label = By.xpath("//*[@id='dropdown-target']/div/div/p");
     public By iconLabelSvg = By.cssSelector("#dropdown-target > div > div > button > svg");
     public By iconBtnSvg = By.id("icon-in-button");
-    public By iconSvg = By.cssSelector("#dropdown-target > div > button > svg");
+    public By iconSvg = By.cssSelector("#dropdown-target > div > div > button > svg");
     public By triggerLabel = By.xpath("//*[@id='dropdown-target']/div/div/button");
     public By box = By.xpath(".//*[@id='dropdown-target']/div/ul");
     public By optionBtn1 = By.cssSelector("li.li-props:nth-child(2) > button:nth-child(1)");
@@ -38,9 +38,12 @@ public class CompoundsDropdownPageObjects {
     public By divider = By.xpath("//*[@id='dropdown-target']/div/ul/li[4]/hr");
     public By triggerBtn = By.xpath("//*[@id='dropdown-target']/div/div/div");
     public By triggerBtnIcon = By.xpath("//*[@id='dropdown-target']/div/div/div/button");
-    public By triggerIcon = By.xpath(".//*[@id='dropdown-target']/div/button");
+    public By triggerIcon = By.xpath(".//*[@id='dropdown-target']/div/div/button");
     public By mobileHeader = By.xpath("//*[@id='dropdown-target']/div/ul/li[1]");
     public By closeBtn = By.xpath("//*[@id='dropdown-target']/div/ul/li[1]/button");
     public By closeBtnSvg = By.id("header-close");
     public By checkmark = By.xpath("//*[@id='svg-id-this.state.selectedItem']");
+
+    public By divWrapper = By.xpath("//*[@id='dropdown-target']/div/div");
+    public By triggerIconWithDivWrapper = By.xpath(".//*[@id='dropdown-target']/div/div/button");
 }
