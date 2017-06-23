@@ -7,8 +7,11 @@
                 <include name="mobile-regression"/>
             </run>
         </groups>
-       <packages>
-            <package name="compoundsTests"></package>
-       </packages>
+       <!--<packages>-->
+            <!--<package name="compoundsTests"></package>-->
+       <!--</packages>-->
+        <classes>
+            <class name="compoundsTests.DropdownTest"/>
+        </classes>
     </test>
 </suite>
