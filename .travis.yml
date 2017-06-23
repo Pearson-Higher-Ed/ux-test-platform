@@ -29,7 +29,7 @@ before_script:
 - ws --log-format none &
 
 script:
-- export component=compounds_sdk
+- export component=compounds_sdk1
 - export feature_branch=DES-707
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh

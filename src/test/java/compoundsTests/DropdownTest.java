@@ -863,7 +863,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression1")
     private void clickOnCloseBtnMobileTest(String dropdownType, By trigger) throws IOException, InterruptedException {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
@@ -883,7 +883,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertFalse(isDropdownListBox);
     }
 
-    @Test(testName = "Select Options with Click Mobile Test", dataProvider = "Select Options with Click Test Data", groups = "mobile-regression")
+    @Test(testName = "Select Options with Click Mobile Test", dataProvider = "Select Options with Click Test Data", groups = "mobile-regression1")
     private void selectOptionsWithClickMobileTest(String dropdownType, By trigger, By option, String expClassName, By optionText) throws IOException, InterruptedException {
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
