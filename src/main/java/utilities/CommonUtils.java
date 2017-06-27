@@ -148,8 +148,13 @@ public class CommonUtils {
     }
 
     public boolean isElementDisplayed(By element, String mobile) {
-        mobWebElement = (MobileElement) appium.findElement(element);
-        return mobWebElement.isDisplayed();
+        try {
+            mobWebElement = (MobileElement) appium.findElement(element);
+            return mobWebElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
+            return false;
+        }
     }
 
     //is element Enabled
