@@ -26,7 +26,7 @@ public class ModalTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setMobile = "", setDesktop = "", mobileDevice = "";
     private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "";
-    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false;
+    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
     String[] margins = {"margin-top", "margin-right", "margin-bottom", "margin-left"};
     String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
@@ -501,6 +501,32 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isFocused);
     }
 
+    @DataProvider(name= "Verify Modal X close Button Test")
+    public Object[][] getModalXDefaultTestData() {
+        return new Object[][] {
+                {"no-footer", "false", "hideClose", "true"},
+                {"footer", "false", "hideClose", "false"},
+        };
+    }
+
+    @Test(testName = "Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "desktop-regression")
+    private void verifyModalCloseButtonVisibleTest(String footerType, String isFooterVisible, String hideCloseType, String isHideSetTrue) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+
+        isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact);
+        if(!isModalCloseVisible){
+            isVisible = commonUtils.assertValue(isModalCloseVisible, false, "modal Close X button appeared");
+            Assert.assertTrue(isVisible);
+        }
+        else{
+            isVisible = commonUtils.assertValue(isModalCloseVisible, true, "modal Close X button didnt appear");
+            Assert.assertTrue(isVisible);
+        }
+    }
+
     //Negative tests
     @DataProvider(name = "Negative Config Test Data")
     public Object[][] getNegativeConfigTestData() {
@@ -895,6 +921,23 @@ public class ModalTest extends BaseClass {
         Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", element);
         result = commonUtils.assertValue(attributes.toString().contains("disabled"), isSuccessBtnDisabled, "Success button is " + msg + " as per the spec");
         Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile: Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "mobile-regression")
+    private void verifyModalCloseButtonVisibleMobileTest(String footerType, String isFooterVisible, String hideCloseType, String isHideSetTrue) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+
+        isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact, "mobile");
+        if(!isModalCloseVisible){
+            isVisible = commonUtils.assertValue(isModalCloseVisible, false, "modal Close X button appeared");
+            Assert.assertTrue(isVisible);
+        }
+        else{
+            isVisible = commonUtils.assertValue(isModalCloseVisible, true, "modal Close X button didnt appear");
+            Assert.assertTrue(isVisible);
+        }
     }
 
     /*****************
