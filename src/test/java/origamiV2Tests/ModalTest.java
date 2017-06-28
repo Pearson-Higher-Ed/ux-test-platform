@@ -480,30 +480,92 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration);
     }
 
-    //focus_test
-    @DataProvider(name = "Focus By Default Test Data")
-    public Object[][] getFocusByDefaultTestData() {
-        return new Object[][]{
-                {"footer", "true", "modalCancel"},
-                {"no-footer", "false", "modalClose"},
-        };
-    }
-
-    @Test(testName = "Focus By Default Test", dataProvider = "Focus By Default Test Data", groups = "desktop-regression")
-    private void focusByDefaultTest(String footerType, String isFooterVisible, String focusable) throws Exception {
+    //focus_test_for_modal_withfooter
+    @Test(testName = "Modal With Footer Focus Test", groups = "desktop-regression")
+    private void modalWithFooterFocusTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
-        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
         focused = driver.switchTo().activeElement().getAttribute("class");
-        isFocused = commonUtils.assertValue(focused.contains(focusable), true, "the default focus for " + footerType + " is not as per the spec");
-        Assert.assertTrue(isFocused);
+        String firstFocusOnForward = "modalContent";
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnForward), true, "the first forward focus for modal with footer is not as per the spec");
+
+        String[] elementsArray = {"modalBody", "modalCancel", "modalSave"};
+
+        int i, j;
+        //forward focus flow
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < elementsArray.length; j++) {
+                commonUtils.keyOperationOnActiveElement(Keys.TAB);
+                focused = driver.switchTo().activeElement().getAttribute("class");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j]), true, "the focus on " + elementsArray[j] + " for modal with footer is not as per the spec");
+                Assert.assertTrue(isFocused);
+            }
+        }
+
+        //backward focus flow
+        commonUtils.getUrl(url);
+        focused = driver.switchTo().activeElement().getAttribute("class");
+        String firstFocusOnBackward = "modalContent";
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnBackward), true, "the first backward focus for modal with footer is not as per the spec");
+
+        String press = Keys.chord(Keys.SHIFT, Keys.TAB);
+        for (i = 0; i < 3; i++) {
+            for (j = elementsArray.length; j > 0; j--) {
+                driver.switchTo().activeElement().sendKeys(press);
+                focused = driver.switchTo().activeElement().getAttribute("class");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j - 1]), true, "the focus on " + elementsArray[j - 1] + " for type modal with footer is not as per the spec");
+                Assert.assertTrue(isFocused);
+            }
+        }
     }
 
-    @DataProvider(name= "Verify Modal X close Button Test")
+    //focus_test_for_modal_withoutfooter
+    @Test(testName = "Modal Without Footer Focus Test", groups = "desktop-regression")
+    private void modalWithoutFooterFocusTest() throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "false", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+
+        focused = driver.switchTo().activeElement().getAttribute("class");
+        String firstFocusOnForward = "modalContent";
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnForward), true, "the first forward focus for modal without footer is not as per the spec");
+
+        String[] elementsArray = {"modalClose", "modalBody"};
+
+        int i, j;
+        //forward focus flow
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < elementsArray.length; j++) {
+                commonUtils.keyOperationOnActiveElement(Keys.TAB);
+                focused = driver.switchTo().activeElement().getAttribute("class");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j]), true, "the focus on " + elementsArray[j] + " for modal without footer is not as per the spec");
+                Assert.assertTrue(isFocused);
+            }
+        }
+
+        //backward focus flow
+        commonUtils.getUrl(url);
+        focused = driver.switchTo().activeElement().getAttribute("class");
+        String firstFocusOnBackward = "modalContent";
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnBackward), true, "the first backward focus for modal without footer is not as per the spec");
+        String press = Keys.chord(Keys.SHIFT, Keys.TAB);
+        for (i = 0; i < 3; i++) {
+            for (j = elementsArray.length; j > 0; j--) {
+                driver.switchTo().activeElement().sendKeys(press);
+                focused = driver.switchTo().activeElement().getAttribute("class");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j - 1]), true, "the focus on " + elementsArray[j - 1] + " for modal without footer is not as per the spec");
+                Assert.assertTrue(isFocused);
+            }
+        }
+    }
+
+    @DataProvider(name = "Verify Modal X close Button Test")
     public Object[][] getModalXDefaultTestData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"no-footer", "false", "hideClose", "true"},
                 {"footer", "false", "hideClose", "false"},
         };
@@ -517,11 +579,10 @@ public class ModalTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
         isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact);
-        if(!isModalCloseVisible){
+        if (!isModalCloseVisible) {
             isVisible = commonUtils.assertValue(isModalCloseVisible, false, "modal Close X button appeared");
             Assert.assertTrue(isVisible);
-        }
-        else{
+        } else {
             isVisible = commonUtils.assertValue(isModalCloseVisible, true, "modal Close X button didnt appear");
             Assert.assertTrue(isVisible);
         }
@@ -930,11 +991,10 @@ public class ModalTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
 
         isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact, "mobile");
-        if(!isModalCloseVisible){
+        if (!isModalCloseVisible) {
             isVisible = commonUtils.assertValue(isModalCloseVisible, false, "modal Close X button appeared");
             Assert.assertTrue(isVisible);
-        }
-        else{
+        } else {
             isVisible = commonUtils.assertValue(isModalCloseVisible, true, "modal Close X button didnt appear");
             Assert.assertTrue(isVisible);
         }
