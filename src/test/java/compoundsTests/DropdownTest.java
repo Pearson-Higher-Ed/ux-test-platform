@@ -2,10 +2,7 @@ package compoundsTests;
 
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -36,8 +33,8 @@ public class DropdownTest extends BaseClass {
     private final String incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
     boolean isCSSProperty = false, isBackgroundColor = false, result = false;
-    private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
-    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false;
+    private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", titleText = "";
+    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false, isTitleText = false;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null;
     Map<String, String> detailProperties = null;
     Map<String, String> propsProperties = null;
@@ -644,6 +641,33 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @Test(testName = "Dismiss Drop Down Esc Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "desktop-regression")
+    public void dismissDropDownEscTest(String dropdownType, By trigger) throws Exception {
+        if (browser.equals("safari")) {
+            throw new SkipException("Tab operation not available on Safari sauce browser");
+        }
+        setConfig(dropdownType);
+        commonUtils.getUrl(dropdownUrl);
+        commonUtils.clickUsingJS(trigger);
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
+        Assert.assertTrue(isDismiss);
+
+        //click outside the dropdown to dismiss it
+        commonUtils.keyOperationOnActiveElement(Keys.ESCAPE);
+        isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
+        result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
+        Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Dropdown ControlLabel Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "desktop-regression")
+    private void dropdownControlLabelTest(String dropdownType, By trigger) throws IOException, InterruptedException {
+        setConfig(dropdownType);
+        commonUtils.getUrl(dropdownUrl);
+        titleText = commonUtils.getAttributeValue(trigger, "textContent");
+        isTitleText = commonUtils.assertValue(titleText, "This is a " + dropdownType + " dropdown", "Title Text set for " + dropdownType + "does not match the config data");
+        Assert.assertTrue(isTitleText);
+    }
+
     /******************************
      * Mobile Tests
      ******************************/
@@ -887,10 +911,10 @@ public class DropdownTest extends BaseClass {
     private void selectOptionsWithClickMobileTest(String dropdownType, By trigger, By option, String expClassName, By optionText) throws IOException, InterruptedException {
         setConfig(dropdownType);
         commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(trigger, "mobile");
+        commonUtils.clickUsingJS(trigger, "mobile");
         Thread.sleep(1000);
-        commonUtils.click(option, "mobile");
-        commonUtils.click(trigger, "mobile");
+        commonUtils.clickUsingJS(option, "mobile");
+        commonUtils.clickUsingJS(trigger, "mobile");
         isCheckmarkPresent = commonUtils.isElementPresent(dropdownPgObj.checkmark, "mobile");
         if (!isCheckmarkPresent) {
             log.info("checkmark did not appear next to selected option for " + dropdownType + " dropdown");
@@ -932,6 +956,16 @@ public class DropdownTest extends BaseClass {
         result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
         Assert.assertTrue(result);
     }
+
+    @Test(testName = "Mobile : Dropdown ControlLabel Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "mobile-regression")
+    private void dropdownControlLabelMobileTest(String dropdownType, By trigger) throws IOException, InterruptedException {
+        setConfig(dropdownType);
+        commonUtils.getUrl(dropdownUrl, "mobile");
+        titleText = commonUtils.getAttributeValue(trigger, "textContent", "mobile");
+        isTitleText = commonUtils.assertValue(titleText, "This is a " + dropdownType + " dropdown", "Title Text set for " + dropdownType + "does not match the config data");
+        Assert.assertTrue(isTitleText);
+    }
+
 
     /*****************
      * Common methods
@@ -1003,10 +1037,10 @@ public class DropdownTest extends BaseClass {
     private void setConfig(String dropdownType) throws IOException, InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
         if (!dropdownType.equals("icon")) {
-            String[] propsPropertiesList = new String[]{"presentationType", dropdownType, "presentationText", dropdownType, "list", "['Thing one', 'Thing two']", "mobileTitle", "Mobile title"};
+            String[] propsPropertiesList = new String[]{"presentationType", dropdownType, "presentationText", dropdownType, "list", "['Thing one', 'Thing two']", "mobileTitle", "Mobile title", "dropdownControlLabel", "This is a " + dropdownType + " dropdown"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         } else {
-            String[] propsPropertiesList = new String[]{"presentationType", "icon", "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title"};
+            String[] propsPropertiesList = new String[]{"presentationType", "icon", "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title", "dropdownControlLabel", "This is a " + dropdownType + " dropdown"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         }
         commonUtils.changeConfig(dropdownJSFilePath, testConfig);
@@ -1015,10 +1049,10 @@ public class DropdownTest extends BaseClass {
     private void setConfig(String dropdownType, String isDropUp, String isAlignRight) throws IOException, InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "dropdown-target", "componentName", "Dropdown"};
         if (!dropdownType.equals("icon")) {
-            String[] propsPropertiesList = new String[]{"presentationType", dropdownType, "presentationText", dropdownType, "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Thing one', 'Thing two']", "mobileTitle", "Mobile title"};
+            String[] propsPropertiesList = new String[]{"presentationType", dropdownType, "presentationText", dropdownType, "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Thing one', 'Thing two']", "mobileTitle", "Mobile title", "dropdownControlLabel", "This is a " + dropdownType + " dropdown"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         } else {
-            String[] propsPropertiesList = new String[]{"presentationType", "icon", "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title"};
+            String[] propsPropertiesList = new String[]{"presentationType", "icon", "dropup", isDropUp, "alignRight", isAlignRight, "list", "['Pearson', 'Design','divider', 'Accelerator!!']", "mobileTitle", "Mobile title", "dropdownControlLabel", "This is a " + dropdownType + " dropdown"};
             testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         }
         commonUtils.changeConfig(dropdownJSFilePath, testConfig);
