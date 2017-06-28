@@ -480,61 +480,24 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration);
     }
 
-    //focus_test_for_modal_withfooter
-    @Test(testName = "Modal With Footer Focus Test", groups = "desktop-regression")
-    private void modalWithFooterFocusTest() throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
-        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
-        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
-
-        focused = driver.switchTo().activeElement().getAttribute("class");
-        String firstFocusOnForward = "modalContent";
-        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnForward), true, "the first forward focus for modal with footer is not as per the spec");
-
-        String[] elementsArray = {"modalBody", "modalCancel", "modalSave"};
-
-        int i, j;
-        //forward focus flow
-        for (i = 0; i < 3; i++) {
-            for (j = 0; j < elementsArray.length; j++) {
-                commonUtils.keyOperationOnActiveElement(Keys.TAB);
-                focused = driver.switchTo().activeElement().getAttribute("class");
-                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j]), true, "the focus on " + elementsArray[j] + " for modal with footer is not as per the spec");
-                Assert.assertTrue(isFocused);
-            }
-        }
-
-        //backward focus flow
-        commonUtils.getUrl(url);
-        focused = driver.switchTo().activeElement().getAttribute("class");
-        String firstFocusOnBackward = "modalContent";
-        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnBackward), true, "the first backward focus for modal with footer is not as per the spec");
-
-        String press = Keys.chord(Keys.SHIFT, Keys.TAB);
-        for (i = 0; i < 3; i++) {
-            for (j = elementsArray.length; j > 0; j--) {
-                driver.switchTo().activeElement().sendKeys(press);
-                focused = driver.switchTo().activeElement().getAttribute("class");
-                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j - 1]), true, "the focus on " + elementsArray[j - 1] + " for type modal with footer is not as per the spec");
-                Assert.assertTrue(isFocused);
-            }
-        }
+    @DataProvider(name = "Modal Focus Test Data")
+    public Object[][] getModalFocusTestData() {
+        return new Object[][]{
+                {"footer", "true", new String[]{"modalBody", "modalCancel", "modalSave"}},
+                {"no-footer", "false", new String[]{"modalClose", "modalBody"}},
+        };
     }
 
-    //focus_test_for_modal_withoutfooter
-    @Test(testName = "Modal Without Footer Focus Test", groups = "desktop-regression")
-    private void modalWithoutFooterFocusTest() throws Exception {
+    @Test(testName = "Modal Focus Test", dataProvider = "Modal Focus Test Data", groups = "desktop-regression")
+    private void modalFocusTest(String footerType, String isFooterVisible, String[] elementsArray) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
-        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "false", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
         focused = driver.switchTo().activeElement().getAttribute("class");
         String firstFocusOnForward = "modalContent";
-        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnForward), true, "the first forward focus for modal without footer is not as per the spec");
-
-        String[] elementsArray = {"modalClose", "modalBody"};
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnForward), true, "the first forward focus for modal with " + footerType + " is not as per the spec");
 
         int i, j;
         //forward focus flow
@@ -542,22 +505,22 @@ public class ModalTest extends BaseClass {
             for (j = 0; j < elementsArray.length; j++) {
                 commonUtils.keyOperationOnActiveElement(Keys.TAB);
                 focused = driver.switchTo().activeElement().getAttribute("class");
-                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j]), true, "the focus on " + elementsArray[j] + " for modal without footer is not as per the spec");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j]), true, "the focus on " + elementsArray[j] + " for modal with " + footerType + " is not as per the spec");
                 Assert.assertTrue(isFocused);
             }
         }
-
         //backward focus flow
         commonUtils.getUrl(url);
         focused = driver.switchTo().activeElement().getAttribute("class");
         String firstFocusOnBackward = "modalContent";
-        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnBackward), true, "the first backward focus for modal without footer is not as per the spec");
+        isFocused = commonUtils.assertValue(focused.contains(firstFocusOnBackward), true, "the first backward focus for modal with " + footerType + " is not as per the spec");
+
         String press = Keys.chord(Keys.SHIFT, Keys.TAB);
         for (i = 0; i < 3; i++) {
             for (j = elementsArray.length; j > 0; j--) {
                 driver.switchTo().activeElement().sendKeys(press);
                 focused = driver.switchTo().activeElement().getAttribute("class");
-                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j - 1]), true, "the focus on " + elementsArray[j - 1] + " for modal without footer is not as per the spec");
+                isFocused = commonUtils.assertValue(focused.contains(elementsArray[j - 1]), true, "the focus on " + elementsArray[j - 1] + " for type modal with " + footerType + " is not as per the spec");
                 Assert.assertTrue(isFocused);
             }
         }
@@ -572,7 +535,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "desktop-regression")
-    private void verifyModalCloseButtonVisibleTest(String footerType, String isFooterVisible, String hideCloseType, String isHideSetTrue) throws Exception {
+    private void verifyModalCloseButtonVisibleTest(String footerType, String isFooterVisible, String
+            hideCloseType, String isHideSetTrue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -600,7 +564,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void negativeConfigValuesTest(String errorType, String[] detailsPropertiesList, String[] propsTextList, String[] propsPropertiesList, String errorMessage) throws Exception {
+    private void negativeConfigValuesTest(String errorType, String[] detailsPropertiesList, String[]
+            propsTextList, String[] propsPropertiesList, String errorMessage) throws Exception {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox")))) {
             throw new SkipException("origamiV2-> Focus operation not yet supported in firefox/safari/ie browser drivers");
         }
@@ -620,7 +585,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "desktop-regression")
-    private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
+    private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String
+            msg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -648,7 +614,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regression")
-    private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String device, ScreenOrientation mode) throws Exception {
+    private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By
+            modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String
+                                                        device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -678,7 +646,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Header Test", dataProvider = "Modal Header Test Data", groups = "mobile-regression")
-    private void modalHeaderMobileTest(String size, int width, int height, By modalHeaderElement, String[] expPaddingValue, String device, ScreenOrientation mode) throws Exception {
+    private void modalHeaderMobileTest(String size, int width, int height, By modalHeaderElement, String[]
+            expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -696,7 +665,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regression")
-    private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[] expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String device, ScreenOrientation mode) throws Exception {
+    private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[]
+            expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String
+                                                   device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -741,7 +712,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regression")
-    private void modalBodyMobileTest(String size, int windowWidth, int windowHeight, By modalBodyElement, String[] expFontSize, String[] expLineHeight, String[] expPaddingValue, String expOutlineStyle, String[] expColor, String device, ScreenOrientation mode) throws Exception {
+    private void modalBodyMobileTest(String size, int windowWidth, int windowHeight, By modalBodyElement, String[]
+            expFontSize, String[] expLineHeight, String[] expPaddingValue, String expOutlineStyle, String[] expColor, String
+                                             device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -781,7 +754,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Body Border Normal Test", dataProvider = "Modal Body Border Normal Test Data", groups = "mobile-regression")
-    private void modalBodyBorderNormalMobileTest(String type, String size, int windowWidth, int windowHeight, By modalBodyElement, String[] expMarginTop, String[] expMarginBottom, String device, ScreenOrientation mode) throws Exception {
+    private void modalBodyBorderNormalMobileTest(String type, String size, int windowWidth, int windowHeight, By
+            modalBodyElement, String[] expMarginTop, String[] expMarginBottom, String device, ScreenOrientation mode) throws
+            Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -806,7 +781,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Footer- Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "mobile-regression")
-    private void modalBodyBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By modalBodyElement, String[] expPaddingTop, String[] expMarginTop, String[] expMarginBottom, String[] expBorderTops, String[] expBorderBottoms, String device, ScreenOrientation mode) throws Exception {
+    private void modalBodyBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
+            modalBodyElement, String[] expPaddingTop, String[] expMarginTop, String[] expMarginBottom, String[]
+                                                   expBorderTops, String[] expBorderBottoms, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -861,7 +838,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: No Footer- Modal Body Border Test", dataProvider = "No Footer: Modal Body Border Test Data", groups = "mobile-regression")
-    private void modalBodyNoFooterBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By modalBodyElement, String modalBodyClass, String device, ScreenOrientation mode) throws Exception {
+    private void modalBodyNoFooterBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
+            modalBodyElement, String modalBodyClass, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -876,7 +854,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regression")
-    private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By buttonElement, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String device, ScreenOrientation mode) throws Exception {
+    private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By
+            buttonElement, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String
+                                                  device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -914,7 +894,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regression")
-    private void modalFooterMobileTest(String size, int width, int height, By modalFooterElement, String[] expPaddingValue, String device, ScreenOrientation mode) throws Exception {
+    private void modalFooterMobileTest(String size, int width, int height, By modalFooterElement, String[]
+            expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -931,7 +912,9 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regression")
-    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
+    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By
+            modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String
+                                                     expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -970,7 +953,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "mobile-regression")
-    private void successButtonHandlerMobileTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
+    private void successButtonHandlerMobileTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String
+            msg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -985,7 +969,8 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "mobile-regression")
-    private void verifyModalCloseButtonVisibleMobileTest(String footerType, String isFooterVisible, String hideCloseType, String isHideSetTrue) throws Exception {
+    private void verifyModalCloseButtonVisibleMobileTest(String footerType, String isFooterVisible, String
+            hideCloseType, String isHideSetTrue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -1003,6 +988,7 @@ public class ModalTest extends BaseClass {
     /*****************
      * Common methods
      *****************/
+
     private String buildJSONObjectDetailConfig(String[] detailsPropertiesList, String[] propsTextPropertiesList, String[] propsPropertiesList) throws IOException {
         int i = 0;
         if (!((detailsPropertiesList.length % 2 == 0) && ((propsTextPropertiesList.length % 2 == 0)) && (propsPropertiesList.length % 2 == 0))) {
