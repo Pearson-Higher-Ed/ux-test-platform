@@ -34,6 +34,7 @@ public class ModalPageObjects {
     public By modalHeader = By.className("modalHeader");
     public By modalHeaderTitleText = By.id("modal-header-title-text");
     public By modalHeaderTitleTextReact = By.xpath("//div[@class='modalHeader']/h2");
+    public By modalHeaderSRTextSpan = By.xpath("//div[@class='modalHeader']/span");
 
     public By modalBody = By.className("modalBody");
     public By modalBodyWithFooterText = By.id("text-for-modal-with-footer");

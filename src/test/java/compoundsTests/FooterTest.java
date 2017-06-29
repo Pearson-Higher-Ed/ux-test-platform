@@ -29,8 +29,8 @@ public class FooterTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setMobile = "", mobileDevice = "";
-    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "";
-    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false;
+    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", paddingBottom = "";
+    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element", incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfSecondOpenBrace = 0, indexOfSecondFromLastCloseBrace = 0, indexOfFirstCloseBrace = 0;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null;
@@ -61,14 +61,14 @@ public class FooterTest extends BaseClass {
     @DataProvider(name = "Footer Styles Test Data")
     public Object[][] getFooterStylesTestData() {
         return new Object[][]{
-                {"md", 768, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"14px"}, new String[]{"18px", "17.9999px", "17.999940872192383px"}, compFooterPgObj.footer, new String[]{"24px"}, "false", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"12px"}, new String[]{"16px"}, compFooterPgObj.linkList, new String[]{"12px"}, "false", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"12px"}, new String[]{"16px"}, compFooterPgObj.linkList, new String[]{"12px"}, "true", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"md", 768, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"14px"}, new String[]{"18px", "17.9999px", "17.999940872192383px"}, compFooterPgObj.footer, new String[]{"0px"}, new String[]{"24px"}, "false", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"12px"}, new String[]{"16px"}, compFooterPgObj.linkList, new String[]{"12px"}, new String[]{"0px"}, "false", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"xs", 320, 500, compFooterPgObj.tocLinkXpath, compFooterPgObj.copyRightText, new String[]{"12px"}, new String[]{"16px"}, compFooterPgObj.linkList, new String[]{"12px"}, new String[]{"0px"}, "true", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
         };
     }
 
     @Test(testName = "Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void footerStylesTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
+    private void footerStylesTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String[] expPaddingBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
         links.put("First link", "first");
@@ -83,6 +83,7 @@ public class FooterTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(copyRightTextElement, "line-height");
         color = commonUtils.getCSSValue(copyRightTextElement, "color");
         marginBottom = commonUtils.getCSSValue(footerElement, "margin-bottom");
+        paddingBottom = commonUtils.getCSSValue(footerElement, "padding-bottom");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -100,7 +101,11 @@ public class FooterTest extends BaseClass {
         if (!isMarginBottom) {
             log.info("margin-bottom on size " + size + " is not as per the spec, actual: " + marginBottom);
         }
-        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom);
+        isPaddingBottom = commonUtils.assertCSSProperties("padding-bottom", paddingBottom, expPaddingBottom);
+        if (!isPaddingBottom) {
+            log.info("padding-bottom on size " + size + " is not as per the spec, actual: " + paddingBottom);
+        }
+        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom && isPaddingBottom);
     }
 
     @DataProvider(name = "Footer link state Test Data")
@@ -173,7 +178,7 @@ public class FooterTest extends BaseClass {
      * Mobile Tests
      ************/
     @Test(testName = "Mobile Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = "mobile-regression")
-    private void footerStylesMobileTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
+    private void footerStylesMobileTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String[] expPaddingBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -192,6 +197,7 @@ public class FooterTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(copyRightTextElement, "line-height", "mobile");
         color = commonUtils.getCSSValue(copyRightTextElement, "color", "mobile");
         marginBottom = commonUtils.getCSSValue(footerElement, "margin-bottom", "mobile");
+        paddingBottom = commonUtils.getCSSValue(footerElement, "padding-bottom", "mobile");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -209,7 +215,11 @@ public class FooterTest extends BaseClass {
         if (!isMarginBottom) {
             log.info("margin-bottom on size " + size + " is not as per the spec, actual: " + marginBottom);
         }
-        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom);
+        isPaddingBottom = commonUtils.assertCSSProperties("padding-bottom", paddingBottom, expPaddingBottom);
+        if (!isPaddingBottom) {
+            log.info("padding-bottom on size " + size + " is not as per the spec, actual: " + paddingBottom);
+        }
+        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom && isPaddingBottom);
     }
 
     /*****************
