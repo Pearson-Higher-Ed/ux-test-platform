@@ -14,8 +14,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.xml.XmlSuite;
@@ -80,12 +84,14 @@ public class BaseClass {
     ITestContext testContext = null;
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
     public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
+    LoggingPreferences logs = new LoggingPreferences();
 
     @BeforeClass(alwaysRun = true)
     protected void setUp() throws MalformedURLException {
         caps = new DesiredCapabilities();
         setDesktop = desktop;
         setMobile = mobile;
+        logs.enable(LogType.BROWSER, Level.ALL);
 
         //The below conditions is to run the desktop tests on Sauce via Travis CI
         if (runEnv.equals("travis")) {
@@ -104,6 +110,7 @@ public class BaseClass {
                 } else if (sauceBrowser.equals("edge")) {
                     caps = DesiredCapabilities.edge();
                 }
+                caps.setCapability(CapabilityType.LOGGING_PREFS, logs);
                 caps.setCapability("platform", platform);
                 caps.setCapability("version", sauceBrowserVer);
                 caps.setCapability("maxDuration", "10800");
