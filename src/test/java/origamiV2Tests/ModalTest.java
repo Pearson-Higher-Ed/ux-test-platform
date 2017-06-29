@@ -26,7 +26,7 @@ public class ModalTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setMobile = "", setDesktop = "", mobileDevice = "";
     private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "";
-    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false;
+    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false, isPresent = false;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
     String[] margins = {"margin-top", "margin-right", "margin-bottom", "margin-left"};
     String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
@@ -552,6 +552,31 @@ public class ModalTest extends BaseClass {
         }
     }
 
+    @DataProvider(name = "srHeaderText Test Data")
+    public Object[][] getsrHeaderTextTestData() {
+        return new Object[][]{
+                {"blank headerTitle", new String[]{"initiatingButtonText", "any string", "headerTitle", "''", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"}, true, "not present"},
+                {"no headerTitle", new String[]{"initiatingBxuttonText", "any string", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"}, true, "not present"},
+                {"with headerTitle", new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"}, false, "present"}
+        };
+    }
+
+    @Test(testName = "SR Header text Test", dataProvider = "srHeaderText Test Data", groups = "desktop-regression")
+    private void srHeaderTextTest(String headerTitleType, String[] propsTextList, Boolean isSpanPresent, String spanText) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "srHeaderText", "HelloSRText", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+
+        isPresent = commonUtils.isElementPresent(modalPgObj.modalHeaderSRTextSpan);
+        result = commonUtils.assertValue(isPresent, isSpanPresent, "span " + spanText);
+        Assert.assertTrue(result);
+        if (!(headerTitleType.contains("with headerTitle"))) {
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalHeaderSRTextSpan, "class").contains("pe-sr-only"));
+        } else {
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id")));
+        }
+    }
+
     //Negative tests
     @DataProvider(name = "Negative Config Test Data")
     public Object[][] getNegativeConfigTestData() {
@@ -982,6 +1007,22 @@ public class ModalTest extends BaseClass {
         } else {
             isVisible = commonUtils.assertValue(isModalCloseVisible, true, "modal Close X button didnt appear");
             Assert.assertTrue(isVisible);
+        }
+    }
+
+    @Test(testName = "Mobile: SR Header text Test", dataProvider = "srHeaderText Test Data", groups = "mobile-regression")
+    private void srHeaderTextMobileTest(String headerTitleType, String[] propsTextList, Boolean isSpanPresent, String spanText) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "srHeaderText", "HelloSRText", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+
+        isPresent = commonUtils.isElementPresent(modalPgObj.modalHeaderSRTextSpan, "mobile");
+        result = commonUtils.assertValue(isPresent, isSpanPresent, "span " + spanText);
+        Assert.assertTrue(result);
+        if (!(headerTitleType.contains("with headerTitle"))) {
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalHeaderSRTextSpan, "class", "mobile").contains("pe-sr-only"));
+        } else {
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby", "mobile").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id")));
         }
     }
 
