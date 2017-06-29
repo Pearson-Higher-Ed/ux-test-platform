@@ -67,7 +67,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = {"desktop-ci1", "desktop-regression1"})
     private void footerStylesTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
