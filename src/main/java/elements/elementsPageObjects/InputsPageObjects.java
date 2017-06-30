@@ -37,7 +37,7 @@ public class InputsPageObjects {
 
     //Basic - TextInput
     public By inputBasicSingleLine = By.id("z");
-    public By inputBasicSingleLineWithoutValue=By.id("z-without-value");
+    public By inputBasicSingleLineWithoutValue = By.id("z-without-value");
     public By inputBasicSingleLabel = By.id("basic-sl-label");
     public By inputBasicError = By.id("y");
     public By inputBasicErrorLabel = By.id("basic-error-label");
@@ -48,16 +48,18 @@ public class InputsPageObjects {
     public By inputBasicReadOnlyLabel = By.id("basic-readOnly-label");
     public By textLabelInputClass = By.xpath("//label[@class='pe-textLabelInput__label']");
     public By textLabelInputErrorClass = By.xpath("//label[@class='pe-textLabelInput__label--label_error']");
-    public By textLabelInputDisabledClass = By.xpath("//label[@class='pe-textLabelInput__label--label-disabled']");
+    //public By textLabelInputDisabledClass = By.xpath("//label[@class='pe-textLabelInput__label--label-disabled']");
+    public By textLabelInputDisabledClass = By.xpath("//label[@class='pe-textLabelInput__label']");
+    public By labelInputDisabledClass = By.xpath("//label[@class='pe-textLabelInput__label--label-disabled']");
 
     // Fancy - Password Input
     public By passwordFancyLabel = By.id("password-input-fancy-label");
     public By passwordFancyField = By.id("password-input-fancy");
     public By passwordFancyUnderLine = By.id("password-input-fancy-underline");
     public By passwordFancyshowbutton = By.id("password-input-fancy-showbutton");
-    public By passwordFancyShowbuttonClass= By.className("pe-textInput__showButton");
-    public By passwordFancyShowbuttonErrorClass= By.className("pe-textInput__showButton--error");
-    public By passwordFancyShowbuttonDisabledClass= By.className("pe-textInput__showButton--disabled");
+    public By passwordFancyShowbuttonClass = By.className("pe-textInput__showButton");
+    public By passwordFancyShowbuttonErrorClass = By.className("pe-textInput__showButton--error");
+    public By passwordFancyShowbuttonDisabledClass = By.className("pe-textInput__showButton--disabled");
     public By passwordFancyInfoMsg = By.id("password-input-fancy-info");
     public By passwordFancyErrorMsg = By.id("password-input-fancy-errorMsg");
 
@@ -90,9 +92,9 @@ public class InputsPageObjects {
     public By passwordBasicField = By.id("password-input-basic");
     public By passwordBasicshowbutton = By.id("password-input-basic-showbutton");
     public By passwordBasicShowbuttonClass = By.className("pe-textInput__showButton-basic");
-    public By passwordBasicShowbuttonErrorClass= By.className("pe-textInput__showButton--error");
-    public By passwordBasicShowbuttonDisabledClass= By.className("pe-textInput__showButton-basic--disabled");
-    public By passwordBasicShowButtonReadOnlyClass= By.className("pe-textInput__showButton");
+    public By passwordBasicShowbuttonErrorClass = By.className("pe-textInput__showButton--error");
+    public By passwordBasicShowbuttonDisabledClass = By.className("pe-textInput__showButton-basic--disabled");
+    public By passwordBasicShowButtonReadOnlyClass = By.className("pe-textInput__showButton");
     public By passwordBasicInfoMsg = By.id("password-input-basic-info");
     public By passwordBasicErrorMsg = By.id("password-input-basic-errorMsg");
 

@@ -31,7 +31,7 @@ public class InputsTest extends BaseClass {
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
     private boolean isCSSProperty = false, isOutlineStyle = false, isBackgroundColor = false, isDisplay = false, isHeight = false, isTransitionDelay = false, isTransitionDuration = false, isTransitionProp = false, isTransitionTimingFunc = false, result = false, isBorderRadius = false, isMarginTop = false, isPaddingRight = false, isPaddingLeft = false, isFontSize = false, isLineHeight = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isColor = false, isLabelFor = false, isBoxShadow = false, isBasicInputBorder = false, isBasicInputValueColor = false, isLabelFontSize = false, isLabelColor = false, isPaddingTop = false, isAriaDescByContains = false, islabelLineHeight = false, isIconClass = false, isBgColor = false, isShowBtnColor = false, isShowBtnFloat = false, isTextDecoration = false, isPaddingBottom = false, isBorderBottom = false, isBorderBottomColor = false, isBorderBottomStyle = false, isMarginRight = false, isRadioBtnPadding = false, isMarginBottom = false, isWidth = false, isRadioBtnSelectedColor = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
-    private final String incorrectComponentNameErrorMsg= "type is invalid";
+    private final String incorrectComponentNameErrorMsg = "type is invalid";
 
     JavascriptExecutor js = null;
     WebElement webElement = null;
@@ -115,7 +115,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void fancySingleLineTextInputTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         cssPropertyType = cssProperty;
@@ -158,7 +158,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "desktop-regression")
     private void fancySingleLineTextInputErroredTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         cssPropertyType = cssProperty;
@@ -186,7 +186,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "desktop-regression")
     private void fancySingleLineTextInputDisabledTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         cssPropertyType = cssProperty;
@@ -221,7 +221,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "desktop-regression")
     private void fancySingleLineTextInputReadOnlyTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         cssPropertyType = cssProperty;
@@ -249,7 +249,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(id);
@@ -302,7 +302,7 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Fancy - Single Line Text Input - underline Test Data")
     public Object[][] getSingleLineTextInputUnderlineTestData() {
         return new Object[][]{
-                {"default", "input-underline", inputsPgObj.textInputUnderLineClass, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2Rgb("#047A9C")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", "ease"},
+                {"default", "input-underline", inputsPgObj.textInputUnderLineClass, new String[]{commonUtils.hex2Rgb("#047a9c"), commonUtils.hex2RgbWithoutTransparency("#047a9c")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", "ease"},
                 {"error", "input-underline-error", inputsPgObj.textInputUnderLineErrorClass, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "block", new String[]{"4px"}, new String[]{"0s"}, new String[]{"0.2s"}, "all", "ease"},
         };
     }
@@ -310,7 +310,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"desktop-regression"})
     private void singleLineTextInputUnderlineTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
+        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
@@ -348,7 +348,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"default", "sl-text-label-input", inputsPgObj.textLabelInputClass, "true", new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"error", "text-label-input-errored", inputsPgObj.textLabelInputErrorClass, "false", new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"disabled", "text-label-input-disabled", inputsPgObj.textLabelInputDisabledClass, "true", new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"disabled", "text-label-input-disabled", inputsPgObj.textLabelInputDisabledClass, "true", new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"readOnly", "text-label-input-readonly", inputsPgObj.textLabelInputClass, "false", new String[]{"12px"}, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}}
         };
     }
@@ -356,7 +356,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void singleLineTextInputInputTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -385,7 +385,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "desktop-regression")
     private void basicSingleLineTextInputTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         bgColor = commonUtils.getCSSValue(element, "background-color");
@@ -433,7 +433,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "desktop-regression")
     private void basicSingleLineTextInputBordersTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         for (String cssProperty : borderWidths) {
@@ -461,14 +461,14 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"Active", "default", "basic-sl-label", inputsPgObj.textLabelInputClass, "z", inputsPgObj.inputBasicSingleLine, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"},
                 {"Error", "error", "basic-error-label", inputsPgObj.textLabelInputErrorClass, "y", inputsPgObj.inputBasicError, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px"},
-                {"Disabled", "disabled", "basic-disabled-label", inputsPgObj.textLabelInputDisabledClass, "x", inputsPgObj.inputBasicDisabled, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "12px"}
+                {"Disabled", "disabled", "basic-disabled-label", inputsPgObj.textLabelInputDisabledClass, "x", inputsPgObj.inputBasicDisabled, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px"}
         };
     }
 
     @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "desktop-regression")
     private void basicSingleLineTextInputLabelTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -503,7 +503,7 @@ public class InputsTest extends BaseClass {
         }
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(id);
@@ -542,7 +542,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputErrorMessageTest(String inputType, String inputState, String id, By element, String inputTypeValue, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "infoMessage", "Info message", "errorMessage", "Error message"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -578,7 +578,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"default", "password-fancy", "password-input-fancy", inputsPgObj.passwordFancyField, inputsPgObj.textLabelInputClass, "password-input-fancy-label", inputsPgObj.passwordFancyLabel, "password-input-fancy-info", inputsPgObj.passwordFancyInfoMsg, "password-input-fancy-errorMsg", inputsPgObj.passwordFancyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"error", "password-fancy-error", "password-input-fancy-error", inputsPgObj.passwordFancyErrorField, inputsPgObj.textLabelInputErrorClass, "password-input-fancy-error-label", inputsPgObj.passwordFancyErrorLabel, "password-input-fancy-error-info", inputsPgObj.passwordFancyErrorInfoMsg, "password-input-fancy-error-errorMsg", inputsPgObj.passwordFancyErrorErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"disabled", "password-fancy-disabled", "password-input-fancy-disabled", inputsPgObj.passwordFancyDisabledField, inputsPgObj.textLabelInputDisabledClass, "password-input-fancy-disabled-label", inputsPgObj.passwordFancyDisabledLabel, "password-input-fancy-disabled-info", inputsPgObj.passwordFancyDisabledInfoMsg, "password-input-fancy-disabled-errorMsg", inputsPgObj.passwordFancyDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"disabled", "password-fancy-disabled", "password-input-fancy-disabled", inputsPgObj.passwordFancyDisabledField, inputsPgObj.textLabelInputDisabledClass, "password-input-fancy-disabled-label", inputsPgObj.passwordFancyDisabledLabel, "password-input-fancy-disabled-info", inputsPgObj.passwordFancyDisabledInfoMsg, "password-input-fancy-disabled-errorMsg", inputsPgObj.passwordFancyDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"readOnly", "password-fancy-readOnly", "password-input-fancy-readOnly", inputsPgObj.passwordFancyReadOnlyField, inputsPgObj.textLabelInputClass, "password-input-fancy-readOnly-label", inputsPgObj.passwordFancyReadOnlyLabel, "password-input-fancy-readOnly-info", inputsPgObj.passwordFancyReadOnlyInfoMsg, "password-input-fancy-readOnly-errorMsg", inputsPgObj.passwordFancyReadOnlyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070,")}},
         };
     }
@@ -586,7 +586,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void fancyPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -596,16 +596,12 @@ public class InputsTest extends BaseClass {
         webElement = driver.findElement(inputsPgObj.textInputInfoMessageClass);
         js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
 
-        webElement = driver.findElement(inputsPgObj.textInputErrorMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-        Thread.sleep(500);
-
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+            log.info("Compounds-> label color of " + inputState + type + " is not as per spec,actual" + labelColor);
         }
         isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
@@ -623,18 +619,21 @@ public class InputsTest extends BaseClass {
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
 
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-
-        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(errorMsg, "color");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+        if (inputState.equals("error")) {
+            webElement = driver.findElement(inputsPgObj.textInputErrorMessageClass);
+            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+            Thread.sleep(500);
+            fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
+            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
+            color = commonUtils.getCSSValue(errorMsg, "color");
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+            if (!isColor) {
+                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+            }
+            Assert.assertTrue(isFontSize && isColor && isPaddingTop);
         }
-        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
-
         Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
     }
 
@@ -651,7 +650,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "desktop-regression")
     private void fancyPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         Thread.sleep(500);
@@ -690,7 +689,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(showButtonId);
@@ -717,7 +716,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "desktop-regression")
     private void fancyPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom");
@@ -750,7 +749,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "desktop-regression")
     private void fancyPasswordInputUnderlineTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.click(elem);
@@ -775,7 +774,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"default", "password-basic", "password-input-basic", inputsPgObj.passwordBasicField, inputsPgObj.textLabelInputClass, "password-input-basic-label", inputsPgObj.passwordBasicLabel, "password-input-basic-info", inputsPgObj.passwordBasicInfoMsg, "password-input-basic-errorMsg", inputsPgObj.passwordBasicErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"error", "password-basic-error", "password-input-basic-error", inputsPgObj.passwordBasicErrorField, inputsPgObj.textLabelInputErrorClass, "password-input-basic-error-label", inputsPgObj.passwordBasicErrorLabel, "password-input-basic-error-info", inputsPgObj.passwordBasicErrorInfoMsg, "password-input-basic-error-errorMsg", inputsPgObj.passwordBasicErrorErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"disabled", "password-basic-disabled", "password-input-basic-disabled", inputsPgObj.passwordBasicDisabledField, inputsPgObj.textLabelInputDisabledClass, "password-input-basic-disabled-label", inputsPgObj.passwordBasicDisabledLabel, "password-input-basic-disabled-info", inputsPgObj.passwordBasicDisabledrInfoMsg, "password-input-basic-disabled-errorMsg", inputsPgObj.passwordBasicDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"disabled", "password-basic-disabled", "password-input-basic-disabled", inputsPgObj.passwordBasicDisabledField, inputsPgObj.textLabelInputDisabledClass, "password-input-basic-disabled-label", inputsPgObj.passwordBasicDisabledLabel, "password-input-basic-disabled-info", inputsPgObj.passwordBasicDisabledrInfoMsg, "password-input-basic-disabled-errorMsg", inputsPgObj.passwordBasicDisabledErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"readOnly", "password-basic-readOnly", "password-input-basic-readOnly", inputsPgObj.passwordBasicReadOnlyField, inputsPgObj.textLabelInputClass, "password-input-basic-readOnly-label", inputsPgObj.passwordBasicReadOnlyLabel, "password-input-basic-readOnly-info", inputsPgObj.passwordBasicReadOnlyInfoMsg, "password-input-basic-readOnly-errorMsg", inputsPgObj.passwordBasicReadOnlyErrorMsg, "12px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -783,7 +782,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "desktop-regression")
     private void basicPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -792,10 +791,6 @@ public class InputsTest extends BaseClass {
 
         webElement = driver.findElement(inputsPgObj.textInputInfoMessageClass);
         js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
-
-        webElement = driver.findElement(inputsPgObj.textInputErrorMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-        Thread.sleep(500);
 
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -818,14 +813,19 @@ public class InputsTest extends BaseClass {
         }
         Assert.assertTrue(isFontSize && isColor);
 
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(errorMsg, "color");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+        if (inputState.equals("error")) {
+            webElement = driver.findElement(inputsPgObj.textInputErrorMessageClass);
+            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+            Thread.sleep(500);
+            fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            color = commonUtils.getCSSValue(errorMsg, "color");
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+            if (!isColor) {
+                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+            }
+            Assert.assertTrue(isFontSize && isColor);
         }
-        Assert.assertTrue(isFontSize && isColor);
 
         Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
     }
@@ -843,7 +843,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "desktop-regression")
     private void basicPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         Thread.sleep(500);
@@ -885,7 +885,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(showButtonId);
@@ -911,7 +911,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "desktop-regression")
     private void basicPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
@@ -968,7 +968,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void multiLineInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
@@ -994,7 +994,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression"})
     private void multiLineInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
@@ -1022,7 +1022,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression"})
     private void multiLineInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
@@ -1048,7 +1048,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"desktop-regression"})
     private void multiLineInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         String cssPropertyType = cssProperty;
@@ -1065,7 +1065,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"default", "multitext-Input-Label", inputsPgObj.textLabelInputClass, inputsPgObj.multiLineTextLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"error", "multitext-input-label-error", inputsPgObj.textLabelInputErrorClass, inputsPgObj.multiLineTextErrorLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"disabled", "multitext-input-label-disabled", inputsPgObj.textLabelInputDisabledClass, inputsPgObj.multiLineTextDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"disabled", "multitext-input-label-disabled", inputsPgObj.textLabelInputClass, inputsPgObj.multiLineTextDisabledLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"readOnly", "multitext-input-label-readOnly", inputsPgObj.textLabelInputClass, inputsPgObj.multiLineTextReadOnlyLabel, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -1073,7 +1073,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"desktop-regression"})
     private void multiTextInputLabelTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1108,7 +1108,7 @@ public class InputsTest extends BaseClass {
         }
 
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Multi-line label", "inputState", inputState, "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Multi-line label", "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(type);
@@ -1161,7 +1161,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1198,7 +1198,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1235,7 +1235,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1271,7 +1271,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1291,7 +1291,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"select-input-fancy", "default", inputsPgObj.fancySelectInput, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-error", "error", inputsPgObj.fancySelectInputError, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {"select-input-fancy-disabled", "disabled", inputsPgObj.fancySelectInputDisabled, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {"select-input-fancy-disabled", "disabled", inputsPgObj.fancySelectInputDisabled, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-readOnly", "readOnly", inputsPgObj.fancySelectInputReadOnly, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
         };
     }
@@ -1299,7 +1299,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxLabelTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -1323,23 +1323,20 @@ public class InputsTest extends BaseClass {
     public Object[][] getFancySelectInputMsgData() {
         return new Object[][]{
                 {"select-input-fancy", "default", "select-input-fancy-info", infoMsgClassName, inputsPgObj.fancySelectInputInfoMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"select-input-fancy", "default", "select-input-fancy-errorMsg", errorMsgClassName, inputsPgObj.fancySelectInputErrorMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
 
                 {"select-input-fancy-error", "error", "select-input-fancy-error-info", infoMsgClassName, inputsPgObj.fancySelectInputErrorInfoMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-error", "error", "select-input-fancy-error-errorMsg", errorMsgClassName, inputsPgObj.fancySelectInputErrorErrorMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
 
                 {"select-input-fancy-disabled", "disabled", "select-input-fancy-disabled-info", infoMsgClassName, inputsPgObj.fancySelectInputDisabledInfoMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"select-input-fancy-disabled", "disabled", "select-input-fancy-disabled-errorMsg", errorMsgClassName, inputsPgObj.fancySelectInputDisabledErrorMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
 
                 {"select-input-fancy-readOnly", "readOnly", "select-input-fancy-readOnly-info", infoMsgClassName, inputsPgObj.fancySelectInputReadOnlyInfoMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"select-input-fancy-readOnly", "readOnly", "select-input-fancy-readOnly-errorMsg", errorMsgClassName, inputsPgObj.fancySelectInputReadOnlyErrorMsg, "12px", "3px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
         };
     }
 
     @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxMsgTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1371,7 +1368,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1410,7 +1407,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression"})
     private void basicSelectInputTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1442,7 +1439,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression"})
     private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1474,7 +1471,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression"})
     private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1507,7 +1504,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression"})
     private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1535,7 +1532,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression"})
     private void basicSelectInputBoxBorderTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1574,7 +1571,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {"select-input-basic", "default", inputsPgObj.basicSelectInput, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
                 {"select-input-basic-error", "error", inputsPgObj.basicSelectInputError, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px", "14px"},
-                {"select-input-basic-disabled", "disabled", inputsPgObj.basicSelectInputDisabled, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "12px", "16px", "14px"},
+                {"select-input-basic-disabled", "disabled", inputsPgObj.basicSelectInputDisabled, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
                 {"select-input-basic-readOnly", "readOnly", inputsPgObj.basicSelectInputReadOnly, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "0px"},
         };
     }
@@ -1583,7 +1580,7 @@ public class InputsTest extends BaseClass {
     private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
         // Select Input Label
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -1622,7 +1619,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.focusOnElementById(type);
@@ -1667,7 +1664,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1713,7 +1710,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression"})
     private void checkboxNormalStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1745,7 +1742,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1777,7 +1774,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
     private void checkboxDisabledStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1808,7 +1805,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
     private void labelForCheckBoxTest(String id, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1842,7 +1839,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression"})
     private void radioButtonsUnselectedSelectedDisabledSVGTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1916,7 +1913,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression"})
     private void radioButtonsUnselectedSelectedDisabledLabelTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1949,7 +1946,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"desktop-regression"})
     private void radioButtonsUnselectedSelectedDisabledRadioDivTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
@@ -1989,7 +1986,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"mobile-regression"})
     private void fancySingleLineTextInputMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         cssPropertyType = cssProperty;
@@ -2005,7 +2002,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
     private void fancySingleLineTextInputErroredMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         cssPropertyType = cssProperty;
@@ -2021,7 +2018,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
     private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         cssPropertyType = cssProperty;
@@ -2037,7 +2034,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
     private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         cssPropertyType = cssProperty;
@@ -2052,7 +2049,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
     private void singleLineTextInputUnderlineMobileTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name"};
+        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
@@ -2087,7 +2084,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"mobile-regression"})
     private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
@@ -2107,7 +2104,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "mobile-regression")
     private void basicSingleLineTextInputMobileTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
@@ -2146,7 +2143,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "mobile-regression")
     private void basicSingleLineTextInputBordersMobileTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         for (String cssProperty : borderWidths) {
@@ -2172,7 +2169,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "mobile-regression")
     private void basicSingleLineTextInputLabelMobileTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2196,7 +2193,7 @@ public class InputsTest extends BaseClass {
     private void singleLineTextInputErrorMessageMobileTest(String inputType, String inputState, String id, By element, String inputTypeValue, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
 
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "infoMessage", "Info message", "errorMessage", "Error message"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2230,7 +2227,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
     private void fancyPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2239,10 +2236,6 @@ public class InputsTest extends BaseClass {
 
         webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
         js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
-
-        webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-        Thread.sleep(500);
 
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
@@ -2267,25 +2260,28 @@ public class InputsTest extends BaseClass {
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
 
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-
-        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+        if (inputState.equals("error")) {
+            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
+            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+            Thread.sleep(500);
+            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
+            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
+            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+            if (!isColor) {
+                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+            }
+            Assert.assertTrue(isFontSize && isColor && isPaddingTop);
         }
-        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
-
         Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
     }
 
     @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
     private void fancyPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         Thread.sleep(500);
@@ -2311,7 +2307,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "mobile-regression")
     private void fancyPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
@@ -2337,7 +2333,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "mobile-regression")
     private void fancyPasswordInputUnderlineMobileTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         commonUtils.click(elem, "mobile");
@@ -2360,7 +2356,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
     private void basicPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2369,10 +2365,6 @@ public class InputsTest extends BaseClass {
 
         webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
         js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
-
-        webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-        Thread.sleep(500);
 
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
@@ -2395,22 +2387,26 @@ public class InputsTest extends BaseClass {
         }
         Assert.assertTrue(isFontSize && isColor);
 
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+        if (inputState.equals("error")) {
+            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
+            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+            Thread.sleep(500);
+            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+            if (!isColor) {
+                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+            }
+            Assert.assertTrue(isFontSize && isColor);
         }
-        Assert.assertTrue(isFontSize && isColor);
-
         Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
     }
 
     @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regression")
     private void basicPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         Thread.sleep(500);
@@ -2438,7 +2434,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "mobile-regression")
     private void basicPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
@@ -2468,7 +2464,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
@@ -2483,7 +2479,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
@@ -2498,7 +2494,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
@@ -2513,7 +2509,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         String cssPropertyType = cssProperty;
@@ -2528,7 +2524,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"mobile-regression"})
     private void multiTextInputLabelMobileTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder"};
+        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2552,7 +2548,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2570,7 +2566,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2588,7 +2584,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2606,7 +2602,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2624,7 +2620,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxLabelMobileTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
@@ -2647,7 +2643,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxMsgMobileTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2665,38 +2661,11 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
     }
 
-    @Test(testName = "Mobile : Fancy Select Input in Focus Mode Test", dataProvider = "Fancy Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputFocusMobileTest(String type, String className, String id, String state, By underLine, String[] expBgColor, String expHeight, String expMarginTop) throws Exception {
-        if (setAppium.equals("iOS")) {
-            throw new SkipException("the focus-box shadow operation is not supported on iOS");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className(className));
-        js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
-        commonUtils.focusOnElementById(type, "mobile");
-        bgColor = commonUtils.getCSSValue(underLine, "background-color", "mobile");
-        height = commonUtils.getCSSValue(underLine, "height", "mobile");
-        marginTop = commonUtils.getCSSValue(underLine, "margin-top", "mobile");
-
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBgColor) {
-            log.info("Compounds-> The underline background-color of " + type + " is not as per spec, actual " + bgColor);
-        }
-        isHeight = commonUtils.assertValue(height, expHeight, "Compounds-> height of underline for " + type + " is not as per spec");
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin Top of underline for " + type + " is not as per spec");
-
-        Assert.assertTrue(isBgColor && isHeight && isMarginTop);
-    }
-
     //Basic - Select Input
     @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
     private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2714,7 +2683,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
     private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2732,7 +2701,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
     private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2750,7 +2719,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2768,7 +2737,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
     private void basicSelectInputBoxBorderMobileTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2804,7 +2773,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
     private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         // Select Input Label
@@ -2830,47 +2799,11 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
     }
 
-    @Test(testName = "Mobile : Basic Select Input and Error Test Focus", dataProvider = "Basic Select Input(Focus) Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputFocusMobileTest(String type, String state, By elem, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBoxShadow) throws Exception {
-        if (setAppium.equals("iOS")) {
-            throw new SkipException("the focus-box shadow operation is not supported on iOS");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        commonUtils.focusOnElementById(type, "mobile");
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-            if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
-            }
-            Assert.assertTrue(isBorderColor);
-        }
-        boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
-        if (!isBoxShadow) {
-            log.info("Compounds-> Box-shadow of " + type + " (Focus) is not as per spec, actual " + boxShadow);
-        }
-        Assert.assertTrue(isBoxShadow);
-    }
-
     //Check Box
     @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression"})
     private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2889,7 +2822,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression"})
     private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2908,7 +2841,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
     private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2930,7 +2863,7 @@ public class InputsTest extends BaseClass {
             throw new SkipException("Focus operation tests not needed for mobile devices");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"};
+        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -2952,7 +2885,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -3016,7 +2949,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -3039,7 +2972,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledRadioDivMobileTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "selectedOptions", "['" + value5 + "']"};
+        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
@@ -3055,33 +2988,33 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Negative Config Test Data")
     public Object[][] getNegativeConfigTestData() {
         return new Object[][]{
-                {"empty-elementId-textinput", new String[]{"componentName", "TextInput"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"}, incorrectElementIdErrorMsg},
-                {"empty-elementId-passwordinput", new String[]{"componentName", "TextInput"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
-                {"empty-elementId-selectinput", new String[]{"componentName", "Select"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
-                {"empty-elementId-multiline", new String[]{"componentName", "MultiLineText"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"}, incorrectElementIdErrorMsg},
-                {"empty-elementId-checkbox", new String[]{"componentName", "RadioCheckGroup"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectElementIdErrorMsg},
-                {"empty-elementId-radio", new String[]{"componentName", "RadioCheckGroup"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "selectedOptions", "['']"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-textinput", new String[]{"componentName", "TextInput"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-passwordinput", new String[]{"componentName", "TextInput"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-selectinput", new String[]{"componentName", "Select"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-multiline", new String[]{"componentName", "MultiLineText"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-checkbox", new String[]{"componentName", "RadioCheckGroup"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectElementIdErrorMsg},
+                {"empty-elementId-radio", new String[]{"componentName", "RadioCheckGroup"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "changeHandler", "function () {}", "selectedOptions", "['']"}, incorrectElementIdErrorMsg},
 
-                {"incorrect-elementId-textinput", new String[]{"elementId", "text-input-target1", "componentName", "TextInput"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "false", "placeholder", "Last Name"}, incorrectElementIdErrorMsg},
-                {"incorrect-elementId-passwordinput", new String[]{"elementId", "password-input-target1", "componentName", "TextInput"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
-                {"incorrect-elementId-selectinput", new String[]{"elementId", "select-target1", "componentName", "Select"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
-                {"incorrect-elementId-multiline", new String[]{"elementId", "multilinetext-target1", "componentName", "MultiLineText"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"}, incorrectElementIdErrorMsg},
-                {"incorrect-elementId-checkbox", new String[]{"elementId", "checkbox-target1", "componentName", "RadioCheckGroup"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectElementIdErrorMsg},
-                {"incorrect-elementId-radio", new String[]{"elementId", "radio-target1", "componentName", "RadioCheckGroup"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "selectedOptions", "['']"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-textinput", new String[]{"elementId", "text-input-target1", "componentName", "TextInput"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-passwordinput", new String[]{"elementId", "password-input-target1", "componentName", "TextInput"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-selectinput", new String[]{"elementId", "select-target1", "componentName", "Select"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-multiline", new String[]{"elementId", "multilinetext-target1", "componentName", "MultiLineText"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-checkbox", new String[]{"elementId", "checkbox-target1", "componentName", "RadioCheckGroup"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectElementIdErrorMsg},
+                {"incorrect-elementId-radio", new String[]{"elementId", "radio-target1", "componentName", "RadioCheckGroup"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "changeHandler", "function () {}", "selectedOptions", "['']"}, incorrectElementIdErrorMsg},
 
-                {"empty-componentName-textinput", new String[]{"elementId", "text-input-target"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"}, incorrectComponentNameErrorMsg},
-                {"empty-componentName-passwordinput", new String[]{"elementId", "password-input-target"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
-                {"empty-componentName-selectinput", new String[]{"elementId", "select-target"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
-                {"empty-componentName-multiline", new String[]{"elementId", "multilinetext-target"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"}, incorrectComponentNameErrorMsg},
-                {"empty-componentName-checkbox", new String[]{"elementId", "checkbox-target"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectComponentNameErrorMsg},
-                {"empty-componentName-radio", new String[]{"elementId", "radio-target"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "selectedOptions", "['']"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-textinput", new String[]{"elementId", "text-input-target"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-passwordinput", new String[]{"elementId", "password-input-target"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-selectinput", new String[]{"elementId", "select-target"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-multiline", new String[]{"elementId", "multilinetext-target"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-checkbox", new String[]{"elementId", "checkbox-target"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectComponentNameErrorMsg},
+                {"empty-componentName-radio", new String[]{"elementId", "radio-target"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "changeHandler", "function () {}", "selectedOptions", "['']"}, incorrectComponentNameErrorMsg},
 
-                {"incorrect-componentName-textinput", new String[]{"elementId", "text-input-target", "componentName", "TextInput1"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "false", "placeholder", "Last Name"}, incorrectComponentNameErrorMsg},
-                {"incorrect-componentName-passwordinput", new String[]{"elementId", "password-input-target", "componentName", "TextInput1"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
-                {"incorrect-componentName-selectinput", new String[]{"elementId", "select-target", "componentName", "Select1"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
-                {"incorrect-componentName-multiline", new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText1"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder"}, incorrectComponentNameErrorMsg},
-                {"incorrect-componentName-checkbox", new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup1"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectComponentNameErrorMsg},
-                {"incorrect-componentName-radio", new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup1"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "selectedOptions", "['']"}, incorrectComponentNameErrorMsg}
+                {"incorrect-componentName-textinput", new String[]{"elementId", "text-input-target", "componentName", "TextInput1"}, new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"incorrect-componentName-passwordinput", new String[]{"elementId", "password-input-target", "componentName", "TextInput1"}, new String[]{"password", "true", "fancy", "true", "id", "password-input-fancy", "labelText", "Password", "inputState", "default", "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"incorrect-componentName-selectinput", new String[]{"elementId", "select-target", "componentName", "Select1"}, new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"incorrect-componentName-multiline", new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText1"}, new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"}, incorrectComponentNameErrorMsg},
+                {"incorrect-componentName-checkbox", new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup1"}, new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"}, incorrectComponentNameErrorMsg},
+                {"incorrect-componentName-radio", new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup1"}, new String[]{"id", "unselected", "inputType", "radio", "legendText", "radio1", "options", "{'selected':' 'default', 'unselectedDisabled':'', 'unselected':'','selectedDisabled':''}", "changeHandler", "function () {}", "selectedOptions", "['']"}, incorrectComponentNameErrorMsg}
         };
 
     }
@@ -3116,7 +3049,6 @@ public class InputsTest extends BaseClass {
                 indexOfLastCloseBrace = commonUtils.nthIndexOf(fileContentsInAString, "}", 3) + 1;
             }
             postFixConfig = fileContentsInAString.substring(indexOfLastCloseBrace, fileContentsInAString.length());
-
             detailProperties = new LinkedHashMap<String, String>();
             for (i = 0; i < (detailsPropertiesList.length - 1); i = i + 2) {
                 detailProperties.put(detailsPropertiesList[i], detailsPropertiesList[i + 1]);
@@ -3150,10 +3082,11 @@ public class InputsTest extends BaseClass {
             //packaging all properties including props into "detail" attribute
             jsonDetailObject.add("detail", jsonDetailPropertiesObject);
 
-            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("'\\[", "\\['").replaceAll("\\]'", "'\\]").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\]\\}", "\\]").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true");
-            indexOfFirstCloseBrace = commonUtils.nthIndexOf(beforeFinalFormat, "}", 1);
+            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("'\\[", "\\['").replaceAll("\\]'", "'\\]").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\]\\}", "\\]").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function");
+            indexOfFirstCloseBrace = commonUtils.nthIndexOf(beforeFinalFormat, "}", 2);
 
             finalFormat = preFixConfig + beforeFinalFormat.substring(0, indexOfFirstCloseBrace) + "'}" + beforeFinalFormat.substring(indexOfFirstCloseBrace + 1) + postFixConfig;
+
             finalConfig = finalFormat;
             return finalConfig;
         }
