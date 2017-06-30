@@ -4,12 +4,11 @@ function init() {
             elementId: 'dropdown-target',
             componentName: 'Dropdown',
             props: {
-                presentationType: 'label',
-                presentationText: 'label',
+                presentationType: 'button',
+                presentationText: 'button',
                 list: ['Thing one', 'Thing two'],
                 mobileTitle: 'Mobile title',
-                dropdownControlLabel: 'This is a label dropdown'
-
+                dropdownControlLabel: 'This is a button dropdown'
             }
         }
     }));
