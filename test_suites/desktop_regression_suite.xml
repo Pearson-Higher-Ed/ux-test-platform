@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Desktop Regression Test Suite">
+<suite name="Mobile Regression Test Suite">
     <test name="Elements/Compounds/OrigamiV2 Tests " parallel="classes" thread-count="25">
         <groups>
             <run>
-                <include name="desktop-regression"/>
+                <include name="mobile-regression"/>
             </run>
         </groups>
         <classes>
