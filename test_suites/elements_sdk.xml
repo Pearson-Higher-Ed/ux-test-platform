@@ -1,4 +1,4 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Elements sdk V1 Test Suite" parallel="classes">
     <test name="Elements SDK V1 Tests">
@@ -18,6 +18,46 @@
             <class name="elementsTests.InputsTest"/>
             <class name="elementsTests.IconsTest"/>
             <class name="elementsTests.FormsTest"/>
+        </classes>
+    </test>
+</suite>-->
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Desktop Regression Test Suite">
+    <test name="Elements/Compounds/OrigamiV2 Tests " parallel="classes" thread-count="25">
+        <groups>
+            <run>
+                <include name="desktop-regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="elementsTests.InputsTest"/>
+            <class name="elementsTests.ButtonsTest"/>
+            <class name="elementsTests.TypographyTest"/>
+            <class name="elementsTests.ResponsiveUtilitiesTest"/>
+            <class name="elementsTests.IconsTest"/>
+            <class name="elementsTests.GridTest"/>
+            <class name="elementsTests.TemplatesTest"/>
+            <class name="elementsTests.PresentationStrategyTest"/>
+            <class name="elementsTests.FormsTest"/>
+            <class name="compoundsTests.InputsTest"/>
+            <class name="compoundsTests.ButtonsTest"/>
+            <class name="compoundsTests.IconsTest"/>
+            <class name="compoundsTests.DropdownTest"/>
+            <class name="compoundsTests.LoadingIndicatorTest"/>
+            <class name="compoundsTests.FooterTest"/>
+            <class name="compoundsTests.TabsTest"/>
+            <class name="compoundsTests.AlertsTest"/>
+            <class name="origamiV2Tests.AppHeaderTest"/>
+            <class name="origamiV2Tests.ContextualHelpTest"/>
+            <class name="origamiV2Tests.DrawerTest"/>
+            <class name="origamiV2Tests.AvatarDisplayTest"/>
+            <class name="origamiV2Tests.SliderTest"/>
+            <class name="origamiV2Tests.TextModalTest"/>
+            <class name="origamiV2Tests.AlertsTest"/>
+            <class name="origamiV2Tests.PaginationTest"/>
+            <class name="origamiV2Tests.ModalTest"/>
         </classes>
     </test>
 </suite>
