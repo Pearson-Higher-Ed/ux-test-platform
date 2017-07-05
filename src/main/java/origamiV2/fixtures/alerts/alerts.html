@@ -4,43 +4,47 @@
     <title>Alerts Demo</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
-        pe_ajax.responseType = "document";
-        pe_ajax.onload = function(e) {
-          document.body.insertBefore(
-            pe_ajax.responseXML.documentElement,
-            document.body.childNodes[0]
-          );
-        }
-        pe_ajax.send();
-
-    </script>
     <link rel="stylesheet" href="../../css/alerts/elements.css"/>
     <style>
-      .banner {
-        width: 100%;
-        height: 50px;
-        text-align: center;
-        font-size: 40px;
-      }
-      .target {
-        margin-left: 20px;
-      }
-      .rightContent {
-        float: right;
-        width: 40%;
-        margin-right: 20px;
-      }
-      .buttonGroup {
-        margin-top: 175px;
-      }
+        .banner {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .target {
+            margin-left: 20px;
+        }
+
+        .rightContent {
+            float: right;
+            width: 40%;
+            margin-right: 20px;
+        }
+
+        .buttonGroup {
+            margin-top: 175px;
+        }
 
 
     </style>
 </head>
 <body>
+
+<script>
+    var pe_ajax = new XMLHttpRequest();
+    pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+    pe_ajax.responseType = "document";
+    pe_ajax.onload = function (e) {
+        document.body.insertBefore(
+            pe_ajax.responseXML.documentElement,
+            document.body.childNodes[0]
+        );
+    }
+    pe_ajax.send();
+
+</script>
 
 <div class="banner"><h1>Pearson Design Accelerator</h1></div>
 <div id="alert-target"></div>
@@ -81,7 +85,7 @@
 
 
 <script>
-      function buttonHandler(type) {
+    function buttonHandler(type) {
 // ========EVENT API FOR INTERACTING WITH THE COMPONENT=========================
 //
 // To trigger an alert...
@@ -96,24 +100,24 @@
 // @param alertType    <String> 'Success' || 'Error' || 'Information'
 // @param alertMessage <String> 'user specified string'
 // -----------------------------------------------------------------------------
-          if(type === 'Success' || type === 'Error' || type === 'Information') {
-              document.body.dispatchEvent(new CustomEvent('triggerAlert', {
-                  "detail":{
-                      "alertList":[{
-                          "id"          : new Date().getTime(),
-                          "alertType"   : type,
-                          "alertTitle"  : "Test title",
-                          "alertMessage": type + ' message. Adding more text to see it wrap to the second line!'
-                  }]
+        if (type === 'Success' || type === 'Error' || type === 'Information') {
+            document.body.dispatchEvent(new CustomEvent('triggerAlert', {
+                "detail": {
+                    "alertList": [{
+                        "id": new Date().getTime(),
+                        "alertType": type,
+                        "alertTitle": "Test title",
+                        "alertMessage": type + ' message. Adding more text to see it wrap to the second line!'
+                    }]
                 }
             }));
-          }
+        }
 
-          if(type === 'clear') {
+        if (type === 'clear') {
             document.body.dispatchEvent(new CustomEvent('clearAlert'));
-          }
+        }
 // =============================================================================
-      }
+    }
 
 
 </script>
