@@ -15,7 +15,6 @@
             <class name="elementsTests.GridTest"/>
             <class name="elementsTests.PresentationStrategyTest"/>
             <class name="elementsTests.ButtonsTest"/>
-            <class name="elementsTests.InputsTest"/>
             <class name="elementsTests.IconsTest"/>
             <class name="elementsTests.FormsTest"/>
         </classes>

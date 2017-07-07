@@ -30,7 +30,7 @@ public class FooterTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setMobile = "", mobileDevice = "";
     private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", paddingBottom = "";
-    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false;
+    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false, isPresent = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element", incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfSecondOpenBrace = 0, indexOfSecondFromLastCloseBrace = 0, indexOfFirstCloseBrace = 0;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null;
@@ -174,6 +174,30 @@ public class FooterTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    //singlePageStick
+    @DataProvider(name = "SinglePageStick Test Data")
+    public Object[][] singlePageStickTestData() {
+        return new Object[][]{
+                {"true", true, "singlepagestick not working as per spec"},
+                {"false", false, "singlepagestick working as per spec"}
+        };
+    }
+
+    @Test(testName = "Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "desktop-regression")
+    private void singlePageStickTest(String singlePageStick, Boolean isSinglePageStick, String message) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+        links = new LinkedHashMap<String, String>();
+        links.put("First link", "first");
+        links.put("Second link", "second");
+        linksArrayValue = buildListsArray(links);
+        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+
+        isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class").contains("pe-footer--stick");
+        result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
+        Assert.assertTrue(result);
+    }
+
     /************
      * Mobile Tests
      ************/
@@ -220,6 +244,21 @@ public class FooterTest extends BaseClass {
             log.info("padding-bottom on size " + size + " is not as per the spec, actual: " + paddingBottom);
         }
         Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom && isPaddingBottom);
+    }
+
+    @Test(testName = "Mobile: Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "mobile-regression")
+    private void singlePageStickMobileTest(String singlePageStick, Boolean isSinglePageStick, String message) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+        links = new LinkedHashMap<String, String>();
+        links.put("First link", "first");
+        links.put("Second link", "second");
+        linksArrayValue = buildListsArray(links);
+        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
+        isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class", "mobile").contains("pe-footer--stick");
+        result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
+        Assert.assertTrue(result);
     }
 
     /*****************
