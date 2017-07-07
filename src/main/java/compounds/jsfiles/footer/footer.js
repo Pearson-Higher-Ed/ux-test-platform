@@ -5,7 +5,8 @@ function init() {
 			componentName: 'Footer',
 			props: {
 				copyrightText: 'Pearson Education Inc. All Rights Reserved',
-				links:  [{ text: 'First link', href: 'first' }, { text: 'Second link', href: 'second' }, { text: 'Last link', href: 'last' }]
+				links:  [{ text: 'First link', href: 'first' }, { text: 'Second link', href: 'second' }, { text: 'Last link', href: 'last' }],
+				singlePageStick: true
 			}
 		}
 	}));
