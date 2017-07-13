@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -32,6 +30,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import static java.lang.System.exit;
 
 /**
  * Created by umahaea on 2/3/16.
@@ -100,6 +100,7 @@ public class BaseClass {
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");
+            System.exit(1);
         }
         //The below conditions is to run the desktop tests on Sauce via Travis CI
         if (runEnv.equals("travis")) {
