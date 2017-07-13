@@ -650,7 +650,6 @@ public class DropdownTest extends BaseClass {
         isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
         Assert.assertTrue(isDismiss);
 
-        //click outside the dropdown to dismiss it
         commonUtils.keyOperationOnActiveElement(Keys.ESCAPE);
         isDismiss = commonUtils.isElementPresent(dropdownPgObj.box);
         result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");

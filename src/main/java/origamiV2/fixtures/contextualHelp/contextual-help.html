@@ -1,36 +1,45 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <title>o-contextual-help demo</title>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <script>
-        var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
-        pe_ajax.responseType = "document";
-        pe_ajax.onload = function(e) {
-            document.body.insertBefore(
-                    pe_ajax.responseXML.documentElement,
-                    document.body.childNodes[0]
-            );
-        }
-        pe_ajax.send();
-    </script>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <link rel="stylesheet" href="../../css/contextualHelp/elements.css"/>
 </head>
 
 <body>
+<script>
+    var pe_ajax = new XMLHttpRequest();
+    pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+    pe_ajax.responseType = "document";
+    pe_ajax.onload = function (e) {
+        document.body.insertBefore(
+            pe_ajax.responseXML.documentElement,
+            document.body.childNodes[0]
+        );
+    }
+    pe_ajax.send();
+</script>
+
 <div style="position: relative;top: 100px;">
     <h2 style="color:peru">Contextual Help Test</h2>
     <label id="demo" style="color:green">Drawer Toggle Status</label><br><br>
-    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('testcontent/student/freetrial')">Open Specific Article(FreeTrial)</a><br><br>
-    <a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help topics</a><br><br>
-    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('testcontent/student/freetrial',500)">Remove one topic</a><br><br>
-    <a id="openAndThenRemoveMoreThanOneTopic" href="#" onclick="openThenRemoveTopics((['testcontent/student/freetrial','testcontent/contactsupport']),500)">Remove more than one topic</a><br><br>
-    <a id="removeAllTopicsAndSetLanguageAndAddtopicsAndOpen" href="#" onclick="setLanguageThenOpen()">Remove all topics, setLanguage('fr'), add topics, open drawer</a><br><br>
+    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('testcontent/student/freetrial')">Open Specific
+        Article(FreeTrial)</a><br><br>
+    <a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help
+        topics</a><br><br>
+    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('testcontent/student/freetrial',500)">Remove
+        one topic</a><br><br>
+    <a id="openAndThenRemoveMoreThanOneTopic" href="#"
+       onclick="openThenRemoveTopics((['testcontent/student/freetrial','testcontent/contactsupport']),500)">Remove more
+        than one topic</a><br><br>
+    <a id="removeAllTopicsAndSetLanguageAndAddtopicsAndOpen" href="#" onclick="setLanguageThenOpen()">Remove all topics,
+        setLanguage('fr'), add topics, open drawer</a><br><br>
     <a id="testAccordianContent" href="#" onclick="testAccordion()">Test Accordion Content</a><br><br>
-    <button id="toggleHelpDrawer" type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer">Toggle Help Drawer (direct)</button>
+    <button id="toggleHelpDrawer" type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer">Toggle
+        Help Drawer (direct)
+    </button>
 </div>
 <div class="demo-container"></div>
 
