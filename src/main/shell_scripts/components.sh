@@ -147,6 +147,20 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elem
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/modal/
 }
 
+install_loadingIndicator(){
+echo -e "******************************\\n    Installing loading Indicator    \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/loadingIndicator.git
+cd loadingIndicator
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/loadingIndicator/build/dist.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/loadingIndicator/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/loadingIndicator/build/dev.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/loadingIndicator/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loadingIndicator/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loadingIndicator/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/loadingIndicator/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/loadingIndicator/
+}
+
 # Below conditions are to install the components specific to its feature branch.
 if [[ $component == "elements_sdk" ]]
 then
@@ -194,6 +208,10 @@ elif [[ $component == "modal" ]]
 then
 install_modal $feature_branch
 
+elif [[ $component == "loadingIndicator" ]]
+then
+install_loadingIndicator $feature_branch
+
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
@@ -208,6 +226,7 @@ install_slider master &
 install_alerts master &
 install_pagination master &
 install_modal master &
+install_loadingIndicator master &
 fi
 if [[ $TEST_SUITE == "elements_sdk" ]]
 then
