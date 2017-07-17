@@ -143,7 +143,7 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(btnEnabledResult);
     }
 
-    @Test(testName = "Validate Internationalization", groups = {"desktop-regression"})
+    @Test(testName = "Validate Internationalization", groups = {"desktop-regression1"})
     public void validateInternationalizationTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
         commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
@@ -200,7 +200,7 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Validate Negative Values", groups = {"desktop-regression"})
+    @Test(testName = "Validate Negative Values", groups = {"desktop-regression1"})
     public void validateNegativeJsValueTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
         commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
