@@ -9,7 +9,7 @@
 	Have <a href="https://nodejs.org/en/download/">node </a> and <a href="http://maven.apache.org/install.html">maven</a> installed on your machine.<br>
 	1. elements_sdk:	
 	<details> 
-      <summary>Install _elements sdk_ on your local machine and copy the _elements.css_ file to /ux-test-       platform/src/main/java/elements/css/ </summary>
+      <summary>Install _elements sdk_ on your local machine and copy the _elements.css_ file to /ux-test-platform/src/main/java/elements/css/ </summary>
         <pre>
         git clone https://github.com/Pearson-Higher-Ed/elements.git
         cd elements
@@ -34,7 +34,7 @@
     </details>
 	3. compounds_sdk:
 	<details>
-		<summary>Install _compounds sdk_ on your local machine and copy the dist.compounds.js and dev.compounds.js file to /ux-test- platform/src/main/java/compounds/jsfiles/ </summary>
+		<summary>Install _compounds sdk_ on your local machine and copy the dist.compounds.js and eventInstantiator.compounds.js file to /ux-test- platform/src/main/java/compounds/jsfiles/ </summary>
         <pre>
         git clone https://github.com/Pearson-Higher-Ed/compounds.git
         cd compounds
@@ -42,7 +42,7 @@
         npm install
         npm run build
         cp build/dist.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
-        cp build/dev.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
+        cp build/eventInstantiator.compounds.js /ux-test-platform/src/main/java/compounds/jsfiles/
         cp node_modules/pearson-elements/dist/css/elements.css /ux-test-platform/src/main/java/compounds/css/</pre>		
 	</details>
     </details>
@@ -55,7 +55,7 @@ NOTE: Mobile tests runs only on Sauce Machine. But still it can be triggered loc
     git checkout rebrand
     npm install
     npm run copy-assets
-    npm start</pre>
+    python -m SimpleHTTPServer</pre>
  * In test_suites/&lt;&lt;component&gt;&gt;.xml set the below values, and leave the rest to default:
     <details>
     <summary>For CI tests:</summary><pre>
