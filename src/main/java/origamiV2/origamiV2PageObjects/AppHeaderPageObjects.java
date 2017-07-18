@@ -10,14 +10,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class AppHeaderPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public AppHeaderPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-    public AppHeaderPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public AppHeaderPageObjects() {
     }
 
     public By headerBanner=By.xpath("//header");

@@ -5,16 +5,13 @@ import org.openqa.selenium.WebDriver;
 import io.appium.java_client.AppiumDriver;
 
 public class CalendarPageObjects {
-	public WebDriver driver;
-	public AppiumDriver appium;
 
-	public CalendarPageObjects(WebDriver driver) {
-		this.driver = driver;
+	public WebDriver driver = null;
+	public AppiumDriver appium = null;
+
+	public CalendarPageObjects() {
 	}
 
-	public CalendarPageObjects(AppiumDriver appium) {
-		this.appium = appium;
-	}
 	public By peCalendar= By.className("pe-calendar");
 	public By monthLbl=By.id("month_lable");
 	public By calendar=By.id("calendar");

@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 
+import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
 import utilities.BaseClass;
 
 import java.io.*;
@@ -63,6 +64,7 @@ public class AppHeaderTest extends BaseClass {
     final static Logger log = Logger.getLogger(AppHeaderTest.class.getName());
     JsonObject heading = null, courseNav = null, includeCourseNavItems = null;
     JsonArray jsonCoursesNavItemsArr = null;
+    AppHeaderPageObjects appHeaderPgObj = null;
 
     /***************************
      * Signed Out Mode Tests *
@@ -1299,6 +1301,7 @@ public class AppHeaderTest extends BaseClass {
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() throws IOException {
+        appHeaderPgObj = new AppHeaderPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;

@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class IconsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public IconsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public IconsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public IconsPageObjects() {
     }
 
     //Fill Color

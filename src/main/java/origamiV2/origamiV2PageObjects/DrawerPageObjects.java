@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class DrawerPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public DrawerPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public DrawerPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public DrawerPageObjects() {
     }
 
     public By toggleLeftDrawerLink = By.id("toggle-left-drawer");
@@ -67,6 +62,4 @@ public class DrawerPageObjects {
     public By otherLeftDrawer = By.id("other-left-drawer-demo");
     public By rightDrawer = By.id("right-drawer-demo");
     public By otherRightDrawer = By.id("other-right-drawer-demo");
-
-
 }

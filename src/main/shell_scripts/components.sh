@@ -211,30 +211,31 @@ elif [[ $component == "modal" ]]
 then
 install_modal $feature_branch
 
-# Below condition is to install all the "master" branch of components for the regression test run
+# Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-install_appHeader master
-cd ..
-install_contextualHelp master
-cd ..
-install_drawer master
-cd ..
-install_componentArchetype master
-cd ..
-install_avatarDisplay master
-cd ..
-install_slider master
-cd ..
-install_textModal master
-cd ..
-install_alerts master
-cd ..
-install_pagination master
-cd ..
-install_modal master
-cd ..
-install_elements_sdk v1
-cd ..
-install_compounds_sdk v0
+echo $TEST_SUITE
+if [[ $TEST_SUITE == "stand_alone" ]]
+then
+install_appHeader master &
+install_contextualHelp master &
+install_drawer master &
+install_avatarDisplay master &
+install_slider master &
+#install_textModal master &
+install_alerts master &
+install_pagination master &
+install_modal master &
 fi
+if [[ $TEST_SUITE == "elements_sdk" ]]
+then
+install_elements_sdk v1 &
+fi
+if [[ $TEST_SUITE == "compounds_sdk" ]]
+then
+install_compounds_sdk v0 &
+fi
+jobs -l
+wait
+fi
+jobs -l

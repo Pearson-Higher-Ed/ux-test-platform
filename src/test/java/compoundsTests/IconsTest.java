@@ -1,5 +1,6 @@
 package compoundsTests;
 
+import compounds.compoundsPageObjects.CompoundsIconsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -25,9 +26,11 @@ public class IconsTest extends BaseClass {
     private static String browser = "";
     boolean result = false, isHeight = false, isWidth = false;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
+    CompoundsIconsPageObjects compIconsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void IconsTestBeforeClass() {
+        compIconsPgObj = new CompoundsIconsPageObjects();
         if (!runEnv.equals("sauce")) {
             browser = BaseClass.localBrowser;
         } else {

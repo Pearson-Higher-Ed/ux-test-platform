@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.PresentationStrategiesPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
@@ -21,9 +22,11 @@ public class PresentationStrategyTest extends BaseClass {
     private String marginRight = "", marginLeft = "", marginBottom = "", marginTop = "", paddingRight = "", paddingLeft = "", colWidth;
     private boolean isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, ispaddingRight = false, ispaddingLeft = false, isColWidth;
     final static Logger log = Logger.getLogger(PresentationStrategyTest.class.getName());
+    PresentationStrategiesPageObjects preStratPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        preStratPgObj = new PresentationStrategiesPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
         setDesktop = BaseClass.desktop;

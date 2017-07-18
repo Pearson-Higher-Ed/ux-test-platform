@@ -9,20 +9,14 @@ import org.openqa.selenium.WebDriver;
  */
 public class ComponentArchetypePageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public ComponentArchetypePageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ComponentArchetypePageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public ComponentArchetypePageObjects() {
     }
 
     public By demoTarget1 = By.xpath("//div[@id='demo-target1']/div/button");
     public By demoTarget1Input = By.xpath("//div[@id='demo-target1']/div/span/input");
     public By demoTarget2 = By.xpath("//div[@id='demo-target2']/div/button");
     public By demoTarget2Input = By.xpath("//div[@id='demo-target2']/div/span/input");
-
 }

@@ -6,15 +6,11 @@ import org.openqa.selenium.WebDriver;
 import io.appium.java_client.AppiumDriver;
 
 public class TemplatesPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public TemplatesPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public TemplatesPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public TemplatesPageObjects() {
     }
 
     // Single Column
@@ -61,6 +57,4 @@ public class TemplatesPageObjects {
     public By tripleColumnFirstColumn = By.id("template-triple-first");
     public By tripleColumnMiddleColumn = By.id("template-triple-second");
     public By tripleColumnLastColumn = By.id("template-triple-third");
-
 }
-

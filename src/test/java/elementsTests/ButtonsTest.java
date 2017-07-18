@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.ButtonsPageObjects;
 import io.appium.java_client.TouchAction;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -30,9 +31,11 @@ public class ButtonsTest extends BaseClass {
     List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
+    ButtonsPageObjects btnPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void buttonsTestBeforeClass() {
+        btnPgObj = new ButtonsPageObjects();
         env = BaseClass.runEnv;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;

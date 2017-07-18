@@ -8,15 +8,11 @@ import org.openqa.selenium.WebDriver;
  * Created by udhadpa on 10/25/16.
  */
 public class TextModalPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public TextModalPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public TextModalPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public TextModalPageObjects() {
     }
 
     public By initiateBtn = By.id("initiatingButton");

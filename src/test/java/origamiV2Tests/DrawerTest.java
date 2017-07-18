@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.DrawerPageObjects;
 import utilities.BaseClass;
 
 import java.lang.reflect.Method;
@@ -34,6 +35,7 @@ public class DrawerTest extends BaseClass {
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
     final static Logger log = Logger.getLogger(DrawerTest.class.getName());
+    DrawerPageObjects drawerPgObj = null;
 
     @DataProvider(name = "Open Drawer Test Data")
     public Object[][] getOpenDrawerTest() {
@@ -333,6 +335,7 @@ public class DrawerTest extends BaseClass {
     private void checkCSSPropertiesLeftDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.openLeftDrawerLink);
         cssPropertyType = cssProperty;
+        Thread.sleep(500);
         cssProperty = commonUtils.getCSSValue(drawerPgObj.leftDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -345,6 +348,7 @@ public class DrawerTest extends BaseClass {
     private void checkCSSPropertiesOtherLeftDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.otherLeftDrawerLink);
         cssPropertyType = cssProperty;
+        Thread.sleep(500);
         cssProperty = commonUtils.getCSSValue(drawerPgObj.otherLeftDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -374,6 +378,7 @@ public class DrawerTest extends BaseClass {
     private void checkCSSPropertiesRightDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.openRightDrawerLink);
         cssPropertyType = cssProperty;
+        Thread.sleep(500);
         cssProperty = commonUtils.getCSSValue(drawerPgObj.rightDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -386,6 +391,7 @@ public class DrawerTest extends BaseClass {
     private void checkCSSPropertiesOtherRightDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.otherRightDrawerLink);
         cssPropertyType = cssProperty;
+        Thread.sleep(1000);
         cssProperty = commonUtils.getCSSValue(drawerPgObj.otherRightDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
@@ -504,7 +510,6 @@ public class DrawerTest extends BaseClass {
             Assert.assertTrue(isBorderColor);
         }
     }
-
 
     @DataProvider(name = "Click Bottom Close Btn Drawer Test Data")
     public Object[][] getClickBtmCloseDrawerTest() {
@@ -879,7 +884,8 @@ public class DrawerTest extends BaseClass {
     }
 
     @BeforeClass(alwaysRun = true)
-    private void beforeClass() throws Exception {
+    private void beforeClass() {
+        drawerPgObj = new DrawerPageObjects();
         setMobile = BaseClass.mobile;
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;

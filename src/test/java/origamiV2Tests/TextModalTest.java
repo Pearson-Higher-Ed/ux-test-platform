@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.TextModalPageObjects;
 import utilities.BaseClass;
 
 import java.io.*;
@@ -33,9 +34,11 @@ public class TextModalTest extends BaseClass {
     private String browserLogs = "", content = "", code = "", fetchCharacter = "", actualContent = "";
     private List<String> newLines = null;
     private BufferedReader br = null;
+    TextModalPageObjects textModalPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void textModalTestBeforeClass() {
+        textModalPgObj = new TextModalPageObjects();
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;
         if (!runEnv.equals("sauce")) {

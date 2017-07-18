@@ -1,6 +1,8 @@
 package compoundsTests;
 
 import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsInputsPageObjects;
+import elements.elementsPageObjects.InputsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -49,9 +51,13 @@ public class InputsTest extends BaseClass {
     private String infoMsgClassName = "pe-input--info_message";
     private String errorMsgClassName = "pe-input--error_message";
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
+    CompoundsInputsPageObjects compInputsPgObj = null;
+    InputsPageObjects inputsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void InputsTestBeforeClass() {
+        compInputsPgObj = new CompoundsInputsPageObjects();
+        inputsPgObj = new InputsPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;

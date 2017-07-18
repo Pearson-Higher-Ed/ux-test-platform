@@ -10,17 +10,13 @@ import java.util.Random;
  * Created by udhadpa on 10/25/16.
  */
 public class AlertsPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
+
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
     Random r = new Random();
     String[] alerts = {"Success", "Error", "Information"};
 
-    public AlertsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public AlertsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public AlertsPageObjects() {
     }
 
     public By successAlertBtn = By.id("Success-alert");

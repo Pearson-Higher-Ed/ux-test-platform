@@ -8,15 +8,11 @@ import org.openqa.selenium.By;
  * Created by udhadpa on 9/22/16.
  */
 public class PresentationStrategiesPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public PresentationStrategiesPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public PresentationStrategiesPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public PresentationStrategiesPageObjects(){
     }
 
     // Default Strategy
@@ -57,6 +53,4 @@ public class PresentationStrategiesPageObjects {
     public By gridLargeCol2 = By.id("basic-grid-large-2col");
     public By gridLargeCol3 = By.id("basic-grid-large-3col");
     public By gridLargeCol4 = By.id("basic-grid-large-4col");
-
-
 }

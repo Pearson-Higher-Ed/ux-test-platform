@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.AvatarDisplayPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -33,9 +34,11 @@ public class AvatarDisplayTest extends BaseClass {
     JsonObject jsonObject = null;
     private List<String> newLines = null;
     private List<String> list, config = null;
+    AvatarDisplayPageObjects avatarDisplayPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void avatarDisplayTestBeforeClass() {
+        avatarDisplayPgObj = new AvatarDisplayPageObjects();
         if (!runEnv.equals("sauce")) {
             browser = BaseClass.localBrowser;
         } else {

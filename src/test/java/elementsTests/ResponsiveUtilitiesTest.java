@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.ResponsiveUtilitiesPageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
@@ -16,9 +17,11 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     private String responsiveValue_1 = "", responsiveValue_2 = "", responsiveValue_3;
     private static String env = "", mobileDevice = "";
     Boolean result = false, result_1 = false, result_2 = false, result_3 = false;
+    ResponsiveUtilitiesPageObjects respPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        respPgObj = new ResponsiveUtilitiesPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
     }

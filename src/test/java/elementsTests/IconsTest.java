@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.IconsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -20,9 +21,11 @@ public class IconsTest extends BaseClass {
     boolean isColor = false, isWidth = false, isHeight = false;
     File file = null;
     final static Logger log = Logger.getLogger(IconsTest.class.getName());
+    IconsPageObjects iconPgObj = null;
 
     @BeforeClass(alwaysRun = true)
-    private void typographyTestBeforeClass() {
+    private void iconsTestBeforeClass() {
+        iconPgObj = new IconsPageObjects();
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
     }

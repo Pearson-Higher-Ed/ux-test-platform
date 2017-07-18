@@ -6,15 +6,10 @@ import org.openqa.selenium.WebDriver;
 
 public class TypographyPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public TypographyPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public TypographyPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public TypographyPageObjects() {
     }
 
     //header

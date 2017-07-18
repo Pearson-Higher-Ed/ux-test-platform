@@ -1,5 +1,6 @@
 package compoundsTests;
 
+import compounds.compoundsPageObjects.CompoundsLoadingIndicatorPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -29,9 +30,11 @@ public class LoadingIndicatorTest extends BaseClass {
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
 
     final static Logger log = Logger.getLogger(LoadingIndicatorTest.class.getName());
+    CompoundsLoadingIndicatorPageObjects indicatorPgObj = null;
 
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass() {
+    private void LoadingIndicatorTestBeforeClass() {
+        indicatorPgObj = new CompoundsLoadingIndicatorPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
@@ -173,7 +176,9 @@ public class LoadingIndicatorTest extends BaseClass {
         commonUtils.readInitialConfig(loadingIndicatorJSFilePath, tempJSFilePath);
         //Provide an incorrect element ID
         commonUtils.replaceLineInAFile(loadingIndicatorJSFilePath, originalLine, replaceLine);
+        Thread.sleep(1000);
         commonUtils.getUrl(loadingIndicatorURL);
+        Thread.sleep(1000);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains(errorMsg), true, errorMsg + " error msg is NOT seen as per SPEC");
         commonUtils.writeInitialConfig(tempJSFilePath, loadingIndicatorJSFilePath);

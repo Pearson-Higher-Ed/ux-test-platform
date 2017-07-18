@@ -1,7 +1,5 @@
 package utilities;
 
-import elements.elementsPageObjects.*;
-import compounds.compoundsPageObjects.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -23,15 +21,12 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.xml.XmlSuite;
-import origamiV2.origamiV2PageObjects.*;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import static java.lang.System.exit;
 
 /**
  * Created by umahaea on 2/3/16.
@@ -40,37 +35,6 @@ public class BaseClass {
 
     public WebDriver driver = null;
     public AppiumDriver appium = null;
-    public ResponsiveUtilitiesPageObjects respPgObj = null;
-    public TypographyPageObjects typoPgObj = null;
-    public InputsPageObjects inputsPgObj = null;
-    public CompoundsInputsPageObjects compInputsPgObj = null;
-    public ButtonsPageObjects btnPgObj = null;
-    public CompoundsButtonsPageObjects compBtnPgObj = null;
-    public CalendarPageObjects clndrPgObj = null;
-    public ColorsPageObjects colorsPgObj = null;
-    public NoPlainCSSPageObjects noPlainCSSPgObj = null;
-    public MeterPageObjects meterPgObj = null;
-    public GridPageObjects gridPgObj = null;
-    public PresentationStrategiesPageObjects preStratPgObj = null;
-    public IconsPageObjects iconPgObj = null;
-    public CompoundsIconsPageObjects compIconsPgObj = null;
-    public CompoundsFooterPageObjects compFooterPgObj = null;
-    public CompoundsTabsPageObjects compTabsPgObj = null;
-    public ModalPageObjects modalPgObj = null;
-    public AppHeaderPageObjects appHeaderPgObj = null;
-    public ContextualHelpPageObjects conxHelpPgObj = null;
-    public DrawerPageObjects drawerPgObj = null;
-    public ComponentArchetypePageObjects compArchtypePgObj = null;
-    public AvatarDisplayPageObjects avatarDisplayPgObj = null;
-    public TemplatesPageObjects templatePgObj = null;
-    public SliderPageObjects sliderPgObj = null;
-    public TextModalPageObjects textModalPgObj = null;
-    public FormsPageObjects formsPgObj = null;
-    public AlertsPageObjects alertsPgObj = null;
-    public PaginationPageObjects paginationPgObj = null;
-    public CompoundsDropdownPageObjects dropdownPgObj = null;
-    public CompoundsLoadingIndicatorPageObjects indicatorPgObj = null;
-    public CompoundsAlertsPageObjects compAlertsPgObj = null;
 
     public CommonUtils commonUtils = null;
     public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
@@ -95,8 +59,8 @@ public class BaseClass {
         setDesktop = desktop;
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
-        String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "2048x1536"};
-        String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER")};
+        String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "2048x1536", "recordScreenshots", "false"};
+        String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false"};
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");
@@ -122,12 +86,14 @@ public class BaseClass {
                 for (int i = 0; i < (desktopCaps.length - 1); i += 2) {
                     if (platform.startsWith("Windows") && desktopCaps[i].equals("screenResolution")) {
                         caps.setCapability(desktopCaps[i], "2560x1600");
-                        continue;
+                        //continue;
+                    } else if(platform.startsWith("OS X") && desktopCaps[i].equals("screenResolution")){
+                        caps.setCapability(desktopCaps[i], "2048x1536");
                     }
                     caps.setCapability(desktopCaps[i], desktopCaps[i + 1]);
                 }
                 driver = new RemoteWebDriver(new URL(URL), caps);
-                includePageObjects();
+                driverTimeOut();
             }
 
             //The below conditions is to run the mobile tests on Sauce via Travis CI
@@ -140,7 +106,7 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
-                includePageObjects();
+                appiumTimeOut();
             }
         }
         //The below else condition is to launch browser driver on your local machine.
@@ -148,15 +114,15 @@ public class BaseClass {
             if (desktop.equals("on")) {
                 if (localBrowser.equals("firefox")) {
                     driver = new FirefoxDriver();
-                    includePageObjects();
+                    driverTimeOut();
                 }
                 if (localBrowser.equals("chrome")) {
                     CommonUtils.setupChromeDriver();
                     driver = new ChromeDriver();
-                    includePageObjects();
+                    driverTimeOut();
                 }
             }
-            //The below else condition is to run tests no sauce from your local machine
+            //The below else condition is to run tests on sauce from your local machine, skipping Travis CI
             if (mobile.equals("on")) {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     if (mobileCaps[i].equals("tunnel-identifier"))
@@ -171,84 +137,21 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
-                includePageObjects();
+                appiumTimeOut();
             }
         }
     }
 
-    public void includePageObjects() {
-        if (setDesktop.equals("on")) {
-            respPgObj = new ResponsiveUtilitiesPageObjects(driver);
-            typoPgObj = new TypographyPageObjects(driver);
-            btnPgObj = new ButtonsPageObjects(driver);
-            compBtnPgObj = new CompoundsButtonsPageObjects(driver);
-            appHeaderPgObj = new AppHeaderPageObjects(driver);
-            conxHelpPgObj = new ContextualHelpPageObjects(driver);
-            drawerPgObj = new DrawerPageObjects(driver);
-            inputsPgObj = new InputsPageObjects(driver);
-            compInputsPgObj = new CompoundsInputsPageObjects(driver);
-            clndrPgObj = new CalendarPageObjects(driver);
-            colorsPgObj = new ColorsPageObjects(driver);
-            noPlainCSSPgObj = new NoPlainCSSPageObjects(driver);
-            meterPgObj = new MeterPageObjects(driver);
-            gridPgObj = new GridPageObjects(driver);
-            templatePgObj = new TemplatesPageObjects(driver);
-            preStratPgObj = new PresentationStrategiesPageObjects(driver);
-            iconPgObj = new IconsPageObjects(driver);
-            compIconsPgObj = new CompoundsIconsPageObjects(driver);
-            compTabsPgObj = new CompoundsTabsPageObjects(driver);
-            compFooterPgObj = new CompoundsFooterPageObjects(driver);
-            modalPgObj = new ModalPageObjects(driver);
-            compArchtypePgObj = new ComponentArchetypePageObjects(driver);
-            avatarDisplayPgObj = new AvatarDisplayPageObjects(driver);
-            sliderPgObj = new SliderPageObjects(driver);
-            textModalPgObj = new TextModalPageObjects(driver);
-            formsPgObj = new FormsPageObjects(driver);
-            alertsPgObj = new AlertsPageObjects(driver);
-            paginationPgObj = new PaginationPageObjects(driver);
-            dropdownPgObj = new CompoundsDropdownPageObjects(driver);
-            indicatorPgObj = new CompoundsLoadingIndicatorPageObjects(driver);
-            compAlertsPgObj = new CompoundsAlertsPageObjects(driver);
-            commonUtils = new CommonUtils(driver);
-            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        } else if (setMobile.equals("on")) {
-            respPgObj = new ResponsiveUtilitiesPageObjects(appium);
-            typoPgObj = new TypographyPageObjects(appium);
-            btnPgObj = new ButtonsPageObjects(appium);
-            compBtnPgObj = new CompoundsButtonsPageObjects(appium);
-            appHeaderPgObj = new AppHeaderPageObjects(appium);
-            conxHelpPgObj = new ContextualHelpPageObjects(appium);
-            drawerPgObj = new DrawerPageObjects(appium);
-            inputsPgObj = new InputsPageObjects(appium);
-            compInputsPgObj = new CompoundsInputsPageObjects(appium);
-            clndrPgObj = new CalendarPageObjects(appium);
-            colorsPgObj = new ColorsPageObjects(appium);
-            noPlainCSSPgObj = new NoPlainCSSPageObjects(appium);
-            meterPgObj = new MeterPageObjects(appium);
-            gridPgObj = new GridPageObjects(appium);
-            templatePgObj = new TemplatesPageObjects(appium);
-            preStratPgObj = new PresentationStrategiesPageObjects(appium);
-            iconPgObj = new IconsPageObjects(appium);
-            compIconsPgObj = new CompoundsIconsPageObjects(appium);
-            compFooterPgObj = new CompoundsFooterPageObjects(appium);
-            compTabsPgObj = new CompoundsTabsPageObjects(driver);
-            modalPgObj = new ModalPageObjects(appium);
-            compArchtypePgObj = new ComponentArchetypePageObjects(appium);
-            avatarDisplayPgObj = new AvatarDisplayPageObjects(appium);
-            sliderPgObj = new SliderPageObjects(appium);
-            textModalPgObj = new TextModalPageObjects(appium);
-            formsPgObj = new FormsPageObjects(appium);
-            alertsPgObj = new AlertsPageObjects(appium);
-            paginationPgObj = new PaginationPageObjects(appium);
-            dropdownPgObj = new CompoundsDropdownPageObjects(appium);
-            indicatorPgObj = new CompoundsLoadingIndicatorPageObjects(appium);
-            compAlertsPgObj = new CompoundsAlertsPageObjects(appium);
-            commonUtils = new CommonUtils(appium);
-            appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        }
+    private void driverTimeOut() {
+        commonUtils = new CommonUtils(driver);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
-    //@Parameters({"mobile"})
+    private void appiumTimeOut() {
+        commonUtils = new CommonUtils(appium);
+        appium.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         if (mobile.equals("on")) {

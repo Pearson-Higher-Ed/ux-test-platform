@@ -1,12 +1,14 @@
 package compoundsTests;
 
 import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsAlertsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.AlertsPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -37,11 +39,14 @@ public class AlertsTest extends BaseClass {
     Map<String, String> detailProperties = null;
     Map<String, String> propsProperties = null;
     Map<String, JsonObject> propsConfigMap = null;
-
     final static Logger log = Logger.getLogger(AlertsTest.class.getName());
+    AlertsPageObjects alertsPgObj = null;
+    CompoundsAlertsPageObjects compAlertsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        alertsPgObj = new AlertsPageObjects();
+        compAlertsPgObj = new CompoundsAlertsPageObjects();
         browser = BaseClass.sauceBrowser;
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;

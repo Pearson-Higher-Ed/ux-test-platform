@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class CompoundsIconsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public CompoundsIconsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public CompoundsIconsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsIconsPageObjects() {
     }
 
     public By iconTarget = By.xpath("//div[@id='icon-target']/*[local-name() = 'svg']");

@@ -9,6 +9,8 @@ import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.AppHeaderPageObjects;
+import origamiV2.origamiV2PageObjects.ContextualHelpPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -77,8 +79,10 @@ public class ContextualHelpTest extends BaseClass {
     List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
 
     final static Logger log = Logger.getLogger(ContextualHelpTest.class.getName());
-    JsonArray jsonArray;
-    List<String> helpTopicsList;
+    JsonArray jsonArray = null;
+    List<String> helpTopicsList = null;
+    AppHeaderPageObjects appHeaderPgObj = null;
+    ContextualHelpPageObjects conxHelpPgObj = null;
 
     @DataProvider(name = "ConxHelp with AppHeader Test Data")
     public Object[][] getConxHelpWithAppHeaderTestData() {
@@ -177,8 +181,6 @@ public class ContextualHelpTest extends BaseClass {
         isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertFalse(isHelpContentTopicDetailVisible);
 
-
-        System.out.println("here");
         //Test3 - Click 'X' button when user navigates into a help topic and now Open contextual-help-drawer
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         Thread.sleep(500);
@@ -821,7 +823,7 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify styles for Back to Help Topics Button Test", dataProvider = "Verify styles for Back to Help Topics Button Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify styles for Back to Help Topics Button Test", dataProvider = "Verify styles for Back to Help Topics Button Test Data", groups = "desktop-regression1")
     private void styleForBackToHelpTopicsButtonTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
@@ -841,6 +843,7 @@ public class ContextualHelpTest extends BaseClass {
         } else {
             cssPropertyType = cssProperty;
             cssProperty = commonUtils.getCSSValue(conxHelpPgObj.backToHelpTopicsButton, cssProperty);
+            Thread.sleep(1000);
             isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
             if (!isCSSProperty) {
                 log.info("contextual-help-drawer back-to-help button " + cssPropertyType + " is not as per the spec, actual: " + cssProperty);
@@ -1518,6 +1521,8 @@ public class ContextualHelpTest extends BaseClass {
 
     @BeforeClass(alwaysRun = true)
     private void contextualHelpTestBeforeClass() throws Exception {
+        appHeaderPgObj = new AppHeaderPageObjects();
+        conxHelpPgObj = new ContextualHelpPageObjects();
         mobileDevice = BaseClass.mobDeviceName;
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;

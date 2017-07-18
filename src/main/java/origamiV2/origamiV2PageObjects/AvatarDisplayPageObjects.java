@@ -8,15 +8,11 @@ import org.openqa.selenium.WebDriver;
  * Created by umahaea on 8/3/16.
  */
 public class AvatarDisplayPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public AvatarDisplayPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public AvatarDisplayPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public AvatarDisplayPageObjects(){
     }
 
     public By avatarTarget=By.id("avatar-target");

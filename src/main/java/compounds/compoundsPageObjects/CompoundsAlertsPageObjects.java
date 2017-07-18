@@ -9,16 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class CompoundsAlertsPageObjects {
 
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public WebDriver driver;
-    public AppiumDriver appium;
-
-    public CompoundsAlertsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public CompoundsAlertsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsAlertsPageObjects() {
     }
 
     public By alert = By.xpath("//*[@id='StaticAlert']/div/div");

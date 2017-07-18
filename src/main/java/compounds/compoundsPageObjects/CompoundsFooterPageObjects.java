@@ -8,15 +8,13 @@ import org.openqa.selenium.WebDriver;
  * Created by umahaea on 5/26/17.
  */
 public class CompoundsFooterPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public CompoundsFooterPageObjects(WebDriver driver) {
-        this.driver = driver;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
+
+    public CompoundsFooterPageObjects() {
     }
-    public CompoundsFooterPageObjects(AppiumDriver appium) {
-        this.appium = appium;
-    }
+
     public By tocLinkXpath = By.xpath("//a");
     public By copyRightText = By.xpath("//div[@id='footer-target']/footer/p");
     public By footer = By.xpath("//div[@id='footer-target']/footer");

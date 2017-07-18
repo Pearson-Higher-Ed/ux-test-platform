@@ -13,13 +13,17 @@ import java.util.List;
  */
 public class PaginationPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
     List<WebElement> groupElementsList;
+
+    public PaginationPageObjects() {
+    }
 
     public PaginationPageObjects(WebDriver driver) {
         this.driver = driver;
     }
+
     public PaginationPageObjects(AppiumDriver appium) {
         this.appium = appium;
     }

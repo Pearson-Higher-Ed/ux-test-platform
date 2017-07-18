@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.ModalPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -37,6 +38,9 @@ public class ModalTest extends BaseClass {
     String longModalText = "Lorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justo Lorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justo Lorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo vel tempus dolor tortor eu leo. dui sapien finibus justoLorem ipsum dolor sit amet dui sapien finibus justo";
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
     private final String incorrectComponentNameErrorMsg = "type is invalid";
+    private String preConfigStr1 = "function init() {";
+    private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitModal', ";
+    private String postConfigStr1 = "));}window.onload = init;";
     int indexOfSecondOpenBrace = 0, indexOfSecondFromLastCloseBrace = 0, indexOfFirstCloseBrace = 0;
 
     JsonObject jsonDetailPropertiesObject = null, jsonDetailObject = null, detailJsonObject = null, propsTextJsonObject = null, propsTextDetailJsonObject = null, propsJsonObject = null, propsJsonDetailObject = null, finalPropsJsonObject = null, jsonPropsPropertiesObject = null, jsonPropsOptionObject = null, jsonPropsOptionsPropertiesObject = null;
@@ -48,12 +52,15 @@ public class ModalTest extends BaseClass {
     JavascriptExecutor js = null;
     WebElement element = null;
     final static Logger log = Logger.getLogger(ModalTest.class.getName());
+    ModalPageObjects modalPgObj = null;
 
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass() {
+    private void ModalTestBeforeClass() {
+        modalPgObj = new ModalPageObjects();
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
         lBrowser = BaseClass.localBrowser;
+        mobileDevice = BaseClass.mobDeviceName;
     }
 
     //Desktop Tests
@@ -1036,12 +1043,6 @@ public class ModalTest extends BaseClass {
             log.info("Pass even set of parameters.");
             return null;
         } else {
-            fileContentsInAString = commonUtils.readFileAsString(modalJSFilePath);
-            indexOfSecondOpenBrace = commonUtils.nthIndexOf(fileContentsInAString, "{", 2);
-            preFixConfig = fileContentsInAString.substring(0, indexOfSecondOpenBrace);
-            indexOfSecondFromLastCloseBrace = commonUtils.nthIndexOf(fileContentsInAString, "}", 7) + 1;
-            postFixConfig = fileContentsInAString.substring(indexOfSecondFromLastCloseBrace, fileContentsInAString.length());
-
             //prepare the map for prop text properties
             propsTextConfigMap = new LinkedHashMap<String, String>();
             for (i = 0; i < (propsTextPropertiesList.length - 1); i = i + 2) {
@@ -1105,11 +1106,9 @@ public class ModalTest extends BaseClass {
 
             jsonDetailObject.add("detail", jsonDetailPropertiesObject);
 
-            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function").replaceAll("'React", "React");
-            indexOfFirstCloseBrace = commonUtils.nthIndexOf(beforeFinalFormat, "}", 1);
+            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function").replaceAll("'React", "React").replaceAll("\\},isShown", "'\\},isShown");
 
-            finalFormat = preFixConfig + beforeFinalFormat.substring(0, indexOfFirstCloseBrace) + "'}" + beforeFinalFormat.substring(indexOfFirstCloseBrace + 1) + postFixConfig;
-            finalConfig = finalFormat;
+            finalConfig = preConfigStr1 + "\n" + preConfigStr2 + beforeFinalFormat + postConfigStr1;
             return finalConfig;
         }
     }
@@ -1135,12 +1134,6 @@ public class ModalTest extends BaseClass {
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         commonUtils.readInitialConfig(modalJSFilePath, tempJSFilePath);
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            mobileDevice = BaseClass.mobDeviceName;
-            commonUtils.getUrl(url, "mobile");
-        }
     }
 
     @AfterMethod(alwaysRun = true)

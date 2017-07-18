@@ -9,11 +9,11 @@ import org.openqa.selenium.WebDriver;
  */
 public class ColorsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public ColorsPageObjects(WebDriver driver) { this.driver=driver; }
-    public ColorsPageObjects(AppiumDriver appium) { this.appium=appium; }
+    public ColorsPageObjects() {
+    }
 
     public By pitch = By.id("pitch");
     public By grayNo1 = By.id("grayno1");
@@ -31,6 +31,4 @@ public class ColorsPageObjects {
     public By hyperdrive = By.id("hyperdrive");
     public By basicBlue = By.id("basicBlue");
     public By disabledButtonLink=By.id("disabledButtonLink");
-
-
 }
