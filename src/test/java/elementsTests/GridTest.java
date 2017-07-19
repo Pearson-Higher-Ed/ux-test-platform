@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.GridPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -20,9 +21,11 @@ public class GridTest extends BaseClass {
     private String paddingRight = "", paddingLeft = "", containerWidth = "", colWidth = "", marginRight = "", marginLeft = "";
     private boolean isPaddingRight = false, isPaddingLeft = false, isContainerWidth = false, isColWidth = false, isMarginLeft = false, isMarginRight = false;
     final static Logger log = Logger.getLogger(GridTest.class.getName());
+    GridPageObjects gridPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        gridPgObj = new GridPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
     }

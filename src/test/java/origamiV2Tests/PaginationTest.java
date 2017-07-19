@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.PaginationPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public class PaginationTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absPathForTempJS);
     private String getDefaultConfig = "", getTestConfig = "", word = "";
     final static Logger log = Logger.getLogger(PaginationTest.class.getName());
-    private String browser, mobile = "";
+    private String browser, mobile = "", desktop = "";
     JsonObject jsonObject = null;
     private List<String> newLines = null;
 
@@ -40,6 +41,7 @@ public class PaginationTest extends BaseClass {
     private String activeFirstItem = "", activeSecondItem = "";
     private String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "";
     private String prochainBtn = "", precedentBtn = "", nextbtn = "", prevBtn = "", defaultMaxBtn = "";
+    PaginationPageObjects paginationPgObj = null;
 
     /***************
      * Before Class
@@ -47,8 +49,15 @@ public class PaginationTest extends BaseClass {
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        paginationPgObj = new PaginationPageObjects();
         browser = BaseClass.localBrowser;
+        desktop = BaseClass.desktop;
         mobile = BaseClass.mobile;
+        if (desktop.equals("on")) {
+            paginationPgObj = new PaginationPageObjects(driver);
+        } else if (mobile.equals("on")) {
+            paginationPgObj = new PaginationPageObjects(appium);
+        }
     }
 
     @BeforeMethod(alwaysRun = true)

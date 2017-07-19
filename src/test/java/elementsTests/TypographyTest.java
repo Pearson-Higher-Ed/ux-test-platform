@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.TypographyPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,9 +26,11 @@ public class TypographyTest extends BaseClass {
     private boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;
     private String color = "", fontSize = "", fontWeight = "", lineHeight = "", rgbValue = "", borderBottomWidth = "", borderBottomStyle = "", textDecoration = "", fontStyle = "", display = "", jQueryScript = "", jQueryReturnValue = "", boxSizing = "", position = "", top = "", listStyle = "", pseudoContent = "", marginLeft = "", marginRight = "", marginBottom = "", marginTop = "", backgroundColor = "", verticalAlign = "", fontFamily = "", winChromeFontFamily = "Monaco, \"Lucida Console\", monospace", macChromeFontFamily = "Monaco, 'Lucida Console', monospace", ieFontFamily = "monaco, \"lucida console\", monospace", ffFontFamily = "Monaco,\"Lucida Console\",monospace", paddingTop = "", paddingBottom = "", paddingLeft = "", paddingRight = "";
     JavascriptExecutor js = null;
+    TypographyPageObjects typoPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void typographyTestBeforeClass() {
+        typoPgObj = new TypographyPageObjects();
         env = BaseClass.runEnv;
         setDesktop = BaseClass.desktop;
         mobileDevice = BaseClass.mobDeviceName;

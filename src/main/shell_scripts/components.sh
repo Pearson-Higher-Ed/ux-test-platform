@@ -106,19 +106,6 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/node_modules/pearson-elemen
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/slider.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/slider/
 }
 
-install_textModal(){
-echo -e "******************************\\n    Installing text-modal    \\n******************************"
-git clone https://github.com/Pearson-Higher-Ed/text-modal.git
-cd text-modal
-git checkout $1
-npm install &>/dev/null
-npm run copy-utils
-npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/build/dist.text-modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/jsfiles/textModal/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/text-modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/origamiV2/css/textModal/
-}
-
 install_alerts(){
 echo -e "******************************\\n    Installing alerts    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/alerts.git
@@ -195,10 +182,6 @@ elif [[ $component == "slider" ]]
 then
 install_slider $feature_branch
 
-elif [[ $component == "text-modal" ]]
-then
-install_textModal $feature_branch
-
 elif [[ $component == "alerts" ]]
 then
 install_alerts $feature_branch
@@ -211,30 +194,30 @@ elif [[ $component == "modal" ]]
 then
 install_modal $feature_branch
 
-# Below condition is to install all the "master" branch of components for the regression test run
+# Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-install_appHeader master
-cd ..
-install_contextualHelp master
-cd ..
-install_drawer master
-cd ..
-install_componentArchetype master
-cd ..
-install_avatarDisplay master
-cd ..
-install_slider master
-cd ..
-install_textModal master
-cd ..
-install_alerts master
-cd ..
-install_pagination master
-cd ..
-install_modal master
-cd ..
-install_elements_sdk v1
-cd ..
-install_compounds_sdk v0
+echo $TEST_SUITE
+if [[ $TEST_SUITE == "stand_alone" ]]
+then
+install_appHeader master &
+install_contextualHelp master &
+install_drawer master &
+install_avatarDisplay master &
+install_slider master &
+install_alerts master &
+install_pagination master &
+install_modal master &
 fi
+if [[ $TEST_SUITE == "elements_sdk" ]]
+then
+install_elements_sdk v1 &
+fi
+if [[ $TEST_SUITE == "compounds_sdk" ]]
+then
+install_compounds_sdk v0 &
+fi
+jobs -l
+wait
+fi
+jobs -l

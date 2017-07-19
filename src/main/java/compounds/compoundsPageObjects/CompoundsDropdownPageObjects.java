@@ -8,15 +8,11 @@ import org.openqa.selenium.WebDriver;
  * Created by udhadpa on 4/19/17.
  */
 public class CompoundsDropdownPageObjects {
-    public WebDriver driver;
-    public AppiumDriver appium;
 
-    public CompoundsDropdownPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public CompoundsDropdownPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsDropdownPageObjects() {
     }
 
     public By label = By.xpath("//*[@id='dropdown-target']/div/div/p");

@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class ButtonsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public ButtonsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ButtonsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public ButtonsPageObjects() {
     }
 
     public By defaultBtn=By.id("default-btn");

@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class CompoundsButtonsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public CompoundsButtonsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public CompoundsButtonsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsButtonsPageObjects() {
     }
 
     public By buttonTarget = By.xpath("//*[@id='button-target']/button");

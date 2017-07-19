@@ -6,15 +6,10 @@ import org.openqa.selenium.WebDriver;
 
 public class InputsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public InputsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public InputsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public InputsPageObjects() {
     }
 
     //Fancy - TextInput

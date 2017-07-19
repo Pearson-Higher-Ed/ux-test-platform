@@ -1,6 +1,7 @@
 
 package elementsTests;
 
+import elements.elementsPageObjects.InputsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.Assert;
@@ -34,9 +35,11 @@ public class InputsTest extends BaseClass {
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
     List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
     final static Logger log = Logger.getLogger(InputsTest.class.getName());
+    InputsPageObjects inputsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void InputsTestBeforeClass() {
+        inputsPgObj = new InputsPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;

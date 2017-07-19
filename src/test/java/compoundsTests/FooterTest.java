@@ -2,6 +2,7 @@ package compoundsTests;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsFooterPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -40,10 +41,12 @@ public class FooterTest extends BaseClass {
     JsonObject propsJsonObject = null;
     JavascriptExecutor js = null;
     WebElement webElement = null;
-    final static Logger log = Logger.getLogger(DropdownTest.class.getName());
+    final static Logger log = Logger.getLogger(FooterTest.class.getName());
+    CompoundsFooterPageObjects compFooterPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void buttonsTestBeforeClass() {
+        compFooterPgObj = new CompoundsFooterPageObjects();
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
         if (!runEnv.equals("travis")) {

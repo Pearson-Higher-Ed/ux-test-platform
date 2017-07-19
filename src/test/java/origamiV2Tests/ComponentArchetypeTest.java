@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import origamiV2.origamiV2PageObjects.ComponentArchetypePageObjects;
 import utilities.BaseClass;
 
 import java.lang.reflect.Method;
@@ -18,6 +19,7 @@ public class ComponentArchetypeTest extends BaseClass {
     private final String demoUrl = "http://localhost:8000/src/main/java/origamiV2/fixtures/componentArchetype/component-archetype.html";
     private String placeHolderText = "", translatedText = "";
     private boolean isPlaceHolderText = false, isTranslatedText = false;
+    ComponentArchetypePageObjects compArchtypePgObj = new ComponentArchetypePageObjects();
 
     /****************
      * Desktop Tests

@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.SliderPageObjects;
 import utilities.BaseClass;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -37,9 +38,11 @@ public class SliderTest extends BaseClass {
     private WebElement slider, label = null;
     private static String browser = "", mobile = "";
     BufferedReader br = null;
+    SliderPageObjects sliderPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        sliderPgObj = new SliderPageObjects();
         browser = BaseClass.sauceBrowser;
         mobile = BaseClass.mobile;
     }

@@ -6,6 +6,7 @@ package elementsTests;
 
 import java.lang.reflect.Method;
 
+import elements.elementsPageObjects.FormsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -18,9 +19,11 @@ public class FormsTest extends BaseClass {
     final static Logger log = Logger.getLogger(FormsTest.class.getName());
     private String fontSize = "", lineHeight = "", fontWeight = "", marginBottom = "", fontColor = "", marginTop = "", errorDescColor = "", firstNameLabelFontSize = "", firstNameLabelFontColor = "", firstNameLabelLineHt = "", lastNameLabelFontSize = "", lastNameLabelFontColor = "", lastNameLabelLineHt = "", inputClassName = "", submitBtnClass = "", submitBtnColor = "", inputFontSize = "", underlineClass = "", underlineHt = "", inputBorderWidth = "", inputBorderColor = "", inputBorderStyle = "", paddingTop = "", paddingBottom = "", inputValueColor = "";
     private boolean isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isFontColor = false, isMarginTop = false, isErrorDescColor = false, isFirstNameLabelFontSize = false, isFirstNameLabelFontColor = false, isFirstNameLabelLineHt = false, isLastNameLabelFontSize = false, isLastNameLabelFontColor = false, isLastNameLabelLineHt = false, isInputClassName = false, isSubmitBtnClass = false, isSubmitBtnColor = false, isInputFontSize = false, isUnderlineClass = false, isUnderlineHt = false, isInputBorderWidth = false, isInputBorderStyle = false, isInputBorderColor = false, isPaddingBottom = false, isPaddingTop = false, isInputValueColor;
+    FormsPageObjects formsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        formsPgObj = new FormsPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
         setDesktop = BaseClass.desktop;

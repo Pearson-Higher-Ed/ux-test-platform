@@ -1,6 +1,7 @@
 package compoundsTests;
 
 import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsDropdownPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.Assert;
@@ -40,9 +41,11 @@ public class DropdownTest extends BaseClass {
     WebElement element = null;
     private final String errorColorCode = "\u001B[31m";
     final static Logger log = Logger.getLogger(DropdownTest.class.getName());
+    CompoundsDropdownPageObjects dropdownPgObj = null;
 
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass() {
+    private void DropDownTestBeforeClass() {
+        dropdownPgObj = new CompoundsDropdownPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;

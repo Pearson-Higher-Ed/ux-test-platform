@@ -2,6 +2,7 @@ package elementsTests;
 
 import java.lang.reflect.Method;
 
+import elements.elementsPageObjects.TemplatesPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -17,9 +18,11 @@ public class TemplatesTest extends BaseClass {
     private String paddingRight = "", paddingLeft = "", colWidth = "", paddingBottom = "", paddingTop;
     private boolean isPaddingRight = false, isPaddingLeft = false, isColWidth = false, isPaddingBottom = false, isPaddingTop;
     final static Logger log = Logger.getLogger(TemplatesTest.class.getName());
+    TemplatesPageObjects templatePgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        templatePgObj = new TemplatesPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
     }

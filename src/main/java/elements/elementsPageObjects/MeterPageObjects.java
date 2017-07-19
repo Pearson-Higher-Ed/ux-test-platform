@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class MeterPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public MeterPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public MeterPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public MeterPageObjects() {
     }
 
     public By meterLabel = By.id("meter-label");

@@ -1,5 +1,6 @@
 package compoundsTests;
 
+import compounds.compoundsPageObjects.CompoundsButtonsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,9 +34,11 @@ public class ButtonsTest extends BaseClass {
     WebElement element = null;
     Alert alert = null;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
+    CompoundsButtonsPageObjects compBtnPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void buttonsTestBeforeClass() {
+        compBtnPgObj = new CompoundsButtonsPageObjects();
         if (!runEnv.equals("sauce")) {
             browser = BaseClass.localBrowser;
         } else {

@@ -6,6 +6,7 @@ import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
+import origamiV2.origamiV2PageObjects.AlertsPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
@@ -29,9 +30,11 @@ public class AlertsTest extends BaseClass {
     final static Logger log = Logger.getLogger(AlertsTest.class.getName());
     private static String browser = "", mobile = "", platform = "", mobileDevice = "";
     private String alertType = "";
+    AlertsPageObjects alertsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
+        alertsPgObj = new AlertsPageObjects();
         browser = BaseClass.sauceBrowser;
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;

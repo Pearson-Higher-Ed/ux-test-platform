@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class ResponsiveUtilitiesPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public ResponsiveUtilitiesPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ResponsiveUtilitiesPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public ResponsiveUtilitiesPageObjects() {
     }
 
     public By xtraSmallVisible = By.id("xs-visible");

@@ -1,11 +1,9 @@
 {
   "scripts": {
-    "start": "http-server -p 8000 --silent",
     "copy-assets": "mkdir -p fonts && mkdir -p icons && cp ./node_modules/pearson-elements/dist/fonts/* ./fonts && cp ./node_modules/pearson-elements/dist/icons/* ./icons && cp -R ./node_modules/@pearson-components/app-header/images ./",
     "delete-assets": "find . -type f -name '*.css' -delete && find . -type f -name 'dist*.js' -delete && find . -type f -name 'dev*.js' -delete && find . -type f -name 'event*.js' -delete && rm -rf ./images"
   },
   "devDependencies": {
-    "http-server": "^0.10.0",
     "pearson-elements": "^1.0.6",
     "@pearson-components/app-header": "^2.0.3"
   }

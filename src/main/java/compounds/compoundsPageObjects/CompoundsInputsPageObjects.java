@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class CompoundsInputsPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public CompoundsInputsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public CompoundsInputsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsInputsPageObjects(){
     }
 
     public By label = By.xpath("//*[@id='select-target']/div/label");

@@ -1,6 +1,7 @@
 package compoundsTests;
 
 import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsTabsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -47,9 +48,11 @@ public class TabsTest extends BaseClass {
     String[] borderBottoms = {"border-bottom-width", "border-bottom-style", "border-bottom-color"};
 
     final static Logger log = Logger.getLogger(TabsTest.class.getName());
+    CompoundsTabsPageObjects compTabsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void tabsTestBeforeClass() {
+        compTabsPgObj = new CompoundsTabsPageObjects();
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
         if (!runEnv.equals("travis")) {

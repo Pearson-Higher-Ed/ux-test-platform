@@ -10,15 +10,10 @@ import utilities.BaseClass;
  */
 public class CompoundsTabsPageObjects extends BaseClass {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public CompoundsTabsPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public CompoundsTabsPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public CompoundsTabsPageObjects(){
     }
 
     public By firstTab= By.xpath("//ul[@class='tabs__labels']/li[1]");

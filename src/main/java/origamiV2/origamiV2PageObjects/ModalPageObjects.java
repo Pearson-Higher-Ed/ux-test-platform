@@ -12,12 +12,7 @@ public class ModalPageObjects {
     public WebDriver driver = null;
     public AppiumDriver appium = null;
 
-    public ModalPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ModalPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public ModalPageObjects() {
     }
 
     public By buttonModalWithFooter = By.id("button-modal-with-footer");
@@ -45,6 +40,6 @@ public class ModalPageObjects {
     public By modalSaveBtn = By.id("save-btn");
     public By modalSaveBtnReact = By.xpath("//div[@class='modalFooter']/button[2]");
 
-    public By modalCloseButton=By.id("modal-close");
-    public By modalCloseButtonReact=By.xpath("//div[@class='modalHeader']/button");
+    public By modalCloseButton = By.id("modal-close");
+    public By modalCloseButtonReact = By.xpath("//div[@class='modalHeader']/button");
 }

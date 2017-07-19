@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class ContextualHelpPageObjects {
 
-    public WebDriver driver;
-    public AppiumDriver appium;
+    public WebDriver driver = null;
+    public AppiumDriver appium = null;
 
-    public ContextualHelpPageObjects(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ContextualHelpPageObjects(AppiumDriver appium) {
-        this.appium = appium;
+    public ContextualHelpPageObjects() {
     }
 
     public By contextualHelpDrawer = By.xpath("//div[@id='o-contextual-help-drawer']");
@@ -88,4 +83,3 @@ public class ContextualHelpPageObjects {
         return "//div[@id='o-contextual-help-topic-content-target']/div/div/div[" + x + "]";
     }
 }
-

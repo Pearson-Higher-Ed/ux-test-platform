@@ -1,5 +1,6 @@
 package elementsTests;
 
+import elements.elementsPageObjects.MeterPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -19,10 +20,11 @@ public class MeterTest extends BaseClass {
     private String backgroundColor = "", height = "", borderTopColor = "", borderBottomColor = "", borderLeftColor = "", borderRightColor = "", borderTopStyle = "", borderBottomStyle = "", borderLeftStyle = "", borderRightStyle = "", borderTopWidth = "", borderBottomWidth = "", borderLeftWidth = "", borderRightWidth = "", fontSize = "", fontWeight = "", lineHeight = "", color = "", marginBottom = "";
     private boolean result = false, isBackgroundColor = false, isHeight = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderLeftColor = false, isBorderRightColor = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBorderLeftStyle = false, isBorderRightStyle = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isColor = false;
     final static Logger log = Logger.getLogger(MeterTest.class.getName());
+    MeterPageObjects meterPgObj = null;
 
-    @Parameters("runEnv")
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass(String runEnv) {
+    private void InputsTestBeforeClass() {
+        meterPgObj = new MeterPageObjects();
         env = runEnv;
     }
 
