@@ -86,9 +86,7 @@ public class BaseClass {
                 for (int i = 0; i < (desktopCaps.length - 1); i += 2) {
                     if (platform.startsWith("Windows") && desktopCaps[i].equals("screenResolution")) {
                         caps.setCapability(desktopCaps[i], "2560x1600");
-                        //continue;
-                    } else if(platform.startsWith("OS X") && desktopCaps[i].equals("screenResolution")){
-                        caps.setCapability(desktopCaps[i], "2048x1536");
+                        continue;
                     }
                     caps.setCapability(desktopCaps[i], desktopCaps[i + 1]);
                 }
