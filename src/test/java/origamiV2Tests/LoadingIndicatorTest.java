@@ -150,8 +150,8 @@ public class LoadingIndicatorTest extends BaseClass {
             log.info("Loading indicator bodyAttach is not displayed");
         }
         Assert.assertTrue(isElementPresent);
-        Thread.sleep(5000);
-        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.bodyAttachChip);
+        Thread.sleep(6000);
+        isElementPresent = commonUtils.isElementDisplayed(loadIndicatorPgObj.bodyAttachChip);
         if (isElementPresent) {
             log.info("Loading indicator bodyAttach is still being displayed after 5 secs");
         }
