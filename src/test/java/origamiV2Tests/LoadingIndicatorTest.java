@@ -50,7 +50,7 @@ public class LoadingIndicatorTest extends BaseClass {
     LoadingIndicatorPageObjects loadIndicatorPgObj = null;
 
     @BeforeClass(alwaysRun = true)
-    private void InputsTestBeforeClass() {
+    private void beforeClass() {
         loadIndicatorPgObj = new LoadingIndicatorPageObjects();
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
