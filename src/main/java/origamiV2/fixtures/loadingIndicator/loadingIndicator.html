@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Origami V2 Demo</title>
+    <link rel="stylesheet" href="../../css/loadingIndicator/elements.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h2>Origami V2 - Loading Indicator</h2>
+<script>
+    if (!document.getElementById('p-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                pe_ajax.responseXML.documentElement,
+                document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
+
+<!-- Customize the demo for your component -->
+<h1>Loading Indicator Demo</h1>
+<p>Styled using the Elements SDK.</p>
+<br/>
+
+<h2>Initialized and instantiated via event (attached to body)</h2>
+<p>Full page loading indicator will appear for 5 seconds and then switch off</p>
+<button id="body-load-btn" onClick="loadBody()" type="button">Body Loading</button>
+<div id="bodyAttach"></div>
+
+<h2>Initialized and instantiated via event (attached to DOM Element)</h2>
+<button onClick="loadDOM()" id="domLoader" type="button">DOM Loading</button>
+<button id="toggle-btn" onClick="toggleLoader('ex3')" type="button">Toggle loader</button>
+<div id="loaderAttach" style="width: 600px; height: 600px;">
+    <p>Here is some text that should appear washed out when the loading indicator is displayed.</p>
+    <p><a href="https://www.google.com">Here is a link to Google that you shouldn't be able to click on</a></p>
+</div>
+<p>&nbsp;</p>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+
+<script type="text/javascript" src="../../jsfiles/loadingIndicator/dist.loadingIndicator.js"></script>
+<script type="text/javascript" src="../../jsfiles/loadingIndicator/dev.loadingIndicator.js"></script>
+<script type="text/javascript" src="../../jsfiles/loadingIndicator/loadingIndicator.js"></script>
+</body>
+</html>
