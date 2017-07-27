@@ -603,7 +603,7 @@ public class DrawerTest extends BaseClass {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(openDrawerLinkElement, "mobile");
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement, "mobile");
         Assert.assertTrue(isDrawerOpened);
 
         commonUtils.click(toggleDrawerLinkElement, "mobile");
@@ -611,7 +611,7 @@ public class DrawerTest extends BaseClass {
         Assert.assertTrue(isDrawerClosed);
 
         commonUtils.click(toggleDrawerLinkElement, "mobile");
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement, "mobile");
         Assert.assertTrue(isDrawerOpened);
 
         commonUtils.click(closeDrawerLinkElement, "mobile");

@@ -1029,7 +1029,7 @@ public class ModalTest extends BaseClass {
         if (!(headerTitleType.contains("with headerTitle"))) {
             Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalHeaderSRTextSpan, "class", "mobile").contains("pe-sr-only"));
         } else {
-            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby", "mobile").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id")));
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby", "mobile").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id", "mobile")));
         }
     }
 

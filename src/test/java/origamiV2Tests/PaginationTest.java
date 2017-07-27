@@ -1,6 +1,7 @@
 package origamiV2Tests;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -12,9 +13,12 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
+
 
 /**
  * Created by Kiran Mohare on 2/13/17.
@@ -31,6 +35,18 @@ public class PaginationTest extends BaseClass {
     private String browser, mobile = "", desktop = "";
     JsonObject jsonObject = null;
     private List<String> newLines = null;
+    JsonParser parser = new JsonParser();
+
+    private String preConfigStr1 = "function init() {";
+    private String preConfigStr2 = "  document.body.dispatchEvent(new CustomEvent('o.InitPagination', ";
+    private String postConfigStr1 = "));}window.onload = init;";
+    JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null, jsonPropsOptionObject = null, jsonPropsOptionsPropertiesObject = null;
+    Map<String, String> detailProperties = null;
+    Map<String, String> propsProperties = null;
+    Map<String, JsonObject> propsConfigMap = null;
+    int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
+    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
+
 
     private boolean firstItemVisible = false, isFirstItemVisibleOnMiddle = false, isFirstItemVisibleOnLast = false, isBlankScreenDisplayed = false;
     private boolean lastItemvisible = false, isLastItemVisibleOnMiddle = false, isLastItemVisibleOnLast = false;
@@ -63,17 +79,14 @@ public class PaginationTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (mobile.equals("off")) {
-            commonUtils.getUrl(baseUrl);
-            Thread.sleep(1000);
-        } else {
-            commonUtils.getUrl(baseUrl, "mobile");
-        }
+        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
+        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
+
     }
 
     /***************
@@ -83,6 +96,8 @@ public class PaginationTest extends BaseClass {
     @Test(testName = "Validate Active Button on Pagination", groups = {"desktop-regression"})
     public void validateActiveBtnOnPaginationTest() throws Exception {
         /** Validating for Active Buttons Highlight */
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         activeFirstItem = commonUtils.getText(paginationPgObj.paginationActiveBtn);
         isActive = commonUtils.assertValue(activeFirstItem, "1", "Active Btn not highlighted");
         Assert.assertTrue(isActive);
@@ -97,6 +112,8 @@ public class PaginationTest extends BaseClass {
     public void validateEllipsesOnPaginationTest() throws Exception {
 
         /** Validating for on Ellipse when first item is active */
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         ellipseBeforeLastItem = commonUtils.getText(paginationPgObj.paginationEllipseBeforeLastItem());
         isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "...", "Ellipse didn't appear before last item");
         Assert.assertTrue(isBeforeLastItem);
@@ -118,7 +135,8 @@ public class PaginationTest extends BaseClass {
     @Test(testName = "Validate Item Clickable", groups = {"desktop-regression"})
     public void validateFirstLastItemVisibleTest() throws Exception {
         /** validating for first and last item visible when item is at first **/
-
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         commonUtils.click(paginationPgObj.paginationFirstItem);
         firstItemVisible = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem);
         lastItemvisible = commonUtils.isElementDisplayed(paginationPgObj.paginationLastItem());
@@ -152,18 +170,17 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(btnEnabledResult);
     }
 
-    @Test(testName = "Validate Internationalization", groups = {"desktop-regression1"})
+    @Test(testName = "Validate Internationalization", groups = {"desktop-regression"})
     public void validateInternationalizationTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "en";
         getTestConfig = "fr";
         word = "locale";
 
         /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", getTestConfig, "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl);
         /** validating French Language **/
         prochainBtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
         isProchain = commonUtils.assertValue(prochainBtn, "Prochain", "French language didnt appear for next btn!!!");
@@ -187,11 +204,10 @@ public class PaginationTest extends BaseClass {
         Assert.assertTrue(isPrev);
     }
 
-    @Test(testName = "Validate default max button", groups = {"desktop-regression"})
+    @Test(testName = "Validate default max button", groups = {"desktop-regressionF"})
     public void validateDefaultMaxBtnTest() throws Exception {
         /** reading initial config and saving in temp.js file **/
         Thread.sleep(2000);
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
@@ -204,28 +220,20 @@ public class PaginationTest extends BaseClass {
         /** validating for default max buttons by checking ellipse **/
         defaultMaxBtn = commonUtils.getText(paginationPgObj.paginationDefaultMaxBtn);
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
-        /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Validate Negative Values", groups = {"desktop-regression1"})
+    @Test(testName = "Validate Negative Values", groups = {"desktop-regression"})
     public void validateNegativeJsValueTest() throws Exception {
-        /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
-        getDefaultConfig = "10";
+        /** changing the initial config **/
         getTestConfig = "-10";
-        word = "items";
-
-        /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", getTestConfig, "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl);
 
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn);
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is not visible!!!");
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
@@ -239,6 +247,8 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"desktop-regression"})
     private void defaultPaginationItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationNextBtn(), cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -264,6 +274,8 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression"})
     private void defaultButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         commonUtils.click(paginationPgObj.paginationNextBtn());
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty);
@@ -280,7 +292,8 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile:Validate Active Button on Pagination", groups = {"mobile-regression"})
     public void validateActiveBtnOnPaginationMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         activeFirstItem = commonUtils.getText(paginationPgObj.paginationActiveBtn, "mobile");
         isActive = commonUtils.assertValue(activeFirstItem, "1", "Active Btn not highlighted");
         Assert.assertTrue(isActive);
@@ -292,7 +305,8 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile:Validate Ellipses on Pagination", groups = {"mobile-regression"})
     public void validateEllipsesOnPaginationMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
 
         /** Validating for on Ellipse when first item is active */
         ellipseBeforeLastItem = commonUtils.getText(paginationPgObj.mobilePaginationEllipseBeforeLastItem(), "mobile");
@@ -315,7 +329,8 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile:Validate Item Clickable", groups = {"mobile-regression"})
     public void validateFirstLastItemVisibleMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         /** validating for first and last item visible when item is at first **/
         commonUtils.click(paginationPgObj.paginationFirstItem, "mobile");
         firstItemVisible = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem, "mobile");
@@ -354,14 +369,14 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile: Validate Internationalization", groups = {"mobile-regression"})
     public void validateInternationalizationMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
         getDefaultConfig = "en";
         getTestConfig = "fr";
         word = "locale";
         /** reading initial config and saving in temp.js file **/
         commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", getTestConfig, "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         Thread.sleep(1000);
         commonUtils.getUrl(baseUrl, "mobile");
 
@@ -389,9 +404,7 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile:Validate default max button", groups = {"mobile-regression"})
     public void validateDefaultMaxBtnMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
         getDefaultConfig = "maxButtons";
         getTestConfig = "//maxButtons";
         word = "maxButtons";
@@ -406,34 +419,28 @@ public class PaginationTest extends BaseClass {
         result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
 
         /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Mobile:Validate Negative Values", groups = {"mobile-regression"})
     public void validateNegativeJsValueMobileTest() throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
         /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
-        getDefaultConfig = "10";
         getTestConfig = "-10";
-        word = "items";
-
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", getTestConfig, "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
         Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl, "mobile");
 
         /** validating for default max buttons by checking ellipse **/
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn, "mobile");
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is visible!!!");
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
         Assert.assertTrue(result);
     }
 
     @Test(testName = "Mobile:Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"mobile-regression"})
     private void defaultPaginationMobileItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(paginationPgObj.mobilePaginationNextBtn(), cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
@@ -445,8 +452,9 @@ public class PaginationTest extends BaseClass {
 
     @Test(testName = "Mobile:Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"mobile-regression"})
     private void defaultMobileButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        commonUtils.getUrl(baseUrl, "mobile");
-        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(),"mobile");
+        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
+        setConfigAndLaunch(detailProperties);
+        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(), "mobile");
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty, "mobile");
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
@@ -460,7 +468,61 @@ public class PaginationTest extends BaseClass {
      * Common Methods
      ****************/
 
-    private String buildJSONObject(String elementId, String locale, int activePage, int items, int maxButtons) {
+    private String buildJSONObjectDetailConfig(String[] detailsPropertiesList) throws IOException {
+        int i = 0;
+        if (!(detailsPropertiesList.length % 2 == 0)) {
+            log.info("Pass even set of parameters.");
+            return null;
+        } else {
+            detailProperties = new LinkedHashMap<String, String>();
+            for (i = 0; i < (detailsPropertiesList.length - 1); i = i + 2) {
+                detailProperties.put(detailsPropertiesList[i], detailsPropertiesList[i + 1]);
+            }
+
+            // Json Parser converts the string into a JSON format, it is best for handling the number format
+            jsonDetailObject = new JsonObject();
+            Object obj = parser.parse(detailProperties.toString());
+            jsonDetailObject.add("detail", (JsonObject) obj);
+
+            beforeFinalFormat = jsonDetailObject.toString().replaceAll(":\"", ":'").replaceAll("\",", "',").replaceAll("\":", ":").replaceAll(",\"", ",").replaceAll("\\{\"", "\\{");
+            finalConfig = preConfigStr1 + preConfigStr2 + beforeFinalFormat + postConfigStr1;
+            return finalConfig;
+
+        }
+    }
+
+    private void setConfigAndLaunch(String[] detailsPropertiesList) throws Exception {
+        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList);
+        commonUtils.changeConfig(paginationJSFilePath, testConfig);
+        Thread.sleep(1000);
+        if (mobile.equals("off")) {
+            commonUtils.getUrl(baseUrl);
+        } else {
+            commonUtils.getUrl(baseUrl, "mobile");
+        }
+    }
+
+
+    private void changeSingleLineConfig(String jsFilePath, String getDefaultConfig, String getTestConfig, String word) throws IOException, InterruptedException {
+        newLines = new ArrayList<String>();
+        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
+            if (line.contains(word)) {
+                newLines.add(line.replace(getDefaultConfig, getTestConfig));
+            } else {
+                newLines.add(line);
+            }
+        }
+        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
+    }
+
+    public String constructPath(String absolutePath) {
+        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
+        return path;
+    }
+
+}
+
+/*private String buildJSONObject(String elementId, String locale, int activePage, int items, int maxButtons) {
         jsonObject = new JsonObject();
         jsonObject.addProperty("elementId", elementId);
         jsonObject.addProperty("locale", locale);
@@ -481,22 +543,4 @@ public class PaginationTest extends BaseClass {
             log.info("Pass even set of parameters.");
         }
         return jsonObject.toString();
-    }
-
-    private void changeSingleLineConfig(String jsFilePath, String getDefaultConfig, String getTestConfig, String word) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            if (line.contains(word)) {
-                newLines.add(line.replace(getDefaultConfig, getTestConfig));
-            } else {
-                newLines.add(line);
-            }
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
-    public String constructPath(String absolutePath) {
-        String path = absolutePath.substring(0, absolutePath.lastIndexOf("origamiV2")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("origamiV2"));
-        return path;
-    }
-}
+    } */

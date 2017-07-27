@@ -7,12 +7,12 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by udhadpa on 5/12/17.
  */
-public class CompoundsLoadingIndicatorPageObjects {
+public class CompoundsLoadingSpinnerPageObjects {
 
     public WebDriver driver = null;
     public AppiumDriver appium = null;
 
-    public CompoundsLoadingIndicatorPageObjects() {
+    public CompoundsLoadingSpinnerPageObjects() {
     }
 
     public By container1 = By.xpath("//*[@id='spinner-target']/div/div[1]");

@@ -219,8 +219,8 @@ echo $TEST_SUITE
 if [[ $TEST_SUITE == "stand_alone" ]]
 then
 install_appHeader master &
-install_contextualHelp master &
 install_drawer master &
+install_contextualHelp master &
 install_avatarDisplay master &
 install_slider master &
 install_alerts master &
