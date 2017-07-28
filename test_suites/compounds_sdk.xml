@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Compounds sdk V0 Test Suite" parallel="classes">
+<suite name="Compounds sdk V0 Test Suite" parallel="classes" thread-count="9">
     <test name="Compounds SDK V0 Tests">
         <groups>
             <run>
-                <include name="desktop-ci"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
        <packages>
