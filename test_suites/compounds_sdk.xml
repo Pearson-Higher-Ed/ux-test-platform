@@ -7,7 +7,7 @@
                 <include name="desktop-ci"/>
             </run>
         </groups>
-        <packages>
+       <packages>
             <package name="compoundsTests"></package>
         </packages>
     </test>

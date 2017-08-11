@@ -2,7 +2,6 @@ package origamiV2Tests;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.Assert;
@@ -37,7 +36,17 @@ public class AppHeaderTest extends BaseClass {
     boolean helpLinkClickable = false, accountSettingsClickable = false, signOutClickable = false, desktopViewUserMenuVisible = false, mobileViewUserMenuVisible = false, signOutVisible = false, accountSettingsVisible = false, isUserName = false, pearsonLogoVisible = false, helpLinkVisible = false, signInLinkVisible = false, pearsonLogoClickable = false;
     boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false, isFocused = false, isbackgroundColor = false, isColor = false, isTextDecoration = false, isTextAlign = false, isCSSProperty = false;
     private static String mobileDevice = "", browser = "", lBrowser = "", setMobile;
-
+    private String preCongigStr1 = "document.addEventListener('DOMContentLoaded', function() {";
+    private String preCongigStr2 = "var element = document.querySelector('.demo-container');";
+    private String preCongigStr3 = "console.info(config);\n" +
+            "\n" +
+            "    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded', {\n" +
+            "        detail: {\n" +
+            "            element: element,\n" +
+            "            config: config\n" +
+            "        }\n" +
+            "    }));\n" +
+            "});";
     JsonObject jsonObject = null;
     JavascriptExecutor js = null;
     WebElement element = null;
@@ -227,9 +236,11 @@ public class AppHeaderTest extends BaseClass {
         bModecourses.put("Physics", "https://example.com/physics");
         bModecourses.put("Chemistry", "https://example.com/chemistry");
 
-        testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-        commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        testConfig = preCongigStr1 + preCongigStr2 + buildJSONObjectForBasicMode("Basic", "Michel", bModecourses) + preCongigStr3;
+        commonUtils.changeConfig(basicJSFilePath, testConfig);
+        Thread.sleep(2000);
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(2000);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
         desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
@@ -311,9 +322,10 @@ public class AppHeaderTest extends BaseClass {
         //testConfig = basicConfig + course1 + "]}";
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("Physics", "https://example.com/physics");
-        testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
+        testConfig = preCongigStr1 + preCongigStr2 + buildJSONObjectForBasicMode("Basic", "Michel", bModecourses) + preCongigStr3;
 
-        commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        //commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        commonUtils.changeConfig(basicJSFilePath, testConfig);
         Thread.sleep(500);
         commonUtils.getUrl(basicModeUrl);
         desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
@@ -374,36 +386,43 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression"}, priority = 1)
     private void listAllCoursesInBasicModeTest() throws Exception {
 
         String[] arr = {"Physics", "Chemistry", "Maths", "", "Account settings", "Terms of Use", "Privacy Policy", "Sign out"};
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
-        //testConfig = basicConfig + course1 + "," + course2 + "," + course3 + "]};";
 
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("Physics", "https://example.com/physics");
         bModecourses.put("Chemistry", "https://example.com/chemistry");
         bModecourses.put("Maths", "https://example.com/maths");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
+        testConfig = preCongigStr1 + preCongigStr2 + buildJSONObjectForBasicMode("Basic", "Michel", bModecourses) + preCongigStr3;
 
-        commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        //commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        commonUtils.changeConfig(basicJSFilePath, testConfig);
+        Thread.sleep(2000);
+        //  commonUtils.changeConfig(basicJSFilePath,testConfig);
         commonUtils.setWindowSize(767, 800);
+        Thread.sleep(2000);
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(2000);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
+        Thread.sleep(2000);
+
         int i;
         for (i = 2; i <= arr.length + 1; i++) {
             xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("i" + 0, i);
             courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
             result = commonUtils.assertValue(courseTextAdded, arr[i - 2], "Error: Course not on " + (i - 1) + "th position");
-            commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
-            //commonUtils.setWindowSize(768, 800);
             Assert.assertTrue(result);
         }
+        commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         commonUtils.setWindowSize(768, 800);
+
     }
 
-    @Test(testName = "BasicMode - Remove one course", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Remove one course", groups = {"desktop-regression"}, priority = 2)
     private void removeOneCourseForBasicModeTest() throws Exception {
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -414,12 +433,16 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        Thread.sleep(2000);
         commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(2000);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
+        Thread.sleep(2000);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 3);
         courseAdded = commonUtils.isElementPresent(By.xpath(xpathForUserMenuDropDownItems));
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
+        Thread.sleep(2000);
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         bModecourses = new LinkedHashMap<String, String>();
         bModecourses.put("Physics", "https://example.com/physics");
@@ -431,6 +454,7 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
+        Thread.sleep(2000);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 4);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
         result = commonUtils.assertValue(courseTextAdded, "Account settings", "Error: Course not removed");
@@ -439,7 +463,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-regression"}, priority = 3)
     private void zeroCoursesForBasicModeTest() throws Exception {
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -447,11 +471,12 @@ public class AppHeaderTest extends BaseClass {
         bModecourses = new LinkedHashMap<String, String>();
         //bModecourses.put("Physics", "https://example.com/physics");
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
-
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
+        Thread.sleep(2000);
         commonUtils.setWindowSize(767, 800);
         Thread.sleep(500);
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(2000);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));

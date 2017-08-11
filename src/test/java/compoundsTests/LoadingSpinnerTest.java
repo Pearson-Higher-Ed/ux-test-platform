@@ -1,6 +1,7 @@
 package compoundsTests;
 
-import compounds.compoundsPageObjects.CompoundsLoadingIndicatorPageObjects;
+import com.google.gson.JsonObject;
+import compounds.compoundsPageObjects.CompoundsLoadingSpinnerPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,29 +13,45 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by udhadpa on 5/12/17.
  */
-public class LoadingIndicatorTest extends BaseClass {
+public class LoadingSpinnerTest extends BaseClass {
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private final String loadingIndicatorURL = "http://localhost:8000/src/main/java/compounds/fixtures/loadingIndicator.html";
-    private final String absloadingIndicatorJSFilePath = new File("compounds/jsfiles/loadingIndicator/loadingIndicator.js").getAbsolutePath();
-    private final String loadingIndicatorJSFilePath = constructPath(absloadingIndicatorJSFilePath);
-    private final String absTempJSFilePath = new File("compounds/jsfiles/loadingIndicator/temp.js").getAbsolutePath();
+    //private final String loadingSpinnerURL = "http://localhost:8000/src/main/java/compounds/fixtures/loadingSpinner.html";
+    private final String loadingSpinnerURL = "http://localhost:8000/src/main/java/compounds/fixtures/loadingSpinner.html";
+    private final String absloadingSpinnerJSFilePath = new File("compounds/jsfiles/loadingSpinner/spinner.js").getAbsolutePath();
+    private final String loadingSpinnerJSFilePath = constructPath(absloadingSpinnerJSFilePath);
+    private final String absTempJSFilePath = new File("compounds/jsfiles/loadingSpinner/temp.js").getAbsolutePath();
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private String cssPropertyType = "", height = "", width = "", bgColor = "", animationName = "", animationPlayState = "", animationDelay = "", animationTimeFunc = "", animationDuration = "", animationCount = "", animationDirection = "", animationFillMode = "", rotate = "", borderRadius = "", browserLogs = "";
     private boolean isCSSProperty = false, isHeight = false, isWidth = false, isBgColor = false, isAnimationName = false, isAnimationPlayState = false, isAnimationDelay = false, isAnimationTimeFunc = false, isAnimationDuration = false, isAnimationCount = false, isAnimationDirection = false, isAnimationFillMode = false, isRotate = false, isBorderRadius = false, result = false;
     List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
 
-    final static Logger log = Logger.getLogger(LoadingIndicatorTest.class.getName());
-    CompoundsLoadingIndicatorPageObjects indicatorPgObj = null;
+    JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null, jsonPropsOptionObject = null, jsonPropsOptionsPropertiesObject = null;
+    Map<String, String> detailProperties = null;
+    Map<String, String> propsProperties = null;
+    Map<String, JsonObject> propsConfigMap = null;
+    int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
+    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
+
+    private String preConfigStr1 = "function init() {";
+    private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
+    private String postConfigStr1 = "));}window.onload = init;";
+    String[] detailsPropertiesList = new String[]{"elementId", "spinner-target", "componentName", "LoadingSpinner"};
+    String[] propsPropertiesList = new String[]{};
+
+    final static Logger log = Logger.getLogger(LoadingSpinnerTest.class.getName());
+    CompoundsLoadingSpinnerPageObjects indicatorPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void LoadingIndicatorTestBeforeClass() {
-        indicatorPgObj = new CompoundsLoadingIndicatorPageObjects();
+        indicatorPgObj = new CompoundsLoadingSpinnerPageObjects();
         browser = BaseClass.sauceBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
@@ -52,7 +69,8 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void heightWidthContainerTest(String containerType, By container, String expHtWidth) throws IOException {
+    private void heightWidthContainerTest(String containerType, By container, String expHtWidth) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         height = commonUtils.getCSSValue(container, "height");
         width = commonUtils.getCSSValue(container, "width");
 
@@ -78,7 +96,8 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"desktop-regression"})
-    private void animationOnCirclesTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws InterruptedException {
+    private void animationOnCirclesTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         animationName = commonUtils.getCSSValue(elem, "animation-name");
         animationPlayState = commonUtils.getCSSValue(elem, "animation-play-state");
         animationDelay = commonUtils.getCSSValue(elem, "animation-delay");
@@ -119,7 +138,8 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void validateCirclePropertiesTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) {
+    private void validateCirclePropertiesTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         bgColor = commonUtils.getCSSValue(elem, "background-color");
         height = commonUtils.getCSSValue(elem, "height");
         width = commonUtils.getCSSValue(elem, "width");
@@ -151,7 +171,8 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"desktop-regression"})
-    private void container2AngleTest(String[] expRotate) {
+    private void container2AngleTest(String[] expRotate) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform");
         isRotate = commonUtils.assertCSSProperties("transform", rotate, expRotate);
         if (!isRotate) {
@@ -161,28 +182,24 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @DataProvider(name = "Verify Incorrect Values Test Data")
-    public Object[][] getIncorrectValuesData(){
+    public Object[][] getIncorrectValuesData() {
         return new Object[][]{
-                {"elementId:'spinner-target',","elementId: 'xyz-target',","Target container is not a DOM element"},
-                {"componentName:'LoadingSpinner'","componentName: 'xyz',","type is invalid "}
+                {"xyz-target", "LoadingSpinner", "Target container is not a DOM element"},
+                {"spinner-target", "xyz", "type is invalid "}
         };
     }
 
-    @Test(testName = "Verify Incorrect Values Test",dataProvider = "Verify Incorrect Values Test Data" ,groups = "desktop-regression")
-    private void incorrectValuesLoadingIndicatorTest(String originalLine, String replaceLine,String errorMsg) throws Exception {
+    @Test(testName = "Verify Incorrect Values Test", dataProvider = "Verify Incorrect Values Test Data", groups = "desktop-regression")
+    private void incorrectValuesLoadingIndicatorTest(String elemId, String compName, String errorMsg) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
         }
-        commonUtils.readInitialConfig(loadingIndicatorJSFilePath, tempJSFilePath);
-        //Provide an incorrect element ID
-        commonUtils.replaceLineInAFile(loadingIndicatorJSFilePath, originalLine, replaceLine);
-        Thread.sleep(1000);
-        commonUtils.getUrl(loadingIndicatorURL);
+        String[] detailsPropertiesList = new String[]{"elementId", elemId, "componentName", compName};
+        String[] propsPropertiesList = new String[]{};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         Thread.sleep(1000);
         browserLogs = commonUtils.browserLogs().toString();
         result = commonUtils.assertValue(browserLogs.contains(errorMsg), true, errorMsg + " error msg is NOT seen as per SPEC");
-        commonUtils.writeInitialConfig(tempJSFilePath, loadingIndicatorJSFilePath);
-
         Assert.assertTrue(result);
     }
 
@@ -191,7 +208,8 @@ public class LoadingIndicatorTest extends BaseClass {
      */
 
     @Test(testName = "Mobile : Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"mobile-regression"})
-    private void heightWidthContainerMobileTest(String containerType, By container, String expHtWidth) throws IOException {
+    private void heightWidthContainerMobileTest(String containerType, By container, String expHtWidth) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         height = commonUtils.getCSSValue(container, "height", "mobile");
         width = commonUtils.getCSSValue(container, "width", "mobile");
 
@@ -202,10 +220,11 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"mobile-regression"})
-    private void animationOnCirclesMobileTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws InterruptedException {
+    private void animationOnCirclesMobileTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
         if (setAppium.equals("android")) {
             throw new SkipException("Skip animation tests on android");
         }
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         animationName = commonUtils.getCSSValue(elem, "animation-name", "mobile");
         animationPlayState = commonUtils.getCSSValue(elem, "animation-play-state", "mobile");
         animationDelay = commonUtils.getCSSValue(elem, "animation-delay", "mobile");
@@ -231,7 +250,8 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"mobile-regression"})
-    private void validateCirclePropertiesMobileTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) {
+    private void validateCirclePropertiesMobileTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         height = commonUtils.getCSSValue(elem, "height", "mobile");
         width = commonUtils.getCSSValue(elem, "width", "mobile");
@@ -255,10 +275,11 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"mobile-regression"})
-    private void container2AngleMobileTest(String[] expRotate) {
+    private void container2AngleMobileTest(String[] expRotate) throws Exception {
         if (setAppium.equals("android")) {
             throw new SkipException("Skip animation tests on android");
         }
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform", "mobile");
         isRotate = commonUtils.assertCSSProperties("transform", rotate, expRotate);
         if (!isRotate) {
@@ -271,7 +292,61 @@ public class LoadingIndicatorTest extends BaseClass {
     /*****************
      * Common methods
      *****************/
+    private String buildJSONObjectDetailConfig(String[] detailsPropertiesList, String[] propsPropertiesList) throws IOException {
+        int i = 0;
+        if (!(detailsPropertiesList.length % 2 == 0)) {
+            log.info("Pass even set of parameters.");
+            return null;
+        } else {
+            detailProperties = new LinkedHashMap<String, String>();
+            for (i = 0; i < (detailsPropertiesList.length - 1); i = i + 2) {
+                detailProperties.put(detailsPropertiesList[i], detailsPropertiesList[i + 1]);
+            }
+            propsProperties = new LinkedHashMap<String, String>();
+            for (i = 0; i < (propsPropertiesList.length - 1); i = i + 2) {
+                propsProperties.put(propsPropertiesList[i], propsPropertiesList[i + 1]);
+            }
 
+            //building the props properties
+            jsonPropsObject = new JsonObject();
+            jsonPropsPropertiesObject = new JsonObject();
+            for (Map.Entry<String, String> entry : propsProperties.entrySet()) {
+                jsonPropsPropertiesObject.addProperty(entry.getKey(), entry.getValue());
+            }
+
+            //packaging props properties into "props" attribute
+            propsConfigMap = new LinkedHashMap<String, JsonObject>();
+            propsConfigMap.put("props", jsonPropsPropertiesObject);
+
+            //building the detail properties like: elementId and componentName
+            jsonDetailObject = new JsonObject();
+            jsonDetailPropertiesObject = new JsonObject();
+            for (Map.Entry<String, String> entry : detailProperties.entrySet()) {
+                jsonDetailPropertiesObject.addProperty(entry.getKey(), entry.getValue());
+            }
+            for (Map.Entry<String, JsonObject> entry : propsConfigMap.entrySet()) {
+                jsonDetailPropertiesObject.addProperty(entry.getKey(), String.valueOf(entry.getValue()));
+            }
+
+            //packaging all properties including props into "detail" attribute
+            jsonDetailObject.add("detail", jsonDetailPropertiesObject);
+
+            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("'\\[", "\\['").replaceAll("\\]'", "'\\]").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\]\\}", "\\]").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function");
+            finalConfig = preConfigStr1 + preConfigStr2 + beforeFinalFormat + postConfigStr1;
+            return finalConfig;
+        }
+    }
+
+    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
+        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
+        commonUtils.changeConfig(loadingSpinnerJSFilePath, testConfig);
+        Thread.sleep(1000);
+        if (setMobile.equals("off")) {
+            commonUtils.getUrl(loadingSpinnerURL);
+        } else {
+            commonUtils.getUrl(loadingSpinnerURL, "mobile");
+        }
+    }
 
     private String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("compounds")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("compounds"));
@@ -281,17 +356,12 @@ public class LoadingIndicatorTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        commonUtils.readInitialConfig(loadingIndicatorJSFilePath, tempJSFilePath);
-        if (setMobile.equals("on")) {
-            commonUtils.getUrl(loadingIndicatorURL, "mobile");
-        } else {
-            commonUtils.getUrl(loadingIndicatorURL);
-        }
+        commonUtils.readInitialConfig(loadingSpinnerJSFilePath, tempJSFilePath);
     }
 
     @AfterMethod(alwaysRun = true)
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
-        commonUtils.writeInitialConfig(tempJSFilePath, loadingIndicatorJSFilePath);
+        commonUtils.writeInitialConfig(tempJSFilePath, loadingSpinnerJSFilePath);
     }
 }
