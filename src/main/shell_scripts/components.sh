@@ -4,7 +4,7 @@ echo "component: $component"
 echo "feature_branch: $feature_branch"
 
 install_elements_sdk() {
-echo -e "******************************\\n    Installing elements sdk V1   \\n******************************"
+echo -e "******************************\\n    Installing elements sdk: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/elements.git
 cd elements
 git checkout $1
@@ -17,7 +17,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pea
 }
 
 install_compounds_sdk() {
-echo -e "******************************\\n    Installing compounds sdk V0   \\n******************************"
+echo -e "******************************\\n    Installing compounds sdk: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/compounds.git
 cd compounds
 git checkout $1
@@ -32,7 +32,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-ele
 }
 
 install_appHeader(){
-echo -e "******************************\\n    Installing app-header V2  \\n******************************"
+echo -e "******************************\\n    Installing app-header: $1  \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
 cd app-header
 git checkout $1
@@ -45,7 +45,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pears
 }
 
 install_contextualHelp(){
-echo -e "******************************\\n    Installing contextual-help V2   \\n******************************"
+echo -e "******************************\\n    Installing contextual-help: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/contextual-help.git
 cd contextual-help
 git checkout $1
@@ -58,7 +58,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pears
 }
 
 install_drawer(){
-echo -e "******************************\\n    Installing drawer    \\n******************************"
+echo -e "******************************\\n    Installing drawer: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/drawer.git
 cd drawer
 git checkout $1
@@ -68,7 +68,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/drawer/build/dist.drawer.js ~/buil
 }
 
 install_componentArchetype(){
-echo -e "******************************\\n    Installing component-archetype    \\n******************************"
+echo -e "******************************\\n    Installing component-archetype: $1  \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/component-archetype.git
 cd component-archetype
 git checkout $1
@@ -81,7 +81,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/node_modules/p
 }
 
 install_avatarDisplay(){
-echo -e "******************************\\n    Installing avatar-display    \\n******************************"
+echo -e "******************************\\n    Installing avatar-display: $1    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/avatar-display.git
 cd avatar-display
 git checkout $1
@@ -94,7 +94,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearso
 }
 
 install_slider(){
-echo -e "******************************\\n    Installing slider    \\n******************************"
+echo -e "******************************\\n    Installing slider: $1    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/slider.git
 cd slider
 git checkout $1
@@ -107,7 +107,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/slider.css ~/build/Pearson-
 }
 
 install_alerts(){
-echo -e "******************************\\n    Installing alerts    \\n******************************"
+echo -e "******************************\\n    Installing alerts: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/alerts.git
 cd alerts
 git checkout $1
@@ -121,7 +121,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elemen
 }
 
 install_pagination(){
-echo -e "******************************\\n    Installing pagination    \\n******************************"
+echo -e "******************************\\n    Installing pagination: $1    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/pagination.git
 cd pagination
 git checkout $1
@@ -134,7 +134,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-el
 }
 
 install_modal(){
-echo -e "******************************\\n    Installing modal    \\n******************************"
+echo -e "******************************\\n    Installing modal: $1   \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/modal.git
 cd modal
 git checkout $1
@@ -148,7 +148,7 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-element
 }
 
 install_loadingIndicator(){
-echo -e "******************************\\n    Installing loading Indicator    \\n******************************"
+echo -e "******************************\\n    Installing loading Indicator: $1    \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/loading-indicator.git
 cd loading-indicator
 git checkout $1
