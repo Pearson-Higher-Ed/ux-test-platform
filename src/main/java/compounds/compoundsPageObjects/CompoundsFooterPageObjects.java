@@ -19,4 +19,5 @@ public class CompoundsFooterPageObjects {
     public By copyRightText = By.xpath("//div[@id='footer-target']/footer/p");
     public By footer = By.xpath("//div[@id='footer-target']/footer");
     public By linkList = By.xpath("//div[@id='footer-target']/footer/ul");
+    public By firstLink = By.xpath("//*[@id='footer-target']/footer/ul/li[1]/a");
 }
