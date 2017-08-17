@@ -401,7 +401,7 @@ public class CalendarTest extends BaseClass {
         }
         actualPreviousMonth = calendarPgObj.getMonth();
         if (!(expPreviousMonth.equals(actualPreviousMonth))) {
-            log.info("click on back icon by " + operationType + " is not working as per the spec");
+            log.info("click on back button by " + operationType + " is not working as per the spec");
             Assert.assertTrue(false);
         }
 
@@ -420,7 +420,7 @@ public class CalendarTest extends BaseClass {
         }
         actualNextMonth = calendarPgObj.getMonth();
         if (!(expNextMonth.equals(actualNextMonth))) {
-            log.info("click on front icon by " + operationType + " is not working as per the spec");
+            log.info("click on front button by " + operationType + " is not working as per the spec");
             Assert.assertTrue(false);
         }
     }
@@ -539,7 +539,7 @@ public class CalendarTest extends BaseClass {
 
         id = commonUtils.getAttributeValue(calendarPgObj.month, "id");
         ariaLabelledBy = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-labelledby");
-        isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby is not set right as per the spec");
+        isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby not pointing to the month id is not set right as per the spec");
 
         isPeSrOnly = commonUtils.getAttributeValue(By.xpath(currentDateXpath + "/div/div/span"), "class").equals("pe-sr-only");
 
@@ -689,7 +689,7 @@ public class CalendarTest extends BaseClass {
         setConfigAndLaunch(calendarWhiteUrl, detailsPropertiesList, propsPropertiesList, calendarWhiteJSFilePath);
 
         isCalendarLoaded = commonUtils.isElementPresent(calendarPgObj.calendarContainer);
-        result = commonUtils.assertValue(isCalendarLoaded, false, "Calendar is loaded inspite of incorrect config for " + incorrectConfigType);
+        result = commonUtils.assertValue(isCalendarLoaded, false, "Calendar is loaded in spite of incorrect config for " + incorrectConfigType);
         Assert.assertTrue(result);
     }
 
@@ -928,7 +928,7 @@ public class CalendarTest extends BaseClass {
         actualPreviousMonth = calendarPgObj.getMonth("mobile");
 
         if (!(expPreviousMonth.equals(actualPreviousMonth))) {
-            log.info("click on back icon by " + operationType + " is not working as per the spec");
+            log.info("click on back button by " + operationType + " is not working as per the spec");
             Assert.assertTrue(false);
         }
 
@@ -940,7 +940,7 @@ public class CalendarTest extends BaseClass {
 
         actualNextMonth = calendarPgObj.getMonth("mobile");
         if (!(expNextMonth.equals(actualNextMonth))) {
-            log.info("click on front icon by " + operationType + " is not working as per the spec");
+            log.info("click on front button by " + operationType + " is not working as per the spec");
             Assert.assertTrue(false);
         }
     }
@@ -1021,7 +1021,7 @@ public class CalendarTest extends BaseClass {
 
         id = commonUtils.getAttributeValue(calendarPgObj.month, "id", "mobile");
         ariaLabelledBy = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-labelledby", "mobile");
-        isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby is not set right as per the spec");
+        isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby not pointing to the month id is not set right as per the spec");
 
         isPeSrOnly = commonUtils.getAttributeValue(By.xpath(currentDateXpath + "/div/div/span"), "class", "mobile").equals("pe-sr-only");
 
