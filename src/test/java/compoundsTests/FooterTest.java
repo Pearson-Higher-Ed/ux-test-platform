@@ -16,6 +16,7 @@ import utilities.BaseClass;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,6 +35,11 @@ public class FooterTest extends BaseClass {
     private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false, isPresent = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element", incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfSecondOpenBrace = 0, indexOfSecondFromLastCloseBrace = 0, indexOfFirstCloseBrace = 0;
+
+    private String preConfigStr1 = "function init() {";
+    private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
+    private String postConfigStr1 = "));}window.onload = init;";
+
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null;
     Map<String, String> links = null, detailPropertiesMap = null, propsPropertiesMap = null;
     Map<String, JsonObject> propsConfigMap = null;
@@ -201,6 +207,46 @@ public class FooterTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @DataProvider(name = "AnchorTag Test Data")
+    public Object[][] anchorTagTestData() {
+        return new Object[][]{
+                {"_self"},
+                {"_blank"}
+        };
+    }
+
+    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "desktop-regression")
+    private void anchorTagTest(String anchorTagType) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+        links = new LinkedHashMap<String, String>();
+        links.put("First link", "first");
+        links.put("Second link", "second");
+        linksArrayValue = buildListsArray(links);
+
+        String[] propsPropertiesList = null;
+        if (anchorTagType.equals("_self")) {
+            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "links", linksArrayValue};
+        } else if (anchorTagType.equals("_blank")) {
+            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "anchorTarget", "_blank", "links", linksArrayValue};
+        }
+
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        commonUtils.click(compFooterPgObj.firstLink);
+
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        if (anchorTagType.equals("_self")) {
+            driver.switchTo().window(tabs.get(0));
+            if (!(tabs.size() == 1)) {
+                Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
+            }
+        } else if (anchorTagType.equals("_blank")) {
+            driver.switchTo().window(tabs.get(0));
+            if (!(tabs.size() == 2)) {
+                Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
+            }
+        }
+    }
+
     /************
      * Mobile Tests
      ************/
@@ -264,6 +310,36 @@ public class FooterTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @Test(testName = "Mobile: Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "mobile-regression1")//code needs to be tested once sauce appium issue is fixed.
+    private void anchorTagMobileTest(String anchorTagType) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+        links = new LinkedHashMap<String, String>();
+        links.put("First link", "first");
+        links.put("Second link", "second");
+        linksArrayValue = buildListsArray(links);
+
+        String[] propsPropertiesList = null;
+        if (anchorTagType.equals("_self")) {
+            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "links", linksArrayValue};
+        } else if (anchorTagType.equals("_blank")) {
+            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "anchorTarget", "_blank", "links", linksArrayValue};
+        }
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+        ArrayList<String> tabs = new ArrayList<String>(appium.getWindowHandles());
+
+        if (anchorTagType.equals("_self")) {
+            appium.switchTo().window(tabs.get(0));
+            if (!(tabs.size() == 1)) {
+                Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
+            }
+        } else if (anchorTagType.equals("_blank")) {
+            appium.switchTo().window(tabs.get(0));
+            if (!(tabs.size() == 2)) {
+                Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
+            }
+        }
+    }
+
     /*****************
      * Common Methods
      *****************/
@@ -288,10 +364,6 @@ public class FooterTest extends BaseClass {
             return null;
         } else {
             fileContentsInAString = commonUtils.readFileAsString(footerJSFilePath);
-            indexOfSecondOpenBrace = commonUtils.nthIndexOf(fileContentsInAString, "{", 2);
-            preFixConfig = fileContentsInAString.substring(0, indexOfSecondOpenBrace);
-            indexOfSecondFromLastCloseBrace = commonUtils.nthIndexOf(fileContentsInAString, "}", 6) + 1;
-            postFixConfig = fileContentsInAString.substring(indexOfSecondFromLastCloseBrace, fileContentsInAString.length());
 
             //prepare the map for detail properties
             detailPropertiesMap = new LinkedHashMap<String, String>();
@@ -331,10 +403,8 @@ public class FooterTest extends BaseClass {
             jsonDetailObject.add("detail", jsonDetailPropertiesObject);
 
             beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("'\\[", "\\[").replaceAll("\\]'", "'\\]").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\}\\]", "'\\}\\]").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("\\},\\{text", "'\\},\\{text").replaceAll("'false'", "false").replaceAll("'false", "false").replaceAll("'true'", "true");
-            indexOfFirstCloseBrace = commonUtils.nthIndexOf(beforeFinalFormat, "}", 1);
 
-            finalFormat = preFixConfig + beforeFinalFormat.substring(0, indexOfFirstCloseBrace) + "}" + beforeFinalFormat.substring(indexOfFirstCloseBrace + 1) + postFixConfig;
-            finalConfig = finalFormat;
+            finalConfig = preConfigStr1 + "\n" + preConfigStr2 + beforeFinalFormat + postConfigStr1;
             return finalConfig;
         }
     }
