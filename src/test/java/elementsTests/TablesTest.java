@@ -117,10 +117,9 @@ public class TablesTest extends BaseClass {
     private void basicTableRowsCSSPropTest() {
         table = driver.findElement(tablePgObj.basicTable);
         listElements = table.findElements(By.tagName("tr"));
-        List<WebElement> list = null;
         for (int i = 1; i <= listElements.size() - 1; i++) {
             element = driver.findElement(By.xpath(tablePgObj.hoverOnRow("basic-table", i)));
-            list = element.findElements(By.tagName("th"));
+            List<WebElement> list = element.findElements(By.tagName("th"));
             list.addAll(element.findElements(By.tagName("td")));
             for (WebElement e : list) {
                 fontSize = e.getCssValue("font-size");
@@ -164,11 +163,10 @@ public class TablesTest extends BaseClass {
         }
         table = driver.findElement(tablePgObj.basicTable);
         listElements = table.findElements(By.tagName("tr"));
-        List<WebElement> list = null;
         for (int i = 1; i <= listElements.size() - 1; i++) {
             commonUtils.hoverOnElement(By.xpath(tablePgObj.hoverOnRow("basic-table", i)));
             element = driver.findElement(By.xpath(tablePgObj.hoverOnRow("basic-table", i)));
-            list = element.findElements(By.tagName("th"));
+            List<WebElement> list = element.findElements(By.tagName("th"));
             list.addAll(element.findElements(By.tagName("td")));
             for (WebElement e : list) {
                 backgroundColor = e.getCssValue("background-color");
@@ -243,11 +241,10 @@ public class TablesTest extends BaseClass {
         }
         table = driver.findElement(tablePgObj.selectableTable);
         listElements = table.findElements(By.tagName("tr"));
-        List<WebElement> list = null;
         for (int i = 1; i <= listElements.size() - 1; i++) {
             commonUtils.hoverOnElement(By.xpath(tablePgObj.hoverOnRow("selectable-table", i)));
             element = driver.findElement(By.xpath(tablePgObj.hoverOnRow("selectable-table", i)));
-            list = element.findElements(By.tagName("td"));
+            List<WebElement> list = element.findElements(By.tagName("td"));
             for (WebElement e : list) {
                 String cssPropertyType = "";
                 for (String cssProperty : borderTop) {
