@@ -13,8 +13,8 @@
         pe_ajax.responseType = "document";
         pe_ajax.onload = function (e) {
             document.body.insertBefore(
-                    pe_ajax.responseXML.documentElement,
-                    document.body.childNodes[0]
+                pe_ajax.responseXML.documentElement,
+                document.body.childNodes[0]
             );
         }
         pe_ajax.send();

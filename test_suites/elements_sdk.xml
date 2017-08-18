@@ -17,6 +17,7 @@
             <class name="elementsTests.ButtonsTest"/>
             <class name="elementsTests.IconsTest"/>
             <class name="elementsTests.FormsTest"/>
+            <class name="elementsTests.TablesTest"/>
         </classes>
     </test>
 </suite>
