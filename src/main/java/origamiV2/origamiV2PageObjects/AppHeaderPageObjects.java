@@ -19,8 +19,8 @@ public class AppHeaderPageObjects {
     public By headerBanner=By.xpath("//header");
 
     //Signed Out Mode Page Objects
-    public By pearsonLogo = By.xpath("//div[@class='o-header__logo o-header__logo--pearson']/img[@alt='console home']");
-    public By clickablePearsonLogo=By.xpath("//div[@class='o-header__brand']/a/div/img[@alt='console home']");
+    public By pearsonLogo = By.xpath("//div[@class='o-header__logo o-header__logo--pearson']/img[@alt='home']");
+    public By clickablePearsonLogo=By.xpath("//div[@class='o-header__brand']/a/div/img[@alt='home']");
     public By helpLink = By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']/a/i/img[@alt='help']");
     public By clickableHelpLink=By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']/a");
     public By styledHelpLink=By.xpath("//li[@class='o-header__nav-item o-app-header__nav-item-help']");
