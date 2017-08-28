@@ -327,6 +327,7 @@ public class AppHeaderTest extends BaseClass {
         //commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.changeConfig(basicJSFilePath, testConfig);
         Thread.sleep(500);
+        driver.manage().deleteAllCookies();
         commonUtils.getUrl(basicModeUrl);
         desktopViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.desktopViewUserMenu);
         userName = driver.findElement(appHeaderPgObj.desktopViewUserMenu).getText();
