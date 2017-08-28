@@ -438,6 +438,8 @@ public class CalendarTest extends BaseClass {
     private void disablePastPropTest(String calendarColor, String contrast, String propValidation, String url, String calendarJSFilePath, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath);
+        driver.manage.deleteAllCookies();
+        driver.get(url);
 
         int noOfPastDates = driver.findElements(By.xpath("//div[contains(@class,'pe-cal-past')]")).size();
         if (!((noOfPastDates == 0))) {
