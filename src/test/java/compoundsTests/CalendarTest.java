@@ -442,6 +442,7 @@ public class CalendarTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath);
         driver.manage().deleteAllCookies();
+        Thread.sleep(1000);
         driver.get(url);
 
         int noOfPastDates = driver.findElements(By.xpath("//div[contains(@class,'pe-cal-past')]")).size();
