@@ -30,7 +30,7 @@ public class CalendarTest extends BaseClass {
 
     private static String browser = "";
     private String testConfig = "", fileContentsInAString = "", fontSize = "", lineHeight = "", fontWeight = "", height = "", testName = "", clickedDate = "", month = "", ariaLabelledBy = "", activeDescendant = "", width = "", cursor = "", textValue = "", abbr = "", bgColor = "", color = "", borderRadius = "", borderTop = "", borderRight = "", borderLeft = "", beforeFinalFormat = "", finalConfig = "", padding = "", borderBottom = "", tabIndex = "", id = "", actualCurrentDate = "", actualNextDayToCurrentDate = "", actualCurrentMonth = "", actualCurrentYear = "", actualNextMonth = "", actualPreviousMonth = "", currentDateXpath = "", alertText = "";
-    private boolean isFontSize = false, isLineHeight = false, isFontWeight = false, isHeight = false, isWidth = false, isActiveDescendant = false, isAriaLabelledBy = false, isPeSrOnly = false, isTextValue = false, isAbbr = false, isCursor = false, isBgColor = false, isColor = false, isBorderRadius = false, isPadding = false, isTabIndex = false, isCurrentDate = false, isPastDate = false, isCalendarLoaded = false, result = false, isAlertText = false;
+    private boolean isFontSize = false, isLineHeight = false, isFontWeight = false, isHeight = false, isWidth = false, isActiveDescendant = false, isAriaLabelledBy = false, isPeSrOnly = false, isTextValue = false, isAbbr = false, isCursor = false, isBgColor = false, isColor = false, isBorderRadius = false, isPadding = false, isTabIndex = false, isCurrentDate = false, isPastDate = false, isCalendarLoaded = false, result = false, isAlertText = false, actualNextDayToLastDate;
     private String preConfigStr1 = "function init() {";
     private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
     private String postConfigStr1 = "));}window.onload = init;";
@@ -156,8 +156,11 @@ public class CalendarTest extends BaseClass {
 
     @Test(testName = "Selected Date Test", dataProvider = "Selected Date Test Data", groups = "desktop-regression")
     private void selectedDateTest(String operationType, String calendarColor, String contrast, String url, String calendarJSFilePath, By selectedDate, String[] expColor, String[] expBgColor, String[] expBorderRadiusValue, String[] expFontWeight) throws Exception {
-        if (operationType.equals("keys") && (browser.equals("firefox") || browser.equals("safari") || (browser.equals("ie")) || browser.equals("edge"))) {
+        if ((operationType.equals("keys") && (browser.equals("firefox") || browser.equals("safari") || (browser.equals("ie")) || browser.equals("edge")))) {
             throw new SkipException("focus operations not supported in this browser driver");
+        }
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", contrast};
@@ -439,6 +442,7 @@ public class CalendarTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath);
         driver.manage().deleteAllCookies();
+        Thread.sleep(1000);
         driver.get(url);
 
         int noOfPastDates = driver.findElements(By.xpath("//div[contains(@class,'pe-cal-past')]")).size();
@@ -526,6 +530,9 @@ public class CalendarTest extends BaseClass {
 
     @Test(testName = "Aria Test", groups = "desktop-regression")
     private void ariaTest() throws Exception {
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", "false"};
         setConfigAndLaunch(calendarWhiteUrl, detailsPropertiesList, propsPropertiesList, calendarWhiteJSFilePath);
@@ -642,6 +649,9 @@ public class CalendarTest extends BaseClass {
 
     @Test(testName = "A Valid Date Test", dataProvider = "A Valid Date Test Data", groups = {"desktop-regression", "desktop-ci"})
     private void anyValidDateTest(String calendarColor, String contrast, String url, String calendarJSFilePath, By validDateDiv, String expHeight, String expWidth, String expCursor, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", contrast};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath);
@@ -700,6 +710,9 @@ public class CalendarTest extends BaseClass {
      **/
     @Test(testName = "Mobile: A Valid Date Test", dataProvider = "A Valid Date Test Data", groups = "mobile-regression")
     private void anyValidDateMobileTest(String calendarColor, String contrast, String url, String calendarJSFilePath, By validDateDiv, String expHeight, String expWidth, String expCursor, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", contrast};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath, "mobile");
@@ -758,6 +771,9 @@ public class CalendarTest extends BaseClass {
     private void selectedDateMobileTest(String operationType, String calendarColor, String contrast, String url, String calendarJSFilePath, By selectedDate, String[] expColor, String[] expBgColor, String[] expBorderRadiusValue, String[] expFontWeight) throws Exception {
         if (operationType.equals("keys")) {
             throw new SkipException("focus operations not supported in this browser driver");
+        }
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", contrast};
@@ -820,7 +836,7 @@ public class CalendarTest extends BaseClass {
         if (!isWidth) {
             log.info("'inner-calendar' width for calendar: " + calendarColor + " is not as per the spec");
         }
-        Assert.assertTrue(isHeight && isWidth);
+        Assert.assertTrue(isWidth);
 
         testPaddings(calendarColor, calendarContainer, expPaddingValue, "mobile");
 
@@ -1008,6 +1024,9 @@ public class CalendarTest extends BaseClass {
 
     @Test(testName = "Mobile: Aria Test", groups = "mobile-regression")
     private void ariaMobileTest() throws Exception {
+        if (actualNextDayToLastDate) {
+            throw new SkipException("There is no valid date on the calendar, since today is the current date");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", "false"};
         setConfigAndLaunch(calendarWhiteUrl, detailsPropertiesList, propsPropertiesList, calendarWhiteJSFilePath, "mobile");
@@ -1167,6 +1186,7 @@ public class CalendarTest extends BaseClass {
                     String[] actualCurrentDateArray = actualCurrentDate.split(" ");
                     actualCurrentDate = actualCurrentDateArray[0];
                     actualNextDayToCurrentDate = calendarPgObj.xpathForDate(i, j + 1);
+                    actualNextDayToLastDate = commonUtils.getAttributeValue(By.xpath(actualNextDayToCurrentDate), "class").equals("pe-cal-cell");
                     currentDateXpath = calendarPgObj.xpathForDate(i, j);
                     break;
                 }
@@ -1179,6 +1199,8 @@ public class CalendarTest extends BaseClass {
         if (browser.equals("ie")) {
             expCurrentDate = expCurrentDate + "Current";
         }
+        log.info("expCurrentDate: " + expCurrentDate);
+        log.info("actualCurrentDate: " + actualCurrentDate);
         if (actualCurrentDate.equals(expCurrentDate) && actualCurrentMonth.equals(expCurrentMonth) && actualCurrentYear.equals(expCurrentYear)) {
             return true;
         }
@@ -1200,6 +1222,7 @@ public class CalendarTest extends BaseClass {
                     String[] actualCurrentDateArray = actualCurrentDate.split(" ");
                     actualCurrentDate = actualCurrentDateArray[0];
                     actualNextDayToCurrentDate = calendarPgObj.xpathForDate(i, j + 1);
+                    actualNextDayToLastDate = commonUtils.getAttributeValue(By.xpath(actualNextDayToCurrentDate), "class", "mobile").equals("pe-cal-cell");
                     currentDateXpath = calendarPgObj.xpathForDate(i, j);
                     break;
                 }
@@ -1208,6 +1231,8 @@ public class CalendarTest extends BaseClass {
                 break;
             }
         }
+        log.info("expCurrentDate: " + expCurrentDate);
+        log.info("actualCurrentDate: " + actualCurrentDate);
         if (actualCurrentDate.equals(expCurrentDate) && actualCurrentMonth.equals(expCurrentMonth) && actualCurrentYear.equals(expCurrentYear)) {
             return true;
         }
