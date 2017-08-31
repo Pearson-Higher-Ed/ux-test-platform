@@ -11,7 +11,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_java_common</artifactId>
-            <version>2.1.22</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>io.appium</groupId>
