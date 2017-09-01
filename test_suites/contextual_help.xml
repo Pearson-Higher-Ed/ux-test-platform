@@ -8,7 +8,7 @@
             </run>
         </groups>
         <classes>
-            <class name="origamiV2Tests.ContextualHelpTest"/>
+            <class name="standAloneTests.ContextualHelpTest"/>
         </classes>
     </test>
 </suite>

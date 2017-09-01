@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputs</title>
+    <link rel="stylesheet" href="../../css/elements.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+
+</script>
+
+<!-- Inputs - Fancy(single line) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Fancy (single line)</h2>
+<div>Inputs (single line)
+    <label id="sl-text-label-input" class="pe-textLabelInput__label" for="a">First Name</label>
+    <input id="sl-text-input" type="text" class="pe-textInput" id="a" placeholder="First Name" value="First Name">
+    <span id="input-underline" class="pe-input_underline"></span>
+</div>
+
+<div>Inputs - Fancy (single line) without value
+    <label class="pe-textLabelInput__label" for="g">First Name</label>
+    <input id="sl-text-input-without-value" type="text" class="pe-textInput" id="g" placeholder="First Name">
+    <span class="pe-input_underline"></span>
+</div>
+
+<!-- Inputs - Fancy(single line - error) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Fancy (single line - error)</h2>
+<div>
+    <label id="sl-text-label-input-error" class="pe-textLabelInput__label--label_error" for="b">First Name</label>
+    <input id="sl-text-input-error" type="text" class="pe-textInput--input_error" id="b" placeholder="First Name"
+           aria-describedby="pe-input--error_message-fancy">
+    <span id="input-underline-error" class="pe-inputError_underline"></span>
+    <p id="pe-input--error_message-fancy" class="pe-input--error_message">this is an error message</p>
+</div>
+
+<!-- Inputs - Fancy(single line - disabled) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Fancy (single line - disabled)</h2>
+<div>
+    <label id="sl-text-label-input-disabled" class="pe-textLabelInput__label" for="c">First Name</label>
+    <input id="sl-text-input-disabled" type="text" class="pe-textInput" id="c" value="Donald" disabled/>
+</div>
+
+<!-- Inputs - Fancy(single line - read only) -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Fancy (single line - read only)</h2>
+<div>
+    <label id="sl-text-label-input-readonly" class="pe-textLabelInput__label" for="d">First Name</label>
+    <input id="sl-text-input-readonly" type="text" class="pe-textInput--input_readonly" id="d" value="Donald" readonly/>
+</div>
+
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line)</h2>
+<div>Inputs - Basic (single line) without value
+    <label id="basic-sl-label" class="pe-textLabelInput__label" for="z">Label</label>
+    <input type="text" class="pe-textInput--basic" id="z" placeholder="Placeholder"/>
+</div>
+
+<div>Inputs - Basic (single line) with value
+    <label class="pe-textLabelInput__label" for="z-without-value">Label</label>
+    <input type="text" class="pe-textInput--basic" id="z-without-value" placeholder="Placeholder" value="First Name"/>
+</div>
+
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line - error)</h2>
+<div>
+    <label id="basic-error-label" class="pe-textLabelInput__label--label_error" for="y">Email address</label>
+    <input type="text" class="pe-textInput--basic_error" id="y" placeholder="Error"/>
+    <span id="pe-input--error_message-basic" class="pe-input--error_message">this is an error message</span>
+</div>
+
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs - Basic (single line - disabled)</h2>
+<div>
+    <label id="basic-disabled-label" class="pe-textLabelInput__label" for="x">Label</label>
+    <input type="text" class="pe-textInput--basic" id="x" placeholder="Disabled" disabled/>
+</div>
+
+<!-- Password - Basic New-->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Basic </h2>
+<div>
+    <label id="password-input-basic-label" for="password-input-basic" class="pe-textLabelInput__label">First
+        Name</label>
+    <input type="password" id="password-input-basic" placeholder="First Name" class="pe-textInput--basic">
+    <span class=""></span>
+    <button id="password-input-basic-showbutton" class="pe-textInput__showButton-basic">show</button>
+    <span id="password-input-basic-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-basic-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password Error - Basic -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Basic - Error </h2>
+<div>
+    <label id="password-input-basic-error-label" for="password-input-basic-error"
+           class="pe-textLabelInput__label--label_error">First Name</label>
+    <input type="password" id="password-input-basic-error" placeholder="First Name" class="pe-textInput--basic_error">
+    <span class=""></span>
+    <button id="password-input-basic-error-showbutton" class="pe-textInput__showButton-basic">show</button>
+    <span id="password-input-basic-error-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-basic-error-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password Error - Disabled -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Basic - Disabled </h2>
+<div>
+    <label id="password-input-basic-disabled-label" for="password-input-basic-disabled"
+           class="pe-textLabelInput__label">First Name</label>
+    <input type="password" id="password-input-basic-disabled" placeholder="First Name" disabled=""
+           class="pe-textInput--basic">
+    <span class=""></span>
+    <button id="password-input-basic-disabled-showbutton" disabled="" class="pe-textInput__showButton-basic--disabled">
+        show
+    </button>
+    <span id="password-input-basic-disabled-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-basic-disabled-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password Error - Read Only -->
+<h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Basic - ReadOnly</h2>
+<div>
+    <label id="password-input-basic-readOnly-label" for="password-input-basic-readOnly"
+           class="pe-textLabelInput__label">First Name</label>
+    <input type="password" id="password-input-basic-readOnly" placeholder="First Name" disabled="" readonly=""
+           class="pe-textInput--input_readonly">
+    <button id="password-input-basic-readOnly-showbutton" class="pe-textInput__showButton">show</button>
+    <span id="password-input-basic-readOnly-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-basic-readOnly-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password - Fancy -->
+<div>
+    <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Fancy </h2>
+    <label id="password-input-fancy-label" for="password-input-fancy" class="pe-textLabelInput__label">First
+        Name</label>
+    <input type="password" id="password-input-fancy" placeholder="First Name" class="pe-textInput">
+    <span id="password-input-fancy-underline" class="pe-input_underline"></span>
+    <button id="password-input-fancy-showbutton" class="pe-textInput__showButton">show</button>
+    <span id="password-input-fancy-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-fancy-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password - Fancy Error-->
+<div>
+    <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Fancy Error</h2>
+    <label id="password-input-fancy-error-label" for="password-input-fancy-error"
+           class="pe-textLabelInput__label--label_error">First Name</label>
+    <input type="password" id="password-input-fancy-error" placeholder="First Name" class="pe-textInput--input_error">
+    <span id="password-input-fancy-error-underline" class="pe-inputError_underline"></span>
+    <button id="password-input-fancy-error-showbutton" id="showbutton-PasswordInputFancyError"
+            class="pe-textInput__showButton--error">show
+    </button>
+    <span id="password-input-fancy-error-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-fancy-error-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password - Fancy Disabled-->
+<div>
+    <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Fancy Disabled </h2>
+    <label id="password-input-fancy-disabled-label" for="password-input-fancy-disabled"
+           class="pe-textLabelInput__label">First Name</label>
+    <input type="password" id="password-input-fancy-disabled" placeholder="First Name" disabled="" class="pe-textInput">
+    <span class=""></span>
+    <button id="password-input-fancy-disabled-showbutton" disabled="" class="pe-textInput__showButton--disabled">show
+    </button>
+    <span id="password-input-fancy-disabled-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-fancy-disabled-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Password - Fancy Read Only-->
+<div>
+    <h2 style="background-color: #C7C7C7;margin-right: 300px">Inputs (Password) Fancy Read Only </h2>
+    <label id="password-input-fancy-readOnly-label" for="password-input-fancy-readOnly"
+           class="pe-textLabelInput__label">First Name</label>
+    <input type="password" id="password-input-fancy-readOnly" placeholder="First Name" disabled="" readonly=""
+           class="pe-textInput--input_readonly">
+    <button id="password-input-fancy-readOnly-showbutton" class="pe-textInput__showButton">show</button>
+    <span id="password-input-fancy-readOnly-info" class="pe-input--info_message">This is an info message</span>
+    <span id="password-input-fancy-readOnly-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!--Check Boxes -->
+<h2 style="background-color: lightpink;margin-right: 300px">Check Box</h2>
+<h3>Unchecked and Checked - Normal</h3>
+<div>
+    <p>Unchecked</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-unchecked" value="1"/>
+        <label for="checkboxInput-unchecked">Bacon</label>
+        <span id="checkbox-unchecked">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<br/>
+<div>
+    <p>Checked</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-checked" value="1" checked/>
+        <label for="checkboxInput-checked">Pastrami</label>
+        <span id="checkbox-checked">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<br/>
+<h3>Unchecked and Checked - Focus</h3>
+<div>
+    <p>Unchecked Focus</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-unchecked-focus" value="1"/>
+        <label for="checkboxInput-unchecked-focus">Ham</label>
+        <span id="checkbox-unchecked-focus">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<br/>
+<div>
+    <p>Checked Focus</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-checked-focus" value="1" checked/>
+        <label for="checkboxInput-checked-focus">Steak</label>
+        <span id="checkbox-checked-focus">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<br/>
+<h3>Unchecked and Checked - Disabled</h3>
+<div>
+    <p>Disabled Checked</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-unchecked-disabled" value="1" checked disabled/>
+        <label for="checkboxInput-unchecked-disabled">Tripe</label>
+        <span id="checkbox-checked-disabled">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<br/>
+<div>
+    <p>Disabled Unchecked</p>
+    <div class="pe-checkbox">
+        <input type="checkbox" id="checkboxInput-checked-disabled" value="1" disabled/>
+        <label for="checkboxInput-checked-disabled">Meatball</label>
+        <span id="checkbox-unchecked-disabled">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+<h3>CheckBox State</h3>
+<div>
+    <div class="pe-checkbox" id="checkboxInput">
+        <input type="checkbox" id="checkboxInput-state" value="1"/>
+        <label for="checkboxInput">Test State</label>
+        <span id="checkbox-state">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+
+<h3>CheckBox With Long Label</h3>
+<div>
+    <div class="pe-checkbox" style="width: 150px">
+        <input type="checkbox" id="longLabel" value="1"/>
+        <label for="longLabel">Check box with long long long long label</label>
+        <span>
+        <svg aria-hidden="true" focusable="false" class="pe-icon--check-sm-18">
+          <use xlink:href="#check-sm-18"></use>
+        </svg>
+      </span>
+    </div>
+</div>
+
+<!-- Select Input -->
+<h2 style="background-color: lightgoldenrodyellow;margin-right: 300px">Select Input </h2>
+<div>
+    <label id="select-input-label" class="pe-textLabelInput__label" for="select-input-basic">Send message to</label>
+    <div id="select-input-div" class="pe-select-container">
+        <select class="pe-selectInput--basic" id="select-input-basic">
+            <option>Which option will you choose?</option>
+            <option>One</option>
+            <option>Two</option>
+            <option>Three</option>
+        </select>
+        <svg id="icon-dropdown-open-18" aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+</div>
+
+<!-- Select Inputs - Basic (error) -->
+<h4 style="color:blue;">Select Input Basic - Error</h4>
+<div>
+    <label id="select-input-label-error" class="pe-textLabelInput__label--label_error" for="select-input-basic-error">Error
+        label</label>
+    <div id="select-input-error-div" class="pe-select-container-error">
+        <select class="pe-selectInput--basic" id="select-input-basic-error">
+            <option value="uno">One</option>
+            <option value="dos">Two</option>
+            <option value="tres">Three</option>
+            <option value="quatro">Four</option>
+        </select>
+        <svg id="select-input-error-icon" aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <p id="select-input-error-message" class="pe-input--error_message">error message</p>
+</div>
+
+<!-- Select Inputs - Basic (disabled) -->
+<h4 style="color:blue;">Select Input Basic - Disabled</h4>
+<div>
+    <label id="select-input-label-disabled" class="pe-textLabelInput__label"
+           for="select-input-basic-disabled">Error label</label>
+    <div id="select-input-disabled-div" class="pe-select-container-disabled">
+        <select class="pe-select-container-disabled" id="select-input-basic-disabled" disabled>
+            <option value="uno">One</option>
+            <option value="dos">Two</option>
+            <option value="tres">Three</option>
+            <option value="quatro">Four</option>
+        </select>
+        <svg id="select-input-disabled-icon" aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <p id="select-input-dsiabled-message" class="pe-input--error_message">error message</p>
+</div>
+
+<!-- Select Inputs - Basic (read Only) -->
+<h4 style="color:blue;">Select Input Basic - ReadOnly</h4>
+<div>
+    <label id="select-input-label-readOnly" class="pe-textLabelInput__label" for="select-input-basic-readOnly">Error
+        label</label>
+    <div id="select-input-readOnly-div" class="pe-select-container-readonly">
+        <select class="pe-select-container-readonly" id="select-input-basic-readOnly">
+            <option value="uno">One</option>
+            <option value="dos">Two</option>
+            <option value="tres">Three</option>
+            <option value="quatro">Four</option>
+        </select>
+        <svg id="select-input-readOnly-icon" aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <p id="select-input-readOnly-message" class="pe-input--error_message">error message</p>
+</div>
+
+<!-- Select Input Fancy -->
+<h4 style="color:blue;">Select Input Fancy</h4>
+<div>
+    <label id="select-input-fancy-label" for="select-input-fancy" class="pe-textLabelInput__label">Select Label:</label>
+    <div id="select-input-fancy-div" class="pe-select-container--fancy">
+        <select id="select-input-fancy" class="pe-selectInput--fancy">
+            <option>ipad</option>
+            <option>mac</option>
+            <option>iphone</option>
+        </select>
+        <span id="select-input-fancy-underline" class="pe-input_underline"></span>
+        <svg aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <span id="select-input-fancy-info" class="pe-input--info_message">This is an info message</span>
+    <span id="select-input-fancy-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Select Input Fancy Error -->
+<h4 style="color:blue;">Select Input Fancy - Error </h4>
+<div>
+    <label id="select-input-fancy-error-label" for="select-input-fancy-error"
+           class="pe-textLabelInput__label--label_error">Select Label:</label>
+    <div id="select-input-fancy-error-div" class="pe-select-container-fancy-error">
+        <select id="select-input-fancy-error" class="pe-selectInput-fancy-error">
+            <option>ipad</option>
+            <option>mac</option>
+            <option>iphone</option>
+        </select>
+        <span id="select-input-fancy-error-underline" class="pe-inputError_underline"></span>
+        <svg aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <span id="select-input-fancy-error-info" class="pe-input--info_message">This is an info message</span>
+    <span id="select-input-fancy-error-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Select Input Fancy Disabled -->
+<h4 style="color:blue;">Select Input Fancy - Disabled </h4>
+<div>
+    <label id="select-input-fancy-disabled-label" for="select-input-fancy-disabled"
+           class="pe-textLabelInput__label">Select Label:</label>
+    <div id="select-input-fancy-disabled-div" class="pe-select-container-fancy-disabled">
+        <select id="select-input-fancy-disabled" disabled="" class="pe-selectInput-fancy-disabled">
+            <option>ipad</option>
+            <option>mac</option>
+            <option>iphone</option>
+        </select>
+        <span class=""></span>
+        <svg aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <span id="select-input-fancy-disabled-info" class="pe-input--info_message">This is an info message</span>
+    <span id="select-input-fancy-disabled-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Select Input Fancy Read Only -->
+<h4 style="color:blue;">Select Input Fancy - ReadOnly </h4>
+<div>
+    <label id="select-input-fancy-readOnly-label" for="select-input-fancy-readOnly" class="pe-textLabelInput__label">Select
+        Label:</label>
+    <div id="select-input-fancy-readOnly-div" class="pe-select-container-fancy-readonly">
+        <select id="select-input-fancy-readOnly" disabled="" class="pe-selectInput-fancy-readonly">
+            <option>ipad</option>
+            <option>mac</option>
+            <option>iphone</option>
+        </select>
+        <span class=""></span>
+        <svg aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dropdown-open-18"></use>
+        </svg>
+    </div>
+    <span id="select-input-fancy-readOnly-info" class="pe-input--info_message">This is an info message</span>
+    <span id="select-input-fancy-readOnly-errorMsg" class="pe-input--error_message">This is an error message</span>
+</div>
+
+<!-- Multiple Line text -->
+<div>
+    <label id="multitext-Input-Label" class="pe-textLabelInput__label" for="multiLine-text-input">Multi-line
+        label</label>
+    <textarea class="pe-multiLineText" id="multiLine-text-input" cols="30" rows="5"
+              placeholder="Many words displayed over multiple lines.">
+    </textarea>
+</div>
+
+<!-- Multiple Line Text - Error -->
+<div>
+    <label id="multitext-input-label-error" class="pe-textLabelInput__label--label_error"
+           for="multiLine-text-input-error">Multi-line label</label>
+    <textarea class="pe-multiLineText--error" id="multiLine-text-input-error" cols="30" rows="5"
+              placeholder="Many words displayed over multiple lines.">
+</textarea>
+</div>
+
+<!-- Multiple Line Text - Disabled -->
+<div>
+    <label id="multitext-input-label-disabled" class="pe-textLabelInput__label"
+           for="multiLine-text-input-disabled">Multi-line label</label>
+    <textarea class="pe-multiLineText--disabled" id="multiLine-text-input-disabled" cols="30" rows="5"
+              placeholder="Many words displayed over multiple lines." disabled>
+</textarea>
+</div>
+
+<!-- Multiple Line Text - Read Only -->
+<div>
+    <label id="multitext-input-label-readOnly" class="pe-textLabelInput__label" for="multiLine-text-input-readOnly">Multi-line
+        label</label>
+    <textarea class="pe-multiLineText--readOnly" id="multiLine-text-input-readOnly" cols="30" rows="5"
+              placeholder="Many words displayed over multiple lines." disabled>
+</textarea>
+</div>
+
+
+<!-- Radio Buttons -->
+<!-- unselected, selected, and disabled unselected-->
+<h4 style="color:blue;"> unselected, selected, and disabled unselected </h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Which scotch do you like with your cookies?</legend>
+        <div id="unselected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="unselected-radio">
+            <label id="label-unselected" for="unselected-radio">T&#233; Bheag (unselected)</label>
+            <span id="unselected-span">
+            <svg id="unselected-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+          </svg>
+    </span>
+        </div>
+
+        <div id="selected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="selected-radio" checked="checked">
+            <label id="label-selected" for="selected-radio">Monkey Shoulder (selected)</label>
+            <span id="selected-span">
+            <svg id="selected-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+
+        <div id="disabled-unselected-radio-div" class="pe-radio">
+            <input type="radio" name="scotch" id="disabled-unselected-radio" disabled>
+            <label id="label-disabled-unselected" for="disabled-unselected-radio">Talisker 18 years (disabled
+                unselected)</label>
+            <span id="disabled-unselected-span">
+            <svg id="disabled-unselected-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+    </fieldset>
+</div>
+
+<!-- unselected and disabled selected versions-->
+<h4 style="color:blue;">unselected and disabled selected versions</h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Which kinds of cookies do you like with your scotch?</legend>
+        <div id="unselected-focus-radio-div" class="pe-radio">
+            <input type="radio" name="cookie" id="unselected-focus-radio">
+            <label id="label-unselected-focus" for="unselected-focus-radio">Chocolate Chip (unselected)</label>
+            <span id="unselected-focus-span" style="border-color:#047a9c;">
+            <svg id="unselected-focus-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+
+        <div id="disabled-selected-radio-div" class="pe-radio">
+            <input type="radio" name="cookie" id="disabled-selected-radio" disabled checked>
+            <label id="label-disabled-selected" for="disabled-selected-radio">Oreo (disabled selected)</label>
+            <span id="disabled-selected-span">
+            <svg id="disabled-selected-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+    </fieldset>
+</div>
+
+<!-- unselected and focused selected versions -->
+<h4 style="color:blue;">unselected and focused selected versions</h4>
+<div>
+    <fieldset class="pe-fieldset">
+        <legend>Choose a meat</legend>
+        <div id="unselected-radio-btn-div" class="pe-radio">
+            <input type="radio" name="meat" id="unselected-radio-btn">
+            <label id="label-unselected-btn" for="unselected-radio-btn">Bacon (unselected)</label>
+            <span id="unselected-radio-btn-span">
+            <svg id="unselected-radio-btn-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+
+        <div id="selected-focus-radio-div" class="pe-radio">
+            <input type="radio" name="meat" id="selected-focus-radio" checked>
+            <label id="label-selected-focus" for="selected-focus-radio">Short Ribs (focused selected)</label>
+            <span id="selected-focus-span" style="border-color:#047a9c;">
+            <svg id="selected-focus-svg" aria-hidden="true" focusable="false" class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+            </svg>
+            </span>
+        </div>
+    </fieldset>
+</div>
+
+</body>
+</html>
