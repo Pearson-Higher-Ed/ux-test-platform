@@ -1,9 +1,12 @@
 package standAloneTests;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
@@ -13,8 +16,12 @@ import standAlone.standAlonePageObjects.AppHeaderPageObjects;
 import standAlone.standAlonePageObjects.ContextualHelpPageObjects;
 import utilities.BaseClass;
 
-import java.io.File;
+import java.io.*;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,6 +90,7 @@ public class ContextualHelpTest extends BaseClass {
     List<String> helpTopicsList = null;
     AppHeaderPageObjects appHeaderPgObj = null;
     ContextualHelpPageObjects conxHelpPgObj = null;
+    JavascriptExecutor js  = null;
 
     @DataProvider(name = "ConxHelp with AppHeader Test Data")
     public Object[][] getConxHelpWithAppHeaderTestData() {
@@ -1528,8 +1536,60 @@ public class ContextualHelpTest extends BaseClass {
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException {
         System.out.println("_________________________________________________");
+        js = (JavascriptExecutor) driver;
+        Object str = js.executeScript("return window.__coverage__;");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String coverage = gson.toJson(str);
+        System.out.println("coverage: " + coverage);
+
+        //setting up http post request
+        java.net.URL url = null;
+        try {
+            url = new URL("http://localhost:3000/coverage/client");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.setConnectTimeout(5000);//5 secs
+        connection.setReadTimeout(5000);//5 secs
+
+        try {
+            connection.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+
+        OutputStreamWriter out = null;
+        try {
+            out = new OutputStreamWriter(connection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.write(coverage);
+        out.flush();
+        out.close();
+
+        int res = connection.getResponseCode();
+
+        System.out.println(res);
+
+        InputStream is = connection.getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        connection.disconnect();
     }
 
     @BeforeClass(alwaysRun = true)

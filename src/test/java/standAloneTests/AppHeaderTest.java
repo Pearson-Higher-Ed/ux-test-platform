@@ -1,5 +1,7 @@
 package standAloneTests;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
@@ -13,6 +15,12 @@ import utilities.BaseClass;
 
 import java.io.*;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -297,7 +305,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression1"})
     private void accountSettingsClickableForBasicModeTest() throws IOException, InterruptedException {
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
@@ -1312,6 +1320,7 @@ public class AppHeaderTest extends BaseClass {
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
+        Thread.sleep(1500);
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
     }
 
@@ -1321,8 +1330,60 @@ public class AppHeaderTest extends BaseClass {
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException {
         System.out.println("_________________________________________________");
+        js = (JavascriptExecutor) driver;
+        Object str = js.executeScript("return window.__coverage__;");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String coverage = gson.toJson(str);
+        System.out.println("coverage: " + coverage);
+
+        //setting up http post request
+        URL url = null;
+        try {
+            url = new URL("http://localhost:3000/coverage/client");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.setConnectTimeout(5000);//5 secs
+        connection.setReadTimeout(5000);//5 secs
+
+        try {
+            connection.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+
+        OutputStreamWriter out = null;
+        try {
+            out = new OutputStreamWriter(connection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.write(coverage);
+        out.flush();
+        out.close();
+
+        int res = connection.getResponseCode();
+
+        System.out.println(res);
+
+        InputStream is = connection.getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        connection.disconnect();
     }
 
     @BeforeClass(alwaysRun = true)
@@ -1342,5 +1403,10 @@ public class AppHeaderTest extends BaseClass {
         } else {
             textDecorationProperty = "text-decoration-line";
         }
+    }
+    @AfterClass(alwaysRun = true)
+    private void afterClass() throws IOException, InterruptedException {
+        commonUtils.getUrl("http://localhost:3000/coverage");
+        Thread.sleep(30000);
     }
 }

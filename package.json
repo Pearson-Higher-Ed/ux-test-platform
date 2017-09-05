@@ -5,6 +5,8 @@
   },
   "devDependencies": {
     "pearson-elements": "^1.0.6",
+    "nyc": "^11.2.0",
+    "js-beautify": "^1.6.14",
     "@pearson-components/app-header": "^2.0.3"
   }
 }

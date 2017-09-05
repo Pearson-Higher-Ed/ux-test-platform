@@ -7,7 +7,24 @@
     <name>ux-test-platform</name>
     <description>UX-Test-Platform</description>
 
+    <properties>
+        <sonar.language>js</sonar.language>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.projectKey>app-header</sonar.projectKey>
+        <sonar.projectName>standalone: app-header</sonar.projectName>
+        <sonar.projectDescription>app-header</sonar.projectDescription>
+        <sonar.sources>${project.basedir}/src/main/java/origamiV2/jsfiles/appHeader/dist.app-header.js</sonar.sources>
+        <sonar.exclusions>${project.basedir}/src/main/java/compounds</sonar.exclusions>
+        <sonar.javascript.coveragePlugin>lcov</sonar.javascript.coveragePlugin>
+        <sonar.javascript.lcov.reportPath>${project.basedir}/src/main/java/coverage/appHeader/coverage/lcov.info</sonar.javascript.lcov.reportPath>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.1</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
