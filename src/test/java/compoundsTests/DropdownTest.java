@@ -436,6 +436,14 @@ public class DropdownTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
         lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
 
+        System.out.println("padding left ::" +paddingLeft);
+        System.out.println("padding right ::" +paddingRight);
+        System.out.println("padding bottom ::" +paddingBottom);
+        System.out.println("padding top ::" +paddingTop);
+        System.out.println("font size ::" +fontSize);
+        System.out.println("line height ::" +lineHeight);
+
+
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of option button for " + dropdownType + " is not as per spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of " + dropdownType + " is not as per spec");
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTop, "Padding-top of " + dropdownType + " is not as per spec");
