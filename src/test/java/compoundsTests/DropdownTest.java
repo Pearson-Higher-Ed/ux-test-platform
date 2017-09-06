@@ -321,7 +321,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isDropdownListBox);
     }
 
-    @Test(testName = "Dismiss Drop Down Esc Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "desktop-ci")
+    @Test(testName = "Dismiss Drop Down Esc Test", dataProvider = "Tab And Enter On trigger Test Data", groups = {"desktop-ci", "desktop-regression"})
     public void dismissDropDownEscTest(int listNum, String dropdownType, By trigger) throws Exception {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");
