@@ -117,14 +117,14 @@ public class DropdownTest extends BaseClass {
     @DataProvider(name = "Dropdown Options Test Data")
     public Object[][] getDataOptionsDropdownTestData() {
         return new Object[][]{
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
 
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
 
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px", "16.000001px"}},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
         };
     }
 
