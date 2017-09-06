@@ -419,7 +419,7 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression1")
     private void optionsLabelDropdownMobileTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String expLineHt) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
