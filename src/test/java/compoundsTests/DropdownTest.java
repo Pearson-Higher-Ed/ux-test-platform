@@ -26,10 +26,10 @@ public class DropdownTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", browserLogs = "", dismiss = "",getDefaultConfig = "", getTestConfig = "";
+    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", browserLogs = "", dismiss = "", getDefaultConfig = "", getTestConfig = "";
     private String borderTop = "", borderRight = "", borderLeft = "", borderBottom = "";
     boolean isCSSProperty = false, isBackgroundColor = false, result = false, isDropdownPanelVisible = false;
-    private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", titleText = "", word = "", word1 = "", word2 ="", testName = "", borderRadius = "", padding = "";
+    private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", titleText = "", word = "", word1 = "", word2 = "", testName = "", borderRadius = "", padding = "";
     String paneItems = "";
     private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false, isTitleText = false, isBorderRadius = false, isPadding = false;
     private String preConfigStr1 = "var dropdown = React.createElement(Dropdown,";
@@ -89,7 +89,7 @@ public class DropdownTest extends BaseClass {
     @DataProvider(name = "Border - Label Dropdown Test Data")
     public Object[][] getBorderDataLabelDropdownTestData() {
         return new Object[][]{
-                {2, new String[] {"text", "button", "icon"}, new By[]{dropdownPgObj.textLabel, dropdownPgObj.buttonDropdown, dropdownPgObj.iconDropdownActivator}, new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"12px", "12px"}, new String[]{"2px", "2px", "2px", "2px"}},
+                {2, new String[]{"text", "button", "icon"}, new By[]{dropdownPgObj.textLabel, dropdownPgObj.buttonDropdown, dropdownPgObj.iconDropdownActivator}, new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"1px", "solid", "#C7C7C7"}, new String[]{"12px", "12px"}, new String[]{"2px", "2px", "2px", "2px"}},
         };
     }
 
@@ -99,7 +99,7 @@ public class DropdownTest extends BaseClass {
         String type;
         int i;
 
-        for(i=0;i<(dropdownType.length);i++) {
+        for (i = 0; i < (dropdownType.length); i++) {
             type = dropdownType[i];
             setConfig(type, paneArray);
             Thread.sleep(1000);
@@ -149,7 +149,7 @@ public class DropdownTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + dropdownType + " is not as per spec");
         islineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHt);
         if (!islineHeight) {
-            log.info("line-height of " + dropdownType +  "is not as per spec");
+            log.info("line-height of " + dropdownType + "is not as per spec");
         }
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight);
     }
@@ -436,12 +436,12 @@ public class DropdownTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
         lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
 
-        System.out.println("padding left ::" +paddingLeft);
-        System.out.println("padding right ::" +paddingRight);
-        System.out.println("padding bottom ::" +paddingBottom);
-        System.out.println("padding top ::" +paddingTop);
-        System.out.println("font size ::" +fontSize);
-        System.out.println("line height ::" +lineHeight);
+        System.out.println("padding left ::" + paddingLeft);
+        System.out.println("padding right ::" + paddingRight);
+        System.out.println("padding bottom ::" + paddingBottom);
+        System.out.println("padding top ::" + paddingTop);
+        System.out.println("font size ::" + fontSize);
+        System.out.println("line height ::" + lineHeight);
 
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of option button for " + dropdownType + " is not as per spec");
@@ -686,11 +686,11 @@ public class DropdownTest extends BaseClass {
 
     private String buildDropDownItemsArray(int paneArraySize) {
         paneArrayList = new ArrayList<String>();
-        if (paneArraySize == 0){
+        if (paneArraySize == 0) {
             paneItems = "";
         }
-        for(int i=1; i<paneArraySize+1; i++){
-            paneItems = "React.createElement(DropdownItem, { label: 'list item "+i+"', type:'link'}), React.createElement(DropdownItem, { type: 'divider'}),";
+        for (int i = 1; i < paneArraySize + 1; i++) {
+            paneItems = "React.createElement(DropdownItem, { label: 'list item " + i + "', type:'link'}), React.createElement(DropdownItem, { type: 'divider'}),";
             paneArrayList.add(paneItems);
         }
         return paneArrayList.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",,", ",");
@@ -716,7 +716,7 @@ public class DropdownTest extends BaseClass {
                 jsonPropsPropertiesObject.addProperty(entry.getKey(), entry.getValue());
             }
 
-            beforeFinalFormat = jsonPropsPropertiesObject.toString()+",";
+            beforeFinalFormat = jsonPropsPropertiesObject.toString() + ",";
             finalFormat = preConfigStr1 + beforeFinalFormat + paneArray + postConfigStr;
             finalConfig = finalFormat;
             return finalConfig;
@@ -732,11 +732,10 @@ public class DropdownTest extends BaseClass {
         if (dropdownType.equals("text")) {
             String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
             testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
-        } else if(dropdownType.equals("icon")) {
+        } else if (dropdownType.equals("icon")) {
             String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
             testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
-        }
-        else{
+        } else {
             String[] propsPropertiesList = new String[]{"mobileTitle", "mobileTitle", "type", dropdownType, "label", "text", "id", "text"};
             testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
         }
