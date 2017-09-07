@@ -1,17 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Compounds sdk V0 Test Suite" parallel="tests" thread-count="9">
+<suite name="Compounds sdk V0 Test Suite" parallel="classes" thread-count="9">
     <test name="Compounds SDK V0 Tests">
         <groups>
             <run>
-                <include name="mobile-regression1"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
-       <!--<packages>-->
-            <!--<package name="compoundsTests"></package>-->
-       <!--</packages>-->
-        <classes>
-            <class name="compoundsTests.DropdownTest"/>
-        </classes>
+       <packages>
+            <package name="compoundsTests"></package>
+       </packages>
     </test>
 </suite>
