@@ -117,14 +117,14 @@ public class DropdownTest extends BaseClass {
     @DataProvider(name = "Dropdown Options Test Data")
     public Object[][] getDataOptionsDropdownTestData() {
         return new Object[][]{
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
 
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
 
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px", "15.9999px"}},
         };
     }
 
@@ -419,22 +419,8 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @DataProvider(name = "Dropdown Options Test Data Mobile")
-    public Object[][] getDataOptionsDropdownMobileTestData1() {
-        return new Object[][]{
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem2, "0px", "0px", "0px", "0px", "14px", new String[]{"16.1px"}},
-        };
-    }
-
-    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data Mobile", groups = "mobile-regression1")
-    private void optionsLabelDropdownMobileTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String expLineHt) throws InterruptedException, IOException {
+    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression1")
+    private void optionsLabelDropdownMobileTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
