@@ -24,8 +24,10 @@ public class CompoundsDropdownPageObjects {
     public By textDropdownItem3 = By.xpath("(.//*[@id='text-dropdown']/li[@role='presentation'])[3]");
     public By textDropdownDivider = By.xpath(".//*[@id='text-dropdown']/li[@class='divider-container']");
 
-    public By iconDropdownActivator = By.xpath("//button[@class='dropdown-activator']");
-    public By iconBtnSvg = By.xpath("//button[@class='dropdown-activator']//*[local-name() = 'svg']");
+    //public By iconDropdownActivator = By.xpath("//button[@class='dropdown-activator']");
+    //public By iconBtnSvg = By.xpath("//button[@class='dropdown-activator']//*[local-name() = 'svg']");
+    public By iconDropdownActivator = By.xpath("//*[@id='dropdown-target']/div/button");
+    public By iconBtnSvg = By.cssSelector("#dropdown-target > div > button > svg");
 
     public By buttonDropdown = By.xpath(".//*[@class='pe-btn dropdown-activator']");
     public By buttonText = By.xpath(".//*[@class='pe-btn dropdown-activator']/div");
