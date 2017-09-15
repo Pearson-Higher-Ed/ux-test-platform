@@ -643,6 +643,30 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isColor && isBackgroundColor && isLineHeight);
     }
 
+    @DataProvider(name = "Button Grp Test Data")
+    public Object[][] getBtnGroupTest() {
+        return new Object[][]{
+                {"'Group1-Btn1'", btnPgObj.grp1Btn1, new String[]{"2px", "2px", "0px", "0px"}},
+                {"'Group1-Btn2'", btnPgObj.grp1Btn2, new String[]{"0px", "0px", "2px", "2px"}},
+                {"'Group2-Btn1'", btnPgObj.grp2Btn1, new String[]{"2px", "2px", "0px", "0px"}},
+                {"'Group2-Btn2'", btnPgObj.grp2Btn2, new String[]{"0px", "0px", "0px", "0px"}},
+                {"'Group2-Btn3'", btnPgObj.grp2Btn3, new String[]{"0px", "0px", "0px", "0px"}},
+                {"'Group2-Btn4'", btnPgObj.grp2Btn4, new String[]{"0px", "0px", "2px", "2px"}}
+        };
+    }
+
+    //Btn group
+    @Test(testName = "Button Group Test", dataProvider ="Button Grp Test Data", groups = "desktop-regression")
+    private void btnGroupTest(String buttonGrp,By buttonElement, String[] expBorderRadius) {
+        String[] borderRadii = new String[]{"border-top-left-radius", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-right-radius"};
+        int i=0;
+        for(i=0;i<borderRadii.length;i++){
+            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i]);
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius[i], borderRadii[i] + " of " + buttonGrp + " is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
+    }
+
     /***************
      * Mobile Tests
      ***************/
@@ -831,6 +855,18 @@ public class ButtonsTest extends BaseClass {
             log.info("line-height for this type: " + type + " is not as per the spec, actual: " + lineHeight);
         }
         Assert.assertTrue(isColor && isBackgroundColor && isLineHeight);
+    }
+
+    //Btn group
+    @Test(testName = "Mobile: Button Group Test", dataProvider ="Button Grp Test Data", groups = "mobile-regression")
+    private void btnGroupMobileTest(String buttonGrp,By buttonElement, String[] expBorderRadius) {
+        String[] borderRadii = new String[]{"border-top-left-radius", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-right-radius"};
+        int i=0;
+        for(i=0;i<borderRadii.length;i++){
+            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i]);
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius[i], borderRadii[i] + " of " + buttonGrp + " is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
     /*************
