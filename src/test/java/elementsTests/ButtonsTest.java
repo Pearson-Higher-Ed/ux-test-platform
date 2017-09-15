@@ -863,7 +863,7 @@ public class ButtonsTest extends BaseClass {
         String[] borderRadii = new String[]{"border-top-left-radius", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-right-radius"};
         int i=0;
         for(i=0;i<borderRadii.length;i++){
-            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i]);
+            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i],"mobile");
             isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius[i], borderRadii[i] + " of " + buttonGrp + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
