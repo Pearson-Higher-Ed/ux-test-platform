@@ -49,4 +49,12 @@ public class ButtonsPageObjects {
     public By largeBtnDisabled=By.id("large-btn-disabled");
     public By smallBtnWithCTA=By.id("small-btn-withCTA");
     public By xLargeBtnWithPrimary=By.id("xLarge-btn-withPrimary");
+
+    //Btn groups
+    public By grp1Btn1=By.id("grp1-btn1");
+    public By grp1Btn2=By.id("grp1-btn2");
+    public By grp2Btn1=By.id("grp2-btn1");
+    public By grp2Btn2=By.id("grp2-btn2");
+    public By grp2Btn3=By.id("grp2-btn3");
+    public By grp2Btn4=By.id("grp2-btn4");
 }
