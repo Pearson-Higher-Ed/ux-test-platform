@@ -17,6 +17,21 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/fonts ~/buil
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
 
+install_compounds_sdk() {
+echo -e "******************************\\n    Installing compounds sdk: $1   \\n******************************"
+cd ~/build/Pearson-Higher-Ed/ux-test-platform/
+git clone https://github.com/Pearson-Higher-Ed/compounds.git &>/dev/null
+cd compounds
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/eventInstantiator.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+}
+
 install_appHeader(){
 echo -e "******************************\\n    Installing app-header: $1  \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
@@ -151,6 +166,10 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pea
 if [[ $component == "elements-sdk" ]]
 then
 install_elements_sdk $feature_branch
+
+elif [[ $component == "compounds-sdk" ]]
+then
+install_compounds_sdk $feature_branch
 
 elif [[ $component == "app-header" ]]
 then
