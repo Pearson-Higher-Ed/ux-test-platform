@@ -8,7 +8,7 @@
             </run>
         </groups>
         <classes>
-            <class name="origamiV2Tests.PaginationTest"/>
+            <class name="standAloneTests.PaginationTest"/>
         </classes>
     </test>
 </suite>

@@ -212,7 +212,7 @@ public class BaseClass {
             }
         } else {
             if (desktop.equals("on")) {
-                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "tests on \nbrowser: " + localBrowser));
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on \nbrowser: " + localBrowser));
             } else if (mobile.equals("on")) {
                 System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + appiumDriver + "\n" + successColorCode + "device: " + mobDeviceName + "\n"));
             }
@@ -221,5 +221,12 @@ public class BaseClass {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);
         }
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod() throws InterruptedException {
+        if (!runEnv.equals("travis")) {
+        }
+        Thread.sleep(500); //Since the local test runs are very fast, giving a half second delay for each test, for correct test results
     }
 }

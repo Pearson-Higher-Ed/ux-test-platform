@@ -1,23 +1,34 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Elements sdk V1 Test Suite" parallel="classes" thread-count="9">
-    <test name="Elements SDK V1 Tests">
-        <groups>
-            <run>
-                <include name="desktop-ci"/>
-            </run>
-        </groups>
+<suite name="ElementsSDK Test Suite">
+    <groups>
+        <run>
+            <include name="desktop-ci"/>
+        </run>
+    </groups>
+    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="9">
         <classes>
-            <class name="elementsTests.InputsTest"/>
-            <class name="elementsTests.TypographyTest"/>
-            <class name="elementsTests.ResponsiveUtilitiesTest"/>
-            <class name="elementsTests.TemplatesTest"/>
-            <class name="elementsTests.GridTest"/>
-            <class name="elementsTests.PresentationStrategyTest"/>
-            <class name="elementsTests.ButtonsTest"/>
-            <class name="elementsTests.IconsTest"/>
-            <class name="elementsTests.FormsTest"/>
-            <class name="elementsTests.TablesTest"/>
+            <class name="elementsSDKTests.functionalTests.AlertsTest"/>
+            <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
+            <class name="elementsSDKTests.functionalTests.DropdownTest"/>
+            <class name="elementsSDKTests.functionalTests.FooterTest"/>
+            <class name="elementsSDKTests.functionalTests.IconsTest"/>
+            <class name="elementsSDKTests.functionalTests.InputsTest"/>
+            <class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>
+            <class name="elementsSDKTests.functionalTests.TabsTest"/>
+            <class name="elementsSDKTests.functionalTests.CalendarTest"/>
+            <class name="elementsSDKTests.functionalTests.TablesTest"/>
+        </classes>
+    </test>
+    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="6">
+        <classes>
+            <class name="elementsSDKTests.stylesTests.InputsTest"/>
+            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
+            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
+            <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
+            <class name="elementsSDKTests.stylesTests.IconsTest"/>
+            <class name="elementsSDKTests.stylesTests.FormsTest"/>
+            <class name="elementsSDKTests.stylesTests.TablesTest"/>
         </classes>
     </test>
 </suite>
