@@ -215,7 +215,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "desktop-regression1")
+    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "desktop-regression")
     private void anchorTagTest(String anchorTagType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
