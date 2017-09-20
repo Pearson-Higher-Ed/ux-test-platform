@@ -1605,7 +1605,7 @@ public class InputsTest extends BaseClass {
         }
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class");
-        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-18", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-18\"");
+        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
         paddingRight = commonUtils.getCSSValue(icon, "right");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Line-height of " + type + " icon is not as per spec");
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
@@ -2799,7 +2799,7 @@ public class InputsTest extends BaseClass {
         }
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
-        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-18", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-18\"");
+        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
         paddingRight = commonUtils.getCSSValue(icon, "right", "mobile");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Line-height of " + type + " icon is not as per spec");
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
