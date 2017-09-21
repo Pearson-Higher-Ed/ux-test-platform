@@ -10,15 +10,14 @@
     <details><summary>:point_right: elementsSDK:</summary>	 
       Choose a different working directory, Install elementsSDK on your local machine. Follow the below steps:
         <pre>
-        git clone https://github.com/Pearson-Higher-Ed/elementsSDK.git
-        cd elementsSDK
+        git clone https://github.com/Pearson-Higher-Ed/elements-sdk.git
+        cd elements-sdk
         git checkout branch-name
         npm install
         npm run build
         cp build/dist.compounds.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
         cp build/eventInstantiator.compounds.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-        cp build/css/elements.css /ux-test-platform/src/main/java/elementsSDK/css/
-        cp build/css/components.css /ux-test-platform/src/main/java/elementsSDK/css/</pre>
+        cp build/css/elements.css /ux-test-platform/src/main/java/elementsSDK/css/</pre>
     </details>
 	<details><summary>:point_right: standAlone:</summary>
      Choose a different working directory, Install a stand alone component(eg. app-header) on your local machine. Follow the below steps:

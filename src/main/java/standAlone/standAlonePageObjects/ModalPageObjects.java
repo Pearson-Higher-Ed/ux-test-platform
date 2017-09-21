@@ -42,4 +42,7 @@ public class ModalPageObjects {
 
     public By modalCloseButton = By.id("modal-close");
     public By modalCloseButtonReact = By.xpath("//div[@class='modalHeader']/button");
+
+    public By divWrapper = By.xpath("//*[@id='wrapper']");
+    public By modalTarget= By.xpath("//*[@id='modal-target']");
 }
