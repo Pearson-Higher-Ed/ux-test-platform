@@ -8,8 +8,22 @@
 </head>
 <body>
 <h2>Pagination</h2>
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "../../../../../../icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                pe_ajax.responseXML.documentElement,
+                document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
 <div>
-    <div id = "pagination">
+    <div id = "pagination-target">
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
@@ -18,6 +32,7 @@
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 
 <script type="text/javascript" src="../../jsfiles/pagination/dist.pagination.js"></script>
+<script type="text/javascript" src="../../jsfiles/pagination/eventInterface.pagination.js"></script>
 <script type="text/javascript" src="../../jsfiles/pagination/pagination.js"></script>
 
 </body>
