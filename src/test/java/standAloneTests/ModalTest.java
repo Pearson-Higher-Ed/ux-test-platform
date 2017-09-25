@@ -27,7 +27,7 @@ public class ModalTest extends BaseClass {
 
     private static String browser = "", lBrowser = "", setMobile = "", setDesktop = "", mobileDevice = "";
     private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "";
-    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false, isPresent = false;
+    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false, isPresent = false, isAriaHiddenAttributePresent = false, isWrapperPresent = false;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
     String[] margins = {"margin-top", "margin-right", "margin-bottom", "margin-left"};
     String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
@@ -617,8 +617,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "desktop-regression")
-    private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String
-            msg) throws Exception {
+    private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -630,6 +629,32 @@ public class ModalTest extends BaseClass {
         Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", element);
         result = commonUtils.assertValue(attributes.toString().contains("disabled"), isSuccessBtnDisabled, "Success button is " + msg + " as per the spec");
         Assert.assertTrue(result);
+    }
+
+    //ariaHideApp
+    @DataProvider(name = "AriaHideApp Test Data")
+    public Object[][] getAriaHideAppTestData() {
+        return new Object[][]{
+                {"true", "true", "document.getElementById(modal-target)", false},
+                {"false", null, "document.getElementById(modal-target)", false}
+        };
+    }
+
+    @Test(testName = "AriaHideApp Test", dataProvider = "AriaHideApp Test Data", groups = "desktop-regression")
+    private void ariaHideAppTest(String ariaHideApp, Object expAriaHidden, String appElement, boolean expWrapper) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "ariaHideApp", ariaHideApp, "appElement", appElement, "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+        commonUtils.printFileContents(modalJSFilePath);
+
+        boolean actWrapper = commonUtils.isElementPresent(modalPgObj.divWrapper);
+        isWrapperPresent = commonUtils.assertValue(actWrapper, expWrapper, "wrapper is present inspite of having ariaHiddenApp prop set");
+
+        Object actAriaHidden = commonUtils.getAttributeValue(modalPgObj.modalTarget, "aria-hidden");
+        isAriaHiddenAttributePresent = commonUtils.assertValue(actAriaHidden, expAriaHidden, "aria-hidden is not set to " + expAriaHidden + " for ariaHiddenApp prop set to " + ariaHideApp);
+
+        Assert.assertTrue(isWrapperPresent && isAriaHiddenAttributePresent);
     }
 
     //Mobile Tests
@@ -1033,6 +1058,22 @@ public class ModalTest extends BaseClass {
         }
     }
 
+    @Test(testName = "Mobile: AriaHideApp Test", dataProvider = "AriaHideApp Test Data", groups = "mobile-regression")
+    private void ariaHideAppMobileTest(String ariaHideApp, Object expAriaHidden, String appElement, boolean expWrapper) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "ariaHideApp", ariaHideApp, "appElement", appElement, "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+
+        boolean actWrapper = commonUtils.isElementPresent(modalPgObj.divWrapper, "mobile");
+        isWrapperPresent = commonUtils.assertValue(actWrapper, expWrapper, "wrapper is present inspite of having ariaHiddenApp prop set");
+
+        Object actAriaHidden = commonUtils.getAttributeValue(modalPgObj.modalTarget, "aria-hidden", "mobile");
+        isAriaHiddenAttributePresent = commonUtils.assertValue(actAriaHidden, expAriaHidden, "aria-hidden is not set to " + expAriaHidden + " for ariaHiddenApp prop set to " + ariaHideApp);
+
+        Assert.assertTrue(isWrapperPresent && isAriaHiddenAttributePresent);
+    }
+
     /*****************
      * Common methods
      *****************/
@@ -1106,7 +1147,7 @@ public class ModalTest extends BaseClass {
 
             jsonDetailObject.add("detail", jsonDetailPropertiesObject);
 
-            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function").replaceAll("'React", "React").replaceAll("\\},isShown", "'\\},isShown");
+            beforeFinalFormat = jsonDetailObject.toString().replaceAll("\\\\", "").replaceAll("\"\\{", "\\{").replaceAll("\\}\"", "\\}").replaceAll("\"", "").replaceAll(":", ":'").replaceAll(",", "',").replaceAll("'\\{", "\\{").replaceAll("''", "'").replaceAll("' '", "'").replaceAll("\\}'", "\\}").replaceAll("'\\},", "\\},").replaceAll("'false'", "false").replaceAll("'true'", "true").replaceAll("'function", "function").replaceAll("'React", "React").replaceAll("\\},isShown", "'\\},isShown").replaceAll("'document", "document").replaceAll("\\(modal-target", "('modal-target'").replaceAll("\\'\\)'", "\\'\\)");
 
             finalConfig = preConfigStr1 + "\n" + preConfigStr2 + beforeFinalFormat + postConfigStr1;
             return finalConfig;

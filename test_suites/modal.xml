@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Origami v2 - modal Test Suite">
-    <test name="origamiV2Test - Modal">
+<suite name="Stand Alone - modal Test Suite">
+    <test name="Stand Alone - modal">
         <groups>
             <run>
                 <include name="desktop-regression"/>
