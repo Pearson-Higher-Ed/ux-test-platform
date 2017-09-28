@@ -124,10 +124,9 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         for (int i = 2; i < 5; i++) {
             commonUtils.click(By.xpath(paginationPgObj.getRightNavBtn()));
-            Thread.sleep(1000);
             actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
             isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Click on Next page did not select correct page");
             Assert.assertTrue(isActPageNo);
@@ -139,10 +138,9 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(2000);
+        Thread.sleep(500);
         for (int i = 2; i < 5; i++) {
             commonUtils.tabOnElement(By.xpath(paginationPgObj.getRightNavBtn()));
-            Thread.sleep(1000);
             actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
             isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Tab on Next page did not select correct page");
             Assert.assertTrue(isActPageNo);
@@ -237,7 +235,7 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"paginationType", "compact", "compactText", expText, "activePage", expActivePage, "pages", expPages};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent);
         result = commonUtils.assertValue(isBlankScreenDisplayed, true, "Pagination Component is not visible!!!");
         Assert.assertTrue(result);
@@ -294,10 +292,9 @@ public class PaginationTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         for (int i = 2; i < 5; i++) {
             commonUtils.click(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
-            Thread.sleep(1000);
             height = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-height");
             width = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-width");
             fontWt = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "font-weight");
@@ -333,7 +330,7 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         if (type.equals("right-nav")) {
             element = By.xpath(paginationPgObj.getRightNavBtn());
         }
@@ -376,7 +373,7 @@ public class PaginationTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
         String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         leftNavDisable = commonUtils.getAttributeValue(paginationPgObj.getLeftNavBtn, "disabled", "mobile");
         isLeftNavDisable = commonUtils.assertValue(leftNavDisable, "true", "Left Navigation button is not disabled when pagination component is loaded");
         className = commonUtils.getAttributeValue(paginationPgObj.getLeftNavSvg, "class", "mobile");
@@ -404,10 +401,9 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         for (int i = 2; i < 5; i++) {
             commonUtils.clickUsingJS(By.xpath(paginationPgObj.getRightNavBtnMobile()), "mobile");
-            Thread.sleep(1000);
             actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "mobile");
             isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Click on Next page did not select correct page");
             Assert.assertTrue(isActPageNo);
@@ -479,7 +475,7 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"paginationType", "compact", "compactText", expText, "activePage", expActivePage, "pages", expPages};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent, "mobile");
         result = commonUtils.assertValue(isBlankScreenDisplayed, true, "Pagination Component is not visible!!!");
@@ -513,10 +509,9 @@ public class PaginationTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         for (int i = 2; i < 5; i++) {
             commonUtils.click(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "mobile");
-            Thread.sleep(1000);
             height = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-height", "mobile");
             width = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-width", "mobile");
             fontWt = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "font-weight", "mobile");
@@ -552,7 +547,7 @@ public class PaginationTest extends BaseClass {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
         setConfigAndLaunch(detailProperties, propsPropertiesList);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         if (type.equals("right-nav")) {
             element = By.xpath(paginationPgObj.getRightNavBtnMobile());
         }
