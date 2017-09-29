@@ -28,67 +28,75 @@ public class PaginationPageObjects {
     }
 
     /**
-     * Pagination Elements Locator
-     */
-    /** locator for Active button on pagination **/
+     * Web elementsSDK.styles for Ellipses
+     **/
+    public By ellipseAfterFirstItem = By.xpath(".//*[@id='pagination-target']/nav/button[3]");
 
-    public By paginationActiveBtn = By.xpath(".//*[@id='pagination']/nav[@class='paginationGroup']/button[@class='active pe-btn pagination']");
-
-    /** locator for next button on pagination **/
-    public By paginationNextBtn(){
-        return By.xpath(".//*[@id='pagination']/nav/button["+ countTotalElements() +"]");
+    public By defaultMaxBtn() {
+        return By.xpath(".//*[@id='pagination-target']/nav/button[" + (countTotalBtnElements() - 2) + "]");
     }
 
-    /** locator for next button on pagination for mobile **/
-    public By mobilePaginationNextBtn(){
-        return By.xpath(".//*[@id='pagination']/nav/button["+countTotalElementsInMobile()+"]");
+    public By defaultMaxBtnMobile() {
+        return By.xpath(".//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]");
     }
 
-    /** locator for Items on pagination **/
-    public By paginationPrevBtn = By.xpath(".//*[@id='pagination']/nav/button[1]");
+    public By paginationComponent = By.xpath("//*[@id='pagination-target']/nav");
 
-    public By paginationFirstItem = By.xpath(".//*[@id='pagination']/nav/button[2]");
+    public By getLeftNavBtn = By.xpath("//*[@id='pagination-target']/nav/button[1]");
 
-    public By paginationMiddleItem = By.xpath(".//*[@id='pagination']/nav/button[6]");
+    public By getLeftNavSvg = By.cssSelector("#pagination-target > nav > button:nth-child(1) > span > svg");
 
-    public By paginationLastItem(){
-        return By.xpath(".//*[@id='pagination']/nav/button["+countTotalElements()+"-"+"1"+"]");
+    public String getRightNavBtn() {
+        int count = countTotalBtnElements();
+        return "//*[@id='pagination-target']/nav/button[" + count + "]";
     }
 
-    public By mobilePaginationLastItem(){
-        return By.xpath(".//*[@id='pagination']/nav/button["+countTotalElementsInMobile()+"-"+"1"+"]");
+    public String getRightNavSvg() {
+        int count = countTotalBtnElements();
+        return "#pagination-target > nav > button:nth-child(" + count + ") > span > svg";
     }
 
-    /** Web elementsSDK.styles for Ellipses **/
-    public By paginationEllipseAfterFirstItem = By.xpath(".//*[@id='pagination']/nav/button[3]");
-
-    public By paginationEllipseBeforeLastItem() {
-        return By.xpath(".//*[@id='pagination']/nav/button["+countTotalElements()+"-"+"2"+"]");
+    public String getRightNavBtnMobile() {
+        int count = countTotalBtnElementsMobile();
+        return "//*[@id='pagination-target']/nav/button[" + count + "]";
     }
 
-    public By mobilePaginationEllipseBeforeLastItem() {
-        return By.xpath(".//*[@id='pagination']/nav/button["+countTotalElementsInMobile()+"-"+"2"+"]");
+    public String getRightNavSvgMobile() {
+        int count = countTotalBtnElementsMobile();
+        return "#pagination-target > nav > button:nth-child(" + count + ") > span > svg";
     }
 
-    public By paginationDefaultMaxBtn = By.xpath(".//*[@id='pagination']/nav/button[7]");
+    public By getFirstPage = By.xpath("//*[@id='pagination-target']/nav/button[2]");
 
-    /** Count number of Items in pagination **/
-    public int countTotalElements(){
-        groupElementsList = driver.findElements(By.xpath("//div[@id = 'pagination']/nav[@class = 'paginationGroup']/button"));
+    public String getSelectedPageSpan(int pageNo) {
+        return "#pagination-target > nav > button:nth-child(" + (pageNo + 1) + ") > span";
+    }
+
+    public String getSelectedPage(int pageNo) {
+        return "//*[@id='pagination-target']/nav/button[" + pageNo + "]";
+    }
+
+    public int countTotalBtnElements() {
+        groupElementsList = driver.findElements(By.xpath(".//*[@id='pagination-target']/nav/button"));
         int n = groupElementsList.size();
         return n;
     }
 
-    /** Count number of Items in pagination **/
-    public int countTotalElementsInMobile(){
-        groupElementsList = appium.findElements(By.xpath("//div[@id = 'pagination']/nav[@class = 'paginationGroup']/button"));
+    public int countTotalBtnElementsMobile() {
+        groupElementsList = appium.findElements(By.xpath(".//*[@id='pagination-target']/nav/button"));
         int n = groupElementsList.size();
         return n;
     }
 
-    public By paginationItems = By.xpath(".//*[@id='pagination']");
+    public String ellipseBeforeLastItem() {
+        return "//*[@id='pagination-target']/nav/button[" + (countTotalBtnElements() - 2) + "]";
+    }
 
-    public By ellipseCountItem = By.xpath(".//*[@id='pagination']/nav[@class='paginationGroup']/button[@class='pe-btn pagination' and @disabled='']");
+    public String ellipseBeforeLastItemMobile() {
+        return "//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]";
+    }
 
-    public By disabledItem = By.xpath(".//*[@class='pe-btn pagination' and @disabled='']");
+    public By ellipsisSvg = By.cssSelector("#pagination-target > nav > button.ellipsis > svg");
+
+    public By compactText = By.xpath("//*[@id='pagination-target']/nav/span");
 }

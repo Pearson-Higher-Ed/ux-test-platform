@@ -3,21 +3,23 @@ package standAloneTests;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 import standAlone.standAlonePageObjects.PaginationPageObjects;
 import utilities.BaseClass;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 
 
 /**
@@ -30,11 +32,8 @@ public class PaginationTest extends BaseClass {
     private String absPathForTempJS = new File("standAlone/jsfiles/pagination/temp.js").getAbsolutePath();
     private final String paginationJSFilePath = constructPath(absPathForPaginationJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
-    private String getDefaultConfig = "", getTestConfig = "", word = "";
     final static Logger log = Logger.getLogger(PaginationTest.class.getName());
-    private String browser, mobile = "", desktop = "";
-    JsonObject jsonObject = null;
-    private List<String> newLines = null;
+    private String browser, mobile = "", desktop = "", lBrowser = "";
     JsonParser parser = new JsonParser();
 
     private String preConfigStr1 = "function init() {";
@@ -43,21 +42,20 @@ public class PaginationTest extends BaseClass {
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null, jsonPropsOptionObject = null, jsonPropsOptionsPropertiesObject = null;
     Map<String, String> detailProperties = null;
     Map<String, String> propsProperties = null;
-    Map<String, JsonObject> propsConfigMap = null;
-    int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
     private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "";
 
 
-    private boolean firstItemVisible = false, isFirstItemVisibleOnMiddle = false, isFirstItemVisibleOnLast = false, isBlankScreenDisplayed = false;
-    private boolean lastItemvisible = false, isLastItemVisibleOnMiddle = false, isLastItemVisibleOnLast = false;
-    private boolean nextBtnEnabled = false;
-    private boolean btnEnabledResult = false, isActive = false, isActiveBtn = false, isBeforeLastItem = false, isAfterFirstItem = false, ellipseCount = false, firstItemFirstPresent = false, firstItemLastPresent = false;
-    private boolean middleItemFirstPresent = false, middleItemLastPresent = false, lastItemFirstPresent = false, lastItemLastPresent = false, isProchain = false, isPrecedent = false, isNext = false, isPrev = false, result = false;
-    private boolean isCSSProperty = false;
-    private String activeFirstItem = "", activeSecondItem = "";
-    private String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "";
-    private String prochainBtn = "", precedentBtn = "", nextbtn = "", prevBtn = "", defaultMaxBtn = "";
+    private boolean isBlankScreenDisplayed = false, isBeforeLastItem = false, isAfterFirstItem, result = false;
+    private String ellipseBeforeLastItem = "", ellipseAfterFirstItem = "", defaultMaxBtn = "";
     PaginationPageObjects paginationPgObj = null;
+
+    private String leftNavEnable = "", leftNavDisable = "", rightNavEnable = "", rightNavDisable = "", selectedPage = "", borderBottom = "", actPageNo = "", compactText = "", height = "", width = "", className = "", borderRadius = "", borderWidth = "", borderStyle = "", borderColor = "", fontSize = "", lineHt = "", fontWt = "";
+    private boolean isLeftNavEnable = false, isLeftNavDisable = false, isRightNavEnable = false, isRightNavDisable = false, isSelectedPage = false, isBorderBtm = false, isActPageNo = false, isPresent = false, isCompactText = false, isHeight = false, isWidth = false, isClassName = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isBorderRadius = false, isFontSize = false, isLineHt = false, isFontWt = false;
+    List<String> borderBtms = Arrays.asList("border-bottom-width", "border-bottom-style", "border-bottom-color");
+    List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
+    List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
+    List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
+    List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
 
     /***************
      * Before Class
@@ -66,8 +64,10 @@ public class PaginationTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
         paginationPgObj = new PaginationPageObjects();
-        browser = BaseClass.localBrowser;
         desktop = BaseClass.desktop;
+        browser = BaseClass.localBrowser;
+        browser = BaseClass.sauceBrowser;
+        lBrowser = BaseClass.localBrowser;
         mobile = BaseClass.mobile;
         if (desktop.equals("on")) {
             paginationPgObj = new PaginationPageObjects(driver);
@@ -93,384 +93,499 @@ public class PaginationTest extends BaseClass {
      * DESKTOP TESTS
      ***************/
 
-    @Test(testName = "Validate Active Button on Pagination", groups = {"desktop-regression"})
-    public void validateActiveBtnOnPaginationTest() throws Exception {
-        /** Validating for Active Buttons Highlight */
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        activeFirstItem = commonUtils.getText(paginationPgObj.paginationActiveBtn);
-        isActive = commonUtils.assertValue(activeFirstItem, "1", "Active Btn not highlighted");
-        Assert.assertTrue(isActive);
+    @Test(testName = "Standard Pagination Initial Load Test", groups = {"desktop-regression"})
+    private void standardPaginationInitialLoadTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
+        String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
 
-        commonUtils.click(paginationPgObj.paginationNextBtn());
-        activeSecondItem = commonUtils.getText(paginationPgObj.paginationActiveBtn);
-        isActiveBtn = commonUtils.assertValue(activeSecondItem, "2", "Active Btn not highlighted");
-        Assert.assertTrue(isActiveBtn);
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(1000);
+        leftNavDisable = commonUtils.getAttributeValue(paginationPgObj.getLeftNavBtn, "disabled");
+        isLeftNavDisable = commonUtils.assertValue(leftNavDisable, "true", "Left Navigation button is not disabled when pagination component is loaded");
+        selectedPage = commonUtils.getAttributeValue(paginationPgObj.getFirstPage, "aria-current");
+        isSelectedPage = commonUtils.assertValue(selectedPage, "page", "Page 1 is not selected when pagination component is loaded");
+        className = commonUtils.getAttributeValue(By.cssSelector(paginationPgObj.getRightNavSvg()), "class");
+        isClassName = commonUtils.assertValue(className, "pe-icon--chevron-next-sm-18", "The chevron class of Left Nav btn is not as per spec");
+        Assert.assertTrue(isClassName && isLeftNavDisable && isSelectedPage);
+
+        for (String cssProperty : borderBtms) {
+            borderBottom = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(1)), cssProperty);
+            isBorderBtm = commonUtils.assertCSSProperties("border-bottom", borderBottom, expBorderBottoms);
+            if (!isBorderBtm) {
+                log.info(cssProperty + " of underline is not as per spec, actual : " + borderBottom);
+            }
+            Assert.assertTrue(isBorderBtm);
+        }
     }
 
-    @Test(testName = "Validate Ellipses on Pagination", groups = {"desktop-regression"})
-    public void validateEllipsesOnPaginationTest() throws Exception {
+    @Test(testName = "Page Navigation - Standard Pagination Test", groups = {"desktop-regression"})
+    private void pageNavigationStdTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.click(By.xpath(paginationPgObj.getRightNavBtn()));
+            actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
+            isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Click on Next page did not select correct page");
+            Assert.assertTrue(isActPageNo);
+        }
+    }
 
-        /** Validating for on Ellipse when first item is active */
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        ellipseBeforeLastItem = commonUtils.getText(paginationPgObj.paginationEllipseBeforeLastItem());
-        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "...", "Ellipse didn't appear before last item");
-        Assert.assertTrue(isBeforeLastItem);
+    @Test(testName = "Tab Page Navigation - Standard Pagination Test", groups = {"desktop-regression"})
+    private void tabPageNavigationStdTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.tabOnElement(By.xpath(paginationPgObj.getRightNavBtn()));
+            actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
+            isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Tab on Next page did not select correct page");
+            Assert.assertTrue(isActPageNo);
+        }
+    }
 
-        /** Validating for on Ellipse when last item is active */
-        commonUtils.click(paginationPgObj.paginationLastItem());
-        ellipseAfterFirstItem = commonUtils.getText(paginationPgObj.paginationEllipseAfterFirstItem);
-        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "...", "Ellipse didn't appear after first item");
+    @Test(testName = "Validate Ellipses on Pagination Test", groups = {"desktop-regression"})
+    private void validateEllipsesOnPaginationTest() throws Exception {
+
+        //** Validating for on Ellipse when first item is active *//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseBeforeLastItem = commonUtils.getAttributeValue(By.xpath(paginationPgObj.ellipseBeforeLastItem()), "class");
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "ellipsis", "Ellipse didn't appear before last item");
+        className = commonUtils.getAttributeValue(paginationPgObj.ellipsisSvg, "class");
+        isClassName = commonUtils.assertValue(className, "pe-icon--ellipsis-18", "Ellipses icon does not match the specs");
+        Assert.assertTrue(isBeforeLastItem && isClassName);
+
+        //** Validating for on Ellipse when last item is active *//*
+        propsPropertiesList = new String[]{"activePage", "99", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseAfterFirstItem = commonUtils.getAttributeValue(paginationPgObj.ellipseAfterFirstItem, "class");
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "ellipsis", "Ellipse didn't appear after first item");
         Assert.assertTrue(isAfterFirstItem);
 
-        /** Validating for on Ellipse when middle item is active */
-        commonUtils.click(paginationPgObj.paginationFirstItem);
-        commonUtils.click(paginationPgObj.paginationMiddleItem);
-        int ellipseCountOnItems = commonUtils.countNumberOfItems(paginationPgObj.ellipseCountItem);
-        ellipseCount = commonUtils.assertValue(ellipseCountOnItems, 2, "Ellipses didn't match");
-        Assert.assertTrue(ellipseCount);
+        //** Validating for Ellipses at both beginning & end *//*
+        propsPropertiesList = new String[]{"activePage", "40", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseBeforeLastItem = commonUtils.getAttributeValue(By.xpath(paginationPgObj.ellipseBeforeLastItem()), "class");
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "ellipsis", "Ellipse didn't appear before last item");
+        ellipseAfterFirstItem = commonUtils.getAttributeValue(paginationPgObj.ellipseAfterFirstItem, "class");
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "ellipsis", "Ellipse didn't appear after first item");
+        Assert.assertTrue(isBeforeLastItem && isAfterFirstItem);
     }
 
-    @Test(testName = "Validate Item Clickable", groups = {"desktop-regression"})
-    public void validateFirstLastItemVisibleTest() throws Exception {
-        /** validating for first and last item visible when item is at first **/
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        commonUtils.click(paginationPgObj.paginationFirstItem);
-        firstItemVisible = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem);
-        lastItemvisible = commonUtils.isElementDisplayed(paginationPgObj.paginationLastItem());
-
-        firstItemFirstPresent = commonUtils.assertValue(firstItemVisible, true, "First item didnt appear");
-        Assert.assertTrue(firstItemFirstPresent);
-        firstItemLastPresent = commonUtils.assertValue(lastItemvisible, true, "Last item didnt appear");
-        Assert.assertTrue(firstItemLastPresent);
-        /** validating for first and last item visible when item is at Middle **/
-        commonUtils.click(paginationPgObj.paginationMiddleItem);
-        isFirstItemVisibleOnMiddle = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem);
-        isLastItemVisibleOnMiddle = commonUtils.isElementDisplayed(paginationPgObj.paginationLastItem());
-
-        middleItemFirstPresent = commonUtils.assertValue(isFirstItemVisibleOnMiddle, true, "First item didnt appear");
-        Assert.assertTrue(middleItemFirstPresent);
-        middleItemLastPresent = commonUtils.assertValue(isLastItemVisibleOnMiddle, true, "Last item didnt appear");
-        Assert.assertTrue(middleItemLastPresent);
-        /** validating for first and last item visible when item is at last **/
-        commonUtils.click(paginationPgObj.paginationLastItem());
-        isFirstItemVisibleOnLast = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem);
-        isLastItemVisibleOnLast = commonUtils.isElementDisplayed(paginationPgObj.paginationLastItem());
-
-        lastItemFirstPresent = commonUtils.assertValue(isFirstItemVisibleOnLast, true, "First item didnt appear");
-        Assert.assertTrue(lastItemFirstPresent);
-        lastItemLastPresent = commonUtils.assertValue(isLastItemVisibleOnLast, true, "Last item didnt appear");
-        Assert.assertTrue(lastItemLastPresent);
-
-        /** Validating if item is clickable if already selected **/
-        nextBtnEnabled = commonUtils.isElementEnabled(paginationPgObj.paginationNextBtn());
-        btnEnabledResult = commonUtils.assertValue(nextBtnEnabled, false, "Element is clickable");
-        Assert.assertTrue(btnEnabledResult);
+    @DataProvider(name = "Validate No Ellipses on Pagination Test Data")
+    public Object[][] validateNoEllipsesOnPaginationTestData() {
+        return new Object[][]{
+                {5},
+                {15}
+        };
     }
 
-    @Test(testName = "Validate Internationalization", groups = {"desktop-regression"})
-    public void validateInternationalizationTest() throws Exception {
-        /** reading initial config and saving in temp.js file **/
-        getDefaultConfig = "en";
-        getTestConfig = "fr";
-        word = "locale";
-
-        /** changing config **/
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", getTestConfig, "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        Thread.sleep(1000);
-        /** validating French Language **/
-        prochainBtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
-        isProchain = commonUtils.assertValue(prochainBtn, "Prochain", "French language didnt appear for next btn!!!");
-        Assert.assertTrue(isProchain);
-        commonUtils.click(paginationPgObj.paginationNextBtn());
-        precedentBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn);
-        isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
-        /** writing back original value to pagination.js file **/
-        Assert.assertTrue(isPrecedent);
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
-        Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl);
-        /** validating English Language **/
-        nextbtn = commonUtils.getText(paginationPgObj.paginationNextBtn());
-        isNext = commonUtils.assertValue(nextbtn, "Next", "French language didnt change back to english!!!");
-        Assert.assertTrue(isNext);
-
-        commonUtils.click(paginationPgObj.paginationNextBtn());
-        prevBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn);
-        isPrev = commonUtils.assertValue(prevBtn, "Prev", "French language didnt change back to english!!!!");
-        Assert.assertTrue(isPrev);
+    @Test(testName = "Validate No Ellipses on Pagination Test", dataProvider = "Validate No Ellipses on Pagination Test Data", groups = {"desktop-regression"})
+    private void validateNoEllipsesOnPaginationTest(int expMaxButton) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", String.valueOf(expMaxButton), "maxButtons", String.valueOf(expMaxButton)};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseAfterFirstItem = commonUtils.getText(paginationPgObj.ellipseAfterFirstItem);
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "2", "Ellipses appeared after first item");
+        ellipseBeforeLastItem = commonUtils.getText(By.xpath(paginationPgObj.ellipseBeforeLastItem()));
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, String.valueOf(expMaxButton - 1), "Ellipses appeared before last item");
+        Assert.assertTrue(isBeforeLastItem && isAfterFirstItem);
     }
 
-    @Test(testName = "Validate default max button", groups = {"desktop-regressionF"})
-    public void validateDefaultMaxBtnTest() throws Exception {
-        /** reading initial config and saving in temp.js file **/
-        Thread.sleep(2000);
-        getDefaultConfig = "maxButtons";
-        getTestConfig = "//maxButtons";
-        word = "maxButtons";
+    @DataProvider(name = "Validate default max button Test Data")
+    public Object[][] validateDefaultMaxBtnTestData() {
+        return new Object[][]{
+                {"3"},
+                {"10"}
+        };
+    }
 
-        /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
-        Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl);
-
-        /** validating for default max buttons by checking ellipse **/
-        defaultMaxBtn = commonUtils.getText(paginationPgObj.paginationDefaultMaxBtn);
-        result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
+    @Test(testName = "Validate default max button Test", dataProvider = "Validate default max button Test Data", groups = {"desktop-regression"})
+    private void validateDefaultMaxBtnTest(String expMaxButton) throws Exception {
+        //** reading initial config and saving in temp.js file **//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100", "maxButtons", expMaxButton};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        //** validating for default max buttons by checking ellipse **//*
+        defaultMaxBtn = commonUtils.getAttributeValue(paginationPgObj.defaultMaxBtn(), "class");
+        result = commonUtils.assertValue(defaultMaxBtn, "ellipsis", "Default max button is not set to" + expMaxButton);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Validate Negative Values", groups = {"desktop-regression"})
-    public void validateNegativeJsValueTest() throws Exception {
-        /** changing the initial config **/
-        getTestConfig = "-10";
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", getTestConfig, "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        Thread.sleep(1000);
+    @DataProvider(name = "Validate Compact pagination component Test Data")
+    public Object[][] validateCompactPaginationTestData() {
+        return new Object[][]{
+                {"10", "1", "'1 of 100'"},
+                {"10", "10", "'Page 10 of 10'"}
+        };
+    }
 
-        /** validating for default max buttons by checking ellipse **/
-        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn);
+    @Test(testName = "Validate Compact pagination component Test", dataProvider = "Validate Compact pagination component Test Data", groups = {"desktop-regression"})
+    private void validateCompactPaginationTest(String expPages, String expActivePage, String expText) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"paginationType", "compact", "compactText", expText, "activePage", expActivePage, "pages", expPages};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent);
+        result = commonUtils.assertValue(isBlankScreenDisplayed, true, "Pagination Component is not visible!!!");
+        Assert.assertTrue(result);
+        isPresent = commonUtils.isElementPresent(paginationPgObj.getLeftNavBtn);
+        Assert.assertTrue(isPresent);
+        isPresent = commonUtils.isElementPresent(By.xpath(paginationPgObj.getRightNavBtn()));
+        Assert.assertTrue(isPresent);
+        compactText = commonUtils.getText(paginationPgObj.compactText);
+        isCompactText = commonUtils.assertValue(compactText, expText.replaceAll("'", ""), "The text displayed for compact pagination does not match");
+        Assert.assertTrue(isCompactText);
+    }
+
+    @Test(testName = "Validate Negative Values Test", groups = {"desktop-regression"})
+    private void validateNegativeJsValueTest() throws Exception {
+        //** changing the initial config **//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "-100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+
+        //** validating if pagination component loads **//*
+        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent);
         result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is not visible!!!");
         Assert.assertTrue(result);
     }
 
-    @DataProvider(name = "Pagination Item Test Data")
-    public Object[][] getPaginationItemTestData() {
+    @Test(testName = "Hover on Page Numbers Test", groups = "desktop-regression")
+    private void hoverOnPageNumberTest() throws Exception {
+        if (browser.equals("safari") || browser.equals("firefox") || browser.equals("ie")) {
+            throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
+        }
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(1000);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.hoverOnElement(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
+            Thread.sleep(1000);
+            for (String cssProperty : borderBtms) {
+                borderBottom = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), cssProperty);
+                isBorderBtm = commonUtils.assertCSSProperties("border-bottom", borderBottom, expBorderBottoms);
+                if (!isBorderBtm) {
+                    log.info(cssProperty + " of underline for hovered page is not as per spec, actual : " + borderBottom);
+                }
+                Assert.assertTrue(isBorderBtm);
+            }
+        }
+    }
+
+    @Test(testName = "Page Numbers CSS Test", groups = "desktop-regression")
+    private void PageNumberCSSTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.click(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)));
+            height = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-height");
+            width = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-width");
+            fontWt = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "font-weight");
+
+            isHeight = commonUtils.assertValue(height, "44px", "Min-Height of the page buttons is not as per spec");
+            isWidth = commonUtils.assertValue(width, "44px", "Min-Width of the page buttons is not as per spec");
+            isFontWt = commonUtils.assertCSSProperties("font-weight", fontWt, new String[]{"bold", "700"});
+            if (!isFontWt) {
+                log.info("Font weight of the page numbers is not as per spec, actual " + fontWt);
+            }
+            Assert.assertTrue(isHeight && isWidth && isFontWt);
+            for (String cssProperty : borderBtms) {
+                borderBottom = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), cssProperty);
+                isBorderBtm = commonUtils.assertCSSProperties("border-bottom", borderBottom, expBorderBottoms);
+                if (!isBorderBtm) {
+                    log.info(cssProperty + " of underline for selected page is not as per spec, actual : " + borderBottom);
+                }
+                Assert.assertTrue(isBorderBtm);
+            }
+        }
+    }
+
+    @DataProvider(name = "CSS Properties for Left and Right Nav Button Test Data")
+    public Object[][] cssPropLeftRightNavButtonsTestData() {
         return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}}
+                {"left-nav", paginationPgObj.getLeftNavBtn, "1px", "solid", new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"50%"}},
+                {"right-nav", By.xpath(paginationPgObj.getRightNavBtn()), "1px", "solid", new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"50%"}},
         };
     }
 
-    @Test(testName = "Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"desktop-regression"})
-    private void defaultPaginationItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.paginationNextBtn(), cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for active button is not as per the spec, actual: " + cssProperty);
+    @Test(testName = "CSS Properties for Left and Right Nav Button Test", dataProvider = "CSS Properties for Left and Right Nav Button Test Data", groups = "desktop-regression")
+    private void cssPropLeftRightNavButtonsTest(String type, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBorderRad) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        if (type.equals("right-nav")) {
+            element = By.xpath(paginationPgObj.getRightNavBtn());
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Default Button-Disabled Test Data")
-    public Object[][] getDefaultButtonDisabledStateTestData() {
-        return new Object[][]{
-                {"color", new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")}},
-                {"border-top-width", new String[]{"0px"}},
-                {"border-bottom-width", new String[]{"0px"}},
-                {"border-left-width", new String[]{"0px"}},
-                {"border-right-width", new String[]{"0px"}},
-                {"box-shadow", new String[]{"none"}},
-                {"cursor", new String[]{"default"}}
-        };
-    }
-
-    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression"})
-    private void defaultButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        commonUtils.click(paginationPgObj.paginationNextBtn());
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Default Disabled button is not as per the spec, actual: " + cssProperty);
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(element, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Left/Right Nav Buttons is not as per spec");
+            Assert.assertTrue(isBorderWidth);
         }
-        Assert.assertTrue(isCSSProperty);
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(element, cssProperty);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Left/Right Nav Buttons is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " of Left/Right Nav Buttons is not as per spec, actual: " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(element, cssProperty);
+            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, expBorderRad);
+            if (!isBorderRadius) {
+                log.info("Border radius " + cssProperty + " of of Left/Right Nav Buttons is not as per spec, actual: " + borderRadius);
+            }
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
-    /***************
-     * MOBLIE TESTS
-     ***************/
 
-    @Test(testName = "Mobile:Validate Active Button on Pagination", groups = {"mobile-regression"})
-    public void validateActiveBtnOnPaginationMobileTest() throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        activeFirstItem = commonUtils.getText(paginationPgObj.paginationActiveBtn, "mobile");
-        isActive = commonUtils.assertValue(activeFirstItem, "1", "Active Btn not highlighted");
-        Assert.assertTrue(isActive);
-        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        activeSecondItem = commonUtils.getText(paginationPgObj.paginationActiveBtn, "mobile");
-        isActiveBtn = commonUtils.assertValue(activeSecondItem, "2", "Active Btn not highlighted");
-        Assert.assertTrue(isActiveBtn);
+    /********************************
+     * Mobile Tests
+     ********************************/
+
+    @Test(testName = "Mobile : Standard Pagination Initial Load Test", groups = {"mobile-regression"})
+    private void standardPaginationInitialLoadMobileTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
+        String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        leftNavDisable = commonUtils.getAttributeValue(paginationPgObj.getLeftNavBtn, "disabled", "mobile");
+        isLeftNavDisable = commonUtils.assertValue(leftNavDisable, "true", "Left Navigation button is not disabled when pagination component is loaded");
+        className = commonUtils.getAttributeValue(paginationPgObj.getLeftNavSvg, "class", "mobile");
+        isClassName = commonUtils.assertValue(className, "pe-icon--chevron-back-sm-18", "The chevron class of Left Nav btn is not as per spec");
+        Assert.assertTrue(isClassName);
+
+        selectedPage = commonUtils.getAttributeValue(paginationPgObj.getFirstPage, "aria-current", "mobile");
+        isSelectedPage = commonUtils.assertValue(selectedPage, "page", "Page 1 is not selected when pagination component is loaded");
+        className = commonUtils.getAttributeValue(By.cssSelector(paginationPgObj.getRightNavSvgMobile()), "class", "mobile");
+        isClassName = commonUtils.assertValue(className, "pe-icon--chevron-next-sm-18", "The chevron class of Left Nav btn is not as per spec");
+        Assert.assertTrue(isClassName && isLeftNavDisable && isSelectedPage);
+
+        for (String cssProperty : borderBtms) {
+            borderBottom = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(1)), cssProperty, "mobile");
+            isBorderBtm = commonUtils.assertCSSProperties("border-bottom", borderBottom, expBorderBottoms);
+            if (!isBorderBtm) {
+                log.info(cssProperty + " of underline is not as per spec, actual : " + borderBottom);
+            }
+            Assert.assertTrue(isBorderBtm);
+        }
     }
 
-    @Test(testName = "Mobile:Validate Ellipses on Pagination", groups = {"mobile-regression"})
-    public void validateEllipsesOnPaginationMobileTest() throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
+    @Test(testName = "Mobile : Page Navigation - Standard Pagination Test", groups = {"mobile-regression"})
+    private void pageNavigationStdMobileTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.clickUsingJS(By.xpath(paginationPgObj.getRightNavBtnMobile()), "mobile");
+            actPageNo = commonUtils.getText(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "mobile");
+            isActPageNo = commonUtils.assertValue(actPageNo, Integer.toString(i), "Click on Next page did not select correct page");
+            Assert.assertTrue(isActPageNo);
+        }
+    }
 
-        /** Validating for on Ellipse when first item is active */
-        ellipseBeforeLastItem = commonUtils.getText(paginationPgObj.mobilePaginationEllipseBeforeLastItem(), "mobile");
-        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "...", "Ellipse didn't appear before last item");
-        Assert.assertTrue(isBeforeLastItem);
+    @Test(testName = "Mobile : Validate Ellipses on Pagination Test", groups = {"mobile-regression"})
+    private void validateEllipsesOnPaginationMobileTest() throws Exception {
 
-        /** Validating for on Ellipse when last item is active */
-        commonUtils.click(paginationPgObj.mobilePaginationLastItem(), "mobile");
-        ellipseAfterFirstItem = commonUtils.getText(paginationPgObj.paginationEllipseAfterFirstItem, "mobile");
-        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "...", "Ellipse didn't appear after first item");
+        //** Validating for on Ellipse when first item is active *//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseBeforeLastItem = commonUtils.getAttributeValue(By.xpath(paginationPgObj.ellipseBeforeLastItemMobile()), "class", "mobile");
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "ellipsis", "Ellipse didn't appear before last item");
+        className = commonUtils.getAttributeValue(paginationPgObj.ellipsisSvg, "class", "mobile");
+        isClassName = commonUtils.assertValue(className, "pe-icon--ellipsis-18", "Ellipses icon does not match the specs");
+        Assert.assertTrue(isBeforeLastItem && isClassName);
+
+        //** Validating for on Ellipse when last item is active *//*
+        propsPropertiesList = new String[]{"activePage", "99", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseAfterFirstItem = commonUtils.getAttributeValue(paginationPgObj.ellipseAfterFirstItem, "class", "mobile");
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "ellipsis", "Ellipse didn't appear after first item");
         Assert.assertTrue(isAfterFirstItem);
 
-        /** Validating for on Ellipse when middle item is active */
-        commonUtils.click(paginationPgObj.paginationFirstItem, "mobile");
-        commonUtils.click(paginationPgObj.paginationMiddleItem, "mobile");
-        int ellipseCountOnItems = commonUtils.countNumberOfItems(paginationPgObj.ellipseCountItem, "mobile");
-        ellipseCount = commonUtils.assertValue(ellipseCountOnItems, 2, "Ellipses didn't match");
-        Assert.assertTrue(ellipseCount);
+        //** Validating for Ellipses at both beginning & end *//*
+        propsPropertiesList = new String[]{"activePage", "40", "pages", "100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseBeforeLastItem = commonUtils.getAttributeValue(By.xpath(paginationPgObj.ellipseBeforeLastItemMobile()), "class", "mobile");
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, "ellipsis", "Ellipse didn't appear before last item");
+        ellipseAfterFirstItem = commonUtils.getAttributeValue(paginationPgObj.ellipseAfterFirstItem, "class", "mobile");
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "ellipsis", "Ellipse didn't appear after first item");
+        Assert.assertTrue(isBeforeLastItem && isAfterFirstItem);
     }
 
-    @Test(testName = "Mobile:Validate Item Clickable", groups = {"mobile-regression"})
-    public void validateFirstLastItemVisibleMobileTest() throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        /** validating for first and last item visible when item is at first **/
-        commonUtils.click(paginationPgObj.paginationFirstItem, "mobile");
-        firstItemVisible = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem, "mobile");
-        lastItemvisible = commonUtils.isElementDisplayed(paginationPgObj.mobilePaginationLastItem(), "mobile");
-        firstItemFirstPresent = commonUtils.assertValue(firstItemVisible, true, "First item didnt appear");
-        Assert.assertTrue(firstItemFirstPresent);
-        firstItemLastPresent = commonUtils.assertValue(lastItemvisible, true, "Last item didnt appear");
-        Assert.assertTrue(firstItemLastPresent);
-
-        /** validating for first and last item visible when item is at middle **/
-        commonUtils.click(paginationPgObj.paginationMiddleItem, "mobile");
-        isFirstItemVisibleOnMiddle = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem, "mobile");
-        isLastItemVisibleOnMiddle = commonUtils.isElementDisplayed(paginationPgObj.mobilePaginationLastItem(), "mobile");
-
-        middleItemFirstPresent = commonUtils.assertValue(isFirstItemVisibleOnMiddle, true, "First item didnt appear");
-        Assert.assertTrue(middleItemFirstPresent);
-        middleItemLastPresent = commonUtils.assertValue(isLastItemVisibleOnMiddle, true, "Last item didnt appear");
-        Assert.assertTrue(middleItemLastPresent);
-
-        /** validating for first and last item visible when item is at last **/
-        commonUtils.click(paginationPgObj.mobilePaginationLastItem(), "mobile");
-        isFirstItemVisibleOnLast = commonUtils.isElementDisplayed(paginationPgObj.paginationFirstItem, "mobile");
-        isLastItemVisibleOnLast = commonUtils.isElementDisplayed(paginationPgObj.mobilePaginationLastItem(), "mobile");
-
-        lastItemFirstPresent = commonUtils.assertValue(isFirstItemVisibleOnLast, true, "First item didnt appear");
-        Assert.assertTrue(lastItemFirstPresent);
-        lastItemLastPresent = commonUtils.assertValue(isLastItemVisibleOnLast, true, "Last item didnt appear");
-        Assert.assertTrue(lastItemLastPresent);
-
-        /** Validating if item is clickable if already selected **/
-        nextBtnEnabled = commonUtils.isElementEnabled(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        btnEnabledResult = commonUtils.assertValue(nextBtnEnabled, false, "Element is clickable");
-        Assert.assertTrue(btnEnabledResult);
+    @Test(testName = "Mobile : Validate No Ellipses on Pagination Test", dataProvider = "Validate No Ellipses on Pagination Test Data", groups = {"mobile-regression"})
+    private void validateNoEllipsesOnPaginationMobileTest(int expMaxButton) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", String.valueOf(expMaxButton), "maxButtons", String.valueOf(expMaxButton)};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        ellipseAfterFirstItem = commonUtils.getText(paginationPgObj.ellipseAfterFirstItem, "mobile");
+        isAfterFirstItem = commonUtils.assertValue(ellipseAfterFirstItem, "2", "Ellipses appeared after first item");
+        ellipseBeforeLastItem = commonUtils.getText(By.xpath(paginationPgObj.ellipseBeforeLastItemMobile()), "mobile");
+        isBeforeLastItem = commonUtils.assertValue(ellipseBeforeLastItem, String.valueOf(expMaxButton - 1), "Ellipses appeared before last item");
+        Assert.assertTrue(isBeforeLastItem && isAfterFirstItem);
     }
 
+    @Test(testName = "Mobile : Validate default max button Test", dataProvider = "Validate default max button Test Data", groups = {"mobile-regression"})
+    private void validateDefaultMaxBtnMobileTest(String expMaxButton) throws Exception {
+        //** reading initial config and saving in temp.js file **//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100", "maxButtons", expMaxButton};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
 
-    @Test(testName = "Mobile: Validate Internationalization", groups = {"mobile-regression"})
-    public void validateInternationalizationMobileTest() throws Exception {
-        getDefaultConfig = "en";
-        getTestConfig = "fr";
-        word = "locale";
-        /** reading initial config and saving in temp.js file **/
-        commonUtils.readInitialConfig(paginationJSFilePath, tempJSFilePath);
-        /** changing config **/
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", getTestConfig, "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl, "mobile");
-
-        /** validating French Language **/
-        prochainBtn = commonUtils.getText(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        isProchain = commonUtils.assertValue(prochainBtn, "Prochain", "French language didnt appear for next btn!!!");
-        Assert.assertTrue(isProchain);
-        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        precedentBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn, "mobile");
-        isPrecedent = commonUtils.assertValue(precedentBtn, "Précédent", "French language didnt appear for prev btn!!!");
-        /** writing back original value to pagination.js file **/
-        commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
-        Thread.sleep(1000);
-        Assert.assertTrue(isPrecedent);
-        commonUtils.getUrl(baseUrl, "mobile");
-        /** validating English Language **/
-        nextbtn = commonUtils.getText(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        isNext = commonUtils.assertValue(nextbtn, "Next", "French language didnt change back to english!!!");
-        Assert.assertTrue(isNext);
-        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        prevBtn = commonUtils.getText(paginationPgObj.paginationPrevBtn, "mobile");
-        isPrev = commonUtils.assertValue(prevBtn, "Prev", "French language didnt change back to english!!!!");
-        Assert.assertTrue(isPrev);
-    }
-
-    @Test(testName = "Mobile:Validate default max button", groups = {"mobile-regression"})
-    public void validateDefaultMaxBtnMobileTest() throws Exception {
-        /** reading initial config and saving in temp.js file **/
-        getDefaultConfig = "maxButtons";
-        getTestConfig = "//maxButtons";
-        word = "maxButtons";
-
-        /** changing config **/
-        changeSingleLineConfig(paginationJSFilePath, getDefaultConfig, getTestConfig, word);
-        Thread.sleep(1000);
-        commonUtils.getUrl(baseUrl, "mobile");
-
-        /** validating for default max buttons by checking ellipse **/
-        defaultMaxBtn = commonUtils.getText(paginationPgObj.paginationDefaultMaxBtn, "mobile");
-        result = commonUtils.assertValue(defaultMaxBtn, "...", "Default max button is not set to 5");
-
-        /** writing back original value to pagination.js file **/
+        //** validating for default max buttons by checking ellipse **//*
+        defaultMaxBtn = commonUtils.getAttributeValue(paginationPgObj.defaultMaxBtnMobile(), "class", "mobile");
+        result = commonUtils.assertValue(defaultMaxBtn, "ellipsis", "Default max button is not set to" + expMaxButton);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile:Validate Negative Values", groups = {"mobile-regression"})
-    public void validateNegativeJsValueMobileTest() throws Exception {
-        /** reading initial config and saving in temp.js file **/
-        getTestConfig = "-10";
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", getTestConfig, "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        /** changing config **/
-        Thread.sleep(1000);
+    @Test(testName = "Mobile : Validate Compact pagination component Test", dataProvider = "Validate Compact pagination component Test Data", groups = {"mobile-regression"})
+    private void validateCompactPaginationMobileTest(String expPages, String expActivePage, String expText) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"paginationType", "compact", "compactText", expText, "activePage", expActivePage, "pages", expPages};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
 
-        /** validating for default max buttons by checking ellipse **/
-        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationActiveBtn, "mobile");
-        result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is visible!!!");
+        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent, "mobile");
+        result = commonUtils.assertValue(isBlankScreenDisplayed, true, "Pagination Component is not visible!!!");
+        Assert.assertTrue(result);
+        isPresent = commonUtils.isElementPresent(paginationPgObj.getLeftNavBtn, "mobile");
+        Assert.assertTrue(isPresent);
+        isPresent = commonUtils.isElementPresent(By.xpath(paginationPgObj.getRightNavBtnMobile()), "mobile");
+        Assert.assertTrue(isPresent);
+        compactText = commonUtils.getText(paginationPgObj.compactText, "mobile");
+        isCompactText = commonUtils.assertValue(compactText, expText.replaceAll("'", ""), "The text displayed for compact pagination does not match");
+        Assert.assertTrue(isCompactText);
+    }
+
+    @Test(testName = "Mobile : Validate Negative Values Test", groups = {"mobile-regression"})
+    private void validateNegativeJsValueMobileTest() throws Exception {
+        //** changing the initial config **//*
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "-100"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+
+        //** validating if pagination component loads **//*
+        isBlankScreenDisplayed = commonUtils.isElementPresent(paginationPgObj.paginationComponent, "mobile");
+        result = commonUtils.assertValue(isBlankScreenDisplayed, false, "Pagination Component is not visible!!!");
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile:Verify Pagination Button Test", dataProvider = "Pagination Item Test Data", groups = {"mobile-regression"})
-    private void defaultPaginationMobileItemColorTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.mobilePaginationNextBtn(), cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty.toString(), cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for active button is not as per the spec, actual: " + cssProperty);
+    @Test(testName = "Mobile : Page Numbers CSS Test", groups = "mobile-regression")
+    private void PageNumberCSSMobileTest() throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        String[] expBorderBottoms = new String[]{"2px", "solid", commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        for (int i = 2; i < 5; i++) {
+            commonUtils.click(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "mobile");
+            height = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-height", "mobile");
+            width = commonUtils.getCSSValue(By.xpath(paginationPgObj.getSelectedPage(i)), "min-width", "mobile");
+            fontWt = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), "font-weight", "mobile");
+
+            isHeight = commonUtils.assertValue(height, "44px", "Min-Height of the page buttons is not as per spec");
+            isWidth = commonUtils.assertValue(width, "44px", "Min-Width of the page buttons is not as per spec");
+            isFontWt = commonUtils.assertCSSProperties("font-weight", fontWt, new String[]{"bold", "700"});
+            if (!isFontWt) {
+                log.info("Font weight of the page numbers is not as per spec, actual " + fontWt);
+            }
+            Assert.assertTrue(isHeight && isWidth && isFontWt);
+            for (String cssProperty : borderBtms) {
+                borderBottom = commonUtils.getCSSValue(By.cssSelector(paginationPgObj.getSelectedPageSpan(i)), cssProperty, "mobile");
+                isBorderBtm = commonUtils.assertCSSProperties("border-bottom", borderBottom, expBorderBottoms);
+                if (!isBorderBtm) {
+                    log.info(cssProperty + " of underline for selected page is not as per spec, actual : " + borderBottom);
+                }
+                Assert.assertTrue(isBorderBtm);
+            }
         }
-        Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile:Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"mobile-regression"})
-    private void defaultMobileButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailProperties = new String[]{"elementId", "pagination", "locale", "en", "activePage", "1", "items", "10", "maxButtons", "5"};
-        setConfigAndLaunch(detailProperties);
-        commonUtils.click(paginationPgObj.mobilePaginationNextBtn(), "mobile");
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(paginationPgObj.disabledItem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Default Disabled button is not as per the spec, actual: " + cssProperty);
+    @DataProvider(name = "Mobile : CSS Properties for Left and Right Nav Button Test Data")
+    public Object[][] cssPropLeftRightNavButtonsTestMobileData() {
+        return new Object[][]{
+                {"left-nav", paginationPgObj.getLeftNavBtn, "1px", "solid", new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"50%"}},
+                {"right-nav", By.xpath(paginationPgObj.getRightNavBtnMobile()), "1px", "solid", new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"50%"}},
+        };
+    }
+
+    @Test(testName = "Mobile : CSS Properties for Left and Right Nav Button Test", dataProvider = "Mobile : CSS Properties for Left and Right Nav Button Test Data", groups = "mobile-regression")
+    private void cssPropLeftRightNavButtonsMobileTest(String type, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String[] expBorderRad) throws Exception {
+        String[] detailProperties = new String[]{"elementId", "pagination-target"};
+        String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
+        setConfigAndLaunch(detailProperties, propsPropertiesList);
+        Thread.sleep(500);
+        if (type.equals("right-nav")) {
+            element = By.xpath(paginationPgObj.getRightNavBtnMobile());
         }
-        Assert.assertTrue(isCSSProperty);
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Left/Right Nav Buttons is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Left/Right Nav Buttons is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " of Left/Right Nav Buttons is not as per spec, actual: " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, expBorderRad);
+            if (!isBorderRadius) {
+                log.info("Border radius " + cssProperty + " of of Left/Right Nav Buttons is not as per spec, actual: " + borderRadius);
+            }
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
     /****************
      * Common Methods
      ****************/
 
-    private String buildJSONObjectDetailConfig(String[] detailsPropertiesList) throws IOException {
+    private String buildJSONObjectDetailConfig(String[] detailsPropertiesList, String[] propsPropertiesList) throws IOException {
         int i = 0;
-        if (!(detailsPropertiesList.length % 2 == 0)) {
+        if (!((detailsPropertiesList.length % 2 == 0) || (propsPropertiesList.length % 2 == 0))) {
             log.info("Pass even set of parameters.");
             return null;
         } else {
@@ -479,10 +594,22 @@ public class PaginationTest extends BaseClass {
                 detailProperties.put(detailsPropertiesList[i], detailsPropertiesList[i + 1]);
             }
 
-            // Json Parser converts the string into a JSON format, it is best for handling the number format
+            propsProperties = new LinkedHashMap<String, String>();
+            for (i = 0; i < (propsPropertiesList.length - 1); i = i + 2) {
+                propsProperties.put(propsPropertiesList[i], propsPropertiesList[i + 1]);
+            }
+
+            // Build detail object
             jsonDetailObject = new JsonObject();
-            Object obj = parser.parse(detailProperties.toString());
-            jsonDetailObject.add("detail", (JsonObject) obj);
+            jsonDetailPropertiesObject = new JsonObject();
+            for (Map.Entry<String, String> entry : detailProperties.entrySet()) {
+                jsonDetailPropertiesObject.addProperty(entry.getKey(), entry.getValue());
+            }
+            jsonDetailObject.add("detail", jsonDetailPropertiesObject);
+
+            // Json Parser converts the string into a JSON format, it is best for handling the number format
+            Object obj = parser.parse(propsProperties.toString());
+            jsonDetailPropertiesObject.add("props", (JsonObject) obj);
 
             beforeFinalFormat = jsonDetailObject.toString().replaceAll(":\"", ":'").replaceAll("\",", "',").replaceAll("\":", ":").replaceAll(",\"", ",").replaceAll("\\{\"", "\\{");
             finalConfig = preConfigStr1 + preConfigStr2 + beforeFinalFormat + postConfigStr1;
@@ -491,8 +618,8 @@ public class PaginationTest extends BaseClass {
         }
     }
 
-    private void setConfigAndLaunch(String[] detailsPropertiesList) throws Exception {
-        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList);
+    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
+        testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         commonUtils.changeConfig(paginationJSFilePath, testConfig);
         Thread.sleep(1000);
         if (mobile.equals("off")) {
@@ -502,45 +629,9 @@ public class PaginationTest extends BaseClass {
         }
     }
 
-
-    private void changeSingleLineConfig(String jsFilePath, String getDefaultConfig, String getTestConfig, String word) throws IOException, InterruptedException {
-        newLines = new ArrayList<String>();
-        for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
-            if (line.contains(word)) {
-                newLines.add(line.replace(getDefaultConfig, getTestConfig));
-            } else {
-                newLines.add(line);
-            }
-        }
-        Files.write(Paths.get(jsFilePath), newLines, StandardCharsets.UTF_8);
-    }
-
     public String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));
         return path;
     }
 
 }
-
-/*private String buildJSONObject(String elementId, String locale, int activePage, int items, int maxButtons) {
-        jsonObject = new JsonObject();
-        jsonObject.addProperty("elementId", elementId);
-        jsonObject.addProperty("locale", locale);
-        jsonObject.addProperty("activePage", activePage);
-        jsonObject.addProperty("items", items);
-        jsonObject.addProperty("maxButtons", maxButtons);
-        return "\"detail:\"" + jsonObject.toString();
-    }
-
-    private String buildJSONObject(List<String> list) {
-        jsonObject = new JsonObject();
-        int i;
-        if (list.size() % 2 == 0) {
-            for (i = 0; i < list.size(); i += 2) {
-                jsonObject.addProperty(list.get(i), list.get(i + 1));
-            }
-        } else {
-            log.info("Pass even set of parameters.");
-        }
-        return jsonObject.toString();
-    } */
