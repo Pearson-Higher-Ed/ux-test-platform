@@ -148,7 +148,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By dateField) {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
@@ -348,7 +348,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //ESC
-    @Test(testName = "ESC key Test", groups = {"desktop-regression","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "ESC key Test", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void escKeyTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
