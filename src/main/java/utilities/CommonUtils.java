@@ -12,10 +12,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,23 +27,23 @@ import java.util.logging.Level;
  */
 public class CommonUtils {
 
-    private WebDriver driver;
-    private AppiumDriver appium;
-    Dimension dimension;
-    WebElement webElement;
-    Actions action;
+    private WebDriver driver = null;
+    private AppiumDriver appium = null;
+    Dimension dimension = null;
+    WebElement webElement = null;
+    Actions action = null;
     JavascriptExecutor js = null;
-    MobileElement mobWebElement;
+    MobileElement mobWebElement = null;
     boolean elementVisible = false, isForValue = false, isAriaDescByContains = false;
-    List<WebElement> listWebElements;
-    List<MobileElement> listMobWebElements;
-    LogEntries browserLogs;
+    List<WebElement> listWebElements = null;
+    List<MobileElement> listMobWebElements = null;
+    LogEntries browserLogs = null;
     StringBuffer strBuffer = null;
     StringBuilder strBuilder = null;
     Color c = null;
     String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
-    private List<String> newLines, fileContent;
+    private List<String> newLines = null, fileContent = null;
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -62,9 +59,8 @@ public class CommonUtils {
         try {
             webElement = driver.findElement(element);
             webElement.click();
-        }
-        catch (NoSuchElementException e){
-            log.info(e.getMessage());
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation didn't happen");
         }
     }
 
@@ -72,48 +68,71 @@ public class CommonUtils {
         try {
             webElement = appium.findElement(element);
             webElement.click();
-        }
-        catch (NoSuchElementException e){
-            log.info(e.getMessage());
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation didn't happen");
         }
     }
 
     //click using js
     public void clickUsingJS(By element) {
-        webElement = driver.findElement(element);
-        js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", webElement);
+        try {
+            webElement = driver.findElement(element);
+            js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", webElement);
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation using JS didn't happen");
+        }
     }
 
     public void clickUsingJS(By element, String mobile) {
-        webElement = appium.findElement(element);
-        js = (JavascriptExecutor) appium;
-        js.executeScript("arguments[0].click();", webElement);
+        try {
+            webElement = appium.findElement(element);
+            js = (JavascriptExecutor) appium;
+            js.executeScript("arguments[0].click();", webElement);
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation using JS didn't happen");
+        }
     }
 
     //send keys
     public void sendKeys(By element, String text) {
-        webElement = driver.findElement(element);
-        webElement.clear();
-        webElement.sendKeys(text);
+        try {
+            webElement = driver.findElement(element);
+            webElement.clear();
+            webElement.sendKeys(text);
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, sendkeys operation didn't happen");
+        }
     }
 
     public void sendKeys(By element, String text, String mobile) {
-        webElement = appium.findElement(element);
-        webElement.clear();
-        webElement.sendKeys(text);
+        try {
+            webElement = appium.findElement(element);
+            webElement.clear();
+            webElement.sendKeys(text);
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, sendkeys operation didn't happen");
+        }
     }
 
     public void tabSpace(By element) {
-        webElement = driver.findElement(element);
-        webElement.sendKeys(Keys.TAB);
-        webElement.sendKeys(Keys.SPACE);
+        try {
+            webElement = driver.findElement(element);
+            webElement.sendKeys(Keys.TAB);
+            webElement.sendKeys(Keys.SPACE);
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
+        }
     }
 
     public void tabSpaceAction(By element) {
-        webElement = driver.findElement(element);
-        Actions action = new Actions(driver);
-        action.sendKeys(webElement,Keys.SPACE).build().perform();
+        try {
+            webElement = driver.findElement(element);
+            Actions action = new Actions(driver);
+            action.sendKeys(webElement, Keys.SPACE).build().perform();
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
+        }
     }
 
     //is element present
@@ -122,7 +141,7 @@ public class CommonUtils {
             webElement = driver.findElement(element);
             return webElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not present");
             return false;
         }
     }
@@ -132,7 +151,7 @@ public class CommonUtils {
             mobWebElement = (MobileElement) appium.findElement(element);
             return mobWebElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not present");
             return false;
         }
     }
@@ -142,7 +161,7 @@ public class CommonUtils {
         try {
             return driver.findElement(element).isDisplayed();
         } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not displayed");
             return false;
         }
     }
@@ -152,7 +171,7 @@ public class CommonUtils {
             mobWebElement = (MobileElement) appium.findElement(element);
             return mobWebElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not displayed");
             return false;
         }
     }
@@ -163,19 +182,23 @@ public class CommonUtils {
             webElement = driver.findElement(element);
             return webElement.isEnabled();
         } catch (NoSuchElementException e) {
-            log.info(e.getMessage());
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not enabled");
             return false;
         }
     }
 
     public boolean isElementEnabled(By element, String mobile) {
-        mobWebElement = (MobileElement) appium.findElement(element);
-        return mobWebElement.isEnabled();
+        try {
+            mobWebElement = (MobileElement) appium.findElement(element);
+            return mobWebElement.isEnabled();
+        } catch (NoSuchElementException e) {
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not enabled");
+            return false;
+        }
     }
 
     //get url
     public void getUrl(String url) {
-
         driver.get(url);
     }
 
@@ -415,7 +438,7 @@ public class CommonUtils {
     }
 
     //Write all the lines to a file
-    public void writeInitialConfig(String tempJSFilePath, String jsFilePath) throws IOException, InterruptedException {
+    public void writeInitialConfig(String tempJSFilePath, String jsFilePath) {
         try {
             newLines = new ArrayList<String>();
             for (String line : Files.readAllLines(Paths.get(tempJSFilePath), StandardCharsets.UTF_8)) {
@@ -428,7 +451,7 @@ public class CommonUtils {
     }
 
     //Override a file contents with new config
-    public void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) throws IOException, InterruptedException {
+    public void changeConfig(String jsFilePath, String getDefaultConfig, String getTestConfig) {
         try {
             newLines = new ArrayList<String>();
             for (String line : Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8)) {
@@ -441,7 +464,7 @@ public class CommonUtils {
     }
 
     //Override a file contents with new config
-    public void changeConfig(String jsFilePath, String getTestConfig) throws IOException, InterruptedException {
+    public void changeConfig(String jsFilePath, String getTestConfig) {
         try {
             newLines = new ArrayList<String>();
             newLines.add(getTestConfig);
@@ -452,8 +475,12 @@ public class CommonUtils {
     }
 
     //Replace a particular line in a file
-    public void replaceLineInAFile(String jsFilePath, String currentString, String newString) throws Exception {
-        fileContent = new ArrayList<String>(Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8));
+    public void replaceLineInAFile(String jsFilePath, String currentString, String newString) {
+        try {
+            fileContent = new ArrayList<String>(Files.readAllLines(Paths.get(jsFilePath), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < fileContent.size(); i++) {
             if (fileContent.get(i).contains(currentString)) {
@@ -461,15 +488,27 @@ public class CommonUtils {
                 break;
             }
         }
-        Files.write(Paths.get(jsFilePath), fileContent, StandardCharsets.UTF_8);
+        try {
+            Files.write(Paths.get(jsFilePath), fileContent, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //Print all the contents from a file
-    public void printFileContents(String jsFilePath) throws Exception {
-        br = new BufferedReader(new FileReader(jsFilePath));
+    public void printFileContents(String jsFilePath) {
+        try {
+            br = new BufferedReader(new FileReader(jsFilePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         String line = null;
-        while ((line = br.readLine()) != null) {
-            System.out.println(line);
+        try {
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -504,5 +543,30 @@ public class CommonUtils {
             }
         }
         return index;
+    }
+
+    //Return all attributes and values of an element
+    public String getAllAttributes(By element) {
+        js = (JavascriptExecutor) driver;
+        webElement = driver.findElement(element);
+        Object attributes = "";
+        try {
+            attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", webElement);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return attributes.toString();
+    }
+
+    public String getAllAttributes(By element, String mobile) {
+        js = (JavascriptExecutor) appium;
+        webElement = appium.findElement(element);
+        Object attributes = "";
+        try {
+            attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", webElement);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return attributes.toString();
     }
 }
