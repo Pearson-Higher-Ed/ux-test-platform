@@ -279,7 +279,7 @@ public class TablesTest extends BaseClass {
         for (int i = 1; i <= listElements.size() - 1; i++) {
             width = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "width");
             verticalAlign = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "vertical-align");
-            isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"19px", "19.01px", "89px"});
+            isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"19px", "19.01px", "89px","91px"});
             if (!isWidth) {
                 log.info("width of checkbox is not as per spec, actual: " + width);
             }
