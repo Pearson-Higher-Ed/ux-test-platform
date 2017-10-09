@@ -550,9 +550,7 @@ public class CalendarTest extends BaseClass {
         ariaLabelledBy = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-labelledby");
         isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby not pointing to the month id is not set right as per the spec");
 
-        isPeSrOnly = commonUtils.getAttributeValue(By.xpath(currentDateXpath + "/div/div/span"), "class").equals("pe-sr-only");
-
-        Assert.assertTrue(isActiveDescendant && isTabIndex && isAriaLabelledBy && isPeSrOnly);
+        Assert.assertTrue(isActiveDescendant && isTabIndex && isAriaLabelledBy);
     }
 
     @DataProvider(name = "Secondary Date Test Data")
@@ -1044,9 +1042,7 @@ public class CalendarTest extends BaseClass {
         ariaLabelledBy = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-labelledby", "mobile");
         isAriaLabelledBy = commonUtils.assertValue(ariaLabelledBy, id, "aria-labelledby not pointing to the month id is not set right as per the spec");
 
-        isPeSrOnly = commonUtils.getAttributeValue(By.xpath(currentDateXpath + "/div/div/span"), "class", "mobile").equals("pe-sr-only");
-
-        Assert.assertTrue(isActiveDescendant && isTabIndex && isAriaLabelledBy && isPeSrOnly);
+        Assert.assertTrue(isActiveDescendant && isTabIndex && isAriaLabelledBy);
     }
 
     @Test(testName = "Mobile: Secondary Date Test", dataProvider = "Secondary Date Test Data", groups = "mobile-regression")
