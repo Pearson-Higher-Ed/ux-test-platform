@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
+import utilities.RetryAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
