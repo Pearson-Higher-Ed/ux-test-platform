@@ -71,7 +71,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = "desktop-regression")
+    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void defaultStateTest(String state, By timeField, By labelText) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -100,7 +100,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "desktop-regression")
+    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithOutSelectionTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -130,7 +130,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By timeField) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -172,7 +172,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "desktop-regression")
+    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void dropDownCloseTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
 
         for (int i = 0; i < 2; i++) {
@@ -229,7 +229,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "desktop-regression")
+    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void noFocusSelectionTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -253,7 +253,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Styles Test
-    @Test(testName = "TimePicker Styles Test", groups = "desktop-regression")
+    @Test(testName = "TimePicker Styles Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void stylesTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -291,7 +291,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //TAB - forward
-    @Test(testName = "Forward TAB Test", groups = "desktop-regression")
+    @Test(testName = "Forward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void forwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -318,7 +318,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //backward
-    @Test(testName = "Backward TAB Test", groups = "desktop-regression")
+    @Test(testName = "Backward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void backwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -342,7 +342,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //ESC
-    @Test(testName = "ESC key Test", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "ESC key Test", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
     private void escKeyTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -373,7 +373,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //change handler
-    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = "desktop-regression")
+    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void changeHandlerTest(String operationType) {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -410,7 +410,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath);
 
@@ -420,7 +420,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Mobile Tests
-    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void defaultStateMobileTest(String state, By timeField, By labelText) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -441,7 +441,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //focus state
-    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithOutSelectionMobileTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -463,7 +463,7 @@ public class TimePickerTest extends BaseClass {
         Assert.assertTrue(isTimeField);
     }
 
-    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionMobileTest(String state, By timeField) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -492,7 +492,7 @@ public class TimePickerTest extends BaseClass {
         Assert.assertTrue((timeInTimeField.equals(value)), "In '" + state + "' inputState, the time in the timeField text box and the one selected in the dropdown doesn't match");
     }
 
-    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void dropDownCloseMobileTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
 
         for (int i = 0; i < 2; i++) {
@@ -540,7 +540,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Selected Time(no focus)
-    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void noFocusSelectionMobileTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -564,7 +564,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Styles Test
-    @Test(testName = "Mobile: TimePicker Styles Test", groups = "mobile-regression")
+    @Test(testName = "Mobile: TimePicker Styles Test", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void stylesMobileTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -602,7 +602,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //change handler
-    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void changeHandlerMobileTest(String operationType) {
         if ((operationType.equals("keys"))) {
             throw new SkipException("keyboard operations not yet supported in firefox/safari/ie browser drivers");
@@ -626,7 +626,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //negative tests
-    @Test(testName = "Mobile: Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
 
