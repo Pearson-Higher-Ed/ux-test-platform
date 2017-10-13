@@ -3,6 +3,7 @@ package standAloneTests;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -86,10 +87,10 @@ public class ModalTest extends BaseClass {
         return new Object[][]{
                 {"md", 768, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"600px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {"sm", 480, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"440px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"400px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"xs", 320, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
                 {"md", 768, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"600px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {"sm", 480, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"440px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"400px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
+                {"xs", 320, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
         };
     }
 
@@ -368,7 +369,7 @@ public class ModalTest extends BaseClass {
     @DataProvider(name = "Modal Buttons Test Data")
     private Object[][] getModalButtonsTestData() {
         return new Object[][]{
-                {"md", 768, 800, "'save'", modalPgObj.modalSaveBtnReact, new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"md", 768, 800, "'save'", modalPgObj.modalSaveBtnReact, new String[]{"0px", "0px", "0px", "14px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {"md", 768, 800, "'cancel'", modalPgObj.modalCancelBtnReact, new String[]{"0px", "0px", "0px", "0px"}, new String[]{"0"}, new String[]{"1"}, new String[]{"auto"}, "iPad Air", ScreenOrientation.PORTRAIT},
                 {"sm", 480, 800, "'cancel'", modalPgObj.modalCancelBtnReact, new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
                 {"sm", 480, 800, "'save'", modalPgObj.modalSaveBtnReact, new String[]{"6px", "4px", "6px", "4px"}, new String[]{"1"}, new String[]{"0"}, new String[]{"auto"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
@@ -443,9 +444,9 @@ public class ModalTest extends BaseClass {
     @DataProvider(name = "Modal Close X Button Test Data")
     private Object[][] getModalCloseXButtonTestData() {
         return new Object[][]{
-                {"md", 768, 800, modalPgObj.modalCloseButtonReact, "40px", "40px", "right", new String[]{"-40px", "-40px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 800, modalPgObj.modalCloseButtonReact, "40px", "40px", "right", new String[]{"-24px", "-24px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, modalPgObj.modalCloseButtonReact, "40px", "40px", "right", new String[]{"-24px", "-24px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"md", 768, 800, modalPgObj.modalCloseButtonReact, "44px", "44px", "right", new String[]{"-40px", "-40px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 800, modalPgObj.modalCloseButtonReact, "44px", "44px", "right", new String[]{"-24px", "-24px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"xs", 320, 800, modalPgObj.modalCloseButtonReact, "44px", "44px", "right", new String[]{"-24px", "-24px", "0px", "0px"}, "none", new String[]{"none", "none", "none", "none"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
         };
     }
 
@@ -461,7 +462,7 @@ public class ModalTest extends BaseClass {
         height = commonUtils.getCSSValue(modalCloseButton, "height");
         closeButtonFloat = commonUtils.getCSSValue(modalCloseButton, "float");
         textDecoration = commonUtils.getCSSValue(modalCloseButton, "text-decoration-line");
-
+        color = commonUtils.getCSSValue(modalPgObj.modalCloseIcon, "color");
 
         isWidth = commonUtils.assertValue(width, expWidth, "'modal close' - width for size " + size + " is not as per the spec");
         isHeight = commonUtils.assertValue(height, expHeight, "'modal close' - height for size " + size + " is not as per the spec");
@@ -484,7 +485,12 @@ public class ModalTest extends BaseClass {
             }
             Assert.assertTrue(isBorderStyle);
         }
-        Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration);
+
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+        if (!isColor) {
+            log.info("color for the close icon is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration && isColor);
     }
 
     @DataProvider(name = "Modal Focus Test Data")
@@ -655,6 +661,33 @@ public class ModalTest extends BaseClass {
         isAriaHiddenAttributePresent = commonUtils.assertValue(actAriaHidden, expAriaHidden, "aria-hidden is not set to " + expAriaHidden + " for ariaHiddenApp prop set to " + ariaHideApp);
 
         Assert.assertTrue(isWrapperPresent && isAriaHiddenAttributePresent);
+    }
+
+    @DataProvider(name = "Modal Margin Test Data")
+    public Object[][] getModalMarginTestData() {
+        return new Object[][]{
+                {"xs", 320, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"0px", "20px", "0px", "20px"}},
+                {"xs", 320, 800, "false", modalPgObj.modalWithFooterTemplateReact, new String[]{"0px", "20px", "0px", "20px"}}
+        };
+    }
+
+    //modal margin
+    @Test(testName = "Modal Margin Test", dataProvider = "Modal Margin Test Data", groups = "desktop-regression")
+    private void modalMarginTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplate, String[] expMarginValue) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+        commonUtils.setWindowSize(windowWidth, windowHeight);
+
+        for (int i = 0; i < margins.length; i++) {
+            margin = commonUtils.getCSSValue(modalTemplate, margins[i]);
+            isMargin = commonUtils.assertValue(margin, expMarginValue[i], "'" + margins[i] + "' for " + size + " size is not as per the spec");
+            if (!isMargin) {
+                log.info("'modal template - '" + margins[i] + "' for " + size + " is not as per the spec, actual: " + margin);
+            }
+            Assert.assertTrue(isMargin);
+        }
     }
 
     //Mobile Tests
@@ -985,6 +1018,7 @@ public class ModalTest extends BaseClass {
         height = commonUtils.getCSSValue(modalCloseButton, "height", "mobile");
         closeButtonFloat = commonUtils.getCSSValue(modalCloseButton, "float", "mobile");
         textDecoration = commonUtils.getCSSValue(modalCloseButton, "text-decoration", "mobile");
+        color = commonUtils.getCSSValue(modalPgObj.modalCloseIcon, "color", "mobile");
 
         isWidth = commonUtils.assertValue(width, expWidth, "'modal close' - width for size " + size + " is not as per the spec");
         isHeight = commonUtils.assertValue(height, expHeight, "'modal close' - height for size " + size + " is not as per the spec");
@@ -1007,6 +1041,11 @@ public class ModalTest extends BaseClass {
             }
             Assert.assertTrue(isBorderStyle);
         }
+        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+        if (!isColor) {
+            log.info("color for the close icon is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration && isColor);
     }
 
     @Test(testName = "Mobile: SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "mobile-regression")
@@ -1072,6 +1111,23 @@ public class ModalTest extends BaseClass {
         isAriaHiddenAttributePresent = commonUtils.assertValue(actAriaHidden, expAriaHidden, "aria-hidden is not set to " + expAriaHidden + " for ariaHiddenApp prop set to " + ariaHideApp);
 
         Assert.assertTrue(isWrapperPresent && isAriaHiddenAttributePresent);
+    }
+
+    @Test(testName = "Modal: Modal Margin Test", dataProvider = "Modal Margin Test Data", groups = "mobile-regression")
+    private void modalMarginMobileTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplate, String[] expMarginValue) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+
+        for (int i = 0; i < margins.length; i++) {
+            margin = commonUtils.getCSSValue(modalTemplate, margins[i], "mobile");
+            isMargin = commonUtils.assertValue(margin, expMarginValue[i], "'" + margins[i] + "' for " + size + " size is not as per the spec");
+            if (!isMargin) {
+                log.info("'modal template - '" + margins[i] + "' for " + size + " is not as per the spec, actual: " + margin);
+            }
+            Assert.assertTrue(isMargin);
+        }
     }
 
     /*****************
