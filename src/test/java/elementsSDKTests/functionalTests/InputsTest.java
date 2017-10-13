@@ -1578,7 +1578,7 @@ public class InputsTest extends BaseClass {
                 {"select-input-basic", "default", inputsPgObj.basicSelectInput, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
                 {"select-input-basic-error", "error", inputsPgObj.basicSelectInputError, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px", "14px"},
                 {"select-input-basic-disabled", "disabled", inputsPgObj.basicSelectInputDisabled, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
-                {"select-input-basic-readOnly", "readOnly", inputsPgObj.basicSelectInputReadOnly, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "0px"},
+                {"select-input-basic-readOnly", "readOnly", inputsPgObj.basicSelectInputReadOnly, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
         };
     }
 
