@@ -44,6 +44,7 @@ public class CommonUtils {
     String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
     private List<String> newLines = null, fileContent = null;
+    public final String errorColorCode = "\u001B[31m";
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
 
     public CommonUtils(WebDriver driver) {
@@ -60,7 +61,7 @@ public class CommonUtils {
             webElement = driver.findElement(element);
             webElement.click();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation didn't happen");
         }
     }
 
@@ -69,7 +70,7 @@ public class CommonUtils {
             webElement = appium.findElement(element);
             webElement.click();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation didn't happen");
         }
     }
 
@@ -80,7 +81,7 @@ public class CommonUtils {
             js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", webElement);
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation using JS didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, click operation using JS didn't happen");
         }
     }
 
@@ -90,7 +91,7 @@ public class CommonUtils {
             js = (JavascriptExecutor) appium;
             js.executeScript("arguments[0].click();", webElement);
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation using JS didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, click operation using JS didn't happen");
         }
     }
 
@@ -101,7 +102,7 @@ public class CommonUtils {
             webElement.clear();
             webElement.sendKeys(text);
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, sendkeys operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, sendkeys operation didn't happen");
         }
     }
 
@@ -111,7 +112,7 @@ public class CommonUtils {
             webElement.clear();
             webElement.sendKeys(text);
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, sendkeys operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, sendkeys operation didn't happen");
         }
     }
 
@@ -121,7 +122,7 @@ public class CommonUtils {
             webElement.sendKeys(Keys.TAB);
             webElement.sendKeys(Keys.SPACE);
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
         }
     }
 
@@ -131,7 +132,7 @@ public class CommonUtils {
             Actions action = new Actions(driver);
             action.sendKeys(webElement, Keys.SPACE).build().perform();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, tab space operation didn't happen");
         }
     }
 
@@ -141,7 +142,7 @@ public class CommonUtils {
             webElement = driver.findElement(element);
             return webElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not present");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": element is not present");
             return false;
         }
     }
@@ -151,7 +152,7 @@ public class CommonUtils {
             mobWebElement = (MobileElement) appium.findElement(element);
             return mobWebElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not present");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": mobile element is not present");
             return false;
         }
     }
@@ -161,7 +162,7 @@ public class CommonUtils {
         try {
             return driver.findElement(element).isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not displayed");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": element is not displayed");
             return false;
         }
     }
@@ -171,7 +172,7 @@ public class CommonUtils {
             mobWebElement = (MobileElement) appium.findElement(element);
             return mobWebElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not displayed");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": mobile element is not displayed");
             return false;
         }
     }
@@ -182,7 +183,7 @@ public class CommonUtils {
             webElement = driver.findElement(element);
             return webElement.isEnabled();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " element is not enabled");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": element is not enabled");
             return false;
         }
     }
@@ -192,7 +193,7 @@ public class CommonUtils {
             mobWebElement = (MobileElement) appium.findElement(element);
             return mobWebElement.isEnabled();
         } catch (NoSuchElementException e) {
-            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + " mobile element is not enabled");
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": mobile element is not enabled");
             return false;
         }
     }
@@ -208,39 +209,73 @@ public class CommonUtils {
 
     //set windowsize
     public void setWindowSize(int width, int height) {
-        dimension = new Dimension(width, height);
-        driver.manage().window().setSize(dimension);
+        try {
+            dimension = new Dimension(width, height);
+            driver.manage().window().setSize(dimension);
+        } catch (Exception e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": dimension is not set");
+        }
     }
 
     //get css value
     public String getCSSValue(By element, String property) {
-        webElement = driver.findElement(element);
-        return webElement.getCssValue(property);
+        try {
+            webElement = driver.findElement(element);
+            return webElement.getCssValue(property);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get the css property for the element");
+            return null;
+        }
     }
 
     public String getCSSValue(By element, String property, String mobile) {
-        webElement = appium.findElement(element);
-        return webElement.getCssValue(property);
+        try {
+            webElement = appium.findElement(element);
+            return webElement.getCssValue(property);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to get the css property for the mobile element");
+            return null;
+        }
     }
 
     //get Text
     public String getText(By element) {
-        webElement = driver.findElement(element);
-        return webElement.getText();
+        try {
+            webElement = driver.findElement(element);
+            return webElement.getText();
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get the text value for the element");
+            return null;
+        }
     }
 
     public String getText(By element, String mobile) {
-        webElement = appium.findElement(element);
-        return webElement.getText();
+        try {
+            webElement = appium.findElement(element);
+            return webElement.getText();
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to get the text value for the mobile element");
+            return null;
+        }
     }
 
     //get Attribute value
     public String getAttributeValue(By element, String attribute) {
-        return driver.findElement(element).getAttribute(attribute);
+        try {
+            return driver.findElement(element).getAttribute(attribute);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get the attributes for the element");
+            return null;
+        }
     }
 
     public String getAttributeValue(By element, String attribute, String mobile) {
-        return appium.findElement(element).getAttribute(attribute);
+        try {
+            return appium.findElement(element).getAttribute(attribute);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to get the attributes for the mobile element");
+            return null;
+        }
     }
 
     //assertValues
@@ -249,48 +284,76 @@ public class CommonUtils {
             Assert.assertEquals(actual, expected, message);
             return true;
         } catch (AssertionError ae) {
-            log.info("Assertion Error: " + ae.getMessage());
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - Assertion Error: " + ae.getMessage());
             return false;
         }
     }
 
     //hover on an element
     public void hoverOnElement(By element) {
-        action = new Actions(driver);
-        action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).build().perform();
+        try {
+            action = new Actions(driver);
+            action.moveToElement(driver.findElement(element)).moveToElement(driver.findElement(element)).build().perform();
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to hover on the element");
+        }
     }
 
     public void hoverOnElement(By element, String mobile) {
-        action = new Actions(appium);
-        action.moveToElement(appium.findElement(element)).moveToElement(appium.findElement(element)).click().build().perform();
+        try {
+            action = new Actions(appium);
+            action.moveToElement(appium.findElement(element)).moveToElement(appium.findElement(element)).click().build().perform();
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to hover on the mobile element");
+        }
     }
 
     //Tab on an element
     public void tabOnElement(By element) {
-        webElement = driver.findElement(element);
-        webElement.sendKeys(Keys.TAB);
-        webElement.sendKeys(Keys.ENTER);
+        try {
+            webElement = driver.findElement(element);
+            webElement.sendKeys(Keys.TAB);
+            webElement.sendKeys(Keys.ENTER);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to TAB on the element");
+        }
     }
 
     //focus on an element by Id
     public void focusOnElementById(String element) {
-        js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementById('" + element + "').focus()");
+        try {
+            js = (JavascriptExecutor) driver;
+            js.executeScript("document.getElementById('" + element + "').focus()");
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to focus on the element");
+        }
     }
 
     public void unFocusOnElementById(String element) {
-        js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementById('" + element + "').blur()");
+        try {
+            js = (JavascriptExecutor) driver;
+            js.executeScript("document.getElementById('" + element + "').blur()");
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to un-focus on the element");
+        }
     }
 
     public void focusOnElementById(String element, String mobile) {
-        js = (JavascriptExecutor) appium;
-        js.executeScript("document.getElementById('" + element + "').focus()");
+        try {
+            js = (JavascriptExecutor) appium;
+            js.executeScript("document.getElementById('" + element + "').focus()");
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to focus on the mobile element");
+        }
     }
 
     //key operation on active element
     public void keyOperationOnActiveElement(Keys key) {
-        driver.switchTo().activeElement().sendKeys(key);
+        try {
+            driver.switchTo().activeElement().sendKeys(key);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": no such element, unable to perform '" + key + "' key operation on the element");
+        }
     }
 
     public String hex2Rgb(String colorStr) {
@@ -330,70 +393,110 @@ public class CommonUtils {
                 isCSSPropertyPresent = false;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - Assertion Error: " + e.getMessage());
         }
         return isCSSPropertyPresent;
     }
 
     //isElementVisibleOnPage
     public boolean isElementsVisibleOnPage(By element) {
-        listWebElements = driver.findElements(element);
-        if (listWebElements.size() > 0) {
-            elementVisible = true;
-            return elementVisible;
-        } else {
-            elementVisible = false;
-            return elementVisible;
+        try {
+            listWebElements = driver.findElements(element);
+            if (listWebElements.size() > 0) {
+                elementVisible = true;
+                return elementVisible;
+            } else {
+                elementVisible = false;
+                return elementVisible;
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": element is not visible");
+            return false;
         }
     }
 
     public boolean isElementsVisibleOnPage(By element, String mobile) {
-        listMobWebElements = appium.findElements(element);
-        if (listMobWebElements.size() > 0) {
-            elementVisible = true;
-            return elementVisible;
-        } else {
-            elementVisible = false;
-            return elementVisible;
+        try {
+            listMobWebElements = appium.findElements(element);
+            if (listMobWebElements.size() > 0) {
+                elementVisible = true;
+                return elementVisible;
+            } else {
+                elementVisible = false;
+                return elementVisible;
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": mobile element is not visible");
+            return false;
         }
     }
 
     public boolean checkLabelForVal(By label, By elem) {
-        webElement = driver.findElement(label);
-        labelContains = webElement.getAttribute("for");
-        webElement = driver.findElement(elem);
-        isForValue = labelContains.equals(webElement.getAttribute("id"));
-        return isForValue;
+        try {
+            webElement = driver.findElement(label);
+            labelContains = webElement.getAttribute("for");
+            webElement = driver.findElement(elem);
+            isForValue = labelContains.equals(webElement.getAttribute("id"));
+            return isForValue;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + elem + ": no such element, unable to check label for the element");
+            return false;
+        }
     }
 
-    public boolean checkLabelForVal(By label, By elem, String mobile) {
-        webElement = appium.findElement(label);
-        labelContains = webElement.getAttribute("for");
-        webElement = appium.findElement(elem);
-        isForValue = labelContains.equals(webElement.getAttribute("id"));
-        return isForValue;
+    public boolean checkLabelForVal(By label, By element, String mobile) {
+        try {
+            webElement = appium.findElement(label);
+            labelContains = webElement.getAttribute("for");
+            webElement = appium.findElement(element);
+            isForValue = labelContains.equals(webElement.getAttribute("id"));
+            return isForValue;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to check label for the mobile element");
+            return false;
+        }
     }
 
     public boolean checkAriaDescribedBy(By accessibleDesc, By element) {
-        ariaDescByContains = getAttributeValue(element, "aria-describedby");
-        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id"));
-        return isAriaDescByContains;
+        try {
+            ariaDescByContains = getAttributeValue(element, "aria-describedby");
+            isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id"));
+            return isAriaDescByContains;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to check aria-describedby for the element");
+            return false;
+        }
     }
 
     public boolean checkAriaDescribedBy(By accessibleDesc, By element, String mobile) {
-        ariaDescByContains = getAttributeValue(element, "aria-describedby", mobile);
-        isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id", mobile));
-        return isAriaDescByContains;
+        try {
+            ariaDescByContains = getAttributeValue(element, "aria-describedby", mobile);
+            isAriaDescByContains = ariaDescByContains.equals(getAttributeValue(accessibleDesc, "id", mobile));
+            return isAriaDescByContains;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to check aria-describedby for the mobile element");
+            return false;
+        }
     }
 
     public int countNumberOfItems(By element) {
-        int numberOfItems = driver.findElements(element).size();
-        return numberOfItems;
+        try {
+            int numberOfItems = driver.findElements(element).size();
+            return numberOfItems;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get size of elements");
+            return 0;
+        }
     }
 
     public int countNumberOfItems(By element, String mobile) {
-        int numberOfItems = appium.findElements(element).size();
-        return numberOfItems;
+        try {
+            int numberOfItems = appium.findElements(element).size();
+            return numberOfItems;
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get size of mobile elements");
+            return 0;
+        }
     }
 
     public static void setupChromeDriver() {
@@ -420,8 +523,13 @@ public class CommonUtils {
     }
 
     public Object browserLogs() {
-        browserLogs = driver.manage().logs().get("browser");
-        return browserLogs.filter(Level.ALL);
+        try {
+            browserLogs = driver.manage().logs().get("browser");
+            return browserLogs.filter(Level.ALL);
+        } catch (Exception e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": Unable to get the browser logs");
+            return null;
+        }
     }
 
     //Read all the lines from a file
@@ -552,10 +660,11 @@ public class CommonUtils {
         Object attributes = "";
         try {
             attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", webElement);
+            return attributes.toString();
         } catch (Exception e) {
-            log.info(e.getMessage());
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get all attributes of the element");
+            return null;
         }
-        return attributes.toString();
     }
 
     public String getAllAttributes(By element, String mobile) {
@@ -564,9 +673,10 @@ public class CommonUtils {
         Object attributes = "";
         try {
             attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", webElement);
+            return attributes.toString();
         } catch (Exception e) {
-            log.info(e.getMessage());
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get all attributes of the mobile element");
         }
-        return attributes.toString();
+        return null;
     }
 }
