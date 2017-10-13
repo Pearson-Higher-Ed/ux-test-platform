@@ -27,11 +27,11 @@ before_script:
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
-- export component=modal
-- export feature_branch=DES-807
+- export component=elements-sdk
+- export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=modal.xml test
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 
 notifications:
   email:
