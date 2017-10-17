@@ -3,7 +3,7 @@
 <suite name="temporary-elements_only Test Suite">
     <groups>
         <run>
-            <include name="desktop-regression"/>
+            <include name="desktop-ci"/>
         </run>
     </groups>
     <test name="temporary-elements-only: Styles(CSS) Tests" parallel="classes" thread-count="10">
