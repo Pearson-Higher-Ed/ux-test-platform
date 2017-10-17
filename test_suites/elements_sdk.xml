@@ -6,8 +6,9 @@
             <include name="desktop-ci"/>
         </run>
     </groups>
-    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="12">
+    <test name="ElementsSDK: Functional(JavaScript) and Styles(CSS) Tests" parallel="classes" thread-count="22">
         <classes>
+            <!-- Functional(JavaScript) Tests -->
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
             <class name="elementsSDKTests.functionalTests.DropdownTest"/>
@@ -20,10 +21,7 @@
             <class name="elementsSDKTests.functionalTests.TablesTest"/>
             <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
             <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
-        </classes>
-    </test>
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="10">
-        <classes>
+            <!-- Styles(CSS) Tests -->
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
