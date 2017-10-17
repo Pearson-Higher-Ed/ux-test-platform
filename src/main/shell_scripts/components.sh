@@ -32,6 +32,20 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
 
+install_elements() {
+echo -e "******************************\\n    Installing elements: $1   \\n******************************"
+cd ~/build/Pearson-Higher-Ed/ux-test-platform/
+git clone https://github.com/Pearson-Higher-Ed/elements.git &>/dev/null
+cd elements
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
+ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+}
+
 install_appHeader(){
 echo -e "******************************\\n    Installing app-header: $1  \\n******************************"
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
@@ -171,6 +185,10 @@ install_elements_sdk $feature_branch
 elif [[ $component == "compounds-sdk" ]]
 then
 install_compounds_sdk $feature_branch
+
+elif [[ $component == "elements" ]]
+then
+install_elements $feature_branch
 
 elif [[ $component == "app-header" ]]
 then

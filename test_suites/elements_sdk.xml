@@ -6,7 +6,7 @@
             <include name="desktop-ci"/>
         </run>
     </groups>
-    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="11">
+    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="12">
         <classes>
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
@@ -22,15 +22,18 @@
             <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
         </classes>
     </test>
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="6">
+    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="10">
         <classes>
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
-            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
             <class name="elementsSDKTests.stylesTests.IconsTest"/>
             <class name="elementsSDKTests.stylesTests.FormsTest"/>
             <class name="elementsSDKTests.stylesTests.TablesTest"/>
+            <class name="elementsSDKTests.stylesTests.GridTest"/>
+            <class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>
+            <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
+            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
         </classes>
     </test>
 </suite>

@@ -652,7 +652,6 @@ public class ModalTest extends BaseClass {
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "ariaHideApp", ariaHideApp, "appElement", appElement, "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
-        commonUtils.printFileContents(modalJSFilePath);
 
         boolean actWrapper = commonUtils.isElementPresent(modalPgObj.divWrapper);
         isWrapperPresent = commonUtils.assertValue(actWrapper, expWrapper, "wrapper is present inspite of having ariaHiddenApp prop set");
