@@ -35,7 +35,7 @@ script:
 - export component=app-header
 - export feature_branch=master
 - ./src/main/shell_scripts/components.sh
-- export component=contextual-help
+- export component=drawer
 - export feature_branch=master
 - ./src/main/shell_scripts/components.sh
 - mvn -Dtest_suite_xml=istanbul_coverage.xml test

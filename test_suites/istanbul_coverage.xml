@@ -9,7 +9,7 @@
     <test name="Istanbul Coverage">
         <classes>
             <class name="standAloneTests.AppHeaderTest"/>
-            <class name="standAloneTests.ContextualHelpTest"/>
+            <class name="standAloneTests.DrawerTest"/>
             <class name="standAloneTests.InstanbulCoverage"/>
         </classes>
     </test>
