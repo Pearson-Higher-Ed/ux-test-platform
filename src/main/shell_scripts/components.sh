@@ -48,6 +48,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pea
 
 install_appHeader(){
 echo -e "******************************\\n    Installing app-header: $1  \\n******************************"
+instrument_file app-header dist.app-header.js
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
 cd app-header
 git checkout $1
@@ -61,9 +62,9 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pears
 }
 
 instrument_file(){
-js-beautify --version
+- js-beautify --version
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
-nyc --version
+- nyc --version
 nyc instument ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
 }
 
