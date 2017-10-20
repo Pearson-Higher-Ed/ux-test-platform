@@ -1320,8 +1320,8 @@ public class AppHeaderTest extends BaseClass {
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
-        Thread.sleep(1500);
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        commonUtils.getUrl(basicModeUrl);
     }
 
     public String constructPath(String absolutePath) {
