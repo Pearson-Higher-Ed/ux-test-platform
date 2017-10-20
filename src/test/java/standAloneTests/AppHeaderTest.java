@@ -87,7 +87,7 @@ public class AppHeaderTest extends BaseClass {
      * Signed Out Mode Tests *
      ***************************/
 
-    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression"})
+    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression1"})
     private void signedOutModeDefaultTest() {
         commonUtils.getUrl(signOutModeUrl);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
@@ -305,7 +305,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression1"})
+    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression"})
     private void accountSettingsClickableForBasicModeTest() throws IOException, InterruptedException {
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
@@ -1403,10 +1403,5 @@ public class AppHeaderTest extends BaseClass {
         } else {
             textDecorationProperty = "text-decoration-line";
         }
-    }
-    @AfterClass(alwaysRun = true)
-    private void afterClass() throws IOException, InterruptedException {
-        commonUtils.getUrl("http://localhost:3000/coverage");
-        Thread.sleep(30000);
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Istanbul Coverage Test Suite">
+    <groups>
+        <run>
+            <include name="desktop-regression1"/>
+        </run>
+    </groups>
+    <test name="Istanbul Coverage">
+        <classes>
+            <class name="standAloneTests.AppHeaderTest"/>
+            <class name="standAloneTests.InstanbulCoverage"/>
+        </classes>
+    </test>
+</suite>
