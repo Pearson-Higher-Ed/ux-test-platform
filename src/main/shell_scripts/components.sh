@@ -2,6 +2,11 @@
 
 echo "component: $component"
 echo "feature_branch: $feature_branch"
+node -version
+npm --version
+npm js-beautify install -g
+js-beautify --version
+
 
 install_elements_sdk() {
 echo -e "******************************\\n    Installing elements-sdk: $1   \\n******************************"
