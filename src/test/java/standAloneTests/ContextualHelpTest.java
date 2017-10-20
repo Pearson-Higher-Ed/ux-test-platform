@@ -102,7 +102,7 @@ public class ContextualHelpTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Open Contextual Help Thru AppHeader Modes Test", groups = {"desktop-regression"}, dataProvider = "ConxHelp with AppHeader Test Data")
+    @Test(testName = "Open Contextual Help Thru AppHeader Modes Test", groups = {"desktop-regression1"}, dataProvider = "ConxHelp with AppHeader Test Data")
     private void openThruAppHeaderModeTest(String appHeaderMode, String url) throws Exception {
         commonUtils.getUrl(url);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
