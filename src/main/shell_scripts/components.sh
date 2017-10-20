@@ -61,7 +61,9 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pears
 }
 
 instrument_file(){
+js-beautify --version
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
+nyc --version
 nyc instument ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
 }
 

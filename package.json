@@ -4,9 +4,9 @@
     "delete-assets": "find . -type f -name '*.css' -delete && find . -type f -name 'dist*.js' -delete && find . -type f -name 'dev*.js' -delete && find . -type f -name 'event*.js' -delete && rm -rf ./images"
   },
   "devDependencies": {
-    "pearson-elements": "^1.0.6",
-    "nyc": "^11.2.0",
-    "js-beautify": "^1.6.14",
-    "@pearson-components/app-header": "^2.0.3"
+    //"pearson-elements": "^1.0.6",
+    "nyc": "^11.2.1",
+    "js-beautify": "^1.7.4"
+    //"@pearson-components/app-header": "^2.0.3"
   }
 }

@@ -33,7 +33,7 @@ script:
 - chmod 777 ./src/main/shell_scripts/coverage_app.sh
 - ./src/main/shell_scripts/coverage_app.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=app-header_sdk.xml test
+- mvn -Dtest_suite_xml=app_header.xml test
 
 notifications:
   email:
