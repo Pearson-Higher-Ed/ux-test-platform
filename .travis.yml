@@ -24,6 +24,8 @@ install:
 before_script:
 - nvm install 6.0
 - nvm use 6.0
+- npm install -g js-beautify
+- npm install -g nyc
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
@@ -39,7 +41,7 @@ notifications:
   email:
     recipients:
     - eajazali.mahaboobbasha@pearson.com
-    - payal.dhadge@pearson.com
+    #- payal.dhadge@pearson.com
     on_success: always
     on_failure: always
 

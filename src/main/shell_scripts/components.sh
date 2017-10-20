@@ -2,11 +2,10 @@
 
 echo "component: $component"
 echo "feature_branch: $feature_branch"
-node -version
+node --version
 npm --version
-npm js-beautify install -g
+nyc --version
 js-beautify --version
-
 
 install_elements_sdk() {
 echo -e "******************************\\n    Installing elements-sdk: $1   \\n******************************"
@@ -67,11 +66,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pears
 }
 
 instrument_file(){
-npm js-beautify install -g
-js-beautify --version
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
-npm nyc install -g
-nyc --version
 nyc instument ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
 }
 
