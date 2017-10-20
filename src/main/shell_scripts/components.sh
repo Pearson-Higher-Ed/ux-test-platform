@@ -63,8 +63,12 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pears
 
 instrument_file(){
 js-beautify --version
+cat ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
+cat ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
+sleep 2
 nyc instument ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2 >> ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
+cat ~/build/Pearson-Higher-Ed/ux-test-platform/$1/build/$2
 }
 
 install_contextualHelp(){
