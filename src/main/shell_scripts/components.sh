@@ -49,6 +49,7 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pea
 
 install_appHeader(){
 echo -e "******************************\\n    Installing app-header: $1  \\n******************************"
+instrument_file appHeader dist.app-header
 git clone https://github.com/Pearson-Higher-Ed/app-header.git
 cd app-header
 git checkout $1
