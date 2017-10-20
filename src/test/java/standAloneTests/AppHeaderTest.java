@@ -1404,9 +1404,9 @@ public class AppHeaderTest extends BaseClass {
             textDecorationProperty = "text-decoration-line";
         }
     }
-    @AfterClass(alwaysRun = true)
-    private void afterClass() throws IOException, InterruptedException {
-        commonUtils.getUrl("http://localhost:3000/coverage");
-        Thread.sleep(30000);
-    }
+//    @AfterClass(alwaysRun = true)
+//    private void afterClass() throws IOException, InterruptedException {
+//        commonUtils.getUrl("http://localhost:3000/coverage");
+//        Thread.sleep(30000);
+//    }
 }
