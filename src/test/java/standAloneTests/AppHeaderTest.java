@@ -1337,7 +1337,7 @@ public class AppHeaderTest extends BaseClass {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         String coverage = gson.toJson(str);
-        System.out.println("coverage: " + coverage);
+        //System.out.println("coverage: " + coverage);
 
         //setting up http post request
         URL url = null;
@@ -1375,7 +1375,7 @@ public class AppHeaderTest extends BaseClass {
 
         int res = connection.getResponseCode();
 
-        System.out.println(res);
+        //System.out.println(res);
 
         InputStream is = connection.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -1404,9 +1404,9 @@ public class AppHeaderTest extends BaseClass {
             textDecorationProperty = "text-decoration-line";
         }
     }
-//    @AfterClass(alwaysRun = true)
-//    private void afterClass() throws IOException, InterruptedException {
-//        commonUtils.getUrl("http://localhost:3000/coverage");
-//        Thread.sleep(30000);
-//    }
+    @AfterClass(alwaysRun = true)
+    private void afterClass() throws IOException, InterruptedException {
+        commonUtils.getUrl("http://localhost:3000/coverage");
+        Thread.sleep(30000);
+    }
 }
