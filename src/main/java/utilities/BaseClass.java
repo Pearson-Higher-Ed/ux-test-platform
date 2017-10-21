@@ -1,20 +1,23 @@
 package utilities;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
@@ -48,6 +51,7 @@ public class BaseClass {
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
+    JavascriptExecutor js =null;
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
     public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
     LoggingPreferences logs = new LoggingPreferences();
@@ -228,5 +232,62 @@ public class BaseClass {
         if (!runEnv.equals("travis")) {
         }
         Thread.sleep(1000); //Since the local test runs are very fast, giving a half second delay for each test, for correct test results
+    }
+
+    @AfterMethod(alwaysRun = true)
+    private void afterMethod() throws IOException {
+        System.out.println("_________________________________________________");
+        js = (JavascriptExecutor) driver;
+        Object str = js.executeScript("return window.__coverage__;");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String coverage = gson.toJson(str);
+        //System.out.println("coverage: " + coverage);
+
+        //setting up http post request
+        URL url = null;
+        try {
+            url = new URL("http://localhost:3000/coverage/client");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.setConnectTimeout(5000);//5 secs
+        connection.setReadTimeout(5000);//5 secs
+
+        try {
+            connection.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+
+        OutputStreamWriter out = null;
+        try {
+            out = new OutputStreamWriter(connection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.write(coverage);
+        out.flush();
+        out.close();
+
+        int res = connection.getResponseCode();
+
+        //System.out.println(res);
+
+        InputStream is = connection.getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        connection.disconnect();
     }
 }

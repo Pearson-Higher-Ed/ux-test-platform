@@ -1536,60 +1536,8 @@ public class ContextualHelpTest extends BaseClass {
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() throws IOException {
+    private void afterMethod() {
         System.out.println("_________________________________________________");
-        js = (JavascriptExecutor) driver;
-        Object str = js.executeScript("return window.__coverage__;");
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String coverage = gson.toJson(str);
-        System.out.println("coverage: " + coverage);
-
-        //setting up http post request
-        java.net.URL url = null;
-        try {
-            url = new URL("http://localhost:3000/coverage/client");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        connection.setConnectTimeout(5000);//5 secs
-        connection.setReadTimeout(5000);//5 secs
-
-        try {
-            connection.setRequestMethod("POST");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        connection.setDoOutput(true);
-        connection.setRequestProperty("Content-Type", "application/json");
-
-        OutputStreamWriter out = null;
-        try {
-            out = new OutputStreamWriter(connection.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        out.write(coverage);
-        out.flush();
-        out.close();
-
-        int res = connection.getResponseCode();
-
-        System.out.println(res);
-
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line = null;
-        while ((line = br.readLine()) != null) {
-            System.out.println(line);
-        }
-        connection.disconnect();
     }
 
     @BeforeClass(alwaysRun = true)
