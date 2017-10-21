@@ -254,11 +254,11 @@ install_loadingIndicator $feature_branch
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-install_appHeader master &
+#install_appHeader master &
 #install_contextualHelp master &
-install_avatarDisplay master &
+#install_avatarDisplay master &
 install_alerts master &
-install_drawer master &
+#install_drawer master &
 #install_slider master &
 #install_pagination master &
 #install_modal master &
