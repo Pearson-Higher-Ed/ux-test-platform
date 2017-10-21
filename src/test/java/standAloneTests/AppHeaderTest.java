@@ -1332,6 +1332,7 @@ public class AppHeaderTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
+        commonUtils.postCoverageData();
     }
 
     @BeforeClass(alwaysRun = true)

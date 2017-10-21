@@ -86,6 +86,7 @@ public class PaginationTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
+        commonUtils.postCoverageData();
 
     }
 
