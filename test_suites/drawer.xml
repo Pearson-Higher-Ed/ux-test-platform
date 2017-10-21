@@ -4,7 +4,7 @@
     <test name="origamiV2Test - Drawer">
         <groups>
             <run>
-                <include name="desktop-regression1"/>
+                <include name="desktop-regression"/>
             </run>
         </groups>
         <classes>

@@ -12,11 +12,11 @@ env:
 addons:
   sauce_connect:
     no_ssl_bump_domains: all
-  apt:
-      sources:
-        - ubuntu-toolchain-r-test
-      packages:
-        - g++-4.8
+#  apt:
+#      sources:
+#        - ubuntu-toolchain-r-test
+#      packages:
+#        - g++-4.8
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V

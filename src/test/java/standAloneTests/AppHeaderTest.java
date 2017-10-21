@@ -87,7 +87,7 @@ public class AppHeaderTest extends BaseClass {
      * Signed Out Mode Tests *
      ***************************/
 
-    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression1"})
+    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression"})
     private void signedOutModeDefaultTest() {
         commonUtils.getUrl(signOutModeUrl);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);

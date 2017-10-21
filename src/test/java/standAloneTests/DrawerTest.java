@@ -53,7 +53,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Open Drawer
-    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression1"})
+    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression"})
     private void openDrawerTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
         commonUtils.click(drawerLinkElement);
         isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
