@@ -191,6 +191,9 @@ cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pea
 }
 
 instrument_file(){
+echo $1
+echo $2
+ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
 nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2-instrumented.js
 ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1
