@@ -153,6 +153,7 @@ npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/dist.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
 instrument_file pagination dist.pagination
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/eventInterface.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
+instrument_file pagination eventInterface.pagination
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/pagination/
 }
@@ -255,13 +256,13 @@ elif [[ $component == "regression" ]]
 then
 install_appHeader master &
 #install_contextualHelp master &
-install_avatarDisplay master &
-install_alerts master &
-install_drawer master &
-install_slider master &
-install_pagination master &
-install_modal master &
-install_loadingIndicator master &
+#install_avatarDisplay master &
+#install_alerts master &
+#install_drawer master &
+#install_slider master &
+#install_pagination master &
+#install_modal master &
+#install_loadingIndicator master &
 fi
 if [[ $TEST_SUITE =~ "elements_styles_sdk" ]]
 then

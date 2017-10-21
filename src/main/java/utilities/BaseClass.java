@@ -236,6 +236,7 @@ public class BaseClass {
 
     @AfterMethod(alwaysRun = true)
     private void afterMethod() throws IOException {
+        System.out.println("hello");
         System.out.println("_________________________________________________");
         js = (JavascriptExecutor) driver;
         Object str = js.executeScript("return window.__coverage__;");
