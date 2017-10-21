@@ -3,10 +3,10 @@
 <suite name="Istanbul Coverage Test Suite">
     <groups>
         <run>
-            <include name="desktop-regression1"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
-    <test name="Istanbul Coverage">
+    <test name="Istanbul Coverage" preserve-order="true">
         <classes>
             <class name="standAloneTests.AppHeaderTest"/>
             <class name="standAloneTests.DrawerTest"/>
