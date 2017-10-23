@@ -231,6 +231,6 @@ public class BaseClass {
     public void beforeMethod() throws InterruptedException {
         if (!runEnv.equals("travis")) {
         }
-        Thread.sleep(1000); //Since the local test runs are very fast, giving a half second delay for each test, for correct test results
+        Thread.sleep(1500); //Since the local test runs are very fast, giving a half second delay for each test, for correct test results
     }
 }
