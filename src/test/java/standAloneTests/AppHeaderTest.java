@@ -1322,6 +1322,7 @@ public class AppHeaderTest extends BaseClass {
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(1000);
     }
 
     public String constructPath(String absolutePath) {
