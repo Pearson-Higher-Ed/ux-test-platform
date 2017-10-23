@@ -195,7 +195,7 @@ instrument_file(){
 echo $1
 echo $2
 ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1
-mv $2.js $2.test.js
+mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
 cat ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
 nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2-instrumented.js
