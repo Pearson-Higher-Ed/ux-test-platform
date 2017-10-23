@@ -8,7 +8,7 @@
     </groups>
     <test name="Desktop: Stand Alone Tests" parallel="classes">
         <classes>
-            <!--<class name="standAloneTests.ContextualHelpTest"/>-->
+            <class name="standAloneTests.ContextualHelpTest"/>
             <class name="standAloneTests.DrawerTest"/>
             <class name="standAloneTests.AvatarDisplayTest"/>
             <class name="standAloneTests.AlertsTest"/>

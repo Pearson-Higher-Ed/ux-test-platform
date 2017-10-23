@@ -256,7 +256,7 @@ install_loadingIndicator $feature_branch
 elif [[ $component == "regression" ]]
 then
 install_appHeader master &
-#install_contextualHelp master &
+install_contextualHelp master &
 install_avatarDisplay master &
 install_alerts master &
 install_drawer master &
