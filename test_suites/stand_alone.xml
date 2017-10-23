@@ -9,18 +9,18 @@
     <test name="Desktop: Stand Alone Tests" parallel="classes">
         <classes>
             <!--<class name="standAloneTests.ContextualHelpTest"/>-->
-            <class name="standAloneTests.DrawerTest"/>
-            <class name="standAloneTests.AvatarDisplayTest"/>
-            <class name="standAloneTests.AlertsTest"/>
+            <!--<class name="standAloneTests.DrawerTest"/>-->
+            <!--<class name="standAloneTests.AvatarDisplayTest"/>-->
+            <!--<class name="standAloneTests.AlertsTest"/>-->
             <class name="standAloneTests.PaginationTest"/>
-            <class name="standAloneTests.ModalTest"/>
-            <class name="standAloneTests.SliderTest"/>
-            <class name="standAloneTests.LoadingIndicatorTest"/>
+            <!--<class name="standAloneTests.ModalTest"/>-->
+            <!--<class name="standAloneTests.SliderTest"/>-->
+            <!--<class name="standAloneTests.LoadingIndicatorTest"/>-->
         </classes>
     </test>
-    <test name="Desktop: App-Header Tests">
-        <classes>
-            <class name="standAloneTests.AppHeaderTest"/>
-        </classes>
-    </test>
+    <!--<test name="Desktop: App-Header Tests">-->
+        <!--<classes>-->
+            <!--<class name="standAloneTests.AppHeaderTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>

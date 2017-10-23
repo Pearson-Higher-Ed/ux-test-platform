@@ -197,6 +197,7 @@ echo $2
 ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1
 mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js
 js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
+tail -n 3 ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
 nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2-instrumented.js
 ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1
 }
@@ -259,15 +260,15 @@ install_loadingIndicator $feature_branch
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-install_appHeader master &
+#install_appHeader master &
 #install_contextualHelp master &
-install_avatarDisplay master &
-install_alerts master &
-install_drawer master &
-install_slider master &
+#install_avatarDisplay master &
+#install_alerts master &
+#install_drawer master &
+#install_slider master &
 install_pagination master &
-install_modal master &
-install_loadingIndicator master &
+#install_modal master &
+#install_loadingIndicator master &
 fi
 if [[ $TEST_SUITE =~ "elements_styles_sdk" ]]
 then

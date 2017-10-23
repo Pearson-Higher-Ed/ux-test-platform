@@ -11,6 +11,6 @@ public class InstanbulCoverage extends BaseClass {
     @Test(groups = "desktop-regression")
     public void afterSuite() throws InterruptedException {
         commonUtils.getUrl("http://localhost:3000/coverage");
-        Thread.sleep(300000);
+        Thread.sleep(30000);
     }
 }
