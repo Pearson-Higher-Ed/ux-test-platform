@@ -3,13 +3,12 @@
 <suite name="Istanbul Coverage Test Suite">
     <groups>
         <run>
-            <include name="desktop-regression1"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
     <test name="Istanbul Coverage" parallel="false">
         <classes>
-            <class name="standAloneTests.AlertsTest"/>
-            <class name="standAloneTests.DrawerTest"/>
+            <class name="standAloneTests.InstanbulCoverage"/>
         </classes>
     </test>
 </suite>

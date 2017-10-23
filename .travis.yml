@@ -39,8 +39,8 @@ script:
 - export component=regression
 - export feature_branch=master
 - ./src/main/shell_scripts/components.sh
-- free -m
 - mvn -Dtest_suite_xml=stand_alone.xml test
+
 after_script:
 - mvn -Dtest_suite_xml=istanbul_coverage.xml test
 
