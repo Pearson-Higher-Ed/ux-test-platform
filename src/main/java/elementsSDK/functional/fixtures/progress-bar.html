@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ProgressBar Demo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/elements.css">
+    <link rel="icon" href="data:;base64,=">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h2>Progress Bar</h2>
+
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
+<div>
+    <div id="progress-bar-target" style="margin-left: 150px;margin-right: 250px"/>
+</div>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Array.from,Object.assign,Promise,Intl.~locale.en,Intl.~locale.fr"></script>
+
+<script type="text/javascript" src="../jsfiles/dist.compounds.js"></script>
+<script type="text/javascript" src="../jsfiles/eventInstantiator.compounds.js"></script>
+<script type="text/javascript" src="../jsfiles/progressBar/progress-bar.js"></script>
+</body>
+</html>

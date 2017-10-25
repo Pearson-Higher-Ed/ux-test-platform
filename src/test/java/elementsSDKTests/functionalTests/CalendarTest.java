@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
+import utilities.RetryAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
@@ -437,7 +438,7 @@ public class CalendarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Disable Past Prop Test", dataProvider = "Disable Past Test Data", groups = "desktop-regression")
+    @Test(testName = "Disable Past Prop Test", dataProvider = "Disable Past Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void disablePastPropTest(String calendarColor, String contrast, String propValidation, String url, String calendarJSFilePath, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         setConfigAndLaunch(url, detailsPropertiesList, propsPropertiesList, calendarJSFilePath);

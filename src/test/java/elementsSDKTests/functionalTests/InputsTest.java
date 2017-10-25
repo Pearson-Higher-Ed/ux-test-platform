@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
+import utilities.RetryAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
@@ -1582,7 +1583,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
         // Select Input Label
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
@@ -1607,7 +1608,7 @@ public class InputsTest extends BaseClass {
         actIconClass = commonUtils.getAttributeValue(icon, "class");
         isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
         paddingRight = commonUtils.getCSSValue(icon, "right");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Line-height of " + type + " icon is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding-right of " + type + " icon is not as per spec");
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
     }
 
