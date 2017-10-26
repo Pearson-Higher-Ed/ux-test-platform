@@ -582,7 +582,7 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
         backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color");
-        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#19A5A3"), commonUtils.hex2RgbWithoutTransparency("#19A5A3")});
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#047a9c"), commonUtils.hex2RgbWithoutTransparency("#047a9c")});
         if (!isbackgroundColor) {
             log.info("background-color :for app-header-sign out button is not as per the spec, actual: " + backgroundColor);
         }
@@ -1263,7 +1263,7 @@ public class AppHeaderTest extends BaseClass {
             commonUtils.click(appHeaderPgObj.desktopViewUserMenu, "mobile");
         }
         backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color", "mobile");
-        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#19A5A3"), commonUtils.hex2RgbWithoutTransparency("#19A5A3")});
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#047a9c"), commonUtils.hex2RgbWithoutTransparency("#047a9c")});
         if (!isbackgroundColor) {
             log.info("background-color :for app-header-sign out button is not as per the spec, actual: " + backgroundColor);
         }
