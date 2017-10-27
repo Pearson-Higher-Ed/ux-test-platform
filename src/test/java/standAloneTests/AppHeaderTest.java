@@ -603,7 +603,7 @@ public class AppHeaderTest extends BaseClass {
         //hover on the button
         commonUtils.hoverOnElement(appHeaderPgObj.clickableSignOut);
         backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color");
-        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#179599"), commonUtils.hex2RgbWithoutTransparency("#179599")});
+        isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#005a70"), commonUtils.hex2RgbWithoutTransparency("#005a70")});
         if (!isbackgroundColor) {
             log.info("background-color :for app-header-sign out button in hover state is not as per the spec, actual: " + backgroundColor);
         }
