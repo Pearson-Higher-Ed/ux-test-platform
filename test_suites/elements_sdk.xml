@@ -22,7 +22,7 @@
             <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
             <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
-            <!-- Styles(CSS) Tests -->
+            <!-- Styles(CSS) Tests --> 
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
