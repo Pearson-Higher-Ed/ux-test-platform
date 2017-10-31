@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="desktop-ci"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
     <test name="ElementsSDK: Functional(JavaScript) and Styles(CSS) Tests" parallel="classes" thread-count="20">
@@ -21,7 +21,7 @@
             <class name="elementsSDKTests.functionalTests.TablesTest"/>
             <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
             <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
-            <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.ProgressBarTest"/>-->
             <!-- Styles(CSS) Tests -->
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
