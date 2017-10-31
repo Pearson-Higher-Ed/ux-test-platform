@@ -59,7 +59,7 @@ public class BaseClass {
         setDesktop = desktop;
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
-        String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "2048x1536", "recordScreenshots", "false"};
+        String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "2048x1536", "recordScreenshots", "false","timeZone","London"};
         String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false"};
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
@@ -226,7 +226,7 @@ public class BaseClass {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() throws InterruptedException {
         if (!runEnv.equals("travis")) {
+            Thread.sleep(500);//Since the local test runs are very fast, giving a half second delay for each test, for correct test results
         }
-        Thread.sleep(500); //Since the local test runs are very fast, giving a half second delay for each test, for correct test results
     }
 }
