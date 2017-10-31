@@ -1013,7 +1013,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {inputsPgObj.basicSelectInputContainer, "height", new String[]{"36px", "34px"}},
                 {inputsPgObj.basicSelectInput, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInput, "padding-right", new String[]{"4.2px", "4.199999809265137px"}},
+                {inputsPgObj.basicSelectInput, "padding-right", new String[]{"14px", "4.199999809265137px"}},
                 {inputsPgObj.basicSelectInputContainer, "margin-top", new String[]{"6px"}},
                 {inputsPgObj.basicSelectInputContainer, "font-size", new String[]{"14px"}},
                 {inputsPgObj.basicSelectInputContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},

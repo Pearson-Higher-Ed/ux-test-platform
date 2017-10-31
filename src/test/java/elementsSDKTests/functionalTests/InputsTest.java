@@ -1402,7 +1402,7 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {inputsPgObj.basicSelectInputContainer, "height", new String[]{"36px", "34px"}},
                 {inputsPgObj.basicSelectInput, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInput, "padding-right", new String[]{"4.2px", "4.199999809265137px"}},
+                {inputsPgObj.basicSelectInput, "padding-right", new String[]{"14px", "4.199999809265137px"}},
                 {inputsPgObj.basicSelectInputContainer, "margin-top", new String[]{"6px"}},
                 {inputsPgObj.basicSelectInputContainer, "font-size", new String[]{"14px"}},
                 {inputsPgObj.basicSelectInputContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
@@ -1576,19 +1576,20 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Basic Select Input Label and Icon Test Data")
     public Object[][] getBasicSelectInputLabelIconData() {
         return new Object[][]{
-                {"select-input-basic", "default", inputsPgObj.basicSelectInput, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
-                {"select-input-basic-error", "error", inputsPgObj.basicSelectInputError, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px", "14px"},
-                {"select-input-basic-disabled", "disabled", inputsPgObj.basicSelectInputDisabled, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
-                {"select-input-basic-readOnly", "readOnly", inputsPgObj.basicSelectInputReadOnly, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px", "14px"},
+                {"select-input-basic", "default", inputsPgObj.basicSelectInput, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {"select-input-basic-error", "error", inputsPgObj.basicSelectInputError, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}, "12px", "16px"},
+                {"select-input-basic-disabled", "disabled", inputsPgObj.basicSelectInputDisabled, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
+                {"select-input-basic-readOnly", "readOnly", inputsPgObj.basicSelectInputReadOnly, compInputsPgObj.label, compInputsPgObj.icon, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, "12px", "16px"},
         };
     }
 
     @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
-    private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
+    private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws Exception {
         // Select Input Label
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        commonUtils.printFileContents(inputsJSFilePath);
 
         labelColor = commonUtils.getCSSValue(label, "color");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
@@ -1607,9 +1608,7 @@ public class InputsTest extends BaseClass {
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class");
         isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
-        paddingRight = commonUtils.getCSSValue(icon, "right");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding-right of " + type + " icon is not as per spec");
-        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
+        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
     @DataProvider(name = "Basic Select Input(Focus) Test Data")
@@ -2778,7 +2777,7 @@ public class InputsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expPaddingRight) throws Exception {
+    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
@@ -2801,9 +2800,7 @@ public class InputsTest extends BaseClass {
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
         isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
-        paddingRight = commonUtils.getCSSValue(icon, "right", "mobile");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Line-height of " + type + " icon is not as per spec");
-        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass && isPaddingRight);
+        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
     //Check Box
