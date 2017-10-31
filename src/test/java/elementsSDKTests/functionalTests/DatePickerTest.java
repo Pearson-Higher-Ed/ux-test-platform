@@ -147,6 +147,10 @@ public class DatePickerTest extends BaseClass {
 
     @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By dateField) {
+        boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"));
+        if (!isNextDayToCurrentDateExists) {
+            throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
@@ -468,6 +472,10 @@ public class DatePickerTest extends BaseClass {
 
     @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionMobileTest(String state, By dateField) {
+        boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
+        if (!isNextDayToCurrentDateExists) {
+            throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
