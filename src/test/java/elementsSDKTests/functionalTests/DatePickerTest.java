@@ -793,7 +793,6 @@ public class DatePickerTest extends BaseClass {
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         testName = method.getName();
-        driver.manage().deleteAllCookies();
     }
 
     @AfterMethod(alwaysRun = true)
