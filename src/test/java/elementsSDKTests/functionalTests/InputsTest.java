@@ -1589,7 +1589,6 @@ public class InputsTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        commonUtils.printFileContents(inputsJSFilePath);
 
         labelColor = commonUtils.getCSSValue(label, "color");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
