@@ -1,0 +1,14 @@
+*** Begin accessibility audit results ***
+An accessibility audit found 
+Errors:
+Error: AX_TEXT_01 (Controls and media elements should have labels) failed on the following element:
+body > .o-app-header.o-header.o-header--fixed > .o-header__container > .o-header__section.o-header__section--right > .o-header__nav > .o-header__nav-items > .o-header__nav-item.o-app-header__nav-item-menu > .o-dropdown-menu.o-dropdown-menu--right.o-app-header__menu-menu.o-dropdown-menu--expanded > .o-dropdown-menu__menu-items > LI > .o-dropdown-menu__menu-close > .dropdown-close-button
+See https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#-ax_text_01--controls-and-media-elements-should-have-labels for more information.
+
+
+Warnings:
+Warning: AX_TITLE_01 (The web page should have a title that describes topic or purpose) failed on the following element:
+html
+
+
+*** End accessibility audit results ***

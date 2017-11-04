@@ -1,5 +1,7 @@
 package elementsSDKTests.functionalTests;
 
+import com.accessibility.AccessibilityScanner;
+import com.accessibility.Result;
 import com.google.gson.JsonObject;
 import elementsSDK.functional.functionalPageObjects.FunctionalCalendarPageObjects;
 import elementsSDK.functional.functionalPageObjects.DatePickerPageObjects;
@@ -11,6 +13,9 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 import utilities.RetryAnalyzer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -141,12 +146,12 @@ public class DatePickerTest extends BaseClass {
     public Object[][] getFocusStateWithSelectionTestData() {
         return new Object[][]{
                 {"default", datepickerPgObj.dateFieldDefault},
-                {"error", datepickerPgObj.dateFieldError}
+              //  {"error", datepickerPgObj.dateFieldError}
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithSelectionTest(String state, By dateField) {
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regressionA","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    private void focusStateWithSelectionTest(String state, By dateField) throws IOException {
         boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         if (!isNextDayToCurrentDateExists) {
             throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
@@ -155,8 +160,9 @@ public class DatePickerTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
 
+        //simpleWebDriverAccessibilityTest();
         commonUtils.click(dateField);
-
+        //simpleWebDriverAccessibilityTest();
         //User makes selection from the calendar.
         commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div")); //!Not able to select the current date -> issue already opened
         commonUtils.click(By.xpath("//h2")); // click somewhere else to release the focus on date input field
@@ -797,15 +803,49 @@ public class DatePickerTest extends BaseClass {
         return path;
     }
 
+    @Test(testName = "Accessibility Tool Test Screenshot")
+    public void simpleWebDriverAccessibilityTest() throws IOException {
+        AccessibilityScanner scanner = new AccessibilityScanner(driver);
+        Map<String, Object> audit_report = scanner.runAccessibilityAudit();
+        if (audit_report.containsKey("plain_report")) {
+            System.out.println("warninggggg");
+            log.warn(audit_report.get("plain_report").toString());
+        }
+
+        if (audit_report.containsKey("error")) {
+            List<Result> errors = (List<Result>) audit_report.get("error");
+
+            for (Result error : errors) {
+                System.out.println("here");
+                log.info(error.getRule());//e.g. AX_TEXT_01 (Controls and media ....
+                log.info(error.getUrl());//e.g. See https://github.com/GoogleChrome/accessibility-developer-tools/wiki....
+                for (String element : error.getElements())
+                    log.info(element);//e.g. #myForm > P > INPUT
+            }
+
+        }
+
+//        if (audit_report.containsKey("screenshot")) {
+//            final byte[] screenshot = (byte[]) audit_report
+//                    .get("screenshot");
+//            log.warn("Writing screenshot ");
+//            BufferedImage img = ImageIO.read(new ByteArrayInputStream(screenshot));
+//            ImageIO.write(img, "png", new File("src/test/resources/accessibility-screenshot-report-"+testName+".png"));
+//        }
+        //driver.quit();
+    }
+
     @BeforeMethod(alwaysRun = true)
-    private void beforeMethod(Method method) {
+    private void beforeMethod(Method method) throws IOException {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         testName = method.getName();
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException {
         System.out.println("_________________________________________________");
+        simpleWebDriverAccessibilityTest();
+
     }
 
     @AfterClass(alwaysRun = true)

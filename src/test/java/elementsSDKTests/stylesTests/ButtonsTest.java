@@ -1,5 +1,7 @@
 package elementsSDKTests.stylesTests;
 
+import com.accessibility.AccessibilityScanner;
+import com.accessibility.Result;
 import elementsSDK.styles.stylesPageObjects.ButtonsPageObjects;
 import io.appium.java_client.TouchAction;
 import org.apache.log4j.Logger;
@@ -10,9 +12,11 @@ import org.testng.SkipException;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by umahaea on 4/13/16.
@@ -147,7 +151,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default Button-Disabled Test Data", groups = {"desktop-regression1"})
     private void defaultButtonDisabledStateTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(btnPgObj.defaultBtnDisabled, cssProperty);
@@ -667,6 +671,26 @@ public class ButtonsTest extends BaseClass {
         }
     }
 
+    @Test(testName = "Accessibility Tool Test")
+    public void testAccessibility() throws IOException {
+
+        AccessibilityScanner scanner = new AccessibilityScanner(driver);
+        Map<String, Object> audit_report = scanner.runAccessibilityAudit();
+
+        if (audit_report.containsKey("error")) {
+            List<Result> errors = (List<Result>) audit_report.get("error");
+            for (Result error : errors) {
+                System.out.println("here");
+                log.info("rule" + error.getRule());//e.g. AX_TEXT_01
+                log.info("url" + error.getUrl());//e.g. [GoogleChrome accessibility-developer-tools][2] audit rules URL
+                for (String element : error.getElements()) //violated elements
+                    log.info("elem" + element);
+            }
+            boolean res = commonUtils.assertValue(errors.size(),0,"No accessibility errors expected");
+            Assert.assertTrue(res);
+        }
+    }
+
     /***************
      * Mobile Tests
      ***************/
@@ -883,7 +907,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException {
         System.out.println("_________________________________________________");
     }
 }

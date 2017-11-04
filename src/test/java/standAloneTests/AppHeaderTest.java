@@ -1,5 +1,7 @@
 package standAloneTests;
 
+import com.accessibility.AccessibilityScanner;
+import com.accessibility.Result;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
@@ -11,8 +13,14 @@ import org.testng.annotations.*;
 import standAlone.standAlonePageObjects.AppHeaderPageObjects;
 import utilities.BaseClass;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -31,6 +39,7 @@ public class AppHeaderTest extends BaseClass {
     private final String signedOutJSFilePath = constructPath(absPathForSignedOutJS);
     private final String basicJSFilePath = constructPath(absPathForBasicJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
+    private String methodName = "";
 
     private String testConfig = "", userName = "", marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "", textDecoration = "", textDecorationProperty = "", backgroundColor = "", color = "", textAlign = "", userNameTruncatable = "";
     boolean helpLinkClickable = false, accountSettingsClickable = false, signOutClickable = false, desktopViewUserMenuVisible = false, mobileViewUserMenuVisible = false, signOutVisible = false, accountSettingsVisible = false, isUserName = false, pearsonLogoVisible = false, helpLinkVisible = false, signInLinkVisible = false, pearsonLogoClickable = false;
@@ -74,22 +83,31 @@ public class AppHeaderTest extends BaseClass {
     JsonObject heading = null, courseNav = null, includeCourseNavItems = null;
     JsonArray jsonCoursesNavItemsArr = null;
     AppHeaderPageObjects appHeaderPgObj = null;
+    BufferedWriter bw = null;
+    File file = null;
+    FileWriter fw = null;
+    String fileName = "src/test/resources/accessibility-screenshot-report-"+AppHeaderTest.class.getName()+".txt";
+    private final String errorColorCode = "\u001B[31m";
+    private List<String> newLines = null, fileContent = null;
+    String beginAudit = "*** Begin accessibility audit results ***", endAudit = "*** End accessibility audit results ***";
+    List<Result> errors = null, warnings = null;
 
     /***************************
      * Signed Out Mode Tests *
      ***************************/
 
-    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression"})
-    private void signedOutModeDefaultTest() {
+    @Test(testName = "Default SignedOutMode: Show Login Controls", groups = {"desktop-regression11"})
+    private void signedOutModeDefaultTest() throws IOException {
         commonUtils.getUrl(signOutModeUrl);
         helpLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.helpLink);
         pearsonLogoVisible = commonUtils.isElementPresent(appHeaderPgObj.pearsonLogo);
         signInLinkVisible = commonUtils.isElementPresent(appHeaderPgObj.signInLink);
         result = commonUtils.assertValue((signInLinkVisible && pearsonLogoVisible && helpLinkVisible), true, "Error: Default SignedOutMode");
         Assert.assertTrue(result);
+        //testAccessibility();
     }
 
-    @Test(testName = "SignedOutMode - Show Login Controls", groups = {"desktop-regression"})
+    @Test(testName = "SignedOutMode - Show Login Controls", groups = {"desktop-regression11"})
     private void signedOutModeShowLoginControlsTest() throws Exception {
 
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
@@ -104,9 +122,10 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((signInLinkVisible && pearsonLogoVisible && helpLinkVisible), true, "SignedOutMode - show login controls fail");
         commonUtils.writeInitialConfig(tempJSFilePath, signedOutJSFilePath);
         Assert.assertTrue(result);
+        //testAccessibility();
     }
 
-    @Test(testName = "SignedOutMode - Hide Login Controls", groups = {"desktop-regression"})
+    @Test(testName = "SignedOutMode - Hide Login Controls", groups = {"desktop-regression11"})
     private void signedOutModeHideLoginControlsTest() throws Exception {
 
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
@@ -120,9 +139,11 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((signInLinkVisible && pearsonLogoVisible && helpLinkVisible), false, "SignedOutMode - Hide login controls fail");
         commonUtils.writeInitialConfig(tempJSFilePath, signedOutJSFilePath);
         Assert.assertTrue(result);
+        //testAccessibility();
+
     }
 
-    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression"})
+    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression11"})
     private void pearsonLogoClickableForShowLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsTrue + "};";
@@ -135,9 +156,10 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((pearsonLogoClickable), false, "Error: Pearson Logo is clickable");
         commonUtils.writeInitialConfig(tempJSFilePath, signedOutJSFilePath);
         Assert.assertTrue(result);
+       // testAccessibility();
     }
 
-    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression"})
+    @Test(testName = "SignedOutMode - Is Pearson Logo Clickable?", groups = {"desktop-regression11"})
     private void pearsonLogoClickableForHideLoginControlsTest() throws IOException, InterruptedException {
 
         //testConfig = signOutConfig + "," + loginControlsFalse + "};";
@@ -150,6 +172,7 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((pearsonLogoClickable), false, "Error: Pearson Logo is clickable");
         commonUtils.writeInitialConfig(tempJSFilePath, signedOutJSFilePath);
         Assert.assertTrue(result);
+       // testAccessibility();
     }
 
     @Test(testName = "SignedOutMode - Is Help Link Clickable?", groups = {"desktop-regression"})
@@ -253,7 +276,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Default Basic Mode in Mobile View", groups = {"desktop-regression"})
+    @Test(testName = "Default Basic Mode in Mobile View", groups = {"desktop-regression11"})
     private void basicModeMobileViewDefaultTest() throws Exception {
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -277,6 +300,9 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((pearsonLogoVisible && helpLinkVisible && mobileViewUserMenuVisible), true, " Error: Basic Mode Mobile View");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
+        //testAccessibility();
+        //simpleWebDriverAccessibilityTest();
+
     }
 
     @Test(testName = "BasicMode - Is Pearson Logo Clickable?", groups = {"desktop-regression"})
@@ -297,13 +323,15 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Is Account Settings Clickable?", groups = {"desktop-regression11"})
     private void accountSettingsClickableForBasicModeTest() throws IOException, InterruptedException {
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
         accountSettingsClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettings);
         result = commonUtils.assertValue((accountSettingsClickable), true, "Error: Account Settings is NOT clickable");
         Assert.assertTrue(result);
+        //testAccessibility();
+        //simpleWebDriverAccessibilityTest();
     }
 
     @Test(testName = "BasicMode - Is Sign Out Clickable?", groups = {"desktop-regression"})
@@ -316,7 +344,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - User Menu Test", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - User Menu Test", groups = {"desktop-regression11"})
     private void userMenuForBasicModeTest() throws Exception {
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         //testConfig = basicConfig + course1 + "]}";
@@ -343,6 +371,7 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((desktopViewUserMenuVisible && accountSettingsVisible && signOutVisible), true, "Error: Basic Mode User Menu issues");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
+       // testAccessibility();
     }
 
     @DataProvider(name = "BasicMode-Add Course")
@@ -1310,9 +1339,158 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @Test(testName = "Accessibility Tool Test")
+    public void testAccessibility() throws IOException {
+
+        AccessibilityScanner scanner = new AccessibilityScanner(driver);
+        Map<String, Object> audit_report = scanner.runAccessibilityAudit();
+
+        if (audit_report.containsKey("error")) {
+            List<Result> errors = (List<Result>) audit_report.get("error");
+            for (Result error : errors) {
+               // System.out.println("here");
+                log.info("rule" + error.getRule());//e.g. AX_TEXT_01
+                log.info("url" + error.getUrl());//e.g. [GoogleChrome accessibility-developer-tools][2] audit rules URL
+                for (String element : error.getElements()) //violated elements
+                    log.info("elem" + element);
+            }
+            boolean res = commonUtils.assertValue(errors.size(),0,"No accessibility errors expected");
+            System.out.println(res);
+            Assert.assertTrue(res);
+        }
+    }
+
+    @Test(testName = "Accessibility Tool Test Screenshot")
+    public void simpleWebDriverAccessibilityTest() throws IOException {
+        AccessibilityScanner scanner = new AccessibilityScanner(driver);
+        Map<String, Object> audit_report = scanner.runAccessibilityAudit();
+        if (audit_report.containsKey("plain_report")) {
+            // log.warn(audit_report.get("plain_report").toString());
+            //writeToFile(audit_report.get("plain_report").toString());
+            if(audit_report.containsKey("error")){
+                errors = (List<Result>) audit_report.get("error");
+            }
+            if(audit_report.containsKey("warning")){
+                warnings = (List<Result>) audit_report.get("warning");
+            }
+            writeToFile(audit_report.get("plain_report").toString());
+        }
+
+//        if (audit_report.containsKey("error")) {
+//            List<Result> errors = (List<Result>) audit_report.get("error");
+//
+//            for (Result error : errors) {
+////                log.info(error.getRule());//e.g. AX_TEXT_01 (Controls and media ....
+////                log.info(error.getUrl());//e.g. See https://github.com/GoogleChrome/accessibility-developer-tools/wiki....
+////                for (String element : error.getElements())
+////                    log.info(element);//e.g. #myForm > P > INPUT
+//                writeToFile(error.toString());
+//            }
+//
+//        }
+
+//        if (audit_report.containsKey("screenshot")) {
+//            final byte[] screenshot = (byte[]) audit_report
+//                    .get("screenshot");
+//            log.warn("Writing screenshot ");
+//            BufferedImage img = ImageIO.read(new ByteArrayInputStream(screenshot));
+//            ImageIO.write(img, "png", new File("src/test/resources/accessibility-screenshot-report-"+methodName+".png"));
+        //}
+        //driver.quit();
+    }
+
+    public void writeToFile(String text){
+        try {
+
+            String data = " This is new content";
+
+            file = new File(fileName);
+                // if file doesnt exists, then create it
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // true = append file
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+           // fileContent = new ArrayList<String>(Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8));
+            String fileCon = commonUtils.readFileAsString(fileName);
+            //String [] strArr = text.split("\\n");
+            if (fileCon.length()!=0) {
+//                for (int i = 2; i < strArr.length-1; i++) {
+//                    System.out.println("FILEEEEEE CONTENTAU@#%&@" + strArr[i]);
+//                    if (fileCon.contains(strArr[i]) || !(strArr[i].contains("\\n"))) {
+//                        //fileContent.set(i, newString);
+//                        System.out.println(errorColorCode + "MATCHINGGGGGGGG");
+//                        break;
+//                    }
+                //}
+                for (Result error : errors) {
+                    if(fileCon.contains(error.getRule())){
+                        for (String element : error.getElements())
+                            if(fileCon.contains(element)){
+
+
+                        break; }//e.g. #myForm > P > INPUT
+                    }
+                    else
+                    {
+                        bw.write(text);
+                    }
+                }
+
+                for (Result warning : warnings) {
+                    if(fileCon.contains(warning.getRule())){
+                        System.out.println("Match RUles");
+                        for (String element : warning.getElements()) {
+                            if (fileCon.contains(element)) {
+                                System.out.println("Match body");
+                                break;//e.g. #myForm > P > INPUT
+                            }
+                        }
+                    }
+                    else
+                    {
+                        bw.write(text);
+                    }
+                }
+            }
+
+
+//            if(fileCon.length()!=0){
+//                fileCon.contains(text);
+//            }
+            else {
+                bw.write(String.valueOf(text));
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+        }
+
+    }
+
+        @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        methodName = method.getName();
     }
 
     public String constructPath(String absolutePath) {
@@ -1321,8 +1499,13 @@ public class AppHeaderTest extends BaseClass {
     }
 
     @AfterMethod(alwaysRun = true)
-    private void afterMethod() {
+    private void afterMethod() throws IOException {
         System.out.println("_________________________________________________");
+        simpleWebDriverAccessibilityTest();
+//        System.out.println("!@#$%^&*()(*&^%$#@!@#$%^&*()(*&^%$#@@#$%^&IO(*&^%$#@#$%^&*((*&^%$#@#$%^&*(");
+//        commonUtils.printFileContents(fileName);
+//        System.out.println("ENDDDDDDDDDDDDDD!@#$%^&*()(*&^%$#@!@#$%^&*()(*&^%$#@@#$%^&IO(*&^%$#@#$%^&*((*&^%$#@#$%^&*(");
+
     }
 
     @BeforeClass(alwaysRun = true)
@@ -1342,5 +1525,11 @@ public class AppHeaderTest extends BaseClass {
         } else {
             textDecorationProperty = "text-decoration-line";
         }
+    }
+
+    @AfterClass(alwaysRun = true)
+    private void afterClass(){
+       // commonUtils.printFileContents("src/test/resources/accessibility-screenshot-report-"+AppHeaderTest.class.getName()+".txt");
+    //file.delete();
     }
 }
