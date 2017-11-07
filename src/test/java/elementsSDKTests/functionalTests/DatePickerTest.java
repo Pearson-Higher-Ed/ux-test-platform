@@ -102,7 +102,7 @@ public class DatePickerTest extends BaseClass {
         isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state + "' inputState, calendar is present");
 
         label = commonUtils.getText(labelText);
-        isLabel = commonUtils.assertValue(label, "Select date (mm/dd/yyyy)", "In '" + state + "' inputState, the label text is not as per the spec");
+        isLabel = commonUtils.assertValue(label, "Select date", "In '" + state + "' inputState, the label text is not as per the spec");
         Assert.assertTrue(isCalendar && isDateField && isCalendarIcon && isLabel);
     }
 
@@ -145,7 +145,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By dateField) {
         boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         if (!isNextDayToCurrentDateExists) {
@@ -185,7 +185,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = {"desktop-regression","desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
     private void calendarCloseTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
         for (int i = 0; i < 2; i++) {
             String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
@@ -406,6 +406,33 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue(isChangeHandlerText);
     }
 
+    @DataProvider(name = "Date Format Test Data")
+    public Object[][] getDateFormatTestData() {
+        return new Object[][]{
+                {"mm/dd/yyyy"},
+                {"dd/mm/yyyy"}
+        };
+    }
+
+    //date format tests
+    @Test(testName = "Date Format Test", dataProvider = "Date Format Test Data", groups = "desktop-regression")
+    void dateFormatTest(String format) throws InterruptedException {
+        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", format, "labelText", "Select date"};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
+
+        commonUtils.click(datepickerPgObj.dateFieldDefault);
+
+        //User makes selection from the calendar.
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div")); //!Not able to select the current date -> issue already opened
+        commonUtils.click(datepickerPgObj.dateFieldDefault);
+        Thread.sleep(1000);
+        String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value");
+        dateInDateField = selectedDateInFormat(format);
+
+        Assert.assertTrue((dateInDateField.equals(value)), "In 'default' inputState, the date in the dateField text box is not in the right format as per the spec");
+    }
+
     //negative tests
     @DataProvider(name = "Negative Config Test Data")
     public Object[][] getNegativeConfigTestData() {
@@ -610,6 +637,24 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue(isChangeHandlerText);
     }
 
+    @Test(testName = "Mobile: Date Format Test", dataProvider = "Date Format Test Data", groups = "mobile-regression")
+    void dateFormatMobileTest(String format) throws InterruptedException {
+        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", format, "labelText", "Select date"};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+
+        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
+
+        //User makes selection from the calendar.
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
+        Thread.sleep(1000);
+        String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
+        dateInDateField = selectedDateInFormat(format);
+
+        Assert.assertTrue((dateInDateField.equals(value)), "In 'default' inputState, the date in the dateField text box is not in the right format as per the spec");
+    }
+
     //negative tests
     @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
@@ -762,6 +807,33 @@ public class DatePickerTest extends BaseClass {
             }
         }
         return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+    }
+
+    private String selectedDateInFormat(String format) {
+        String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+
+        String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate).replaceAll("\"", "");
+        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label");
+
+        for (int i = 0; i < 12; i++) {
+            if (actualCurrentMonth.equals(monthsOfYear[i])) {
+                monthInNumber = monthsInNumber[i];
+                break;
+            }
+        }
+
+        String[] dateFormat = {"mm/dd/yyyy", "dd/mm/yyyy", "yyyy/mm/dd", "yyyy/dd/mm"};
+        String[] actualDateInFormat = {monthInNumber + "/" + selectedDate + "/" + actualCurrentYear, selectedDate + "/" + monthInNumber + "/" + actualCurrentYear, actualCurrentYear + "/" + monthInNumber + "/" + selectedDate, actualCurrentYear + "/" + selectedDate + "/" + monthInNumber};
+        String selectedDateInFormat = "";
+
+        for (int i = 0; i < dateFormat.length; i++) {
+            if (format.equals(dateFormat[i])) {
+                selectedDateInFormat = actualDateInFormat[i];
+                break;
+            }
+        }
+        return selectedDateInFormat;
     }
 
     private String selectedDate(String mobile) {
