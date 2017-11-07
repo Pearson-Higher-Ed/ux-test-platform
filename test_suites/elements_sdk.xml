@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="desktop-regression"/>
+            <include name="desktop-ci"/>
         </run>
     </groups>
     <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="12">

@@ -650,7 +650,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
         Thread.sleep(1000);
         String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
-        dateInDateField = selectedDateInFormat(format);
+        dateInDateField = selectedDateInFormat(format, "mobile");
 
         Assert.assertTrue((dateInDateField.equals(value)), "In 'default' inputState, the date in the dateField text box is not in the right format as per the spec");
     }
@@ -798,7 +798,22 @@ public class DatePickerTest extends BaseClass {
         String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
         String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate).replaceAll("\"", "");
-        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label");
+
+        for (int i = 0; i < 12; i++) {
+            if (actualCurrentMonth.equals(monthsOfYear[i])) {
+                monthInNumber = monthsInNumber[i];
+                break;
+            }
+        }
+        return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+    }
+
+    private String selectedDate(String mobile) {
+        String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+
+        String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate, "mobile").replaceAll("\"", "");
+        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label", "mobile");
 
         for (int i = 0; i < 12; i++) {
             if (actualCurrentMonth.equals(monthsOfYear[i])) {
@@ -814,7 +829,6 @@ public class DatePickerTest extends BaseClass {
         String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
         String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate).replaceAll("\"", "");
-        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label");
 
         for (int i = 0; i < 12; i++) {
             if (actualCurrentMonth.equals(monthsOfYear[i])) {
@@ -836,12 +850,11 @@ public class DatePickerTest extends BaseClass {
         return selectedDateInFormat;
     }
 
-    private String selectedDate(String mobile) {
+    private String selectedDateInFormat(String format, String mobile) {
         String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
         String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate, "mobile").replaceAll("\"", "");
-        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label", "mobile");
 
         for (int i = 0; i < 12; i++) {
             if (actualCurrentMonth.equals(monthsOfYear[i])) {
@@ -849,7 +862,18 @@ public class DatePickerTest extends BaseClass {
                 break;
             }
         }
-        return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+
+        String[] dateFormat = {"mm/dd/yyyy", "dd/mm/yyyy", "yyyy/mm/dd", "yyyy/dd/mm"};
+        String[] actualDateInFormat = {monthInNumber + "/" + selectedDate + "/" + actualCurrentYear, selectedDate + "/" + monthInNumber + "/" + actualCurrentYear, actualCurrentYear + "/" + monthInNumber + "/" + selectedDate, actualCurrentYear + "/" + selectedDate + "/" + monthInNumber};
+        String selectedDateInFormat = "";
+
+        for (int i = 0; i < dateFormat.length; i++) {
+            if (format.equals(dateFormat[i])) {
+                selectedDateInFormat = actualDateInFormat[i];
+                break;
+            }
+        }
+        return selectedDateInFormat;
     }
 
     private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList, String datepickerJSFilePath) {
