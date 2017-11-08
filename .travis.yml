@@ -28,11 +28,11 @@ before_script:
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
-- export component=elements-sdk
-- export feature_branch=master
+- export component=coach-mark
+- export feature_branch=DES-838
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=coach_mark.xml test
 
 notifications:
   email:
