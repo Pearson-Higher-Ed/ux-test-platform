@@ -363,5 +363,6 @@ public class LoadingSpinnerTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, loadingSpinnerJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

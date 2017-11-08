@@ -308,5 +308,6 @@ public class ProgressBarTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, progressBarJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

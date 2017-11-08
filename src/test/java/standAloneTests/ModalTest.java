@@ -1276,5 +1276,6 @@ public class ModalTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, modalJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

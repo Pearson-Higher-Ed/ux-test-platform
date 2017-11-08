@@ -2,6 +2,7 @@
 
 echo "component: $component"
 echo "feature_branch: $feature_branch"
+js-beautify --version
 
 install_elements_sdk() {
 echo -e "******************************\\n    Installing elements-sdk: $1   \\n******************************"
@@ -11,7 +12,9 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/dist.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file_elements-sdk dist.compounds
 cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/eventInstantiator.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file_elements-sdk eventInstantiator.compounds
 cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/icons $UX_TEST_PLATFORM_ROOT_DIR/
@@ -26,7 +29,9 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/compounds/build/dist.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file compounds dist.compounds
 cp $UX_TEST_PLATFORM_ROOT_DIR/compounds/build/eventInstantiator.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file compounds eventInstantiator.compounds
 cp $UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
@@ -54,6 +59,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/app-header/build/dist.app-header.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/appHeader/
+instrument_file appHeader dist.app-header
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/app-header/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/app-header/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/appHeader/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/app-header/images $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/
@@ -67,6 +73,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/contextual-help/build/dist.contextual-help.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/contextualHelp/
+instrument_file contextualHelp dist.contextual-help
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/contextualHelp/
@@ -80,6 +87,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/drawer/build/dist.drawer.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/drawer/
+instrument_file drawer dist.drawer
 }
 
 install_componentArchetype(){
@@ -104,6 +112,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/avatar-display/build/dist.avatar-display.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/avatarDisplay/
+instrument_file avatarDisplay dist.avatar-display
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/avatar-display/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/avatar-display/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/avatarDisplay/
 }
@@ -117,6 +126,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/slider/build/dist.slider.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/slider/
+instrument_file slider dist.slider
 cp $UX_TEST_PLATFORM_ROOT_DIR/slider/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/slider/
 cp $UX_TEST_PLATFORM_ROOT_DIR/slider/slider.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/slider/
 }
@@ -130,6 +140,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/alerts/build/dist.alerts.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/alerts/
+instrument_file alerts dist.alerts
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/alerts/
@@ -144,7 +155,9 @@ npm install &>/dev/null
 #npm run copy-utils
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/pagination/build/dist.pagination.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/pagination/
+instrument_file pagination dist.pagination
 cp $UX_TEST_PLATFORM_ROOT_DIR/pagination/build/eventInterface.pagination.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/pagination/
+instrument_file pagination eventInterface.pagination
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/pagination/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/pagination/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/pagination/
 }
@@ -157,7 +170,9 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/modal/build/dist.modal.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/modal/
+instrument_file modal dist.modal
 cp $UX_TEST_PLATFORM_ROOT_DIR/modal/build/dev.modal.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/modal/
+instrument_file modal dev.modal
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/modal/
@@ -171,7 +186,9 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/build/dist.loadingIndicator.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/loadingIndicator/
+instrument_file loadingIndicator dist.loadingIndicator
 cp $UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/build/dev.loadingIndicator.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/loadingIndicator/
+instrument_file loadingIndicator dev.loadingIndicator
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/loadingIndicator/
@@ -185,10 +202,26 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dist.coach-mark.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
+instrument_file coachMark dist.coach-mark
 cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dev.coach-mark.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
+instrument_file coachMark dev.coach-mark
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
 cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/coachMark/
+}
+
+instrument_file(){
+sed -i -e 's/\/\/# sourceMappingURL/sourceMappingURL/g' ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
+mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js
+js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
+nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2-instrumented.js
+}
+
+instrument_file_elements-sdk(){
+sed -i -e 's/\/\/# sourceMappingURL/sourceMappingURL/g' ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js
+mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.test.js
+js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js
+nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1-instrumented.js
 }
 
 # Below conditions are to install the components specific to its feature branch.
@@ -253,24 +286,26 @@ install_coachMark $feature_branch
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-echo $TEST_SUITE
-if [[ $TEST_SUITE == "stand_alone" ]]
-then
 install_appHeader master &
-install_contextualHelp master &
-install_avatarDisplay master &
 install_alerts master &
 install_drawer master &
+install_contextualHelp master &
+install_avatarDisplay master &
 install_slider master &
 install_pagination master &
 install_modal master &
 install_loadingIndicator master &
 install_coachMark master &
+install_elements_sdk master &
 fi
-if [[ $TEST_SUITE == "elements-sdk" ]]
+if [[ $TEST_SUITE =~ "elements_styles_sdk" ]]
 then
 install_elements_sdk master &
 fi
-wait
+if [[ $TEST_SUITE =~ "elements_functional_sdk" ]]
+then
+install_elements_sdk master &
 fi
+jobs -l
+wait
 jobs -l

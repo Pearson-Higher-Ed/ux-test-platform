@@ -1,5 +1,7 @@
 package utilities;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.apache.log4j.Logger;
@@ -14,6 +16,10 @@ import org.testng.SkipException;
 
 import java.awt.Color;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 
 /**
@@ -697,5 +705,141 @@ public class CommonUtils {
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get all attributes of the mobile element");
         }
         return null;
+    }
+
+    public void postCoverageData() {
+        js = (JavascriptExecutor) driver;
+        Object str = js.executeScript("return window.__coverage__;");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String coverage = gson.toJson(str);
+        //System.out.println("coverage: " + coverage);
+
+        //setting up http post request
+        URL url = null;
+        try {
+            url = new URL("http://localhost:3000/coverage/client");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.setConnectTimeout(5000);//5 secs
+        connection.setReadTimeout(5000);//5 secs
+
+        try {
+            connection.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+
+        OutputStreamWriter out = null;
+        try {
+            out = new OutputStreamWriter(connection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.write(coverage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            int res = connection.getResponseCode();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //System.out.println(res);
+
+        InputStream is = null;
+        try {
+            is = connection.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line = null;
+        try {
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+    }
+
+    public static void downloadZip(InputStream input, OutputStream output, int bufferSize) throws IOException {
+        byte[] buf = new byte[bufferSize];
+        int n = input.read(buf);
+        while (n >= 0) {
+            output.write(buf, 0, n);
+            n = input.read(buf);
+        }
+        output.flush();
+    }
+
+    public void unZipIt(String zipFile, String outputFolder) {
+        byte[] buffer = new byte[1024];
+
+        try {
+            //create output directory is not exists
+            File folder = new File(outputFolder);
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+
+            //get the zip file content
+            ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFile));
+            //get the zipped file list entry
+            ZipEntry ze = zis.getNextEntry();
+
+            while (ze != null) {
+                String fileName = ze.getName();
+                File newFile = new File(outputFolder + File.separator + fileName);
+
+                System.out.println("file unzip : " + newFile.getAbsoluteFile());
+
+                //create all non exists folders
+                //else you will hit FileNotFoundException for compressed folder
+                new File(newFile.getParent()).mkdirs();
+
+                FileOutputStream fos = new FileOutputStream(newFile);
+
+                int len;
+                while ((len = zis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+
+                fos.close();
+                ze = zis.getNextEntry();
+            }
+
+            zis.closeEntry();
+            zis.close();
+
+            System.out.println("Done");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -70,5 +70,6 @@ public class ComponentArchetypeTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
+        commonUtils.postCoverageData();
     }
 }
