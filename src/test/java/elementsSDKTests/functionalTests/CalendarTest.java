@@ -1313,5 +1313,6 @@ public class CalendarTest extends BaseClass {
     @AfterClass(alwaysRun = true)
     private void afterClass() throws IOException, InterruptedException {
         commonUtils.writeInitialConfig(tempJSFilePath, calendarWhiteJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

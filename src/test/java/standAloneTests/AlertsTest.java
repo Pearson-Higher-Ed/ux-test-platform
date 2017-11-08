@@ -558,5 +558,6 @@ public class AlertsTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
+        commonUtils.postCoverageData();
     }
 }

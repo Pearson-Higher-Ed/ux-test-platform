@@ -3122,5 +3122,6 @@ public class InputsTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, inputsJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

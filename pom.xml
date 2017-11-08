@@ -7,7 +7,27 @@
     <name>ux-test-platform</name>
     <description>UX-Test-Platform</description>
 
+    <properties>
+        <sonar.host.url>https://devops-tools.pearson.com/sonar/</sonar.host.url>
+        <sonar.login>${SONAR_TOKEN}</sonar.login>
+        <sonar.language>js</sonar.language>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.javascript.coveragePlugin>lcov</sonar.javascript.coveragePlugin>
+        <sonar.javascript.lcov.reportPath>/home/travis/build/Pearson-Higher-Ed/ux-test-platform/lcov.info
+        </sonar.javascript.lcov.reportPath>
+        <sonar.projectKey>PDA.ux-test-platform</sonar.projectKey>
+        <sonar.sources>src/main/java</sonar.sources>
+        <sonar.inclusions>
+            src/main/java/standAlone/jsfiles/**/dist*.js,src/main/java/standAlone/jsfiles/**/dev*.js,src/main/java/standAlone/jsfiles/**/event*.js,src/main/java/elementsSDK/functional/jsfiles/dist.compounds.js,src/main/java/elementsSDK/functional/jsfiles/eventInstantiator.compounds.js
+        </sonar.inclusions>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.1</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>

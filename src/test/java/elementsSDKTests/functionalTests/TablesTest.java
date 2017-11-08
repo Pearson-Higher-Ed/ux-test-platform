@@ -685,5 +685,6 @@ public class TablesTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, tablesJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

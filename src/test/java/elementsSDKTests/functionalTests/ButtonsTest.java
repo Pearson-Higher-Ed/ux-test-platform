@@ -322,5 +322,6 @@ public class ButtonsTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
+        commonUtils.postCoverageData();
     }
 }

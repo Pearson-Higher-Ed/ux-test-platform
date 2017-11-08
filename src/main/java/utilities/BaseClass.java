@@ -6,8 +6,10 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
@@ -51,6 +53,8 @@ public class BaseClass {
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
     public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
     LoggingPreferences logs = new LoggingPreferences();
+    private static final String INPUT_ZIP_FILE = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/coverage.zip";
+    private static final String OUTPUT_FOLDER = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/";
 
 
     @BeforeClass(alwaysRun = true)
@@ -227,6 +231,22 @@ public class BaseClass {
     public void beforeMethod() throws InterruptedException {
         if (!runEnv.equals("travis")) {
             Thread.sleep(500);//Since the local test runs are very fast, giving a half second delay for each test, for correct test results
+        }
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite() throws Exception {
+        if(!runEnv.equals("travis")){
+            //do nothing
+        }else {
+            URL url = new URL("http://localhost:3000/coverage/download");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            InputStream in = connection.getInputStream();
+            FileOutputStream out = new FileOutputStream(INPUT_ZIP_FILE);
+            commonUtils.downloadZip(in, out, 1024);
+            out.close();
+            commonUtils.unZipIt(INPUT_ZIP_FILE, OUTPUT_FOLDER);
         }
     }
 }
