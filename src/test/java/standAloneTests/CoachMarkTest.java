@@ -30,7 +30,7 @@ public class CoachMarkTest extends BaseClass {
     private static String browser = "", lBrowser = "", setMobile = "", mobileDevice = "";
 
     private String borderRadius = "", bgColor = "", width = "", boxShadow = "", padding = "", fontWt = "", marginTop = "", floatVal = "", className = "";
-    private boolean isPresent = false, isBorderRadius = false, isBgColor = false, isWidth = false, isBoxShadow = false, isPadding = false, isFontWt = false, isFontSize = false, isLineHt = false, isColor = false, isMarginTop = false, isFloat = false, isTextDecoration = false, isClass = false;
+    private boolean isElemPresent = false,isPresent = false, isBorderRadius = false, isBgColor = false, isWidth = false, isBoxShadow = false, isPadding = false, isFontWt = false, isFontSize = false, isLineHt = false, isColor = false, isMarginTop = false, isFloat = false, isTextDecoration = false, isClass = false;
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null;
     private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", paddingBottom = "";
     Map<String, String> detailPropertiesMap = null, propsPropertiesMap = null;
@@ -76,15 +76,15 @@ public class CoachMarkTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         isPresent = commonUtils.isElementPresent(elem);
-        isPresent = commonUtils.assertValue(isPresent, true, "coach-mark is not displayed");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, true, "coach-mark is not displayed");
+        Assert.assertTrue(isElemPresent);
         bgColor = commonUtils.getCSSValue(elem, "background-color");
         width = commonUtils.getCSSValue(elem, "min-width");
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
 
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#d6ebe8"), commonUtils.hex2Rgb("#d6ebe8")});
         if (!isBgColor) {
-            log.info("Background color of " + type + " coach-mark is not as per spec");
+            log.info("Background color of " + type + " coach-mark is not as per spec, actual " +bgColor);
         }
         isWidth = commonUtils.assertValue(width, "280px", "Width of " + type + " coach-mark is not as per spec");
         isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, new String[]{"0 3px 7px rgba(0,0,0,.25)", "rgba(0,0,0,.25) 0 3px 7px", "rgba(0, 0, 0, 0.25) 0px 3px 7px 0px", "rgba(0, 0, 0, 0.247059) 0px 3px 7px 0px", "0px 3px 7px rgba(0,0,0,0.25)"});
@@ -134,11 +134,10 @@ public class CoachMarkTest extends BaseClass {
         isLineHt = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"17.9999px", "18px", "17.999940872192383px"});
         if (!isLineHt) {
             log.info("Line height of Title in" + type + " coach-mark is not as per spec, actual " + lineHeight);
-
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of Title in" + type + " coach-mark is not as per spec");
+            log.info("Color of Title in" + type + " coach-mark is not as per spec, actual " + color);
         }
         Assert.assertTrue(isPadding && isFontWt && isFontSize && isLineHt && isColor);
     }
@@ -163,7 +162,7 @@ public class CoachMarkTest extends BaseClass {
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of Message in " + type + " coach-mark is not as per spec");
+            log.info("Color of Message in " + type + " coach-mark is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isLineHt && isColor);
     }
@@ -195,7 +194,7 @@ public class CoachMarkTest extends BaseClass {
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of coach-mark is not as per spec");
+            log.info("Color of coach-mark is not as per spec, actual " + color);
         }
         Assert.assertTrue(isMarginTop && isFloat && isTextDecoration && isFontSize && isLineHt && isColor);
     }
@@ -220,8 +219,8 @@ public class CoachMarkTest extends BaseClass {
         isClass = commonUtils.assertValue(className, "pe-icon--remove-sm-18", "Class name of X Icon does not match the design specs");
         commonUtils.click(coachMarkPgObj.xIcon);
         isPresent = commonUtils.isElementPresent(elem);
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isClass && isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isClass && isElemPresent);
     }
 
     @Test(testName = "Coach-Mark Click on Dismissal Link Test", groups = "desktop-regression")
@@ -231,8 +230,8 @@ public class CoachMarkTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         commonUtils.click(coachMarkPgObj.dismissalLink);
         isPresent = commonUtils.isElementsVisibleOnPage(coachMarkPgObj.coachMark);
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isElemPresent);
     }
 
     @Test(testName = "Coach-Mark Tab on Dismissal Link Test", groups = "desktop-regression")
@@ -245,8 +244,8 @@ public class CoachMarkTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         commonUtils.tabOnElement(coachMarkPgObj.dismissalLink);
         isPresent = commonUtils.isElementsVisibleOnPage(coachMarkPgObj.coachMark);
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isElemPresent);
     }
 
 
@@ -256,8 +255,8 @@ public class CoachMarkTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "false", "id", "unique", "disableShadowing", "true"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         isPresent = commonUtils.isElementPresent(coachMarkPgObj.dismissalLink);
-        isPresent = commonUtils.assertValue(isPresent, false, "Dismissal Link is present");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Dismissal Link is present");
+        Assert.assertTrue(isElemPresent);
     }
 
 
@@ -271,8 +270,8 @@ public class CoachMarkTest extends BaseClass {
         Thread.sleep(2000);
         commonUtils.tabOnElement(coachMarkPgObj.xIcon);
         isPresent = commonUtils.isElementPresent(elem);
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isElemPresent);
     }
 
 
@@ -285,15 +284,15 @@ public class CoachMarkTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
         isPresent = commonUtils.isElementPresent(elem, "mobile");
-        isPresent = commonUtils.assertValue(isPresent, true, "coach-mark is not displayed");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, true, "coach-mark is not displayed");
+        Assert.assertTrue(isElemPresent);
         bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         width = commonUtils.getCSSValue(elem, "min-width", "mobile");
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
 
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#d6ebe8"), commonUtils.hex2Rgb("#d6ebe8")});
         if (!isBgColor) {
-            log.info("Background color of " + type + " coach-mark is not as per spec");
+            log.info("Background color of " + type + " coach-mark is not as per spec, actual " + bgColor);
         }
         isWidth = commonUtils.assertValue(width, "280px", "Width of " + type + " coach-mark is not as per spec");
         isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, new String[]{"0 3px 7px rgba(0,0,0,.25)", "rgba(0,0,0,.25) 0 3px 7px", "rgba(0, 0, 0, 0.25) 0px 3px 7px 0px", "rgba(0, 0, 0, 0.247059) 0px 3px 7px 0px"});
@@ -347,7 +346,7 @@ public class CoachMarkTest extends BaseClass {
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of Title in" + type + " coach-mark is not as per spec");
+            log.info("Color of Title in" + type + " coach-mark is not as per spec, actual " +color);
         }
         Assert.assertTrue(isPadding && isFontWt && isFontSize && isLineHt && isColor);
     }
@@ -372,7 +371,7 @@ public class CoachMarkTest extends BaseClass {
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of Message in " + type + " coach-mark is not as per spec");
+            log.info("Color of Message in " + type + " coach-mark is not as per spec, actual " +color);
         }
         Assert.assertTrue(isFontSize && isLineHt && isColor);
     }
@@ -404,7 +403,7 @@ public class CoachMarkTest extends BaseClass {
         }
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#252525")});
         if (!isColor) {
-            log.info("Color of coach-mark is not as per spec");
+            log.info("Color of coach-mark is not as per spec, actual " + color);
         }
         Assert.assertTrue(isMarginTop && isFloat && isTextDecoration && isFontSize && isLineHt && isColor);
     }
@@ -428,8 +427,8 @@ public class CoachMarkTest extends BaseClass {
         isClass = commonUtils.assertValue(className, "pe-icon--remove-sm-18", "Class name of X Icon does not match the design specs");
         commonUtils.clickUsingJS(coachMarkPgObj.xIcon, "mobile");
         isPresent = commonUtils.isElementPresent(elem, "mobile");
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isClass && isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isClass && isElemPresent);
     }
 
     @Test(testName = "Mobile : Coach-Mark Click on Dismissal Link Test", groups = "mobile-regression")
@@ -439,8 +438,8 @@ public class CoachMarkTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
         commonUtils.click(coachMarkPgObj.dismissalLink, "mobile");
         isPresent = commonUtils.isElementsVisibleOnPage(coachMarkPgObj.coachMark, "mobile");
-        isPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
+        Assert.assertTrue(isElemPresent);
     }
 
     @Test(testName = "Mobile : Set Dismissal Link False Test", groups = "mobile-regression")
@@ -449,8 +448,8 @@ public class CoachMarkTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "false", "id", "unique", "disableShadowing", "true"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
         isPresent = commonUtils.isElementPresent(coachMarkPgObj.dismissalLink, "mobile");
-        isPresent = commonUtils.assertValue(isPresent, false, "Dismissal Link is present");
-        Assert.assertTrue(isPresent);
+        isElemPresent = commonUtils.assertValue(isPresent, false, "Dismissal Link is present");
+        Assert.assertTrue(isElemPresent);
     }
 
     /**
