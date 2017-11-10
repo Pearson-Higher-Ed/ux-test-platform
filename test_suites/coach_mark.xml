@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="React Components: Coach-Mark Test Suite">
-    <test name="React Component: Coach-Mark">
+<suite name="StandAlone Components: Coach-Mark Test Suite">
+    <test name="StandAlone Component: Coach-Mark">
         <groups>
             <run>
                 <include name="desktop-regression"/>
