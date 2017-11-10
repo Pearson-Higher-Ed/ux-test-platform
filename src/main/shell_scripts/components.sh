@@ -177,6 +177,20 @@ cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/loadingIndicator/
 }
 
+install_coachMark(){
+echo -e "******************************\\n    Installing coach-mark: $1    \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/coach-mark.git
+cd coach-mark
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dist.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dev.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/coachMark/
+}
+
 # Below conditions are to install the components specific to its feature branch.
 if [[ $component == "elements-sdk" ]]
 then
@@ -232,6 +246,10 @@ elif [[ $component == "loading-indicator" ]]
 then
 install_loadingIndicator $feature_branch
 
+elif [[ $component == "coach-mark" ]]
+then
+install_coachMark $feature_branch
+
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
@@ -247,6 +265,7 @@ install_slider master &
 install_pagination master &
 install_modal master &
 install_loadingIndicator master &
+install_coachMark master &
 fi
 if [[ $TEST_SUITE == "elements-sdk" ]]
 then
