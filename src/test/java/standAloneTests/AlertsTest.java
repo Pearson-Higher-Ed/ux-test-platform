@@ -22,8 +22,8 @@ public class AlertsTest extends BaseClass {
     private final String alertJSFilePath = constructPath(absAlertJSFilePath);
     private final String absSliderDistJSFilePath = new File("standAlone/jsfiles/alerts/dist.alerts.js").getAbsolutePath();
     private final String alertDistJSFilePath = constructPath(absSliderDistJSFilePath);
-    private String id = "", marginTop = "", marginRight = "", marginLeft = "", borderLeftWidth = "", borderLeftStyle = "", borderLeftColor = "", bgColor = "", titleFontSize = "", titleFontColor = "", titleLineHt = "", textFontSize = "", textFontColor = "", textLineHt = "", paddingTop = "", boxShadow, fontWeight = "", display = "", paddingRight = "", color = "", width = "", paddingLeft = "", paddingBottom = "";
-    private boolean isMarginTop = false, isMarginRight = false, isMarginLeft = false, isBorderLeftWidth = false, isBorderLeftStyle = false, isBorderLeftColor = false, isBgColor = false, isTitleFontSize = false, isTitleFontColor = false, isTitleLineHt = false, isTextFontSize = false, isTextFontColor = false, isTextLineHt = false, isPaddingTop = false, isPaddingRight = false, isPaddingBottom = false, isElemPresent = false, isBoxShadow, isFontWeight = false, isDisplay = false, isColor = false;
+    private String id = "", marginTop = "", marginRight = "", marginLeft = "", borderLeftWidth = "", borderLeftStyle = "", borderLeftColor = "", bgColor = "", titleFontSize = "", titleFontColor = "", titleLineHt = "", textFontSize = "", textFontColor = "", textLineHt = "", paddingTop = "", boxShadow, fontWeight = "", display = "", paddingRight = "", color = "", width = "", paddingLeft = "", paddingBottom = "", className = "";
+    private boolean isMarginTop = false, isMarginRight = false, isMarginLeft = false, isBorderLeftWidth = false, isBorderLeftStyle = false, isBorderLeftColor = false, isBgColor = false, isTitleFontSize = false, isTitleFontColor = false, isTitleLineHt = false, isTextFontSize = false, isTextFontColor = false, isTextLineHt = false, isPaddingTop = false, isPaddingRight = false, isPaddingBottom = false, isElemPresent = false, isBoxShadow, isFontWeight = false, isDisplay = false, isColor = false, isClassName = false;
     private boolean isWidth = false, isPaddingLeft = false;
     final static Logger log = Logger.getLogger(AlertsTest.class.getName());
     private static String browser = "", mobile = "", platform = "", mobileDevice = "";
@@ -213,7 +213,7 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "Icon Properties Test Data")
     public Object[][] getIconPropsTestData() {
         return new Object[][]{
-                {alertsPgObj.successAlertBtn, "Success", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "5px", new String[]{"block", "inline"}, "pe-icon--check-sm-18"},
+                {alertsPgObj.successAlertBtn, "Success", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "6px", new String[]{"block", "inline"}, "pe-icon--check-lg-18"},
                 {alertsPgObj.errorAlertBtn, "Error", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "9px", new String[]{"block", "inline"}, "pe-icon--warning-18"},
         };
     }
@@ -224,6 +224,7 @@ public class AlertsTest extends BaseClass {
         color = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "color");
         marginTop = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "margin-top");
         display = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "display");
+        className = commonUtils.getAttributeValue(By.cssSelector(alertsPgObj.alertSVGIcon(alertType)), "class");
 
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
@@ -234,7 +235,8 @@ public class AlertsTest extends BaseClass {
         if (!isDisplay) {
             log.info("display of icon for " + alertType + " is not as per spec, actual " + display);
         }
-        Assert.assertTrue(isColor && isMarginTop && isDisplay);
+        isClassName = commonUtils.assertValue(className, expClassName, "Class Name for icon " + alertType + " is not as per spec");
+        Assert.assertTrue(isColor && isMarginTop && isDisplay && isClassName);
     }
 
     @DataProvider(name = "Generate Multiple alerts Test Data")
