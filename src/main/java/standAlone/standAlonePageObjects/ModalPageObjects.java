@@ -28,8 +28,8 @@ public class ModalPageObjects {
 
     public By modalHeader = By.className("modalHeader");
     public By modalHeaderTitleText = By.id("modal-header-title-text");
-    public By modalHeaderTitleTextReact = By.xpath("//div[@class='modalHeader']/h2");
-    public By modalHeaderSRTextSpan = By.xpath("//div[@class='modalHeader']/span");
+    public By modalHeaderTitleTextReact = By.xpath("//div[@id='modalHeader']/h2");
+    public By modalHeaderSRTextSpan = By.xpath("//div[@id='modalHeader']/span");
 
     public By modalBody = By.className("modalBody");
     public By modalBodyWithFooterText = By.id("text-for-modal-with-footer");
@@ -41,9 +41,8 @@ public class ModalPageObjects {
     public By modalSaveBtnReact = By.xpath("//div[@class='modalFooter']/button[2]");
 
     public By modalCloseButton = By.id("modal-close");
-    public By modalCloseButtonReact = By.xpath("//div[@class='modalHeader']/button");
-    public By modalCloseIcon = By.xpath("//div[@class='modalHeader']/button/*[local-name() = 'svg']");
-
+    public By modalCloseButtonReact = By.xpath("//div[@id='modalHeader']/button");
+    public By modalCloseIcon = By.xpath("//div[@id='modalHeader']/button/*[local-name() = 'svg']");
     public By divWrapper = By.xpath("//*[@id='wrapper']");
     public By modalTarget= By.xpath("//*[@id='modal-target']");
 }
