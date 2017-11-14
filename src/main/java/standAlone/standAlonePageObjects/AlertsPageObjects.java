@@ -60,4 +60,8 @@ public class AlertsPageObjects {
     public String xpathForAlertSVG(String alertType) {
         return "//*[@id='alert-" + alertType + "-0']/div/span";
     }
+
+    public String alertSVGIcon(String alertType) {
+        return "#alert-"+ alertType + "-0 > div > span > svg";
+    }
 }
