@@ -234,10 +234,10 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "Icon Properties Test Data")
     public Object[][] getIconPropsTestData() {
         return new Object[][]{
-                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-18"},
+                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-lg-18"},
                 {"banner", "Error", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "8px", "pe-icon--warning-18"},
 
-                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-18"},
+                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-lg-18"},
                 {"inline", "Error", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "8px", "pe-icon--warning-18"},
 
         };
