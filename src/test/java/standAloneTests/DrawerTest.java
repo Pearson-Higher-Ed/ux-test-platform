@@ -881,6 +881,7 @@ public class DrawerTest extends BaseClass {
     @AfterMethod(alwaysRun = true)
     private void afterMethod() {
         System.out.println("_________________________________________________");
+        commonUtils.postCoverageData();
     }
 
     @BeforeClass(alwaysRun = true)

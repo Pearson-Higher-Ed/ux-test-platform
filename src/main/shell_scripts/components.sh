@@ -2,6 +2,7 @@
 
 echo "component: $component"
 echo "feature_branch: $feature_branch"
+js-beautify --version
 
 install_elements_sdk() {
 echo -e "******************************\\n    Installing elements-sdk: $1   \\n******************************"
@@ -11,7 +12,9 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file_elements-sdk dist.compounds
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/eventInstantiator.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+instrument_file_elements-sdk eventInstantiator.compounds
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
@@ -41,7 +44,6 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
-ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 }
@@ -54,6 +56,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/build/dist.app-header.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/appHeader/
+instrument_file appHeader dist.app-header
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/appHeader/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/
@@ -67,6 +70,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/build/dist.contextual-help.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/contextualHelp/
+instrument_file contextualHelp dist.contextual-help
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/contextualHelp/
@@ -80,6 +84,7 @@ git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/drawer/build/dist.drawer.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/drawer/
+instrument_file drawer dist.drawer
 }
 
 install_componentArchetype(){
@@ -104,6 +109,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/build/dist.avatar-display.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/avatarDisplay/
+instrument_file avatarDisplay dist.avatar-display
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/avatarDisplay/
 }
@@ -117,6 +123,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/build/dist.slider.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/slider/
+instrument_file slider dist.slider
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/slider/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/slider.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/slider/
 }
@@ -130,6 +137,7 @@ npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/build/dist.alerts.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/alerts/
+instrument_file alerts dist.alerts
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/alerts/
@@ -144,7 +152,9 @@ npm install &>/dev/null
 #npm run copy-utils
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/dist.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
+instrument_file pagination dist.pagination
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/eventInterface.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
+instrument_file pagination eventInterface.pagination
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/pagination/
 }
@@ -158,6 +168,8 @@ npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dist.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/modal/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dev.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/modal/
+instrument_file modal dist.modal
+instrument_file modal dev.modal
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/modal/
@@ -172,6 +184,8 @@ npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/build/dist.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/loadingIndicator/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/build/dev.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/loadingIndicator/
+instrument_file loadingIndicator dist.loadingIndicator
+instrument_file loadingIndicator dev.loadingIndicator
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/loadingIndicator/
@@ -186,9 +200,25 @@ npm install &>/dev/null
 npm run build &>/dev/null
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dist.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dev.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
+instrument_file coachMark dist.coach-mark
+instrument_file coachMark dev.coach-mark
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
 cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/coachMark/
+}
+
+instrument_file(){
+sed -i -e 's/\/\/# sourceMappingURL/sourceMappingURL/g' ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
+mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js
+js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js
+nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/$1/$2-instrumented.js
+}
+
+instrument_file_elements-sdk(){
+sed -i -e 's/\/\/# sourceMappingURL/sourceMappingURL/g' ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js
+mv ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.test.js
+js-beautify ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.test.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js
+nyc instrument ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1.js >> ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/$1-instrumented.js
 }
 
 # Below conditions are to install the components specific to its feature branch.
@@ -253,24 +283,25 @@ install_coachMark $feature_branch
 # Below condition is to install all the "master" branch of components for the regression test run, regression split into 3 suites
 elif [[ $component == "regression" ]]
 then
-echo $TEST_SUITE
-if [[ $TEST_SUITE == "stand_alone" ]]
-then
 install_appHeader master &
-install_contextualHelp master &
-install_avatarDisplay master &
 install_alerts master &
 install_drawer master &
+install_contextualHelp master &
+install_avatarDisplay master &
 install_slider master &
 install_pagination master &
 install_modal master &
 install_loadingIndicator master &
 install_coachMark master &
+install_elements_sdk master &
 fi
-if [[ $TEST_SUITE == "elements-sdk" ]]
+if [[ $TEST_SUITE =~ "elements_styles_sdk" ]]
+then
+install_elements_sdk master &
+fi
+if [[ $TEST_SUITE =~ "elements_functional_sdk" ]]
 then
 install_elements_sdk master &
 fi
 wait
-fi
 jobs -l

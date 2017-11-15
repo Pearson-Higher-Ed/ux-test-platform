@@ -720,5 +720,6 @@ public class TimePickerTest extends BaseClass {
     @AfterClass(alwaysRun = true)
     private void afterClass() {
         commonUtils.writeInitialConfig(tempJSFilePath, timepickerJSFilePath);
+        commonUtils.postCoverageData();
     }
 }

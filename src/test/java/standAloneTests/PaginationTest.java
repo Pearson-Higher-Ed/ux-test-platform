@@ -86,7 +86,7 @@ public class PaginationTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
-
+        commonUtils.postCoverageData();
     }
 
     /***************
@@ -633,5 +633,4 @@ public class PaginationTest extends BaseClass {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));
         return path;
     }
-
 }

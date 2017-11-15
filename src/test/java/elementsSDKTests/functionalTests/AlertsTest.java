@@ -607,6 +607,7 @@ public class AlertsTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, alertsJSFilePath);
+        commonUtils.postCoverageData();
     }
 
 }
