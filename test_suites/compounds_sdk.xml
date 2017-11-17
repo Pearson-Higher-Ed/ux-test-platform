@@ -20,6 +20,8 @@
             <class name="elementsSDKTests.functionalTests.TablesTest"/>
             <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
             <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
+            <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
+            <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
         </classes>
     </test>
 </suite>
