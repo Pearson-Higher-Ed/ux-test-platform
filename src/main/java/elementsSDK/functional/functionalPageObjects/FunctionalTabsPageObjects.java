@@ -8,7 +8,7 @@ import utilities.BaseClass;
 /**
  * Created by umahaea on 6/2/17.
  */
-public class FunctionalTabsPageObjects extends BaseClass {
+public class FunctionalTabsPageObjects {
 
     public WebDriver driver = null;
     public AppiumDriver appium = null;

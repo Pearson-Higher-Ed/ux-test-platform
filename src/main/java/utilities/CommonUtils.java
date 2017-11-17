@@ -8,6 +8,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.SkipException;
 
@@ -256,6 +257,16 @@ public class CommonUtils {
         } catch (NoSuchElementException e) {
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to get the text value for the mobile element");
             return null;
+        }
+    }
+
+    //select value from a drop down
+    public void selectItem(By element) {
+        try {
+            webElement = driver.findElement(element);
+            Select select = new Select(webElement);
+        } catch (NoSuchElementException e) {
+            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to select the element");
         }
     }
 
