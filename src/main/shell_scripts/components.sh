@@ -196,7 +196,7 @@ if [[ $component == "elements-sdk" ]]
 then
 install_elements_sdk $feature_branch
 
-elif [[ $component == "compounds-sdk" ]]
+elif [[ $component == "compounds" ]]
 then
 install_compounds_sdk $feature_branch
 
