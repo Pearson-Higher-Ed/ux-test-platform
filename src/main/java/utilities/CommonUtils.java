@@ -210,14 +210,22 @@ public class CommonUtils {
 
     //set windowsize
     public void setWindowSize(int width, int height) {
+        boolean windowSet = false;
+        dimension = new Dimension(width, height);
         try {
-            dimension = new Dimension(width, height);
+            windowSet = true;
             driver.manage().window().setSize(dimension);
         } catch (Exception e) {
-            System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": dimension is not set");
+            if (windowSet) {
+                try {
+                    driver.manage().window().setSize(dimension);
+                } catch (Exception ex) {
+                    System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ": dimension is not set");
+                }
+            }
         }
     }
-
+    
     //get css value
     public String getCSSValue(By element, String property) {
         try {
