@@ -10,40 +10,40 @@ cd elements-sdk
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/eventInstantiator.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements-sdk/build/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/dist.compounds.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/eventInstantiator.compounds.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/icons UX_TEST_PLATFORM_ROOT_DIR/
 }
 
 install_compounds_sdk() {
 echo -e "******************************\\n    Installing compounds sdk: $1   \\n******************************"
-cd ~/build/Pearson-Higher-Ed/ux-test-platform/
+cd UX_TEST_PLATFORM_ROOT_DIR/
 git clone https://github.com/Pearson-Higher-Ed/compounds.git &>/dev/null
 cd compounds
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/dist.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/build/eventInstantiator.compounds.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/compounds/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp UX_TEST_PLATFORM_ROOT_DIR/compounds/build/dist.compounds.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp UX_TEST_PLATFORM_ROOT_DIR/compounds/build/eventInstantiator.compounds.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/compounds/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
 }
 
 install_elements() {
 echo -e "******************************\\n    Installing elements: $1   \\n******************************"
-cd ~/build/Pearson-Higher-Ed/ux-test-platform/
+cd UX_TEST_PLATFORM_ROOT_DIR/
 git clone https://github.com/Pearson-Higher-Ed/elements.git &>/dev/null
 cd elements
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/elementsSDK/css/
-ls -ltr ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
+cp UX_TEST_PLATFORM_ROOT_DIR/elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
+ls -ltr UX_TEST_PLATFORM_ROOT_DIR/elements/dist/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
 }
 
 install_appHeader(){
@@ -53,10 +53,10 @@ cd app-header
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/build/dist.app-header.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/appHeader/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/appHeader/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/app-header/images ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/
+cp UX_TEST_PLATFORM_ROOT_DIR/app-header/build/dist.app-header.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/appHeader/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/app-header/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/app-header/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/appHeader/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/app-header/images UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/
 }
 
 install_contextualHelp(){
@@ -66,10 +66,10 @@ cd contextual-help
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/build/dist.contextual-help.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/contextualHelp/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/contextual-help/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/contextualHelp/
+cp UX_TEST_PLATFORM_ROOT_DIR/contextual-help/build/dist.contextual-help.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/contextualHelp/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/contextual-help/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/contextualHelp/
 }
 
 install_drawer(){
@@ -79,7 +79,7 @@ cd drawer
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/drawer/build/dist.drawer.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/drawer/
+cp UX_TEST_PLATFORM_ROOT_DIR/drawer/build/dist.drawer.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/drawer/
 }
 
 install_componentArchetype(){
@@ -90,9 +90,9 @@ git checkout $1
 npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/build/dist.component-name.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/componentArchetype/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/component-archetype/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/componentArchetype/
+cp UX_TEST_PLATFORM_ROOT_DIR/component-archetype/build/dist.component-name.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/componentArchetype/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/component-archetype/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/component-archetype/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/componentArchetype/
 }
 
 install_avatarDisplay(){
@@ -103,9 +103,9 @@ git checkout $1
 npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/build/dist.avatar-display.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/avatarDisplay/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/avatar-display/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/avatarDisplay/
+cp UX_TEST_PLATFORM_ROOT_DIR/avatar-display/build/dist.avatar-display.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/avatarDisplay/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/avatar-display/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/avatar-display/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/avatarDisplay/
 }
 
 install_slider(){
@@ -116,9 +116,9 @@ git checkout $1
 npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/build/dist.slider.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/slider/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/slider/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/slider/slider.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/slider/
+cp UX_TEST_PLATFORM_ROOT_DIR/slider/build/dist.slider.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/slider/
+cp UX_TEST_PLATFORM_ROOT_DIR/slider/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/slider/
+cp UX_TEST_PLATFORM_ROOT_DIR/slider/slider.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/slider/
 }
 
 install_alerts(){
@@ -129,10 +129,10 @@ git checkout $1
 npm install &>/dev/null
 npm run copy-utils
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/build/dist.alerts.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/alerts/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/alerts/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/alerts/
+cp UX_TEST_PLATFORM_ROOT_DIR/alerts/build/dist.alerts.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/alerts/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/alerts/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/alerts/
 }
 
 install_pagination(){
@@ -143,10 +143,10 @@ git checkout $1
 npm install &>/dev/null
 #npm run copy-utils
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/dist.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/build/eventInterface.pagination.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/pagination/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/pagination/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/pagination/
+cp UX_TEST_PLATFORM_ROOT_DIR/pagination/build/dist.pagination.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/pagination/
+cp UX_TEST_PLATFORM_ROOT_DIR/pagination/build/eventInterface.pagination.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/pagination/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/pagination/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/pagination/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/pagination/
 }
 
 install_modal(){
@@ -156,11 +156,11 @@ cd modal
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dist.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/modal/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/build/dev.modal.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/modal/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/modal/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/modal/
+cp UX_TEST_PLATFORM_ROOT_DIR/modal/build/dist.modal.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/modal/
+cp UX_TEST_PLATFORM_ROOT_DIR/modal/build/dev.modal.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/modal/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/modal/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/modal/
 }
 
 install_loadingIndicator(){
@@ -170,11 +170,11 @@ cd loading-indicator
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/build/dist.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/loadingIndicator/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/build/dev.loadingIndicator.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/loadingIndicator/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/loading-indicator/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/loadingIndicator/
+cp UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/build/dist.loadingIndicator.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/loadingIndicator/
+cp UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/build/dev.loadingIndicator.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/loadingIndicator/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/loading-indicator/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/loadingIndicator/
 }
 
 install_coachMark(){
@@ -184,11 +184,11 @@ cd coach-mark
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dist.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/build/dev.coach-mark.js ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/jsfiles/coachMark/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/fonts ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp -R ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/icons ~/build/Pearson-Higher-Ed/ux-test-platform/
-cp ~/build/Pearson-Higher-Ed/ux-test-platform/coach-mark/node_modules/pearson-elements/dist/css/elements.css ~/build/Pearson-Higher-Ed/ux-test-platform/src/main/java/standAlone/css/coachMark/
+cp UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dist.coach-mark.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
+cp UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dev.coach-mark.js UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/fonts UX_TEST_PLATFORM_ROOT_DIR/
+cp -R UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/icons UX_TEST_PLATFORM_ROOT_DIR/
+cp UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/css/elements.css UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/coachMark/
 }
 
 # Below conditions are to install the components specific to its feature branch.
