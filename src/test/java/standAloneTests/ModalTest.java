@@ -27,8 +27,8 @@ public class ModalTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setMobile = "", setDesktop = "", mobileDevice = "";
-    private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "";
-    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false, isPresent = false, isAriaHiddenAttributePresent = false, isWrapperPresent = false;
+    private String browserLogs = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", padding = "", width = "", textDecoration = "", flexGrow = "", flexShrink = "", flexBasis = "", marginTop = "", height = "", lineHeight = "", marginBottom = "", borderStyle = "", borderRadius = "", paddingTop = "", borderBottom = "", borderTop = "", closeButtonFloat = "", margin = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", testConfig = "", focused = "", overFlowY = "";
+    boolean result = false, isFontSize = false, isOutlineStyle = false, isColor = false, isBackgroundColor = false, isHeight = false, isPadding = false, isWidth = false, isTextDecoration = false, isMargin = false, isFlexGrow = false, isFlexShrink = false, isFlexBasis = false, isPaddingTop = false, isBorderBottom = false, isBorderTop = false, isCloseButtonFloat = false, isMarginTop = false, isLineHeight = false, isMarginBottom = false, isBorderStyle = false, isBorderRadius = false, isFocused = false, isEnabled = false, isModalCloseVisible = false, isVisible = false, isPresent = false, isAriaHiddenAttributePresent = false, isWrapperPresent = false, isOverFlowY = false;
     String[] paddings = {"padding-top", "padding-right", "padding-bottom", "padding-left"};
     String[] margins = {"margin-top", "margin-right", "margin-bottom", "margin-left"};
     String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
@@ -689,6 +689,30 @@ public class ModalTest extends BaseClass {
         }
     }
 
+    @DataProvider(name = "Scroll With Page Modal Test Data")
+    public Object[][] getScrollWithPageModalTestData() {
+        return new Object[][]{
+                {"true", "auto", "true", modalPgObj.modalWithFooterTemplateReact},
+                {"false", "visible", "false", modalPgObj.modalWithFooterTemplateReact}
+        };
+    }
+
+    //scroll with page modal
+    @Test(testName = "scroll With Page Modal Test", dataProvider = "Scroll With Page Modal Test Data", groups = "desktop-regression")
+    private void scrollWithPageModalTest(String scrollWithPage, String expOverFlowY, String visible, By modalFooter) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "scrollWithPage", scrollWithPage, "children", "React.createElement('p', {}, '" + longModalText + "')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+
+        overFlowY = commonUtils.getCSSValue(modalPgObj.modalOverlayReact, "overflow-y");
+        isOverFlowY = commonUtils.assertValue(overFlowY, expOverFlowY, "overflow-y for scrollWithPage '" + scrollWithPage + "' is not as per the spec");
+        outlineStyle = commonUtils.getCSSValue(modalFooter, "outline-style");
+        isOutlineStyle = commonUtils.assertValue(outlineStyle, "none", "outline style for scrollWithPage '" + scrollWithPage + "' and modal with footer '" + visible + "' is not as per the spec");
+
+        Assert.assertTrue(isOverFlowY && isOutlineStyle);
+    }
+
     //Mobile Tests
     @Test(testName = "Mobile: Modal Overlay Test", groups = "mobile-regression")
     private void modalOverlayMobileTest() throws Exception {
@@ -1127,6 +1151,22 @@ public class ModalTest extends BaseClass {
             }
             Assert.assertTrue(isMargin);
         }
+    }
+
+    //scroll with page modal
+    @Test(testName = "Mobile: Scroll With Page Modal Test", dataProvider = "Scroll With Page Modal Test Data", groups = "mobile-regression")
+    private void scrollWithPageModalMobileTest(String scrollWithPage, String expOverFlowY, String visible, By modalFooter) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
+        String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
+        String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "scrollWithPage", scrollWithPage, "children", "React.createElement('p', {}, '" + longModalText + "')"};
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+
+        overFlowY = commonUtils.getCSSValue(modalPgObj.modalOverlayReact, "overflow-y", "mobile");
+        isOverFlowY = commonUtils.assertValue(overFlowY, expOverFlowY, "overflow-y for scrollWithPage '" + scrollWithPage + "' is not as per the spec");
+        outlineStyle = commonUtils.getCSSValue(modalFooter, "outline-style", "mobile");
+        isOutlineStyle = commonUtils.assertValue(outlineStyle, "none", "outline style for scrollWithPage '" + scrollWithPage + "' and modal with footer '" + visible + "' is not as per the spec");
+
+        Assert.assertTrue(isOverFlowY && isOutlineStyle);
     }
 
     /*****************
