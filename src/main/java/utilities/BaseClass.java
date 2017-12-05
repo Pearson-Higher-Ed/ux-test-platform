@@ -51,10 +51,13 @@ public class BaseClass {
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
     public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
     LoggingPreferences logs = new LoggingPreferences();
+    Process process = null;
+    public static boolean isLocal = false;
+    public final String warningColorCode = "\u001B[36m";
 
 
     @BeforeClass(alwaysRun = true)
-    protected void setUp() throws MalformedURLException {
+    protected void setUp() throws IOException {
         caps = new DesiredCapabilities();
         setDesktop = desktop;
         setMobile = mobile;
@@ -115,6 +118,7 @@ public class BaseClass {
                     driverTimeOut();
                 }
                 if (localBrowser.equals("chrome")) {
+                    //setUpLocalWebServer();
                     CommonUtils.setupChromeDriver();
                     driver = new ChromeDriver();
                     driverTimeOut();
@@ -220,6 +224,25 @@ public class BaseClass {
         if (!(groupsInclude.startsWith("desktop") || groupsInclude.startsWith("mobile"))) {
             System.out.println(errorColorCode + "Oops!! Looks like you haven't set correct test group " + "\n" + errorColorCode + "Go to tests_suites/<component.xml>" + "\n" + "\t- " + errorColorCode + desktopGroupErrorMessage + "\n" + "\t- " + errorColorCode + mobileGroupErrorMessage + errorColorCode);
             System.exit(1);
+        }
+    }
+
+//    @AfterSuite(alwaysRun = true)
+//    public void afterSuite() {
+//        if (isLocal) {
+//            process.destroy();
+//        }
+//    }
+
+    private void setUpLocalWebServer() throws IOException {
+        if (System.getProperty("os.name").contains("Mac")) {
+            System.out.println("hi");
+            String[] env = {"export PATH=$PATH:/usr/bin/"};
+            String cmd = "python -m SimpleHTTPServer";  //e.g test.sh -dparam1 -oout.txt
+            process = Runtime.getRuntime().exec(cmd, env);
+            isLocal = true;
+        } else {
+            System.out.println("Make sure you have local web server running on port 8000. Cmd : 'python -m SimpleHTTPServer'");
         }
     }
 
