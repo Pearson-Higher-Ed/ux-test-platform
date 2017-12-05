@@ -292,6 +292,9 @@ install_drawer master &
 install_contextualHelp master &
 install_avatarDisplay master &
 install_slider master &
+fi
+if [[ $component == "regression" ]]
+then
 install_pagination master &
 install_modal master &
 install_loadingIndicator master &
