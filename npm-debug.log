@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/umahaea/.nvm/versions/node/v6.9.1/bin/node',
+1 verbose cli   '/Users/umahaea/.nvm/versions/node/v6.9.1/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'delete-ins' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 verbose run-script [ 'predelete-ins', 'delete-ins', 'postdelete-ins' ]
+5 info lifecycle @~predelete-ins: @
+6 silly lifecycle @~predelete-ins: no script for predelete-ins, continuing
+7 info lifecycle @~delete-ins: @
+8 verbose lifecycle @~delete-ins: unsafe-perm in lifecycle true
+9 verbose lifecycle @~delete-ins: PATH: /Users/umahaea/.nvm/versions/node/v6.9.1/lib/node_modules/npm/bin/node-gyp-bin:/Users/umahaea/Documents/workspace/ux-test-platform/node_modules/.bin:/Users/umahaea/.rvm/gems/ruby-2.3.0/bin:/Users/umahaea/.rvm/gems/ruby-2.3.0@global/bin:/Users/umahaea/.rvm/rubies/ruby-2.3.0/bin:/Users/umahaea/.nvm/versions/node/v6.9.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/umahaea/.rvm/bin
+10 verbose lifecycle @~delete-ins: CWD: /Users/umahaea/Documents/workspace/ux-test-platform
+11 silly lifecycle @~delete-ins: Args: [ '-c',
+11 silly lifecycle   'rm -rf ./lcov-report && rm -rf ./coverage.zip && rm ./coverage.json && rm ./lcov-info && rm -rf ./coverage' ]
+12 silly lifecycle @~delete-ins: Returned: code: 1  signal: null
+13 info lifecycle @~delete-ins: Failed to exec delete-ins script
+14 verbose stack Error: @ delete-ins: `rm -rf ./lcov-report && rm -rf ./coverage.zip && rm ./coverage.json && rm ./lcov-info && rm -rf ./coverage`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/umahaea/.nvm/versions/node/v6.9.1/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/umahaea/.nvm/versions/node/v6.9.1/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid @
+16 verbose cwd /Users/umahaea/Documents/workspace/ux-test-platform
+17 error Darwin 14.5.0
+18 error argv "/Users/umahaea/.nvm/versions/node/v6.9.1/bin/node" "/Users/umahaea/.nvm/versions/node/v6.9.1/bin/npm" "run" "delete-ins"
+19 error node v6.9.1
+20 error npm  v3.10.8
+21 error code ELIFECYCLE
+22 error @ delete-ins: `rm -rf ./lcov-report && rm -rf ./coverage.zip && rm ./coverage.json && rm ./lcov-info && rm -rf ./coverage`
+22 error Exit status 1
+23 error Failed at the @ delete-ins script 'rm -rf ./lcov-report && rm -rf ./coverage.zip && rm ./coverage.json && rm ./lcov-info && rm -rf ./coverage'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the  package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     rm -rf ./lcov-report && rm -rf ./coverage.zip && rm ./coverage.json && rm ./lcov-info && rm -rf ./coverage
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
