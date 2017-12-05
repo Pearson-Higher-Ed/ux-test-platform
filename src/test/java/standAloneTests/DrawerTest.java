@@ -46,7 +46,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Open Drawer
-    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression1"})
     private void openDrawerTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
         commonUtils.click(drawerLinkElement);
         isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
@@ -109,7 +109,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Use data-target instead of href
-    @Test(testName = "Use Data Target Test", groups = {"desktop-regression"})
+    @Test(testName = "Use Data Target Test", groups = {"desktop-regression1"})
     private void useDataTargetForDrawerTest() throws Exception {
         commonUtils.click(drawerPgObj.useDataTargetButton);
         isDrawerOpened = commonUtils.isElementPresent(drawerPgObj.rightDrawerOpened);
@@ -132,7 +132,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Use API
-    @Test(testName = "Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"desktop-regression1"})
     private void useAPIDrawerTest(String drawerType, By element) throws Exception {
         String toggleStatusText = "";
         boolean isToggleStatusText = false;
@@ -160,7 +160,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //close other drawers
-    @Test(testName = "Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"desktop-regression1"})
     private void otherDrawerTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
         //Open Drawer
         commonUtils.clickUsingJS(openDrawerLinkElement);
@@ -866,7 +866,6 @@ public class DrawerTest extends BaseClass {
         isDrawerClosed = commonUtils.isElementsVisibleOnPage(closeDrawerBtnElement, "mobile");
         Assert.assertTrue(isDrawerClosed);
     }
-
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {

@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression1"})
     private void successErrorInformationAlertsTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.click(button);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
@@ -181,7 +181,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Click on 'X' icon", dataProvider = "Click on 'X' icon Test Data", groups = "desktop-regression")
+    @Test(testName = "Click on 'X' icon", dataProvider = "Click on 'X' icon Test Data", groups = "desktop-regression1")
     private void clickOnXIconTest(String alertType, By button, By alert, By icon) throws InterruptedException {
         commonUtils.click(button);
         Thread.sleep(500);
@@ -248,7 +248,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Generate Multiple alerts", dataProvider = "Generate Multiple alerts Test Data", groups = "desktop-regression")
+    @Test(testName = "Generate Multiple alerts", dataProvider = "Generate Multiple alerts Test Data", groups = "desktop-regression1")
     private void generateMultipleAlertsTest(int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
             alertType = alertsPgObj.generateRandomAlerts();

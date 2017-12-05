@@ -1,9 +1,12 @@
 package standAloneTests;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -35,6 +38,7 @@ public class PaginationTest extends BaseClass {
     final static Logger log = Logger.getLogger(PaginationTest.class.getName());
     private String browser, mobile = "", desktop = "", lBrowser = "";
     JsonParser parser = new JsonParser();
+    JavascriptExecutor js = null;
 
     private String preConfigStr1 = "function init() {";
     private String preConfigStr2 = "  document.body.dispatchEvent(new CustomEvent('o.InitPagination', ";
@@ -86,14 +90,13 @@ public class PaginationTest extends BaseClass {
     private void afterMethod() throws IOException, InterruptedException {
         System.out.println("_________________________________________________");
         commonUtils.writeInitialConfig(tempJSFilePath, paginationJSFilePath);
-        commonUtils.postCoverageData();
     }
 
     /***************
      * DESKTOP TESTS
      ***************/
 
-    @Test(testName = "Standard Pagination Initial Load Test", groups = {"desktop-regression"})
+    @Test(testName = "Standard Pagination Initial Load Test", groups = {"desktop-regression1"})
     private void standardPaginationInitialLoadTest() throws Exception {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "100"};
@@ -119,7 +122,7 @@ public class PaginationTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Page Navigation - Standard Pagination Test", groups = {"desktop-regression"})
+    @Test(testName = "Page Navigation - Standard Pagination Test", groups = {"desktop-regression1"})
     private void pageNavigationStdTest() throws Exception {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
@@ -133,7 +136,7 @@ public class PaginationTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Tab Page Navigation - Standard Pagination Test", groups = {"desktop-regression"})
+    @Test(testName = "Tab Page Navigation - Standard Pagination Test", groups = {"desktop-regression1"})
     private void tabPageNavigationStdTest() throws Exception {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"activePage", "1", "pages", "10"};
@@ -230,7 +233,7 @@ public class PaginationTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Validate Compact pagination component Test", dataProvider = "Validate Compact pagination component Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Validate Compact pagination component Test", dataProvider = "Validate Compact pagination component Test Data", groups = {"desktop-regression1"})
     private void validateCompactPaginationTest(String expPages, String expActivePage, String expText) throws Exception {
         String[] detailProperties = new String[]{"elementId", "pagination-target"};
         String[] propsPropertiesList = new String[]{"paginationType", "compact", "compactText", expText, "activePage", expActivePage, "pages", expPages};
@@ -614,7 +617,6 @@ public class PaginationTest extends BaseClass {
             beforeFinalFormat = jsonDetailObject.toString().replaceAll(":\"", ":'").replaceAll("\",", "',").replaceAll("\":", ":").replaceAll(",\"", ",").replaceAll("\\{\"", "\\{");
             finalConfig = preConfigStr1 + preConfigStr2 + beforeFinalFormat + postConfigStr1;
             return finalConfig;
-
         }
     }
 
@@ -632,5 +634,16 @@ public class PaginationTest extends BaseClass {
     public String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));
         return path;
+    }
+
+    @AfterClass(alwaysRun = true)
+    private void afterClass() throws IOException {
+        js = (JavascriptExecutor) driver;
+        //window.__coverage__
+        Object str = js.executeScript("return window.__coverage__;");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String coverage = gson.toJson(str);
+        Files.write(Paths.get("/Users/umahaea/Documents/workspace/ux-test-platform/src/main/java/coverage/pagination/coverage.json"), coverage.getBytes());
     }
 }

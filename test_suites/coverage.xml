@@ -1,60 +1,26 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Stand Alone - Stand Alone Regression Test Suite">
+
     <groups>
         <run>
-            <include name="desktop-regression"/>
+            <include name="desktop-regression1"/>
         </run>
     </groups>
-    <test name="Stand Alone Test" parallel="classes" thread-count="7">
+
+    <!-- Single Session -->
+    <test name="Single Session" parallel="false" enabled="false">
+        <classes>
+            <class name="standAloneTests.PaginationTest"/>
+        </classes>
+    </test>
+
+    <!-- Multiple Sessions -->
+    <test name="Multiple Session" parallel="false" enabled="true">
         <classes>
             <class name="standAloneTests.AlertsTest"/>
-            <class name="standAloneTests.AvatarDisplayTest"/>
-            <class name="standAloneTests.ContextualHelpTest"/>
             <class name="standAloneTests.DrawerTest"/>
-            <class name="standAloneTests.LoadingIndicatorTest"/>
-            <class name="standAloneTests.ModalTest"/>
-            <class name="standAloneTests.PaginationTest"/>
-            <class name="standAloneTests.SliderTest"/>
         </classes>
     </test>
-    <test name="App header">
-        <classes>
-            <class name="standAloneTests.AppHeaderTest"></class>
-        </classes>
-    </test>
-    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="12">
-        <classes>
-            <!-- Functional(JavaScript) Tests -->
-            <class name="elementsSDKTests.functionalTests.AlertsTest"/>
-            <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
-            <class name="elementsSDKTests.functionalTests.DropdownTest"/>
-            <class name="elementsSDKTests.functionalTests.FooterTest"/>
-            <class name="elementsSDKTests.functionalTests.IconsTest"/>
-            <class name="elementsSDKTests.functionalTests.InputsTest"/>
-            <class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>
-            <class name="elementsSDKTests.functionalTests.TabsTest"/>
-            <class name="elementsSDKTests.functionalTests.CalendarTest"/>
-            <class name="elementsSDKTests.functionalTests.TablesTest"/>
-            <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
-            <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
-            <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
-            <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
-        </classes>
-    </test>
-    <!-- Styles(CSS) Tests -->
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="10">
-        <classes>
-            <class name="elementsSDKTests.stylesTests.InputsTest"/>
-            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
-            <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
-            <class name="elementsSDKTests.stylesTests.IconsTest"/>
-            <class name="elementsSDKTests.stylesTests.FormsTest"/>
-            <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <class name="elementsSDKTests.stylesTests.GridTest"/>
-            <class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>
-            <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
-            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
-        </classes>
-    </test>
+
 </suite>

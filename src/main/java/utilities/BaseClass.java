@@ -39,7 +39,7 @@ public class BaseClass {
     public AppiumDriver appium = null;
 
     public CommonUtils commonUtils = null;
-    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
+    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "", sessionName = "";
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
@@ -53,8 +53,8 @@ public class BaseClass {
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
     public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
     LoggingPreferences logs = new LoggingPreferences();
-    private static final String INPUT_ZIP_FILE = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/coverage.zip";
-    private static final String OUTPUT_FOLDER = "/home/travis/build/Pearson-Higher-Ed/ux-test-platform/";
+    private static final String INPUT_ZIP_FILE = "/Users/umahaea/Documents/workspace/ux-test-platform/coverage.zip";
+    private static final String OUTPUT_FOLDER = "/Users/umahaea/Documents/workspace/ux-test-platform/";
 
 
     @BeforeClass(alwaysRun = true)
@@ -170,6 +170,8 @@ public class BaseClass {
         XmlSuite suite = testContext.getSuite().getXmlSuite();
         groupsInclude = suite.getTests().get(0).getIncludedGroups().get(0);
         testSuite = suite.getName();
+        sessionName = testContext.getName();
+        System.out.println(sessionName);
 
         prop = new Properties();
         InputStream input = null;
@@ -236,9 +238,9 @@ public class BaseClass {
 
     @AfterSuite(alwaysRun = true)
     public void afterSuite() throws Exception {
-        if(!runEnv.equals("travis")){
+        if (sessionName.equals("Single Session")) {
             //do nothing
-        }else {
+        } else {
             URL url = new URL("http://localhost:3000/coverage/download");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

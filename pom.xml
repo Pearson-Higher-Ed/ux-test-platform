@@ -8,66 +8,97 @@
     <description>UX-Test-Platform</description>
 
     <properties>
-        <sonar.host.url>https://devops-tools.pearson.com/sonar/</sonar.host.url>
-        <sonar.login>${SONAR_TOKEN}</sonar.login>
+        <sonar.host.url>http://localhost:9000/</sonar.host.url>
+        <!--<sonar.login>${SONAR_TOKEN}</sonar.login>-->
         <sonar.language>js</sonar.language>
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
         <sonar.javascript.coveragePlugin>lcov</sonar.javascript.coveragePlugin>
-        <sonar.javascript.lcov.reportPath>/home/travis/build/Pearson-Higher-Ed/ux-test-platform/lcov.info
-        </sonar.javascript.lcov.reportPath>
-        <sonar.projectKey>PDA.ux-test-platform</sonar.projectKey>
-        <sonar.sources>src/main/java</sonar.sources>
-        <sonar.inclusions>
-            src/main/java/standAlone/jsfiles/**/dist*.js,src/main/java/standAlone/jsfiles/**/dev*.js,src/main/java/standAlone/jsfiles/**/event*.js,src/main/java/elementsSDK/functional/jsfiles/dist.compounds.js,src/main/java/elementsSDK/functional/jsfiles/eventInstantiator.compounds.js
-        </sonar.inclusions>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.codehaus.sonar</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.7.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.11</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>sauce_java_common</artifactId>
-            <version>LATEST</version>
-        </dependency>
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>LATEST</version>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <suiteXmlFiles> 
-                        <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+    <profiles>
+    <profile>
+        <id>single-session</id>
+        <properties>
+            <sonar.javascript.lcov.reportPath>
+                /Users/umahaea/Documents/workspace/ux-test-platform/src/main/java/coverage/pagination/coverage/lcov.info
+            </sonar.javascript.lcov.reportPath>
+            <sonar.projectKey>single-session</sonar.projectKey>
+            <sonar.projectName>single-session</sonar.projectName>
+            <sonar.sources>src/main/java</sonar.sources>
+            <sonar.inclusions>
+                src/main/java/standAlone/jsfiles/**/dist.pagination.js,src/main/java/standAlone/jsfiles/**/event*.js
+            </sonar.inclusions>
+            <sonar.exclusions>
+                src/main/java/standAlone/jsfiles/**/dist.alerts.js,src/main/java/standAlone/jsfiles/**/dist.drawer.js
+            </sonar.exclusions>
+        </properties>
+    </profile>
+
+    <profile>
+        <id>multiple-session</id>
+        <properties>
+            <sonar.javascript.lcov.reportPath>
+                /Users/umahaea/Documents/workspace/ux-test-platform/lcov.info
+            </sonar.javascript.lcov.reportPath>
+            <sonar.projectKey>multiple-session</sonar.projectKey>
+            <sonar.projectName>multiple-session</sonar.projectName>
+            <sonar.sources>src/main/java</sonar.sources>
+            <sonar.inclusions>
+                src/main/java/standAlone/jsfiles/**/dist.alerts.js,src/main/java/standAlone/jsfiles/**/dist.drawer.js
+            </sonar.inclusions>
+            <sonar.exclusions>
+                src/main/java/standAlone/jsfiles/**/dist.pagination.js,src/main/java/standAlone/jsfiles/**/event*.js
+            </sonar.exclusions>
+        </properties>
+    </profile>
+</profiles>
+
+<dependencies>
+<dependency>
+    <groupId>org.codehaus.sonar</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>5.1</version>
+</dependency>
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>3.7.1</version>
+</dependency>
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.11</version>
+    <scope>compile</scope>
+</dependency>
+<dependency>
+    <groupId>com.saucelabs</groupId>
+    <artifactId>sauce_java_common</artifactId>
+    <version>LATEST</version>
+</dependency>
+<dependency>
+    <groupId>io.appium</groupId>
+    <artifactId>java-client</artifactId>
+    <version>4.1.2</version>
+</dependency>
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>LATEST</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+            <testFailureIgnore>false</testFailureIgnore>
+            <suiteXmlFiles> 
+                <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
+            </suiteXmlFiles>
+        </configuration>
+    </plugin>
+</plugins>
+</build>
+        </project>
