@@ -293,6 +293,7 @@ install_contextualHelp master &
 install_avatarDisplay master &
 install_slider master &
 fi
+wait
 if [[ $component == "regression" ]]
 then
 install_pagination master &
