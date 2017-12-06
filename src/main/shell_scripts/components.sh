@@ -10,8 +10,8 @@ cd elements-sdk
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/dist.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
-cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/eventInstantiator.compounds.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/dist.elements-sdk.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
+cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/eventInstantiator.elements-sdk.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/functional/jsfiles/
 cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/elementsSDK/css/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/fonts $UX_TEST_PLATFORM_ROOT_DIR/
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/icons $UX_TEST_PLATFORM_ROOT_DIR/
