@@ -42,7 +42,6 @@ public class CommonUtils {
     LogEntries browserLogs = null;
     StringBuffer strBuffer = null;
     StringBuilder strBuilder = null;
-    String handle = null;
     Color c = null;
     String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
@@ -214,8 +213,6 @@ public class CommonUtils {
     public void setWindowSize(int width, int height) {
         boolean windowSet = false;
         dimension = new Dimension(width, height);
-        handle= driver.getWindowHandle();
-        driver.switchTo().window(handle);
         try {
             windowSet = true;
             driver.manage().window().setSize(dimension);
