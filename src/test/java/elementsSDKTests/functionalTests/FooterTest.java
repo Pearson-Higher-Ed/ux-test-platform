@@ -231,7 +231,6 @@ public class FooterTest extends BaseClass {
         }
 
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        commonUtils.printFileContents(footerJSFilePath);
         commonUtils.click(compFooterPgObj.firstLink);
 
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());

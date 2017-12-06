@@ -22,12 +22,12 @@ public class PhoneNumberPageObjects {
         this.appium = appium;
     }
 
-    public By downIcon = By.xpath("//div[@class='rrui__select rrui__select--collapsed react-phone-number-input__country']");
+    public By downIcon = By.xpath("//div[@class='react-phone-number-input__row']/div/div");
     public By countryCode = By.xpath("//div[@class='rrui-input__intlCode']");
     public By flagImg = By.xpath("//img");
     public By phoneNumberField = By.xpath("//input");
 
     public By flagDiv = By.xpath("//div[@class='rrui__input']");
-    public By dropDownContainer = By.xpath("//div[@class='rrui__input']/ul");
+    public By dropDownContainer = By.xpath("//div[@class='dropdown-container']/ul");
     public By selectDiv = By.xpath("//div[@class='react-phone-number-input__row']/div");
 }

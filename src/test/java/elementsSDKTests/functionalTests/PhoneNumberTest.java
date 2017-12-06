@@ -25,8 +25,8 @@ public class PhoneNumberTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null;
-    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", marginLeft = "", marginRight = "", width = "", height = "", marginTop = "", paddingTop = "", flag = "", countryCode = "";
-    private boolean isLabel = false, isTextInput = false, isMarginLeft = false, isMarginRight = false, isWidth = false, isHeight = false, isMarginTop = false, isPaddingTop = false, isPhoneNumberLoaded = false, result = false, isFlag = false, isCountryCode = false;
+    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", marginLeft = "", marginRight = "", width = "", height = "", marginTop = "", paddingTop = "", flag = "", countryCode = "", dropDownWidth = "", checked = "";
+    private boolean isLabel = false, isTextInput = false, isMarginLeft = false, isMarginRight = false, isWidth = false, isHeight = false, isMarginTop = false, isPaddingTop = false, isPhoneNumberLoaded = false, result = false, isFlag = false, isCountryCode = false, isDropDownWidth = false, isChecked = false;
 
     private static String browser = "";
     private String preConfigStr1 = "function init() {";
@@ -77,17 +77,31 @@ public class PhoneNumberTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         commonUtils.click(phNumPgObj.downIcon);
-        By item = By.xpath("//button[@aria-label='" + country + "']");
+        String countryItemToBeClicked = "//li[@data-item='" + country + "']";
+        By item = By.xpath(countryItemToBeClicked);
+
+        //check flag for the country before the item is clicked
+        flag = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span[2]/img"), "src");
+        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' in the drop down doesn't show the right flag");
+        Assert.assertTrue(isFlag);
+
         commonUtils.click(item);
 
-        //check flag
+        //check flag after the item is clicked
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right flag");
+        Assert.assertTrue(isFlag);
 
         //check country code
         countryCode = commonUtils.getText(phNumPgObj.countryCode);
         isCountryCode = commonUtils.assertValue(countryCode, expCountryCode, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right country code");
-        Assert.assertTrue(isFlag && isCountryCode);
+
+        //check-mark
+        commonUtils.click(phNumPgObj.downIcon);
+        checked = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span"), "style");
+        isChecked = commonUtils.assertValue(checked, "visibility: visible;", "For " + inputType + " the item/country: '" + country + "' selected from the drop down is NOT selected as per the spec");
+
+        Assert.assertTrue(isCountryCode && isChecked);
     }
 
     @DataProvider(name = "Type Phone Number Test Data")
@@ -131,13 +145,16 @@ public class PhoneNumberTest extends BaseClass {
         isLabel = commonUtils.getAttributeValue(By.xpath("//label"), "class").equals(labelClassName);
         isTextInput = commonUtils.getAttributeValue(By.xpath("//input"), "class").equals(inputClassName);
 
+        //dropdown container
+        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width");
+
         //styles between country code and dropdown icon and input field
         marginLeft = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-left");
         marginRight = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-right");
 
         //flag styles
         commonUtils.click(phNumPgObj.downIcon);
-        By item = By.xpath("//button[@aria-label='" + countries[1] + "']");
+        By item = By.xpath("//li[@data-item='" + countries[1] + "']");
         commonUtils.click(item);
         width = commonUtils.getCSSValue(phNumPgObj.flagImg, "width");
         height = commonUtils.getCSSValue(phNumPgObj.flagImg, "height");
@@ -149,13 +166,14 @@ public class PhoneNumberTest extends BaseClass {
         //styles between flag and dropdown container
         commonUtils.click(phNumPgObj.downIcon);
         marginTop = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "margin-top");
-        isMarginTop = commonUtils.assertValue(marginTop, "10px", "space between flag and dropdown container is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, "6px", "space between flag and dropdown container is not as per the spec");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, "4px", inputType + "margin left for country code is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginLeft, "4px", inputType + " margin right for country code is not as per the spec");
         isWidth = commonUtils.assertValue(width, "20px", inputType + " width of flag is not as per the spec");
+        isDropDownWidth = commonUtils.assertValue(dropDownWidth, "415px", "width of dropdown container is not as per the spec");
         isHeight = commonUtils.assertValue(height, "10px", inputType + " height of flag is not as per the spec");
-        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop);
+        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop && isDropDownWidth);
     }
 
     //negative tests
@@ -178,35 +196,52 @@ public class PhoneNumberTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+
     //Mobile Tests
     @Test(testName = "Mobile: Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = "mobile-regression")
-    private void mapCountryWithFlagsMobileTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) throws InterruptedException {
+    private void mapCountryWithFlagsMobileTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        commonUtils.clickUsingJS(phNumPgObj.downIcon, "mobile");
-        By item = By.xpath("//button[@aria-label='" + country + "']");
-        commonUtils.clickUsingJS(item, "mobile");
-        commonUtils.clickUsingJS(item, "mobile");
+        commonUtils.click(phNumPgObj.downIcon, "mobile");
+        String countryItemToBeClicked = "//li[@data-item='" + country + "']";
+        By item = By.xpath(countryItemToBeClicked);
 
-        //check flag
+        //check flag for the country before the item is clicked
+        flag = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span[2]/img"), "src", "mobile");
+        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' in the drop down doesn't show the right flag");
+        Assert.assertTrue(isFlag);
+
+        commonUtils.click(item, "mobile");
+
+        //check flag after the item is clicked
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src", "mobile");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right flag");
+        Assert.assertTrue(isFlag);
 
         //check country code
         countryCode = commonUtils.getText(phNumPgObj.countryCode, "mobile");
         isCountryCode = commonUtils.assertValue(countryCode, expCountryCode, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right country code");
-        Assert.assertTrue(isFlag && isCountryCode);
+
+        //check-mark
+        commonUtils.click(phNumPgObj.downIcon, "mobile");
+        checked = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span"), "style", "mobile");
+        isChecked = commonUtils.assertValue(checked, "visibility: visible;", "For " + inputType + " the item/country: '" + country + "' selected from the drop down is NOT selected as per the spec");
+
+        Assert.assertTrue(isCountryCode && isChecked);
     }
 
     //Styles test
-    @Test(testName = "Styles Test", dataProvider = "Styles Test Data", groups = "mobile-regression")
-    private void stylesMobileTest(String inputType, String inputClassName, String labelClassName, String expPaddingTop, String[] propsPropertiesList) throws InterruptedException {
+    @Test(testName = "Mobile: Styles Test", dataProvider = "Styles Test Data", groups = {"mobile-regression"})
+    private void stylesMobileTest(String inputType, String inputClassName, String labelClassName, String expPaddingTop, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         isLabel = commonUtils.getAttributeValue(By.xpath("//label"), "class", "mobile").equals(labelClassName);
         isTextInput = commonUtils.getAttributeValue(By.xpath("//input"), "class", "mobile").equals(inputClassName);
+
+        //dropdown container
+        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width", "mobile");
 
         //styles between country code and dropdown icon and input field
         marginLeft = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-left", "mobile");
@@ -214,9 +249,8 @@ public class PhoneNumberTest extends BaseClass {
 
         //flag styles
         commonUtils.click(phNumPgObj.downIcon, "mobile");
-        By item = By.xpath("//button[@aria-label='" + countries[1] + "']");
-        commonUtils.clickUsingJS(item, "mobile");
-        commonUtils.clickUsingJS(item, "mobile");
+        By item = By.xpath("//li[@data-item='" + countries[1] + "']");
+        commonUtils.click(item, "mobile");
         width = commonUtils.getCSSValue(phNumPgObj.flagImg, "width", "mobile");
         height = commonUtils.getCSSValue(phNumPgObj.flagImg, "height", "mobile");
 
@@ -227,13 +261,14 @@ public class PhoneNumberTest extends BaseClass {
         //styles between flag and dropdown container
         commonUtils.click(phNumPgObj.downIcon, "mobile");
         marginTop = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertValue(marginTop, "10px", "space between flag and dropdown container is not as per the spec");
+        isMarginTop = commonUtils.assertValue(marginTop, "6px", "space between flag and dropdown container is not as per the spec");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, "4px", inputType + "margin left for country code is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginLeft, "4px", inputType + " margin right for country code is not as per the spec");
         isWidth = commonUtils.assertValue(width, "20px", inputType + " width of flag is not as per the spec");
+        isDropDownWidth = commonUtils.assertValue(dropDownWidth, "415px", "width of dropdown container is not as per the spec");
         isHeight = commonUtils.assertValue(height, "10px", inputType + " height of flag is not as per the spec");
-        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop);
+        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop && isDropDownWidth);
     }
 
     @Test(testName = "Mobile: Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = "mobile-regression", enabled = false)
