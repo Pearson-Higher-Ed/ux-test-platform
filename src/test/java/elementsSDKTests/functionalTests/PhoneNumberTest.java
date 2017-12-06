@@ -241,7 +241,7 @@ public class PhoneNumberTest extends BaseClass {
         isTextInput = commonUtils.getAttributeValue(By.xpath("//input"), "class", "mobile").equals(inputClassName);
 
         //dropdown container
-        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width");
+        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width", "mobile");
 
         //styles between country code and dropdown icon and input field
         marginLeft = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-left", "mobile");
@@ -250,7 +250,7 @@ public class PhoneNumberTest extends BaseClass {
         //flag styles
         commonUtils.click(phNumPgObj.downIcon, "mobile");
         By item = By.xpath("//li[@data-item='" + countries[1] + "']");
-        commonUtils.click(item);
+        commonUtils.click(item, "mobile");
         width = commonUtils.getCSSValue(phNumPgObj.flagImg, "width", "mobile");
         height = commonUtils.getCSSValue(phNumPgObj.flagImg, "height", "mobile");
 
