@@ -1387,8 +1387,8 @@ input:focus + .pe-inputError_underline {
 .pe-select-container-disabled {
   outline: none;
   padding: 0px;
-  color: #C7C7C7;
-  background-color: #E9E9E9;
+  color: #C7C7C7 !important;
+  background-color: #E9E9E9 !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -1816,9 +1816,6 @@ input[type="radio"] {
 .pe-form .pe-form--group {
   margin-bottom: 40px; }
 
-.pe-xs--visible {
-  display: none !important; }
-
 @media (min-width: 1px) and (max-width: 479px) {
   .pe-xs--visible {
     display: block !important; }
@@ -1829,9 +1826,6 @@ input[type="radio"] {
   th.pe-xs--visible,
   td.pe-xs--visible {
     display: table-cell !important; } }
-
-.pe-sm--visible {
-  display: none !important; }
 
 @media (min-width: 480px) and (max-width: 767px) {
   .pe-sm--visible {
@@ -1844,9 +1838,6 @@ input[type="radio"] {
   td.pe-sm--visible {
     display: table-cell !important; } }
 
-.pe-md--visible {
-  display: none !important; }
-
 @media (min-width: 768px) and (max-width: 1023px) {
   .pe-md--visible {
     display: block !important; }
@@ -1857,9 +1848,6 @@ input[type="radio"] {
   th.pe-md--visible,
   td.pe-md--visible {
     display: table-cell !important; } }
-
-.pe-lg--visible {
-  display: none !important; }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
   .pe-lg--visible {
@@ -1872,9 +1860,6 @@ input[type="radio"] {
   td.pe-lg--visible {
     display: table-cell !important; } }
 
-.pe-xl--visible {
-  display: none !important; }
-
 @media (min-width: 1280px) {
   .pe-xl--visible {
     display: block !important; }
@@ -1886,21 +1871,36 @@ input[type="radio"] {
   td.pe-xl--visible {
     display: table-cell !important; } }
 
+.pe-xs--hidden {
+  display: none !important; }
+
 @media (min-width: 1px) and (max-width: 479px) {
   .pe-xs--hidden {
     display: none !important; } }
+
+.pe-sm--hidden {
+  display: none !important; }
 
 @media (min-width: 480px) and (max-width: 767px) {
   .pe-sm--hidden {
     display: none !important; } }
 
+.pe-md--hidden {
+  display: none !important; }
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .pe-md--hidden {
     display: none !important; } }
 
+.pe-lg--hidden {
+  display: none !important; }
+
 @media (min-width: 1024px) and (max-width: 1279px) {
   .pe-lg--hidden {
     display: none !important; } }
+
+.pe-xl--hidden {
+  display: none !important; }
 
 @media (min-width: 1280px) {
   .pe-xl--hidden {
@@ -2073,9 +2073,6 @@ input[type="radio"] {
       display: table;
       clear: both; } }
 
-.pe-xs--visible {
-  display: none !important; }
-
 @media (min-width: 1px) and (max-width: 479px) {
   .pe-xs--visible {
     display: block !important; }
@@ -2086,9 +2083,6 @@ input[type="radio"] {
   th.pe-xs--visible,
   td.pe-xs--visible {
     display: table-cell !important; } }
-
-.pe-sm--visible {
-  display: none !important; }
 
 @media (min-width: 480px) and (max-width: 767px) {
   .pe-sm--visible {
@@ -2101,9 +2095,6 @@ input[type="radio"] {
   td.pe-sm--visible {
     display: table-cell !important; } }
 
-.pe-md--visible {
-  display: none !important; }
-
 @media (min-width: 768px) and (max-width: 1023px) {
   .pe-md--visible {
     display: block !important; }
@@ -2114,9 +2105,6 @@ input[type="radio"] {
   th.pe-md--visible,
   td.pe-md--visible {
     display: table-cell !important; } }
-
-.pe-lg--visible {
-  display: none !important; }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
   .pe-lg--visible {
@@ -2129,9 +2117,6 @@ input[type="radio"] {
   td.pe-lg--visible {
     display: table-cell !important; } }
 
-.pe-xl--visible {
-  display: none !important; }
-
 @media (min-width: 1280px) {
   .pe-xl--visible {
     display: block !important; }
@@ -2143,21 +2128,36 @@ input[type="radio"] {
   td.pe-xl--visible {
     display: table-cell !important; } }
 
+.pe-xs--hidden {
+  display: none !important; }
+
 @media (min-width: 1px) and (max-width: 479px) {
   .pe-xs--hidden {
     display: none !important; } }
+
+.pe-sm--hidden {
+  display: none !important; }
 
 @media (min-width: 480px) and (max-width: 767px) {
   .pe-sm--hidden {
     display: none !important; } }
 
+.pe-md--hidden {
+  display: none !important; }
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .pe-md--hidden {
     display: none !important; } }
 
+.pe-lg--hidden {
+  display: none !important; }
+
 @media (min-width: 1024px) and (max-width: 1279px) {
   .pe-lg--hidden {
     display: none !important; } }
+
+.pe-xl--hidden {
+  display: none !important; }
 
 @media (min-width: 1280px) {
   .pe-xl--hidden {
