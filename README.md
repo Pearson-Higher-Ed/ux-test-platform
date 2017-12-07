@@ -55,7 +55,7 @@
 	* Run it as a maven test(for eg. elements_sdk.xml):<pre>mvn -Dtest_suite_xml=elements_sdk.xml</pre>
 	* Run it as a testng suite. test_suites/<component.xml>
 	
-NOTE: Mobile tests runs can also be run Sauce via your local machine. Follow this <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/des-743/docs/run-mobile-tests-on-sauce%20-via-local.md"><b>DOCS</b></a> 
+NOTE: Mobile tests runs can also be run Sauce via your local machine. Follow this <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/rebrand/docs/run-mobile-tests-on-sauce-via-local.md"><b>DOCS</b></a> 
 	
 ## How to run your tests in sauce via Travis CI:
 1. Go to .travis.yml and set the below settins:    
