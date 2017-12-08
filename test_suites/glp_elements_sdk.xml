@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="GLP ElementsSDK Test Suite">
+    <groups>
+        <run>
+            <include name="desktop-regression"/>
+        </run>
+    </groups>
+    <!-- Styles(CSS) Tests -->
+    <test name="GLP ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="1">
+        <classes>
+            <class name="glpTests.stylesTests.GLPFormsTest"/>
+        </classes>
+    </test>
+</suite>
