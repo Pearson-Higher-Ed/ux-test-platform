@@ -32,8 +32,8 @@ public class AppHeaderTest extends BaseClass {
     private final String basicJSFilePath = constructPath(absPathForBasicJS);
     private final String tempJSFilePath = constructPath(absPathForTempJS);
 
-    private String testConfig = "", userName = "", marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "", textDecoration = "", textDecorationProperty = "", backgroundColor = "", color = "", textAlign = "", userNameTruncatable = "";
-    boolean helpLinkClickable = false, accountSettingsClickable = false, signOutClickable = false, desktopViewUserMenuVisible = false, mobileViewUserMenuVisible = false, signOutVisible = false, accountSettingsVisible = false, isUserName = false, pearsonLogoVisible = false, helpLinkVisible = false, signInLinkVisible = false, pearsonLogoClickable = false;
+    private String testConfig = "", userName = "", marginTop = "", fontSize = "", lineHeight = "", browserLogs = "", focused = "", textDecoration = "", textDecorationProperty = "", backgroundColor = "", color = "", textAlign = "", userNameTruncatable = "", ariaExpanded = "";
+    boolean helpLinkClickable = false, accountSettingsClickable = false, signOutClickable = false, desktopViewUserMenuVisible = false, mobileViewUserMenuVisible = false, signOutVisible = false, accountSettingsVisible = false, isUserName = false, pearsonLogoVisible = false, helpLinkVisible = false, signInLinkVisible = false, pearsonLogoClickable = false, isDropDownOpened = false, isDropDownClosed = false, isAriaExpanded = false;
     boolean result = false, isMarginTop = false, isFontSize = false, isLineHeight = false, isFocused = false, isbackgroundColor = false, isColor = false, isTextDecoration = false, isTextAlign = false, isCSSProperty = false;
     private static String mobileDevice = "", browser = "", lBrowser = "", setMobile;
     private String preCongigStr1 = "document.addEventListener('DOMContentLoaded', function() {";
@@ -674,21 +674,34 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.getUrl(basicModeUrl);
         commonUtils.focusOnElementById("header-nav-link-account");
         commonUtils.keyOperationOnActiveElement(Keys.ENTER);
-        js = (JavascriptExecutor) driver;
-        element = driver.findElement(appHeaderPgObj.clickableSignOut);
-        js.executeScript("arguments[0].setAttribute('id', 'sign-out')", element);
-        commonUtils.focusOnElementById("sign-out");
+
+        isDropDownOpened = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.dropDownOpened);
+        commonUtils.assertValue(isDropDownOpened, true, "Error: In " + viewMode + " Drop Down Menu is not opened");
+        Assert.assertTrue(isDropDownOpened);
+
+        //SHIFT+TAB to dismiss the dropdown
         String press = Keys.chord(Keys.SHIFT, Keys.TAB);
-        for (i = 0; i < tabOrder.length; i++) {
-            focused = driver.switchTo().activeElement().getText();
-            isFocused = commonUtils.assertValue(focused, tabOrder[i], "Error: In " + viewMode + " the backward tab flow is not correct as per the spec");
-            Assert.assertTrue(isFocused);
-            driver.switchTo().activeElement().sendKeys(press);
-        }
         driver.switchTo().activeElement().sendKeys(press);
-        accountSettingsVisible = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.accountSettingsInOpenDropDown);
-        result = commonUtils.assertValue(accountSettingsVisible, true, "Error: In " + viewMode + " Drop Down Menu is closed");
-        Assert.assertTrue(result);
+        isDropDownClosed = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.dropDownClosed);
+        commonUtils.assertValue(isDropDownClosed, true, "Error: In " + viewMode + " Drop Down Menu is not dismissed/closed");
+        Assert.assertTrue(isDropDownClosed);
+    }
+
+    @Test(testName = "Verify Aria Test", groups = "desktop-regression")
+    private void ariaTest() {
+        commonUtils.getUrl(basicModeUrl);
+
+        //open dropdown to check aria-expanded
+        commonUtils.click(appHeaderPgObj.dropDownClosed);
+        ariaExpanded = commonUtils.getAttributeValue(appHeaderPgObj.ariaExpandedAttributeWhenOpened, "aria-expanded");
+        isAriaExpanded = commonUtils.assertValue(ariaExpanded, "true", "When drop down is opened the aria-expanded is not true");
+        Assert.assertTrue(isAriaExpanded);
+
+        //close dropdown to check aria-expanded
+        commonUtils.click(appHeaderPgObj.dropDownOpened);
+        ariaExpanded = commonUtils.getAttributeValue(appHeaderPgObj.ariaExpandedAttributeWhenClosed, "aria-expanded");
+        isAriaExpanded = commonUtils.assertValue(ariaExpanded, "false", "When drop down is opened the aria-expanded is not false");
+        Assert.assertTrue(isAriaExpanded);
     }
 
     public String buildJSONObjectForBasicMode(String mode, String userName, Map<String, String> courses) {
@@ -1308,6 +1321,23 @@ public class AppHeaderTest extends BaseClass {
         helpLinkClickable = commonUtils.isElementsVisibleOnPage(appHeaderPgObj.clickableHelpLink, "mobile");
         result = commonUtils.assertValue((helpLinkClickable), true, "Error: Help Link is NOT clickable");
         Assert.assertTrue(result);
+    }
+
+    @Test(testName = "Mobile: Verify Aria Test", groups = "mobile-regression")
+    private void ariaMobileTest() {
+        commonUtils.getUrl(basicModeUrl, "mobile");
+
+        //open dropdown to check aria-expanded
+        commonUtils.click(appHeaderPgObj.dropDownClosed, "mobile");
+        ariaExpanded = commonUtils.getAttributeValue(appHeaderPgObj.ariaExpandedAttributeWhenOpened, "aria-expanded", "mobile");
+        isAriaExpanded = commonUtils.assertValue(ariaExpanded, "true", "When drop down is opened the aria-expanded is not true");
+        Assert.assertTrue(isAriaExpanded);
+
+        //close dropdown to check aria-expanded
+        commonUtils.click(appHeaderPgObj.dropDownOpened, "mobile");
+        ariaExpanded = commonUtils.getAttributeValue(appHeaderPgObj.ariaExpandedAttributeWhenClosed, "aria-expanded", "mobile");
+        isAriaExpanded = commonUtils.assertValue(ariaExpanded, "false", "When drop down is opened the aria-expanded is not false");
+        Assert.assertTrue(isAriaExpanded);
     }
 
     @BeforeMethod(alwaysRun = true)
