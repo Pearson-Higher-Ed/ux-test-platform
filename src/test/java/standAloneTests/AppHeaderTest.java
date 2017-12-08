@@ -505,6 +505,7 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.setWindowSize(767, 800);
         commonUtils.getUrl(basicModeUrl);
+        Thread.sleep(2000);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems + "/a"));
