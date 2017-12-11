@@ -29,11 +29,17 @@ public class AppHeaderPageObjects {
 
     //Basic Mode Page Objects
     public By desktopViewUserMenu=By.xpath("//span[@class='o-app-header__username o-app-header--truncate o-header__viewport-tablet--visible o-header__viewport-desktop--visible']");
-    public By clickableDesktopViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/a");
-    public By mobileViewUserMenu=By.xpath("//span[@class='o-header__viewport-tablet--hidden o-header__viewport-desktop--hidden']/i/img[@alt='account']");
-    public By clickableMobileViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/a");
+    public By clickableDesktopViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/button");
+    public By mobileViewUserMenu=By.xpath("//span[@class='o-header__viewport-tablet--hidden o-header__viewport-desktop--hidden']/i/img[@alt='User account menu']");
+    public By clickableMobileViewUserMenu=By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/button");
     public By chevronUpIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-up']");
     public By chevronDownIcon=By.xpath("//i[@class='o-app-header__icon pe-icon--chevron-down']");
+
+    public By dropDownOpened = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']");
+    public By ariaExpandedAttributeWhenOpened = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/button");
+    public By dropDownClosed = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']");
+    public By ariaExpandedAttributeWhenClosed = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu']/button");
+
     public By dropDownCloseButton = By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/ul/li/div/button[@class='dropdown-close-button']");
     public By accountSettings  =By.xpath("//li[@class='o-dropdown-menu__menu-item o-app-header__menu-item-my-account']/a");
     public By accountSettingsInOpenDropDown  =By.xpath("//div[@class='o-dropdown-menu o-dropdown-menu--right o-app-header__menu-menu o-dropdown-menu--expanded']/ul/li[5]/a");
