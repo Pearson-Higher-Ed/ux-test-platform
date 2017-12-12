@@ -20,4 +20,5 @@ public class FunctionalFooterPageObjects {
     public By footer = By.xpath("//div[@id='footer-target']/footer");
     public By linkList = By.xpath("//div[@id='footer-target']/footer/ul");
     public By firstLink = By.xpath("//*[@id='footer-target']/footer/ul/li[1]/a");
+    public By copyRightMessage= By.xpath("//*[@id='footer-target']/footer/p");
 }
