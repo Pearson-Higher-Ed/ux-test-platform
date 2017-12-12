@@ -31,8 +31,8 @@ public class FooterTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setMobile = "", mobileDevice = "";
-    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", paddingBottom = "";
-    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false, isPresent = false;
+    private String testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", browserLogs = "", linksArrayValue = "", fontSize = "", marginBottom = "", lineHeight = "", color = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", textDecoration = "", textDecorationProperty = "", paddingBottom = "", copyRightMessage = "";
+    private boolean isColor = false, isMarginBottom = false, isFontSize = false, isLineHeight = false, isTextDecoration = false, result = false, isPaddingBottom = false, isPresent = false, isCopyRightMessage = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element", incorrectComponentNameErrorMsg = "type is invalid";
     int indexOfSecondOpenBrace = 0, indexOfSecondFromLastCloseBrace = 0, indexOfFirstCloseBrace = 0;
 
@@ -187,24 +187,28 @@ public class FooterTest extends BaseClass {
     @DataProvider(name = "SinglePageStick Test Data")
     public Object[][] singlePageStickTestData() {
         return new Object[][]{
-                {"true", true, "singlepagestick not working as per spec"},
-                {"false", false, "singlepagestick working as per spec"}
+                {"true", true, "singlepagestick not working as per spec", "Pearson Education Inc. All Rights Reserved", "Pearson Education Inc. All Rights Reserved"},
+                {"false", false, "singlepagestick working as per spec", "abc", "abc"}
         };
     }
 
     @Test(testName = "Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "desktop-regression")
-    private void singlePageStickTest(String singlePageStick, Boolean isSinglePageStick, String message) throws Exception {
+    private void singlePageStickTest(String singlePageStick, Boolean isSinglePageStick, String message, String copyRightsMessage, String expCopyRightsMessage) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
         links.put("First link", "first");
         links.put("Second link", "second");
         linksArrayValue = buildListsArray(links);
-        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
+        String[] propsPropertiesList = new String[]{"copyrightText", copyRightsMessage, "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class").contains("pe-footer--stick");
         result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
-        Assert.assertTrue(result);
+
+        copyRightMessage = commonUtils.getText(compFooterPgObj.copyRightMessage);
+        isCopyRightMessage = commonUtils.assertValue(copyRightsMessage, expCopyRightsMessage, "copyrightText is not as per the spec");
+
+        Assert.assertTrue(result && isCopyRightMessage);
     }
 
     @DataProvider(name = "AnchorTag Test Data")
@@ -296,21 +300,26 @@ public class FooterTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "mobile-regression")
-    private void singlePageStickMobileTest(String singlePageStick, Boolean isSinglePageStick, String message) throws Exception {
+    private void singlePageStickMobileTest(String singlePageStick, Boolean isSinglePageStick, String message, String copyRightsMessage, String expCopyRightsMessage) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
         links.put("First link", "first");
         links.put("Second link", "second");
         linksArrayValue = buildListsArray(links);
-        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
+        String[] propsPropertiesList = new String[]{"copyrightText", copyRightsMessage, "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class", "mobile").contains("pe-footer--stick");
         result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
-        Assert.assertTrue(result);
+
+        copyRightMessage = commonUtils.getText(compFooterPgObj.copyRightMessage, "mobile");
+        isCopyRightMessage = commonUtils.assertValue(copyRightsMessage, expCopyRightsMessage, "copyrightText is not as per the spec");
+
+        Assert.assertTrue(result && isCopyRightMessage);
     }
 
-    @Test(testName = "Mobile: Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "mobile-regression1")//code needs to be tested once sauce appium issue is fixed.
+    @Test(testName = "Mobile: Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "mobile-regression1")
+//code needs to be tested once sauce appium issue is fixed.
     private void anchorTagMobileTest(String anchorTagType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
