@@ -31,7 +31,7 @@ public class DatePickerPageObjects {
 
     public By calendarIcon = By.xpath("//div[@class='pe-datepicker-container']/span/*[local-name() = 'svg']");
     public By calendar = By.xpath("//div[@class='pe-calendar ']");
-    public By calendarDates = By.xpath("//div[@class='pe-cal-dates pe-cal-fix']");
+    public By calendarDates = By.xpath("//div[@class='pe-cal-dates']");
 
     public By selectedDate = By.xpath("//div[@class='pe-cal-cell-square  pe-cal-selected']");
 }
