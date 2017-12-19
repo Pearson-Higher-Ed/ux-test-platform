@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GLP - Forms</title>
+    <link rel="stylesheet" href="../../css/elements.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<script>
+    if (!document.getElementById('pe-icons-sprite')) {
+        var pe_ajax = new XMLHttpRequest();
+        pe_ajax.open("GET", "https://unpkg.com/pearson-elements@1.14.9/dist/icons/p-icons-sprite-1.1.svg", true);
+        pe_ajax.responseType = "document";
+        pe_ajax.onload = function (e) {
+            document.body.insertBefore(
+                    pe_ajax.responseXML.documentElement,
+                    document.body.childNodes[0]
+            );
+        }
+        pe_ajax.send();
+    }
+</script>
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+<h1>Basic form(with instruction)</h1>
+<form class="pe-form" id="basic-form-with-instruction" style="background-color:aliceblue">
+    <h3 class="pe-form--name pe-title">Form Name</h3>
+    <p class="pe-form--instr" id="instruction">This information applies to the entire form. It is optional.</p>
+    <div>
+        <div class="pe-form--input" id="first-input-in-a-basic-form-with-instruction">
+            <label class="pe-textLabelInput__label">First Name(fancy)</label>
+            <input type="text" class="pe-textInput" placeholder="First Name"/>
+            <span class="pe-input--info_message"></span>
+        </div>
+        <div class="pe-form--input" id="last-input-in-a-basic-form-with-instruction">
+            <label class="pe-textLabelInput__label">last Name(basic)</label>
+            <input type="text" class="pe-textInput--basic" placeholder="Last Name"/>
+            <span class="pe-input--info_message"></span>
+        </div>
+    </div>
+    </div>
+    <div class="pe-form--button-group">
+        <button class="pe-btn__primary">Primary button</button>
+        <button class="pe-btn">Secondary button</button>
+    </div>
+</form>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+<h1>Basic form(without instruction)</h1>
+<form class="pe-form" id="basic-form-without-instruction" style="background-color:lavenderblush">
+    <h3 class="pe-form--name pe-title">Form Name</h3>
+    <div>
+        <div class="pe-form--input">
+            <label class="pe-textLabelInput__label">First Name(fancy)</label>
+            <input type="text" class="pe-textInput" placeholder="First Name"/>
+            <span class="pe-input--info_message"></span>
+        </div>
+        <div class="pe-form--input">
+            <label class="pe-textLabelInput__label">last Name(basic)</label>
+            <input type="text" class="pe-textInput--basic" placeholder="Last Name"/>
+            <span class="pe-input--info_message"></span>
+        </div>
+    </div>
+    </div>
+    <div class="pe-form--button-group">
+        <button class="pe-btn__primary">Primary button</button>
+        <button class="pe-btn">Secondary button</button>
+    </div>
+</form>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+<h1>Form Group (throwing in a different type of inputs)</h1>
+<form class="pe-form" id="form-with-group" style="background-color:lightgoldenrodyellow">
+    <h1 class="pe-form--name pe-title" id="section1">Section Name 1</h1>
+    <hr>
+    <div>
+        <div class="pe-form--input">
+            <label class="pe-textLabelInput__label">Input 1</label>
+            <input type="text" class="pe-textInput" placeholder="Input 1">
+            <span class="pe-input--info_message"></span>
+
+        </div>
+        <div class="pe-form--input pe-form--inline-input" id="section1-input-row">
+            <div class="pe-form--inline-element" id="first-input-in-section1-container">
+                <label id="multitext-Input-Label" class="pe-textLabelInput__label" for="multiLine-text-input">Multi-line
+                    label</label>
+                <textarea class="pe-multiLineText" id="multiLine-text-input" cols="30" rows="5"
+                          placeholder="Many words displayed over multiple lines.">
+                </textarea>
+            </div>
+            <div class="pe-form--inline-element" id="second-input-in-section1-container">
+                <label id="select-input-fancy-label" for="select-input-fancy" class="pe-textLabelInput__label">Input
+                    3:</label>
+                <div id="select-input-fancy-div" class="pe-select-container--fancy">
+                    <select id="select-input-fancy" class="pe-selectInput--fancy">
+                        <option>ipad</option>
+                        <option>mac</option>
+                    </select>
+                    <span id="select-input-fancy-underline" class="pe-input_underline"></span>
+                    <svg aria-hidden="true" focusable="false" class="pe-icon--dropdown-open-18">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dropdown-open-18"></use>
+                    </svg>
+                </div>
+                <span id="select-input-fancy-info" class="pe-input--info_message">This is an info message</span>
+            </div>
+            <div class="pe-form--inline-element" id="third-input-in-section1-container">
+                <label id="multitext-Input-Label1" class="pe-textLabelInput__label" for="multiLine-text-input">Multi-line
+                    label</label>
+                <textarea class="pe-multiLineText" id="multiLine-text-input1" cols="30" rows="5"
+                          placeholder="Many words displayed over multiple lines.">
+                </textarea>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <h1 class="pe-form--name pe-title" id="section2">Section Name 2</h1>
+    <hr>
+    <div>
+        <div class="pe-form--input">
+            <label class="pe-textLabelInput__label">Input 1</label>
+            <input type="text" class="pe-textInput" placeholder="Input 1">
+            <span class="pe-input--info_message"></span>
+        </div>
+        <div class="pe-form--input pe-form--inline-input" id="section2-input-row">
+            <div class="pe-form--inline-element" id="first-input-in-section2-container">
+                <label class="pe-textLabelInput__label--label_error">Input 2</label>
+                <input type="text" class="pe-textInput--basic_error" placeholder="Input 2">
+                <span class="pe-input--error_message">This is an error message</span>
+            </div>
+        </div>
+    </div>
+    <div class="pe-form--button-group">
+        <button class="pe-btn__primary">Primary button</button>
+        <button class="pe-btn">Secondary button</button>
+    </div>
+    </div>
+</form>
+</body>

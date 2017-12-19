@@ -17,6 +17,20 @@ cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/fonts $UX_TEST_PLATFORM_ROOT
 cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/icons $UX_TEST_PLATFORM_ROOT_DIR/
 }
 
+install_glp_elements_sdk() {
+echo -e "******************************\\n    Installing glp-elements-sdk: $1   \\n******************************"
+git clone https://github.com/Pearson-Higher-Ed/elements-sdk.git
+cd elements-sdk
+git checkout $1
+npm install &>/dev/null
+npm run build &>/dev/null
+cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/dist.elements-sdk.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/glp/functional/jsfiles/
+cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/eventInstantiator.elements-sdk.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/glp/functional/jsfiles/
+cp $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/glp/css/
+cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/fonts $UX_TEST_PLATFORM_ROOT_DIR/
+cp -R $UX_TEST_PLATFORM_ROOT_DIR/elements-sdk/build/icons $UX_TEST_PLATFORM_ROOT_DIR/
+}
+
 install_compounds_sdk() {
 echo -e "******************************\\n    Installing compounds sdk: $1   \\n******************************"
 cd $UX_TEST_PLATFORM_ROOT_DIR/
@@ -196,6 +210,10 @@ if [[ $component == "elements-sdk" ]]
 then
 install_elements_sdk $feature_branch
 
+elif [[ $component == "glp-elements-sdk" ]]
+then
+install_glp_elements_sdk $feature_branch
+
 elif [[ $component == "compounds" ]]
 then
 install_compounds_sdk $feature_branch
@@ -270,6 +288,10 @@ fi
 if [[ $TEST_SUITE == "elements-sdk" ]]
 then
 install_elements_sdk master &
+fi
+if [[ $TEST_SUITE == "glp-elements-sdk" ]]
+then
+install_glp_elements_sdk master &
 fi
 wait
 fi
