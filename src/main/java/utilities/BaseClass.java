@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
@@ -42,9 +44,13 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    final static String USERNAME = SauceParam.SAUCE_USERNAME;
-    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
-    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+    //final static String USERNAME = SauceParam.SAUCE_USERNAME;
+    //final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
+    //final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+    final static String USERNAME = "pdatest1";
+    final static String AUTOMATE_KEY = "ivyUysGiZuau52YJokAq";
+    final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
@@ -63,8 +69,10 @@ public class BaseClass {
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
         String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
+        //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
         String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
 
+        //BROWSERSTACK_LOCAL_IDENTIFIER
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");
             System.exit(1);
@@ -99,7 +107,7 @@ public class BaseClass {
 
             //The below conditions is to run the mobile tests on Sauce via Travis CI
             else if (mobile.equals("on")) {
-                for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
+                /*for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     caps.setCapability(mobileCaps[i], mobileCaps[i + 1]);
                 }
                 if (appiumDriver.equalsIgnoreCase("iOS")) {
@@ -107,6 +115,16 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
+                appiumTimeOut();*/
+
+                DesiredCapabilities caps = new DesiredCapabilities();
+                caps.setCapability("device", "iPhone 7");
+                caps.setCapability("realMobile", "true");
+                caps.setCapability("os_version", "10.3");
+                caps.setCapability("browserstack.local", "true");
+                caps.setCapability("browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"));
+
+                appium = new IOSDriver(new URL(URL), caps);
                 appiumTimeOut();
             }
         }
@@ -126,7 +144,7 @@ public class BaseClass {
             }
             //The below else condition is to run tests on sauce from your local machine, skipping Travis CI
             if (mobile.equals("on")) {
-                for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
+                /*for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     if (mobileCaps[i].equals("tunnel-identifier"))
                         caps.setCapability(mobileCaps[i], SauceParam.SAUCE_TUNNEL);
                     if (mobileCaps[i].equals("build"))
@@ -139,6 +157,15 @@ public class BaseClass {
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
+                appiumTimeOut();*/
+                DesiredCapabilities caps = new DesiredCapabilities();
+                caps.setCapability("device", "iPhone 7");
+                caps.setCapability("realMobile", "true");
+                caps.setCapability("os_version", "10.3");
+                caps.setCapability("browserstack.local", "true");
+                caps.setCapability("browserstack.localIdentifier", "Test123");
+
+                appium = new IOSDriver(new URL(URL), caps);
                 appiumTimeOut();
             }
         }

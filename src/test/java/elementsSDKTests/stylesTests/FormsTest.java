@@ -9,12 +9,14 @@ import java.lang.reflect.Method;
 import elementsSDK.styles.stylesPageObjects.FormsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utilities.BaseClass;
 
 public class FormsTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+//    private final String url = "http://192.168.2.9:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
     private static String env = "", mobileDevice = "", setDesktop = "";
     final static Logger log = Logger.getLogger(FormsTest.class.getName());
     private String fontSize = "", lineHeight = "", fontWeight = "", marginBottom = "", fontColor = "", marginTop = "", errorDescColor = "", firstNameLabelFontSize = "", firstNameLabelFontColor = "", firstNameLabelLineHt = "", lastNameLabelFontSize = "", lastNameLabelFontColor = "", lastNameLabelLineHt = "", inputClassName = "", submitBtnClass = "", submitBtnColor = "", inputFontSize = "", underlineClass = "", underlineHt = "", inputBorderWidth = "", inputBorderColor = "", inputBorderStyle = "", paddingTop = "", paddingBottom = "", inputValueColor = "";
@@ -299,14 +301,28 @@ public class FormsTest extends BaseClass {
         Assert.assertTrue(isInputBorderStyle && isInputBorderWidth && isInputBorderColor && isPaddingTop && isPaddingBottom && isInputFontSize && isInputValueColor && isLineHeight);
     }
 
+    @Test(testName = "BS-Test", groups = "mobile-ci1")
+    public void bsTest(){
+        commonUtils.getUrl(url, "mobile");
+        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
+        System.out.println("font size " + fontSize);
+
+//        WebElement element = appium.findElement(By.name("q"));
+//
+//        element.sendKeys("BrowserStack");
+//        element.submit();
+//
+//        System.out.println(appium.getTitle());
+    }
+
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
+        /*if (setDesktop.equals("on")) {
             commonUtils.getUrl(url);
         } else if (setMobile.equals("on")) {
             commonUtils.getUrl(url, "mobile");
-        }
+        }*/
     }
 
     @AfterMethod(alwaysRun = true)
