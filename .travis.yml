@@ -30,7 +30,7 @@ install:
 before_script:
 - nvm install 6.0
 - nvm use 6.0
-- python -m SimpleHTTPServer &>/dev/null &
+- python -m SimpleHTTPServer &
 
 script:
 - export component=elements-sdk
