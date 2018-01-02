@@ -244,7 +244,7 @@ public class CommonUtils {
             webElement = appium.findElement(element);
             System.out.println("2");
             return webElement.getCssValue(property);
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             System.out.println("3");
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such mobile element, unable to get the css property for the mobile element");
             return null;
