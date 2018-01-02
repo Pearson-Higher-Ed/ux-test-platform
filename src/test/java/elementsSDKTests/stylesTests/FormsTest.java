@@ -310,9 +310,9 @@ private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/s
         //Thread.sleep(1000);
         System.out.println("before css");
 
-        System.out.println(appium.findElements(formsPgObj.formName));
-        //fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
-        //System.out.println("font size " + fontSize);
+        //System.out.println(appium.findElements(formsPgObj.formName));
+        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
+        System.out.println("font size " + fontSize);
 
 //        WebElement element = appium.findElement(By.name("q"));
 //
