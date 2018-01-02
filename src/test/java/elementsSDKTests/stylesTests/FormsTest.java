@@ -307,7 +307,7 @@ private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/s
     @Test(testName = "BS-Test", groups = "mobile-ci1")
     public void bsTest() throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
         System.out.println("before css");
 
         //System.out.println(appium.findElements(formsPgObj.formName));
