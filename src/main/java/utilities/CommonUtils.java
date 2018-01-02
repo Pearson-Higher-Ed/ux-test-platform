@@ -230,9 +230,12 @@ public class CommonUtils {
     //get css value
     public String getCSSValue(By element, String property) {
         try {
+            System.out.println("1");
             webElement = driver.findElement(element);
+            System.out.println("2");
             return webElement.getCssValue(property);
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
+            System.out.println("3");
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get the css property for the element");
             return null;
         }

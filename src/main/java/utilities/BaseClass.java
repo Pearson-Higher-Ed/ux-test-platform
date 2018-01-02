@@ -125,8 +125,11 @@ public class BaseClass {
                 caps.setCapability("browserstack.debug","true");
                 caps.setCapability("browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"));
 
-                appium = new IOSDriver(new URL(URL), caps);
-                appiumTimeOut();
+                //appium = new IOSDriver(new URL(URL), caps);
+                driver = new RemoteWebDriver(new URL(URL), caps);
+                System.out.println("driver 1");
+                driverTimeOut();
+                //appiumTimeOut();
             }
         }
         //The below else condition is to launch browser driver on your local machine.
