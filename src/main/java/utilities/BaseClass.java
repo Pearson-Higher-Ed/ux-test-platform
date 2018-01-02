@@ -166,8 +166,9 @@ public class BaseClass {
                 caps.setCapability("browserstack.local", "true");
                 caps.setCapability("browserstack.localIdentifier", "Test123");
 
-                appium = new IOSDriver(new URL(URL), caps);
-                appiumTimeOut();
+                //appium = new IOSDriver(new URL(URL), caps);
+                driver = new RemoteWebDriver(new URL(URL), caps);
+                driverTimeOut();
             }
         }
     }

@@ -306,12 +306,12 @@ private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/s
 
     @Test(testName = "BS-Test", groups = "mobile-ci1")
     public void bsTest() throws InterruptedException {
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         Thread.sleep(1000);
         System.out.println("before css");
 
         //System.out.println(appium.findElements(formsPgObj.formName));
-        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
+        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size");
         System.out.println("font size " + fontSize);
 
 //        WebElement element = appium.findElement(By.name("q"));
