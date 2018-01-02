@@ -16,7 +16,10 @@ import utilities.BaseClass;
 
 public class FormsTest extends BaseClass {
 //    private final String url = "http://192.168.2.9:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
-private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+//private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+
+    // http://bs-local.com:8000
     private static String env = "", mobileDevice = "", setDesktop = "";
     final static Logger log = Logger.getLogger(FormsTest.class.getName());
     private String fontSize = "", lineHeight = "", fontWeight = "", marginBottom = "", fontColor = "", marginTop = "", errorDescColor = "", firstNameLabelFontSize = "", firstNameLabelFontColor = "", firstNameLabelLineHt = "", lastNameLabelFontSize = "", lastNameLabelFontColor = "", lastNameLabelLineHt = "", inputClassName = "", submitBtnClass = "", submitBtnColor = "", inputFontSize = "", underlineClass = "", underlineHt = "", inputBorderWidth = "", inputBorderColor = "", inputBorderStyle = "", paddingTop = "", paddingBottom = "", inputValueColor = "";
