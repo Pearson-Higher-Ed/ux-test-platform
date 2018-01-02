@@ -121,7 +121,8 @@ public class BaseClass {
                 caps.setCapability("device", "iPhone 7");
                 caps.setCapability("realMobile", "true");
                 caps.setCapability("os_version", "10.3");
-                caps.setCapability("browserstack.local", "true");
+               // caps.setCapability("browserstack.local", "true");
+                caps.setCapability("browserstack.debug","true");
                 caps.setCapability("browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"));
 
                 appium = new IOSDriver(new URL(URL), caps);

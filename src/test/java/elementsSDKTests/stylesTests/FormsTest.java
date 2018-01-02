@@ -305,8 +305,9 @@ private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/s
     }
 
     @Test(testName = "BS-Test", groups = "mobile-ci1")
-    public void bsTest(){
+    public void bsTest() throws InterruptedException {
         commonUtils.getUrl(url, "mobile");
+        Thread.sleep(1000);
         fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
         System.out.println("font size " + fontSize);
 
