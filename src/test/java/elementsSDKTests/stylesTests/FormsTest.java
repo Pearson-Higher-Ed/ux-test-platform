@@ -15,7 +15,7 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 public class FormsTest extends BaseClass {
-//    private final String url = "http://192.168.2.9:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+    //private final String url = "http://192.168.2.12:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
 //private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
 private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
 
@@ -309,8 +309,10 @@ private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/s
         commonUtils.getUrl(url, "mobile");
         //Thread.sleep(1000);
         System.out.println("before css");
-        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
-        System.out.println("font size " + fontSize);
+
+        System.out.println(appium.findElements(formsPgObj.formName));
+        //fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size", "mobile");
+        //System.out.println("font size " + fontSize);
 
 //        WebElement element = appium.findElement(By.name("q"));
 //
