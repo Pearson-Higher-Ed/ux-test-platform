@@ -80,7 +80,7 @@ public class BaseClass {
             if (desktop.equals("on")) {
                 System.out.println("2");
                 //The below conditions is to launch the respective browser driver on Sauce machine via Travis CI
-                if (sauceBrowser.equals("chrome")) {
+                /*if (sauceBrowser.equals("chrome")) {
                     System.out.println("3");
                     caps = DesiredCapabilities.chrome();
                 } else if (sauceBrowser.equals("firefox")) {
@@ -92,7 +92,8 @@ public class BaseClass {
                     caps = DesiredCapabilities.safari();
                 } else if (sauceBrowser.equals("edge")) {
                     caps = DesiredCapabilities.edge();
-                }
+                }*/
+                //caps = new DesiredCapabilities();
                 caps.setCapability(CapabilityType.LOGGING_PREFS, logs);
                 for (int i = 0; i < (desktopCaps.length - 1); i += 2) {
                     if (platform.startsWith("Windows") && desktopCaps[i].equals("resolution")) {

@@ -202,6 +202,7 @@ public class CommonUtils {
 
     //get url
     public void getUrl(String url) {
+        System.out.println("url");
         driver.get(url);
     }
 
