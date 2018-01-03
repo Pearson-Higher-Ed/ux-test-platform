@@ -33,7 +33,7 @@ public class AlertsTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
         alertsPgObj = new AlertsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;
     }

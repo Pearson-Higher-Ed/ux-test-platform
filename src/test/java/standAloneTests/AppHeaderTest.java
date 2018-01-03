@@ -1359,7 +1359,7 @@ public class AppHeaderTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void beforeClass() throws IOException {
         appHeaderPgObj = new AppHeaderPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         if (setMobile.equals("on")) {

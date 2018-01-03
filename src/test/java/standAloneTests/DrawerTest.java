@@ -599,7 +599,7 @@ public class DrawerTest extends BaseClass {
     //Toggle Drawer
     @Test(testName = "Mobile: Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void toggleDrawerMobileTest(String drawerType, By openDrawerLinkElement, By toggleDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(openDrawerLinkElement, "mobile");
@@ -622,7 +622,7 @@ public class DrawerTest extends BaseClass {
     //Close Drawer
     @Test(testName = "Mobile: Close Drawer Test", dataProvider = "Close Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void closeDrawerMobileTest(String drawerType, By openDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(openDrawerLinkElement, "mobile");
@@ -645,7 +645,7 @@ public class DrawerTest extends BaseClass {
     //Use data-target instead of href
     @Test(testName = "Mobile: Use Data Target Test", groups = {"mobile-regression", "standAlone"})
     private void useDataTargetForDrawerMobileTest() throws Exception {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         String text = "Using data-target instead of href.";
@@ -660,7 +660,7 @@ public class DrawerTest extends BaseClass {
     //Use API
     @Test(testName = "Mobile: Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"mobile-regression", "standAlone"})
     private void useAPIDrawerMobileTest(String drawerType, By element) throws Exception {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         String toggleStatusText = "";
@@ -682,7 +682,7 @@ public class DrawerTest extends BaseClass {
     @Test(testName = "Mobile: Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void otherDrawerMobileTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
         //Open Drawer
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.clickUsingJS(openDrawerLinkElement, "mobile");
@@ -704,7 +704,7 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesLeftDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(drawerPgObj.openLeftDrawerLink, "mobile");
@@ -720,7 +720,7 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Other Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesOtherLeftDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(drawerPgObj.otherLeftDrawerLink, "mobile");
@@ -736,7 +736,7 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesRightDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(drawerPgObj.openRightDrawerLink, "mobile");
@@ -752,7 +752,7 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Other Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesOtherRightDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         commonUtils.click(drawerPgObj.otherRightDrawerLink, "mobile");
@@ -851,7 +851,7 @@ public class DrawerTest extends BaseClass {
     //Close Drawer
     @Test(testName = "Mobile : Click Bottom Close Btn Drawer Test", dataProvider = "Click Bottom Close Btn Drawer Test Data", groups = {"mobile-regression"})
     private void clickBtmCloseDrawerMobileTest(String drawerType, By openDrawerLinkElement, By closeDrawerBtnElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (appiumDriver.equals("android")) {
+        if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         //Step 1: Open Drawer
@@ -887,7 +887,7 @@ public class DrawerTest extends BaseClass {
     private void beforeClass() {
         drawerPgObj = new DrawerPageObjects();
         setMobile = BaseClass.mobile;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
     }
 }

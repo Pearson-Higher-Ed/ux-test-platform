@@ -19,8 +19,9 @@ import java.util.List;
  */
 public class ButtonsTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
-    private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
+    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
+    private static String env = "", browser = "", lBrowser = "", setMobile = "", setDesktop = "";
     private String color = "", height = "", boxShadow = "", backgroundColor = "", fontSize = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", textDecorationProperty = "", textOverflow = "", display = "", whiteSpace = "";
     boolean isCSSProperty = false, isHeight = false, isBoxShadow = false, isColor = false, isFontSize = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false, isBorderStyle = false, isBorderColor = false, isBorderRadius = false, isTextOverflow = false, isDisplay = false, isWhiteSpace = false;
     Actions action = null;
@@ -39,9 +40,8 @@ public class ButtonsTest extends BaseClass {
         env = BaseClass.runEnv;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
-        device = BaseClass.appiumDriver;
         if (setMobile.equals("on")) {
             mAction = new TouchAction(appium);
         } else {

@@ -54,7 +54,7 @@ public class TimePickerTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = bsBrowser;
         }
         if (desktop.equals("on")) {
             timepickerPgObj = new TimePickerPageObjects(driver);

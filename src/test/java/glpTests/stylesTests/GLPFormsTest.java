@@ -29,7 +29,7 @@ public class GLPFormsTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = bsBrowser;
         }
         if (desktop.equals("on")) {
             formsPgObj = new GLPFormsPageObjects(driver);

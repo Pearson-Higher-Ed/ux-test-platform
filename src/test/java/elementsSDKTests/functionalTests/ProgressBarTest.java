@@ -51,7 +51,7 @@ public class ProgressBarTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = bsBrowser;
         }
     }
 

@@ -40,12 +40,12 @@ public class InputsTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void InputsTestBeforeClass() {
         inputsPgObj = new InputsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.appiumDriver;
+        setAppium = BaseClass.mobileOS;
     }
 
     /****************

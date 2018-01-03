@@ -42,9 +42,9 @@ public class TablesTest extends BaseClass {
         env = BaseClass.runEnv;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
-        device = BaseClass.appiumDriver;
+        device = BaseClass.mobileOS;
     }
 
     @Test(testName = "Header - Basic Table Test", groups = {"desktop-ci", "desktop-regression"})

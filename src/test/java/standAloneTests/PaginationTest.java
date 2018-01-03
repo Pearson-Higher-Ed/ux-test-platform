@@ -66,7 +66,7 @@ public class PaginationTest extends BaseClass {
         paginationPgObj = new PaginationPageObjects();
         desktop = BaseClass.desktop;
         browser = BaseClass.localBrowser;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         mobile = BaseClass.mobile;
         if (desktop.equals("on")) {

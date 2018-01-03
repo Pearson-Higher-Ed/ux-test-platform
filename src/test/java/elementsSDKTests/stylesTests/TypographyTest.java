@@ -30,7 +30,7 @@ public class TypographyTest extends BaseClass {
         env = BaseClass.runEnv;
         setDesktop = BaseClass.desktop;
         mobileDevice = BaseClass.mobDeviceName;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         mBrowser = BaseClass.mobBrowser;
         setMobile = BaseClass.mobile;
         lBrowser = BaseClass.localBrowser;

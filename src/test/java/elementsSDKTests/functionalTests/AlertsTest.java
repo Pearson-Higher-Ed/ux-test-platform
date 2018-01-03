@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
     private void beforeClass() {
         alertsPgObj = new AlertsPageObjects();
         compAlertsPgObj = new FunctionalAlertsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;
     }

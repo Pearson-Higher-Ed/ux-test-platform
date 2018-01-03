@@ -66,7 +66,7 @@ public class TablesTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = BaseClass.localBrowser;
         } else {
-            browser = BaseClass.sauceBrowser;
+            browser = BaseClass.bsBrowser;
         }
     }
 

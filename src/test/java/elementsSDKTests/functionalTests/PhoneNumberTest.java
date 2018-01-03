@@ -50,7 +50,7 @@ public class PhoneNumberTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = localBrowser;
         } else {
-            browser = sauceBrowser;
+            browser = bsBrowser;
         }
         if (desktop.equals("on")) {
             js = (JavascriptExecutor) driver;
