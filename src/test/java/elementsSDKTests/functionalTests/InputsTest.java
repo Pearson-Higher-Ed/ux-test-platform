@@ -1666,7 +1666,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression1"})
+    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci1", "desktop-regression1"})
     private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
