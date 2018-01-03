@@ -57,7 +57,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
+    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression1","mobile-regression1"})
     private void cssPropsButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expTextDecoration) throws Exception {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
@@ -65,7 +65,7 @@ public class ButtonsTest extends BaseClass {
         textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(elem, cssProperty);
-            isPadding = commonUtils.assertCSSProperties(cssProperty, padding, new String[]{"12px", "0px"});
+            isPadding = commonUtils.assertCSSProperties(cssProperty, padding, new String[]{"1px", "0px"}); //12px
             if (!isPadding) {
                 log.info(cssProperty + " of " + type + " is not as per spec, actual: " + padding);
             }
@@ -585,8 +585,13 @@ public class ButtonsTest extends BaseClass {
      ************/
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
-        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-            commonUtils.getUrl(url);
+        //System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        if (groupsInclude.equals("mobile-regression")) {
+            System.out.println("Test Method----> " + this.getClass().getSimpleName().concat("Mobile") + "::" + method.getName());
+        } else {
+            System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        }
+        commonUtils.getUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)
