@@ -1666,7 +1666,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression1"})
     private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -1712,7 +1712,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci1", "desktop-regression1"})
     private void checkboxNormalStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -1741,7 +1741,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "desktop-regression1")
     private void checkboxFocusStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -1776,7 +1776,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression1")
     private void checkboxDisabledStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -1807,7 +1807,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression1")
     private void labelForCheckBoxTest(String id, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -1841,7 +1841,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression1"})
     private void radioButtonsUnselectedSelectedDisabledSVGTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
@@ -1915,7 +1915,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression1"})
     private void radioButtonsUnselectedSelectedDisabledLabelTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
@@ -1948,7 +1948,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"desktop-regression1"})
     private void radioButtonsUnselectedSelectedDisabledRadioDivTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
@@ -2803,7 +2803,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Check Box
-    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression1"})
     private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -2822,7 +2822,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression1"})
     private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -2841,7 +2841,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression1")
     private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "{'checked':'default', 'uncheckedDisabled' : 'disabled', 'Unchecked':'','checkedDisabled':'disabled'}", "changeHandler", "function () {}", "selectedOptions", "['checked, 'checkedDisabled']"};
@@ -2860,7 +2860,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression1")
     private void labelForCheckBoxMobileTest(String id, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
         if (id.contains("focus")) {
             throw new SkipException("Focus operation tests not needed for mobile devices");
@@ -2885,7 +2885,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Radios
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression1"})
     private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
@@ -2949,7 +2949,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isRadioBtnSelectedColor);
     }
 
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression1"})
     private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
@@ -2972,7 +2972,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isLabelFontSize && islabelLineHeight);
     }
 
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"mobile-regression1"})
     private void radioButtonsUnselectedSelectedDisabledRadioDivMobileTest(String elemType, String expMarginBottom, String divXpath, String divId, By elem, String value1, String value2, String value3, String value4, String value5) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "{'selected':'" + value1 + "', 'unselectedDisabled':'" + value2 + "', 'unselected':'" + value3 + "','selectedDisabled':'" + value4 + "'}", "changeHandler", "function () {}", "selectedOptions", "['" + value5 + "']"};
