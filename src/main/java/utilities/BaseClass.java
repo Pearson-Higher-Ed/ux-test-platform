@@ -37,7 +37,7 @@ public class BaseClass {
     public AppiumDriver appium = null;
 
     public CommonUtils commonUtils = null;
-    public String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
+    public static String setDesktop = "", setMobile = "", groupsInclude = "", testSuite = "";
     private final String desktopGroupErrorMessage = "To run Desktop tests, set group 'name' => 'desktop-regression' or 'desktop-ci'";
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
@@ -97,7 +97,6 @@ public class BaseClass {
                         continue;
                     }
                     caps.setCapability(desktopCaps[i], desktopCaps[i + 1]);
-                    System.out.println(i);
                 }
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 driverTimeOut();
