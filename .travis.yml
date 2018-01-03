@@ -5,6 +5,7 @@ jdk:
   - oraclejdk8
 
 env:
+  matrix:
   - TEST_SUITE=elements_sdk.xml
   - TEST_SUITE=elements.xml
   global:
