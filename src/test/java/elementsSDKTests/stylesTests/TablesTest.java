@@ -19,7 +19,8 @@ import java.util.List;
  */
 public class TablesTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/tables.html";
+    //    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/tables.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/tables.html";
     private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
     private String color = "", backgroundColor = "", lineHeight = "", textAlign = "", borderWidth = "", marginBottom = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", width = "", fontWeight = "", verticalAlign = "", fontSize = "", className = "";
     boolean isCSSProperty = false, isColor = false, isBackgroundColor = false, isLineHeight = false, isMarginBottom = false, isBorderWidth = false, isTextAlign = false, isCursor = false, isPadding = false, isBorderStyle = false, isBorderColor = false, isBorderTop = false, isFontWeight = false, isVerticalAlign = false, isFontSize = false, isClassName = false, isWidth = false;
@@ -42,12 +43,12 @@ public class TablesTest extends BaseClass {
         env = BaseClass.runEnv;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
-        device = BaseClass.appiumDriver;
+        device = BaseClass.mobileOS;
     }
 
-    @Test(testName = "Header - Basic Table Test", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Header - Basic Table Test", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void headerBasicTableTest() throws InterruptedException {
         Thread.sleep(1000);
         for (String cssProperty : borderStyles) {
@@ -98,7 +99,7 @@ public class TablesTest extends BaseClass {
     }
 
     // Find header elementsSDK.styles in the table and check its CSS properties
-    @Test(testName = "Header Titles - Basic Table Test", dataProvider = "Header Titles - Basic Table Test Data", groups = "desktop-regression")
+    @Test(testName = "Header Titles - Basic Table Test", dataProvider = "Header Titles - Basic Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void headerTitlesBasicTableTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         String cssPropertyType = cssProperty;
         table = driver.findElement(tablePgObj.basicHeader);
@@ -113,7 +114,7 @@ public class TablesTest extends BaseClass {
     }
 
     // Iterate over number of rows in the table. Find every cell in the row and check its CSS property
-    @Test(testName = "Basic Table Rows CSS Prop Test", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Basic Table Rows CSS Prop Test", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void basicTableRowsCSSPropTest() {
         table = driver.findElement(tablePgObj.basicTable);
         listElements = table.findElements(By.tagName("tr"));
@@ -210,7 +211,7 @@ public class TablesTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isClassName);
     }
 
-    @Test(testName = "Aligned Col Test", groups = "desktop-regression")
+    @Test(testName = "Aligned Col Test", groups = {"desktop-regression", "mobile-regression"})
     private void alignedColTest() {
         for (int i = 1; i <= 4; i++) {
             className = commonUtils.getAttributeValue(By.xpath(tablePgObj.col3Xpath("aligned-table", i)), "class");
@@ -272,14 +273,14 @@ public class TablesTest extends BaseClass {
 
     }
 
-    @Test(testName = "CheckBox Props - Selectable Table Test", groups = "desktop-regression")
+    @Test(testName = "CheckBox Props - Selectable Table Test", groups = {"desktop-regression", "mobile-regression"})
     private void checkBoxPropsTest() {
         table = driver.findElement(tablePgObj.selectableTable);
         listElements = table.findElements(By.tagName("tr"));
         for (int i = 1; i <= listElements.size() - 1; i++) {
             width = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "width");
             verticalAlign = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "vertical-align");
-            isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"19px", "19.01px", "89px","91px"});
+            isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"19px", "19.01px", "89px", "91px", "88.171875px","89.25px"});
             if (!isWidth) {
                 log.info("width of checkbox is not as per spec, actual: " + width);
             }
@@ -309,7 +310,7 @@ public class TablesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Caption/Controls Test", dataProvider = "Caption/Controls Test Data", groups = "desktop-regression")
+    @Test(testName = "Caption/Controls Test", dataProvider = "Caption/Controls Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void captionsTest(String caption, String cssProperty, By elem, String expMarginBtm, String expTextAlign) {
         marginBottom = commonUtils.getCSSValue(elem, cssProperty);
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBtm, cssProperty + " of " + caption + " is not as per spec");
@@ -329,12 +330,13 @@ public class TablesTest extends BaseClass {
     /**
      * Mobile Tests
      */
+/*
 
     @Test(testName = "Header - Basic Table Mobile Test", groups = "mobile-regression")
     private void headerBasicTableMobileTest() throws InterruptedException {
         Thread.sleep(1000);
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderStyle = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderStyle = commonUtils.assertCSSProperties(cssProperty, borderStyle, new String[]{"solid", "none"});
             if (!isBorderStyle) {
                 log.info(cssProperty + " of header - basic table is not as per spec, actual: " + borderStyle);
@@ -342,7 +344,7 @@ public class TablesTest extends BaseClass {
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderColor = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties("border-color", borderColor, new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9"), commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
             if (!isBorderColor) {
                 log.info(cssProperty + " of header - basic table is not as per spec, actual: " + borderColor);
@@ -350,14 +352,14 @@ public class TablesTest extends BaseClass {
             Assert.assertTrue(isBorderColor);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderWidth = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderWidth = commonUtils.assertCSSProperties(cssProperty, borderWidth, new String[]{"0px", "1px"});
             if (!isBorderWidth) {
                 System.out.println(cssProperty + " of header - basic table is not as per spec, actual: " + borderWidth);
             }
             Assert.assertTrue(isBorderWidth);
         }
-        backgroundColor = commonUtils.getCSSValue(tablePgObj.basicHeader, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(tablePgObj.basicHeader, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")});
         if (!isBackgroundColor) {
             log.info("Background Color of header - basic table is not as per spec, actual: " + backgroundColor);
@@ -365,13 +367,14 @@ public class TablesTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor);
     }
 
+
     @Test(testName = "Header Titles - Basic Table Mobile Test", dataProvider = "Header Titles - Basic Table Test Data", groups = "mobile-regression")
     private void headerTitlesBasicTableMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         String cssPropertyType = cssProperty;
         table = appium.findElement(tablePgObj.basicHeader);
         listElements = table.findElements(By.tagName("th"));
         for (int i = 1; i <= listElements.size(); i++) {
-            cssProperty = commonUtils.getCSSValue(By.xpath(tablePgObj.headerTitleXpath("basic-table", i)), cssPropertyType, "mobile");
+            cssProperty = commonUtils.getCSSValue(By.xpath(tablePgObj.headerTitleXpath("basic-table", i)), cssPropertyType);
             isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
             if (!isCSSProperty)
                 log.info("'" + cssPropertyType + "' for header - basic table is not as per the spec, actual: " + cssProperty);
@@ -381,10 +384,10 @@ public class TablesTest extends BaseClass {
 
     @Test(testName = "Basic Table Rows CSS Prop Mobile Test", groups = "mobile-regression")
     private void basicTableRowsCSSPropMobileTest() {
-        table = appium.findElement(tablePgObj.basicTable);
+        table = driver.findElement(tablePgObj.basicTable);
         listElements = table.findElements(By.tagName("tr"));
         for (int i = 1; i <= listElements.size() - 1; i++) {
-            element = appium.findElement(By.xpath(tablePgObj.hoverOnRow("basic-table", i)));
+            element = driver.findElement(By.xpath(tablePgObj.hoverOnRow("basic-table", i)));
             List<WebElement> list = element.findElements(By.tagName("th"));
             list.addAll(element.findElements(By.tagName("td")));
             for (WebElement e : list) {
@@ -424,19 +427,19 @@ public class TablesTest extends BaseClass {
     @Test(testName = "Aligned Col Mobile Test", groups = "mobile-regression")
     private void alignedColMobileTest() {
         for (int i = 1; i <= 4; i++) {
-            className = commonUtils.getAttributeValue(By.xpath(tablePgObj.col3Xpath("aligned-table", i)), "class", "mobile");
+            className = commonUtils.getAttributeValue(By.xpath(tablePgObj.col3Xpath("aligned-table", i)), "class");
             isClassName = commonUtils.assertValue(className, "pe-table__center", "Col3 of Sortable table is not Center Aligned");
             Assert.assertTrue(isClassName);
-            className = commonUtils.getAttributeValue(By.xpath(tablePgObj.col4Xpath("aligned-table", i)), "class", "mobile");
+            className = commonUtils.getAttributeValue(By.xpath(tablePgObj.col4Xpath("aligned-table", i)), "class");
             isClassName = commonUtils.assertValue(className, "pe-table__right", "Col4 of Sortable table is not Right Aligned");
             Assert.assertTrue(isClassName);
             if (i == 3) {
-                className = commonUtils.getAttributeValue(By.xpath(tablePgObj.headerTitleXpath("aligned-table", i)), "class", "mobile");
+                className = commonUtils.getAttributeValue(By.xpath(tablePgObj.headerTitleXpath("aligned-table", i)), "class");
                 isClassName = commonUtils.assertValue(className, "pe-table__center", "Header of Col" + i + " of Sortable table is not Center Aligned");
                 Assert.assertTrue(isClassName);
             }
             if (i == 4) {
-                className = commonUtils.getAttributeValue(By.xpath(tablePgObj.headerTitleXpath("aligned-table", i)), "class", "mobile");
+                className = commonUtils.getAttributeValue(By.xpath(tablePgObj.headerTitleXpath("aligned-table", i)), "class");
                 isClassName = commonUtils.assertValue(className, "pe-table__right", "Header of Col" + i + " of Sortable table is not Center Aligned");
                 Assert.assertTrue(isClassName);
             }
@@ -444,14 +447,13 @@ public class TablesTest extends BaseClass {
         }
     }
 
-
     @Test(testName = "CheckBox Props - Selectable Table Mobile Test", groups = "mobile-regression")
     private void checkBoxPropsMobileTest() {
-        table = appium.findElement(tablePgObj.selectableTable);
+        table = driver.findElement(tablePgObj.selectableTable);
         listElements = table.findElements(By.tagName("tr"));
         for (int i = 1; i <= listElements.size() - 1; i++) {
-            width = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "width", "mobile");
-            verticalAlign = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "vertical-align", "mobile");
+            width = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "width");
+            verticalAlign = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), "vertical-align");
             isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"19px", "19.01px","88.171875px"});
             if (!isWidth) {
                 log.info("width of checkbox is not as per spec, actual: " + width);
@@ -459,7 +461,7 @@ public class TablesTest extends BaseClass {
             isVerticalAlign = commonUtils.assertValue(verticalAlign, "top", "vertical align of checkbox is not as per spec");
 
             for (String cssProperty : paddings) {
-                padding = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), cssProperty, "mobile");
+                padding = commonUtils.getCSSValue(By.xpath(tablePgObj.checkboxColXpath(i)), cssProperty);
                 if (cssProperty.equals("padding-right")) {
                     isPadding = commonUtils.assertValue(padding, "0px", cssProperty + " of checkbox is not as per spec");
                 } else {
@@ -477,20 +479,20 @@ public class TablesTest extends BaseClass {
 
     @Test(testName = "Caption/Controls Mobile Test", dataProvider = "Caption/Controls Test Data", groups = "mobile-regression")
     private void captionsMobileTest(String caption, String cssProperty, By elem, String expMarginBtm, String expTextAlign) {
-        marginBottom = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        marginBottom = commonUtils.getCSSValue(elem, cssProperty);
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBtm, cssProperty + " of " + caption + " is not as per spec");
-        textAlign = commonUtils.getCSSValue(elem, "text-align", "mobile");
+        textAlign = commonUtils.getCSSValue(elem, "text-align");
         isTextAlign = commonUtils.assertValue(textAlign, expTextAlign, "Text align of " + caption + " is not as per spec");
         Assert.assertTrue(isMarginBottom && isTextAlign);
         if (caption.equals("Aligned caption")) {
-            className = commonUtils.getAttributeValue(tablePgObj.alignedTable, "class", "mobile");
+            className = commonUtils.getAttributeValue(tablePgObj.alignedTable, "class");
             isClassName = className.contains("pe-caption--bottom");
             if (!isClassName) {
                 log.info("Class Name of Aligned Tabled does not contain pe-caption--bottom ");
             }
             Assert.assertTrue(isClassName);
         }
-    }
+    } */
 
     /*************
      * Common methods
@@ -498,11 +500,7 @@ public class TablesTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
+        commonUtils.getUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)

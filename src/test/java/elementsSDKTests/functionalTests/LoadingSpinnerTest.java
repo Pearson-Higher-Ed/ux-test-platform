@@ -52,11 +52,11 @@ public class LoadingSpinnerTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void LoadingIndicatorTestBeforeClass() {
         indicatorPgObj = new FunctionalLoadingSpinnerPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.appiumDriver;
+        setAppium = BaseClass.mobileOS;
         mobileDevice = BaseClass.mobDeviceName;
     }
 

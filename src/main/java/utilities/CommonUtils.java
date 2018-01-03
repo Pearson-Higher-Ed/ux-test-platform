@@ -2,12 +2,15 @@ package utilities;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -45,6 +48,7 @@ public class CommonUtils {
     Color c = null;
     String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
+    Rotatable rotator = null;
     private List<String> newLines = null, fileContent = null;
     public final String errorColorCode = "\u001B[31m";
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
@@ -516,6 +520,25 @@ public class CommonUtils {
         } catch (NoSuchElementException e) {
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get size of mobile elements");
             return 0;
+        }
+    }
+
+    public void rotate(ScreenOrientation mode){
+        System.out.println("1");
+        try {
+            System.out.println("2");
+//            WebDriver augmentedDriver = new Augmenter().augment(driver);
+//            System.out.println("3");
+//            rotator = ((Rotatable) augmentedDriver);
+            WebDriver augmentedDriver = new Augmenter().augment(driver);
+            ((Rotatable)augmentedDriver).rotate(mode);
+            System.out.println("4");
+          //  rotator.rotate(mode);
+            System.out.println("5");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
         }
     }
 

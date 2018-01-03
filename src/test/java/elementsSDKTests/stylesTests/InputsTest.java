@@ -20,8 +20,8 @@ import utilities.BaseClass;
 
 public class InputsTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/inputs.html";
-    private static String setMobile = "", setDesktop = "", browser = "", lBrowser = "", setPlatform = "", setAppium = "";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/inputs.html";
+    private static String setMobile = "", setDesktop = "", browser = "", lBrowser = "", setPlatform = "", setOS = "";
     private String display = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "", textDecoration = "";
     private String paddingBottom = "", paddingTop = "", paddingRight = "", borderBottom = "", borderBottomColor = "", borderBottomStyle = "", showBtnColor = "", showBtnFloat = "", marginRight = "";
     boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, isOpacity = false, isPaddingLeft = false, isWidth = false, isTextDecoration = false;
@@ -40,12 +40,12 @@ public class InputsTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void InputsTestBeforeClass() {
         inputsPgObj = new InputsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.appiumDriver;
+        setOS = BaseClass.mobileOS;
     }
 
     /****************
@@ -61,7 +61,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = {"desktop-regression","mobile-regression"})
     private void singleLineTextInputWiWoValuesTest(String type, By element, String[] expColor, String[] expFontSize) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -126,7 +126,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Inputs (single line - error)
-    @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySingleLineTextInputErroredTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputErrored, cssProperty);
@@ -150,7 +150,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Inputs (single line - disabled)
-    @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySingleLineTextInputDisabledTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty);
@@ -181,7 +181,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Inputs (single line - readonly)
-    @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySingleLineTextInputReadOnlyTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty);
@@ -261,7 +261,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySingleLineTextInputUnderlineTest(String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) {
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
@@ -302,7 +302,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void singleLineTextInputInputTest(String type, By element, String[] expFontSize, String[] expColor) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
@@ -327,7 +327,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputTest(String type, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) {
 
         bgColor = commonUtils.getCSSValue(element, "background-color");
@@ -372,7 +372,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputBordersTest(String type, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) {
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(element, cssProperty);
@@ -403,7 +403,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputLabelTest(String type, By elementForLabel, By element, String[] expLabelColor, String expLabelFontSize) {
         labelColor = commonUtils.getCSSValue(elementForLabel, "color");
         labelFontSize = commonUtils.getCSSValue(elementForLabel, "font-size");
@@ -461,7 +461,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = {"desktop-regression","mobile-regression"})
     private void singleLineTextInputErrorMessageTest(String type, By element, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
         isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
@@ -553,7 +553,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputShowBtnTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop) throws InterruptedException {
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
         marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
@@ -611,7 +611,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputBoxTest(String type, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) {
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom");
         paddingTop = commonUtils.getCSSValue(elem, "padding-top");
@@ -641,7 +641,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputUnderlineTest(String type, By elem, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws InterruptedException {
         commonUtils.clickUsingJS(elem);
         Thread.sleep(1000);
@@ -772,7 +772,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputBoxTest(String type, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) {
         paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
         paddingRight = commonUtils.getCSSValue(elem, "padding-right");
@@ -817,7 +817,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci","desktop-regression","mobile-regression"})
     private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -847,7 +847,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -877,7 +877,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -906,7 +906,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -927,7 +927,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxLabelTest(String type, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws InterruptedException {
         // Select Input : Border
         // Select Input Label
@@ -965,7 +965,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxMsgTest(String type, By msgType, String expFontSize, String expPaddingTop, String[] expColor) throws InterruptedException {
         fontSize = commonUtils.getCSSValue(msgType, "font-size");
         isFontSize = commonUtils.assertValue(fontSize, expFontSize, "font size of " + type + " is not as per spec");
@@ -1022,7 +1022,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1047,7 +1047,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1072,7 +1072,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1097,7 +1097,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1118,7 +1118,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputBoxBorderTest(String type, By selectInputContainer, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws InterruptedException {
         // Select Input : Border raduis?
         // Select Input : Border
@@ -1159,7 +1159,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputBoxLabelTest(String type, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
         // Select Input Label
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -1271,7 +1271,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void checkboxNormalStateTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
@@ -1318,7 +1318,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = {"desktop-regression","mobile-regression"})
     private void checkboxDisabledStateTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty);
@@ -1402,7 +1402,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledSVGTest(String elemType, String[] expBorderColor, String[] expSvgColor, By span, By svg) {
         height = commonUtils.getCSSValue(span, "height");
         width = commonUtils.getCSSValue(span, "width");
@@ -1471,7 +1471,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledLabelTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, By label) {
         paddingLeft = commonUtils.getCSSValue(label, "padding-left");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
@@ -1501,215 +1501,11 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Radio Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Radio Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledDivTest(String elemType, String expMarginBottom, By elem) {
         marginBottom = commonUtils.getCSSValue(elem, "margin-bottom");
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
-    }
-
-    /**************
-     * Mobile Tests
-     **************/
-    //Fancy - Text Input
-    @Test(testName = "Mobile: Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = "mobile-regression")
-    private void singleLineTextInputWiWoValuesMobileTest(String type, By element, String[] expColor, String[] expFontSize) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("color for " + type + " is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputErroredMobileTest(String cssProperty, String[] expectedCSSValue) {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputErrored, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) {
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("'" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = "mobile-regression")
-    private void singleLineTextInputInputMobileTest(String type, By element, String[] expFontSize, String[] expColor) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("color for " + type + " is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
-    private void singleLineTextInputUnderlineMobileTest(String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) {
-        backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
-        if (!isBackgroundColor) {
-            log.info("background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
-        }
-        display = commonUtils.getCSSValue(underlineElement, "display", "mobile");
-        isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
-        height = commonUtils.getCSSValue(underlineElement, "height", "mobile");
-        isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
-        if (!isHeight) {
-            log.info("height for " + underlineElementType + " is not as per the spec, actual: " + height);
-        }
-        transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay", "mobile");
-        isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
-        if (!isTransitionDelay) {
-            log.info("transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
-        }
-        transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration", "mobile");
-        isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
-        if (!isTransitionDuration) {
-            log.info("transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
-        }
-        transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property", "mobile");
-        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
-        trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
-        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
-        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
-    }
-
-    //Basic - Text Input
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputMobileTest(String type, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) {
-
-        bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        height = commonUtils.getCSSValue(element, "height", "mobile");
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
-            Assert.assertTrue(isBorderRadius);
-        }
-
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBackgroundColor) {
-            log.info(" Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding right of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding left of Input-Basic Single Line (Active) field is not as per spec");
-        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (!isHeight) {
-            log.info("Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
-        }
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
-
-        Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isFontSize && isLineHeight);
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputBordersMobileTest(String type, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) {
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-            if (!isBorderColor) {
-                log.info("Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + borderColor);
-            }
-            Assert.assertTrue(isBorderColor);
-        }
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputLabelMobileTest(String type, By elementForLabel, By element, String[] expLabelColor, String expLabelFontSize) {
-        labelColor = commonUtils.getCSSValue(elementForLabel, "color", "mobile");
-        labelFontSize = commonUtils.getCSSValue(elementForLabel, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(elementForLabel, "line-height", "mobile");
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
-        if (!isLabelColor) {
-            log.info("Label color of Input-Basic Single Line (" + type + ") is not as per spec actual actual " + labelColor);
-        }
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "16px", "Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element, "mobile");
-        Assert.assertTrue(isLabelColor && isLabelFontSize && isLabelFor);
-    }
-
-    @Test(testName = "Mobile: Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "mobile-regression")
-    private void singleLineTextInputErrorMessageMobileTest(String type, By element, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) {
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
-        if (!isPaddingTop) {
-            log.info("padding-top for " + type + " is not as per the spec, actual: " + paddingTop);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("color for " + type + " is not as per the spec, actual: " + color);
-        }
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
-        }
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
-        }
-        if (type.equals("pe-input--error_message-fancy")) {
-            isAriaDescByContains = commonUtils.checkAriaDescribedBy(element, inputsPgObj.slTextInputErrored, "mobile");
-            if (!isAriaDescByContains) {
-                log.info("The error text is not accessible description of Inputs - Fancy (single line - error)");
-            }
-            Assert.assertTrue(isAriaDescByContains);
-        }
-        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
 
     //Multiline Text
@@ -1740,7 +1536,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiLineInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1762,7 +1558,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiLineInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1786,7 +1582,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void multiLineInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
         cssProperty = commonUtils.getCSSValue(elem, cssProperty);
@@ -1829,7 +1625,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void multiTextInputLabelTest(String type, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) {
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height");
@@ -1884,23 +1680,228 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isBoxShadow);
     }
 
+    /**************
+     * Mobile Tests
+     **************/
+    //Fancy - Text Input
+    /*@Test(testName = "Mobile: Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = "mobile-regression")
+    private void singleLineTextInputWiWoValuesMobileTest(String type, By element, String[] expColor, String[] expFontSize) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isFontSize && isColor);
+    }
+
+    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
+    private void fancySingleLineTextInputErroredMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputErrored, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
+    private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
+    private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) {
+        String cssPropertyType = cssProperty;
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty);
+        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+        if (!isCSSProperty) {
+            log.info("'" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
+        }
+        Assert.assertTrue(isCSSProperty);
+    }
+
+    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = "mobile-regression")
+    private void singleLineTextInputInputMobileTest(String type, By element, String[] expFontSize, String[] expColor) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isFontSize && isColor);
+    } */
+/*
+    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
+    private void singleLineTextInputUnderlineMobileTest(String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) {
+        backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
+        }
+        display = commonUtils.getCSSValue(underlineElement, "display");
+        isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
+        height = commonUtils.getCSSValue(underlineElement, "height");
+        isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
+        if (!isHeight) {
+            log.info("height for " + underlineElementType + " is not as per the spec, actual: " + height);
+        }
+        transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay");
+        isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
+        if (!isTransitionDelay) {
+            log.info("transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
+        }
+        transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration");
+        isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
+        if (!isTransitionDuration) {
+            log.info("transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
+        }
+        transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property");
+        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+        trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function");
+        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
+    }
+    //Basic - Text Input
+    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "mobile-regression")
+    private void basicSingleLineTextInputMobileTest(String type, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) {
+
+        bgColor = commonUtils.getCSSValue(element, "background-color");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        height = commonUtils.getCSSValue(element, "height");
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(element, cssProperty);
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
+            Assert.assertTrue(isBorderRadius);
+        }
+
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
+        if (!isBackgroundColor) {
+            log.info(" Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
+        }
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding right of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding left of Input-Basic Single Line (Active) field is not as per spec");
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
+        }
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
+        }
+        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
+
+        Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isFontSize && isLineHeight);
+    }
+
+    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "mobile-regression")
+    private void basicSingleLineTextInputBordersMobileTest(String type, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) {
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(element, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(element, cssProperty);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+    }
+
+    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "mobile-regression")
+    private void basicSingleLineTextInputLabelMobileTest(String type, By elementForLabel, By element, String[] expLabelColor, String expLabelFontSize) {
+        labelColor = commonUtils.getCSSValue(elementForLabel, "color");
+        labelFontSize = commonUtils.getCSSValue(elementForLabel, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(elementForLabel, "line-height");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
+        if (!isLabelColor) {
+            log.info("Label color of Input-Basic Single Line (" + type + ") is not as per spec actual actual " + labelColor);
+        }
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "16px", "Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element);
+        Assert.assertTrue(isLabelColor && isLabelFontSize && isLabelFor);
+    }
+
+    @Test(testName = "Mobile: Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "mobile-regression")
+    private void singleLineTextInputErrorMessageMobileTest(String type, By element, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) {
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
+        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
+        if (!isPaddingTop) {
+            log.info("padding-top for " + type + " is not as per the spec, actual: " + paddingTop);
+        }
+        color = commonUtils.getCSSValue(element, "color");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        if (!isLineHeight) {
+            log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        if (type.equals("pe-input--error_message-fancy")) {
+            isAriaDescByContains = commonUtils.checkAriaDescribedBy(element, inputsPgObj.slTextInputErrored);
+            if (!isAriaDescByContains) {
+                log.info("The error text is not accessible description of Inputs - Fancy (single line - error)");
+            }
+            Assert.assertTrue(isAriaDescByContains);
+        }
+        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
+    } */
+
+
+
     //Fancy - Password Input
     @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
     private void fancyPasswordInputOtherFieldsShowMobileTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) {
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelColor = commonUtils.getCSSValue(label, "color");
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
             log.info("label color of " + type + " is not as per spec,actual" + labelColor);
         }
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+        isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
             log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
-        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
-        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
+        fontSize = commonUtils.getCSSValue(infoMsg, "font-size");
+        color = commonUtils.getCSSValue(infoMsg, "color");
         isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
@@ -1908,8 +1909,8 @@ public class InputsTest extends BaseClass {
         }
         Assert.assertTrue(isFontSize && isColor);
 
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-        color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+        fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
+        color = commonUtils.getCSSValue(errorMsg, "color");
         isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
         if (!isColor) {
@@ -1921,11 +1922,11 @@ public class InputsTest extends BaseClass {
 
     }
 
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
+   /* @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
     private void fancyPasswordInputFancyShowBtnMobileTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop) throws InterruptedException {
-        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
-        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
-        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
+        showBtnColor = commonUtils.getCSSValue(showbutton, "color");
+        marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
+        showBtnFloat = commonUtils.getCSSValue(showbutton, "float");
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
@@ -1935,7 +1936,7 @@ public class InputsTest extends BaseClass {
         isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + type + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
-            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
+            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty);
             isCSSProperty = commonUtils.assertValue(cssProperty, "2px", cssPropertyType + " of " + type + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
@@ -1944,16 +1945,16 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile: Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "mobile-regression")
     private void fancyPasswordInputBoxMobileTest(String type, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) {
-        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
+        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(elem, "padding-top");
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "The padding-bottom of " + type + " is not as per spec");
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "The padding-top of " + type + " is not as per spec");
 
-        borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width", "mobile");
-        borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style", "mobile");
+        borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width");
+        borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style");
         isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "The bottom border width of " + type + "  is not as per spec");
         if (!type.equals("password-fancy-readOnly")) {
-            borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color", "mobile");
+            borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color");
             isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
             if (!isBorderBottomColor) {
                 log.info("Bottom border color of " + type + " is not as per spec,actual " + borderBottomColor);
@@ -1974,10 +1975,10 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile: Fancy - Verify Password Input - Underline", dataProvider = "Mobile : Fancy - Password Input - Underline Test Data", groups = "mobile-regression")
     private void fancyPasswordInputHideMobileTest(String type, By elem, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws InterruptedException {
-        commonUtils.click(elem, "mobile");
+        commonUtils.click(elem);
         Thread.sleep(1000);
-        lineHeight = commonUtils.getCSSValue(underlineElement, "height", "mobile");
-        color = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
+        lineHeight = commonUtils.getCSSValue(underlineElement, "height");
+        color = commonUtils.getCSSValue(underlineElement, "background-color");
 
         isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "The underline height of " + type + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("background-color", color, expUnderlineColor);
@@ -1985,27 +1986,27 @@ public class InputsTest extends BaseClass {
             log.info("Underline color  of " + type + " is not as per spec,actual " + color);
         }
         Assert.assertTrue(isHeight && isColor);
-    }
+    }*/
 
     //Basic - Password Input
     @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
     private void basicPasswordInputOtherFieldsShowMobileTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws InterruptedException {
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelColor = commonUtils.getCSSValue(label, "color");
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
             log.info("label color of " + type + " is not as per spec,actual" + labelColor);
         }
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+        isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
             log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
-        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
+        fontSize = commonUtils.getCSSValue(infoMsg, "font-size");
         isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
-        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
+        color = commonUtils.getCSSValue(infoMsg, "color");
+        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
         isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Info Msg padding top of " + type + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
@@ -2014,11 +2015,11 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
 
         Thread.sleep(1000);
-        fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
+        fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
         isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
-        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
+        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
         isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Info Msg padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+        color = commonUtils.getCSSValue(errorMsg, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
         if (!isColor) {
             log.info("Font Color of error Msg of " + type + " is not as per spec, actual " + color);
@@ -2030,10 +2031,10 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regression")
     private void basicPasswordInputShowBtnMobileTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws InterruptedException {
-        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
-        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
-        marginRight = commonUtils.getCSSValue(showbutton, "margin-right", "mobile");
-        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
+        showBtnColor = commonUtils.getCSSValue(showbutton, "color");
+        marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
+        marginRight = commonUtils.getCSSValue(showbutton, "margin-right");
+        showBtnFloat = commonUtils.getCSSValue(showbutton, "float");
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
@@ -2044,14 +2045,14 @@ public class InputsTest extends BaseClass {
         isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + type + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
-            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
+            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty);
             isCSSProperty = commonUtils.assertValue(cssProperty, "2px", cssPropertyType + " of " + type + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
-        if (!setAppium.equals("iOS")) {
-            commonUtils.focusOnElementById(type, "mobile");
+        if (!setOS.equals("iOS")) {
+            commonUtils.focusOnElementById(type);
             Thread.sleep(2000);
-            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration", "mobile");
+            textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration");
             if (type.equals("password-input-basic-disabled-showbutton")) {
                 isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + type + " is not as per the spec");
             } else {
@@ -2062,14 +2063,14 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isShowBtnColor && isMarginTop && isMarginRight && isShowBtnFloat);
     }
 
-    @Test(testName = "Mobile: Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "mobile-regression")
+   /* @Test(testName = "Mobile: Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "mobile-regression")
     private void basicPasswordInputBoxMobileTest(String type, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) {
-        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
-        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
-        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        marginTop = commonUtils.getCSSValue(elem, "margin-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
+        paddingRight = commonUtils.getCSSValue(elem, "padding-right");
+        height = commonUtils.getCSSValue(elem, "height");
+        fontSize = commonUtils.getCSSValue(elem, "font-size");
+        bgColor = commonUtils.getCSSValue(elem, "background-color");
+        marginTop = commonUtils.getCSSValue(elem, "margin-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "The padding-left of " + type + " is not as per spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "The padding-right of " + type + " is not as per spec");
@@ -2091,7 +2092,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
@@ -2102,7 +2103,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile :  MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"mobile-regression"})
     private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
@@ -2113,7 +2114,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"mobile-regression"})
     private void multiLinInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
@@ -2124,19 +2125,18 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void multiLinenIputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
     }
-
     @Test(testName = "Mobile : MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"mobile-regression"})
     private void multiTextInputLabelMobileTest(String type, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) {
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(label, "line-height");
+        labelColor = commonUtils.getCSSValue(label, "color");
 
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
@@ -2151,7 +2151,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
@@ -2162,7 +2162,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
@@ -2173,7 +2173,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
@@ -2184,7 +2184,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
@@ -2194,9 +2194,9 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxLabelMobileTest(String type, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws InterruptedException {
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+        labelColor = commonUtils.getCSSValue(label, "color");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(label, "line-height");
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
@@ -2204,7 +2204,7 @@ public class InputsTest extends BaseClass {
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+        isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
             log.info("Label for " + type + " is not tagged to the appropriate input");
         }
@@ -2213,11 +2213,11 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile : Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"mobile-regression"})
     private void fancySelectInputBoxMsgMobileTest(String type, By msgType, String expFontSize, String expPaddingTop, String[] expColor) throws InterruptedException {
-        fontSize = commonUtils.getCSSValue(msgType, "font-size", "mobile");
+        fontSize = commonUtils.getCSSValue(msgType, "font-size");
         isFontSize = commonUtils.assertValue(fontSize, expFontSize, "font size of " + type + " is not as per spec");
-        paddingTop = commonUtils.getCSSValue(msgType, "padding-top", "mobile");
+        paddingTop = commonUtils.getCSSValue(msgType, "padding-top");
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(msgType, "color", "mobile");
+        color = commonUtils.getCSSValue(msgType, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
             log.info("Font Color of " + type + " is not as per spec, actual " + color);
@@ -2229,7 +2229,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
     private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Basic Select Input- Active is not as per the spec, actual: " + cssProperty);
@@ -2240,7 +2240,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
     private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Basic Select Input- Error is not as per the spec, actual: " + cssProperty);
@@ -2251,7 +2251,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
     private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Basic Select Input- Disabled is not as per the spec, actual: " + cssProperty);
@@ -2262,7 +2262,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
     private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for Basic Select Input- ReadOnly is not as per the spec, actual: " + cssProperty);
@@ -2270,27 +2270,26 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-
     @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
     private void basicSelectInputBoxBorderMobileTest(String type, By selectInputContainer, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws InterruptedException {
         for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(selectInputContainer, cssProperty, "mobile");
+            borderRadius = commonUtils.getCSSValue(selectInputContainer, cssProperty);
             isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Border radius  " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(selectInputContainer, cssProperty, "mobile");
+            borderWidth = commonUtils.getCSSValue(selectInputContainer, cssProperty);
             isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(selectInputContainer, cssProperty, "mobile");
+            borderStyle = commonUtils.getCSSValue(selectInputContainer, cssProperty);
             isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         if (!type.equals("select-input-basic-readOnly")) {
             for (String cssProperty : borderColors) {
-                borderColor = commonUtils.getCSSValue(selectInputContainer, cssProperty, "mobile");
+                borderColor = commonUtils.getCSSValue(selectInputContainer, cssProperty);
                 isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
                 if (!isBorderColor) {
                     log.info("Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
@@ -2303,9 +2302,9 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
     private void basicSelectInputBoxLabelMobileTest(String type, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws InterruptedException {
         // Select Input Label
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+        labelColor = commonUtils.getCSSValue(label, "color");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(label, "line-height");
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
@@ -2313,12 +2312,12 @@ public class InputsTest extends BaseClass {
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+        isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
             log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         // icon
-        actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
+        actIconClass = commonUtils.getAttributeValue(icon, "class");
         isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-18", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-18\"");
 
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
@@ -2328,7 +2327,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "mobile-regression")
     private void checkboxNormalStateMobileTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
@@ -2339,25 +2338,25 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
     private void checkboxDisabledStateMobileTest(String cssProperty, String[] expectedCSSValue) {
         String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info("'" + cssPropertyType + "' :for checkbox in disabled state is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
-    }
+    } */
 
     @Test(testName = "Mobile: Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = "mobile-regression")
     private void svgIconForCheckBoxMobileTest(String type, By element, By iconElement, String expOpacity, String[] expHeight, String[] expWidth) throws Exception {
-        commonUtils.click(element, "mobile");
-        opacity = commonUtils.getCSSValue(iconElement, "opacity", "mobile");
+        commonUtils.click(element);
+        opacity = commonUtils.getCSSValue(iconElement, "opacity");
         isOpacity = commonUtils.assertValue(opacity, expOpacity, "check-box for " + type + " is not clicked and the opacity value is not as per the spec");
-        height = commonUtils.getCSSValue(iconElement, "height", "mobile");
+        height = commonUtils.getCSSValue(iconElement, "height");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
             log.info("height of icon for check-box " + type + " is not as per the spec, actual: " + height);
         }
-        width = commonUtils.getCSSValue(iconElement, "width", "mobile");
+        width = commonUtils.getCSSValue(iconElement, "width");
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
         if (!isWidth) {
             log.info("width of icon for check-box " + type + " is not as per the spec, actual: " + width);
@@ -2371,26 +2370,26 @@ public class InputsTest extends BaseClass {
         if (type.contains("focus")) {
             throw new SkipException("Don't have to test focus operations on mobile");
         }
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
         if (!isPaddingLeft) {
             log.info("padding-left for checkbox label of " + type + " type is not as per the spec, actual: " + paddingLeft);
         }
-        display = commonUtils.getCSSValue(element, "display", "mobile");
+        display = commonUtils.getCSSValue(element, "display");
         isDisplay = commonUtils.assertValue(display, expDisplay, "'display' for checkbox label of '" + type + "' type is not as per the spec");
         Assert.assertTrue(isPaddingLeft && isDisplay);
     }
 
     //Radios
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String[] expBorderColor, String[] expSvgColor, By span, By svg) {
-        height = commonUtils.getCSSValue(span, "height", "mobile");
-        width = commonUtils.getCSSValue(span, "width", "mobile");
-        color = commonUtils.getCSSValue(span, "color", "mobile");
-        radioBtnSelectedColor = commonUtils.getCSSValue(svg, "color", "mobile");
+        height = commonUtils.getCSSValue(span, "height");
+        width = commonUtils.getCSSValue(span, "width");
+        color = commonUtils.getCSSValue(span, "color");
+        radioBtnSelectedColor = commonUtils.getCSSValue(svg, "color");
 
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(span, cssProperty, "mobile");
+            borderColor = commonUtils.getCSSValue(span, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
                 log.info("Border-color of " + elemType + " is not as per spec, actual " + borderColor);
@@ -2398,17 +2397,17 @@ public class InputsTest extends BaseClass {
             Assert.assertTrue(isBorderColor);
         }
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(span, cssProperty, "mobile");
+            borderStyle = commonUtils.getCSSValue(span, cssProperty);
             isBorderStyle = commonUtils.assertValue(borderStyle, "solid", cssProperty + " of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(span, cssProperty, "mobile");
+            borderWidth = commonUtils.getCSSValue(span, cssProperty);
             isBorderWidth = commonUtils.assertValue(borderWidth, "1px", cssProperty + " of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(span, cssProperty, "mobile");
+            borderRadius = commonUtils.getCSSValue(span, cssProperty);
             isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, new String[]{"50%", "8px"});
             if (!isBorderRadius) {
                 log.info(cssProperty + " of " + elemType + " is not as per spec, actual " + borderRadius);
@@ -2416,7 +2415,7 @@ public class InputsTest extends BaseClass {
             Assert.assertTrue(isBorderRadius);
         }
         for (String cssProperty : paddings) {
-            radioBtnPadding = commonUtils.getCSSValue(span, cssProperty, "mobile");
+            radioBtnPadding = commonUtils.getCSSValue(span, cssProperty);
             isRadioBtnPadding = commonUtils.assertCSSProperties(cssProperty, radioBtnPadding, new String[]{"3px", "6px"});
             if (!isRadioBtnPadding) {
                 log.info(cssProperty + " of " + elemType + " is not as per spec, actual " + radioBtnPadding);
@@ -2424,7 +2423,7 @@ public class InputsTest extends BaseClass {
             Assert.assertTrue(isRadioBtnPadding);
         }
         if (elemType.contains("disabled")) {
-            bgColor = commonUtils.getCSSValue(span, "background-color", "mobile");
+            bgColor = commonUtils.getCSSValue(span, "background-color");
             isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
             Assert.assertTrue(isBgColor);
         }
@@ -2437,9 +2436,9 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String expPaddingLeft, String[] expLabelfontSize, By label) {
-        paddingLeft = commonUtils.getCSSValue(label, "padding-left", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+        paddingLeft = commonUtils.getCSSValue(label, "padding-left");
+        labelFontSize = commonUtils.getCSSValue(label, "font-size");
+        labelLineHeight = commonUtils.getCSSValue(label, "line-height");
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left between " + elemType + " and its label is not as per spec");
         isLabelFontSize = commonUtils.assertCSSProperties("font-size", labelFontSize, expLabelfontSize);
         if (!isLabelFontSize) {
@@ -2452,19 +2451,15 @@ public class InputsTest extends BaseClass {
 
     @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Radio Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Radio Test Data", groups = {"mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledDivMobileTest(String elemType, String expMarginBottom, By elem) {
-        marginBottom = commonUtils.getCSSValue(elem, "margin-bottom", "mobile");
+        marginBottom = commonUtils.getCSSValue(elem, "margin-bottom");
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
-    }
+    } */
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
+        commonUtils.getUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)

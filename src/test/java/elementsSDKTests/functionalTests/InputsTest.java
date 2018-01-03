@@ -64,11 +64,11 @@ public class InputsTest extends BaseClass {
     private void InputsTestBeforeClass() {
         compInputsPgObj = new FunctionalInputsPageObjects();
         inputsPgObj = new InputsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.appiumDriver;
+        setAppium = BaseClass.mobileOS;
     }
 
     /****************

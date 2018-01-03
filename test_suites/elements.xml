@@ -3,21 +3,21 @@
 <suite name="temporary-elements_only Test Suite">
     <groups>
         <run>
-            <include name="desktop-ci"/>
+            <include name="mobile-regression1"/>
         </run>
     </groups>
     <test name="temporary-elements-only: Styles(CSS) Tests" parallel="classes" thread-count="10">
         <classes>
-            <class name="elementsSDKTests.stylesTests.InputsTest"/>
-            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
-            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.InputsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TypographyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
-            <class name="elementsSDKTests.stylesTests.IconsTest"/>
-            <class name="elementsSDKTests.stylesTests.FormsTest"/>
-            <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>
-            <class name="elementsSDKTests.stylesTests.GridTest"/>
-            <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.IconsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.FormsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TablesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
         </classes>
     </test>
 </suite>

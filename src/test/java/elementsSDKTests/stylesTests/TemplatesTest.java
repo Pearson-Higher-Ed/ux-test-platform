@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import elementsSDK.styles.stylesPageObjects.TemplatesPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Rotatable;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -13,7 +14,7 @@ import utilities.BaseClass;
 
 public class TemplatesTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/templates.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/templates.html";
     private static String env = "", mobileDevice = "";
     private String paddingRight = "", paddingLeft = "", colWidth = "", paddingBottom = "", paddingTop;
     private boolean isPaddingRight = false, isPaddingLeft = false, isColWidth = false, isPaddingBottom = false, isPaddingTop;
@@ -419,13 +420,14 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus' or 'iPhone 7 Plus");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        commonUtils.getUrl(url);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -485,13 +487,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus' or 'iPhone 7 Plus");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -552,13 +554,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -619,13 +621,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -686,13 +688,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Pro Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -753,13 +755,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");
@@ -820,13 +822,13 @@ public class TemplatesTest extends BaseClass {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        colWidth = commonUtils.getCSSValue(element, "width");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for " + type + " at window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for " + type + " at window size " + mode + " is not as per the spec");

@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * Created by umahaea on 2/15/16.
  */
 public class IconsTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/icons.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/icons.html";
     private static String setDesktop = "", setMobile = "";
     private String color = "", width = "", height = "";
     double svgfileSize = 84.00, kilobytes = 0.0;
@@ -64,7 +64,7 @@ public class IconsTest extends BaseClass {
     }
 
     //Size
-    @Test(testName = "Verify the size of icons", dataProvider = "Icons Size Test Data", groups = "desktop-ci")
+    @Test(testName = "Verify the size of icons", dataProvider = "Icons Size Test Data", groups = {"desktop-ci", "mobile-regression"})
     private void iconSizeTest(String iconType, By element, String[] expWidth, String[] expHeight) {
         width = commonUtils.getCSSValue(element, "width");
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
@@ -90,7 +90,7 @@ public class IconsTest extends BaseClass {
     }
 
     //Fill Color
-    @Test(testName = "Verify if Icon fills parent's color", dataProvider = "Icons Fill Color Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify if Icon fills parent's color", dataProvider = "Icons Fill Color Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void iconFillColorTest(String iconType, By element, String[] expColor) {
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
@@ -109,7 +109,7 @@ public class IconsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify change of class and href for icons", dataProvider = "Change Class and href Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify change of class and href for icons", dataProvider = "Change Class and href Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void iconChangeClassAndHrefTest(String iconType, By element, String[] expWidth, String[] expHeight) {
         width = commonUtils.getCSSValue(element, "width");
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
@@ -127,14 +127,14 @@ public class IconsTest extends BaseClass {
     /**************
      * Mobile Tests
      **************/
-    @Test(testName = "Mobile: Verify the size of icons", dataProvider = "Icons Size Test Data", groups = "mobile-regression")
+    /*@Test(testName = "Mobile: Verify the size of icons", dataProvider = "Icons Size Test Data", groups = "mobile-regression")
     private void iconSizeMobileTest(String iconType, By element, String[] expWidth, String[] expHeight) {
-        width = commonUtils.getCSSValue(element, "width", "mobile");
+        width = commonUtils.getCSSValue(element, "width");
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
         if (!isWidth) {
             log.info("width for icon type: '" + iconType + "' is not as per the spec, actual: " + width);
         }
-        height = commonUtils.getCSSValue(element, "height", "mobile");
+        height = commonUtils.getCSSValue(element, "height");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
             log.info("height for icon type: '" + iconType + "' is not as per the spec, actual: " + height);
@@ -145,7 +145,7 @@ public class IconsTest extends BaseClass {
     //Fill Color
     @Test(testName = "Mobile: Verify if Icon fills parent's color", dataProvider = "Icons Fill Color Test Data", groups = "mobile-regression")
     private void iconFillColorMobileTest(String iconType, By element, String[] expColor) {
-        color = commonUtils.getCSSValue(element, "color", "mobile");
+        color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
             log.info("The icon for the type: '" + iconType + "' is not as per the spec, actual: " + color);
@@ -155,27 +155,22 @@ public class IconsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify change of class and href for icons", dataProvider = "Change Class and href Test Data", groups = "mobile-regression")
     private void iconChangeClassAndHrefMobileTest(String iconType, By element, String[] expWidth, String[] expHeight) {
-        width = commonUtils.getCSSValue(element, "width", "mobile");
+        width = commonUtils.getCSSValue(element, "width");
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
         if (!isWidth) {
             log.info("width for icon type: '" + iconType + "' is not as per the spec ,actual: " + width);
         }
-        height = commonUtils.getCSSValue(element, "height", "mobile");
+        height = commonUtils.getCSSValue(element, "height");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
             log.info("height for icon type: '" + iconType + "' is not as per the spec ,actual: " + height);
         }
         Assert.assertTrue(isWidth && isHeight);
-    }
-
+    } */
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
+        commonUtils.getUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)

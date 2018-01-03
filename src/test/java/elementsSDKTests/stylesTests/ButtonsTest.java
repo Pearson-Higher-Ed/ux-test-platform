@@ -19,12 +19,11 @@ import java.util.List;
  */
 public class ButtonsTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
-    private static String env = "", browser = "", lBrowser = "", device = "", setMobile = "", setDesktop = "";
+    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/buttons.html";
+    private static String env = "", browser = "", lBrowser = "", setMobile = "", setDesktop = "";
     private String color = "", height = "", boxShadow = "", backgroundColor = "", fontSize = "", lineHeight = "", backgroundImg = "", borderWidth = "", textDecoration = "", cursor = "", padding = "", borderStyle = "", borderColor = "", borderRadius = "", textDecorationProperty = "", textOverflow = "", display = "", whiteSpace = "";
     boolean isCSSProperty = false, isHeight = false, isBoxShadow = false, isColor = false, isFontSize = false, isBackgroundColor = false, isLineHeight = false, isBackgrounImg = false, isBorderWidth = false, isTextDecoration = false, isCursor = false, isPadding = false, isBorderStyle = false, isBorderColor = false, isBorderRadius = false, isTextOverflow = false, isDisplay = false, isWhiteSpace = false;
-    Actions action = null;
-    TouchAction mAction = null;
     final static Logger log = Logger.getLogger(ButtonsTest.class.getName());
     List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
     List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
@@ -39,14 +38,8 @@ public class ButtonsTest extends BaseClass {
         env = BaseClass.runEnv;
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
-        device = BaseClass.appiumDriver;
-        if (setMobile.equals("on")) {
-            mAction = new TouchAction(appium);
-        } else {
-            action = new Actions(driver);
-        }
         if (browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")) {
             textDecorationProperty = "text-decoration";
         } else {
@@ -64,7 +57,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void cssPropsButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expTextDecoration) throws Exception {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
@@ -72,7 +65,7 @@ public class ButtonsTest extends BaseClass {
         textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(elem, cssProperty);
-            isPadding = commonUtils.assertCSSProperties(cssProperty, padding, new String[]{"12px", "0px"});
+            isPadding = commonUtils.assertCSSProperties(cssProperty, padding, new String[]{"12px", "0px"}); //12px
             if (!isPadding) {
                 log.info(cssProperty + " of " + type + " is not as per spec, actual: " + padding);
             }
@@ -189,7 +182,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default and Large Button-Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Default Button Test-Disabled", dataProvider = "Default and Large Button-Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void defaultLargeButtonDisabledStateTest(String type, By elem) throws Exception {
         color = commonUtils.getCSSValue(elem, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")});
@@ -216,7 +209,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Buttons Borders Test", dataProvider = "Buttons Borders Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Buttons Borders Test", dataProvider = "Buttons Borders Test Data", groups = {"desktop-regression","mobile-regression"})
     private void buttonBordersTest(String type, By buttonElement, String expBorderTopStyle) {
         // for default n primary n cta
         for (String cssProperty : borderStyles) {
@@ -256,7 +249,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Link Buttons Test", dataProvider = "Link Buttons Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Link Buttons Test", dataProvider = "Link Buttons Test Data", groups = {"desktop-regression","mobile-regression"})
     private void linkButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration) throws Exception {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
@@ -340,7 +333,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Different Size Button Test", dataProvider = "Sizes Button Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Different Size Button Test", dataProvider = "Sizes Button Test Data", groups = {"desktop-regression","mobile-regression"})
     private void sizeButtonTest(String type, By elem, String[] expFontSize, String[] expLineHt, String[] expHeight, String[] expPaddings) throws Exception {
         fontSize = commonUtils.getCSSValue(elem, "font-size");
         lineHeight = commonUtils.getCSSValue(elem, "line-height");
@@ -377,7 +370,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void mixAndMatchButtonsTest(String type, By element, String[] expBackgroundColor, String[] expColor, String[] expLineHeight) throws Exception {
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
@@ -410,7 +403,7 @@ public class ButtonsTest extends BaseClass {
     }
 
     //Btn group
-    @Test(testName = "Button Group Test", dataProvider = "Button Grp Test Data", groups = "desktop-regression")
+    @Test(testName = "Button Group Test", dataProvider = "Button Grp Test Data", groups = {"desktop-regression","mobile-regression"})
     private void btnGroupTest(String buttonGrp, By buttonElement, String[] expBorderRadius) {
         String[] borderRadii = new String[]{"border-top-left-radius", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-right-radius"};
         int i = 0;
@@ -425,14 +418,14 @@ public class ButtonsTest extends BaseClass {
      * Mobile Tests
      ***************/
 
-    @Test(testName = "Mobile : Verify Buttons CSS Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile : Verify Buttons CSS Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"mobile-regression"})
     private void cssPropsButtonMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expTextDecoration) throws Exception {
-        color = commonUtils.getCSSValue(elem, "color", "mobile");
-        backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
-        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty, "mobile");
+        color = commonUtils.getCSSValue(elem, "color");
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color");
+        height = commonUtils.getCSSValue(elem, "height");
+        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
         for (String cssProperty : paddings) {
-            padding = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            padding = commonUtils.getCSSValue(elem, cssProperty);
             isPadding = commonUtils.assertCSSProperties(cssProperty, padding, new String[]{"12px", "0px"});
             if (!isPadding) {
                 log.info(cssProperty + " of " + type + " is not as per spec, actual: " + padding);
@@ -453,21 +446,21 @@ public class ButtonsTest extends BaseClass {
         }
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "Text decoration of " + type + " is not as per spec");
         Assert.assertTrue(isColor && isBackgroundColor && isHeight && isTextDecoration);
-    }
+    }*/
 
-    @Test(testName = "Mobile : Verify Default Button Test-Disabled", dataProvider = "Default and Large Button-Disabled Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile : Verify Default Button Test-Disabled", dataProvider = "Default and Large Button-Disabled Test Data", groups = {"mobile-regression"})
     private void defaultLargeButtonDisabledStateMobileTest(String type, By elem) throws Exception {
-        color = commonUtils.getCSSValue(elem, "color", "mobile");
+        color = commonUtils.getCSSValue(elem, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")});
         if (!isColor) {
             log.info("Color of " + type + " in Disabled state  not as per spec, actual: " + color);
         }
-        backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
         if (!isBackgroundColor) {
             log.info("Bg Color of " + type + " in Disabled state  not as per spec, actual: " + backgroundColor);
         }
-        boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
+        boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Bos shadow of " + type + " in Disabled state  not as per spec");
         Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
     }
@@ -476,18 +469,18 @@ public class ButtonsTest extends BaseClass {
     private void buttonBordersMobileTest(String type, By buttonElement, String expBorderTopStyle) {
         // for default n primary n cta
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(buttonElement, cssProperty, "mobile");
+            borderStyle = commonUtils.getCSSValue(buttonElement, cssProperty);
             isBorderStyle = commonUtils.assertValue(borderStyle, expBorderTopStyle, cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(buttonElement, cssProperty, "mobile");
+            borderRadius = commonUtils.getCSSValue(buttonElement, cssProperty);
             isBorderRadius = commonUtils.assertValue(borderRadius, "2px", cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
         // only for default
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty, "mobile");
+            borderColor = commonUtils.getCSSValue(btnPgObj.defaultBtn, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties("border-color", borderColor, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")});
             if (!isBorderColor) {
                 log.info(cssProperty + " of " + type + " is not as per spec");
@@ -496,7 +489,7 @@ public class ButtonsTest extends BaseClass {
         }
         // only for default disabled
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(btnPgObj.defaultBtnDisabled, cssProperty, "mobile");
+            borderWidth = commonUtils.getCSSValue(btnPgObj.defaultBtnDisabled, cssProperty);
             isBorderWidth = commonUtils.assertValue(borderWidth, "0px", cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
@@ -504,11 +497,11 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile : Verify Link Buttons Test", dataProvider = "Link Buttons Test Data", groups = {"mobile-regression"})
     private void linkButtonMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration) throws Exception {
-        color = commonUtils.getCSSValue(elem, "color", "mobile");
-        backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty, "mobile");
+        color = commonUtils.getCSSValue(elem, "color");
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color");
+        textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
         for (String cssProperty : paddings) {
-            padding = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            padding = commonUtils.getCSSValue(elem, cssProperty);
             isPadding = commonUtils.assertCSSProperties(cssProperty, padding, expPadding);
             if (!isPadding) {
                 log.info(cssProperty + " of " + type + " is not as per spec, actual: " + padding);
@@ -529,11 +522,11 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile : Verify Different Size Button Test", dataProvider = "Sizes Button Test Data", groups = {"mobile-regression"})
     private void sizeButtonMobileTest(String type, By elem, String[] expFontSize, String[] expLineHt, String[] expHeight, String[] expPaddings) throws Exception {
-        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
+        fontSize = commonUtils.getCSSValue(elem, "font-size");
+        lineHeight = commonUtils.getCSSValue(elem, "line-height");
+        height = commonUtils.getCSSValue(elem, "height");
         for (String cssProperty : paddings) {
-            padding = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            padding = commonUtils.getCSSValue(elem, cssProperty);
             isPadding = commonUtils.assertCSSProperties(cssProperty, padding, expPaddings);
             if (!isPadding) {
                 log.info(cssProperty + " of " + type + " is not as per spec, actual: " + padding);
@@ -557,17 +550,17 @@ public class ButtonsTest extends BaseClass {
 
     @Test(testName = "Mobile: Verify Mix and Match Buttons Test", dataProvider = "Mix and Match Buttons Test Data", groups = {"mobile-regression"})
     private void mixAndMatchButtonsMobileTest(String type, By element, String[] expBackgroundColor, String[] expColor, String[] expLineHeight) throws Exception {
-        color = commonUtils.getCSSValue(element, "color", "mobile");
+        color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
             log.info("color for this type: " + type + " is not as per the spec, actual: " + color);
         }
-        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
         if (!isBackgroundColor) {
             log.info("background-color for this type: " + type + " is not as per the spec, actual: " + backgroundColor);
         }
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
         if (!isLineHeight) {
             log.info("line-height for this type: " + type + " is not as per the spec, actual: " + lineHeight);
@@ -581,11 +574,11 @@ public class ButtonsTest extends BaseClass {
         String[] borderRadii = new String[]{"border-top-left-radius", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-right-radius"};
         int i = 0;
         for (i = 0; i < borderRadii.length; i++) {
-            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i], "mobile");
+            borderRadius = commonUtils.getCSSValue(buttonElement, borderRadii[i]);
             isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius[i], borderRadii[i] + " of " + buttonGrp + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
-    }
+    } */
 
     /*************
      * Common methods
@@ -593,11 +586,7 @@ public class ButtonsTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
+        commonUtils.getUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)

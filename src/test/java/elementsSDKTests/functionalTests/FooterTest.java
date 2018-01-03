@@ -58,7 +58,7 @@ public class FooterTest extends BaseClass {
         if (!runEnv.equals("travis")) {
             browser = BaseClass.localBrowser;
         } else {
-            browser = BaseClass.sauceBrowser;
+            browser = BaseClass.bsBrowser;
         }
         if (browser.equals("safari") || browser.equals("edge") || browser.equals("ie") || setMobile.equals("on")) {
             textDecorationProperty = "text-decoration";

@@ -1537,7 +1537,7 @@ public class ContextualHelpTest extends BaseClass {
         appHeaderPgObj = new AppHeaderPageObjects();
         conxHelpPgObj = new ContextualHelpPageObjects();
         mobileDevice = BaseClass.mobDeviceName;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
     }
 

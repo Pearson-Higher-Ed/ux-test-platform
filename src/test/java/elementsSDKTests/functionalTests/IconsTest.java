@@ -34,7 +34,7 @@ public class IconsTest extends BaseClass {
         if (!runEnv.equals("sauce")) {
             browser = BaseClass.localBrowser;
         } else {
-            browser = BaseClass.sauceBrowser;
+            browser = BaseClass.bsBrowser;
         }
     }
 

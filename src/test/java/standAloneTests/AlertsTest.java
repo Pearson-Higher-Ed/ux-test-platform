@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 
 public class AlertsTest extends BaseClass {
-    private final String basicModeUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/alerts/alerts.html";
+    private final String basicModeUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/alerts/alerts.html";
     private final String absAlertJSFilePath = new File("standAlone/jsfiles/alerts/alerts.js").getAbsolutePath();
     private final String alertJSFilePath = constructPath(absAlertJSFilePath);
     private final String absSliderDistJSFilePath = new File("standAlone/jsfiles/alerts/dist.alerts.js").getAbsolutePath();
@@ -33,7 +33,7 @@ public class AlertsTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
         alertsPgObj = new AlertsPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         mobile = BaseClass.mobile;
         platform = BaseClass.platform;
     }
@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression","mobile-regression"})
     private void successErrorInformationAlertsTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.click(button);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
@@ -82,7 +82,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression","mobile-regression"})
     private void alertTitlePropertiesTest(By button, String alertType, By alertTitle, By alertTitleText) {
         commonUtils.click(button);
 
@@ -122,7 +122,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Test the Alert Text Properties", dataProvider = "Alert Text Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Test the Alert Text Properties", dataProvider = "Alert Text Properties Test Data", groups = {"desktop-regression","mobile-regression"})
     private void alertTextPropertiesTest(By button, String alertType, By alertText) {
         commonUtils.click(button);
 
@@ -158,7 +158,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"desktop-regression","mobile-regression"})
     private void cssPropAlertContentTest(By button, By elem, String alertType, String expMarginLeft) {
         commonUtils.click(button);
         marginLeft = commonUtils.getCSSValue(elem, "margin-left");
@@ -181,7 +181,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Click on 'X' icon", dataProvider = "Click on 'X' icon Test Data", groups = "desktop-regression")
+    @Test(testName = "Click on 'X' icon", dataProvider = "Click on 'X' icon Test Data", groups = {"desktop-regression","mobile-regression"})
     private void clickOnXIconTest(String alertType, By button, By alert, By icon) throws InterruptedException {
         commonUtils.click(button);
         Thread.sleep(500);
@@ -218,7 +218,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression","mobile-regression"})
     private void iconPropertiesTest(By button, String alertType, String[] expColor, String expMarginTop, String[] expDisplay, String expClassName) {
         commonUtils.click(button);
         color = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "color");
@@ -278,7 +278,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR"})
     private void paddingForAlertsResponsiveTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
@@ -311,7 +311,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Width and padding left Alert List Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Width and padding left Alert List Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"desktop-regressionR"})
     private void widthPaddingLeftResponsiveTest(int screenWidth, int height, String[] expWidth, String expPaddingLeft, String expPaddingRight, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
@@ -336,14 +336,14 @@ public class AlertsTest extends BaseClass {
      * Mobile Tests
      */
 
-    @Test(testName = "Mobile : Verify Success, Error and Information Alert", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile : Verify Success, Error and Information Alert", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression"})
     private void successErrorAlertsInformationMobileTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
-        commonUtils.clickUsingJS(button, "mobile");
-        borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width", "mobile");
-        borderLeftStyle = commonUtils.getCSSValue(alert, "border-left-style", "mobile");
-        borderLeftColor = commonUtils.getCSSValue(alert, "border-left-color", "mobile");
-        bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
-        boxShadow = commonUtils.getCSSValue(alert, "box-shadow", "mobile");
+        commonUtils.clickUsingJS(button);
+        borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
+        borderLeftStyle = commonUtils.getCSSValue(alert, "border-left-style");
+        borderLeftColor = commonUtils.getCSSValue(alert, "border-left-color");
+        bgColor = commonUtils.getCSSValue(alert, "background-color");
+        boxShadow = commonUtils.getCSSValue(alert, "box-shadow");
 
         isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Border-left-width of " + alertType + " is not as per spec");
         isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Border-left-style of " + alertType + " is not as per spec");
@@ -467,22 +467,21 @@ public class AlertsTest extends BaseClass {
             log.info("display of icon for " + alertType + " is not as per spec, actual " + display);
         }
         Assert.assertTrue(isColor && isMarginTop && isDisplay);
-    }
+    } */
 
     @Test(testName = "Mobile : Generate Multiple alerts", dataProvider = "Generate Multiple alerts Test Data", groups = "mobile-regression")
     private void generateMultipleAlertsMobileTest(int count) throws InterruptedException {
-        String alertType;
         for (int i = 0; i <= 2; i++) {
             alertType = alertsPgObj.generateRandomAlerts();
-            commonUtils.click(By.id(alertType + "-alert"), "mobile");
+            commonUtils.click(By.id(alertType + "-alert"));
             Thread.sleep(500);
-            isElemPresent = commonUtils.isElementsVisibleOnPage(alertsPgObj.xpathForMultiAlerts(i, alertType), "mobile");
+            isElemPresent = commonUtils.isElementsVisibleOnPage(alertsPgObj.xpathForMultiAlerts(i, alertType));
             if (!isElemPresent) {
                 log.info("Alert" + i + "is not present");
             }
             Assert.assertTrue(isElemPresent);
             if (i != 0) {
-                marginTop = commonUtils.getCSSValue(alertsPgObj.xpathForMultiAlerts(i, alertType), "margin-top", "mobile");
+                marginTop = commonUtils.getCSSValue(alertsPgObj.xpathForMultiAlerts(i, alertType), "margin-top");
                 isMarginTop = commonUtils.assertValue(marginTop, "20px", "Margin-top of alert " + i + " is not as per spec");
                 Assert.assertTrue(isMarginTop);
             }
@@ -490,7 +489,7 @@ public class AlertsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile : Width and padding Alert List Responsive Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Width and padding Alert List Responsive Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"mobile-regressionR"})
     private void widthPaddingLeftResponsiveMobileTest(int screenWidth, int height, String[] expWidth, String expPaddingLeft, String expPaddingRight, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
@@ -512,7 +511,7 @@ public class AlertsTest extends BaseClass {
         Assert.assertTrue(isWidth && isPaddingLeft && isPaddingRight);
     }
 
-    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regressionR"})
     private void paddingForAlertsResponsiveMobileTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");

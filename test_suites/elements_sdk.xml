@@ -3,11 +3,11 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="desktop-ci"/>
+            <include name="mobile-regression"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
-    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="10">
+   <!-- <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="10">
         <classes>
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
@@ -24,9 +24,9 @@
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
             <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
         </classes>
-    </test>
+    </test>-->
     <!-- Styles(CSS) Tests -->
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="8">
+    <test name="ElementsSDK: Styles(CSS) Tests" parallel="false" thread-count="8">
         <classes>
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
@@ -34,10 +34,10 @@
             <class name="elementsSDKTests.stylesTests.IconsTest"/>
             <class name="elementsSDKTests.stylesTests.FormsTest"/>
             <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <class name="elementsSDKTests.stylesTests.GridTest"/>
-            <class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>
-            <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
-            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
         </classes>
     </test>
 </suite>

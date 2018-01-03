@@ -45,6 +45,8 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
                         <suiteXmlFile>test_suites/${test_suite_xml}</suiteXmlFile>
+                        <!--<suiteXmlFile>test_suites/elements_sdk.xml</suiteXmlFile>-->
+                        <!--<suiteXmlFile>test_suites/elements.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

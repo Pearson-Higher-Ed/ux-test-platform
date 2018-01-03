@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  */
 public class MeterTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/meter.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/meter.html";
     private static String env = "";
     private String backgroundColor = "", height = "", borderTopColor = "", borderBottomColor = "", borderLeftColor = "", borderRightColor = "", borderTopStyle = "", borderBottomStyle = "", borderLeftStyle = "", borderRightStyle = "", borderTopWidth = "", borderBottomWidth = "", borderLeftWidth = "", borderRightWidth = "", fontSize = "", fontWeight = "", lineHeight = "", color = "", marginBottom = "";
     private boolean result = false, isBackgroundColor = false, isHeight = false, isBorderTopColor = false, isBorderBottomColor = false, isBorderLeftColor = false, isBorderRightColor = false, isBorderTopStyle = false, isBorderBottomStyle = false, isBorderLeftStyle = false, isBorderRightStyle = false, isBorderTopWidth = false, isBorderBottomWidth = false, isBorderLeftWidth = false, isBorderRightWidth = false, isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isColor = false;
@@ -40,7 +40,7 @@ public class MeterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Height and Color Test", dataProvider = "Meter Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Height and Color Test", dataProvider = "Meter Test Data", groups = {"desktop-regression","mobile-regression"})
     private void meterTest(String state, By element, String cssProperty, String[] expHeight, String[] expBackgroundColor) throws Exception {
         commonUtils.getUrl(url);
         height = commonUtils.getCSSValue(element, "height"); //18px is being returned by IE and Edge, all other 20px.
@@ -82,7 +82,7 @@ public class MeterTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Meter-Basic Label Test", groups = {"desktop-regression"})
+    @Test(testName = "Meter-Basic Label Test", groups = {"desktop-regression","mobile-regression"})
     private void useBasicLabelTest() {
         commonUtils.getUrl(url);
         fontSize = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-size");
@@ -112,11 +112,11 @@ public class MeterTest extends BaseClass {
      * Mobile Tests
      *****************/
 
-    @Test(testName = "Mobile: Height and Color Test", dataProvider = "Meter Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile: Height and Color Test", dataProvider = "Meter Test Data", groups = {"mobile-regression"})
     private void meterMobileTest(String state, By element, String cssProperty, String[] expHeight, String[] expBackgroundColor) throws Exception {
-        commonUtils.getUrl(url, "mobile");
-        height = commonUtils.getCSSValue(element, "height", "mobile"); //18px is being returned by IE and Edge, all other 20px.
-        backgroundColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+        commonUtils.getUrl(url);
+        height = commonUtils.getCSSValue(element, "height"); //18px is being returned by IE and Edge, all other 20px.
+        backgroundColor = commonUtils.getCSSValue(element, cssProperty);
 
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
@@ -128,22 +128,22 @@ public class MeterTest extends BaseClass {
         }
         Assert.assertTrue(isHeight && isBackgroundColor);
     }
-
+*/
     @Test(testName = "Mobile: Border Properties Test", dataProvider = "Meter Border Properties Test Data", groups = {"mobile-regression"})
     private void meterBorderPropertiesMobileTest(By element, String[] borderTopColor, String[] borderBottomColor, String[] borderLeftColor, String[] borderRightColor, String borderTopStyle, String borderBottomStyle, String borderLeftStyle, String borderRightStyle, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth) {
-        commonUtils.getUrl(url, "mobile");
-        result = verifyMeterBorderProperties(element, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, "mobile");
+        commonUtils.getUrl(url);
+        result = verifyMeterBorderProperties(element, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Meter-Basic Label Test", groups = "mobile-regression")
+   /* @Test(testName = "Mobile: Meter-Basic Label Test", groups = "mobile-regression")
     private void useBasicLabelMobileTest() {
-        commonUtils.getUrl(url, "mobile");
-        fontSize = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "line-height", "mobile");
-        fontWeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-weight", "mobile");
-        color = commonUtils.getCSSValue(meterPgObj.meterLabel, "color", "mobile");
-        marginBottom = commonUtils.getCSSValue(meterPgObj.meterLabel, "margin-bottom", "mobile");
+        commonUtils.getUrl(url);
+        fontSize = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-size");
+        lineHeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "line-height");
+        fontWeight = commonUtils.getCSSValue(meterPgObj.meterLabel, "font-weight");
+        color = commonUtils.getCSSValue(meterPgObj.meterLabel, "color");
+        marginBottom = commonUtils.getCSSValue(meterPgObj.meterLabel, "margin-bottom");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, new String[]{"14px", "13.93px"});
         if (!isFontSize) {
@@ -160,7 +160,7 @@ public class MeterTest extends BaseClass {
         }
         isMarginBottom = commonUtils.assertValue(marginBottom, "8px", "meter margin bottom is not as per the SPEC");
         Assert.assertTrue(isFontSize && isLineHeight && isFontWeight && isColor && isMarginBottom);
-    }
+    }*/
 
     /*****************
      * Common Methods
@@ -210,21 +210,21 @@ public class MeterTest extends BaseClass {
         return (isBorderTopColor && isBorderBottomColor && isBorderLeftColor && isBorderRightColor && isBorderTopStyle && isBorderBottomStyle && isBorderLeftStyle && isBorderRightStyle && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth);
     }
 
-    private boolean verifyMeterBorderProperties(By element, String[] expBorderTopColor, String[] expBorderBottomColor, String[] expBorderLeftColor, String[] expBorderRightColor, String expBorderTopStyle, String expBorderBottomStyle, String expBorderLeftStyle, String expBorderRightStyle, String expBorderTopWidth, String expBorderBottomWidth, String expBorderLeftWidth, String expBorderRightWidth, String mobile) {
-        borderTopColor = commonUtils.getCSSValue(element, "border-top-color", "mobile");
-        borderBottomColor = commonUtils.getCSSValue(element, "border-bottom-color", "mobile");
-        borderLeftColor = commonUtils.getCSSValue(element, "border-left-color", "mobile");
-        borderRightColor = commonUtils.getCSSValue(element, "border-right-color", "mobile");
+    /*private boolean verifyMeterBorderProperties(By element, String[] expBorderTopColor, String[] expBorderBottomColor, String[] expBorderLeftColor, String[] expBorderRightColor, String expBorderTopStyle, String expBorderBottomStyle, String expBorderLeftStyle, String expBorderRightStyle, String expBorderTopWidth, String expBorderBottomWidth, String expBorderLeftWidth, String expBorderRightWidth, String mobile) {
+        borderTopColor = commonUtils.getCSSValue(element, "border-top-color");
+        borderBottomColor = commonUtils.getCSSValue(element, "border-bottom-color");
+        borderLeftColor = commonUtils.getCSSValue(element, "border-left-color");
+        borderRightColor = commonUtils.getCSSValue(element, "border-right-color");
 
-        borderTopStyle = commonUtils.getCSSValue(element, "border-top-style", "mobile");
-        borderBottomStyle = commonUtils.getCSSValue(element, "border-bottom-style", "mobile");
-        borderLeftStyle = commonUtils.getCSSValue(element, "border-left-style", "mobile");
-        borderRightStyle = commonUtils.getCSSValue(element, "border-right-style", "mobile");
+        borderTopStyle = commonUtils.getCSSValue(element, "border-top-style");
+        borderBottomStyle = commonUtils.getCSSValue(element, "border-bottom-style");
+        borderLeftStyle = commonUtils.getCSSValue(element, "border-left-style");
+        borderRightStyle = commonUtils.getCSSValue(element, "border-right-style");
 
-        borderTopWidth = commonUtils.getCSSValue(element, "border-top-width", "mobile");
-        borderBottomWidth = commonUtils.getCSSValue(element, "border-bottom-width", "mobile");
-        borderLeftWidth = commonUtils.getCSSValue(element, "border-left-width", "mobile");
-        borderRightWidth = commonUtils.getCSSValue(element, "border-right-width", "mobile");
+        borderTopWidth = commonUtils.getCSSValue(element, "border-top-width");
+        borderBottomWidth = commonUtils.getCSSValue(element, "border-bottom-width");
+        borderLeftWidth = commonUtils.getCSSValue(element, "border-left-width");
+        borderRightWidth = commonUtils.getCSSValue(element, "border-right-width");
 
         isBorderTopColor = commonUtils.assertCSSProperties("meter", borderTopColor, expBorderTopColor);
         if (!isBorderTopColor) {
@@ -254,7 +254,7 @@ public class MeterTest extends BaseClass {
         isBorderRightWidth = commonUtils.assertValue(borderRightWidth, expBorderRightWidth, "border-right-width for meter is not as per the SPEC");
         return (isBorderTopColor && isBorderBottomColor && isBorderLeftColor && isBorderRightColor && isBorderTopStyle && isBorderBottomStyle && isBorderLeftStyle && isBorderRightStyle && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth);
     }
-
+*/
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());

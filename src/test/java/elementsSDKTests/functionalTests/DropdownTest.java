@@ -55,11 +55,11 @@ public class DropdownTest extends BaseClass {
     @BeforeClass(alwaysRun = true)
     private void DropDownTestBeforeClass() {
         dropdownPgObj = new FunctionalDropdownPageObjects();
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         setMobile = BaseClass.mobile;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.appiumDriver;
+        setAppium = BaseClass.mobileOS;
         mobileDevice = BaseClass.mobDeviceName;
     }
 

@@ -55,7 +55,7 @@ public class LoadingIndicatorTest extends BaseClass {
         setDesktop = BaseClass.desktop;
         setMobile = BaseClass.mobile;
         lBrowser = BaseClass.localBrowser;
-        browser = BaseClass.sauceBrowser;
+        browser = BaseClass.bsBrowser;
     }
 
     @DataProvider(name = "Verify CSS properties of Chip Test Data")
