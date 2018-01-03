@@ -76,9 +76,12 @@ public class BaseClass {
         }
         //The below conditions is to run the desktop tests on Sauce via Travis CI
         if (runEnv.equals("travis")) {
+            System.out.println("1");
             if (desktop.equals("on")) {
+                System.out.println("2");
                 //The below conditions is to launch the respective browser driver on Sauce machine via Travis CI
                 if (sauceBrowser.equals("chrome")) {
+                    System.out.println("3");
                     caps = DesiredCapabilities.chrome();
                 } else if (sauceBrowser.equals("firefox")) {
                     caps = DesiredCapabilities.firefox();
@@ -98,7 +101,9 @@ public class BaseClass {
                     }
                     caps.setCapability(desktopCaps[i], desktopCaps[i + 1]);
                 }
+                System.out.println("4");
                 driver = new RemoteWebDriver(new URL(URL), caps);
+                System.out.println("5");
                 driverTimeOut();
             }
 
@@ -157,7 +162,9 @@ public class BaseClass {
 
     private void driverTimeOut() {
         commonUtils = new CommonUtils(driver);
+        System.out.println("6");
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        System.out.println("7");
     }
 
     private void appiumTimeOut() {

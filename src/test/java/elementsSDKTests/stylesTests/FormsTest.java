@@ -326,6 +326,7 @@ public class FormsTest extends BaseClass {
         } else if (setMobile.equals("on")) {
             commonUtils.getUrl(url, "mobile");
         }*/
+        System.out.println("2i");
         commonUtils.getUrl(url);
 
     }
