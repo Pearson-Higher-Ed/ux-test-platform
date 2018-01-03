@@ -14,12 +14,14 @@ import org.testng.annotations.*;
 import utilities.BaseClass;
 
 public class FormsTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+   // private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
     private static String env = "", mobileDevice = "", setDesktop = "";
     final static Logger log = Logger.getLogger(FormsTest.class.getName());
     private String fontSize = "", lineHeight = "", fontWeight = "", marginBottom = "", fontColor = "", marginTop = "", errorDescColor = "", firstNameLabelFontSize = "", firstNameLabelFontColor = "", firstNameLabelLineHt = "", lastNameLabelFontSize = "", lastNameLabelFontColor = "", lastNameLabelLineHt = "", inputClassName = "", submitBtnClass = "", submitBtnColor = "", inputFontSize = "", underlineClass = "", underlineHt = "", inputBorderWidth = "", inputBorderColor = "", inputBorderStyle = "", paddingTop = "", paddingBottom = "", inputValueColor = "";
     private boolean isFontSize = false, isLineHeight = false, isFontWeight = false, isMarginBottom = false, isFontColor = false, isMarginTop = false, isErrorDescColor = false, isFirstNameLabelFontSize = false, isFirstNameLabelFontColor = false, isFirstNameLabelLineHt = false, isLastNameLabelFontSize = false, isLastNameLabelFontColor = false, isLastNameLabelLineHt = false, isInputClassName = false, isSubmitBtnClass = false, isSubmitBtnColor = false, isInputFontSize = false, isUnderlineClass = false, isUnderlineHt = false, isInputBorderWidth = false, isInputBorderStyle = false, isInputBorderColor = false, isPaddingBottom = false, isPaddingTop = false, isInputValueColor;
     FormsPageObjects formsPgObj = null;
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/forms.html";
+
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
@@ -299,14 +301,33 @@ public class FormsTest extends BaseClass {
         Assert.assertTrue(isInputBorderStyle && isInputBorderWidth && isInputBorderColor && isPaddingTop && isPaddingBottom && isInputFontSize && isInputValueColor && isLineHeight);
     }
 
+    @Test(testName = "BS-Test", groups = "desktop-ci1")
+    public void bsTest() throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("before css");
+
+        //System.out.println(appium.findElements(formsPgObj.formName));
+        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size");
+        System.out.println("font size " + fontSize);
+
+//        WebElement element = appium.findElement(By.name("q"));
+//
+//        element.sendKeys("BrowserStack");
+//        element.submit();
+//
+//        System.out.println(appium.getTitle());
+    }
+
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
+        /*if (setDesktop.equals("on")) {
             commonUtils.getUrl(url);
         } else if (setMobile.equals("on")) {
             commonUtils.getUrl(url, "mobile");
-        }
+        }*/
+        commonUtils.getUrl(url);
+
     }
 
     @AfterMethod(alwaysRun = true)

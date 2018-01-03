@@ -6,19 +6,20 @@ jdk:
 
 env:
   global:
-  - secure: UX8IPlfuE1XvcEJwZiv6eM4rsPO3cxapgywxLqOObVt2wypsSiHo0NkkYJet5MfgpPYIviy8FP2poZUG3PkSc+x+zWtNf+usYBMeuhjbaW4sUvjznwhOpq5qphEhBlf7L9OCGd5Qv0qZjoHNSD5stfSOJd8Z53miFJ4O4KjpRNVFCJYfn1ple5WCoCjATbMl6bZqbigYU3s0jaXp9oue8cYVCttm/ahyQ+O9ya/NvGr93mr+dIr0scXDAMDM3aUTB8VZcRJ46Y9jy8MJ3nQTlJr1/+Gm2ujdpzgloVlQ2nBgSPAjvxJv3RQIZZsIYm4SoRntpSilYR91KZFEirUkZON7E6/bhb8N4mJTnqo5UPcHJl/8teF+SfdURiYDc7XQ3i94aiWKzOdzNBWi0OZsAU483jn0+kuTMafsTZ3EOGMMequZecdfn4PG47Ahq29Qy2s/92CECNoFiZL8BXCAbb4ecnS0fShe/79qsbG7OyTHkJlDPYhoQY+2eCVv0Wnrprv/sThzmnrs8QpAyPWAQ4siJ0y8Q8mIeDUWWZ4C5cll4Mincom7tdOOapuCsNLCxWn2LJeyCRPzpbgJBW4I2R76Ed2yjR1yuh4l5W0HB1604rRh+ImPpHn8ZYDYxrk284aI2RzhSNkUU6bdx2tgheJs2uFtDgXKIpZtlw1Kqks=
-  - secure: P8t4vLidU5cVGbHllIiUkZFeajPVwGMaipIe+o1rm0FQO7bciJawoXJSOcTSMJhN1RMFSzF0ZaAbo4EiLJcx2VGxppyiR8LLYDMXt8E0QuW+Yy91K8TdjJOMrgJlWJsWmK8pRVjQSeLP77xDO7HvA/vfJPSf3d6DLeeFQ+Y+hu1/u+HwTUxZ4Ta79Iy87U6y4tyZCx/0H28Xvb9cMRM0m1urPJ15EGyDGJfo9rmn77VKrdFy2q5QDjF/O8o6fNCZ+lXlyWxEnxawETKjX3nfOTM1Lm2pfLfKC3+zhLQ5ukQPbrhDXK5QHK03nppv7lUMtN+BskWyJCZnC7l4VkZyYaOumnTENuDXK4O7Lq4swv3jXOcWZT3ZLpRG0/Ydw4rFwPOW4VCVEO10tVdxyi+hro4C+CgNxalXyXdLCAGqEYkIH0RsKp3hPoOaD00pstobGvEw/ZWIhinkk8YNAJ4MliKINonFBHUe5TEt4p4QV2awee3Q8ajn9F0BhpNsS733dkSIV1BvWgj/BwVllN4kxNP0XoCFMVa7lifykFr/TI39ilwUFK5wOM36kmVTTLHumB4qVdybrqOcG2amjsTgql9MbBxuD0tzBpLJzKacCXB/W8Z148oYFQQSkX6KM5Cp39a2HiLmH2oZrLk8xrVNxUcGqS+xYW3S7CEYSxxp+hs=
   - CXX=g++-4.8
   - export UX_TEST_PLATFORM_ROOT_DIR=~/build/Pearson-Higher-Ed/ux-test-platform
 
 addons:
-  sauce_connect:
-    no_ssl_bump_domains: all
   apt:
       sources:
         - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
+  browserstack:
+          username: "pdatest1"
+          access_key:
+                secure: RQUOFh6GGpdurm+iypJFMfghXbOcCv19Tb/iHvPwl64kyJDPPNhELH6N0mDgEjs8GgVIBD6O+Ww63wi88giebYajaY6T72XZJjm2UHp1g10Snx9m5j2eknY+mTOJUK40TvQGqSFt+cXh3pgaWEIRFcuFf7IAiVC3Y04R8nZPB0vaRWgxdl1X3DjNl0Vy2CEhWTx+MJxzZS6ORJBpgSduI26k1Nc91szpmA50nXMPVfyp6SQ/QjM+E7iIgRKEYYKX2jrzrgElxj6+ufQYChFalc8Ko0USOsbn6PgM2ciNfQIv9foXY7r4cMnS2eIYrhbo241ecT80X/d7+7E3NWIbYO0lXzNFMpY6S2+8VtH33OWSsBipofN8/MOOvUMp2R9atE8j942pkLqRsV+Zok60R+394fTOJkrN4UT8Xrp4eJlYYBkAkwAWqdNBDhH2kScbWDiDMMGrIcYOSbj2SloHa61egCvwccFF2TrBUN0ctA4FjSzCU0zxm9/K5hFzwXtP6TtdtR24riC0DoMQGyzz9mcRmKrz9G1vbp/pgkCqJ7w4XidwLK4koZ32JqsEz93vH9alV0rdjFapX9XewcmxjWSp8rny2MHJLXbBapY3duV/8MxHEPZ2/xUxY1HnUeHnx88QmCyF/Iwc3Sd5eqHoiXpJZFXfho2DeYmNQrXltIU=
+
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
@@ -29,7 +30,7 @@ before_script:
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
-- export component=elements-sdk
+- export component=elements-sdk1
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
@@ -38,7 +39,7 @@ script:
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    #- eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always

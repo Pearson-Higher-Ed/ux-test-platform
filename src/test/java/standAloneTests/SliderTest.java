@@ -58,7 +58,7 @@ public class SliderTest extends BaseClass {
 
     @Test(testName = "Drag To Left", dataProvider = "Drag to Left Test Data", groups = {"desktop-regression"})
     private void dragKnobToLeftTest(By element, int moveByXOffset, String[] expVal) throws Exception {
-        if (!((browser.equals("ie")) || (sauceBrowser.equals("chrome") && sauceBrowserVer.startsWith("6")))) {
+        if (!((browser.equals("ie")) || (sauceBrowser.equals("chrome") && bsBrowserVer.startsWith("6")))) {
             new Actions(driver).dragAndDropBy(slider, moveByXOffset, 0).perform();
             actSliderVal = commonUtils.getAttributeValue(element, "aria-valuenow");
             isSliderVal = commonUtils.assertCSSProperties("aria-valuenow", actSliderVal, expVal);
@@ -80,7 +80,7 @@ public class SliderTest extends BaseClass {
 
     @Test(testName = "Drag To Right", dataProvider = "Drag to Right Test Data", groups = {"desktop-regression"})
     private void dragKnobToRightTest(By element, int moveByXOffset, String[] expVal) throws Exception {
-        if (!((browser.equals("ie")) || (sauceBrowser.equals("chrome") && sauceBrowserVer.startsWith("6")))) {
+        if (!((browser.equals("ie")) || (sauceBrowser.equals("chrome") && bsBrowserVer.startsWith("6")))) {
             new Actions(driver).dragAndDropBy(slider, moveByXOffset, 0).perform();
             actSliderVal = commonUtils.getAttributeValue(sliderPgObj.slider, "aria-valuenow");
             isSliderVal = commonUtils.assertCSSProperties("aria-valuenow", actSliderVal, expVal);

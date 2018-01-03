@@ -42,14 +42,17 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    final static String USERNAME = SauceParam.SAUCE_USERNAME;
-    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
-    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+    //    final static String USERNAME = SauceParam.SAUCE_USERNAME;
+//    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
+//    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+    final static String USERNAME = "pdatest1";
+    final static String AUTOMATE_KEY = "ivyUysGiZuau52YJokAq";
+    final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
     final static Logger log = Logger.getLogger(BaseClass.class.getName());
-    public static String runEnv = "", travis = "", desktop = "", platform = "", sauceBrowser = "", sauceBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
+    public static String runEnv = "", travis = "", desktop = "", platform = "", osVersion ="",sauceBrowser = "", bsBrowserVer = "", localBrowser = "", mobile = "", appiumDriver = "", mobDeviceName = "", mobilePlatformVer = "", mobBrowser = "", appiumVer = "";
     LoggingPreferences logs = new LoggingPreferences();
     Process process = null;
     public static boolean isLocal = false;
@@ -62,8 +65,10 @@ public class BaseClass {
         setDesktop = desktop;
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
-        String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
-        String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
+        //String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
+        //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
+        String[] desktopCaps = new String[]{"os", platform, "os_version",osVersion ,"browser_version",bsBrowserVer, "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "resolution", "1920x1440", "browserstack.debug", "false", "browserstack.timezone", "London"};
+        String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "browserstack.debug", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.timezone", "London"};
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");
@@ -87,7 +92,7 @@ public class BaseClass {
                 }
                 caps.setCapability(CapabilityType.LOGGING_PREFS, logs);
                 for (int i = 0; i < (desktopCaps.length - 1); i += 2) {
-                    if (platform.startsWith("Windows") && desktopCaps[i].equals("screenResolution")) {
+                    if (platform.startsWith("Windows") && desktopCaps[i].equals("resolution")) {
                         caps.setCapability(desktopCaps[i], "2560x1600");
                         continue;
                     }
@@ -102,12 +107,13 @@ public class BaseClass {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     caps.setCapability(mobileCaps[i], mobileCaps[i + 1]);
                 }
-                if (appiumDriver.equalsIgnoreCase("iOS")) {
+                /*if (appiumDriver.equalsIgnoreCase("iOS")) {
                     appium = new IOSDriver(new URL(URL), caps);
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
-                }
-                appiumTimeOut();
+                }*/
+                driver = new RemoteWebDriver(new URL(URL), caps);
+                driverTimeOut();
             }
         }
         //The below else condition is to launch browser driver on your local machine.
@@ -127,19 +133,24 @@ public class BaseClass {
             //The below else condition is to run tests on sauce from your local machine, skipping Travis CI
             if (mobile.equals("on")) {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
-                    if (mobileCaps[i].equals("tunnel-identifier"))
-                        caps.setCapability(mobileCaps[i], SauceParam.SAUCE_TUNNEL);
-                    if (mobileCaps[i].equals("build"))
+                    if (mobileCaps[i].equals("browserstack.localIdentifier")) {
+                        caps.setCapability(mobileCaps[i], "Test123");// **** change this to reflect params file *****
+                       // continue;
+                    }
+                    else if (mobileCaps[i].equals("build"))
                         continue;
-                    caps.setCapability(mobileCaps[i], mobileCaps[i + 1]);
+                    else
+                        caps.setCapability(mobileCaps[i], mobileCaps[i + 1]);
                 }
 
-                if (appiumDriver.equalsIgnoreCase("iOS")) {
+               /* if (appiumDriver.equalsIgnoreCase("iOS")) {
                     appium = new IOSDriver(new URL(URL), caps);
                 } else if (appiumDriver.equalsIgnoreCase("android")) {
                     appium = new AndroidDriver(new URL(URL), caps);
                 }
-                appiumTimeOut();
+                appiumTimeOut();*/
+                driver = new RemoteWebDriver(new URL(URL), caps);
+                driverTimeOut();
             }
         }
     }
@@ -156,13 +167,15 @@ public class BaseClass {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        if (mobile.equals("on")) {
+        driver.close();
+        driver.quit();
+        /*if (mobile.equals("on")) {
             appium.closeApp();
             appium.quit();
         } else {
             driver.close();
             driver.quit();
-        }
+        }*/
     }
 
     @BeforeSuite(alwaysRun = true)
@@ -189,14 +202,15 @@ public class BaseClass {
                 mobile = "on";
             }
             platform = prop.getProperty("platform");
-            sauceBrowser = prop.getProperty("sauceBrowser");
-            sauceBrowserVer = prop.getProperty("sauceBrowserVer");
+            osVersion = prop.getProperty("platformVersion");
+            sauceBrowser = prop.getProperty("bsBrowser");
+            bsBrowserVer = prop.getProperty("bsBrowserVer");
             localBrowser = prop.getProperty("localBrowser");
-            appiumDriver = prop.getProperty("appiumDriver");
+            //appiumDriver = prop.getProperty("appiumDriver");
             mobDeviceName = prop.getProperty("mobDeviceName");
             mobilePlatformVer = prop.getProperty("mobilePlatformVer");
-            mobBrowser = prop.getProperty("mobBrowser");
-            appiumVer = prop.getProperty("appiumVer");
+           // mobBrowser = prop.getProperty("mobBrowser");
+           // appiumVer = prop.getProperty("appiumVer");
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
@@ -210,7 +224,7 @@ public class BaseClass {
         }
         if (runEnv.equals("travis")) {
             if (desktop.equals("on")) {
-                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + platform + "\n" + successColorCode + "browser: " + sauceBrowser + "\n" + successColorCode + "version: " + sauceBrowserVer + "\n"));
+                System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + platform + "\n" + successColorCode + "browser: " + sauceBrowser + "\n" + successColorCode + "version: " + bsBrowserVer + "\n"));
             } else if (mobile.equals("on")) {
                 System.out.println((successColorCode + "Running " + testSuite + ": '" + groupsInclude + "' tests on: \n" + successColorCode + "platform: " + appiumDriver + "\n" + successColorCode + "device: " + mobDeviceName + "\n"));
             }
