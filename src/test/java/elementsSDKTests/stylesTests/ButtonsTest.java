@@ -587,7 +587,7 @@ public class ButtonsTest extends BaseClass {
     private void beforeMethod(Method method) {
         System.out.println(groupsInclude);
         //System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (groupsInclude.equals("mobile-regression")) {
+        if (groupsInclude.equals("mobile-regression1")) {
             System.out.println("mobile");
             System.out.println("Test Method----> " + this.getClass().getSimpleName().concat("Mobile") + "::" + method.getName());
         } else {
