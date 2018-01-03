@@ -301,7 +301,7 @@ public class FormsTest extends BaseClass {
         Assert.assertTrue(isInputBorderStyle && isInputBorderWidth && isInputBorderColor && isPaddingTop && isPaddingBottom && isInputFontSize && isInputValueColor && isLineHeight);
     }
 
-    @Test(testName = "BS-Test", groups = "desktop-ci1")
+    @Test(testName = "BS-Test", groups = "mobile-ci1")
     public void bsTest() throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("before css");

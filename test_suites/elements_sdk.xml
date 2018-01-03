@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="desktop-ci1"/>
+            <include name="mobile-ci1"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->

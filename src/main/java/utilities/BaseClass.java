@@ -258,7 +258,6 @@ public class BaseClass {
 
     private void setUpLocalWebServer() throws IOException {
         if (System.getProperty("os.name").contains("Mac")) {
-            System.out.println("hi");
             String[] env = {"export PATH=$PATH:/usr/bin/"};
             String cmd = "python -m SimpleHTTPServer";  //e.g test.sh -dparam1 -oout.txt
             process = Runtime.getRuntime().exec(cmd, env);
