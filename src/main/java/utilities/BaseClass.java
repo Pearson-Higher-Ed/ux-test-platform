@@ -201,7 +201,7 @@ public class BaseClass {
                 desktop = "off";
                 mobile = "on";
             }
-            platform = prop.getProperty("platform");
+            platform = prop.getProperty("os");
             osVersion = prop.getProperty("platformVersion");
             sauceBrowser = prop.getProperty("bsBrowser");
             bsBrowserVer = prop.getProperty("bsBrowserVer");
