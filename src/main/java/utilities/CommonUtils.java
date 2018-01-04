@@ -522,10 +522,16 @@ public class CommonUtils {
 
     public void rotate(ScreenOrientation mode){
         System.out.println("1");
-        rotator = ((Rotatable) driver);
-        System.out.println("2");
-        rotator.rotate(mode);
-        System.out.println("3");
+        try {
+            rotator = ((Rotatable) driver);
+            System.out.println("2");
+            rotator.rotate(mode);
+            System.out.println("3");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
     public static void setupChromeDriver() {
