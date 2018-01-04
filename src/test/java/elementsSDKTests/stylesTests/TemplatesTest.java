@@ -20,15 +20,12 @@ public class TemplatesTest extends BaseClass {
     private boolean isPaddingRight = false, isPaddingLeft = false, isColWidth = false, isPaddingBottom = false, isPaddingTop;
     final static Logger log = Logger.getLogger(TemplatesTest.class.getName());
     TemplatesPageObjects templatePgObj = null;
-    Rotatable rotator = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
         templatePgObj = new TemplatesPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
-        rotator = ((Rotatable) driver);
-
     }
 
     @DataProvider(name = "XS Template Test Data")
@@ -424,7 +421,7 @@ public class TemplatesTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus' or 'iPhone 7 Plus");
         }
         commonUtils.getUrl(url);
-        rotator.rotate(mode);
+        commonUtils.rotate(mode);
         //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");

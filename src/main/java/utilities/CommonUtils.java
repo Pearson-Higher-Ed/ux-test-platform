@@ -45,6 +45,7 @@ public class CommonUtils {
     Color c = null;
     String labelContains = "", ariaDescByContains = "";
     BufferedReader br = null;
+    Rotatable rotator = null;
     private List<String> newLines = null, fileContent = null;
     public final String errorColorCode = "\u001B[31m";
     final static Logger log = Logger.getLogger(CommonUtils.class.getName());
@@ -517,6 +518,11 @@ public class CommonUtils {
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, unable to get size of mobile elements");
             return 0;
         }
+    }
+
+    public void rotate(ScreenOrientation mode){
+        rotator = ((Rotatable) driver);
+        rotator.rotate(mode);
     }
 
     public static void setupChromeDriver() {

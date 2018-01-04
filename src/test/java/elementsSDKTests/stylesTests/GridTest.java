@@ -23,14 +23,12 @@ public class GridTest extends BaseClass {
     private boolean isPaddingRight = false, isPaddingLeft = false, isContainerWidth = false, isColWidth = false, isMarginLeft = false, isMarginRight = false;
     final static Logger log = Logger.getLogger(GridTest.class.getName());
     GridPageObjects gridPgObj = null;
-    Rotatable rotator = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
         gridPgObj = new GridPageObjects();
         env = BaseClass.runEnv;
         mobileDevice = BaseClass.mobDeviceName;
-        rotator = ((Rotatable) driver);
     }
 
     @DataProvider(name = "Container1 Test Data")
@@ -339,7 +337,7 @@ public class GridTest extends BaseClass {
         }
         commonUtils.getUrl(url);
         //appium.rotate(mode);
-        rotator.rotate(mode);
+        commonUtils.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         containerWidth = commonUtils.getCSSValue(element, "width");
@@ -366,7 +364,7 @@ public class GridTest extends BaseClass {
         }
         commonUtils.getUrl(url);
         //appium.rotate(mode);
-        rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
@@ -391,8 +389,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         commonUtils.getUrl(url);
-       // appium.rotate(mode);
-        rotator.rotate(mode);
+        // appium.rotate(mode);
+        commonUtils.rotate(mode);
 
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -418,8 +416,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         commonUtils.getUrl(url);
-       // appium.rotate(mode);
-        rotator.rotate(mode);
+        // appium.rotate(mode);
+        commonUtils.rotate(mode);
 
         int i;
         for (i = 1; i <= 12; i++) {
@@ -444,8 +442,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
         commonUtils.getUrl(url);
-       // appium.rotate(mode);
-        rotator.rotate(mode);
+        // appium.rotate(mode);
+        commonUtils.rotate(mode);
 
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -470,8 +468,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
         commonUtils.getUrl(url);
-       //   rotator.rotate(mode);
-        rotator.rotate(mode);
+        //   commonUtils.rotate(mode);
+        commonUtils.rotate(mode);
 
         int i;
         for (i = 1; i <= 12; i++) {
@@ -505,8 +503,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
         commonUtils.getUrl(url);
-       //   rotator.rotate(mode);
-        rotator.rotate(mode);
+        //   commonUtils.rotate(mode);
+        commonUtils.rotate(mode);
 
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, "width for " + colName + " and window size" + mode + "is not as per the spec");
@@ -535,8 +533,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
         commonUtils.getUrl(url);
-       //   rotator.rotate(mode);
-        rotator.rotate(mode);
+        //   commonUtils.rotate(mode);
+        commonUtils.rotate(mode);
 
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, "width for " + colName + " and window size " + mode + " is not as per the spec");
@@ -565,8 +563,8 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-       //   rotator.rotate(mode);
-        rotator.rotate(mode);
+        //   commonUtils.rotate(mode);
+        commonUtils.rotate(mode);
 
         commonUtils.getUrl(url);
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -597,7 +595,7 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         commonUtils.getUrl(url);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
@@ -626,7 +624,7 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         commonUtils.getUrl(url);
         colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
@@ -651,7 +649,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
@@ -688,7 +686,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
@@ -722,7 +720,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
@@ -756,7 +754,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
@@ -775,7 +773,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
@@ -800,7 +798,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         containerWidth = commonUtils.getCSSValue(element, "width");
@@ -826,7 +824,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
         commonUtils.getUrl(url);
-          rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
@@ -843,7 +841,7 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
         commonUtils.getUrl(url);
-       //   rotator.rotate(mode);
+        commonUtils.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
