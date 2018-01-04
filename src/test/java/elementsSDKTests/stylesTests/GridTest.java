@@ -3,6 +3,7 @@ package elementsSDKTests.stylesTests;
 import elementsSDK.styles.stylesPageObjects.GridPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.Rotatable;
 import org.openqa.selenium.ScreenOrientation;
 import org.testng.Assert;
@@ -325,8 +326,9 @@ public class GridTest extends BaseClass {
     @DataProvider(name = "iOS: XS and SM Container Padding Test Data")
     private Object[][] getXSandSMContainerPaddingiOSTestData() {
         return new Object[][]{
+                {ScreenOrientation.LANDSCAPE, gridPgObj.container1, "20px", "20px", "736px"},
                 {ScreenOrientation.PORTRAIT, gridPgObj.container1, "10px", "10px", "414px"},
-                {ScreenOrientation.LANDSCAPE, gridPgObj.container1, "20px", "20px", "736px"}
+
         };
     }
 
@@ -335,9 +337,9 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
+        commonUtils.rotate(mode);
         commonUtils.getUrl(url);
         //appium.rotate(mode);
-        commonUtils.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         containerWidth = commonUtils.getCSSValue(element, "width");
@@ -357,7 +359,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regression1")
+    @Test(testName = "Mobile(iOS): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regression")
     private void xsAndSMColumnPaddingMobileiOSTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");

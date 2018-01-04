@@ -8,6 +8,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -523,10 +525,15 @@ public class CommonUtils {
     public void rotate(ScreenOrientation mode){
         System.out.println("1");
         try {
-            rotator = ((Rotatable) driver);
             System.out.println("2");
-            rotator.rotate(mode);
-            System.out.println("3");
+//            WebDriver augmentedDriver = new Augmenter().augment(driver);
+//            System.out.println("3");
+//            rotator = ((Rotatable) augmentedDriver);
+            WebDriver augmentedDriver = new Augmenter().augment(driver);
+            ((Rotatable)augmentedDriver).rotate(mode);
+            System.out.println("4");
+          //  rotator.rotate(mode);
+            System.out.println("5");
         }
         catch (Exception e)
         {
