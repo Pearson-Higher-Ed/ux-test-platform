@@ -47,7 +47,7 @@ public class TablesTest extends BaseClass {
         device = BaseClass.mobileOS;
     }
 
-    @Test(testName = "Header - Basic Table Test", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Header - Basic Table Test", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void headerBasicTableTest() throws InterruptedException {
         Thread.sleep(1000);
         for (String cssProperty : borderStyles) {
@@ -98,7 +98,7 @@ public class TablesTest extends BaseClass {
     }
 
     // Find header elementsSDK.styles in the table and check its CSS properties
-    @Test(testName = "Header Titles - Basic Table Test", dataProvider = "Header Titles - Basic Table Test Data", groups = "desktop-regression")
+    @Test(testName = "Header Titles - Basic Table Test", dataProvider = "Header Titles - Basic Table Test Data", groups = {"desktop-regression","mobile-regression"})
     private void headerTitlesBasicTableTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         String cssPropertyType = cssProperty;
         table = driver.findElement(tablePgObj.basicHeader);
@@ -329,12 +329,13 @@ public class TablesTest extends BaseClass {
     /**
      * Mobile Tests
      */
+/*
 
     @Test(testName = "Header - Basic Table Mobile Test", groups = "mobile-regression")
     private void headerBasicTableMobileTest() throws InterruptedException {
         Thread.sleep(1000);
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderStyle = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderStyle = commonUtils.assertCSSProperties(cssProperty, borderStyle, new String[]{"solid", "none"});
             if (!isBorderStyle) {
                 log.info(cssProperty + " of header - basic table is not as per spec, actual: " + borderStyle);
@@ -342,7 +343,7 @@ public class TablesTest extends BaseClass {
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderColor = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties("border-color", borderColor, new String[]{commonUtils.hex2Rgb("#D9D9D9"), commonUtils.hex2RgbWithoutTransparency("#D9D9D9"), commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
             if (!isBorderColor) {
                 log.info(cssProperty + " of header - basic table is not as per spec, actual: " + borderColor);
@@ -350,14 +351,14 @@ public class TablesTest extends BaseClass {
             Assert.assertTrue(isBorderColor);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty, "mobile");
+            borderWidth = commonUtils.getCSSValue(tablePgObj.basicHeader, cssProperty);
             isBorderWidth = commonUtils.assertCSSProperties(cssProperty, borderWidth, new String[]{"0px", "1px"});
             if (!isBorderWidth) {
                 System.out.println(cssProperty + " of header - basic table is not as per spec, actual: " + borderWidth);
             }
             Assert.assertTrue(isBorderWidth);
         }
-        backgroundColor = commonUtils.getCSSValue(tablePgObj.basicHeader, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(tablePgObj.basicHeader, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")});
         if (!isBackgroundColor) {
             log.info("Background Color of header - basic table is not as per spec, actual: " + backgroundColor);
@@ -365,19 +366,20 @@ public class TablesTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor);
     }
 
+
     @Test(testName = "Header Titles - Basic Table Mobile Test", dataProvider = "Header Titles - Basic Table Test Data", groups = "mobile-regression")
     private void headerTitlesBasicTableMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         String cssPropertyType = cssProperty;
         table = appium.findElement(tablePgObj.basicHeader);
         listElements = table.findElements(By.tagName("th"));
         for (int i = 1; i <= listElements.size(); i++) {
-            cssProperty = commonUtils.getCSSValue(By.xpath(tablePgObj.headerTitleXpath("basic-table", i)), cssPropertyType, "mobile");
+            cssProperty = commonUtils.getCSSValue(By.xpath(tablePgObj.headerTitleXpath("basic-table", i)), cssPropertyType);
             isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
             if (!isCSSProperty)
                 log.info("'" + cssPropertyType + "' for header - basic table is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
-    }
+    }*/
 
     @Test(testName = "Basic Table Rows CSS Prop Mobile Test", groups = "mobile-regression")
     private void basicTableRowsCSSPropMobileTest() {
