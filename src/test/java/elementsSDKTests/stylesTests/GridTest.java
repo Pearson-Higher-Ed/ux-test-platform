@@ -332,7 +332,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "Mobile(iOS): XS and SM Container Padding Test", dataProvider = "iOS: XS and SM Container Padding Test Data", groups = "mobile-regression")
     private void xsAndSMContainerPaddingMobileiOSTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
-        if (!(mobileDevice.equals("iPhone 6 Plus"))) {
+        if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
         commonUtils.getUrl(url);
@@ -359,7 +359,7 @@ public class GridTest extends BaseClass {
 
     @Test(testName = "Mobile(iOS): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regression")
     private void xsAndSMColumnPaddingMobileiOSTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
-        if (!(mobileDevice.equals("iPhone 6 Plus"))) {
+        if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
         commonUtils.getUrl(url);
