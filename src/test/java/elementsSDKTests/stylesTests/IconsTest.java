@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * Created by umahaea on 2/15/16.
  */
 public class IconsTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/icons.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/icons.html";
     private static String setDesktop = "", setMobile = "";
     private String color = "", width = "", height = "";
     double svgfileSize = 84.00, kilobytes = 0.0;
