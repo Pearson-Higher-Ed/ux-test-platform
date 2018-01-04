@@ -15,7 +15,8 @@ import java.lang.reflect.Method;
  * Created by umahaea on 9/1/16.
  */
 public class GridTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/grid.html";
+    //    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/grid.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/grid.html";
     private static String env = "", mobileDevice = "";
     private String paddingRight = "", paddingLeft = "", containerWidth = "", colWidth = "", marginRight = "", marginLeft = "";
     private boolean isPaddingRight = false, isPaddingLeft = false, isContainerWidth = false, isColWidth = false, isMarginLeft = false, isMarginRight = false;
@@ -333,11 +334,11 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        containerWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        containerWidth = commonUtils.getCSSValue(element, "width");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "container padding-left for window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "container padding-right for window size " + mode + " is not as per the spec");
@@ -359,12 +360,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right");
             isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + mode + " is not as per the spec");
             isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isPaddingLeft && isPaddingRight);
@@ -384,11 +385,11 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        containerWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        containerWidth = commonUtils.getCSSValue(element, "width");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "container padding-left for window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "container padding-right for window size " + mode + " is not as per the spec");
@@ -409,12 +410,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right");
             isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + mode + " is not as per the spec");
             isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isPaddingLeft && isPaddingRight);
@@ -433,11 +434,11 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        containerWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        containerWidth = commonUtils.getCSSValue(element, "width");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "container padding-left for window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "container padding-right for window size " + mode + " is not as per the spec");
@@ -457,12 +458,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right");
             isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + mode + " is not as per the spec");
             isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isPaddingLeft && isPaddingRight);
@@ -490,9 +491,9 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, "width for " + colName + " and window size" + mode + "is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
@@ -518,9 +519,9 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, "width for " + colName + " and window size " + mode + " is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
@@ -548,8 +549,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        commonUtils.getUrl(url);
+        colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
@@ -578,8 +579,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        commonUtils.getUrl(url);
+        colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
@@ -607,8 +608,8 @@ public class GridTest extends BaseClass {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
-        colWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        commonUtils.getUrl(url);
+        colWidth = commonUtils.getCSSValue(element, "width");
         isColWidth = commonUtils.assertValue(colWidth, expectedWidth, " width for " + colName + " and window size " + mode + " is not as per the spec");
         Assert.assertTrue(isColWidth);
     }
@@ -630,20 +631,20 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
-                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right", "mobile");
-                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left", "mobile");
+                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left");
                 isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 Assert.assertTrue(isMarginRight && isMarginLeft);
             }
         } else {
-            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left");
             isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isMarginRight && isMarginLeft);
@@ -667,20 +668,20 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
-                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right", "mobile");
-                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left", "mobile");
+                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left");
                 isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 Assert.assertTrue(isMarginRight && isMarginLeft);
             }
         } else {
-            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left");
             isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isMarginRight && isMarginLeft);
@@ -701,20 +702,20 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
-                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right", "mobile");
-                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left", "mobile");
+                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left");
                 isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 Assert.assertTrue(isMarginRight && isMarginLeft);
             }
         } else {
-            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left");
             isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isMarginRight && isMarginLeft);
@@ -735,12 +736,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        containerWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        containerWidth = commonUtils.getCSSValue(element, "width");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "container padding-left for window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "container padding-right for window size " + mode + " is not as per the spec");
@@ -754,12 +755,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right");
             isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + mode + " is not as per the spec");
             isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isPaddingLeft && isPaddingRight);
@@ -779,11 +780,11 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        containerWidth = commonUtils.getCSSValue(element, "width", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        containerWidth = commonUtils.getCSSValue(element, "width");
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "container padding-left for window size " + mode + " is not as per the spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "container padding-right for window size " + mode + " is not as per the spec");
@@ -805,12 +806,12 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         for (i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id(expColumn + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id(expColumn + i), "padding-right");
             isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "column padding-left for window size " + mode + " is not as per the spec");
             isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "column padding-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isPaddingLeft && isPaddingRight);
@@ -822,20 +823,20 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
         }
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
         appium.rotate(mode);
         int i;
         if (rowName.equals("Container3-Row")) {
             for (i = 1; i <= 12; i++) {
-                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right", "mobile");
-                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left", "mobile");
+                marginRight = commonUtils.getCSSValue(By.id(expRow + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id(expRow + i), "margin-left");
                 isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + i + " row margin-right for window size " + mode + " is not as per the spec");
                 Assert.assertTrue(isMarginRight && isMarginLeft);
             }
         } else {
-            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id(expRow), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id(expRow), "margin-left");
             isMarginLeft = commonUtils.assertValue(marginRight, expMarginLeft, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             isMarginRight = commonUtils.assertValue(marginLeft, expMarginRight, "The " + rowName + " row margin-right for window size " + mode + " is not as per the spec");
             Assert.assertTrue(isMarginRight && isMarginLeft);

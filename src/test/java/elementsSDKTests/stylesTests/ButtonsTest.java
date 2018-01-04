@@ -57,7 +57,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression1","mobile-regression1"})
+    @Test(testName = "Verify Buttons Prop Test", dataProvider = "Button CSS Props Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void cssPropsButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expTextDecoration) throws Exception {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
@@ -585,14 +585,7 @@ public class ButtonsTest extends BaseClass {
      ************/
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
-        System.out.println(groupsInclude);
-        //System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (groupsInclude.equals("mobile-regression1")) {
-            System.out.println("mobile");
-            System.out.println("Test Method----> " + this.getClass().getSimpleName().concat("Mobile") + "::" + method.getName());
-        } else {
-            System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        }
+        System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
         commonUtils.getUrl(url);
     }
 
