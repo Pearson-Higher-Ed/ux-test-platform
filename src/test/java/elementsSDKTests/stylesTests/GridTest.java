@@ -2,10 +2,8 @@ package elementsSDKTests.stylesTests;
 
 import elementsSDK.styles.stylesPageObjects.GridPageObjects;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.DeviceRotation;
-import org.openqa.selenium.Rotatable;
-import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.Augmenter;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -337,7 +335,10 @@ public class GridTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.rotate(mode);
+        //commonUtils.rotate(mode);
+        WebDriver augmentedDriver = new Augmenter().augment(driver);
+        ((Rotatable)augmentedDriver).rotate(ScreenOrientation.LANDSCAPE);
+        System.out.println(((Rotatable) augmentedDriver).getOrientation());
         commonUtils.getUrl(url);
         //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");

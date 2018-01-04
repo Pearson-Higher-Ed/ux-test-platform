@@ -107,6 +107,7 @@ public class BaseClass {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     caps.setCapability(mobileCaps[i], mobileCaps[i + 1]);
                 }
+                caps.setCapability("rotatable", true);
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 driverTimeOut();
             }
