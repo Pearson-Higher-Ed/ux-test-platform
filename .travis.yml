@@ -17,8 +17,7 @@ addons:
         - g++-4.8
   browserstack:
           username: "payaltest1"
-          access_key:
-                secure: abtIv/uGKqch6FaRVoMYifIL216PhPK3CGsZrvjDiWJiFDpJjieUj9Q5YphXkoDs/hwtiUe1UyJYIDkxW+bPfMXjp15SLfaqIvvL5qzIVE0Rcng/1eZ9zYrVulSBiWuoDeYGoeUAXVdjcAEqoajdql/xgDdXzNGjeZCDlpG6ipVtN58w+r2Dt/FY6MQVQTQFwb5bxIV0NEX36d8GVaxMl9XSxXQlb4GDxJZoEa43zvGaCfPNXVnATXx4tzwxD35ZRPKJ86un+ga2egjWnphEubj7DD4xhmmIOtcr6qmH25ALv86ewETlXNsKCgRVuZ9nKxrNldNW/tuSXPawajGaVPJK9U11GxgNJhw5d8KpOzv4w0K80KJj4PgMg1kwQDoXKiyjHYfhQDSIp/pK+ueyxv4q9tg3uRuDPe3xtY1Rz9FEzXb8fpB1I4wy6LRQm6Mv8d6ja8bAqs8EQW5c27gqgzKRWKT1eeS7BTtItII/lXunbwGKIQ9mN5sW+C8GiaVgj7Ke+/xLnrpgNb6i0n8EF/ERlgiYtEOaFO/EZvnpNpUnrbqCbvck7tlUgsJ8IrLfVPJgYguKGPO5x85M5eR6Qd0F3maDRYwGmr45JY0/fEuru0VBF+Ac60iTCqQ5n6OUIh23kCRL1IKtoFjWymqCm4mOF/I6e0iDcMelEaLRgd4=
+          access_key: "BZERJz99zPAMGt9xS6qx"
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
