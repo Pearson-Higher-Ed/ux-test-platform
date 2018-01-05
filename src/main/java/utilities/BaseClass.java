@@ -45,8 +45,8 @@ public class BaseClass {
     //    final static String USERNAME = SauceParam.SAUCE_USERNAME;
 //    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
 //    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-    final static String USERNAME = "pdatest1";
-    final static String AUTOMATE_KEY = "ivyUysGiZuau52YJokAq";
+    final static String USERNAME = "pdatest2";
+    final static String AUTOMATE_KEY = "BZERJz99zPAMGt9xS6qx";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
