@@ -18,7 +18,7 @@ addons:
   browserstack:
           username: "eajaz1"
           access_key:
-              secure: dcyXanDSkGEi+/cUi9tnrf0kiCVsLk0jLmn3Un5NfioD+bv+an1Y/J8fHcIF9SltiCkQdXOWl9HzrikhGpecNnTICT43xjfm6Qxo1ftgYgRTx6FgFJpNG6efdE/fV4sgtvilNP7Fv4i+kz3VSRlONb9pvN/ZyvfEzWgv11V6mPkmTDyiDghAeVaO0JHd9ILMP+L+I+tC+0KCiTqhJoJayIwHnxmGXl5k7qPX1PcA4sZgKGvKX1MNGbUuJzmnHiq3nLlT475uywmHeASpTPPaIDIOIPVIDo+1SEJAe2912dWSBDjb5XTNwofUZaQcdMyc0mxu1xsl4y2zGkF0SBK3FUcuFYLda7pLKE5AJiOwAQzieD3CSisaUN7M7rRngh71bbjbI01hCQ/kUM7ypVCgGbT9fkRszM3Nr33fXO3o1jIYIPtF/GEeBHioVzPKh350dvZrm596yzTosqEKQSyMjA4sXLj5K19/0+uIHXHC6QCOy6B8/LkeCzhynOCv5/NKBQh9y4yChlkCpdLKu0CEDftNoo0Y2I57l0dvMuu35dzyVUSPCt9ZEzx+2QEMAJAZYCi2bG1p4Pdk/e06iTucCSUQJUkxNyB0/XRpsu/wvHPJFVE/Kmt/c9PHvLxEx2m5oOLK00BjsJro7TjMbX0Z6upWMrDJeNQZKZFmA9YQiso=
+              secure: HyPWyhL5R6bQ59moIuxQ7g0ToHf9LCjaCclp9BFAdZ0qyfw0+xWe5gAAjCdjgeqzJTvmopbOLgSDsjZ9zYp6NKpzVkzYKiIfW3CjlWcCh8u7ZXuF2T4QafI7lPmBYYoxPiTVqzRSENpwHAqsGbgi99bf/Qs3iAmIs8vKWDOjk7Trzm23rmMUJYrxkVq+Qurs5G6zuPO+/IvawfLcS4NXUc+QcOOjzcM9VSqNAsFXhnsMey1tLhV8jyXzmyjOstJ8L9uaR8SsqS5/3Ywm+VstjwBG0h41zQiStBJo7ddiVjAc+gxRDe9DGx1h3pNu+ByJFdkXd00NAmxQ2Z49DdaX3g1MDLa8Nt/TrK9aPcDnf2/ilywBez4SkVnEIS/khEZwgoxHesD5vCL1i9AifEPS/3N4Nw6kvCA8G2vcFRMFghMYtsfkI+kMbI7uwRVVVCI+ELxAWsy/TFwB/IjYOeZV9BT9hCoMyH3PhjmokcaG67uYZ8OK1jpVrmzgKLstC4I/RRnQNU+JfTUjsOrqeUBWAjA0Hp09wFOlXJhcGwxoP/2qSROWCxPuG0jnm3Btzbcr4OwEVZJ9ZcR8vmUyVUiubhpmbC/6+qHec0koxmpOtQPJm1DP3d3fRP7xzv60G2u17J1Uue+iswLg4fx8Py7OFPmbuzm/nBVxtXYgS5j4puc=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
