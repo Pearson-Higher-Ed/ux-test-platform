@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by udhadpa on 11/7/17.
  */
 public class CoachMarkTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/standAlone/fixtures/coachMark/coach-mark.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/coachMark/coach-mark.html";
     private final String absCoachMarkJSFilePath = new File("standAlone/jsfiles/coachMark/coach-mark.js").getAbsolutePath();
     private final String coachMarkJSFilePath = constructPath(absCoachMarkJSFilePath);
     private final String absTempJSFilePath = new File("standAlone/jsfiles/coachMark/temp.js").getAbsolutePath();
@@ -279,16 +279,16 @@ public class CoachMarkTest extends BaseClass {
      * MOBILE TESTS
      */
 
-    @Test(testName = "Mobile : Coach-Mark Spacing Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    /*@Test(testName = "Mobile : Coach-Mark Spacing Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkSpacingMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        isPresent = commonUtils.isElementPresent(elem, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        isPresent = commonUtils.isElementPresent(elem);
         isElemPresent = commonUtils.assertValue(isPresent, true, "coach-mark is not displayed");
         Assert.assertTrue(isElemPresent);
-        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        width = commonUtils.getCSSValue(elem, "min-width", "mobile");
-        boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
+        bgColor = commonUtils.getCSSValue(elem, "background-color");
+        width = commonUtils.getCSSValue(elem, "min-width");
+        boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
 
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#d6ebe8"), commonUtils.hex2Rgb("#d6ebe8")});
         if (!isBgColor) {
@@ -301,7 +301,7 @@ public class CoachMarkTest extends BaseClass {
         }
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
-            padding = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            padding = commonUtils.getCSSValue(elem, cssProperty);
             isPadding = commonUtils.assertCSSProperties(cssPropertyType, padding, new String[]{"20px", "24px"});
             if (!isPadding) {
                 log.info("Padding " + cssProperty + " of " + type + " coach-mark is not as per spec, actual " + padding);
@@ -310,13 +310,13 @@ public class CoachMarkTest extends BaseClass {
         }
         for (String cssProperty : borderRadii) {
             String cssPropertyType = cssProperty;
-            borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+            borderRadius = commonUtils.getCSSValue(elem, cssProperty);
             isBorderRadius = commonUtils.assertValue(borderRadius, "4px", "Border radius of " + type + " coach-mark is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
 
         Assert.assertTrue(isBgColor && isWidth && isBoxShadow);
-    }
+    }*/
 
     @Test(testName = "Mobile : Coach-Mark Title Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkTitleMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {

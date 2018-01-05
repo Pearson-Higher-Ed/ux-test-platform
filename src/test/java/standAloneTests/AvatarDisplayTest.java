@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class AvatarDisplayTest extends BaseClass {
 
-    private final String avatarDisplayUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/avatarDisplay/avatar-display.html";
+    private final String avatarDisplayUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/avatarDisplay/avatar-display.html";
     private final String absPathForAvatarDisplayJS = new File("standAlone/jsfiles/avatarDisplay/avatar-display.js").getAbsolutePath();
     private final String avatarDisplayJSPath = constructPath(absPathForAvatarDisplayJS);
     private final String absPathForTempJS = new File("standAlone/jsfiles/avatarDisplay/temp.js").getAbsolutePath();
@@ -55,7 +55,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void avatarSizeTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -76,7 +76,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "avatar shape Test", dataProvider = "Avatar Shape Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void avatarShapeTest(String size) throws Exception {
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
@@ -129,7 +129,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "avatarURLText config Test", dataProvider = "avatarURLText config Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void avatarURLTextConfigTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         if ((!browser.equals("chrome")) && configType.equals("invalidAvatarURLText")) {
             throw new SkipException("browser console logs apis are still not implemented for this browser driver'");
@@ -156,7 +156,7 @@ public class AvatarDisplayTest extends BaseClass {
         }
         commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
-        if ((browser.equals("chrome")) && configType.equals("invalidAvatarURLText")) {
+        if (!setMobile.equals("on")) {
             browserLogs = commonUtils.browserLogs().toString();
             result = commonUtils.assertValue(browserLogs.contains("404"), true, "'404 not found' error msg is NOT seen as per SPEC");
             commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
@@ -173,7 +173,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "avatarALTText config Test", dataProvider = "avatarALTText config Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void avatarALTTextConfigTest(String configType, String[] configArray, String avatarALTText) throws Exception {
         int i;
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
@@ -201,7 +201,7 @@ public class AvatarDisplayTest extends BaseClass {
         };
     }
 
-    @Test(testName = "avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "avatarSize config Test", dataProvider = "avatarSize config Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void avatarSizeConfigTest(String configType, String[] configArray, String[] avHeight, String[] avWidth) throws Exception {
         int i;
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
@@ -231,14 +231,14 @@ public class AvatarDisplayTest extends BaseClass {
     /***************
      * Mobile Tests
      **************/
-    @Test(testName = "Mobile: avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"mobile-regression", "standAlone"})
+    /*@Test(testName = "Mobile: avatar size Test", dataProvider = "Avatar Size Test Data", groups = {"mobile-regression", "standAlone"})
     private void avatarSizeMobileTest(String size, String[] borderTopLeftRadius, String[] borderTopRightRadius, String[] borderBottomLeftRadius, String[] borderBottomRightRadius, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth, String[] height, String[] width) throws Exception {
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
         commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
-        commonUtils.getUrl(avatarDisplayUrl, "mobile");
+        commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
-        result = verifyAvatarSizeProperties(size, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, height, width, "mobile");
+        result = verifyAvatarSizeProperties(size, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, height, width);
         commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
         Assert.assertTrue(result);
     }
@@ -248,9 +248,9 @@ public class AvatarDisplayTest extends BaseClass {
         commonUtils.readInitialConfig(avatarDisplayJSPath, tempJSFilePath);
         testConfig = buildJSONObject("avatar-target", avatarURLText, "Avatar Image", size);
         commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
-        commonUtils.getUrl(avatarDisplayUrl, "mobile");
+        commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
-        shape = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "class", "mobile");
+        shape = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "class");
         isShape = commonUtils.assertValue(shape, "avatar-display-img avatar-display-round", size + "-size avatar shape is not as per the spec");
         commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
         Assert.assertTrue(isShape);
@@ -269,10 +269,10 @@ public class AvatarDisplayTest extends BaseClass {
         }
         testConfig = buildJSONObject(list);
         commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
-        commonUtils.getUrl(avatarDisplayUrl, "mobile");
+        commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
-        height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height", "mobile");
-        width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width", "mobile");
+        height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height");
+        width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
         if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
@@ -295,9 +295,9 @@ public class AvatarDisplayTest extends BaseClass {
         }
         testConfig = buildJSONObject(list);
         commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
-        commonUtils.getUrl(avatarDisplayUrl, "mobile");
+        commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
-        altText = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "alt", "mobile");
+        altText = commonUtils.getAttributeValue(avatarDisplayPgObj.avatarImg, "alt");
         result = commonUtils.assertValue(altText, avatarALTText, "avatarALTText for - " + configType + " is not as per the spec");
         commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
         Assert.assertTrue(result);
@@ -313,11 +313,11 @@ public class AvatarDisplayTest extends BaseClass {
         }
         testConfig = buildJSONObject(list);
         commonUtils.changeConfig(avatarDisplayJSPath, defaultConfig, testConfig);
-        commonUtils.getUrl(avatarDisplayUrl, "mobile");
+        commonUtils.getUrl(avatarDisplayUrl);
         Thread.sleep(2000);
 
-        height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height", "mobile");
-        width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width", "mobile");
+        height = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "height");
+        width = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "width");
         isHeight = commonUtils.assertCSSProperties(configType, height, avHeight);
         if (!isHeight) {
             log.info("Height for avatar for config type " + configType + " is not as per the spec");
@@ -328,7 +328,7 @@ public class AvatarDisplayTest extends BaseClass {
         }
         commonUtils.writeInitialConfig(tempJSFilePath, avatarDisplayJSPath);
         Assert.assertTrue(isHeight && isWidth);
-    }
+    } */
 
     /****************
      * Common Methods
@@ -398,7 +398,7 @@ public class AvatarDisplayTest extends BaseClass {
         return (isBorderTopLeftRadius && isBorderTopRightRadius && isBorderBottomLeftRadius && isBorderBottomRightRadius && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isHeight && isWidth);
     }
 
-    private boolean verifyAvatarSizeProperties(String avSize, String[] avBorderTopLeftRadius, String[] avBorderTopRightRadius, String[] avBorderBottomLeftRadius, String[] avBorderBottomRightRadius, String avBorderTopWidth, String avBorderBottomWidth, String avBorderLeftWidth, String avBorderRightWidth, String[] avHeight, String[] avWidth, String mobile) {
+    /*private boolean verifyAvatarSizeProperties(String avSize, String[] avBorderTopLeftRadius, String[] avBorderTopRightRadius, String[] avBorderBottomLeftRadius, String[] avBorderBottomRightRadius, String avBorderTopWidth, String avBorderBottomWidth, String avBorderLeftWidth, String avBorderRightWidth, String[] avHeight, String[] avWidth, String mobile) {
         borderTopLeftRadius = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "border-top-left-radius", "mobile");
         borderTopRightRadius = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "border-top-right-radius", "mobile");
         borderBottomLeftRadius = commonUtils.getCSSValue(avatarDisplayPgObj.avatarImg, "border-bottom-left-radius", "mobile");
@@ -439,7 +439,7 @@ public class AvatarDisplayTest extends BaseClass {
             log.info("width for " + avSize + " avatar is not as per SPEC");
         }
         return (isBorderTopLeftRadius && isBorderTopRightRadius && isBorderBottomLeftRadius && isBorderBottomRightRadius && isBorderTopWidth && isBorderBottomWidth && isBorderLeftWidth && isBorderRightWidth && isHeight && isWidth);
-    }
+    } */
 
     public String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));
