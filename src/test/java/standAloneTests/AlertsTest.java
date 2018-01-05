@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 
 public class AlertsTest extends BaseClass {
-    private final String basicModeUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/alerts/alerts.html";
+    private final String basicModeUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/alerts/alerts.html";
     private final String absAlertJSFilePath = new File("standAlone/jsfiles/alerts/alerts.js").getAbsolutePath();
     private final String alertJSFilePath = constructPath(absAlertJSFilePath);
     private final String absSliderDistJSFilePath = new File("standAlone/jsfiles/alerts/dist.alerts.js").getAbsolutePath();

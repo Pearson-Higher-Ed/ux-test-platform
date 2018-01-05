@@ -1,5 +1,5 @@
 language: java
-sudo: required
+sudo: false
 
 jdk:
   - oraclejdk8
@@ -17,7 +17,8 @@ addons:
         - g++-4.8
   browserstack:
           username: "payaltest1"
-          access_key: "BZERJz99zPAMGt9xS6qx"
+          access_key:
+              secure: dcyXanDSkGEi+/cUi9tnrf0kiCVsLk0jLmn3Un5NfioD+bv+an1Y/J8fHcIF9SltiCkQdXOWl9HzrikhGpecNnTICT43xjfm6Qxo1ftgYgRTx6FgFJpNG6efdE/fV4sgtvilNP7Fv4i+kz3VSRlONb9pvN/ZyvfEzWgv11V6mPkmTDyiDghAeVaO0JHd9ILMP+L+I+tC+0KCiTqhJoJayIwHnxmGXl5k7qPX1PcA4sZgKGvKX1MNGbUuJzmnHiq3nLlT475uywmHeASpTPPaIDIOIPVIDo+1SEJAe2912dWSBDjb5XTNwofUZaQcdMyc0mxu1xsl4y2zGkF0SBK3FUcuFYLda7pLKE5AJiOwAQzieD3CSisaUN7M7rRngh71bbjbI01hCQ/kUM7ypVCgGbT9fkRszM3Nr33fXO3o1jIYIPtF/GEeBHioVzPKh350dvZrm596yzTosqEKQSyMjA4sXLj5K19/0+uIHXHC6QCOy6B8/LkeCzhynOCv5/NKBQh9y4yChlkCpdLKu0CEDftNoo0Y2I57l0dvMuu35dzyVUSPCt9ZEzx+2QEMAJAZYCi2bG1p4Pdk/e06iTucCSUQJUkxNyB0/XRpsu/wvHPJFVE/Kmt/c9PHvLxEx2m5oOLK00BjsJro7TjMbX0Z6upWMrDJeNQZKZFmA9YQiso=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
