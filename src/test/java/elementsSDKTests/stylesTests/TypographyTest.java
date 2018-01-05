@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class TypographyTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/typography.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/typography.html";
     private static String env = "", setDesktop = "", mobileDevice = "", setMobile = "", browser = "", mBrowser = "", lBrowser = "";
     final static Logger log = Logger.getLogger(TypographyTest.class.getName());
     private boolean isColor = false, isFontSize = false, isFontWeight = false, isLineHeight = false, isHexValue = false, isRgbValue = false, isBorderBottomWidth = false, isBorderBottomStyle = false, isTextDecoration = false, isFontStyle = false, isDisplay = false, isBoxSizing = false, isPosition = false, isTop = false, isListStyle = false, isPseudoContent = false, result = false, isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, isBackgroundColor = false, isVerticalAlign = false, isFontFamily = false, isPaddingTop = false, isPaddingBottom = false, isPaddingLeft = false, isPaddingRight = false;

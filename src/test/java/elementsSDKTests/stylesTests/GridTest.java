@@ -326,7 +326,6 @@ public class GridTest extends BaseClass {
         return new Object[][]{
                 {ScreenOrientation.LANDSCAPE, gridPgObj.container1, "20px", "20px", "736px"},
                 {ScreenOrientation.PORTRAIT, gridPgObj.container1, "10px", "10px", "414px"},
-
         };
     }
 
