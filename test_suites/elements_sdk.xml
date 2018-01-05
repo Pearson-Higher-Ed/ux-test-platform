@@ -29,11 +29,11 @@
     <test name="ElementsSDK: Styles(CSS) Tests" parallel="false" thread-count="8">
         <classes>
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
-           <!-- <class name="elementsSDKTests.stylesTests.TypographyTest"/>
+            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
             <class name="elementsSDKTests.stylesTests.IconsTest"/>
             <class name="elementsSDKTests.stylesTests.FormsTest"/>
-            <class name="elementsSDKTests.stylesTests.TablesTest"/>-->
+            <class name="elementsSDKTests.stylesTests.TablesTest"/>
             <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
