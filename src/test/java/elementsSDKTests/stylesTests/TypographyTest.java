@@ -38,7 +38,7 @@ public class TypographyTest extends BaseClass {
 
     //Desktop Tests
     //Verify <header>
-    @Test(testName = "Verify <header> properties", groups = "desktop-regression")
+    @Test(testName = "Verify <header> properties", groups = {"desktop-regression", "mobile-regression"})
     private void headerTest() {
         marginBottom = commonUtils.getCSSValue(typoPgObj.header, "margin-bottom");
         isMarginBottom = commonUtils.assertValue(marginBottom, "20px", "margin-bottom for <header> is not as per the spec");
@@ -57,7 +57,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void h1h2h3h4h5Test(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
@@ -75,7 +75,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify <subtitle> properties", dataProvider = "subtitle Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify <subtitle> properties", dataProvider = "subtitle Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void subtitleWithh1h2h3h4h5Test(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
@@ -90,7 +90,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Para properties", dataProvider = "para Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Para properties", dataProvider = "para Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void paraTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
@@ -107,7 +107,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Copy Properties", dataProvider = "copy Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Copy Properties", dataProvider = "copy Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void copyTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor);
         Assert.assertTrue(result);
@@ -121,7 +121,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Lead Properties", dataProvider = "lead Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Lead Properties", dataProvider = "lead Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void leadTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -138,7 +138,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void pageTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -160,7 +160,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void sectionTitleTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -182,7 +182,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Label properties", dataProvider = "label Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Label properties", dataProvider = "label Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void labelTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
@@ -190,7 +190,7 @@ public class TypographyTest extends BaseClass {
 
     //Inline elementsSDK.styles
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
-    @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression"})
+    @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression", "mobile-regression"})
     private void abbrTest() {
         textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line");
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
@@ -207,7 +207,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "desktop-regression")
+    @Test(testName = "Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
         textDecoration = commonUtils.getCSSValue(element, "text-decoration-line");
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
@@ -225,7 +225,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(isTextDecoration);
     }
 
-    @Test(testName = "Inline: mark Test", groups = {"desktop-regression"})
+    @Test(testName = "Inline: mark Test", groups = {"desktop-regression", "mobile-regression"})
     private void markTest() {
 
         backgroundColor = commonUtils.getCSSValue(typoPgObj.mark, "background-color");
@@ -241,7 +241,7 @@ public class TypographyTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isColor);
     }
 
-    @Test(testName = "Inline: strong Test", groups = {"desktop-regression"})
+    @Test(testName = "Inline: strong Test", groups = {"desktop-regression", "mobile-regression"})
     private void strongTest() {
         fontWeight = commonUtils.getCSSValue(typoPgObj.strongTag, "font-weight");
         isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
@@ -259,7 +259,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Inline: SuperAndSubScript Test", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Inline: SuperAndSubScript Test", dataProvider = "SuperAndSubScript Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void superAndSubScriptTagTest(By element, String type, String[] expInlineFontSize, String[] expInlineTop, String expInlinePosition, String expVerticalAlign) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties(type, fontSize, expInlineFontSize);
@@ -288,14 +288,14 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Code Test", dataProvider = "Code Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Code Test", dataProvider = "Code Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void codeTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily) {
         result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expBackgroundColor, expPaddingTop, expPaddingBottom, expPaddingLeft, expPaddingRight, expFontFamily);
         Assert.assertTrue(result);
     }
 
     //Verify pe-list
-    @Test(testName = "Verify pe-list", groups = "desktop-regression")
+    @Test(testName = "Verify pe-list", groups = {"desktop-regression", "mobile-regression"})
     private void listTest() {
         marginTop = commonUtils.getCSSValue(typoPgObj.list, "margin-top");
         isMarginTop = commonUtils.assertValue(marginTop, "12px", "margin-top for pe-list is not as per the spec");
@@ -322,7 +322,7 @@ public class TypographyTest extends BaseClass {
     }
 
     //Verify pe-unstyled
-    @Test(testName = "Verify unstyled-list", groups = "desktop-regression")
+    @Test(testName = "Verify unstyled-list", groups = {"desktop-regression", "mobile-regression"})
     private void unstyledListTest() {
         listStyle = commonUtils.getCSSValue(typoPgObj.unstyledList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "none", "list-style for unstyled-list is not as per the spec");
@@ -332,7 +332,7 @@ public class TypographyTest extends BaseClass {
     }
 
     //Verify Nested ordered lists
-    @Test(testName = "Verify ordered-list", groups = "desktop-regression")
+    @Test(testName = "Verify ordered-list", groups = {"desktop-regression", "mobile-regression"})
     private void orderedListTest() {
         listStyle = commonUtils.getCSSValue(typoPgObj.orderedList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "decimal", "list-style for ordered-list is not as per the spec");
@@ -340,7 +340,7 @@ public class TypographyTest extends BaseClass {
     }
 
     //Verify Nested unordered lists
-    @Test(testName = "Verify unordered-list", groups = "desktop-regression")
+    @Test(testName = "Verify unordered-list", groups = {"desktop-regression", "mobile-regression"})
     private void unorderedListTest() {
         listStyle = commonUtils.getCSSValue(typoPgObj.unorderedList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "disc", "list-style for unordered-list is not as per the spec");
@@ -356,7 +356,7 @@ public class TypographyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify heading-ordered-list", dataProvider = "list following Heading Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify heading-ordered-list", dataProvider = "list following Heading Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void headingOrderedListTest(String type, By element, String expListStyle, String expMarginTop) {
         listStyle = commonUtils.getCSSValue(element, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, expListStyle, "list-style for " + type + " is not as per the spec");
@@ -401,9 +401,9 @@ public class TypographyTest extends BaseClass {
      * Mobile Tests
      **************/
     //Verify <header>
-    @Test(testName = "Mobile: Verify <header> properties", groups = "mobile-regression")
+    /* @Test(testName = "Mobile: Verify <header> properties", groups = "mobile-regression")
     private void headerMobileTest() {
-        marginBottom = commonUtils.getCSSValue(typoPgObj.header, "margin-bottom", "mobile");
+        marginBottom = commonUtils.getCSSValue(typoPgObj.header, "margin-bottom");
         isMarginBottom = commonUtils.assertValue(marginBottom, "20px", "margin-bottom for <header> is not as per the spec");
         Assert.assertTrue(isMarginBottom);
     }
@@ -411,56 +411,56 @@ public class TypographyTest extends BaseClass {
     //Verify Only <h1,h2,h3,h4,h5>
     @Test(testName = "Mobile: Verify <h1, h2, h3, h4, h5> properties", dataProvider = "h1h2h3h4h5 Test Data", groups = "mobile-regression")
     private void h1h2h3h4h5MobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
     //Verify <subtitle> with <h1,h2,h3,h4,h5>
     @Test(testName = "Mobile: Verify <subtitle> properties", dataProvider = "subtitle Test Data", groups = "mobile-regression")
     private void subtitleWithh1h2h3h4h5MobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
     // Verify Para
     @Test(testName = "Mobile: Verify Para properties", dataProvider = "para Test Data", groups = "mobile-regression")
     private void paraMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expMarginTop, expMarginBottom);
         Assert.assertTrue(result);
     }
 
     //Verify Copy
     @Test(testName = "Mobile: Verify Copy Properties", dataProvider = "copy Test Data", groups = "mobile-regression")
     private void copyMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor);
         Assert.assertTrue(result);
     }
 
     //Verify Lead
     @Test(testName = "Mobile: Verify Lead Properties", dataProvider = "lead Test Data", groups = "mobile-regression")
     private void leadMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
     //Verify Page Level Headings
     @Test(testName = "Mobile: Verify Page Level Heading(Title) properties", dataProvider = "page Title Test Data", groups = "mobile-regression")
     private void pageTitleMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
     //Verify Section Headings
     @Test(testName = "Mobile: Verify Section Level Heading(Title) properties", dataProvider = "section Title Test Data", groups = "mobile-regression")
     private void sectionTitleMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
     //Verify Labels
     @Test(testName = "Mobile: Verify Label properties", dataProvider = "label Test Data", groups = "mobile-regression")
     private void labelMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expFontWeight, expColor);
         Assert.assertTrue(result);
     }
 
@@ -468,18 +468,18 @@ public class TypographyTest extends BaseClass {
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Mobile: Inline: Abbr Test", groups = {"mobile-regression"})
     private void abbrMobileTest() {
-        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration");
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
         Assert.assertTrue(isTextDecoration);
     }
 
     @Test(testName = "Mobile: Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = "mobile-regression")
     private void delAndInsMobileTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
 
         if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
-            js = (JavascriptExecutor) appium;
+            js = (JavascriptExecutor) driver;
             jQueryScript = "return window.getComputedStyle(document.querySelector('ins'), ':" + pseudoContAttribute + "').getPropertyValue('content');";
             jQueryReturnValue = (String) js.executeScript(jQueryScript);
             isPseudoContent = commonUtils.assertCSSProperties(inlineTag, jQueryReturnValue, new String[]{"'+'", "\"+\""});
@@ -494,12 +494,12 @@ public class TypographyTest extends BaseClass {
     @Test(testName = "Mobile: Inline: mark Test", groups = {"mobile-regression"})
     private void markMobileTest() {
 
-        backgroundColor = commonUtils.getCSSValue(typoPgObj.mark, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(typoPgObj.mark, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#FFB81C"), commonUtils.hex2RgbWithoutTransparency("#FFB81C")});
         if (!isBackgroundColor) {
             log.info("mark 'background-color' is not as per the spec, actual: " + backgroundColor);
         }
-        color = commonUtils.getCSSValue(typoPgObj.mark, "color", "mobile");
+        color = commonUtils.getCSSValue(typoPgObj.mark, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{"rgb(0, 0, 0)", "rgba(0, 0, 0, 1)"});
         if (!isColor) {
             log.info("mark 'color' is not as per the spec, actual: " + color);
@@ -509,7 +509,7 @@ public class TypographyTest extends BaseClass {
 
     @Test(testName = "Mobile: Inline: strong Test", groups = {"mobile-regression"})
     private void strongMobileTest() {
-        fontWeight = commonUtils.getCSSValue(typoPgObj.strongTag, "font-weight", "mobile");
+        fontWeight = commonUtils.getCSSValue(typoPgObj.strongTag, "font-weight");
         isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
         if (!isFontWeight) {
             log.info("font-weight for strongTag is not as per the spec, actual: " + fontWeight);
@@ -519,19 +519,19 @@ public class TypographyTest extends BaseClass {
 
     @Test(testName = "Mobile: Inline: SuperAndSubScript Test", dataProvider = "SuperAndSubScript Test Data", groups = {"mobile-regression"})
     private void superAndSubScriptTagMobileTest(By element, String type, String[] expInlineFontSize, String[] expInlineTop, String expInlinePosition, String expVerticalAlign) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties(type, fontSize, expInlineFontSize);
         if (!isFontSize) {
             log.info("font-size for '" + type + "' is not as per the spec, actual: " + fontSize);
         }
-        top = commonUtils.getCSSValue(element, "top", "mobile");
+        top = commonUtils.getCSSValue(element, "top");
         isTop = commonUtils.assertCSSProperties(type, top, expInlineTop);
         if (!isTop) {
             log.info("top value for '" + type + "' is not as per the spec, actual: " + top);
         }
-        position = commonUtils.getCSSValue(element, "position", "mobile");
+        position = commonUtils.getCSSValue(element, "position");
         isPosition = commonUtils.assertValue(position, expInlinePosition, "position value for '" + type + "' is not as per spec");
-        verticalAlign = commonUtils.getCSSValue(element, "vertical-align", "mobile");
+        verticalAlign = commonUtils.getCSSValue(element, "vertical-align");
         isVerticalAlign = commonUtils.assertValue(verticalAlign, expVerticalAlign, "vertical-align value for '" + type + "' is not as per spec");
         Assert.assertTrue(isFontSize && isTop && isPosition && isVerticalAlign);
     }
@@ -539,28 +539,28 @@ public class TypographyTest extends BaseClass {
     //Verify Code
     @Test(testName = "Mobile: Verify Code Test", dataProvider = "Code Test Data", groups = "mobile-regression")
     private void codeMobileTest(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily) {
-        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expBackgroundColor, expPaddingTop, expPaddingBottom, expPaddingLeft, expPaddingRight, expFontFamily, "mobile");
+        result = verifyCSSProperties(type, element, expFontSize, expLineHeight, expColor, expBackgroundColor, expPaddingTop, expPaddingBottom, expPaddingLeft, expPaddingRight, expFontFamily);
         Assert.assertTrue(result);
     }
 
     //Verify pe-list
     @Test(testName = "Mobile: Verify pe-list", groups = "mobile-regression")
     private void listMobileTest() {
-        marginTop = commonUtils.getCSSValue(typoPgObj.list, "margin-top", "mobile");
+        marginTop = commonUtils.getCSSValue(typoPgObj.list, "margin-top");
         isMarginTop = commonUtils.assertValue(marginTop, "12px", "margin-top for pe-list is not as per the spec");
-        marginBottom = commonUtils.getCSSValue(typoPgObj.list, "margin-bottom", "mobile");
+        marginBottom = commonUtils.getCSSValue(typoPgObj.list, "margin-bottom");
         isMarginBottom = commonUtils.assertValue(marginBottom, "12px", "margin-bottom for pe-list is not as per the spec");
-        marginLeft = commonUtils.getCSSValue(typoPgObj.list, "margin-left", "mobile");
+        marginLeft = commonUtils.getCSSValue(typoPgObj.list, "margin-left");
         isMarginLeft = commonUtils.assertValue(marginLeft, "0px", "margin-left for pe-list is not as per the spec");
-        marginRight = commonUtils.getCSSValue(typoPgObj.list, "margin-right", "mobile");
+        marginRight = commonUtils.getCSSValue(typoPgObj.list, "margin-right");
         isMarginRight = commonUtils.assertValue(marginRight, "0px", "margin-right for pe-list is not as per the spec");
-        paddingLeft = commonUtils.getCSSValue(typoPgObj.list, "padding-left", "mobile");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.list, "padding-left");
         isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"26px", "25.99995994567871px"});
         if (!isPaddingLeft) {
             log.info("padding-left for pe-list is not as per the spec");
         }
         for (int i = 1; i <= 3; i++) {
-            lineHeight = commonUtils.getCSSValue(By.id("list-option" + i), "line-height", "mobile");
+            lineHeight = commonUtils.getCSSValue(By.id("list-option" + i), "line-height");
             isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"22px", "22.000019073486328px"});
             if (!isLineHeight) {
                 log.info("Line-height for list option " + i + " of pe-list is not as per the spec, actual " + lineHeight);
@@ -573,9 +573,9 @@ public class TypographyTest extends BaseClass {
     //Verify pe-unstyled
     @Test(testName = "Mobile: Verify unstyled-list", groups = "mobile-regression")
     private void unstyledListMobileTest() {
-        listStyle = commonUtils.getCSSValue(typoPgObj.unstyledList, "list-style-type", "mobile");
+        listStyle = commonUtils.getCSSValue(typoPgObj.unstyledList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "none", "list-style for unstyled-list is not as per the spec");
-        paddingLeft = commonUtils.getCSSValue(typoPgObj.unstyledList, "padding-left", "mobile");
+        paddingLeft = commonUtils.getCSSValue(typoPgObj.unstyledList, "padding-left");
         isPaddingLeft = commonUtils.assertValue(paddingLeft, "0px", "padding-left for unstyled-list is not as per the spec");
         Assert.assertTrue(isListStyle && isPaddingLeft);
     }
@@ -583,7 +583,7 @@ public class TypographyTest extends BaseClass {
     //Verify Nested ordered lists
     @Test(testName = "Mobile: Verify ordered-list", groups = "mobile-regression")
     private void orderedListMobileTest() {
-        listStyle = commonUtils.getCSSValue(typoPgObj.orderedList, "list-style-type", "mobile");
+        listStyle = commonUtils.getCSSValue(typoPgObj.orderedList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "decimal", "list-style for ordered-list is not as per the spec");
         Assert.assertTrue(isListStyle);
     }
@@ -591,7 +591,7 @@ public class TypographyTest extends BaseClass {
     //Verify Nested unordered lists
     @Test(testName = "Mobile: Verify unordered-list", groups = "mobile-regression")
     private void unorderedListMobileTest() {
-        listStyle = commonUtils.getCSSValue(typoPgObj.unorderedList, "list-style-type", "mobile");
+        listStyle = commonUtils.getCSSValue(typoPgObj.unorderedList, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, "disc", "list-style for unordered-list is not as per the spec");
         Assert.assertTrue(isListStyle);
     }
@@ -599,28 +599,25 @@ public class TypographyTest extends BaseClass {
     //Verify Nested ordered/unordered lists following a heading
     @Test(testName = "Mobile: Verify heading-ordered-list", dataProvider = "list following Heading Test Data", groups = "mobile-regression")
     private void headingOrderedListMobileTest(String type, By element, String expListStyle, String expMarginTop) {
-        listStyle = commonUtils.getCSSValue(element, "list-style-type", "mobile");
+        listStyle = commonUtils.getCSSValue(element, "list-style-type");
         isListStyle = commonUtils.assertValue(listStyle, expListStyle, "list-style for " + type + " is not as per the spec");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top for " + type + " is not as per the spec");
         Assert.assertTrue(isListStyle && isMarginTop);
-    }
+    } */
 
     //Verify Links
     @Test(testName = "Mobile: Verify link states", dataProvider = "link state Test Data", groups = "mobile-regression")
     private void linkStateMobileTest(String state, By element, String[] expColor, String expTextDecoration) {
-        if (state.equals("hover")) {
-            throw new SkipException("hover operation not permitted");
+        if (state.equals("hover") || state.equals("focus")) {
+            throw new SkipException("hover & focus not supported on Mobile devices");
         }
-        if (state.equals("focus")) {
-            commonUtils.focusOnElementById("link", "mobile");
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
+        color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
             log.info("link color for " + state + " is not as per the spec, actual: " + color);
         }
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration", "mobile");
+        textDecoration = commonUtils.getCSSValue(element, "text-decoration");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "link text-decoration for " + state + " is not as per spec");
         Assert.assertTrue(isColor && isTextDecoration);
     }
@@ -667,46 +664,46 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isColor && isBackgroundColor && isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isFontFamily);
     }
 
-    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily, String mobile) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+    /*private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor, String expPaddingTop, String expPaddingBottom, String expPaddingLeft, String expPaddingRight, String[] expFontFamily, String mobile) {
+        fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
             log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
         }
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
         if (!isLineHeight) {
             log.info("line-height for " + type + " is not as per the spec, actual: " + lineHeight);
         }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
+        color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
             log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
-        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
         if (!isBackgroundColor) {
             log.info("background-color for " + type + " is not as per the spec, actual: " + backgroundColor);
         }
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+        paddingTop = commonUtils.getCSSValue(element, "padding-top");
         isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "padding-top for " + type + " is not as per the spec");
 
-        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom", "mobile");
+        paddingBottom = commonUtils.getCSSValue(element, "padding-bottom");
         isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "padding-bottom for " + type + " is not as per the spec");
 
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "padding-left for " + type + " is not as per the spec");
 
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "padding-right for " + type + " is not as per the spec");
 
-        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
         isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
         if (!isFontFamily) {
             log.info("font-family for " + type + " is not as per the spec, actual: " + fontFamily);
         }
         return (isFontSize && isLineHeight && isColor && isBackgroundColor && isPaddingTop && isPaddingBottom && isPaddingLeft && isPaddingRight && isFontFamily);
-    }
+    }*/
 
     private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -736,7 +733,7 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isFontWeight && isColor && isMarginTop && isMarginBottom);
     }
 
-    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom, String mobile) {
+    /*private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String expMarginTop, String expMarginBottom, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -762,7 +759,7 @@ public class TypographyTest extends BaseClass {
         marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "margin-bottom for " + type + " is not as per the spec");
         return (isFontSize && isLineHeight && isFontWeight && isColor && isMarginTop && isMarginBottom);
-    }
+    } */
 
     private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -788,7 +785,7 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isFontWeight && isColor);
     }
 
-    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String mobile) {
+    /*private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expFontWeight, String[] expColor, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -810,7 +807,7 @@ public class TypographyTest extends BaseClass {
             log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
         return (isFontSize && isLineHeight && isFontWeight && isColor);
-    }
+    }*/
 
     private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -832,7 +829,7 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isColor);
     }
 
-    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String mobile) {
+   /* private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -849,7 +846,7 @@ public class TypographyTest extends BaseClass {
             log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
         return (isFontSize && isLineHeight && isColor);
-    }
+    }*/
 
     private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
@@ -877,7 +874,7 @@ public class TypographyTest extends BaseClass {
         return (isFontSize && isLineHeight && isColor && isMarginTop && isMarginBottom);
     }
 
-    private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom, String mobile) {
+    /*private boolean verifyCSSProperties(String type, By element, String[] expFontSize, String[] expLineHeight, String[] expColor, String expMarginTop, String[] expMarginBottom, String mobile) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -901,16 +898,13 @@ public class TypographyTest extends BaseClass {
             log.info("margin-bottom for " + type + " is not as per the spec, actual: " + marginBottom);
         }
         return (isFontSize && isLineHeight && isColor && isMarginTop && isMarginBottom);
-    }
+    }*/
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
+        commonUtils.getUrl(url);
+
     }
 
     @AfterMethod(alwaysRun = true)

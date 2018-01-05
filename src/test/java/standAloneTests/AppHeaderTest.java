@@ -311,7 +311,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Sign Out Clickable?", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "BasicMode - Is Sign Out Clickable?", groups = {"desktop-regression", "mobile-regression"})
     private void signOutClickableForBasicModeTest() throws IOException, InterruptedException {
 
         commonUtils.getUrl(basicModeUrl);
@@ -363,12 +363,16 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop-regression"}, priority = 1)
+    @Test(testName = "BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"desktop-regression", "mobile-regression"}, priority = 1)
     private void addCoursesForBasicModeTest(String noOfCourse, String courses) throws Exception {
-
+        if (setMobile.equals("on") && !(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(767, 800);
+        }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         testConfig = basicConfig + course1 + "," + course2 + "," + courses + "]};";
-        commonUtils.setWindowSize(767, 800);
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
@@ -391,14 +395,18 @@ public class AppHeaderTest extends BaseClass {
             commonUtils.assertValue(courseTextAdded, "All courses", "Error: " + noOfCourse + "th course not added");
         }
         result = commonUtils.assertValue(courseAdded, true, "Error: " + noOfCourse + "th course not added successfully");
-        commonUtils.setWindowSize(768, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(768, 800);
+        }
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression"}, priority = 1)
+    @Test(testName = "BasicMode - List all courses in order", groups = {"desktop-regression", "mobile-regression"}, priority = 1)
     private void listAllCoursesInBasicModeTest() throws Exception {
-
+        if (setMobile.equals("on") && !(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
         String[] arr = {"Physics", "Chemistry", "Maths", "", "Account settings", "Terms of Use", "Privacy Policy", "Sign out"};
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
 
@@ -413,7 +421,9 @@ public class AppHeaderTest extends BaseClass {
         commonUtils.changeConfig(basicJSFilePath, testConfig);
         Thread.sleep(2000);
         //  commonUtils.changeConfig(basicJSFilePath,testConfig);
-        commonUtils.setWindowSize(767, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(767, 800);
+        }
         Thread.sleep(2000);
         commonUtils.getUrl(basicModeUrl);
         Thread.sleep(2000);
@@ -428,7 +438,9 @@ public class AppHeaderTest extends BaseClass {
             Assert.assertTrue(result);
         }
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
-        commonUtils.setWindowSize(768, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(768, 800);
+        }
 
     }
 
@@ -473,9 +485,11 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-regression"}, priority = 3)
+    @Test(testName = "BasicMode - Remove All course", groups = {"desktop-regression", "mobile-regression"}, priority = 3)
     private void zeroCoursesForBasicModeTest() throws Exception {
-
+        if (setMobile.equals("on") && !(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         //testConfig = basicConfig + "]};";
         bModecourses = new LinkedHashMap<String, String>();
@@ -483,7 +497,9 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         Thread.sleep(2000);
-        commonUtils.setWindowSize(767, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(767, 800);
+        }
         Thread.sleep(500);
         commonUtils.getUrl(basicModeUrl);
         Thread.sleep(2000);
@@ -497,14 +513,18 @@ public class AppHeaderTest extends BaseClass {
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("third", 4);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
         result = commonUtils.assertValue(courseTextAdded, "Privacy Policy", "Error: All Courses not removed");
-        commonUtils.setWindowSize(768, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(768, 800);
+        }
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Truncate course names", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Truncate course names", groups = {"desktop-regression", "mobile-regression"})
     private void truncateCourseNameForBasicModeTest() throws Exception {
-
+        if (setMobile.equals("on") && !(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         //testConfig = basicConfig + "{\"text\": \"verylongcoursenameverylongcoursename\", \"href\":\"https://example.com/physics\"}" + "]}";
         bModecourses = new LinkedHashMap<String, String>();
@@ -512,23 +532,29 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(767, 800);
+        }
         commonUtils.getUrl(basicModeUrl);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
         courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems + "/a"));
         result = commonUtils.assertValue(courseTextAdded, "verylongcoursenameverylongcoursename", "Error: Course not added");
         courseNameTruncatable = commonUtils.getCSSValue(By.xpath(xpathForUserMenuDropDownItems + "/a"), "text-overflow");
         result = commonUtils.assertValue(courseNameTruncatable, "ellipsis", "Error: Course Name is not truncatable");
-        commonUtils.setWindowSize(768, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(768, 800);
+        }
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "BasicMode - Is Course Clickable?", groups = {"desktop-regression"})
+    @Test(testName = "BasicMode - Is Course Clickable?", groups = {"desktop-regression", "mobile-regression"})
     private void courseClickableForBasicModeTest() throws IOException, InterruptedException {
-
+        if (setMobile.equals("on") && !(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
+            throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
+        }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
         //testConfig = basicConfig + course1 + "]}";
         bModecourses = new LinkedHashMap<String, String>();
@@ -536,13 +562,17 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.setWindowSize(767, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(767, 800);
+        }
         commonUtils.getUrl(basicModeUrl);
         commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
         courseClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForUserMenuDropDownItems + "/a"));
         result = commonUtils.assertValue((courseClickable), true, "Error: Course is NOT clickable");
-        commonUtils.setWindowSize(768, 800);
+        if (!setMobile.equals("on")) {
+            commonUtils.setWindowSize(768, 800);
+        }
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
     }
@@ -697,7 +727,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(isDropDownClosed);
     }
 
-    @Test(testName = "Verify Aria Test", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Verify Aria Test", groups = {"desktop-regression", "mobile-regression"})
     private void ariaTest() {
         commonUtils.getUrl(basicModeUrl);
 
@@ -786,7 +816,7 @@ public class AppHeaderTest extends BaseClass {
     /*************************
      * Integration Mode Tests *
      *************************/
-    @Test(testName = "Default Integration Mode in Desktop View", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Default Integration Mode in Desktop View", groups = {"desktop-regression", "mobile-regression"})
     private void integrationModeDesktopViewDefaultTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
@@ -808,7 +838,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "IntegMode - Is Pearson Logo Clickable?", groups = {"desktop-regression", "mobile-regression"})
     private void pearsonLogoClickableForIntegModeTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
@@ -817,7 +847,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "IntegMode - Is Help Link Clickable?", groups = {"desktop-regression", "mobile-regression"})
     private void helpLinkClickableForIntegModeTest() throws Exception {
 
         commonUtils.getUrl(integModeUrl);
@@ -1055,7 +1085,6 @@ public class AppHeaderTest extends BaseClass {
         result = commonUtils.assertValue((signOutClickable), true, "Error: Sign Out is NOT clickable");
         Assert.assertTrue(result);
     } */
-
     @Test(testName = "Mobile: BasicMode - User Menu Test", groups = {"mobile-regression"})
     private void userMenuForBasicModeMobileTest() throws Exception {
         if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
@@ -1070,7 +1099,7 @@ public class AppHeaderTest extends BaseClass {
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
         commonUtils.getUrl(basicModeUrl);
-        mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        mobileViewUserMenuVisible = commonUtils.isElementPresent(appHeaderPgObj.mobileViewUserMenu);
         userName = commonUtils.getText(appHeaderPgObj.mobileViewUserMenu);
         isUserName = commonUtils.assertValue(userName, "", "First Name is NOT relabled to ' '");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
@@ -1083,7 +1112,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile: BasicMode - Add courses", dataProvider = "BasicMode-Add Course", groups = {"mobile-regression"})
     private void addCoursesForBasicModeMobileTest(String noOfCourse, String courses) throws Exception {
         if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
@@ -1119,7 +1148,7 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: BasicMode - List all courses in order", groups = {"mobile-regression"})
     private void listAllCoursesInBasicModeMobileTest() throws Exception {
-        if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
+        if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
         }
         String[] arr = {"Physics", "Chemistry", "Maths", "", "Account Settings", "Sign Out"};
@@ -1132,21 +1161,21 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         int i;
         for (i = 2; i <= arr.length + 1; i++) {
             xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("i" + 0, i);
-            courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems), "mobile");
+            courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
             result = commonUtils.assertValue(courseTextAdded, arr[i - 2], "Error: Course not on " + (i - 1) + "th position");
             commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
             Assert.assertTrue(result);
         }
-    }
+    } */
 
     @Test(testName = "Mobile: BasicMode - Remove one course", groups = {"mobile-regression"})
     private void removeOneCourseForBasicModeMobileTest() throws Exception {
-        if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
+        if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
         }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -1157,10 +1186,10 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 3);
-        courseAdded = commonUtils.isElementPresent(By.xpath(xpathForUserMenuDropDownItems), "mobile");
+        courseAdded = commonUtils.isElementPresent(By.xpath(xpathForUserMenuDropDownItems));
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
 
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -1170,18 +1199,18 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("two", 4);
-        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems), "mobile");
+        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
         result = commonUtils.assertValue(courseTextAdded, "Account Settings", "Error: Course not removed");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: BasicMode - Remove All course", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile: BasicMode - Remove All course", groups = {"mobile-regression"})
     private void zeroCoursesForBasicModeMobileTest() throws Exception {
-        if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
+        if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
         }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -1190,13 +1219,13 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
-        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems), "mobile");
+        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
         result = commonUtils.assertValue(courseTextAdded, "Account Settings", "Error: All Courses not removed");
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("second", 3);
-        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems), "mobile");
+        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems));
         result = commonUtils.assertValue(courseTextAdded, "Sign Out", "Error: All Courses not removed");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
@@ -1204,7 +1233,7 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: BasicMode - Truncate course names", groups = {"mobile-regression"})
     private void truncateCourseNameForBasicModeMobileTest() throws Exception {
-        if (!(mobileDevice.contains("iPhone 6")) || (!(mobileDevice.contains("Google Nexus 7")))) {
+        if (!(mobileDevice.contains("iPhone 6") || mobileDevice.contains("Google Nexus 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus' or 'Google Nexus 7 HD Emulator'");
         }
         commonUtils.readInitialConfig(basicJSFilePath, tempJSFilePath);
@@ -1214,12 +1243,12 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
-        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems + "/a"), "mobile");
+        courseTextAdded = commonUtils.getText(By.xpath(xpathForUserMenuDropDownItems + "/a"));
         result = commonUtils.assertValue(courseTextAdded, "verylongcoursenameverylongcoursename", "Error: Course not added");
-        courseNameTruncatable = commonUtils.getCSSValue(By.xpath(xpathForUserMenuDropDownItems + "/a"), "text-overflow", "mobile");
+        courseNameTruncatable = commonUtils.getCSSValue(By.xpath(xpathForUserMenuDropDownItems + "/a"), "text-overflow");
         result = commonUtils.assertValue(courseNameTruncatable, "ellipsis", "Error: Course Name is not truncatable");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
@@ -1237,14 +1266,14 @@ public class AppHeaderTest extends BaseClass {
         testConfig = buildJSONObjectForBasicMode("Basic", "Michel", bModecourses);
 
         commonUtils.changeConfig(basicJSFilePath, defaultConfigBasicMode, testConfig);
-        commonUtils.getUrl(basicModeUrl, "mobile");
-        commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+        commonUtils.getUrl(basicModeUrl);
+        commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         xpathForUserMenuDropDownItems = appHeaderPgObj.xpathForUserMenuDropDownItems("first", 2);
-        courseClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForUserMenuDropDownItems + "/a"), "mobile");
+        courseClickable = commonUtils.isElementsVisibleOnPage(By.xpath(xpathForUserMenuDropDownItems + "/a"));
         result = commonUtils.assertValue((courseClickable), true, "Error: Course is NOT clickable");
         commonUtils.writeInitialConfig(tempJSFilePath, basicJSFilePath);
         Assert.assertTrue(result);
-    }
+    } */
 
     @Test(testName = "Mobile: Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regressionR")
     private void stylesForBasicModeMobileTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
@@ -1274,31 +1303,31 @@ public class AppHeaderTest extends BaseClass {
 
     @Test(testName = "Mobile: Sign Out Button Test", groups = "mobile-regressionR")
     private void signOutButtonStylesMobileTest() {
-        commonUtils.getUrl(basicModeUrl, "mobile");
+        commonUtils.getUrl(basicModeUrl);
         if (mobileDevice.contains("iPhone 6")) {
             appium.rotate(ScreenOrientation.LANDSCAPE);
-            commonUtils.click(appHeaderPgObj.mobileViewUserMenu, "mobile");
+            commonUtils.click(appHeaderPgObj.mobileViewUserMenu);
         }
         if (mobileDevice.contains("iPad Air")) {
             appium.rotate(ScreenOrientation.PORTRAIT);
-            commonUtils.click(appHeaderPgObj.desktopViewUserMenu, "mobile");
+            commonUtils.click(appHeaderPgObj.desktopViewUserMenu);
         }
-        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "background-color");
         isbackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#047a9c"), commonUtils.hex2RgbWithoutTransparency("#047a9c")});
         if (!isbackgroundColor) {
             log.info("background-color :for app-header-sign out button is not as per the spec, actual: " + backgroundColor);
         }
-        color = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "color", "mobile");
+        color = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")});
         if (!isColor) {
             log.info("color :for app-header-sign out button is not as per the spec, actual: " + color);
         }
-        textDecoration = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, textDecorationProperty, "mobile");
+        textDecoration = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, textDecorationProperty);
         isTextDecoration = commonUtils.assertCSSProperties("text-decoration", textDecoration, new String[]{"none"});
         if (!isTextDecoration) {
             log.info("text-decoration :for app-header-sign out button is not as per the spec, actual: " + textDecoration);
         }
-        textAlign = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "text-align", "mobile");
+        textAlign = commonUtils.getCSSValue(appHeaderPgObj.clickableSignOut, "text-align");
         isTextAlign = commonUtils.assertValue(textAlign, "center", "text-align :for app-header-sign out button is not as per the spec");
         Assert.assertTrue(isbackgroundColor && isColor && isTextDecoration && isTextAlign);
     }
@@ -1348,7 +1377,6 @@ public class AppHeaderTest extends BaseClass {
         isAriaExpanded = commonUtils.assertValue(ariaExpanded, "false", "When drop down is opened the aria-expanded is not false");
         Assert.assertTrue(isAriaExpanded);
     } */
-
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
