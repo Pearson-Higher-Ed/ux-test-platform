@@ -19,7 +19,8 @@ import java.lang.reflect.Method;
 
 public class ButtonsTest extends BaseClass {
 
-    private final String buttonsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/buttons.html";
+    //private final String buttonsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/buttons.html";
+    private final String buttonsUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/buttons.html";
     private final String absButtonsJSFilePath = new File("elementsSDK/functional/jsfiles/buttons/buttons.js").getAbsolutePath();
     private final String buttonsJSFilePath= constructPath(absButtonsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/buttons/temp.js").getAbsolutePath();
@@ -55,7 +56,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = "desktop-regression1")
     private void appendValidClassNamesTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
@@ -251,63 +252,63 @@ public class ButtonsTest extends BaseClass {
      * Mobile Tests
      *************/
 
-    @Test(testName = "Mobile: Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = "mobile-regression")
-    private void validButtonPropTypesMobileTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
-        commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
-        //modify the default config values with test config values
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnType: ''", btnType);
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnSize: 'large'", btnSize);
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "children: 'children'", children);
-        commonUtils.getUrl(buttonsUrl, "mobile");
-        //verify if the correct class names are rendered for valid test config
-        attribute = commonUtils.getAttributeValue(compBtnPgObj.buttonTarget, "class", "mobile");
-        isAttribute = commonUtils.assertValue(attribute, expClassName, "the button " + btnType + " is not loaded as per the spec");
-        backgroundColor = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expbackgroundColor);
-        if (!isBackgroundColor) {
-            log.info("background-color for button type " + btnType + " is not as per the spec, actual: " + backgroundColor);
-        }
-        fontSize = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font-size for button type " + btnType + " is not as per the spec, actual: " + fontSize);
-        }
-        lineHeight = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "line-height", "mobile");
-        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("line-height for button type " + btnType + " is not as per the spec, actual: " + lineHeight);
-        }
-        height = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "height", "mobile");
-        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (!isHeight) {
-            log.info("height for button type " + btnType + " is not as per the spec, actual: " + height);
-        }
-        commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
-        Assert.assertTrue(isAttribute && isBackgroundColor && isFontSize && isLineHeight && isHeight);
-    }
-
-    @Test(testName = "Mobile: Verify Button Invalid Prop Types Test", dataProvider = "Invalid Button Prop Types Test Data", groups = "mobile-regression")
-    private void verifyButtonInvalidPropTypesMobileTest(String btnType, String btnSize, String children, String[] expbackgroundColor, String[] expHeight) throws Exception {
-        commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
-        //modify the default config values with test config values
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnType: ''", btnType);
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnSize: 'large'", btnSize);
-        commonUtils.replaceLineInAFile(buttonsJSFilePath, "children: 'children'", children);
-        commonUtils.getUrl(buttonsUrl, "mobile");
-        //Verify that the css styles are not applied
-        backgroundColor = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expbackgroundColor);
-        if (isBackgroundColor) {
-            log.info("background-color for button type " + children + " is not as per the spec, actual: " + backgroundColor);
-        }
-        height = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "height", "mobile");
-        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (isHeight) {
-            log.info("height for button type " + children + " is not as per the spec, actual: " + height);
-        }
-        commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
-        Assert.assertFalse(isBackgroundColor && isHeight);
-    }
+//    @Test(testName = "Mobile: Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = "mobile-regression")
+//    private void validButtonPropTypesMobileTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
+//        commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
+//        //modify the default config values with test config values
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnType: ''", btnType);
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnSize: 'large'", btnSize);
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "children: 'children'", children);
+//        commonUtils.getUrl(buttonsUrl, "mobile");
+//        //verify if the correct class names are rendered for valid test config
+//        attribute = commonUtils.getAttributeValue(compBtnPgObj.buttonTarget, "class", "mobile");
+//        isAttribute = commonUtils.assertValue(attribute, expClassName, "the button " + btnType + " is not loaded as per the spec");
+//        backgroundColor = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "background-color", "mobile");
+//        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expbackgroundColor);
+//        if (!isBackgroundColor) {
+//            log.info("background-color for button type " + btnType + " is not as per the spec, actual: " + backgroundColor);
+//        }
+//        fontSize = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "font-size", "mobile");
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("font-size for button type " + btnType + " is not as per the spec, actual: " + fontSize);
+//        }
+//        lineHeight = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "line-height", "mobile");
+//        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+//        if (!isLineHeight) {
+//            log.info("line-height for button type " + btnType + " is not as per the spec, actual: " + lineHeight);
+//        }
+//        height = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "height", "mobile");
+//        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+//        if (!isHeight) {
+//            log.info("height for button type " + btnType + " is not as per the spec, actual: " + height);
+//        }
+//        commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
+//        Assert.assertTrue(isAttribute && isBackgroundColor && isFontSize && isLineHeight && isHeight);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Button Invalid Prop Types Test", dataProvider = "Invalid Button Prop Types Test Data", groups = "mobile-regression")
+//    private void verifyButtonInvalidPropTypesMobileTest(String btnType, String btnSize, String children, String[] expbackgroundColor, String[] expHeight) throws Exception {
+//        commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
+//        //modify the default config values with test config values
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnType: ''", btnType);
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "btnSize: 'large'", btnSize);
+//        commonUtils.replaceLineInAFile(buttonsJSFilePath, "children: 'children'", children);
+//        commonUtils.getUrl(buttonsUrl, "mobile");
+//        //Verify that the css styles are not applied
+//        backgroundColor = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "background-color", "mobile");
+//        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expbackgroundColor);
+//        if (isBackgroundColor) {
+//            log.info("background-color for button type " + children + " is not as per the spec, actual: " + backgroundColor);
+//        }
+//        height = commonUtils.getCSSValue(compBtnPgObj.buttonTarget, "height", "mobile");
+//        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+//        if (isHeight) {
+//            log.info("height for button type " + children + " is not as per the spec, actual: " + height);
+//        }
+//        commonUtils.writeInitialConfig(tempJSFilePath, buttonsJSFilePath);
+//        Assert.assertFalse(isBackgroundColor && isHeight);
+//    }
 
     private String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("elementsSDK/functional")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("elementsSDK/functional"));
