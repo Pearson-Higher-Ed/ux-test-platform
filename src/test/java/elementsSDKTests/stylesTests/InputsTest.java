@@ -20,8 +20,8 @@ import utilities.BaseClass;
 
 public class InputsTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/inputs.html";
-    private static String setMobile = "", setDesktop = "", browser = "", lBrowser = "", setPlatform = "", setAppium = "";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/inputs.html";
+    private static String setMobile = "", setDesktop = "", browser = "", lBrowser = "", setPlatform = "", setOS = "";
     private String display = "", fontSize = "", outlineStyle = "", color = "", backgroundColor = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "\"open sans\", calibri, tahoma, sans-serif", transitionDelay = "", transitionProp = "", trainsitionTimingFunc = "", transitionDuration = "", unroundedTransValue = "", opacity = "", paddingLeft = "", width = "", textDecoration = "";
     private String paddingBottom = "", paddingTop = "", paddingRight = "", borderBottom = "", borderBottomColor = "", borderBottomStyle = "", showBtnColor = "", showBtnFloat = "", marginRight = "";
     boolean isDisplay = false, isFontSize = false, isOutlineStyle = false, isCSSProperty = false, isColor = false, isBackgroundColor = false, isHeight = false, isTransitionDelay = false, isTransitionProp = false, isTransitionTimingFunc = false, isTransitionDuration = false, isOpacity = false, isPaddingLeft = false, isWidth = false, isTextDecoration = false;
@@ -45,7 +45,7 @@ public class InputsTest extends BaseClass {
         setMobile = BaseClass.mobile;
         setDesktop = BaseClass.desktop;
         setPlatform = BaseClass.platform;
-        setAppium = BaseClass.mobileOS;
+        setOS = BaseClass.mobileOS;
     }
 
     /****************
@@ -2049,7 +2049,7 @@ public class InputsTest extends BaseClass {
             isCSSProperty = commonUtils.assertValue(cssProperty, "2px", cssPropertyType + " of " + type + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
-        if (!setAppium.equals("iOS")) {
+        if (!setOS.equals("iOS")) {
             commonUtils.focusOnElementById(type);
             Thread.sleep(2000);
             textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration");
