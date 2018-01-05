@@ -16,7 +16,7 @@ addons:
       packages:
         - g++-4.8
   browserstack:
-          username: "pdatest2"
+          username: "payaltest1"
           access_key:
                 secure: fyTRrIqsdu5b1keGfibdd3fhbC0vnC23Kdwj2uQbTPCGi8hLPvYv8XxE6evt560YMonoPbAxAIMIWuGMXhYtuFdUaeA34uNJdXp2dARbSmW+4alpfgZa/rFbr5H3w43GcLCBuqPJPR7SRt8Z59iRyXN8ZLkZl5FqnylwWWvdmScvgGOh+PUQuwyhQ6ktlIkW/U4jsflMRtQNwJudIyCFnliaLdNT8NnxO4LjUubIVP1WjHCV36Mn/oZYvnOurjApZdQHbjydhYXf0G9FVHMpPSsEZqGJMhVwBXur/1KGXo4aD5N+WqSKD/gnpBgLFe2iYfkhFuwswYDOZahL3e9ywEyJ93IJ+16TIjiyRTbCnYgt1UiBODShKyWw/xsQFzB4TQwNsmysoqcGNOaIBtGygRbyau60QLtohwwLYgytKHxSyDIL+GDZ1duFMdGmWaCT8kUp/Zt/RyIcKnF7d7fCvuF1ozrzJ5QbNAyQUn2lykcGLHWjooHBWDamASEHB/a2Eb2ljCvRGHxP60Ntc2witxmxcCVpBwBEpL+aVDpxorgV1vOf7fw/DB5He5jZKb9PorPZCQNVvdQ1Ju2tBLfXv/IwsF5LCnH7cKauOOY+GamHv6N9Ot74EyejlBFr/Lq17TOe7arLHs3V0zEQicsrx8gyIi1lfn8vhOsEDWYJzvY=
 
