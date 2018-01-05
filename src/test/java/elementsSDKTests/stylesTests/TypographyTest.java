@@ -192,7 +192,12 @@ public class TypographyTest extends BaseClass {
     //<abbr>, <ins>, <del>, <s>, <mark>, <em>, <strong>, <sub>, <sup> and <q>
     @Test(testName = "Inline: Abbr Test", groups = {"desktop-regression", "mobile-regression"})
     private void abbrTest() {
-        textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line");
+        if(setMobile.equals("on")){
+            textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration");
+        }
+        else {
+            textDecoration = commonUtils.getCSSValue(typoPgObj.abbr, "text-decoration-line");
+        }
         isTextDecoration = commonUtils.assertValue(textDecoration, "none", "abbr text-decoration is not as per spec");
         Assert.assertTrue(isTextDecoration);
     }
@@ -209,7 +214,12 @@ public class TypographyTest extends BaseClass {
 
     @Test(testName = "Inline: Del and Ins Test", dataProvider = "DelAndInsTag Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void delAndInsTest(By element, String inlineTag, String inlineTagTextDecoration, String pseudoContAttribute) {
-        textDecoration = commonUtils.getCSSValue(element, "text-decoration-line");
+        if(setMobile.equals("on")){
+            textDecoration = commonUtils.getCSSValue(element, "text-decoration");
+        }
+        else {
+            textDecoration = commonUtils.getCSSValue(element, "text-decoration-line");
+        }
         isTextDecoration = commonUtils.assertValue(textDecoration, inlineTagTextDecoration, inlineTag + " is not as per spec");
 
         if (pseudoContAttribute.equals("before") || pseudoContAttribute.equals("after")) {
