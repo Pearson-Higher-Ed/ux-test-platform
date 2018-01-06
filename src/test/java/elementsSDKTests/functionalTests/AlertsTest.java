@@ -332,191 +332,190 @@ public class AlertsTest extends BaseClass {
      * Mobile Tests
      */
 
-    @Test(testName = "Mobile : Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression"})
-    private void successErrorInformationAlertsMobileTest(String alertClass, String alertType, By alert, String inlineVal, String[] expColor, String[] expBoxShadow) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width", "mobile");
-        borderLeftStyle = commonUtils.getCSSValue(alert, "border-left-style", "mobile");
-        borderLeftColor = commonUtils.getCSSValue(alert, "border-left-color", "mobile");
-        bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
-        boxShadow = commonUtils.getCSSValue(alert, "box-shadow", "mobile");
-
-        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Compounds -> Border-left-width of alert " + alertClass + alertType + " is not as per spec");
-        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Compounds -> Border-left-style of alert " + alertClass + alertType + " is not as per spec");
-        isBorderLeftColor = commonUtils.assertCSSProperties("border-left-color", borderLeftColor, expColor);
-        if (!isBorderLeftColor) {
-            log.info("Compounds -> border-left-color of alert " + alertClass + alertType + " is not as per spec, actual " + borderLeftColor);
-        }
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")});
-        if (!isBgColor) {
-            log.info("Compounds -> background-color of alert " + alertClass + alertType + " is not as per spec, actual " + bgColor);
-        }
-        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
-        if (!isBoxShadow) {
-            log.info("Compounds -> Box-shadow of alert " + alertClass + alertType + " is not as per spec, actual " + boxShadow);
-        }
-        Assert.assertTrue(isBorderLeftWidth && isBorderLeftStyle && isBorderLeftColor && isBgColor && isBoxShadow);
-    }
-
-    @Test(testName = "Mobile : Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"mobile-regression"})
-    private void alertTitlePropertiesMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        // Title
-        titleFontColor = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "color", "mobile");
-        titleFontSize = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "font-size", "mobile");
-        titleLineHt = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "line-height", "mobile");
-        marginRight = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "margin-right", "mobile");
-        fontWeight = commonUtils.getCSSValue(compAlertsPgObj.alertTitleText, "font-weight", "mobile");
-
-        isTitleFontColor = commonUtils.assertCSSProperties("color", titleFontColor, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
-        if (!isTitleFontColor) {
-            log.info("Compounds -> Font color of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleFontColor);
-        }
-        isTitleFontSize = commonUtils.assertCSSProperties("font-size", titleFontSize, new String[]{"14px", "13.93px"});
-        if (!isTitleFontSize) {
-            log.info("Compounds -> Font size of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleFontSize);
-        }
-        isTitleLineHt = commonUtils.assertCSSProperties("line-height", titleLineHt, new String[]{"17.9999px", "18px", "17.999940872192383px"});
-        if (!isTitleLineHt) {
-            log.info("Compounds -> Line height of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleLineHt);
-        }
-        isMarginRight = commonUtils.assertValue(marginRight, "4px", "Compounds -> Margin-Right of alert " + alertClass + alertType + " is not as per spec");
-        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
-        if (!isFontWeight) {
-            log.info("Compounds -> Font weight of alert " + alertClass + alertType + " is not as per spec, actual " + fontWeight);
-        }
-        Assert.assertTrue(isTitleFontColor && isTitleFontSize && isTitleLineHt && isMarginRight && isFontWeight);
-    }
-
-    @Test(testName = "Mobile : Test the Alert Text Properties", dataProvider = "Alert Title Properties Test Data", groups = {"mobile-regression"})
-    private void alertTextPropertiesMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        // text
-        textFontColor = commonUtils.getCSSValue(compAlertsPgObj.alertText, "color", "mobile");
-        textFontSize = commonUtils.getCSSValue(compAlertsPgObj.alertText, "font-size", "mobile");
-        textLineHt = commonUtils.getCSSValue(compAlertsPgObj.alertText, "line-height", "mobile");
-        display = commonUtils.getCSSValue(compAlertsPgObj.alertText, "display", "mobile");
-
-        isTextFontColor = commonUtils.assertCSSProperties("color", textFontColor, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
-        if (!isTextFontColor) {
-            log.info("Compounds -> Font color of Text of alert " + alertClass + alertType + " is not as per spec, actual " + textFontColor);
-        }
-        isTextFontSize = commonUtils.assertCSSProperties("font-size", textFontSize, new String[]{"14px", "13.93px"});
-        if (!isTextFontSize) {
-            log.info("Compounds -> Font size of Text of alert " + alertClass + alertType + " is not as per spec, actual " + textFontSize);
-        }
-        isTextLineHt = commonUtils.assertCSSProperties("line-height", textLineHt, new String[]{"22px", "22.000019073486328px"});
-        if (!isTextLineHt) {
-            log.info("Compounds -> Line height of text of alert " + alertClass + alertType + " is not as per spec, actual " + textLineHt);
-        }
-        isDisplay = commonUtils.assertValue(display, "inline", "Compounds -> Display of alert " + alertClass + alertType + " is not as per spec");
-        Assert.assertTrue(isTextFontColor && isTextFontSize && isTextLineHt && isDisplay);
-    }
-
-    @Test(testName = "Mobile : Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"mobile-regression"})
-    private void cssPropAlertContentMobileTest(String alertClass, String alertType, String expMarginLeft, String inlineVal) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        marginLeft = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "margin-left", "mobile");
-        paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "padding-top", "mobile");
-        paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "padding-right", "mobile");
-
-        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Compounds -> Margin left of alert " + alertClass + alertType + " is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "4px", "Compounds -> Padding top of alert " + alertClass + alertType + " is not as per spec");
-        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"8px", "12px"});
-        if (!isPaddingRight) {
-            log.info("Compounds -> Padding right of alert" + alertClass + alertType + " is not as per spec, actual " + paddingRight);
-        }
-        Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
-    }
-
-    @Test(testName = "Mobile : Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = "mobile-regression")
-    private void clickOnXIconMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        commonUtils.clickUsingJS(compAlertsPgObj.closeAlert, "mobile");
-        Thread.sleep(500);
-        isElemPresent = commonUtils.isElementsVisibleOnPage(compAlertsPgObj.alert, "mobile");
-        if (isElemPresent) {
-            log.info("Compounds -> " + alertClass + alertType + " did not dismiss, after clicking on 'X' icon");
-        }
-        Assert.assertFalse(isElemPresent);
-    }
-
-    @DataProvider(name = "Mobile : Icon Properties Test Data")
-    public Object[][] getIconPropsMobileTestData() {
-        return new Object[][]{
-                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"6px", "4px"}, "pe-icon--check-18"},
-                {"banner", "Error", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"10px", "8px"}, "pe-icon--warning-18"},
-
-                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"6px", "4px"}, "pe-icon--check-18"},
-                {"inline", "Error", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"10px", "8px"}, "pe-icon--warning-18"},
-        };
-    }
-
-    @Test(testName = "Mobile : Icon Properties Test", dataProvider = "Mobile : Icon Properties Test Data", groups = {"mobile-regression"})
-    private void iconPropertiesMobileTest(String alertClass, String alertType, String inlineVal, String[] expColor, String[] expMarginTop, String expClassName) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        color = commonUtils.getCSSValue(compAlertsPgObj.alertIcon, "color", "mobile");
-        marginTop = commonUtils.getCSSValue(compAlertsPgObj.alertIcon, "margin-top", "mobile");
-        className = commonUtils.getAttributeValue(compAlertsPgObj.svg, "class", "mobile");
-
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds -> color of icon of alert " + alertClass + alertType + " is not as per spec, actual " + color);
-        }
-        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
-        if (!isMarginTop) {
-            log.info("Compounds -> Margin top of icon of alert " + alertClass + alertType + " is not as per spec, actual " + marginTop);
-        }
-        isClassName = commonUtils.assertValue(className, expClassName, "Compounds -> svg icon class name of alert " + alertClass + alertType + " is not as per spec");
-        Assert.assertTrue(isColor && isMarginTop && isClassName);
-    }
-
-    @Test(testName = "Mobile : Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"mobile-regression"})
-    private void paddingForAlertsResponsiveMobileTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
-        if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
-        }
-        alertType = alertsPgObj.generateRandomAlerts();
-        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
-        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        appium.rotate(mode);
-
-        paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-top", "mobile");
-        paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-right", "mobile");
-        paddingBottom = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-bottom", "mobile");
-        paddingLeft = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-left", "mobile");
-        width = commonUtils.getCSSValue(compAlertsPgObj.alert, "width", "mobile");
-
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPadTop, "Compounds -> Padding top of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPadRight, "Compounds -> Padding right of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPadBtm, "Compounds -> Padding bottom of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPadLeft, "Compounds -> Padding left of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
-        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
-        if (!isWidth) {
-            log.info("Compounds -> width of alert " + alertClass + alertType + " at screen mode " + mode + " is not as per spec, actual " + width);
-        }
-        Assert.assertTrue(isPaddingTop && isPaddingRight && isPaddingBottom && isPaddingLeft && isWidth);
-    }
-
+//    @Test(testName = "Mobile : Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression"})
+//    private void successErrorInformationAlertsMobileTest(String alertClass, String alertType, By alert, String inlineVal, String[] expColor, String[] expBoxShadow) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width", "mobile");
+//        borderLeftStyle = commonUtils.getCSSValue(alert, "border-left-style", "mobile");
+//        borderLeftColor = commonUtils.getCSSValue(alert, "border-left-color", "mobile");
+//        bgColor = commonUtils.getCSSValue(alert, "background-color", "mobile");
+//        boxShadow = commonUtils.getCSSValue(alert, "box-shadow", "mobile");
+//
+//        isBorderLeftWidth = commonUtils.assertValue(borderLeftWidth, "3px", "Compounds -> Border-left-width of alert " + alertClass + alertType + " is not as per spec");
+//        isBorderLeftStyle = commonUtils.assertValue(borderLeftStyle, "solid", "Compounds -> Border-left-style of alert " + alertClass + alertType + " is not as per spec");
+//        isBorderLeftColor = commonUtils.assertCSSProperties("border-left-color", borderLeftColor, expColor);
+//        if (!isBorderLeftColor) {
+//            log.info("Compounds -> border-left-color of alert " + alertClass + alertType + " is not as per spec, actual " + borderLeftColor);
+//        }
+//        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")});
+//        if (!isBgColor) {
+//            log.info("Compounds -> background-color of alert " + alertClass + alertType + " is not as per spec, actual " + bgColor);
+//        }
+//        isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
+//        if (!isBoxShadow) {
+//            log.info("Compounds -> Box-shadow of alert " + alertClass + alertType + " is not as per spec, actual " + boxShadow);
+//        }
+//        Assert.assertTrue(isBorderLeftWidth && isBorderLeftStyle && isBorderLeftColor && isBgColor && isBoxShadow);
+//    }
+//
+//    @Test(testName = "Mobile : Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"mobile-regression"})
+//    private void alertTitlePropertiesMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        // Title
+//        titleFontColor = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "color", "mobile");
+//        titleFontSize = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "font-size", "mobile");
+//        titleLineHt = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "line-height", "mobile");
+//        marginRight = commonUtils.getCSSValue(compAlertsPgObj.alertTitle, "margin-right", "mobile");
+//        fontWeight = commonUtils.getCSSValue(compAlertsPgObj.alertTitleText, "font-weight", "mobile");
+//
+//        isTitleFontColor = commonUtils.assertCSSProperties("color", titleFontColor, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
+//        if (!isTitleFontColor) {
+//            log.info("Compounds -> Font color of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleFontColor);
+//        }
+//        isTitleFontSize = commonUtils.assertCSSProperties("font-size", titleFontSize, new String[]{"14px", "13.93px"});
+//        if (!isTitleFontSize) {
+//            log.info("Compounds -> Font size of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleFontSize);
+//        }
+//        isTitleLineHt = commonUtils.assertCSSProperties("line-height", titleLineHt, new String[]{"17.9999px", "18px", "17.999940872192383px"});
+//        if (!isTitleLineHt) {
+//            log.info("Compounds -> Line height of Title of alert " + alertClass + alertType + " is not as per spec, actual " + titleLineHt);
+//        }
+//        isMarginRight = commonUtils.assertValue(marginRight, "4px", "Compounds -> Margin-Right of alert " + alertClass + alertType + " is not as per spec");
+//        isFontWeight = commonUtils.assertCSSProperties("font-weight", fontWeight, new String[]{"bold", "700"});
+//        if (!isFontWeight) {
+//            log.info("Compounds -> Font weight of alert " + alertClass + alertType + " is not as per spec, actual " + fontWeight);
+//        }
+//        Assert.assertTrue(isTitleFontColor && isTitleFontSize && isTitleLineHt && isMarginRight && isFontWeight);
+//    }
+//
+//    @Test(testName = "Mobile : Test the Alert Text Properties", dataProvider = "Alert Title Properties Test Data", groups = {"mobile-regression"})
+//    private void alertTextPropertiesMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        // text
+//        textFontColor = commonUtils.getCSSValue(compAlertsPgObj.alertText, "color", "mobile");
+//        textFontSize = commonUtils.getCSSValue(compAlertsPgObj.alertText, "font-size", "mobile");
+//        textLineHt = commonUtils.getCSSValue(compAlertsPgObj.alertText, "line-height", "mobile");
+//        display = commonUtils.getCSSValue(compAlertsPgObj.alertText, "display", "mobile");
+//
+//        isTextFontColor = commonUtils.assertCSSProperties("color", textFontColor, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")});
+//        if (!isTextFontColor) {
+//            log.info("Compounds -> Font color of Text of alert " + alertClass + alertType + " is not as per spec, actual " + textFontColor);
+//        }
+//        isTextFontSize = commonUtils.assertCSSProperties("font-size", textFontSize, new String[]{"14px", "13.93px"});
+//        if (!isTextFontSize) {
+//            log.info("Compounds -> Font size of Text of alert " + alertClass + alertType + " is not as per spec, actual " + textFontSize);
+//        }
+//        isTextLineHt = commonUtils.assertCSSProperties("line-height", textLineHt, new String[]{"22px", "22.000019073486328px"});
+//        if (!isTextLineHt) {
+//            log.info("Compounds -> Line height of text of alert " + alertClass + alertType + " is not as per spec, actual " + textLineHt);
+//        }
+//        isDisplay = commonUtils.assertValue(display, "inline", "Compounds -> Display of alert " + alertClass + alertType + " is not as per spec");
+//        Assert.assertTrue(isTextFontColor && isTextFontSize && isTextLineHt && isDisplay);
+//    }
+//
+//    @Test(testName = "Mobile : Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"mobile-regression"})
+//    private void cssPropAlertContentMobileTest(String alertClass, String alertType, String expMarginLeft, String inlineVal) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        marginLeft = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "margin-left", "mobile");
+//        paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "padding-top", "mobile");
+//        paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alertContent, "padding-right", "mobile");
+//
+//        isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Compounds -> Margin left of alert " + alertClass + alertType + " is not as per spec");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, "4px", "Compounds -> Padding top of alert " + alertClass + alertType + " is not as per spec");
+//        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"8px", "12px"});
+//        if (!isPaddingRight) {
+//            log.info("Compounds -> Padding right of alert" + alertClass + alertType + " is not as per spec, actual " + paddingRight);
+//        }
+//        Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
+//    }
+//
+//    @Test(testName = "Mobile : Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = "mobile-regression")
+//    private void clickOnXIconMobileTest(String alertClass, String alertType, String inlineVal) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        commonUtils.clickUsingJS(compAlertsPgObj.closeAlert, "mobile");
+//        Thread.sleep(500);
+//        isElemPresent = commonUtils.isElementsVisibleOnPage(compAlertsPgObj.alert, "mobile");
+//        if (isElemPresent) {
+//            log.info("Compounds -> " + alertClass + alertType + " did not dismiss, after clicking on 'X' icon");
+//        }
+//        Assert.assertFalse(isElemPresent);
+//    }
+//
+//    @DataProvider(name = "Mobile : Icon Properties Test Data")
+//    public Object[][] getIconPropsMobileTestData() {
+//        return new Object[][]{
+//                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"6px", "4px"}, "pe-icon--check-18"},
+//                {"banner", "Error", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"10px", "8px"}, "pe-icon--warning-18"},
+//
+//                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"6px", "4px"}, "pe-icon--check-18"},
+//                {"inline", "Error", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"10px", "8px"}, "pe-icon--warning-18"},
+//        };
+//    }
+//
+//    @Test(testName = "Mobile : Icon Properties Test", dataProvider = "Mobile : Icon Properties Test Data", groups = {"mobile-regression"})
+//    private void iconPropertiesMobileTest(String alertClass, String alertType, String inlineVal, String[] expColor, String[] expMarginTop, String expClassName) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        color = commonUtils.getCSSValue(compAlertsPgObj.alertIcon, "color", "mobile");
+//        marginTop = commonUtils.getCSSValue(compAlertsPgObj.alertIcon, "margin-top", "mobile");
+//        className = commonUtils.getAttributeValue(compAlertsPgObj.svg, "class", "mobile");
+//
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds -> color of icon of alert " + alertClass + alertType + " is not as per spec, actual " + color);
+//        }
+//        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+//        if (!isMarginTop) {
+//            log.info("Compounds -> Margin top of icon of alert " + alertClass + alertType + " is not as per spec, actual " + marginTop);
+//        }
+//        isClassName = commonUtils.assertValue(className, expClassName, "Compounds -> svg icon class name of alert " + alertClass + alertType + " is not as per spec");
+//        Assert.assertTrue(isColor && isMarginTop && isClassName);
+//    }
+//
+//    @Test(testName = "Mobile : Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"mobile-regression"})
+//    private void paddingForAlertsResponsiveMobileTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
+//        if (!(mobileDevice.contains(device))) {
+//            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
+//        }
+//        alertType = alertsPgObj.generateRandomAlerts();
+//        String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
+//        String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//        appium.rotate(mode);
+//
+//        paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-top", "mobile");
+//        paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-right", "mobile");
+//        paddingBottom = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-bottom", "mobile");
+//        paddingLeft = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-left", "mobile");
+//        width = commonUtils.getCSSValue(compAlertsPgObj.alert, "width", "mobile");
+//
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPadTop, "Compounds -> Padding top of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
+//        isPaddingRight = commonUtils.assertValue(paddingRight, expPadRight, "Compounds -> Padding right of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
+//        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPadBtm, "Compounds -> Padding bottom of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPadLeft, "Compounds -> Padding left of alert " + alertClass + alertType + " at mode " + mode + " is not as per spec");
+//        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+//        if (!isWidth) {
+//            log.info("Compounds -> width of alert " + alertClass + alertType + " at screen mode " + mode + " is not as per spec, actual " + width);
+//        }
+//        Assert.assertTrue(isPaddingTop && isPaddingRight && isPaddingBottom && isPaddingLeft && isWidth);
+//    }
 
     /*****************
      * Common methods
