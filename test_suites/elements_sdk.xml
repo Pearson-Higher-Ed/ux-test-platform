@@ -9,12 +9,12 @@
     <!-- Functional(JavaScript) Tests -->
    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="3">
         <classes>
-            <class name="elementsSDKTests.functionalTests.AlertsTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.AlertsTest"/>-->
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
             <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.FooterTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.IconsTest"/>-->
-            <class name="elementsSDKTests.functionalTests.InputsTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.InputsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.TabsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
