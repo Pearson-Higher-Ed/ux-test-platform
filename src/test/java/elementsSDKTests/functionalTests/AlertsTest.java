@@ -286,8 +286,9 @@ public class AlertsTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        commonUtils.setWindowSize(screenWidth, height);
         Thread.sleep(2000);
+        commonUtils.setWindowSize(screenWidth, height);
+        Thread.sleep(5000);
         System.out.println("size: "+driver.manage().window().getSize());
         paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-top");
         paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-right");
