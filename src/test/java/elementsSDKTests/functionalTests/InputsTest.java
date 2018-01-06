@@ -695,7 +695,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Show Button Focus Test", dataProvider = "Fancy - Password Input - Show Button Focus Test data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Fancy - Verify Password Input - Show Button Focus Test", dataProvider = "Fancy - Password Input - Show Button Focus Test data", groups = {"desktop-regression"})
     private void fancyPasswordInputFancyShowBtnFocusTest(String inputState, String id, String showButtonId, By showbutton) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
