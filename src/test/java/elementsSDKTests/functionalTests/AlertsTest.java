@@ -194,7 +194,10 @@ public class AlertsTest extends BaseClass {
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Compounds -> Margin left of alert " + alertClass + alertType + " is not as per spec");
         isPaddingTop = commonUtils.assertValue(paddingTop, "4px", "Compounds -> Padding top of alert " + alertClass + alertType + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "12px", "Compounds -> Padding right of alert " + alertClass + alertType + " is not as per spec");
+        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"8px", "12px"});
+        if (!isPaddingRight) {
+            log.info("Compounds -> Padding right of alert " + alertClass + alertType + " is not as per spec, actual " + paddingRight);
+        }
 
         Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
     }
@@ -235,17 +238,17 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "Icon Properties Test Data")
     public Object[][] getIconPropsTestData() {
         return new Object[][]{
-                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-lg-18"},
-                {"banner", "Error", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "8px", "pe-icon--warning-18"},
+                {"banner", "Success", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"4px", "6px"}, "pe-icon--check-lg-18"},
+                {"banner", "Error", "false", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"8px", "10px"}, "pe-icon--warning-18"},
 
-                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "4px", "pe-icon--check-lg-18"},
-                {"inline", "Error", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "8px", "pe-icon--warning-18"},
+                {"inline", "Success", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, new String[]{"4px", "6px"}, "pe-icon--check-lg-18"},
+                {"inline", "Error", "true", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"8px", "10px"}, "pe-icon--warning-18"},
 
         };
     }
 
     @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression", "mobile-regression"})
-    private void iconPropertiesTest(String alertClass, String alertType, String inlineVal, String[] expColor, String expMarginTop, String expClassName) throws Exception {
+    private void iconPropertiesTest(String alertClass, String alertType, String inlineVal, String[] expColor, String[] expMarginTop, String expClassName) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -258,7 +261,12 @@ public class AlertsTest extends BaseClass {
         if (!isColor) {
             log.info("Compounds -> color of icon of alert " + alertClass + alertType + " is not as per spec, actual " + color);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds -> Margin top of icon of alert " + alertClass + alertType + " is not as per spec");
+
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+        if (!isMarginTop) {
+            log.info("Compounds -> Margin top of icon of alert " + alertClass + alertType + " is not as per spec, actual " + marginTop);
+        }
+
         isClassName = commonUtils.assertValue(className, expClassName, "Compounds -> svg icon class name of alert " + alertClass + alertType + " is not as per spec");
         Assert.assertTrue(isColor && isMarginTop && isClassName);
     }
