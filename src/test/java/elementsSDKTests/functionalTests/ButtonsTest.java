@@ -56,7 +56,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = {"desktop-regression", "mobile-regression1"})
     private void appendValidClassNamesTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
