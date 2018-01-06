@@ -93,7 +93,7 @@ public class BaseClass {
                 caps.setCapability(CapabilityType.LOGGING_PREFS, logs);
                 for (int i = 0; i < (desktopCaps.length - 1); i += 2) {
                     if (platform.startsWith("Windows") && desktopCaps[i].equals("resolution")) {
-                        caps.setCapability(desktopCaps[i], "2048x1536");
+                        caps.setCapability(desktopCaps[i], "1920x1080");
                         continue;
                     }
                     caps.setCapability(desktopCaps[i], desktopCaps[i + 1]);

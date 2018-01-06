@@ -22,7 +22,8 @@ import java.util.Map;
  * Created by udhadpa on 6/20/17.
  */
 public class AlertsTest extends BaseClass {
-    private final String alertsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/alerts.html";
+    //private final String alertsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/alerts.html";
+    private final String alertsUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/alerts.html";
     private final String absAlertsJSFilePath = new File("elementsSDK/functional/jsfiles/alerts/alerts.js").getAbsolutePath();
     private final String alertsJSFilePath = constructPath(absAlertsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/alerts/temp.js").getAbsolutePath();
