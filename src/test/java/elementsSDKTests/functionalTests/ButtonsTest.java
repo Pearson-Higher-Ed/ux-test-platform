@@ -134,7 +134,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
+    @Test(testName = "Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression1"})
     private void validButtonPropTypesTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
