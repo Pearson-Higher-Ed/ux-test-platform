@@ -56,7 +56,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Verify append valid class names to Buttons Class Test", dataProvider = "Append valid class names to Buttons Class Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void appendValidClassNamesTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
@@ -134,7 +134,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression1"})
+    @Test(testName = "Verify Valid Button Prop Types Test", dataProvider = "Valid Button Prop Types Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void validButtonPropTypesTest(String btnType, String btnSize, String children, String expClassName, String[] expbackgroundColor, String[] expHeight, String[] expFontSize, String[] expLineHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
@@ -195,7 +195,7 @@ public class ButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Button Invalid Prop Types Test", dataProvider = "Invalid Button Prop Types Test Data", groups = {"desktop-regression","mobile-regression1"})
+    @Test(testName = "Verify Button Invalid Prop Types Test", dataProvider = "Invalid Button Prop Types Test Data", groups = {"desktop-regression","mobile-regression"})
     private void verifyButtonInvalidPropTypesTest(String btnType, String btnSize, String children, String[] expbackgroundColor, String[] expHeight) throws Exception {
         commonUtils.readInitialConfig(buttonsJSFilePath, tempJSFilePath);
         //modify the default config values with test config values
@@ -218,7 +218,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertFalse(isBackgroundColor && isHeight);
     }
 
-    @Test(testName = "Verify incorrect Element ID Button Test", groups = {"desktop-regression","mobile-regression1"})
+    @Test(testName = "Verify incorrect Element ID Button Test", groups = {"desktop-regression"})
     private void incorrectElementIdErrorMsgButtonTest() throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
@@ -233,7 +233,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Verify incorrect Component Name Button Test", groups = {"desktop-regression","mobile-regression1"})
+    @Test(testName = "Verify incorrect Component Name Button Test", groups = {"desktop-regression"})
     private void incorrectComponentNameErrorMsgButtonTest() throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
