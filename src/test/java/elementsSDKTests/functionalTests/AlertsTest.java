@@ -276,7 +276,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression1"})
     private void paddingForAlertsResponsiveTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
 //        if (!platform.equals("OS X 10.11")) {
 //            throw new SkipException("Responsive tests are not supported on Windows in sauce");
@@ -287,6 +287,7 @@ public class AlertsTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         commonUtils.setWindowSize(screenWidth, height);
         Thread.sleep(500);
+        System.out.println("size: "+driver.manage().window().getSize());
         paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-top");
         paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-right");
         paddingBottom = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-bottom");
