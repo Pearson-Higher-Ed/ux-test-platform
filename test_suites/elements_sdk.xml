@@ -7,7 +7,7 @@
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
-   <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="3">
+   <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="4">
         <classes>
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
