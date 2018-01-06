@@ -93,7 +93,7 @@ public class ButtonsTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor && isFontSize && isLineHeight && isHeight);
     }
 
-    @Test(testName = "Verify click operation on the Button Test", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Verify click operation on the Button Test", groups = {"desktop-regression"})
     private void clickEventButtonTest() throws InterruptedException {
         if (browser.equals("safari")) {
             throw new SkipException("alerts are not handled by the safari browser driver'");
