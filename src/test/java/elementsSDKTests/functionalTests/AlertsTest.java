@@ -66,7 +66,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void successErrorInformationAlertsTest(String alertClass, String alertType, By alert, String inlineVal, String[] expColor, String[] expBoxShadow) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -108,7 +108,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Test the Alert Title Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void alertTitlePropertiesTest(String alertClass, String alertType, String inlineVal) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -141,7 +141,7 @@ public class AlertsTest extends BaseClass {
         Assert.assertTrue(isTitleFontColor && isTitleFontSize && isTitleLineHt && isMarginRight && isFontWeight);
     }
 
-    @Test(testName = "Test the Alert Text Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Test the Alert Text Properties", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void alertTextPropertiesTest(String alertClass, String alertType, String inlineVal) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -182,7 +182,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS properties of Alert Content", dataProvider = "CSS properties of Alert Content Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void cssPropAlertContentTest(String alertClass, String alertType, String expMarginLeft, String inlineVal) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -199,7 +199,7 @@ public class AlertsTest extends BaseClass {
         Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
     }
 
-    @Test(testName = "Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = "desktop-regression")
+    @Test(testName = "Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickOnXIconTest(String alertClass, String alertType, String inlineVal) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -244,7 +244,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void iconPropertiesTest(String alertClass, String alertType, String inlineVal, String[] expColor, String expMarginTop, String expClassName) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
@@ -286,10 +286,8 @@ public class AlertsTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        Thread.sleep(2000);
         commonUtils.setWindowSize(screenWidth, height);
-        Thread.sleep(5000);
-        System.out.println("size: "+driver.manage().window().getSize());
+        Thread.sleep(500);
         paddingTop = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-top");
         paddingRight = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-right");
         paddingBottom = commonUtils.getCSSValue(compAlertsPgObj.alert, "padding-bottom");
@@ -315,7 +313,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Incorrect Values Test", dataProvider = "Verify Incorrect Values Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Incorrect Values Test", dataProvider = "Verify Incorrect Values Test Data", groups = {"desktop-regression"})
     private void incorrectValuesLoadingIndicatorTest(String originalLine, String replaceLine, String errorMsg) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("browser console logs apis are not yet implemented for this browser driver'");
