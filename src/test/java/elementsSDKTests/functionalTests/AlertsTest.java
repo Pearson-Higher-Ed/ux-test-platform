@@ -268,20 +268,20 @@ public class AlertsTest extends BaseClass {
         return new Object[][]{
                 // {480, 800, "8px", "8px", "24px", "28px", new String[]{"310.172px", "310.15px", "301.078125px", "310.171875px", "315.281px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
                 {"banner", "false", 530, 800, "8px", "8px", "24px", "28px", new String[]{"440px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-//                {"banner", "false", 768, 800, "12px", "12px", "28px", "28px", new String[]{"580px"}, "iPad Air", ScreenOrientation.PORTRAIT},
-//                {"banner", "false", 1024, 800, "12px", "12px", "28px", "28px", new String[]{"580px"}, "iPad Air", ScreenOrientation.LANDSCAPE},
-//
-//                {"inline", "true", 320, 800, "8px", "8px", "24px", "28px", new String[]{"320px", "360px", "295px", "280px", "374px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
-//                {"inline", "true", 480, 800, "8px", "8px", "24px", "28px", new String[]{"480px", "440px", "696px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-//                {"inline", "true", 768, 800, "12px", "12px", "28px", "28px", new String[]{"400px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"banner", "false", 768, 800, "12px", "12px", "28px", "28px", new String[]{"580px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"banner", "false", 1024, 800, "12px", "12px", "28px", "28px", new String[]{"580px"}, "iPad Air", ScreenOrientation.LANDSCAPE},
+
+                {"inline", "true", 320, 800, "8px", "8px", "24px", "28px", new String[]{"320px", "360px", "295px", "280px", "374px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"inline", "true", 480, 800, "8px", "8px", "24px", "28px", new String[]{"480px", "440px", "696px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"inline", "true", 768, 800, "12px", "12px", "28px", "28px", new String[]{"400px"}, "iPad Air", ScreenOrientation.PORTRAIT},
         };
     }
 
-    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression1"})
+    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression"})
     private void paddingForAlertsResponsiveTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
-//        if (!platform.equals("OS X 10.11")) {
-//            throw new SkipException("Responsive tests are not supported on Windows in sauce");
-//        }
+        if (!platform.equals("OS S")) {
+            throw new SkipException("Responsive tests are not supported on Windows in sauce");
+        }
         alertType = alertsPgObj.generateRandomAlerts();
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
