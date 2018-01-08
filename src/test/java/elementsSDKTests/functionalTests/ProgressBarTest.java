@@ -20,7 +20,8 @@ import java.util.Map;
  * Created by umahaea on 10/25/17.
  */
 public class ProgressBarTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/progress-bar.html";
+    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/progress-bar.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/progress-bar.html";
     private final String absTabsJSFilePath = new File("elementsSDK/functional/jsfiles/progressBar/progress-bar.js").getAbsolutePath();
     private final String progressBarJSFilePath = constructPath(absTabsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/progressBar/temp.js").getAbsolutePath();
