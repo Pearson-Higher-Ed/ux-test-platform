@@ -220,7 +220,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = {"desktop-regression"})
     private void anchorTagTest(String anchorTagType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
@@ -241,13 +241,11 @@ public class FooterTest extends BaseClass {
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         if (anchorTagType.equals("_self")) {
             driver.switchTo().window(tabs.get(0));
-            System.out.println("tabs.size(): "+tabs.size());
             if (!(tabs.size() == 1)) {
                 Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
             }
         } else if (anchorTagType.equals("_blank")) {
             driver.switchTo().window(tabs.get(0));
-            System.out.println("tabs.size(): "+tabs.size());
             if (!(tabs.size() == 2)) {
                 Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
             }
