@@ -69,11 +69,7 @@ public class PaginationTest extends BaseClass {
         browser = BaseClass.bsBrowser;
         lBrowser = BaseClass.localBrowser;
         mobile = BaseClass.mobile;
-        if (desktop.equals("on")) {
-            paginationPgObj = new PaginationPageObjects(driver);
-        } else if (mobile.equals("on")) {
-            paginationPgObj = new PaginationPageObjects(appium);
-        }
+        paginationPgObj = new PaginationPageObjects(driver);
     }
 
     @BeforeMethod(alwaysRun = true)

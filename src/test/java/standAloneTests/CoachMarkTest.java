@@ -234,7 +234,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isElemPresent);
     }
 
-    @Test(testName = "Coach-Mark Tab on Dismissal Link Test", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Coach-Mark Tab on Dismissal Link Test", groups = {"desktop-regression"})
     private void coachMarkTabDismissalLinkTest() throws Exception {
         if (browser.equals("safari")) {
             throw new SkipException("Tab is not supported by Safari browser");

@@ -23,9 +23,9 @@ public class PaginationPageObjects {
         this.driver = driver;
     }
 
-    public PaginationPageObjects(AppiumDriver appium) {
+    /*public PaginationPageObjects(AppiumDriver appium) {
         this.appium = appium;
-    }
+    }*/
 
     /**
      * Web elementsSDK.styles for Ellipses
