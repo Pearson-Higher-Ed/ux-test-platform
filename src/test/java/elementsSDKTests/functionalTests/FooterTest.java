@@ -247,6 +247,7 @@ public class FooterTest extends BaseClass {
             }
         } else if (anchorTagType.equals("_blank")) {
             driver.switchTo().window(tabs.get(0));
+            System.out.println("tabs.size(): "+tabs.size());
             if (!(tabs.size() == 2)) {
                 Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
             }
