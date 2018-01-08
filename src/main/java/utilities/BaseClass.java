@@ -45,10 +45,10 @@ public class BaseClass {
     //    final static String USERNAME = SauceParam.SAUCE_USERNAME;
 //    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
 //    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-//    final static String USERNAME = "payaltest1";
-//    final static String AUTOMATE_KEY = "BZERJz99zPAMGt9xS6qx";
-    final static String USERNAME = "eajaz3";
-    final static String AUTOMATE_KEY = "rMzmK9rpvW7ZLJzvfW4r";
+//    final static String USERNAME = "pdauser1";
+//    final static String AUTOMATE_KEY = "Ltvhi519RwgaCZZSxJF3";
+    final static String USERNAME = "pdauser2";
+    final static String AUTOMATE_KEY = "Ltvhi519RwgaCZZSxJF3";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
