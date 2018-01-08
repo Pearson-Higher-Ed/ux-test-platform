@@ -23,8 +23,8 @@ public class DrawerTest extends BaseClass {
     private String contentInDrawer = "", cssPropertyType = "";
     private boolean isContentInDrawer = false;
     private static String setMobile = "";
-    private String ariaExpanded = "", focused = "", opacity = "",borderWidth = "", borderStyle = "", borderColor = "", padding ="", position="", right="", bottom="", color="";
-    private boolean isAriaExpanded = false, isFocused = false, isOpacity = false,isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isPadding = false,isPosition=false, isRight=false, isBottom=false, isColor=false;
+    private String ariaExpanded = "", focused = "", opacity = "", borderWidth = "", borderStyle = "", borderColor = "", padding = "", position = "", right = "", bottom = "", color = "";
+    private boolean isAriaExpanded = false, isFocused = false, isOpacity = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isPadding = false, isPosition = false, isRight = false, isBottom = false, isColor = false;
     JavascriptExecutor js = null;
     WebElement webElement = null;
     private static String browser = "", lBrowser = "";
@@ -46,7 +46,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Open Drawer
-    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void openDrawerTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
         commonUtils.click(drawerLinkElement);
         isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
@@ -62,7 +62,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Toggle Drawer
-    @Test(testName = "Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void toggleDrawerTest(String drawerType, By openDrawerLinkElement, By toggleDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
         commonUtils.click(openDrawerLinkElement);
         Thread.sleep(500);
@@ -93,23 +93,29 @@ public class DrawerTest extends BaseClass {
     }
 
     //Close Drawer
-    @Test(testName = "Close Drawer Test", dataProvider = "Close Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Close Drawer Test", dataProvider = "Close Drawer Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void closeDrawerTest(String drawerType, By openDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
         //Step 1: Open Drawer
         commonUtils.click(openDrawerLinkElement);
         Thread.sleep(500);
         isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
+        if (!isDrawerOpened) {
+            log.info(drawerType + " is not open");
+        }
         Assert.assertTrue(isDrawerOpened);
 
         //Step 2: Close Drawer
         commonUtils.clickUsingJS(closeDrawerLinkElement);
         Thread.sleep(500);
         isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement);
+        if (isDrawerClosed) {
+            log.info(drawerType + " is not closed");
+        }
         Assert.assertTrue(isDrawerClosed);
     }
 
     //Use data-target instead of href
-    @Test(testName = "Use Data Target Test", groups = {"desktop-regression"})
+    @Test(testName = "Use Data Target Test", groups = {"desktop-regression", "mobile-regression"})
     private void useDataTargetForDrawerTest() throws Exception {
         commonUtils.click(drawerPgObj.useDataTargetButton);
         isDrawerOpened = commonUtils.isElementPresent(drawerPgObj.rightDrawerOpened);
@@ -132,7 +138,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Use API
-    @Test(testName = "Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void useAPIDrawerTest(String drawerType, By element) throws Exception {
         String toggleStatusText = "";
         boolean isToggleStatusText = false;
@@ -160,7 +166,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //close other drawers
-    @Test(testName = "Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void otherDrawerTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
         //Open Drawer
         commonUtils.clickUsingJS(openDrawerLinkElement);
@@ -331,7 +337,7 @@ public class DrawerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Check CSS Properties For Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS Properties For Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void checkCSSPropertiesLeftDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.openLeftDrawerLink);
         cssPropertyType = cssProperty;
@@ -344,7 +350,7 @@ public class DrawerTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Check CSS Properties For Other Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS Properties For Other Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void checkCSSPropertiesOtherLeftDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.otherLeftDrawerLink);
         cssPropertyType = cssProperty;
@@ -374,7 +380,7 @@ public class DrawerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Check CSS Properties For Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS Properties For Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void checkCSSPropertiesRightDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.openRightDrawerLink);
         cssPropertyType = cssProperty;
@@ -387,7 +393,7 @@ public class DrawerTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Check CSS Properties For Other Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Check CSS Properties For Other Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void checkCSSPropertiesOtherRightDrawerTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
         commonUtils.click(drawerPgObj.otherRightDrawerLink);
         cssPropertyType = cssProperty;
@@ -401,17 +407,17 @@ public class DrawerTest extends BaseClass {
     }
 
     @DataProvider(name = "Check the Border properties of Drawers Test Data")
-    public Object[][] getDrawerBorderPropertiesTestData(){
+    public Object[][] getDrawerBorderPropertiesTestData() {
         return new Object[][]{
-                {"left drawer", drawerPgObj.openLeftDrawerLink,drawerPgObj.leftDrawer,"30px",new String[]{"0px","1px"},"solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
-                {"right drawer", drawerPgObj.openRightDrawerLink,drawerPgObj.rightDrawer,"30px",new String[]{"0px","1px"},"solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
-                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink,drawerPgObj.otherLeftDrawer,"30px",new String[]{"0px","1px"},"solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
-                {"other-right-drawer", drawerPgObj.otherRightDrawerLink,drawerPgObj.otherRightDrawer,"30px",new String[]{"0px","1px"},"solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
+                {"left drawer", drawerPgObj.openLeftDrawerLink, drawerPgObj.leftDrawer, "30px", new String[]{"0px", "1px"}, "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
+                {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.rightDrawer, "30px", new String[]{"0px", "1px"}, "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
+                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink, drawerPgObj.otherLeftDrawer, "30px", new String[]{"0px", "1px"}, "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
+                {"other-right-drawer", drawerPgObj.otherRightDrawerLink, drawerPgObj.otherRightDrawer, "30px", new String[]{"0px", "1px"}, "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#d9d9d9"), commonUtils.hex2Rgb("#d9d9d9")}},
         };
     }
 
-    @Test(testName = "Check the Border properties of Drawers Test", dataProvider = "Check the Border properties of Drawers Test Data", groups = {"desktop-regression"})
-    private void checkDrawerBorderPropertiesTest(String drawerType, By elem, By drawer, String expPadding, String[] expBorWidth, String expBorStyle, String[] expBorColor){
+    @Test(testName = "Check the Border properties of Drawers Test", dataProvider = "Check the Border properties of Drawers Test Data", groups = {"desktop-regression", "mobile-regression"})
+    private void checkDrawerBorderPropertiesTest(String drawerType, By elem, By drawer, String expPadding, String[] expBorWidth, String expBorStyle, String[] expBorColor) {
         commonUtils.click(elem);
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
@@ -421,8 +427,8 @@ public class DrawerTest extends BaseClass {
         }
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(drawer, cssProperty);
-            isBorderWidth = commonUtils.assertCSSProperties(cssProperty,borderWidth, expBorWidth);
-            if (!isBorderWidth){
+            isBorderWidth = commonUtils.assertCSSProperties(cssProperty, borderWidth, expBorWidth);
+            if (!isBorderWidth) {
                 log.info("Border width " + cssProperty + " of " + drawerType + " is not as per spec, actual: " + borderWidth);
             }
             Assert.assertTrue(isBorderWidth);
@@ -445,46 +451,46 @@ public class DrawerTest extends BaseClass {
     @DataProvider(name = "Bottom Close Button Css Test Data")
     public Object[][] bottomCloseBtnCssTestData() {
         return new Object[][]{
-                {"left drawer", drawerPgObj.openLeftDrawerLink,drawerPgObj.closeBtnLeftBottom,"absolute","5px","30px",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")},"0"},
-                {"right drawer", drawerPgObj.openRightDrawerLink,drawerPgObj.closeBtnRightBottom,"absolute","5px","30px",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")},"0"},
-                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink,drawerPgObj.closeBtnOtherLeftBottom,"absolute","5px","30px",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")},"0"},
-                {"other-right-drawer", drawerPgObj.otherRightDrawerLink,drawerPgObj.closeBtnOtherRightBottom,"absolute","5px","30px",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")},"0"},
+                {"left drawer", drawerPgObj.openLeftDrawerLink, drawerPgObj.closeBtnLeftBottom, "absolute", "5px", "30px", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}, "0"},
+                {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.closeBtnRightBottom, "absolute", "5px", "30px", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}, "0"},
+                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink, drawerPgObj.closeBtnOtherLeftBottom, "absolute", "5px", "30px", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}, "0"},
+                {"other-right-drawer", drawerPgObj.otherRightDrawerLink, drawerPgObj.closeBtnOtherRightBottom, "absolute", "5px", "30px", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}, "0"},
         };
     }
 
-    @Test(testName = "Check CSS Properties For Close Bottom Btn Test", dataProvider = "Bottom Close Button Css Test Data", groups = {"desktop-regression"})
-    private void checkCSSPropertiesCloseBtnTest(String drawerType, By elem, By closeBtn, String expPosition, String expBottom, String expRight,String[] expColor, String expOpacity) throws InterruptedException {
+    @Test(testName = "Check CSS Properties For Close Bottom Btn Test", dataProvider = "Bottom Close Button Css Test Data", groups = {"desktop-regression", "mobile-regression"})
+    private void checkCSSPropertiesCloseBtnTest(String drawerType, By elem, By closeBtn, String expPosition, String expBottom, String expRight, String[] expColor, String expOpacity) throws InterruptedException {
         commonUtils.click(elem);
-        position = commonUtils.getCSSValue(closeBtn,"position");
-        bottom = commonUtils.getCSSValue(closeBtn,"bottom");
-        right = commonUtils.getCSSValue(closeBtn,"right");
-        color = commonUtils.getCSSValue(closeBtn,"color");
-        opacity = commonUtils.getCSSValue(closeBtn,"opacity");
+        position = commonUtils.getCSSValue(closeBtn, "position");
+        bottom = commonUtils.getCSSValue(closeBtn, "bottom");
+        right = commonUtils.getCSSValue(closeBtn, "right");
+        color = commonUtils.getCSSValue(closeBtn, "color");
+        opacity = commonUtils.getCSSValue(closeBtn, "opacity");
 
-        isPosition = commonUtils.assertValue(position,expPosition,"Position of Close Btn for " + drawerType + " is not per spec ");
-        isBottom = commonUtils.assertValue(bottom,expBottom,"Bottom of Close Btn for " + drawerType + " is not per spec ");
-        isRight = commonUtils.assertValue(right,expRight,"Right of Close Btn for " + drawerType + " is not per spec ");
-        isColor = commonUtils.assertCSSProperties("color",color,expColor);
-        if(!isColor){
+        isPosition = commonUtils.assertValue(position, expPosition, "Position of Close Btn for " + drawerType + " is not per spec ");
+        isBottom = commonUtils.assertValue(bottom, expBottom, "Bottom of Close Btn for " + drawerType + " is not per spec ");
+        isRight = commonUtils.assertValue(right, expRight, "Right of Close Btn for " + drawerType + " is not per spec ");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
             log.info("Color of Close Btn for " + drawerType + " is not per spec, actual: " + color);
         }
-        isOpacity = commonUtils.assertValue(opacity,expOpacity,"Opacity of Close Btn for " + drawerType + " is not per spec ");
+        isOpacity = commonUtils.assertValue(opacity, expOpacity, "Opacity of Close Btn for " + drawerType + " is not per spec ");
 
         Assert.assertTrue(isPosition && isBottom && isRight && isColor && isOpacity);
     }
 
     @DataProvider(name = "Check the Border properties of Close Button Test Data")
-    public Object[][] getBorderPropertiesCloseBtnTestData(){
+    public Object[][] getBorderPropertiesCloseBtnTestData() {
         return new Object[][]{
-                {"left drawer", drawerPgObj.openLeftDrawerLink,drawerPgObj.closeBtnLeftBottom,"5px","1px","solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
-                {"right drawer", drawerPgObj.openRightDrawerLink,drawerPgObj.closeBtnRightBottom,"5px","1px","solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
-                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink,drawerPgObj.closeBtnOtherLeftBottom,"5px","1px","solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
-                {"other-right-drawer", drawerPgObj.otherRightDrawerLink,drawerPgObj.closeBtnOtherRightBottom,"5px","1px","solid",new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
+                {"left drawer", drawerPgObj.openLeftDrawerLink, drawerPgObj.closeBtnLeftBottom, "5px", "1px", "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
+                {"right drawer", drawerPgObj.openRightDrawerLink, drawerPgObj.closeBtnRightBottom, "5px", "1px", "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
+                {"other-left-drawer", drawerPgObj.otherLeftDrawerLink, drawerPgObj.closeBtnOtherLeftBottom, "5px", "1px", "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
+                {"other-right-drawer", drawerPgObj.otherRightDrawerLink, drawerPgObj.closeBtnOtherRightBottom, "5px", "1px", "solid", new String[]{commonUtils.hex2RgbWithoutTransparency("#047a9c"), commonUtils.hex2Rgb("#047a9c")}},
         };
     }
 
-    @Test(testName = "Check the Border properties of Close Button Test", dataProvider = "Check the Border properties of Close Button Test Data", groups = {"desktop-regression"})
-    private void checkBorderPropertiesCloseBtnTest(String drawerType, By elem, By closeBtn,String expPadding, String expBorWidth, String expBorStyle, String[] expBorColor){
+    @Test(testName = "Check the Border properties of Close Button Test", dataProvider = "Check the Border properties of Close Button Test Data", groups = {"desktop-regression", "mobile-regression"})
+    private void checkBorderPropertiesCloseBtnTest(String drawerType, By elem, By closeBtn, String expPadding, String expBorWidth, String expBorStyle, String[] expBorColor) {
         commonUtils.click(elem);
         for (String cssProperty : paddings) {
             padding = commonUtils.getCSSValue(closeBtn, cssProperty);
@@ -522,7 +528,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Close Drawer
-    @Test(testName = "Click Bottom Close Btn Drawer Test", dataProvider = "Click Bottom Close Btn Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Click Bottom Close Btn Drawer Test", dataProvider = "Click Bottom Close Btn Drawer Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickBtmCloseDrawerTest(String drawerType, By openDrawerLinkElement, By closeDrawerBtnElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
         //Step 1: Open Drawer
         commonUtils.click(openDrawerLinkElement);
@@ -597,45 +603,45 @@ public class DrawerTest extends BaseClass {
     }*/
 
     //Toggle Drawer
-    @Test(testName = "Mobile: Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"mobile-regression", "standAlone"})
+    /*@Test(testName = "Mobile: Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void toggleDrawerMobileTest(String drawerType, By openDrawerLinkElement, By toggleDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (mobileOS.equals("android")) {
+        *//*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
-        }
-        commonUtils.click(openDrawerLinkElement, "mobile");
-        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement, "mobile");
+        }*//*
+        commonUtils.click(openDrawerLinkElement);
+        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement);
         Assert.assertTrue(isDrawerOpened);
 
-        commonUtils.click(toggleDrawerLinkElement, "mobile");
-        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement, "mobile");
+        commonUtils.click(toggleDrawerLinkElement);
+        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement);
         Assert.assertTrue(isDrawerClosed);
 
-        commonUtils.click(toggleDrawerLinkElement, "mobile");
-        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement, "mobile");
+        commonUtils.click(toggleDrawerLinkElement);
+        isDrawerOpened = commonUtils.isElementsVisibleOnPage(drawerOpenStatusElement);
         Assert.assertTrue(isDrawerOpened);
 
-        commonUtils.click(closeDrawerLinkElement, "mobile");
-        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement, "mobile");
+        commonUtils.click(closeDrawerLinkElement);
+        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement);
         Assert.assertTrue(isDrawerClosed);
     }
 
     //Close Drawer
     @Test(testName = "Mobile: Close Drawer Test", dataProvider = "Close Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void closeDrawerMobileTest(String drawerType, By openDrawerLinkElement, By closeDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.click(openDrawerLinkElement, "mobile");
+        commonUtils.click(openDrawerLinkElement);
         Thread.sleep(500);
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
         if (!isDrawerOpened) {
             log.info(drawerType + " is not open");
         }
         Assert.assertTrue(isDrawerOpened);
 
-        commonUtils.click(closeDrawerLinkElement, "mobile");
+        commonUtils.click(closeDrawerLinkElement);
         Thread.sleep(500);
-        isDrawerClosed = commonUtils.isElementPresent(drawerClosedStatusElement, "mobile");
+        isDrawerClosed = commonUtils.isElementPresent(drawerClosedStatusElement);
         if (isDrawerClosed) {
             log.info(drawerType + " is not closed");
         }
@@ -643,16 +649,16 @@ public class DrawerTest extends BaseClass {
     }
 
     //Use data-target instead of href
-    @Test(testName = "Mobile: Use Data Target Test", groups = {"mobile-regression", "standAlone"})
+    @Test(testName = "Mobile: Use Data Target Test", groups = {"mobile-regression1", "standAlone"})
     private void useDataTargetForDrawerMobileTest() throws Exception {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         String text = "Using data-target instead of href.";
-        commonUtils.click(drawerPgObj.useDataTargetButton, "mobile");
-        isDrawerOpened = commonUtils.isElementPresent(drawerPgObj.rightDrawerOpened, "mobile");
+        commonUtils.click(drawerPgObj.useDataTargetButton);
+        isDrawerOpened = commonUtils.isElementPresent(drawerPgObj.rightDrawerOpened);
         Assert.assertTrue(isDrawerOpened);
-        contentInDrawer = commonUtils.getText(drawerPgObj.rightDrawerOpened, "mobile");
+        contentInDrawer = commonUtils.getText(drawerPgObj.rightDrawerOpened);
         isContentInDrawer = commonUtils.assertValue(contentInDrawer, text, "Error: Data Target is not working as per the spec");
         Assert.assertTrue(isContentInDrawer);
     }
@@ -660,20 +666,20 @@ public class DrawerTest extends BaseClass {
     //Use API
     @Test(testName = "Mobile: Use API Drawer Test", dataProvider = "Use API Test Data", groups = {"mobile-regression", "standAlone"})
     private void useAPIDrawerMobileTest(String drawerType, By element) throws Exception {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         String toggleStatusText = "";
         boolean isToggleStatusText = false;
         //Test1- open the drawer
-        commonUtils.click(element, "mobile");
-        toggleStatusText = commonUtils.getText(drawerPgObj.toggleStatusText, "mobile");
+        commonUtils.click(element);
+        toggleStatusText = commonUtils.getText(drawerPgObj.toggleStatusText);
         isToggleStatusText = commonUtils.assertValue(toggleStatusText, "Drawer is opened", drawerType + " open() API is not working as per the spec");
         Assert.assertTrue(isToggleStatusText);
 
         //Test2- close the drawer
-        commonUtils.click(element, "mobile");
-        toggleStatusText = commonUtils.getText(drawerPgObj.toggleStatusText, "mobile");
+        commonUtils.click(element);
+        toggleStatusText = commonUtils.getText(drawerPgObj.toggleStatusText);
         isToggleStatusText = commonUtils.assertValue(toggleStatusText, "Drawer is closed", drawerType + " close() API is not working as per the spec");
         Assert.assertTrue(isToggleStatusText);
     }
@@ -682,35 +688,35 @@ public class DrawerTest extends BaseClass {
     @Test(testName = "Mobile: Other Drawer Test", dataProvider = "Other Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void otherDrawerMobileTest(String drawerType, By openDrawerLinkElement, By drawerOpenStatusElement, By drawerClosedStatusElement, By otherDrawerLinkElement, By otherDrawerOpenedStatusElement, By otherDrawerClosedStatusElement) throws Exception {
         //Open Drawer
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.clickUsingJS(openDrawerLinkElement, "mobile");
+        commonUtils.clickUsingJS(openDrawerLinkElement);
         Thread.sleep(500);
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
         Assert.assertTrue(isDrawerOpened);
 
         //Open other Drawer
-        commonUtils.clickUsingJS(otherDrawerLinkElement, "mobile");
+        commonUtils.clickUsingJS(otherDrawerLinkElement);
         Thread.sleep(500);
-        isDrawerOpened = commonUtils.isElementPresent(otherDrawerOpenedStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementPresent(otherDrawerOpenedStatusElement);
         Assert.assertTrue(isDrawerOpened);
 
         //Verify if the first drawer is closed
         Thread.sleep(500);
-        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement, "mobile");
+        isDrawerClosed = commonUtils.isElementsVisibleOnPage(drawerClosedStatusElement);
         Assert.assertTrue(isDrawerClosed);
     }
 
     @Test(testName = "Mobile : Check CSS Properties For Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesLeftDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.click(drawerPgObj.openLeftDrawerLink, "mobile");
+        commonUtils.click(drawerPgObj.openLeftDrawerLink);
         Thread.sleep(500);
         cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(drawerPgObj.leftDrawer, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(drawerPgObj.leftDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info(cssPropertyType + "' :for Left Drawer is not as per the spec, actual: " + cssProperty);
@@ -720,29 +726,31 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Other Left Drawer Test", dataProvider = "Check CSS Properties For Left Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesOtherLeftDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.click(drawerPgObj.otherLeftDrawerLink, "mobile");
+        commonUtils.click(drawerPgObj.otherLeftDrawerLink);
         Thread.sleep(500);
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(drawerPgObj.otherLeftDrawer, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info(cssPropertyType + "' :for Other Left Drawer is not as per the spec, actual: " + cssProperty);
-        }
+    cssPropertyType =cssProperty;
+    cssProperty =commonUtils.getCSSValue(drawerPgObj.otherLeftDrawer,cssProperty);
+    isCSSProperty =commonUtils.assertCSSProperties(cssPropertyType,cssProperty,expectedCSSValue);
+        if(!isCSSProperty)
+
+    {
+        log.info(cssPropertyType + "' :for Other Left Drawer is not as per the spec, actual: " + cssProperty);
+    }
         Assert.assertTrue(isCSSProperty);
     }
 
     @Test(testName = "Mobile : Check CSS Properties For Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesRightDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (mobileOS.equals("android")) {
+       /* if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.click(drawerPgObj.openRightDrawerLink, "mobile");
+        commonUtils.click(drawerPgObj.openRightDrawerLink);
         Thread.sleep(500);
         cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(drawerPgObj.rightDrawer, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(drawerPgObj.rightDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info(cssPropertyType + "' :for Right drawer is not as per the spec, actual: " + cssProperty);
@@ -752,13 +760,13 @@ public class DrawerTest extends BaseClass {
 
     @Test(testName = "Mobile : Check CSS Properties For Other Right Drawer Test", dataProvider = "Check CSS Properties For Right Drawers Test Data", groups = {"mobile-regression"})
     private void checkCSSPropertiesOtherRightDrawerMobileTest(String cssProperty, String[] expectedCSSValue) throws InterruptedException {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
-        commonUtils.click(drawerPgObj.otherRightDrawerLink, "mobile");
+        commonUtils.click(drawerPgObj.otherRightDrawerLink);
         Thread.sleep(500);
         cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(drawerPgObj.otherRightDrawer, cssProperty, "mobile");
+        cssProperty = commonUtils.getCSSValue(drawerPgObj.otherRightDrawer, cssProperty);
         isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
         if (!isCSSProperty) {
             log.info(cssPropertyType + "' :for Other Right Drawer is not as per the spec, actual: " + cssProperty);
@@ -766,30 +774,30 @@ public class DrawerTest extends BaseClass {
         Assert.assertTrue(isCSSProperty);
     }
 
-    @Test(testName = "Mobile : Check the Border properties of Drawers Test", dataProvider = "Check the Border properties of Drawers Test Data", groups = {"mobile-regression"})
-    private void checkDrawerBorderPropertiesMobileTest(String drawerType, By elem, By drawer, String expPadding, String[] expBorWidth, String expBorStyle, String[] expBorColor){
-        commonUtils.click(elem,"mobile");
+    @Test(testName = "Mobile : Check the Border properties of Drawers Test", dataProvider = "Check the Border properties of Drawers Test Data", groups = {"mobile-regression1"})
+    private void checkDrawerBorderPropertiesMobileTest(String drawerType, By elem, By drawer, String expPadding, String[] expBorWidth, String expBorStyle, String[] expBorColor) {
+        commonUtils.click(elem);
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
-            padding = commonUtils.getCSSValue(drawer, cssProperty,"mobile");
+            padding = commonUtils.getCSSValue(drawer, cssProperty);
             isPadding = commonUtils.assertValue(padding, expPadding, "Padding " + cssProperty + " of " + drawerType + " is not as per spec");
             Assert.assertTrue(isPadding);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(drawer, cssProperty,"mobile");
-            isBorderWidth = commonUtils.assertCSSProperties(cssProperty,borderWidth, expBorWidth);
-            if (!isBorderWidth){
+            borderWidth = commonUtils.getCSSValue(drawer, cssProperty);
+            isBorderWidth = commonUtils.assertCSSProperties(cssProperty, borderWidth, expBorWidth);
+            if (!isBorderWidth) {
                 log.info("Border width " + cssProperty + " of " + drawerType + " is not as per spec, actual: " + borderWidth);
             }
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(drawer, cssProperty,"mobile");
+            borderStyle = commonUtils.getCSSValue(drawer, cssProperty);
             isBorderStyle = commonUtils.assertValue(borderStyle, expBorStyle, " Border style " + cssProperty + " of " + drawerType + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(drawer, cssProperty,"mobile");
+            borderColor = commonUtils.getCSSValue(drawer, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorColor);
             if (!isBorderColor) {
                 log.info("Border color " + cssProperty + " of " + drawerType + " is not as per spec, actual: " + borderColor);
@@ -798,48 +806,48 @@ public class DrawerTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile : Check CSS Properties For Close Bottom Btn Test", dataProvider = "Bottom Close Button Css Test Data", groups = {"mobile-regression"})
-    private void checkCSSPropertiesCloseBtnMobileTest(String drawerType, By elem, By closeBtn, String expPosition, String expBottom, String expRight,String[] expColor, String expOpacity) throws InterruptedException {
-        commonUtils.click(elem,"mobile");
-        position = commonUtils.getCSSValue(closeBtn,"position","mobile");
-        bottom = commonUtils.getCSSValue(closeBtn,"bottom","mobile");
-        right = commonUtils.getCSSValue(closeBtn,"right","mobile");
-        color = commonUtils.getCSSValue(closeBtn,"color","mobile");
-        opacity = commonUtils.getCSSValue(closeBtn,"opacity","mobile");
+    @Test(testName = "Mobile : Check CSS Properties For Close Bottom Btn Test", dataProvider = "Bottom Close Button Css Test Data", groups = {"mobile-regression1"})
+    private void checkCSSPropertiesCloseBtnMobileTest(String drawerType, By elem, By closeBtn, String expPosition, String expBottom, String expRight, String[] expColor, String expOpacity) throws InterruptedException {
+        commonUtils.click(elem);
+        position = commonUtils.getCSSValue(closeBtn, "position");
+        bottom = commonUtils.getCSSValue(closeBtn, "bottom");
+        right = commonUtils.getCSSValue(closeBtn, "right");
+        color = commonUtils.getCSSValue(closeBtn, "color");
+        opacity = commonUtils.getCSSValue(closeBtn, "opacity");
 
-        isPosition = commonUtils.assertValue(position,expPosition,"Position of Close Btn for " + drawerType + " is not per spec ");
-        isBottom = commonUtils.assertValue(bottom,expBottom,"Bottom of Close Btn for " + drawerType + " is not per spec ");
-        isRight = commonUtils.assertValue(right,expRight,"Right of Close Btn for " + drawerType + " is not per spec ");
-        isColor = commonUtils.assertCSSProperties("color",color,expColor);
-        if(!isColor){
+        isPosition = commonUtils.assertValue(position, expPosition, "Position of Close Btn for " + drawerType + " is not per spec ");
+        isBottom = commonUtils.assertValue(bottom, expBottom, "Bottom of Close Btn for " + drawerType + " is not per spec ");
+        isRight = commonUtils.assertValue(right, expRight, "Right of Close Btn for " + drawerType + " is not per spec ");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
             log.info("Color of Close Btn for " + drawerType + " is not per spec, actual: " + color);
         }
-        isOpacity = commonUtils.assertValue(opacity,expOpacity,"Opacity of Close Btn for " + drawerType + " is not per spec ");
+        isOpacity = commonUtils.assertValue(opacity, expOpacity, "Opacity of Close Btn for " + drawerType + " is not per spec ");
 
         Assert.assertTrue(isPosition && isBottom && isRight && isColor && isOpacity);
     }
 
-    @Test(testName = "Mobile : Check the Border properties of Close Button Test", dataProvider = "Check the Border properties of Close Button Test Data", groups = {"mobile-regression"})
-    private void checkDrawerBorderPropertiesCloseBtnMobileTest(String drawerType, By elem, By closeBtn,String expPadding, String expBorWidth, String expBorStyle, String[] expBorColor){
-        commonUtils.click(elem,"mobile");
+    @Test(testName = "Mobile : Check the Border properties of Close Button Test", dataProvider = "Check the Border properties of Close Button Test Data", groups = {"mobile-regression1"})
+    private void checkDrawerBorderPropertiesCloseBtnMobileTest(String drawerType, By elem, By closeBtn, String expPadding, String expBorWidth, String expBorStyle, String[] expBorColor) {
+        commonUtils.click(elem);
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
-            padding = commonUtils.getCSSValue(closeBtn, cssProperty,"mobile");
+            padding = commonUtils.getCSSValue(closeBtn, cssProperty);
             isPadding = commonUtils.assertValue(padding, expPadding, "Close Button Padding " + cssProperty + " of " + drawerType + " is not as per spec");
             Assert.assertTrue(isPadding);
         }
         for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(closeBtn, cssProperty,"mobile");
+            borderWidth = commonUtils.getCSSValue(closeBtn, cssProperty);
             isBorderWidth = commonUtils.assertValue(borderWidth, expBorWidth, "Close Button Border width " + cssProperty + " of " + drawerType + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(closeBtn, cssProperty,"mobile");
+            borderStyle = commonUtils.getCSSValue(closeBtn, cssProperty);
             isBorderStyle = commonUtils.assertValue(borderStyle, expBorStyle, " Close Button  Border style " + cssProperty + " of " + drawerType + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(closeBtn, cssProperty,"mobile");
+            borderColor = commonUtils.getCSSValue(closeBtn, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorColor);
             if (!isBorderColor) {
                 log.info("Close Button Border color " + cssProperty + " of " + drawerType + " is not as per spec, actual: " + borderColor);
@@ -851,31 +859,26 @@ public class DrawerTest extends BaseClass {
     //Close Drawer
     @Test(testName = "Mobile : Click Bottom Close Btn Drawer Test", dataProvider = "Click Bottom Close Btn Drawer Test Data", groups = {"mobile-regression"})
     private void clickBtmCloseDrawerMobileTest(String drawerType, By openDrawerLinkElement, By closeDrawerBtnElement, By drawerOpenStatusElement, By drawerClosedStatusElement) throws Exception {
-        if (mobileOS.equals("android")) {
+        /*if (mobileOS.equals("android")) {
             throw new SkipException("Android device on Sauce has issues, Drawer functionality does not work as expected");
         }
         //Step 1: Open Drawer
-        commonUtils.click(openDrawerLinkElement, "mobile");
+        commonUtils.click(openDrawerLinkElement);
         Thread.sleep(500);
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
         Assert.assertTrue(isDrawerOpened);
 
         //Step 2: Close Drawer
-        commonUtils.clickUsingJS(closeDrawerBtnElement, "mobile");
+        commonUtils.clickUsingJS(closeDrawerBtnElement);
         Thread.sleep(500);
-        isDrawerClosed = commonUtils.isElementsVisibleOnPage(closeDrawerBtnElement, "mobile");
+        isDrawerClosed = commonUtils.isElementsVisibleOnPage(closeDrawerBtnElement);
         Assert.assertTrue(isDrawerClosed);
-    }
-
-
+    } */
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setMobile.equals("on")) {
-            commonUtils.getUrl(drawerUrl, "mobile");
-        } else {
-            commonUtils.getUrl(drawerUrl);
-        }
+        commonUtils.getUrl(drawerUrl);
+
     }
 
     @AfterMethod(alwaysRun = true)

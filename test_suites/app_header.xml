@@ -4,7 +4,7 @@
     <test name="origamiV2Test - App Header">
         <groups>
             <run>
-                <include name="mobile-regression"/>
+                <include name="mobile-regression1"/>
             </run>
         </groups>
         <classes>
@@ -14,7 +14,8 @@
             <!--<class name="standAloneTests.PaginationTest"/>-->
             <!--<class name="standAloneTests.AvatarDisplayTest"/>-->
             <!--<class name="standAloneTests.CoachMarkTest"/>-->
-            <class name="standAloneTests.SliderTest"/>
+            <!--<class name="standAloneTests.SliderTest"/>-->
+            <class name="standAloneTests.DrawerTest"/>
         </classes>
     </test>
 </suite>
