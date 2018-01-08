@@ -29,7 +29,7 @@ before_script:
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
-- export component=elements-sdk
+- export component=elements-sdk1
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
@@ -38,7 +38,7 @@ script:
 notifications:
   email:
     recipients:
-    - eajazali.mahaboobbasha@pearson.com
+    #- eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
