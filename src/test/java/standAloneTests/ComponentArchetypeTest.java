@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class ComponentArchetypeTest extends BaseClass {
 
-    private final String demoUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/componentArchetype/component-archetype.html";
+    private final String demoUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/componentArchetype/component-archetype.html";
     private String placeHolderText = "", translatedText = "";
     private boolean isPlaceHolderText = false, isTranslatedText = false;
     ComponentArchetypePageObjects compArchtypePgObj = new ComponentArchetypePageObjects();
@@ -32,7 +32,7 @@ public class ComponentArchetypeTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-regression", "standAlone"})
+    @Test(testName = "Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"desktop-regression", "standAlone","mobile-regression"})
     private void componentArchetypeDemoTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
         commonUtils.getUrl(demoUrl);
         placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder");
@@ -49,18 +49,18 @@ public class ComponentArchetypeTest extends BaseClass {
      * Mobile Tests
      ****************/
 
-    @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "standAlone"})
+   /* @Test(testName = "Mobile: Component Archetype Demo Test", dataProvider = "Component Archetype Demo Test Data", groups = {"mobile-regression", "standAlone"})
     private void componentArchetypeDemoMobileTest(String target, By element, By inputElement, String expPlaceHolder, String expTranslation) throws Exception {
-        commonUtils.getUrl(demoUrl, "mobile");
-        placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder", "mobile");
+        commonUtils.getUrl(demoUrl);
+        placeHolderText = commonUtils.getAttributeValue(inputElement, "placeholder");
         System.out.println(placeHolderText);
         isPlaceHolderText = commonUtils.assertValue(placeHolderText, expPlaceHolder, "Place Holder for " + target + " is not as per the Spec");
-        /*commonUtils.click(element,);
+        *//*commonUtils.click(element,);
         Thread.sleep(2000);
         translatedText = commonUtils.getAttributeValue(inputElement,"type","mobile");
-        isTranslatedText = commonUtils.assertValue(translatedText,expTranslation,"Translated Text for "+target+" is not as per the Spec");*/
+        isTranslatedText = commonUtils.assertValue(translatedText,expTranslation,"Translated Text for "+target+" is not as per the Spec");*//*
         Assert.assertTrue(isPlaceHolderText);
-    }
+    }*/
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {

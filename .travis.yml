@@ -1,5 +1,5 @@
 language: java
-sudo: false
+sudo: required
 
 jdk:
   - oraclejdk8
@@ -11,8 +11,8 @@ env:
 
 addons:
   apt:
-      sources:
-        - ubuntu-toolchain-r-test
+#      sources:
+#        - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
   browserstack:

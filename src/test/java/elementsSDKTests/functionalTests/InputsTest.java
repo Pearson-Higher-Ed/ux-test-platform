@@ -23,7 +23,8 @@ import java.util.*;
  */
 public class InputsTest extends BaseClass {
 
-    private final String inputsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/inputs.html";
+    //private final String inputsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/inputs.html";
+    private final String inputsUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/inputs.html";
     private final String absInputsJSFilePath = new File("elementsSDK/functional/jsfiles/inputs/inputs.js").getAbsolutePath();
     private final String inputsJSFilePath = constructPath(absInputsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/inputs/temp.js").getAbsolutePath();
@@ -124,7 +125,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Inputs (Single line - default)
-    @Test(testName = "Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void fancySingleLineTextInputTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -167,7 +168,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Inputs (single line - error)
-    @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void fancySingleLineTextInputErroredTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -195,7 +196,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Inputs (single line - disabled)
-    @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void fancySingleLineTextInputDisabledTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -230,7 +231,7 @@ public class InputsTest extends BaseClass {
     }
 
     //Inputs (single line - readonly)
-    @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void fancySingleLineTextInputReadOnlyTest(String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -319,7 +320,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void singleLineTextInputUnderlineTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -365,7 +366,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void singleLineTextInputInputTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -394,7 +395,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -442,7 +443,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputBordersTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -477,7 +478,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSingleLineTextInputLabelTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -508,7 +509,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error - Focus", dataProvider = "Basic - Single Line Text Input - Active/Error - Focus Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Single Line Text Input - Active/Error - Focus", dataProvider = "Basic - Single Line Text Input - Active/Error - Focus Test Data", groups = {"desktop-regression"})
     private void basicSingleLineTextInputFocusTest(String inputState, String id, By labelElement, String labelId, By element, String[] expBoxShadow, String[] expBorder, String expBorderRad) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -550,7 +551,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = {"desktop-regression","mobile-regression"})
     private void singleLineTextInputErrorMessageTest(String inputType, String inputState, String id, By element, String inputTypeValue, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -594,7 +595,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void fancyPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -658,7 +659,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -694,7 +695,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Show Button Focus Test", dataProvider = "Fancy - Password Input - Show Button Focus Test data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Show Button Focus Test", dataProvider = "Fancy - Password Input - Show Button Focus Test data", groups = {"desktop-regression"})
     private void fancyPasswordInputFancyShowBtnFocusTest(String inputState, String id, String showButtonId, By showbutton) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
@@ -724,7 +725,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -757,7 +758,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputUnderlineTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -790,7 +791,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputOtherFieldsShowTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
@@ -851,7 +852,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputShowBtnTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
@@ -890,7 +891,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Show Button Focus Test", dataProvider = "Basic - Password Input - Show Button Focus Test data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Show Button Focus Test", dataProvider = "Basic - Password Input - Show Button Focus Test data", groups = {"desktop-regression"})
     private void basicPasswordInputShowBtnFocusTest(String inputState, String id, String showButtonId, By showbutton) throws Exception {
         if ((browser.equals("firefox")) || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
@@ -919,7 +920,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputBoxTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
@@ -976,7 +977,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void multiLineInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1002,7 +1003,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiLineInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1030,7 +1031,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiLineInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1056,7 +1057,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiLineInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1081,7 +1082,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void multiTextInputLabelTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1169,7 +1170,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1206,7 +1207,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1243,7 +1244,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1279,7 +1280,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1307,7 +1308,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxLabelTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1344,7 +1345,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancySelectInputBoxMsgTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1415,7 +1416,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1447,7 +1448,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1479,7 +1480,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1512,7 +1513,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1540,7 +1541,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicSelectInputBoxBorderTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1587,7 +1588,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void basicSelectInputBoxLabelTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws Exception {
         // Select Input Label
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
@@ -1670,7 +1671,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
@@ -1716,7 +1717,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void checkboxNormalStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
@@ -1745,7 +1746,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = {"desktop-regression"})
     private void checkboxFocusStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
@@ -1780,7 +1781,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = {"desktop-regression","mobile-regression"})
     private void checkboxDisabledStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
@@ -1811,7 +1812,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void labelForCheckBoxTest(String id, String checkedValue, String disabledValue, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: " + checkedValue + ", disabled: " + disabledValue + "}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
@@ -1845,7 +1846,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"desktop-regression","mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledSVGTest(String elemType, String checkedValue, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: false},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
@@ -1920,7 +1921,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledLabelTest(String elemType, String checkedValue, String disabledValue, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
@@ -1953,7 +1954,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"desktop-regression","mobile-regression"})
     private void radioButtonsUnselectedSelectedDisabledRadioDivTest(String elemType, String checkedValue, String disabledValue, String expMarginBottom, String divXpath, String divId, By elem) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
         String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
@@ -1973,1024 +1974,1024 @@ public class InputsTest extends BaseClass {
      * Mobile Tests
      ***************/
     //Fancy - Text Input
-    @Test(testName = "Mobile: Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = "bug-mobile-regression")
-    //will enable this test when jason adds the 'value' prop
-    private void singleLineTextInputWiWoValuesMobileTest(String type, By element, String[] expColor, String[] expFontSize) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Compounds-> font-size for " + type + " is not as per the spec, actual: " + fontSize);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> color for " + type + " is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
-    }
-
-    //Fancy - Inputs (Single line - default)
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"mobile-regression"})
-    private void fancySingleLineTextInputMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    //Fancy - Inputs (single line - error)
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputErroredMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    //Fancy - Inputs (single line - disabled)
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    //Inputs (single line - readonly)
-    @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
-    private void singleLineTextInputUnderlineMobileTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
-        if (!isBackgroundColor) {
-            log.info("Compounds-> background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
-        }
-        display = commonUtils.getCSSValue(underlineElement, "display", "mobile");
-        isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
-        height = commonUtils.getCSSValue(underlineElement, "height", "mobile");
-        isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
-        if (!isHeight) {
-            log.info("Compounds-> height for " + underlineElementType + " is not as per the spec, actual: " + height);
-        }
-        transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay", "mobile");
-        isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
-        if (!isTransitionDelay) {
-            log.info("Compounds-> transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
-        }
-        transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration", "mobile");
-        isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
-        if (!isTransitionDuration) {
-            log.info("Compounds-> transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
-        }
-        transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property", "mobile");
-        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
-        trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
-        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
-        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
-    }
-
-    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"mobile-regression"})
-    private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
-    }
-
-    //Basic - Text Input
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputMobileTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
-        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        height = commonUtils.getCSSValue(element, "height", "mobile");
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Compounds-> Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
-            Assert.assertTrue(isBorderRadius);
-        }
-
-        isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBackgroundColor) {
-            log.info("Compounds-> Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> margin-top of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Padding right of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding left of Input-Basic Single Line (Active) field is not as per spec");
-        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (!isHeight) {
-            log.info("Compounds-> Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
-        }
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Compounds-> Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
-
-        Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isFontSize && isLineHeight);
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputBordersMobileTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-            if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
-            }
-            Assert.assertTrue(isBorderColor);
-        }
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "mobile-regression")
-    private void basicSingleLineTextInputLabelMobileTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(elementForLabel);
-        js.executeScript("arguments[0].setAttribute('id', '" + labelId + "')", webElement);
-
-        color = commonUtils.getCSSValue(elementForLabel, "color", "mobile");
-        fontSize = commonUtils.getCSSValue(elementForLabel, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(elementForLabel, "line-height", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Compounds-> Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
-        isColor = commonUtils.assertCSSProperties("color", color, expLabelColor);
-        if (!isColor) {
-            log.info("Compounds-> Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
-        }
-        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Compounds-> Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element, "mobile");
-        Assert.assertTrue(isColor && isFontSize && isLabelFor);
-    }
-
-    @Test(testName = "Mobile: Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "mobile-regression")
-    private void singleLineTextInputErrorMessageMobileTest(String inputType, String inputState, String id, By element, String inputTypeValue, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(element);
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
-        if (!isPaddingTop) {
-            log.info("Compounds-> padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> color for " + inputType + " is not as per the spec, actual: " + color);
-        }
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
-        }
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("Compounds-> line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
-        }
-        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
-    }
-
-    //Fancy - Password Input
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
-    private void fancyPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(labelClass);
-        js.executeScript("arguments[0].setAttribute('id','" + labelId + "')", webElement);
-
-        webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
-
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
-        if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
-        }
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
-        if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
-        }
-
-        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
-        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
-
-        if (inputState.equals("error")) {
-            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
-            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-            Thread.sleep(500);
-            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-            paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
-            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
-            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
-            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-            if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
-            }
-            Assert.assertTrue(isFontSize && isColor && isPaddingTop);
-        }
-        Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
-    private void fancyPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        Thread.sleep(500);
-        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
-        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
-        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
-
-        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
-        if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
-        for (String cssProperty : paddings) {
-            String cssPropertyType = cssProperty;
-            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
-            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
-            Assert.assertTrue(isCSSProperty);
-        }
-        Assert.assertTrue(isShowBtnColor && isMarginTop && isShowBtnFloat);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "mobile-regression")
-    private void fancyPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Compounds-> The padding-bottom of " + id + " is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> The padding-top of " + id + " is not as per spec");
-
-        borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width", "mobile");
-        borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color", "mobile");
-        borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style", "mobile");
-        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "Compounds-> The bottom border width of " + id + "  is not as per spec");
-        if (!id.equals("password-input-fancy-readOnly")) {
-            isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
-            if (!isBorderBottomColor) {
-                log.info("Compounds-> Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
-            }
-        }
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "Compounds-> The bottom border style of " + id + " is not as per spec");
-
-        Assert.assertTrue(isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "mobile-regression")
-    private void fancyPasswordInputUnderlineMobileTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        commonUtils.click(elem, "mobile");
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(underlineElementClass);
-        js.executeScript("arguments[0].setAttribute('id','" + underlineElemId + "')", webElement);
-
-        lineHeight = commonUtils.getCSSValue(underlineElement, "height", "mobile");
-        color = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
-
-        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "Compounds-> The underline height of " + id + " is not as per spec");
-        isColor = commonUtils.assertCSSProperties("background-color", color, expUnderlineColor);
-        if (!isColor) {
-            log.info("Compounds-> Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
-        }
-        Assert.assertTrue(isHeight && isColor);
-    }
-
-    //Basic - Password Input
-    @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
-    private void basicPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(labelClass);
-        js.executeScript("arguments[0].setAttribute('id','" + labelId + "')", webElement);
-
-        webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
-        js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
-
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> The font size of " + type + " Label is not as per spec");
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
-        if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
-        }
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
-        if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
-        }
-
-        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
-        if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
-
-        if (inputState.equals("error")) {
-            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
-            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
-            Thread.sleep(500);
-            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
-            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
-            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
-            if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
-            }
-            Assert.assertTrue(isFontSize && isColor);
-        }
-        Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regression")
-    private void basicPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        Thread.sleep(500);
-        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
-        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
-        marginRight = commonUtils.getCSSValue(showbutton, "margin-right", "mobile");
-        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
-
-        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
-        if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Compounds-> The margin-right value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
-        for (String cssProperty : paddings) {
-            String cssPropertyType = cssProperty;
-            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
-            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
-            Assert.assertTrue(isCSSProperty);
-        }
-        Assert.assertTrue(isShowBtnColor && isMarginTop && isMarginRight && isShowBtnFloat);
-    }
-
-    @Test(testName = "Mobile: Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "mobile-regression")
-    private void basicPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
-        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
-        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        marginTop = commonUtils.getCSSValue(elem, "margin-top", "mobile");
-
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Compounds-> The padding-left of " + id + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Compounds-> The padding-right of " + id + " is not as per spec");
-        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
-        if (!isHeight) {
-            log.info("Compounds-> The height of " + id + " is not as per spec, actual " + height);
-        }
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> The font-size of " + id + " is not as per spec");
-        isBgColor = commonUtils.assertCSSProperties("color", bgColor, expBgColor);
-        if (!isBgColor) {
-            log.info("Compounds-> BackGround Color of " + id + " is not as per spec, actual " + bgColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The margin-top of " + id + " is not as per spec");
-
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isHeight && isFontSize && isBgColor && isMarginTop);
-    }
-
-    //Multiline Text
-    @Test(testName = "Mobile: MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Active is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Error is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Disabled is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"mobile-regression"})
-    private void multiTextInputLabelMobileTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
-        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(labelClass);
-        js.executeScript("arguments[0].setAttribute('id', '" + labelTextType + "')", webElement);
-
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + labelTextType + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + labelTextType + " Label is not as per spec");
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
-        if (!isLabelColor) {
-            log.info("Compounds-> Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
-        }
-        Assert.assertTrue(isLabelFontSize && islabelLineHeight && isLabelColor);
-    }
-
-    //Fancy - Select Input
-    @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container--fancy"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxLabelMobileTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
-        if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
-        }
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> font-size of " + type + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
-        if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
-        }
-        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxMsgMobileTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className(className));
-        js.executeScript("arguments[0].setAttribute('id','" + msgType + "')", webElement);
-        fontSize = commonUtils.getCSSValue(msg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> font size of " + type + " is not as per spec");
-        paddingTop = commonUtils.getCSSValue(msg, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> padding top of " + type + " is not as per spec");
-        color = commonUtils.getCSSValue(msg, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> Font Color of " + type + " is not as per spec, actual " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
-    }
-
-    //Basic - Select Input
-    @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Active is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Error is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Disabled is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- ReadOnly is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputBoxBorderMobileTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className(className));
-        js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
-        for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Compounds-> Border radius  " + cssProperty + " of " + type + " is not as per spec");
-            Assert.assertTrue(isBorderRadius);
-        }
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        if (!type.equals("select-input-basic-readOnly")) {
-            for (String cssProperty : borderColors) {
-                borderColor = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-                isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-                if (!isBorderColor) {
-                    log.info("Compounds-> Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
-                }
-                Assert.assertTrue(isBorderColor);
-            }
-        }
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        // Select Input Label
-        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-
-        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
-        if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
-        }
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + type + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
-        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
-        if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
-        }
-        // icon
-        actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
-        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
-        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
-    }
-
-    //Check Box
-    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression"})
-    private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(element);
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkboxInput, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox input is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression"})
-    private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath("//span"));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
-    private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath("//div[1]/span"));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
-    private void labelForCheckBoxMobileTest(String id, String checkedValue, String disabledValue, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
-        if (id.contains("focus")) {
-            throw new SkipException("Focus operation tests not needed for mobile devices");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: " + checkedValue + ", disabled: " + disabledValue + "}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath(loc));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
-        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
-        if (!isPaddingLeft) {
-            log.info("Compounds-> padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
-        }
-        display = commonUtils.getCSSValue(element, "display", "mobile");
-        isDisplay = commonUtils.assertValue(display, expDisplay, "Compounds-> 'display' for checkbox label of '" + id + "' type is not as per the spec");
-
-        Assert.assertTrue(isPaddingLeft && isDisplay);
-    }
-
-    //Radios
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
-    private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String checkedValue, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: false},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath(spanXpath));
-        js.executeScript("arguments[0].setAttribute('id', '" + spanId + "')", webElement);
-
-        webElement = appium.findElement(By.xpath(svgXpath));
-        js.executeScript("arguments[0].setAttribute('id', '" + svgId + "')", webElement);
-
-        height = commonUtils.getCSSValue(span, "height", "mobile");
-        width = commonUtils.getCSSValue(span, "width", "mobile");
-        color = commonUtils.getCSSValue(span, "color", "mobile");
-        radioBtnSelectedColor = commonUtils.getCSSValue(svg, "color", "mobile");
-
-        for (String cssProperty : borderColors) {
-            borderColor = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
-            if (!isBorderColor) {
-                log.info("Compounds-> Border-color of " + elemType + " is not as per spec, actual " + borderColor);
-            }
-            Assert.assertTrue(isBorderColor);
-        }
-        for (String cssProperty : borderStyles) {
-            borderStyle = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-        for (String cssProperty : borderWidths) {
-            borderWidth = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
-            Assert.assertTrue(isBorderWidth);
-        }
-        for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, new String[]{"50%", "8px"});
-            if (!isBorderRadius) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
-            }
-            Assert.assertTrue(isBorderRadius);
-        }
-        for (String cssProperty : paddings) {
-            radioBtnPadding = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isRadioBtnPadding = commonUtils.assertCSSProperties(cssProperty, radioBtnPadding, new String[]{"3px", "6px"});
-            if (!isRadioBtnPadding) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
-            }
-            Assert.assertTrue(isRadioBtnPadding);
-        }
-        if (elemType.contains("disabled")) {
-            bgColor = commonUtils.getCSSValue(span, "background-color", "mobile");
-            isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
-            Assert.assertTrue(isBgColor);
-        }
-        isRadioBtnSelectedColor = commonUtils.assertCSSProperties("color", radioBtnSelectedColor, expSvgColor);
-        if (!isRadioBtnSelectedColor) {
-            log.info("Compounds-> Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
-        }
-        Assert.assertTrue(isRadioBtnSelectedColor);
-    }
-
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression"})
-    private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String checkedValue, String disabledValue, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath(labelXpath));
-        js.executeScript("arguments[0].setAttribute('id', '" + labelId + "')", webElement);
-
-        paddingLeft = commonUtils.getCSSValue(label, "padding-left", "mobile");
-        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
-        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding-left between " + elemType + " and its label is not as per spec");
-        isLabelFontSize = commonUtils.assertCSSProperties("font-size", labelFontSize, expLabelfontSize);
-        if (!isLabelFontSize) {
-            log.info("Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
-        }
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Compounds-> Label line height of " + elemType + "is not as per spec");
-
-        Assert.assertTrue(isPaddingLeft && isLabelFontSize && islabelLineHeight);
-    }
-
-    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"mobile-regression"})
-    private void radioButtonsUnselectedSelectedDisabledRadioDivMobileTest(String elemType, String checkedValue, String disabledValue, String expMarginBottom, String divXpath, String divId, By elem) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath(divXpath));
-        js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
-
-        marginBottom = commonUtils.getCSSValue(elem, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
-        Assert.assertTrue(isMarginBottom);
-    }
+//    @Test(testName = "Mobile: Verify Single Line Text Input Wi/Wo Values", dataProvider = "Single Line Text Input Wi/Wo Values Test Data", groups = "bug-mobile-regression")
+//    //will enable this test when jason adds the 'value' prop
+//    private void singleLineTextInputWiWoValuesMobileTest(String type, By element, String[] expColor, String[] expFontSize) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("Compounds-> font-size for " + type + " is not as per the spec, actual: " + fontSize);
+//        }
+//        color = commonUtils.getCSSValue(element, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds-> color for " + type + " is not as per the spec, actual: " + color);
+//        }
+//        Assert.assertTrue(isFontSize && isColor);
+//    }
+//
+//    //Fancy - Inputs (Single line - default)
+//    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"mobile-regression"})
+//    private void fancySingleLineTextInputMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    //Fancy - Inputs (single line - error)
+//    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
+//    private void fancySingleLineTextInputErroredMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    //Fancy - Inputs (single line - disabled)
+//    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
+//    private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    //Inputs (single line - readonly)
+//    @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
+//    private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
+//    private void singleLineTextInputUnderlineMobileTest(String inputState, String underlineElementType, By underlineElement, String[] expUnderlineBackgroundColor, String expDisplay, String[] expUnderlineHeight, String[] expUnderlineTrasitionDelay, String[] expUnderlineTrasitionDuration, String expUnderlineTransitionProp, String expUnderlineTransitionTimingFunc) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", underlineElementType, "labelText", "First Name", "inputState", inputState, "fancy", "true", "placeholder", "First Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
+//        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
+//        if (!isBackgroundColor) {
+//            log.info("Compounds-> background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
+//        }
+//        display = commonUtils.getCSSValue(underlineElement, "display", "mobile");
+//        isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
+//        height = commonUtils.getCSSValue(underlineElement, "height", "mobile");
+//        isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
+//        if (!isHeight) {
+//            log.info("Compounds-> height for " + underlineElementType + " is not as per the spec, actual: " + height);
+//        }
+//        transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay", "mobile");
+//        isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
+//        if (!isTransitionDelay) {
+//            log.info("Compounds-> transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
+//        }
+//        transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration", "mobile");
+//        isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
+//        if (!isTransitionDuration) {
+//            log.info("Compounds-> transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
+//        }
+//        transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property", "mobile");
+//        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+//        trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
+//        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+//        Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"mobile-regression"})
+//    private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
+//        }
+//        color = commonUtils.getCSSValue(element, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
+//        }
+//        Assert.assertTrue(isFontSize && isColor);
+//    }
+//
+//    //Basic - Text Input
+//    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled Test Data", groups = "mobile-regression")
+//    private void basicSingleLineTextInputMobileTest(String type, String inputState, String id, By element, String[] expBgColor, String expMarginTop, String expPaddingRight, String expPaddingLeft, String[] expHeight, String expBorderRad, String[] expFontSize, String expLineHt) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+//        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+//        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
+//        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+//        height = commonUtils.getCSSValue(element, "height", "mobile");
+//        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+//        for (String cssProperty : borderRadii) {
+//            borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
+//            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Compounds-> Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
+//            Assert.assertTrue(isBorderRadius);
+//        }
+//
+//        isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
+//        if (!isBackgroundColor) {
+//            log.info("Compounds-> Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
+//        }
+//        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> margin-top of Input-Basic Single Line (Active) field is not as per spec");
+//        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Padding right of Input-Basic Single Line (Active) field is not as per spec");
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding left of Input-Basic Single Line (Active) field is not as per spec");
+//        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+//        if (!isHeight) {
+//            log.info("Compounds-> Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
+//        }
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("Compounds-> Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
+//        }
+//        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
+//
+//        Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isFontSize && isLineHeight);
+//    }
+//
+//    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Borders", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Borders Test Data", groups = "mobile-regression")
+//    private void basicSingleLineTextInputBordersMobileTest(String type, String inputState, String id, By element, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        for (String cssProperty : borderWidths) {
+//            borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
+//            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+//            Assert.assertTrue(isBorderWidth);
+//        }
+//        for (String cssProperty : borderStyles) {
+//            borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
+//            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+//            Assert.assertTrue(isBorderStyle);
+//        }
+//        for (String cssProperty : borderColors) {
+//            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+//            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+//            if (!isBorderColor) {
+//                log.info("Compounds-> Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
+//            }
+//            Assert.assertTrue(isBorderColor);
+//        }
+//    }
+//
+//    @Test(testName = "Mobile: Basic - Verify Single Line Text Input - Active/Error/Disabled Label", dataProvider = "Basic - Single Line Text Input - Active/Error/Disabled - Label Test Data", groups = "mobile-regression")
+//    private void basicSingleLineTextInputLabelMobileTest(String type, String inputState, String labelId, By elementForLabel, String id, By element, String[] expLabelColor, String expLabelFontSize) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(elementForLabel);
+//        js.executeScript("arguments[0].setAttribute('id', '" + labelId + "')", webElement);
+//
+//        color = commonUtils.getCSSValue(elementForLabel, "color", "mobile");
+//        fontSize = commonUtils.getCSSValue(elementForLabel, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(elementForLabel, "line-height", "mobile");
+//        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Compounds-> Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
+//        isColor = commonUtils.assertCSSProperties("color", color, expLabelColor);
+//        if (!isColor) {
+//            log.info("Compounds-> Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
+//        }
+//        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Compounds-> Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
+//        isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element, "mobile");
+//        Assert.assertTrue(isColor && isFontSize && isLabelFor);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Single Line Text Input Info/Error Message Test", dataProvider = "Single Line Text Input Info/Error Message Test Data", groups = "mobile-regression")
+//    private void singleLineTextInputErrorMessageMobileTest(String inputType, String inputState, String id, By element, String inputTypeValue, String[] expPaddingTop, String[] expColor, String[] expFontSize, String[] expLineHeight) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "fancy", inputTypeValue, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(element);
+//        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+//
+//        paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
+//        isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
+//        if (!isPaddingTop) {
+//            log.info("Compounds-> padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
+//        }
+//        color = commonUtils.getCSSValue(element, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds-> color for " + inputType + " is not as per the spec, actual: " + color);
+//        }
+//        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("Compounds-> font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
+//        }
+//        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+//        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+//        if (!isLineHeight) {
+//            log.info("Compounds-> line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
+//        }
+//        Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
+//    }
+//
+//    //Fancy - Password Input
+//    @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
+//    private void fancyPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(labelClass);
+//        js.executeScript("arguments[0].setAttribute('id','" + labelId + "')", webElement);
+//
+//        webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
+//        js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
+//
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+//        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
+//        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
+//        if (!isLabelColor) {
+//            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+//        }
+//        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+//        if (!isLabelFor) {
+//            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+//        }
+//
+//        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
+//        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+//        paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
+//        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
+//        if (!isColor) {
+//            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+//        }
+//        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
+//
+//        if (inputState.equals("error")) {
+//            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
+//            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+//            Thread.sleep(500);
+//            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
+//            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+//            paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
+//            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
+//            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+//            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+//            if (!isColor) {
+//                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+//            }
+//            Assert.assertTrue(isFontSize && isColor && isPaddingTop);
+//        }
+//        Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
+//    }
+//
+//    @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
+//    private void fancyPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        Thread.sleep(500);
+//        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
+//        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
+//        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
+//
+//        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
+//        if (!isShowBtnColor) {
+//            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+//        }
+//        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
+//        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+//        for (String cssProperty : paddings) {
+//            String cssPropertyType = cssProperty;
+//            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
+//            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
+//            Assert.assertTrue(isCSSProperty);
+//        }
+//        Assert.assertTrue(isShowBtnColor && isMarginTop && isShowBtnFloat);
+//    }
+//
+//    @Test(testName = "Mobile: Fancy - Verify Password Input - Input Box Test", dataProvider = "Fancy - Password Input - Input Box Test Data", groups = "mobile-regression")
+//    private void fancyPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingBottom, String expPaddingTop, String expBorderBottom, String[] expBorderBtmColor, String expBorderBtmStyle) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
+//        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
+//        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Compounds-> The padding-bottom of " + id + " is not as per spec");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> The padding-top of " + id + " is not as per spec");
+//
+//        borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width", "mobile");
+//        borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color", "mobile");
+//        borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style", "mobile");
+//        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "Compounds-> The bottom border width of " + id + "  is not as per spec");
+//        if (!id.equals("password-input-fancy-readOnly")) {
+//            isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
+//            if (!isBorderBottomColor) {
+//                log.info("Compounds-> Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
+//            }
+//        }
+//        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "Compounds-> The bottom border style of " + id + " is not as per spec");
+//
+//        Assert.assertTrue(isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
+//    }
+//
+//    @Test(testName = "Mobile: Fancy - Verify Password Input - Underline", dataProvider = "Fancy - Password Input - Underline Test Data", groups = "mobile-regression")
+//    private void fancyPasswordInputUnderlineMobileTest(String inputState, String id, By elem, String underlineElemId, By underlineElementClass, By underlineElement, String expUnderlineHeight, String[] expUnderlineColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "true", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        commonUtils.click(elem, "mobile");
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(underlineElementClass);
+//        js.executeScript("arguments[0].setAttribute('id','" + underlineElemId + "')", webElement);
+//
+//        lineHeight = commonUtils.getCSSValue(underlineElement, "height", "mobile");
+//        color = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
+//
+//        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "Compounds-> The underline height of " + id + " is not as per spec");
+//        isColor = commonUtils.assertCSSProperties("background-color", color, expUnderlineColor);
+//        if (!isColor) {
+//            log.info("Compounds-> Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
+//        }
+//        Assert.assertTrue(isHeight && isColor);
+//    }
+//
+//    //Basic - Password Input
+//    @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
+//    private void basicPasswordInputOtherFieldsShowMobileTest(String inputState, String type, String elemId, By elem, By labelClass, String labelId, By label, String infoMsgId, By infoMsg, String errorMsgId, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", elemId, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(labelClass);
+//        js.executeScript("arguments[0].setAttribute('id','" + labelId + "')", webElement);
+//
+//        webElement = appium.findElement(inputsPgObj.textInputInfoMessageClass);
+//        js.executeScript("arguments[0].setAttribute('id','" + infoMsgId + "')", webElement);
+//
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+//        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> The font size of " + type + " Label is not as per spec");
+//        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
+//        if (!isLabelColor) {
+//            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+//        }
+//        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+//        if (!isLabelFor) {
+//            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+//        }
+//
+//        fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
+//        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+//        color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
+//        if (!isColor) {
+//            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+//        }
+//        Assert.assertTrue(isFontSize && isColor);
+//
+//        if (inputState.equals("error")) {
+//            webElement = appium.findElement(inputsPgObj.textInputErrorMessageClass);
+//            js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
+//            Thread.sleep(500);
+//            fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
+//            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+//            color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
+//            isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
+//            if (!isColor) {
+//                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+//            }
+//            Assert.assertTrue(isFontSize && isColor);
+//        }
+//        Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
+//    }
+//
+//    @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regression")
+//    private void basicPasswordInputShowBtnMobileTest(String inputState, String id, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        Thread.sleep(500);
+//        showBtnColor = commonUtils.getCSSValue(showbutton, "color", "mobile");
+//        marginTop = commonUtils.getCSSValue(showbutton, "margin-top", "mobile");
+//        marginRight = commonUtils.getCSSValue(showbutton, "margin-right", "mobile");
+//        showBtnFloat = commonUtils.getCSSValue(showbutton, "float", "mobile");
+//
+//        isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
+//        if (!isShowBtnColor) {
+//            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+//        }
+//        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
+//        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Compounds-> The margin-right value  of " + id + "  show btn is not as per specs");
+//        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+//        for (String cssProperty : paddings) {
+//            String cssPropertyType = cssProperty;
+//            cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
+//            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
+//            Assert.assertTrue(isCSSProperty);
+//        }
+//        Assert.assertTrue(isShowBtnColor && isMarginTop && isMarginRight && isShowBtnFloat);
+//    }
+//
+//    @Test(testName = "Mobile: Basic - Verify Password Input - Input Box", dataProvider = "Basic - Password Input - Input Box Test Data", groups = "mobile-regression")
+//    private void basicPasswordInputBoxMobileTest(String inputState, String id, By elem, String expPaddingLeftRight, String[] expHeight, String expFontSize, String[] expBgColor, String expMarginTop) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "password-input-target", "componentName", "TextInput"};
+//        String[] propsPropertiesList = new String[]{"password", "true", "fancy", "false", "id", id, "labelText", "Password", "inputState", inputState, "placeholder", "Password", "changeHandler", "function () {}", "showText", "show", "hideText", "hide", "infoMessage", "This is an info message", "errorMessage", "This is an error message", "isNotVisibleMsg", "Password is hidden", "isVisibleMsg", "Password is visible'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
+//        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
+//        height = commonUtils.getCSSValue(elem, "height", "mobile");
+//        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
+//        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
+//        marginTop = commonUtils.getCSSValue(elem, "margin-top", "mobile");
+//
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Compounds-> The padding-left of " + id + " is not as per spec");
+//        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Compounds-> The padding-right of " + id + " is not as per spec");
+//        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+//        if (!isHeight) {
+//            log.info("Compounds-> The height of " + id + " is not as per spec, actual " + height);
+//        }
+//        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> The font-size of " + id + " is not as per spec");
+//        isBgColor = commonUtils.assertCSSProperties("color", bgColor, expBgColor);
+//        if (!isBgColor) {
+//            log.info("Compounds-> BackGround Color of " + id + " is not as per spec, actual " + bgColor);
+//        }
+//        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The margin-top of " + id + " is not as per spec");
+//
+//        Assert.assertTrue(isPaddingLeft && isPaddingRight && isHeight && isFontSize && isBgColor && isMarginTop);
+//    }
+//
+//    //Multiline Text
+//    @Test(testName = "Mobile: MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"mobile-regression"})
+//    private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
+//        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Active is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"mobile-regression"})
+//    private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
+//        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Error is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"mobile-regression"})
+//    private void multiLineInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
+//        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"mobile-regression"})
+//    private void multiLineInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
+//        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"mobile-regression"})
+//    private void multiTextInputLabelMobileTest(String inputState, String labelTextType, By labelClass, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelFontColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
+//        String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", labelTextType, "inputState", inputState, "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(labelClass);
+//        js.executeScript("arguments[0].setAttribute('id', '" + labelTextType + "')", webElement);
+//
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+//        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+//
+//        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + labelTextType + " Label is not as per spec");
+//        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + labelTextType + " Label is not as per spec");
+//        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
+//        if (!isLabelColor) {
+//            log.info("Compounds-> Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
+//        }
+//        Assert.assertTrue(isLabelFontSize && islabelLineHeight && isLabelColor);
+//    }
+//
+//    //Fancy - Select Input
+//    @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container--fancy"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-fancy-error"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-fancy-disabled"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-fancy-readonly"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxLabelMobileTest(String type, String state, By elem, By label, String expLabelFontSize, String expLabelLineHt, String[] expLabelColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+//
+//        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
+//        if (!isLabelColor) {
+//            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+//        }
+//        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> font-size of " + type + " Label is not as per spec");
+//        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
+//        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+//        if (!isLabelFor) {
+//            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+//        }
+//        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor);
+//    }
+//
+//    @Test(testName = "Mobile : Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"mobile-regression"})
+//    private void fancySelectInputBoxMsgMobileTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className(className));
+//        js.executeScript("arguments[0].setAttribute('id','" + msgType + "')", webElement);
+//        fontSize = commonUtils.getCSSValue(msg, "font-size", "mobile");
+//        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> font size of " + type + " is not as per spec");
+//        paddingTop = commonUtils.getCSSValue(msg, "padding-top", "mobile");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> padding top of " + type + " is not as per spec");
+//        color = commonUtils.getCSSValue(msg, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds-> Font Color of " + type + " is not as per spec, actual " + color);
+//        }
+//        Assert.assertTrue(isFontSize && isColor && isPaddingTop);
+//    }
+//
+//    //Basic - Select Input
+//    @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Active is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-error"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Error is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-disabled"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Disabled is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className("pe-select-container-readonly"));
+//        js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- ReadOnly is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputBoxBorderMobileTest(String type, String state, String className, String id, By elem, String expBorderRadius, String expBorderWidth, String expBorderStyle, String[] expBorderColor) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.className(className));
+//        js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
+//        for (String cssProperty : borderRadii) {
+//            borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Compounds-> Border radius  " + cssProperty + " of " + type + " is not as per spec");
+//            Assert.assertTrue(isBorderRadius);
+//        }
+//        for (String cssProperty : borderWidths) {
+//            borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " is not as per spec");
+//            Assert.assertTrue(isBorderWidth);
+//        }
+//        for (String cssProperty : borderStyles) {
+//            borderStyle = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " is not as per spec");
+//            Assert.assertTrue(isBorderStyle);
+//        }
+//        if (!type.equals("select-input-basic-readOnly")) {
+//            for (String cssProperty : borderColors) {
+//                borderColor = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//                isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+//                if (!isBorderColor) {
+//                    log.info("Compounds-> Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
+//                }
+//                Assert.assertTrue(isBorderColor);
+//            }
+//        }
+//    }
+//
+//    @Test(testName = "Mobile : Basic Select Input Label Test", dataProvider = "Basic Select Input Label and Icon Test Data", groups = {"mobile-regression"})
+//    private void basicSelectInputBoxLabelMobileTest(String type, String state, By elem, By label, By icon, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
+//        String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        // Select Input Label
+//        labelColor = commonUtils.getCSSValue(label, "color", "mobile");
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+//
+//        isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
+//        if (!isLabelColor) {
+//            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+//        }
+//        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + type + " Label is not as per spec");
+//        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
+//        isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
+//        if (!isLabelFor) {
+//            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+//        }
+//        // icon
+//        actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
+//        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
+//        Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
+//    }
+//
+//    //Check Box
+//    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression"})
+//    private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(element);
+//        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkboxInput, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox input is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression"})
+//    private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath("//span"));
+//        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
+//    private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath("//div[1]/span"));
+//        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+//
+//        String cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
+//    private void labelForCheckBoxMobileTest(String id, String checkedValue, String disabledValue, String loc, By element, String[] expPaddingLeft, String expDisplay) throws Exception {
+//        if (id.contains("focus")) {
+//            throw new SkipException("Focus operation tests not needed for mobile devices");
+//        }
+//        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: " + checkedValue + ", disabled: " + disabledValue + "}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath(loc));
+//        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+//
+//        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+//        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
+//        if (!isPaddingLeft) {
+//            log.info("Compounds-> padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
+//        }
+//        display = commonUtils.getCSSValue(element, "display", "mobile");
+//        isDisplay = commonUtils.assertValue(display, expDisplay, "Compounds-> 'display' for checkbox label of '" + id + "' type is not as per the spec");
+//
+//        Assert.assertTrue(isPaddingLeft && isDisplay);
+//    }
+//
+//    //Radios
+//    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - SVG Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - SVG Test Data", groups = {"mobile-regression"})
+//    private void radioButtonsUnselectedSelectedDisabledSVGMobileTest(String elemType, String checkedValue, String[] expBorderColor, String[] expSvgColor, String spanXpath, String spanId, By span, String svgXpath, String svgId, By svg) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: false},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath(spanXpath));
+//        js.executeScript("arguments[0].setAttribute('id', '" + spanId + "')", webElement);
+//
+//        webElement = appium.findElement(By.xpath(svgXpath));
+//        js.executeScript("arguments[0].setAttribute('id', '" + svgId + "')", webElement);
+//
+//        height = commonUtils.getCSSValue(span, "height", "mobile");
+//        width = commonUtils.getCSSValue(span, "width", "mobile");
+//        color = commonUtils.getCSSValue(span, "color", "mobile");
+//        radioBtnSelectedColor = commonUtils.getCSSValue(svg, "color", "mobile");
+//
+//        for (String cssProperty : borderColors) {
+//            borderColor = commonUtils.getCSSValue(span, cssProperty, "mobile");
+//            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+//            if (!isBorderColor) {
+//                log.info("Compounds-> Border-color of " + elemType + " is not as per spec, actual " + borderColor);
+//            }
+//            Assert.assertTrue(isBorderColor);
+//        }
+//        for (String cssProperty : borderStyles) {
+//            borderStyle = commonUtils.getCSSValue(span, cssProperty, "mobile");
+//            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+//            Assert.assertTrue(isBorderStyle);
+//        }
+//        for (String cssProperty : borderWidths) {
+//            borderWidth = commonUtils.getCSSValue(span, cssProperty, "mobile");
+//            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+//            Assert.assertTrue(isBorderWidth);
+//        }
+//        for (String cssProperty : borderRadii) {
+//            borderRadius = commonUtils.getCSSValue(span, cssProperty, "mobile");
+//            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, new String[]{"50%", "8px"});
+//            if (!isBorderRadius) {
+//                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
+//            }
+//            Assert.assertTrue(isBorderRadius);
+//        }
+//        for (String cssProperty : paddings) {
+//            radioBtnPadding = commonUtils.getCSSValue(span, cssProperty, "mobile");
+//            isRadioBtnPadding = commonUtils.assertCSSProperties(cssProperty, radioBtnPadding, new String[]{"3px", "6px"});
+//            if (!isRadioBtnPadding) {
+//                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
+//            }
+//            Assert.assertTrue(isRadioBtnPadding);
+//        }
+//        if (elemType.contains("disabled")) {
+//            bgColor = commonUtils.getCSSValue(span, "background-color", "mobile");
+//            isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
+//            Assert.assertTrue(isBgColor);
+//        }
+//        isRadioBtnSelectedColor = commonUtils.assertCSSProperties("color", radioBtnSelectedColor, expSvgColor);
+//        if (!isRadioBtnSelectedColor) {
+//            log.info("Compounds-> Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
+//        }
+//        Assert.assertTrue(isRadioBtnSelectedColor);
+//    }
+//
+//    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States LabelTest", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Label Test Data", groups = {"mobile-regression"})
+//    private void radioButtonsUnselectedSelectedDisabledLabelMobileTest(String elemType, String checkedValue, String disabledValue, String expPaddingLeft, String[] expLabelfontSize, String labelXpath, String labelId, By label) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath(labelXpath));
+//        js.executeScript("arguments[0].setAttribute('id', '" + labelId + "')", webElement);
+//
+//        paddingLeft = commonUtils.getCSSValue(label, "padding-left", "mobile");
+//        labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
+//        labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding-left between " + elemType + " and its label is not as per spec");
+//        isLabelFontSize = commonUtils.assertCSSProperties("font-size", labelFontSize, expLabelfontSize);
+//        if (!isLabelFontSize) {
+//            log.info("Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
+//        }
+//        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Compounds-> Label line height of " + elemType + "is not as per spec");
+//
+//        Assert.assertTrue(isPaddingLeft && isLabelFontSize && islabelLineHeight);
+//    }
+//
+//    @Test(testName = "Mobile: Radio Buttons Unselected Selected And Disabled States - Div Test", dataProvider = "Radio Buttons Unselected Selected And Disabled States - Div Test Data", groups = {"mobile-regression"})
+//    private void radioButtonsUnselectedSelectedDisabledRadioDivMobileTest(String elemType, String checkedValue, String disabledValue, String expMarginBottom, String divXpath, String divId, By elem) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "radio-target", "componentName", "RadioCheckGroup"};
+//        String[] propsPropertiesList = new String[]{"id", elemType, "inputType", "radio", "legendText", "radio1", "options", "[{value: 0, label: 'coffee',checked: " + checkedValue + ",disabled: " + disabledValue + "},{value: 1, label: 'tea'}]", "changeHandler", "function () {}"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        js = (JavascriptExecutor) appium;
+//        webElement = appium.findElement(By.xpath(divXpath));
+//        js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
+//
+//        marginBottom = commonUtils.getCSSValue(elem, "margin-bottom", "mobile");
+//        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
+//        Assert.assertTrue(isMarginBottom);
+//    }
 
     //Negative tests
     @DataProvider(name = "Negative Config Test Data")

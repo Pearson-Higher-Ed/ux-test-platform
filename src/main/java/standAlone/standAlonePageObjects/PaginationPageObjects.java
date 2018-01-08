@@ -36,9 +36,9 @@ public class PaginationPageObjects {
         return By.xpath(".//*[@id='pagination-target']/nav/button[" + (countTotalBtnElements() - 2) + "]");
     }
 
-    public By defaultMaxBtnMobile() {
-        return By.xpath(".//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]");
-    }
+    /*public By defaultMaxBtnMobile() {
+        return By.xpath("./*//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]");
+    }*/
 
     public By paginationComponent = By.xpath("//*[@id='pagination-target']/nav");
 
@@ -56,15 +56,15 @@ public class PaginationPageObjects {
         return "#pagination-target > nav > button:nth-child(" + count + ") > span > svg";
     }
 
-    public String getRightNavBtnMobile() {
+    /*public String getRightNavBtnMobile() {
         int count = countTotalBtnElementsMobile();
-        return "//*[@id='pagination-target']/nav/button[" + count + "]";
+        return "/*//*[@id='pagination-target']/nav/button[" + count + "]";
     }
 
     public String getRightNavSvgMobile() {
         int count = countTotalBtnElementsMobile();
         return "#pagination-target > nav > button:nth-child(" + count + ") > span > svg";
-    }
+    }*/
 
     public By getFirstPage = By.xpath("//*[@id='pagination-target']/nav/button[2]");
 
@@ -82,19 +82,19 @@ public class PaginationPageObjects {
         return n;
     }
 
-    public int countTotalBtnElementsMobile() {
-        groupElementsList = appium.findElements(By.xpath(".//*[@id='pagination-target']/nav/button"));
+   /* public int countTotalBtnElementsMobile() {
+        groupElementsList = appium.findElements(By.xpath("./*//*[@id='pagination-target']/nav/button"));
         int n = groupElementsList.size();
         return n;
-    }
+    }*/
 
     public String ellipseBeforeLastItem() {
         return "//*[@id='pagination-target']/nav/button[" + (countTotalBtnElements() - 2) + "]";
     }
 
-    public String ellipseBeforeLastItemMobile() {
-        return "//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]";
-    }
+    /*public String ellipseBeforeLastItemMobile() {
+        return "/*//*[@id='pagination-target']/nav/button[" + (countTotalBtnElementsMobile() - 2) + "]";
+    }*/
 
     public By ellipsisSvg = By.cssSelector("#pagination-target > nav > button.ellipsis > svg");
 

@@ -18,7 +18,8 @@ import java.util.Map;
  * Created by umahaea on 11/13/17.
  */
 public class PhoneNumberTest extends BaseClass {
-    private final String phoneNumberUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/phone-number.html";
+    //private final String phoneNumberUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/phone-number.html";
+    private final String phoneNumberUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/phone-number.html";
     private final String absphoneNumberJSFilePath = new File("elementsSDK/functional/jsfiles/phoneNumber/phone-number.js").getAbsolutePath();
     private final String phoneNumberJSFilePath = constructPath(absphoneNumberJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/phoneNumber/temp.js").getAbsolutePath();
@@ -71,7 +72,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = "desktop-regression")
+    @Test(testName = "Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = {"desktop-regression","mobile-regression"})
     private void mapCountryWithFlagsTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -114,7 +115,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = "desktop-regression")
+    @Test(testName = "Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = {"desktop-regression","mobile-regression"})
     private void typePhoneNumberTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -137,7 +138,7 @@ public class PhoneNumberTest extends BaseClass {
     }
 
     //Styles test
-    @Test(testName = "Styles Test", dataProvider = "Styles Test Data", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "Styles Test", dataProvider = "Styles Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void stylesTest(String inputType, String inputClassName, String labelClassName, String expPaddingTop, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -187,7 +188,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = "desktop-regression")
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression","mobile-regression"})
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
@@ -198,90 +199,90 @@ public class PhoneNumberTest extends BaseClass {
 
 
     //Mobile Tests
-    @Test(testName = "Mobile: Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = "mobile-regression")
-    private void mapCountryWithFlagsMobileTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) {
-        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        commonUtils.click(phNumPgObj.downIcon, "mobile");
-        String countryItemToBeClicked = "//li[@data-item='" + country + "']";
-        By item = By.xpath(countryItemToBeClicked);
-
-        //check flag for the country before the item is clicked
-        flag = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span[2]/img"), "src", "mobile");
-        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' in the drop down doesn't show the right flag");
-        Assert.assertTrue(isFlag);
-
-        commonUtils.click(item, "mobile");
-
-        //check flag after the item is clicked
-        flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src", "mobile");
-        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right flag");
-        Assert.assertTrue(isFlag);
-
-        //check country code
-        countryCode = commonUtils.getText(phNumPgObj.countryCode, "mobile");
-        isCountryCode = commonUtils.assertValue(countryCode, expCountryCode, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right country code");
-
-        //check-mark
-        commonUtils.click(phNumPgObj.downIcon, "mobile");
-        checked = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span"), "style", "mobile");
-        isChecked = commonUtils.assertValue(checked, "visibility: visible;", "For " + inputType + " the item/country: '" + country + "' selected from the drop down is NOT selected as per the spec");
-
-        Assert.assertTrue(isCountryCode && isChecked);
-    }
-
-    //Styles test
-    @Test(testName = "Mobile: Styles Test", dataProvider = "Styles Test Data", groups = {"mobile-regression"})
-    private void stylesMobileTest(String inputType, String inputClassName, String labelClassName, String expPaddingTop, String[] propsPropertiesList) {
-        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        isLabel = commonUtils.getAttributeValue(By.xpath("//label"), "class", "mobile").equals(labelClassName);
-        isTextInput = commonUtils.getAttributeValue(By.xpath("//input"), "class", "mobile").equals(inputClassName);
-
-        //dropdown container
-        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width", "mobile");
-
-        //styles between country code and dropdown icon and input field
-        marginLeft = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-right", "mobile");
-
-        //flag styles
-        commonUtils.click(phNumPgObj.downIcon, "mobile");
-        By item = By.xpath("//li[@data-item='" + countries[1] + "']");
-        commonUtils.click(item, "mobile");
-        width = commonUtils.getCSSValue(phNumPgObj.flagImg, "width", "mobile");
-        height = commonUtils.getCSSValue(phNumPgObj.flagImg, "height", "mobile");
-
-        //styles between label and flag
-        paddingTop = commonUtils.getCSSValue(phNumPgObj.selectDiv, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, inputType + " padding-top between label and flag as per the spec");
-
-        //styles between flag and dropdown container
-        commonUtils.click(phNumPgObj.downIcon, "mobile");
-        marginTop = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "margin-top", "mobile");
-        isMarginTop = commonUtils.assertValue(marginTop, "6px", "space between flag and dropdown container is not as per the spec");
-
-        isMarginLeft = commonUtils.assertValue(marginLeft, "4px", inputType + "margin left for country code is not as per the spec");
-        isMarginRight = commonUtils.assertValue(marginLeft, "4px", inputType + " margin right for country code is not as per the spec");
-        isWidth = commonUtils.assertValue(width, "20px", inputType + " width of flag is not as per the spec");
-        isDropDownWidth = commonUtils.assertValue(dropDownWidth, "415px", "width of dropdown container is not as per the spec");
-        isHeight = commonUtils.assertValue(height, "10px", inputType + " height of flag is not as per the spec");
-        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop && isDropDownWidth);
-    }
-
-    @Test(testName = "Mobile: Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = "mobile-regression", enabled = false)
-    private void typePhoneNumberMobileTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
-        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        //enter country code
-        commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode, "mobile");
-        flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src", "mobile");
-        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
-        Assert.assertTrue(isFlag);
-    }
+//    @Test(testName = "Mobile: Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = "mobile-regression")
+//    private void mapCountryWithFlagsMobileTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        commonUtils.click(phNumPgObj.downIcon, "mobile");
+//        String countryItemToBeClicked = "//li[@data-item='" + country + "']";
+//        By item = By.xpath(countryItemToBeClicked);
+//
+//        //check flag for the country before the item is clicked
+//        flag = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span[2]/img"), "src", "mobile");
+//        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' in the drop down doesn't show the right flag");
+//        Assert.assertTrue(isFlag);
+//
+//        commonUtils.click(item, "mobile");
+//
+//        //check flag after the item is clicked
+//        flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src", "mobile");
+//        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right flag");
+//        Assert.assertTrue(isFlag);
+//
+//        //check country code
+//        countryCode = commonUtils.getText(phNumPgObj.countryCode, "mobile");
+//        isCountryCode = commonUtils.assertValue(countryCode, expCountryCode, "For " + inputType + " the item/country: '" + country + "' selected from the drop down doesn't show the right country code");
+//
+//        //check-mark
+//        commonUtils.click(phNumPgObj.downIcon, "mobile");
+//        checked = commonUtils.getAttributeValue(By.xpath(countryItemToBeClicked + "/button/span"), "style", "mobile");
+//        isChecked = commonUtils.assertValue(checked, "visibility: visible;", "For " + inputType + " the item/country: '" + country + "' selected from the drop down is NOT selected as per the spec");
+//
+//        Assert.assertTrue(isCountryCode && isChecked);
+//    }
+//
+//    //Styles test
+//    @Test(testName = "Mobile: Styles Test", dataProvider = "Styles Test Data", groups = {"mobile-regression"})
+//    private void stylesMobileTest(String inputType, String inputClassName, String labelClassName, String expPaddingTop, String[] propsPropertiesList) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        isLabel = commonUtils.getAttributeValue(By.xpath("//label"), "class", "mobile").equals(labelClassName);
+//        isTextInput = commonUtils.getAttributeValue(By.xpath("//input"), "class", "mobile").equals(inputClassName);
+//
+//        //dropdown container
+//        dropDownWidth = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "width", "mobile");
+//
+//        //styles between country code and dropdown icon and input field
+//        marginLeft = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-left", "mobile");
+//        marginRight = commonUtils.getCSSValue(phNumPgObj.countryCode, "margin-right", "mobile");
+//
+//        //flag styles
+//        commonUtils.click(phNumPgObj.downIcon, "mobile");
+//        By item = By.xpath("//li[@data-item='" + countries[1] + "']");
+//        commonUtils.click(item, "mobile");
+//        width = commonUtils.getCSSValue(phNumPgObj.flagImg, "width", "mobile");
+//        height = commonUtils.getCSSValue(phNumPgObj.flagImg, "height", "mobile");
+//
+//        //styles between label and flag
+//        paddingTop = commonUtils.getCSSValue(phNumPgObj.selectDiv, "padding-top", "mobile");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, inputType + " padding-top between label and flag as per the spec");
+//
+//        //styles between flag and dropdown container
+//        commonUtils.click(phNumPgObj.downIcon, "mobile");
+//        marginTop = commonUtils.getCSSValue(phNumPgObj.dropDownContainer, "margin-top", "mobile");
+//        isMarginTop = commonUtils.assertValue(marginTop, "6px", "space between flag and dropdown container is not as per the spec");
+//
+//        isMarginLeft = commonUtils.assertValue(marginLeft, "4px", inputType + "margin left for country code is not as per the spec");
+//        isMarginRight = commonUtils.assertValue(marginLeft, "4px", inputType + " margin right for country code is not as per the spec");
+//        isWidth = commonUtils.assertValue(width, "20px", inputType + " width of flag is not as per the spec");
+//        isDropDownWidth = commonUtils.assertValue(dropDownWidth, "415px", "width of dropdown container is not as per the spec");
+//        isHeight = commonUtils.assertValue(height, "10px", inputType + " height of flag is not as per the spec");
+//        Assert.assertTrue(isLabel && isTextInput && isMarginLeft && isMarginRight && isWidth && isHeight && isMarginTop && isPaddingTop && isDropDownWidth);
+//    }
+//
+//    @Test(testName = "Mobile: Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = "mobile-regression", enabled = false)
+//    private void typePhoneNumberMobileTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        //enter country code
+//        commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode, "mobile");
+//        flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src", "mobile");
+//        isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
+//        Assert.assertTrue(isFlag);
+//    }
 
     private String buildJSONObjectDetailConfig(String[] detailsPropertiesList, String[] propsPropertiesList) {
         int i = 0;

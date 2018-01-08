@@ -71,7 +71,7 @@ public class CoachMarkTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Coach-Mark Spacing Test", groups = "desktop-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    @Test(testName = "Coach-Mark Spacing Test", groups = {"desktop-regression","mobile-regression"}, dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkSpacingTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -110,7 +110,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isBgColor && isWidth && isBoxShadow);
     }
 
-    @Test(testName = "Coach-Mark Title Test", groups = "desktop-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    @Test(testName = "Coach-Mark Title Test", groups = {"desktop-regression","mobile-regression"}, dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkTitleTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -142,7 +142,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isPadding && isFontWt && isFontSize && isLineHt && isColor);
     }
 
-    @Test(testName = "Coach-Mark Message Test", groups = "desktop-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    @Test(testName = "Coach-Mark Message Test", groups = {"desktop-regression","mobile-regression"}, dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkMessageTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -155,7 +155,7 @@ public class CoachMarkTest extends BaseClass {
             log.info("Font size of Message in" + type + " coach-mark is not as per spec, actual " + fontSize);
 
         }
-        isLineHt = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"17.9999px", "18px", "17.999940872192383px"});
+        isLineHt = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"17.9999px", "18px", "17.999940872192383px","17.984375px"});
         if (!isLineHt) {
             log.info("line height of Message in " + type + " coach-mark is not as per spec, actual " + lineHeight);
 
@@ -167,7 +167,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHt && isColor);
     }
 
-    @Test(testName = "Coach-Mark Dismissal Test", groups = "desktop-regression")
+    @Test(testName = "Coach-Mark Dismissal Test", groups = {"desktop-regression","mobile-regression"})
     private void coachMarkDismissaTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "top"};
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "true", "id", "unique", "disableShadowing", "true"};
@@ -187,7 +187,7 @@ public class CoachMarkTest extends BaseClass {
             log.info("Font size of dismissal link in coach-mark is not as per spec, actual " + fontSize);
 
         }
-        isLineHt = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"17.9999px", "18px", "17.999940872192383px"});
+        isLineHt = commonUtils.assertCSSProperties("line-height", lineHeight, new String[]{"17.9999px", "18px", "17.999940872192383px","17.984375px"});
         if (!isLineHt) {
             log.info("Line Height of dismissal link in coach-mark is not as per spec, actual " + lineHeight);
 
@@ -200,7 +200,7 @@ public class CoachMarkTest extends BaseClass {
     }
 
 
-    @Test(testName = "Coach-Mark Arrow Test", groups = "desktop-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    @Test(testName = "Coach-Mark Arrow Test", groups = {"desktop-regression","mobile-regression"}, dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkArrowTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -211,7 +211,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isWidth);
     }
 
-    @Test(testName = "Coach-Mark X Icon Test", groups = "desktop-regression", dataProvider = "Coach-Mark Spacing Test Data")
+    @Test(testName = "Coach-Mark X Icon Test", groups = {"desktop-regression","mobile-regression"}, dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkXIconTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -223,7 +223,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isClass && isElemPresent);
     }
 
-    @Test(testName = "Coach-Mark Click on Dismissal Link Test", groups = "desktop-regression")
+    @Test(testName = "Coach-Mark Click on Dismissal Link Test", groups = {"desktop-regression","mobile-regression"})
     private void coachMarkClickDismissalLinkTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "top"};
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "true", "id", "unique", "disableShadowing", "true"};
@@ -234,7 +234,7 @@ public class CoachMarkTest extends BaseClass {
         Assert.assertTrue(isElemPresent);
     }
 
-    @Test(testName = "Coach-Mark Tab on Dismissal Link Test", groups = "desktop-regression")
+    @Test(testName = "Coach-Mark Tab on Dismissal Link Test", groups = {"desktop-regression","mobile-regression"})
     private void coachMarkTabDismissalLinkTest() throws Exception {
         if (browser.equals("safari")) {
             throw new SkipException("Tab is not supported by Safari browser");
@@ -316,17 +316,17 @@ public class CoachMarkTest extends BaseClass {
         }
 
         Assert.assertTrue(isBgColor && isWidth && isBoxShadow);
-    }*/
+    }
 
     @Test(testName = "Mobile : Coach-Mark Title Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkTitleMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        paddingBottom = commonUtils.getCSSValue(coachMarkPgObj.title, "padding-bottom", "mobile");
-        fontWt = commonUtils.getCSSValue(coachMarkPgObj.title, "font-weight", "mobile");
-        fontSize = commonUtils.getCSSValue(coachMarkPgObj.title, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.title, "line-height", "mobile");
-        color = commonUtils.getCSSValue(coachMarkPgObj.title, "color", "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        paddingBottom = commonUtils.getCSSValue(coachMarkPgObj.title, "padding-bottom");
+        fontWt = commonUtils.getCSSValue(coachMarkPgObj.title, "font-weight");
+        fontSize = commonUtils.getCSSValue(coachMarkPgObj.title, "font-size");
+        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.title, "line-height");
+        color = commonUtils.getCSSValue(coachMarkPgObj.title, "color");
 
         isPadding = commonUtils.assertValue(paddingBottom, "4px", "Padding Bottom of Title in " + type + " coach-mark is not as per spec");
         isFontWt = commonUtils.assertCSSProperties("font-weight", fontWt, new String[]{"600"});
@@ -354,10 +354,10 @@ public class CoachMarkTest extends BaseClass {
     @Test(testName = "Mobile : Coach-Mark Message Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkMessageMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        fontSize = commonUtils.getCSSValue(coachMarkPgObj.message, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.message, "line-height", "mobile");
-        color = commonUtils.getCSSValue(coachMarkPgObj.message, "color", "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        fontSize = commonUtils.getCSSValue(coachMarkPgObj.message, "font-size");
+        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.message, "line-height");
+        color = commonUtils.getCSSValue(coachMarkPgObj.message, "color");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, new String[]{"14px"});
         if (!isFontSize) {
@@ -380,13 +380,13 @@ public class CoachMarkTest extends BaseClass {
     private void coachMarkDismissaMobileTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "top"};
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "true", "id", "unique", "disableShadowing", "true"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        marginTop = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "margin-top", "mobile");
-        floatVal = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "float", "mobile");
-        textDecoration = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, textDecorationProperty, "mobile");
-        fontSize = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "line-height", "mobile");
-        color = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "color", "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        marginTop = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "margin-top");
+        floatVal = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "float");
+        textDecoration = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, textDecorationProperty);
+        fontSize = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "font-size");
+        lineHeight = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "line-height");
+        color = commonUtils.getCSSValue(coachMarkPgObj.dismissalLink, "color");
 
         isMarginTop = commonUtils.assertValue(marginTop, "24px", "Margin top of dismissal link in coach-mark is not as per spec");
         isFloat = commonUtils.assertValue(floatVal, "right", "dismissal link is not aligned on the right side of the coach mark");
@@ -411,7 +411,7 @@ public class CoachMarkTest extends BaseClass {
     @Test(testName = "Mobile : Coach-Mark Arrow Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkArrowMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         String script = "return window.getComputedStyle(document.querySelector('#unique div div'),':before').getPropertyValue('width')";
         JavascriptExecutor js = (JavascriptExecutor) appium;
         String content = (String) js.executeScript(script);
@@ -422,11 +422,11 @@ public class CoachMarkTest extends BaseClass {
     @Test(testName = "Mobile : Coach-Mark X Icon Test", groups = "mobile-regression", dataProvider = "Coach-Mark Spacing Test Data")
     private void coachMarkXIconMobileTest(String type, String id, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", id};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        className = commonUtils.getAttributeValue(coachMarkPgObj.svg, "class", "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        className = commonUtils.getAttributeValue(coachMarkPgObj.svg, "class");
         isClass = commonUtils.assertValue(className, "pe-icon--remove-sm-18", "Class name of X Icon does not match the design specs");
-        commonUtils.clickUsingJS(coachMarkPgObj.xIcon, "mobile");
-        isPresent = commonUtils.isElementPresent(elem, "mobile");
+        commonUtils.clickUsingJS(coachMarkPgObj.xIcon);
+        isPresent = commonUtils.isElementPresent(elem);
         isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
         Assert.assertTrue(isClass && isElemPresent);
     }
@@ -435,9 +435,9 @@ public class CoachMarkTest extends BaseClass {
     private void coachMarkClickDismissalLinkMobileTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "top"};
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "true", "id", "unique", "disableShadowing", "true"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        commonUtils.click(coachMarkPgObj.dismissalLink, "mobile");
-        isPresent = commonUtils.isElementsVisibleOnPage(coachMarkPgObj.coachMark, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        commonUtils.click(coachMarkPgObj.dismissalLink);
+        isPresent = commonUtils.isElementsVisibleOnPage(coachMarkPgObj.coachMark);
         isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
         Assert.assertTrue(isElemPresent);
     }
@@ -446,11 +446,11 @@ public class CoachMarkTest extends BaseClass {
     private void setDismissalLinkFalseMobileTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "top"};
         String[] propsPropertiesList = new String[]{"title", "Coach Mark below feature /w Got It", "text", "Informative Text", "gotIt", "false", "id", "unique", "disableShadowing", "true"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        isPresent = commonUtils.isElementPresent(coachMarkPgObj.dismissalLink, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        isPresent = commonUtils.isElementPresent(coachMarkPgObj.dismissalLink);
         isElemPresent = commonUtils.assertValue(isPresent, false, "Dismissal Link is present");
         Assert.assertTrue(isElemPresent);
-    }
+    } */
 
     /**
      * Common Methods
@@ -510,11 +510,11 @@ public class CoachMarkTest extends BaseClass {
         commonUtils.getUrl(url);
     }
 
-    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList, String mobile) throws Exception {
+    /*private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList, String mobile) throws Exception {
         testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         commonUtils.changeConfig(coachMarkJSFilePath, testConfig);
         commonUtils.getUrl(url, "mobile");
-    }
+    }*/
 
     private String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));

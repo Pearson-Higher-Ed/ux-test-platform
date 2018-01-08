@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by udhadpa on 7/12/17.
  */
 public class LoadingIndicatorTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/standAlone/fixtures/loadingIndicator/loadingIndicator.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/loadingIndicator/loadingIndicator.html";
     private final String absLoadingIndJSFilePath = new File("standAlone/jsfiles/loadingIndicator/loadingIndicator.js").getAbsolutePath();
     private final String loadingIndicatorJSFilePath = constructPath(absLoadingIndJSFilePath);
     private final String absTempJSFilePath = new File("standAlone/jsfiles/loadingIndicator/temp.js").getAbsolutePath();
@@ -66,7 +66,7 @@ public class LoadingIndicatorTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify CSS properties of Loader Attach Chip Test", dataProvider = "Verify CSS properties of Chip Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify CSS properties of Loader Attach Chip Test", dataProvider = "Verify CSS properties of Chip Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void cssPropsLoaderAttachChipTest(String type, By button, By elem, String[] propsPropertiesList, String[] expBgcolor, String expWidth, String expHeight, String expPaddingLeftRight, String expDisplay, String expVal, String expOpacity) throws Exception {
         String[] detailsPropertiesList = {"elementId", type};
         String[] dataTextPropertiesList = {"chipText", "loading..."};
@@ -105,7 +105,7 @@ public class LoadingIndicatorTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Click on Button Test", dataProvider = "Click on Button Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Click on Button Test", dataProvider = "Click on Button Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickOnButtonTest(String type, By button, By elem, String[] propsPropertiesList) throws Exception {
         String[] detailsPropertiesList = {"elementId", type};
         String[] dataTextPropertiesList = {"chipText", "loading..."};
@@ -138,7 +138,7 @@ public class LoadingIndicatorTest extends BaseClass {
         Assert.assertTrue(isElementPresent);
     }
 
-    @Test(testName = "Verify The bodyAttach Indicator After 5 sec Test", groups = "desktop-regression")
+    @Test(testName = "Verify The bodyAttach Indicator After 5 sec Test", groups = {"desktop-regression", "mobile-regression"})
     private void verifyIndicator5SecTest() throws Exception {
         String[] detailsPropertiesList = {"elementId", "bodyAttach"};
         String[] propsPropertiesList = {"id", "ex2", "appLevel", "true", "active", "true"};
@@ -159,7 +159,7 @@ public class LoadingIndicatorTest extends BaseClass {
     }
 
 
-    @Test(testName = "Click on Toggle Button Test", groups = {"desktop-regression"})
+    @Test(testName = "Click on Toggle Button Test", groups = {"desktop-regression", "mobile-regression"})
     private void clickOnToggleButtonTest() throws Exception {
         String[] detailsPropertiesList = {"elementId", "loaderAttach"};
         String[] dataTextPropertiesList = {"chipText", "loading..."};
@@ -218,7 +218,7 @@ public class LoadingIndicatorTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Chip Text test", dataProvider = "Chip Text Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Chip Text test", dataProvider = "Chip Text Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void chipTextTest(String type, By button, By elem, String[] propsPropertiesList, String setChipText) throws Exception {
         String[] detailsPropertiesList = {"elementId", type};
         String[] dataTextPropertiesList = {"chipText", setChipText};
@@ -239,21 +239,21 @@ public class LoadingIndicatorTest extends BaseClass {
      * Mobile Tests
      **/
 
-    @Test(testName = "Mobile : Verify CSS properties of Loader Attach Chip Test", dataProvider = "Verify CSS properties of Chip Test Data", groups = {"mobile-regression"})
+    /*@Test(testName = "Mobile : Verify CSS properties of Loader Attach Chip Test", dataProvider = "Verify CSS properties of Chip Test Data", groups = {"mobile-regression"})
     private void cssPropsLoaderAttachChipMobileTest(String type, By button, By elem, String[] propsPropertiesList, String[] expBgcolor, String expWidth, String expHeight, String expPaddingLeftRight, String expDisplay, String expVal, String expOpacity) throws Exception {
         String[] detailsPropertiesList = {"elementId", type};
         String[] dataTextPropertiesList = {"chipText", "loading..."};
         setConfigAndLaunchMobile(type, detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
-        commonUtils.click(button, "mobile");
-        bgcolor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        width = commonUtils.getCSSValue(elem, "width", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
-        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
-        display = commonUtils.getCSSValue(elem, "display", "mobile");
-        alignItems = commonUtils.getCSSValue(elem, "align-items", "mobile");
-        justifyContent = commonUtils.getCSSValue(elem, "justify-content", "mobile");
-        opacity = commonUtils.getCSSValue(elem, "opacity", "mobile");
+        commonUtils.click(button);
+        bgcolor = commonUtils.getCSSValue(elem, "background-color");
+        width = commonUtils.getCSSValue(elem, "width");
+        height = commonUtils.getCSSValue(elem, "height");
+        paddingLeft = commonUtils.getCSSValue(elem, "padding-left");
+        paddingRight = commonUtils.getCSSValue(elem, "padding-right");
+        display = commonUtils.getCSSValue(elem, "display");
+        alignItems = commonUtils.getCSSValue(elem, "align-items");
+        justifyContent = commonUtils.getCSSValue(elem, "justify-content");
+        opacity = commonUtils.getCSSValue(elem, "opacity");
 
         isBgcolor = commonUtils.assertCSSProperties("background-color", bgcolor, expBgcolor);
         if (!isBgcolor) {
@@ -278,8 +278,8 @@ public class LoadingIndicatorTest extends BaseClass {
         setConfigAndLaunchMobile(type, detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
         Thread.sleep(2000);
 
-        commonUtils.click(button, "mobile");
-        isElementPresent = commonUtils.isElementPresent(elem, "mobile");
+        commonUtils.click(button);
+        isElementPresent = commonUtils.isElementPresent(elem);
         if (!isElementPresent) {
             log.info("Loading indicator " + type + " is not displayed");
         }
@@ -293,14 +293,14 @@ public class LoadingIndicatorTest extends BaseClass {
         String[] propsPropertiesList = {"id", "ex2", "appLevel", "true", "active", "true"};
         String[] dataTextPropertiesList = {"chipText", "Copying..."};
         setConfigAndLaunchMobile("bodyAttach", detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
-        commonUtils.click(loadIndicatorPgObj.bodyLoadBtn, "mobile");
-        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.bodyAttachChip, "mobile");
+        commonUtils.click(loadIndicatorPgObj.bodyLoadBtn);
+        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.bodyAttachChip);
         if (!isElementPresent) {
             log.info("Loading indicator bodyAttach is not displayed");
         }
         Assert.assertTrue(isElementPresent);
         Thread.sleep(6000);
-        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.bodyAttachChip, "mobile");
+        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.bodyAttachChip);
         if (isElementPresent) {
             log.info("Loading indicator bodyAttach is still being displayed after 5 secs");
         }
@@ -314,18 +314,18 @@ public class LoadingIndicatorTest extends BaseClass {
         String[] dataTextPropertiesList = {"chipText", "loading..."};
         String[] propsPropertiesList = {"id", "ex3", "active", "true"};
         setConfigAndLaunchMobile("loaderAttach", detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
-        commonUtils.click(loadIndicatorPgObj.domBtn, "mobile");
+        commonUtils.click(loadIndicatorPgObj.domBtn);
         Thread.sleep(1000);
-        commonUtils.click(loadIndicatorPgObj.toggleBtn, "mobile");
+        commonUtils.click(loadIndicatorPgObj.toggleBtn);
         Thread.sleep(1000);
-        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.loaderAttachChip, "mobile");
+        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.loaderAttachChip);
         if (isElementPresent) {
             log.info("Loading indicator did not toggle/unload");
         }
         Assert.assertFalse(isElementPresent);
-        commonUtils.click(loadIndicatorPgObj.toggleBtn, "mobile");
+        commonUtils.click(loadIndicatorPgObj.toggleBtn);
         Thread.sleep(1000);
-        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.loaderAttachChip, "mobile");
+        isElementPresent = commonUtils.isElementPresent(loadIndicatorPgObj.loaderAttachChip);
         if (!isElementPresent) {
             log.info("Loading indicator did not toggle/load");
         }
@@ -337,17 +337,16 @@ public class LoadingIndicatorTest extends BaseClass {
         String[] detailsPropertiesList = {"elementId", type};
         String[] dataTextPropertiesList = {"chipText", setChipText};
         setConfigAndLaunchMobile(type, detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
-        commonUtils.click(button, "mobile");
-        chipText = commonUtils.getText(elem, "mobile");
-        color = commonUtils.getCSSValue(elem, "color", "mobile");
+        commonUtils.click(button);
+        chipText = commonUtils.getText(elem);
+        color = commonUtils.getCSSValue(elem, "color");
         isChipText = commonUtils.assertValue(chipText, setChipText, "Chip text value set does not match the value in Data Provider");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#ffffff"), commonUtils.hex2RgbWithoutTransparency("#ffffff")});
         if (!isColor) {
             log.info("Color of the chip text is not as per spec, actual: " + color);
         }
         Assert.assertTrue(isChipText && isColor);
-    }
-
+    } */
     private String buildJSONObjectDetailConfig(String type, String[] detailsPropertiesList, String[] propsPropertiesList, String[] dataTextPropertiesList) throws IOException {
         int i = 0;
         if (!((detailsPropertiesList.length % 2 == 0) && ((dataTextPropertiesList.length % 2 == 0)) && (propsPropertiesList.length % 2 == 0))) {
@@ -442,11 +441,11 @@ public class LoadingIndicatorTest extends BaseClass {
         commonUtils.getUrl(url);
     }
 
-    private void setConfigAndLaunchMobile(String type, String[] detailsPropertiesList, String[] propsPropertiesList, String[] dataTextPropertiesList) throws Exception {
+    /*private void setConfigAndLaunchMobile(String type, String[] detailsPropertiesList, String[] propsPropertiesList, String[] dataTextPropertiesList) throws Exception {
         testConfig = buildJSONObjectDetailConfig(type, detailsPropertiesList, propsPropertiesList, dataTextPropertiesList);
         commonUtils.changeConfig(loadingIndicatorJSFilePath, testConfig);
         commonUtils.getUrl(url, "mobile");
-    }
+    }*/
 
 
     public String constructPath(String absolutePath) {

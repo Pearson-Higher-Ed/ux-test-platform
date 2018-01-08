@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class DrawerTest extends BaseClass {
 
-    private final String drawerUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/drawer/drawer.html";
+    private final String drawerUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/drawer/drawer.html";
     private boolean isDrawerOpened = false;
     private boolean isDrawerClosed = false, isCSSProperty = false;
     private String contentInDrawer = "", cssPropertyType = "";
@@ -46,7 +46,7 @@ public class DrawerTest extends BaseClass {
     }
 
     //Open Drawer
-    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"desktop-regression","mobile-regression"})
     private void openDrawerTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
         commonUtils.click(drawerLinkElement);
         isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
@@ -589,12 +589,12 @@ public class DrawerTest extends BaseClass {
      ****************/
 
     //Open Drawer
-    @Test(testName = "Mobile: Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"mobile-regression", "standAlone"})
+    /*@Test(testName = "Mobile: Open Drawer Test", dataProvider = "Open Drawer Test Data", groups = {"mobile-regression", "standAlone"})
     private void openDrawerMobileTest(String drawerType, By drawerLinkElement, By drawerOpenStatusElement) throws Exception {
-        commonUtils.click(drawerLinkElement, "mobile");
-        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement, "mobile");
+        commonUtils.click(drawerLinkElement);
+        isDrawerOpened = commonUtils.isElementPresent(drawerOpenStatusElement);
         Assert.assertTrue(isDrawerOpened);
-    }
+    }*/
 
     //Toggle Drawer
     @Test(testName = "Mobile: Toggle Drawer Test", dataProvider = "Toggle Drawer Test Data", groups = {"mobile-regression", "standAlone"})

@@ -63,7 +63,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "desktop-regression")
+    @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void progressBarAndRailStylesTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
@@ -82,7 +82,7 @@ public class ProgressBarTest extends BaseClass {
         Assert.assertTrue(isHeight && isBgColor && isMarginTop);
     }
 
-    @Test(testName = "Animated Progress Bar Styles Test", groups = {"desktop-regression","desktop-ci"})
+    @Test(testName = "Animated Progress Bar Styles Test", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void animatedProgressBarStylesTest() throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
@@ -109,7 +109,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Progress Bar Label Alignment Test", dataProvider = "Progress Bar Label Alignment Test Data", groups = "desktop-regression")
+    @Test(testName = "Progress Bar Label Alignment Test", dataProvider = "Progress Bar Label Alignment Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void progressBarLabelAlignmentTest(String labelAlign, String expLabelAlign) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{};
@@ -134,7 +134,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = {"desktop-regression","desktop-ci"})
+    @Test(testName = "Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void progressCalcTest(String min, String max, String value, String expProgress) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
@@ -156,7 +156,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
@@ -166,68 +166,68 @@ public class ProgressBarTest extends BaseClass {
     }
 
     //Mobile Tests
-    @Test(testName = "Mobile: Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "mobile-regression")
-    private void progressBarAndRailStylesMobileTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
-        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        height = commonUtils.getCSSValue(element, "height", "mobile");
-        bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
-
-        isHeight = commonUtils.assertValue(height, expHeight, "The height of " + type + " is not as per the spec");
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBgColor) {
-            log.info("The bg-color of " + type + " is not as per the spec, actual: " + bgColor);
-        }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + type + " is not as per the spec");
-        Assert.assertTrue(isHeight && isBgColor && isMarginTop);
-    }
-
-    @Test(testName = "Mobile: Animated Progress Bar Styles Test", groups = "mobile-regression")
-    private void animatedProgressBarStylesMobileTest() {
-        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        animationDuration = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "animation-duration", "mobile");
-        bgImage = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "background-image", "mobile");
-
-        isAnimationDuration = commonUtils.assertValue(animationDuration, "6s", "'animation duration' of animated progress bar is not as per the spec");
-        isBgImage = commonUtils.assertCSSProperties("background-image", bgImage, new String[]{"repeating-linear-gradient(-45deg, transparent, transparent 8px, rgb(218, 240, 237) 0px, rgb(218, 240, 237) 12px, transparent 0px), none", "[repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 8px, rgb(218, 240, 237) 0px, rgb(218, 240, 237) 12px, rgba(0, 0, 0, 0) 0px), none]"});
-        if (!isBgImage) {
-            log.info("'background image' of animated progress bar is not as per the spec, actual: " + bgImage);
-        }
-        Assert.assertTrue(isAnimationDuration && isBgImage);
-    }
-
-    @Test(testName = "Mobile: Progress Bar Label Alignment Test", dataProvider = "Progress Bar Label Alignment Test Data", groups = "mobile-regression")
-    private void progressBarLabelAlignmentMobileTest(String labelAlign, String expLabelAlign) {
-        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = null;
-        if (labelAlign.equals("default")) {
-            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"};
-        } else {
-            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", labelAlign, "labelText", "% completed", "id", "test-id'"};
-        }
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        align = commonUtils.getAttributeValue(progressBarPgObj.progressBarTextAlign, "class", "mobile");
-        isAlign = commonUtils.assertValue(align, "progress-bar-container progress-bar-text-" + expLabelAlign, "the label text is not aligned correctly for '" + labelAlign + "'");
-        Assert.assertTrue(isAlign);
-    }
-
-    @Test(testName = "Mobile: Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = "mobile-regression")
-    private void progressCalcMobileTest(String min, String max, String value, String expProgress) throws InterruptedException {
-        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        progress = commonUtils.getAttributeValue(progressBarPgObj.progressBar, "style", "mobile");
-        isProgress = commonUtils.assertValue(progress, expProgress, "The progress is not as per the spec for this combo: min: " + min + ", max: " + max + ", value: " + value);
-        Assert.assertTrue(isProgress);
-    }
+//    @Test(testName = "Mobile: Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "mobile-regression")
+//    private void progressBarAndRailStylesMobileTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
+//        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        height = commonUtils.getCSSValue(element, "height", "mobile");
+//        bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+//        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+//
+//        isHeight = commonUtils.assertValue(height, expHeight, "The height of " + type + " is not as per the spec");
+//        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
+//        if (!isBgColor) {
+//            log.info("The bg-color of " + type + " is not as per the spec, actual: " + bgColor);
+//        }
+//        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + type + " is not as per the spec");
+//        Assert.assertTrue(isHeight && isBgColor && isMarginTop);
+//    }
+//
+//    @Test(testName = "Mobile: Animated Progress Bar Styles Test", groups = "mobile-regression")
+//    private void animatedProgressBarStylesMobileTest() {
+//        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
+//        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        animationDuration = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "animation-duration", "mobile");
+//        bgImage = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "background-image", "mobile");
+//
+//        isAnimationDuration = commonUtils.assertValue(animationDuration, "6s", "'animation duration' of animated progress bar is not as per the spec");
+//        isBgImage = commonUtils.assertCSSProperties("background-image", bgImage, new String[]{"repeating-linear-gradient(-45deg, transparent, transparent 8px, rgb(218, 240, 237) 0px, rgb(218, 240, 237) 12px, transparent 0px), none", "[repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 8px, rgb(218, 240, 237) 0px, rgb(218, 240, 237) 12px, rgba(0, 0, 0, 0) 0px), none]"});
+//        if (!isBgImage) {
+//            log.info("'background image' of animated progress bar is not as per the spec, actual: " + bgImage);
+//        }
+//        Assert.assertTrue(isAnimationDuration && isBgImage);
+//    }
+//
+//    @Test(testName = "Mobile: Progress Bar Label Alignment Test", dataProvider = "Progress Bar Label Alignment Test Data", groups = "mobile-regression")
+//    private void progressBarLabelAlignmentMobileTest(String labelAlign, String expLabelAlign) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
+//        String[] propsPropertiesList = null;
+//        if (labelAlign.equals("default")) {
+//            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"};
+//        } else {
+//            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", labelAlign, "labelText", "% completed", "id", "test-id'"};
+//        }
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        align = commonUtils.getAttributeValue(progressBarPgObj.progressBarTextAlign, "class", "mobile");
+//        isAlign = commonUtils.assertValue(align, "progress-bar-container progress-bar-text-" + expLabelAlign, "the label text is not aligned correctly for '" + labelAlign + "'");
+//        Assert.assertTrue(isAlign);
+//    }
+//
+//    @Test(testName = "Mobile: Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = "mobile-regression")
+//    private void progressCalcMobileTest(String min, String max, String value, String expProgress) throws InterruptedException {
+//        String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
+//        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        progress = commonUtils.getAttributeValue(progressBarPgObj.progressBar, "style", "mobile");
+//        isProgress = commonUtils.assertValue(progress, expProgress, "The progress is not as per the spec for this combo: min: " + min + ", max: " + max + ", value: " + value);
+//        Assert.assertTrue(isProgress);
+//    }
 
     /* Common methods */
     private String buildJSONObjectDetailConfig(String[] detailsPropertiesList, String[] propsPropertiesList) {

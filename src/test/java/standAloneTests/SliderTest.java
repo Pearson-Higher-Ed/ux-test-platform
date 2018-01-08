@@ -24,7 +24,7 @@ import org.openqa.selenium.interactions.*;
  */
 public class SliderTest extends BaseClass {
 
-    private final String basicModeUrl = "http://localhost:8000/src/main/java/standAlone/fixtures/slider/slider.html";
+    private final String basicModeUrl = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/slider/slider.html";
     private final String absSliderDistJSFilePath = new File("standAlone/jsfiles/slider/dist.slider.js").getAbsolutePath();
     private final String sliderDistJSFilePath = constructPath(absSliderDistJSFilePath);
     private final String absSliderJSFilePath = new File("standAlone/jsfiles/slider/slider.js").getAbsolutePath();
@@ -91,7 +91,7 @@ public class SliderTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Validate Click on Knob", groups = {"desktop-regression"})
+    @Test(testName = "Validate Click on Knob", groups = {"desktop-regression","mobile-regression"})
     private void validateClickKnobTest() throws Exception {
         if (browser.equals("edge")) {
             commonUtils.clickUsingJS(sliderPgObj.slider);
@@ -196,7 +196,7 @@ public class SliderTest extends BaseClass {
     }
 
 
-    @Test(testName = "Slider Label Test", groups = {"desktop-regression"})
+    @Test(testName = "Slider Label Test", groups = {"desktop-regression","mobile-regression"})
     private void sliderLabelTest() {
         isLabelPresent = true;
         try {
@@ -246,10 +246,10 @@ public class SliderTest extends BaseClass {
 
     /* Mobile Tests */
 
-    @Test(testName = "Mobile : Validate Click on Knob", groups = "mobile-regression")
+    /*@Test(testName = "Mobile : Validate Click on Knob", groups = "mobile-regression")
     private void iOSClickKnobMobileTest() throws Exception {
-        commonUtils.click(sliderPgObj.slider, "mobile");
-        actSliderVal = commonUtils.getAttributeValue(sliderPgObj.slider, "aria-valuenow", "mobile");
+        commonUtils.click(sliderPgObj.slider);
+        actSliderVal = commonUtils.getAttributeValue(sliderPgObj.slider, "aria-valuenow");
         isSliderVal = commonUtils.assertValue(actSliderVal, "50", "Slider value is not as per the spec");
         Assert.assertTrue(isSliderVal);
     }
@@ -274,7 +274,7 @@ public class SliderTest extends BaseClass {
             log.info("Label is not present");
         }
         Assert.assertTrue(isLabelPresent && isForPresent && isForValue);
-    }
+    } */
 
     /****************
      * Common Methods
@@ -283,13 +283,8 @@ public class SliderTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (mobile.equals("off")) {
             commonUtils.getUrl(basicModeUrl);
             slider = driver.findElement(By.id("numInput"));
-        } else {
-            commonUtils.getUrl(basicModeUrl, "mobile");
-            slider = appium.findElement(By.id("numInput"));
-        }
     }
 
     public String constructPath(String absolutePath) {
