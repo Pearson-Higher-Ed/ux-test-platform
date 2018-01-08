@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by umahaea on 5/15/17.
  */
 public class ModalTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/standAlone/fixtures/modal/modal.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/standAlone/fixtures/modal/modal.html";
     private final String absModalJSFilePath = new File("standAlone/jsfiles/modal/modal.js").getAbsolutePath();
     private final String modalJSFilePath = constructPath(absModalJSFilePath);
     private final String absTempJSFilePath = new File("standAlone/jsfiles/modal/temp.js").getAbsolutePath();
@@ -52,6 +52,7 @@ public class ModalTest extends BaseClass {
     Map<String, String> propsTextConfigMap = null;
     JavascriptExecutor js = null;
     WebElement element = null;
+    By elem = null;
     final static Logger log = Logger.getLogger(ModalTest.class.getName());
     ModalPageObjects modalPgObj = null;
 
@@ -66,14 +67,18 @@ public class ModalTest extends BaseClass {
 
     //Desktop Tests
     //Overlay
-    @Test(testName = "Modal Overlay Test", groups = "desktop-regression")
+    @Test(testName = "Modal Overlay Test", groups = {"desktop-regression", "mobile-regression"})
     private void modalOverlayTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
-
-        backgroundColor = commonUtils.getCSSValue(modalPgObj.modalOverlayReact, "background-color");
+        if (setMobile.equals("on")) {
+            elem = modalPgObj.modalOverlay;
+        } else {
+            elem = modalPgObj.modalOverlayReact;
+        }
+        backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{"rgba(25, 25, 25, 0.6)", "rgb(25, 25, 25, 0.6)"});
         if (!isBackgroundColor) {
             log.info("'background color' for modal overlay is not as per the spec, actual: " + backgroundColor);
@@ -547,7 +552,7 @@ public class ModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "desktop-regression")
+    @Test(testName = "Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = {"desktop-regression", "mobile-regression"})
     private void verifyModalCloseButtonVisibleTest(String footerType, String isFooterVisible, String
             hideCloseType, String isHideSetTrue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
@@ -574,7 +579,7 @@ public class ModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "SR Header text Test", dataProvider = "srHeaderText Test Data", groups = "desktop-regression")
+    @Test(testName = "SR Header text Test", dataProvider = "srHeaderText Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void srHeaderTextTest(String headerTitleType, String[] propsTextList, Boolean isSpanPresent, String spanText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "srHeaderText", "HelloSRText", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -622,7 +627,7 @@ public class ModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "desktop-regression")
+    @Test(testName = "SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void successButtonHandlerTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String msg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
@@ -646,7 +651,7 @@ public class ModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "AriaHideApp Test", dataProvider = "AriaHideApp Test Data", groups = "desktop-regression")
+    @Test(testName = "AriaHideApp Test", dataProvider = "AriaHideApp Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void ariaHideAppTest(String ariaHideApp, Object expAriaHidden, String appElement, boolean expWrapper) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
@@ -677,7 +682,9 @@ public class ModalTest extends BaseClass {
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
         setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
-        commonUtils.setWindowSize(windowWidth, windowHeight);
+        if (setMobile.equals("on")) {
+            commonUtils.setWindowSize(windowWidth, windowHeight);
+        }
 
         for (int i = 0; i < margins.length; i++) {
             margin = commonUtils.getCSSValue(modalTemplate, margins[i]);
@@ -698,7 +705,7 @@ public class ModalTest extends BaseClass {
     }
 
     //scroll with page modal
-    @Test(testName = "scroll With Page Modal Test", dataProvider = "Scroll With Page Modal Test Data", groups = "desktop-regression")
+    @Test(testName = "scroll With Page Modal Test", dataProvider = "Scroll With Page Modal Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void scrollWithPageModalTest(String scrollWithPage, String expOverFlowY, String visible, By modalFooter) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
@@ -714,19 +721,19 @@ public class ModalTest extends BaseClass {
     }
 
     //Mobile Tests
-    @Test(testName = "Mobile: Modal Overlay Test", groups = "mobile-regression")
+    /*@Test(testName = "Mobile: Modal Overlay Test", groups = "mobile-regression")
     private void modalOverlayMobileTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        backgroundColor = commonUtils.getCSSValue(modalPgObj.modalOverlay, "background-color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(modalPgObj.modalOverlay, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{"rgba(25, 25, 25, 0.6)", "rgb(25, 25, 25, 0.6)"});
         Assert.assertTrue(isBackgroundColor);
-    }
+    }*/
 
-    @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regressionR")
     private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By
             modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String
                                                         device, ScreenOrientation mode) throws Exception {
@@ -738,9 +745,9 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
-        width = commonUtils.getCSSValue(modalTemplateElement, "width", "mobile");
-        backgroundColor = commonUtils.getCSSValue(modalTemplateElement, "background-color", "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+        width = commonUtils.getCSSValue(modalTemplateElement, "width");
+        backgroundColor = commonUtils.getCSSValue(modalTemplateElement, "background-color");
 
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
         if (!isWidth) {
@@ -751,14 +758,14 @@ public class ModalTest extends BaseClass {
             log.info("'modal template' - background-color for " + size + " is not as per the spec, actual: " + backgroundColor);
         }
         for (int i = 0; i < borderRadiuss.length; i++) {
-            borderRadius = commonUtils.getCSSValue(modalTemplateElement, borderRadiuss[i], "mobile");
+            borderRadius = commonUtils.getCSSValue(modalTemplateElement, borderRadiuss[i]);
             isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadiusValue[i], "'modal template' - " + borderRadiuss[i] + " for " + size + " size is not as per the spec");
             Assert.assertTrue(isBorderRadius);
         }
         Assert.assertTrue(isWidth && isBackgroundColor);
     }
 
-    @Test(testName = "Mobile: Modal Header Test", dataProvider = "Modal Header Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Header Test", dataProvider = "Modal Header Test Data", groups = "mobile-regressionR")
     private void modalHeaderMobileTest(String size, int width, int height, By modalHeaderElement, String[]
             expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -768,16 +775,16 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
         for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(modalHeaderElement, paddings[i], "mobile");
+            padding = commonUtils.getCSSValue(modalHeaderElement, paddings[i]);
             isPadding = commonUtils.assertValue(padding, expPaddingValue[i], "'modal header' - " + paddings[i] + " for " + size + " size is not as per the spec");
             Assert.assertTrue(isPadding);
         }
     }
 
-    @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regressionR")
     private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[]
             expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String
                                                    device, ScreenOrientation mode) throws Exception {
@@ -788,12 +795,12 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        color = commonUtils.getCSSValue(modalHeaderTextElement, "color", "mobile");
-        fontSize = commonUtils.getCSSValue(modalHeaderTextElement, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(modalHeaderTextElement, "line-height", "mobile");
-        marginBottom = commonUtils.getCSSValue(modalHeaderTextElement, "margin-bottom", "mobile");
+        color = commonUtils.getCSSValue(modalHeaderTextElement, "color");
+        fontSize = commonUtils.getCSSValue(modalHeaderTextElement, "font-size");
+        lineHeight = commonUtils.getCSSValue(modalHeaderTextElement, "line-height");
+        marginBottom = commonUtils.getCSSValue(modalHeaderTextElement, "margin-bottom");
 
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
@@ -815,7 +822,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isColor && isFontSize && isLineHeight && isMarginBottom);
 
         for (int i = 0; i < margins.length; i++) {
-            margin = commonUtils.getCSSValue(modalHeaderTextElement, margins[i], "mobile");
+            margin = commonUtils.getCSSValue(modalHeaderTextElement, margins[i]);
             isMargin = commonUtils.assertValue(margin, expMarginValue[i], "'" + margins[i] + "' for " + size + " size is not as per the spec");
             if (!isMargin) {
                 log.info("'modal header text - " + margins[i] + "' for " + size + " is not as per the spec, actual: " + margin);
@@ -824,7 +831,7 @@ public class ModalTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regressionR")
     private void modalBodyMobileTest(String size, int windowWidth, int windowHeight, By modalBodyElement, String[]
             expFontSize, String[] expLineHeight, String[] expPaddingValue, String expOutlineStyle, String[] expColor, String
                                              device, ScreenOrientation mode) throws Exception {
@@ -835,12 +842,12 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        fontSize = commonUtils.getCSSValue(modalBodyElement, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(modalBodyElement, "line-height", "mobile");
-        outlineStyle = commonUtils.getCSSValue(modalBodyElement, "outline-style", "mobile");
-        color = commonUtils.getCSSValue(modalBodyElement, "color", "mobile");
+        fontSize = commonUtils.getCSSValue(modalBodyElement, "font-size");
+        lineHeight = commonUtils.getCSSValue(modalBodyElement, "line-height");
+        outlineStyle = commonUtils.getCSSValue(modalBodyElement, "outline-style");
+        color = commonUtils.getCSSValue(modalBodyElement, "color");
 
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
@@ -856,7 +863,7 @@ public class ModalTest extends BaseClass {
             log.info("'modal body' - color for " + size + " is not as per the spec, actual: " + color);
         }
         for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(modalBodyElement, paddings[i], "mobile");
+            padding = commonUtils.getCSSValue(modalBodyElement, paddings[i]);
             isPadding = commonUtils.assertValue(padding, expPaddingValue[i], "'modal body' - " + paddings[i] + " for " + size + " size is not as per the spec");
             if (!isPadding) {
                 log.info("'modal body' - " + paddings[i] + " for " + size + " is not as per the spec, actual: " + padding);
@@ -866,7 +873,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isOutlineStyle && isColor);
     }
 
-    @Test(testName = "Mobile: Modal Body Border Normal Test", dataProvider = "Modal Body Border Normal Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Body Border Normal Test", dataProvider = "Modal Body Border Normal Test Data", groups = "mobile-regressionR")
     private void modalBodyBorderNormalMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String[] expMarginTop, String[] expMarginBottom, String device, ScreenOrientation mode) throws
             Exception {
@@ -877,10 +884,10 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        marginTop = commonUtils.getCSSValue(modalBodyElement, "margin-top", "mobile");
-        marginBottom = commonUtils.getCSSValue(modalBodyElement, "margin-bottom", "mobile");
+        marginTop = commonUtils.getCSSValue(modalBodyElement, "margin-top");
+        marginBottom = commonUtils.getCSSValue(modalBodyElement, "margin-bottom");
 
         isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
         if (!isMarginTop) {
@@ -893,7 +900,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isMarginTop && isMarginBottom);
     }
 
-    @Test(testName = "Mobile: Footer- Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Footer- Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "mobile-regressionR")
     private void modalBodyBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String[] expPaddingTop, String[] expMarginTop, String[] expMarginBottom, String[]
                                                    expBorderTops, String[] expBorderBottoms, String device, ScreenOrientation mode) throws Exception {
@@ -905,11 +912,11 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, '" + longModalText + "')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        paddingTop = commonUtils.getCSSValue(modalBodyElement, "padding-top", "mobile");
-        marginTop = commonUtils.getCSSValue(modalBodyElement, "margin-top", "mobile");
-        marginBottom = commonUtils.getCSSValue(modalBodyElement, "margin-bottom", "mobile");
+        paddingTop = commonUtils.getCSSValue(modalBodyElement, "padding-top");
+        marginTop = commonUtils.getCSSValue(modalBodyElement, "margin-top");
+        marginBottom = commonUtils.getCSSValue(modalBodyElement, "margin-bottom");
 
         isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
         if (!isPaddingTop) {
@@ -924,7 +931,7 @@ public class ModalTest extends BaseClass {
             log.info("" + type + " - margin-bottom for size " + size + " is not as per the spec, actual: " + marginBottom);
         }
         for (int i = 0; i < borderTops.length; i++) {
-            borderTop = commonUtils.getCSSValue(modalBodyElement, borderTops[i], "mobile");
+            borderTop = commonUtils.getCSSValue(modalBodyElement, borderTops[i]);
             if (i == 2) {
                 isBorderTop = commonUtils.assertCSSProperties("border-top-color", borderTop, new String[]{commonUtils.hex2Rgb(expBorderTops[i]), commonUtils.hex2RgbWithoutTransparency(expBorderTops[i])});
             } else {
@@ -936,7 +943,7 @@ public class ModalTest extends BaseClass {
             Assert.assertTrue(isBorderTop);
         }
         for (int i = 0; i < borderBottoms.length; i++) {
-            borderBottom = commonUtils.getCSSValue(modalBodyElement, borderBottoms[i], "mobile");
+            borderBottom = commonUtils.getCSSValue(modalBodyElement, borderBottoms[i]);
             if (i == 2) {
                 isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{commonUtils.hex2Rgb(expBorderBottoms[i]), commonUtils.hex2RgbWithoutTransparency(expBorderBottoms[i])});
             } else {
@@ -950,7 +957,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isPaddingTop && isMarginTop && isMarginBottom);
     }
 
-    @Test(testName = "Mobile: No Footer- Modal Body Border Test", dataProvider = "No Footer: Modal Body Border Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: No Footer- Modal Body Border Test", dataProvider = "No Footer: Modal Body Border Test Data", groups = "mobile-regressionR")
     private void modalBodyNoFooterBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String modalBodyClass, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -961,12 +968,12 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "false", "children", "React.createElement('p', {}, '" + longModalText + "')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
-        result = commonUtils.getAttributeValue(modalBodyElement, "class", "mobile").equals(modalBodyClass);
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
+        result = commonUtils.getAttributeValue(modalBodyElement, "class").equals(modalBodyClass);
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regressionR")
     private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By
             buttonElement, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String
                                                   device, ScreenOrientation mode) throws Exception {
@@ -977,14 +984,14 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        flexGrow = commonUtils.getCSSValue(buttonElement, "flex-grow", "mobile");
-        flexShrink = commonUtils.getCSSValue(buttonElement, "flex-shrink", "mobile");
-        flexBasis = commonUtils.getCSSValue(buttonElement, "flex-basis", "mobile");
+        flexGrow = commonUtils.getCSSValue(buttonElement, "flex-grow");
+        flexShrink = commonUtils.getCSSValue(buttonElement, "flex-shrink");
+        flexBasis = commonUtils.getCSSValue(buttonElement, "flex-basis");
 
         for (int i = 0; i < margins.length; i++) {
-            margin = commonUtils.getCSSValue(buttonElement, margins[i], "mobile");
+            margin = commonUtils.getCSSValue(buttonElement, margins[i]);
             isMargin = commonUtils.assertValue(margin, expMarginValue[i], "" + margins[i] + " for " + size + " size is not as per the spec");
             if (!isMargin) {
                 log.info("" + type + " btn - " + margins[i] + " for " + size + " is not as per the spec, actual: " + margin);
@@ -1006,7 +1013,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isFlexGrow && isFlexShrink && isFlexBasis);
     }
 
-    @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regressionR")
     private void modalFooterMobileTest(String size, int width, int height, By modalFooterElement, String[]
             expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -1016,15 +1023,15 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
         for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(modalFooterElement, paddings[i], "mobile");
+            padding = commonUtils.getCSSValue(modalFooterElement, paddings[i]);
             isPadding = commonUtils.assertValue(padding, expPaddingValue[i], "'modal footer' - " + paddings[i] + " for " + size + " size is not as per the spec");
             Assert.assertTrue(isPadding);
         }
     }
 
-    @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regressionR")
     private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By
             modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String
                                                      expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
@@ -1035,20 +1042,20 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "false", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        width = commonUtils.getCSSValue(modalCloseButton, "width", "mobile");
-        height = commonUtils.getCSSValue(modalCloseButton, "height", "mobile");
-        closeButtonFloat = commonUtils.getCSSValue(modalCloseButton, "float", "mobile");
-        textDecoration = commonUtils.getCSSValue(modalCloseButton, "text-decoration", "mobile");
-        color = commonUtils.getCSSValue(modalPgObj.modalCloseIcon, "color", "mobile");
+        width = commonUtils.getCSSValue(modalCloseButton, "width");
+        height = commonUtils.getCSSValue(modalCloseButton, "height");
+        closeButtonFloat = commonUtils.getCSSValue(modalCloseButton, "float");
+        textDecoration = commonUtils.getCSSValue(modalCloseButton, "text-decoration");
+        color = commonUtils.getCSSValue(modalPgObj.modalCloseIcon, "color");
 
         isWidth = commonUtils.assertValue(width, expWidth, "'modal close' - width for size " + size + " is not as per the spec");
         isHeight = commonUtils.assertValue(height, expHeight, "'modal close' - height for size " + size + " is not as per the spec");
         isCloseButtonFloat = commonUtils.assertValue(closeButtonFloat, expCloseButtonFloat, "'modal close' - float for size " + size + " is not as per the spec");
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "'modal close' - text-decoration for size " + size + " is not as per the spec");
         for (int i = 0; i < margins.length; i++) {
-            margin = commonUtils.getCSSValue(modalCloseButton, margins[i], "mobile");
+            margin = commonUtils.getCSSValue(modalCloseButton, margins[i]);
             isMargin = commonUtils.assertValue(margin, expMarginValue[i], "'modal - close' - " + margins[i] + "' for " + size + " size is not as per the spec");
             if (!isMargin) {
                 log.info("'modal - close' - " + margins[i] + " for " + size + " is not as per the spec, actual: " + margin);
@@ -1057,7 +1064,7 @@ public class ModalTest extends BaseClass {
         }
 
         for (int i = 0; i < borderStyles.length; i++) {
-            borderStyle = commonUtils.getCSSValue(modalCloseButton, borderStyles[i], "mobile");
+            borderStyle = commonUtils.getCSSValue(modalCloseButton, borderStyles[i]);
             isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyles[i], "'modal - close '" + borderStyles[i] + "' for " + size + " size is not as per the spec");
             if (!isBorderStyle) {
                 log.info("'modal - close' - " + borderStyles[i] + " for " + size + " is not as per the spec, actual: " + borderStyle);
@@ -1071,13 +1078,13 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isWidth && isHeight & isCloseButtonFloat && isTextDecoration && isColor);
     }
 
-    @Test(testName = "Mobile: SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "mobile-regression")
+   /* @Test(testName = "Mobile: SuccessButtonHandler Test", dataProvider = "SuccessButtonHandler Test Data", groups = "mobile-regression")
     private void successButtonHandlerMobileTest(String isDisableSuccessBtn, Boolean isSuccessBtnDisabled, String
             msg) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "disableSuccessBtn", isDisableSuccessBtn, "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
         Thread.sleep(1000);
 
         js = (JavascriptExecutor) appium;
@@ -1085,16 +1092,16 @@ public class ModalTest extends BaseClass {
         Object attributes = js.executeScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", element);
         result = commonUtils.assertValue(attributes.toString().contains("disabled"), isSuccessBtnDisabled, "Success button is " + msg + " as per the spec");
         Assert.assertTrue(result);
-    }
+    }*/
 
-    @Test(testName = "Mobile: Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "mobile-regression")
+    /*@Test(testName = "Mobile: Verify modal close Button visibility", dataProvider = "Verify Modal X close Button Test", groups = "mobile-regression")
     private void verifyModalCloseButtonVisibleMobileTest(String footerType, String isFooterVisible, String
             hideCloseType, String isHideSetTrue) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", isFooterVisible, "hideCloseButton", isHideSetTrue, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
 
-        isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact, "mobile");
+        isModalCloseVisible = commonUtils.isElementDisplayed(modalPgObj.modalCloseButtonReact);
         if (!isModalCloseVisible) {
             isVisible = commonUtils.assertValue(isModalCloseVisible, false, "modal Close X button appeared");
             Assert.assertTrue(isVisible);
@@ -1108,15 +1115,15 @@ public class ModalTest extends BaseClass {
     private void srHeaderTextMobileTest(String headerTitleType, String[] propsTextList, Boolean isSpanPresent, String spanText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", "true", "srHeaderText", "HelloSRText", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        isPresent = commonUtils.isElementPresent(modalPgObj.modalHeaderSRTextSpan, "mobile");
+        isPresent = commonUtils.isElementPresent(modalPgObj.modalHeaderSRTextSpan);
         result = commonUtils.assertValue(isPresent, isSpanPresent, "span " + spanText);
         Assert.assertTrue(result);
         if (!(headerTitleType.contains("with headerTitle"))) {
-            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalHeaderSRTextSpan, "class", "mobile").contains("pe-sr-only"));
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalHeaderSRTextSpan, "class").contains("pe-sr-only"));
         } else {
-            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby", "mobile").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id", "mobile")));
+            Assert.assertTrue(commonUtils.getAttributeValue(modalPgObj.modalWithFooterTemplateReact, "aria-labelledby").equals(commonUtils.getAttributeValue(modalPgObj.modalHeaderTitleTextReact, "id")));
         }
     }
 
@@ -1125,12 +1132,12 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "ariaHideApp", ariaHideApp, "appElement", appElement, "footerVisible", "true", "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        boolean actWrapper = commonUtils.isElementPresent(modalPgObj.divWrapper, "mobile");
+        boolean actWrapper = commonUtils.isElementPresent(modalPgObj.divWrapper);
         isWrapperPresent = commonUtils.assertValue(actWrapper, expWrapper, "wrapper is present inspite of having ariaHiddenApp prop set");
 
-        Object actAriaHidden = commonUtils.getAttributeValue(modalPgObj.modalTarget, "aria-hidden", "mobile");
+        Object actAriaHidden = commonUtils.getAttributeValue(modalPgObj.modalTarget, "aria-hidden");
         isAriaHiddenAttributePresent = commonUtils.assertValue(actAriaHidden, expAriaHidden, "aria-hidden is not set to " + expAriaHidden + " for ariaHiddenApp prop set to " + ariaHideApp);
 
         Assert.assertTrue(isWrapperPresent && isAriaHiddenAttributePresent);
@@ -1141,10 +1148,10 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
         for (int i = 0; i < margins.length; i++) {
-            margin = commonUtils.getCSSValue(modalTemplate, margins[i], "mobile");
+            margin = commonUtils.getCSSValue(modalTemplate, margins[i]);
             isMargin = commonUtils.assertValue(margin, expMarginValue[i], "'" + margins[i] + "' for " + size + " size is not as per the spec");
             if (!isMargin) {
                 log.info("'modal template - '" + margins[i] + "' for " + size + " is not as per the spec, actual: " + margin);
@@ -1159,15 +1166,16 @@ public class ModalTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "scrollWithPage", scrollWithPage, "children", "React.createElement('p', {}, '" + longModalText + "')"};
-        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList, "mobile");
+        setConfigAndLaunch(detailsPropertiesList, propsTextList, propsPropertiesList);
 
-        overFlowY = commonUtils.getCSSValue(modalPgObj.modalOverlayReact, "overflow-y", "mobile");
+        overFlowY = commonUtils.getCSSValue(modalPgObj.modalOverlayReact, "overflow-y");
         isOverFlowY = commonUtils.assertValue(overFlowY, expOverFlowY, "overflow-y for scrollWithPage '" + scrollWithPage + "' is not as per the spec");
-        outlineStyle = commonUtils.getCSSValue(modalFooter, "outline-style", "mobile");
+        outlineStyle = commonUtils.getCSSValue(modalFooter, "outline-style");
         isOutlineStyle = commonUtils.assertValue(outlineStyle, "none", "outline style for scrollWithPage '" + scrollWithPage + "' and modal with footer '" + visible + "' is not as per the spec");
 
         Assert.assertTrue(isOverFlowY && isOutlineStyle);
     }
+*/
 
     /*****************
      * Common methods
@@ -1255,11 +1263,11 @@ public class ModalTest extends BaseClass {
         commonUtils.getUrl(url);
     }
 
-    private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsTextList, String[] propsPropertiesList, String mobile) throws Exception {
+   /* private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsTextList, String[] propsPropertiesList, String mobile) throws Exception {
         testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsTextList, propsPropertiesList);
         commonUtils.changeConfig(modalJSFilePath, testConfig);
-        commonUtils.getUrl(url, "mobile");
-    }
+        commonUtils.getUrl(url);
+    }*/
 
     private String constructPath(String absolutePath) {
         String path = absolutePath.substring(0, absolutePath.lastIndexOf("standAlone")) + "src/main/java/" + absolutePath.substring(absolutePath.indexOf("standAlone"));
