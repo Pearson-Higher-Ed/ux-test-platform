@@ -15,8 +15,8 @@ import java.lang.reflect.Method;
  * Created by umahaea on 2/9/17.
  */
 public class IconsTest extends BaseClass {
-
-    private final String iconsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/icons.html";
+    //private final String iconsUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/icons.html";
+    private final String iconsUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/icons.html";
     private final String absIconsJSFilePath = new File("elementsSDK/functional/jsfiles/icon/icons.js").getAbsolutePath();
     private final String iconsJSFilePath = constructPath(absIconsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/icon/temp.js").getAbsolutePath();
