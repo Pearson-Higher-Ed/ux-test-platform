@@ -26,7 +26,7 @@
         <!--</classes>-->
     <!--</test>-->
     <!-- Styles(CSS) Tests -->
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="false" thread-count="8">
+    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="8">
         <classes>
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
