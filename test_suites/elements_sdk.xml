@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="mobile-regression"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
@@ -14,8 +14,8 @@
             <!--<class name="elementsSDKTests.functionalTests.InputsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.ProgressBarTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.FooterTest"/>-->
-            <class name="elementsSDKTests.functionalTests.IconsTest"/>
-            <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.IconsTest"/>-->
+            <class name="elementsSDKTests.functionalTests.DropdownTest"/>
             <!--<class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.TabsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
