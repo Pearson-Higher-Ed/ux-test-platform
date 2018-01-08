@@ -72,7 +72,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression1"})
     private void labelDropdownLabelTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -94,7 +94,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression1"})
     private void borderLabelDropdownTest(int listNum, String[] dropdownType, By[] dropdownElement, String[] expectedCSSValue, String[] expBorderTops, String[] expBorderRights, String[] expBorderBottoms, String[] expBorderLefts, String[] expPaddingValue, String[] expBorderRadiusValue) throws Exception {
         String paneArray = buildDropDownItemsArray(listNum);
         String type;
@@ -129,7 +129,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression1"})
     private void optionsLabelDropdownTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -166,7 +166,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus on Dropdown Options Test", dataProvider = "Focus on Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Focus on Dropdown Options Test", dataProvider = "Focus on Dropdown Options Test Data", groups = {"desktop-regression"})
     public void focusOnOptionsDropdownTest(int listNum, String dropdownType, String id, By elem, By trigger, String[] expBgColor) throws InterruptedException, IOException {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
