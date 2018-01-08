@@ -64,7 +64,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void progressBarAndRailStylesTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
