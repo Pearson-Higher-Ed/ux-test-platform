@@ -72,7 +72,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void labelDropdownLabelTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -94,7 +94,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void borderLabelDropdownTest(int listNum, String[] dropdownType, By[] dropdownElement, String[] expectedCSSValue, String[] expBorderTops, String[] expBorderRights, String[] expBorderBottoms, String[] expBorderLefts, String[] expPaddingValue, String[] expBorderRadiusValue) throws Exception {
         String paneArray = buildDropDownItemsArray(listNum);
         String type;
@@ -129,7 +129,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void optionsLabelDropdownTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
