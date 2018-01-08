@@ -167,8 +167,10 @@ public class AlertsTest extends BaseClass {
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "Margin left of " + alertType + " alert is not as per spec");
         isPaddingTop = commonUtils.assertValue(paddingTop, "4px", "Padding top of " + alertType + " alert is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, "12px", "Padding right of " + alertType + " alert is not as per spec");
-
+        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, new String[]{"8px", "12px"});
+        if (!isPaddingRight) {
+            log.info("Padding right of " + alertType + " alert is not as per spec, actual " + paddingRight);
+        }
         Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
     }
 

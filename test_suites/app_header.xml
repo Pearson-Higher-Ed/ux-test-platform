@@ -9,8 +9,11 @@
         </groups>
         <classes>
             <!--<class name="standAloneTests.AppHeaderTest"/>-->
-            <class name="standAloneTests.AlertsTest"/>
-            <class name="standAloneTests.LoadingIndicatorTest"/>
+            <!--<class name="standAloneTests.AlertsTest"/>-->
+            <!--<class name="standAloneTests.LoadingIndicatorTest"/>-->
+            <class name="standAloneTests.PaginationTest"/>
+            <class name="standAloneTests.AvatarDisplayTest"/>
+            <class name="standAloneTests.CoachMarkTest"/>
         </classes>
     </test>
 </suite>
