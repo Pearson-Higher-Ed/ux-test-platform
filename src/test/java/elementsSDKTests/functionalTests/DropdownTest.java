@@ -19,7 +19,8 @@ import java.util.*;
  * Created by udhadpa on 4/21/17.
  */
 public class DropdownTest extends BaseClass {
-    private final String dropdownUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/dropdown.html";
+    //private final String dropdownUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/dropdown.html";
+    private final String dropdownUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/dropdown.html";
     private final String absDropdownJSFilePath = new File("elementsSDK/functional/jsfiles/dropdown/dropdown.js").getAbsolutePath();
     private final String dropdownJSFilePath = constructPath(absDropdownJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/dropdown/temp.js").getAbsolutePath();
@@ -71,7 +72,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = "desktop-regression")
+    @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void labelDropdownLabelTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -93,7 +94,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = "desktop-regression")
+    @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void borderLabelDropdownTest(int listNum, String[] dropdownType, By[] dropdownElement, String[] expectedCSSValue, String[] expBorderTops, String[] expBorderRights, String[] expBorderBottoms, String[] expBorderLefts, String[] expPaddingValue, String[] expBorderRadiusValue) throws Exception {
         String paneArray = buildDropDownItemsArray(listNum);
         String type;
@@ -128,7 +129,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "desktop-regression")
+    @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void optionsLabelDropdownTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -165,7 +166,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus on Dropdown Options Test", dataProvider = "Focus on Dropdown Options Test Data", groups = "desktop-regression")
+    @Test(testName = "Focus on Dropdown Options Test", dataProvider = "Focus on Dropdown Options Test Data", groups = {"desktop-regression", "mobile-regression"})
     public void focusOnOptionsDropdownTest(int listNum, String dropdownType, String id, By elem, By trigger, String[] expBgColor) throws InterruptedException, IOException {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
@@ -198,7 +199,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Hover on Dropdown Options Test ", dataProvider = "Hover on Dropdown Options Test Data", groups = "desktop-regression")
+    @Test(testName = "Hover on Dropdown Options Test ", dataProvider = "Hover on Dropdown Options Test Data", groups = {"desktop-regression"})
     public void hoverOnOptionsDropdownTest(int listNum, String dropdownType, String id, By elem, By trigger, String[] expBgColor) throws InterruptedException, IOException {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
@@ -229,10 +230,11 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Icon Dropdown Divider Test", dataProvider = "Icon Dropdown Divider Test Data", groups = "desktop-regression")
+    @Test(testName = "Icon Dropdown Divider Test", dataProvider = "Icon Dropdown Divider Test Data", groups = {"desktop-regression", "mobile-regression"})
     public void dividerIconDropdownTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
+        Thread.sleep(500);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.clickUsingJS(dropdownPgObj.iconDropdownActivator);
         cssPropertyType = cssProperty;
@@ -253,7 +255,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "desktop-regression")
+    @Test(testName = "Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickOnTriggerTest(int listNum, String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
         String paneArray = buildDropDownItemsArray(listNum);
         setConfig(dropdownType, paneArray);
@@ -347,7 +349,7 @@ public class DropdownTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Dropdown CallHandler Test", dataProvider = "Dropdown CallHandler Test Data", groups = "desktop-regression")
+    @Test(testName = "Dropdown CallHandler Test", dataProvider = "Dropdown CallHandler Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void dropdownCallHandlerTest(int listNum, String dropdownType, By trigger, By option, String expText) throws Exception {
         if (!browser.equals("chrome")) {
             throw new SkipException("This operation not available on edge sauce browser");
@@ -367,250 +369,250 @@ public class DropdownTest extends BaseClass {
      * Mobile Tests
      ******************************/
 
-    @DataProvider(name = "Mobile : Dropdown Header Test Data")
-    public Object[][] getHeaderLabelDropdownMobileTestData() {
-        return new Object[][]{
-                {2, dropdownPgObj.mobileHeader, "padding-top", new String[]{"0px"}},
-                {2, dropdownPgObj.mobileHeader, "padding-right", new String[]{"0px"}},
-                {2, dropdownPgObj.mobileHeader, "padding-bottom", new String[]{"0px"}},
-                {2, dropdownPgObj.mobileHeader, "padding-left", new String[]{"0px"}},
-                {2, dropdownPgObj.mobileHeader, "font-size", new String[]{"28px"}},
-                {2, dropdownPgObj.mobileHeader, "line-height", new String[]{"38.00006103515625px"}},
-                {2, dropdownPgObj.mobileHeader, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {2, dropdownPgObj.mobileHeader, "border-bottom-width", new String[]{"0px"}},
-                {2, dropdownPgObj.mobileHeader, "margin-bottom", new String[]{"6px"}},
-                {2, dropdownPgObj.closeBtn, "margin-left", new String[]{"0px"}}
-        };
-    }
-
-    @Test(testName = "Mobile : Label Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
-    private void headerLabelDropdownMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig("label", paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(dropdownPgObj.textLabel, "mobile");
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :of Header for Label Dropdown is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
-    private void headerButtonDropdownMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig("button", paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(dropdownPgObj.buttonDropdown, "mobile");
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :of Header for button Dropdown is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
-    private void optionsLabelDropdownMobileTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
-        if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        Thread.sleep(1000);
-        commonUtils.click(trigger, "mobile");
-        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
-        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
-        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
-
-        System.out.println("padding left ::" + paddingLeft);
-        System.out.println("padding right ::" + paddingRight);
-        System.out.println("padding bottom ::" + paddingBottom);
-        System.out.println("padding top ::" + paddingTop);
-        System.out.println("font size ::" + fontSize);
-        System.out.println("line height ::" + lineHeight);
-
-
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of option button for " + dropdownType + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of " + dropdownType + " is not as per spec");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTop, "Padding-top of " + dropdownType + " is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingBtm, "Padding-bottom of " + dropdownType + " is not as per spec");
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + dropdownType + " is not as per spec");
-        islineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Padding-right of " + dropdownType + " is not as per spec");
-
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight);
-    }
-
-    @Test(testName = "Mobile : Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "mobile-regression")
-    private void clickOnTriggerMobileTest(int listNum, String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        className = commonUtils.getAttributeValue(iconSVG, "class", "mobile");
-        isClassName = commonUtils.assertValue(className, expClassName, "The icon does not Use the class as per the specs");
-        commonUtils.click(trigger, "mobile");
-        Thread.sleep(1000);
-        isDropdownListBox = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
-        if (!isDropdownListBox) {
-            log.info("Click on the trigger did not open the dropdown list for " + dropdownType + " dropdown");
-        }
-        Assert.assertTrue(isDropdownListBox);
-    }
-
-    @DataProvider(name = "Mobile : Dropdown Options Responsive Test Data")
-    public Object[][] getDataOptionsDropdownMobileTestData() {
-        return new Object[][]{
-                {2, "text", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.textLabel, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {2, "text", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.textLabel, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-
-                {2, "button", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.buttonDropdown, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {2, "button", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.buttonDropdown, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-
-                {2, "icon", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.iconDropdownActivator, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {2, "icon", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.iconDropdownActivator, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-        };
-    }
-
-    @Test(testName = "Mobile : Dropdown Options Responsive Test", dataProvider = "Mobile : Dropdown Options Responsive Test Data", groups = "mobile-regression")
-    private void optionsLabelDropdownResponsiveMobileTest(int listNum, String dropdownType, String type, By elem, By trigger, String expFontSize, String expLineHt, String expPaddingLeftRight, String expPaddingTopBtm, String[] expColor) throws InterruptedException, IOException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        Thread.sleep(1000);
-        commonUtils.click(trigger, "mobile");
-
-        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
-        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
-        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
-        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
-        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
-        color = commonUtils.getCSSValue(elem, "color", "mobile");
-
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Padding-left of " + type + " for " + dropdownType + " Dropdown is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Padding-right of " + type + " for " + dropdownType + " Dropdown is not as per spec");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTopBtm, "Padding-top of " + type + " for " + dropdownType + " Dropdown is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTopBtm, "Padding-bottom of " + type + " for " + dropdownType + " Dropdown is not as per spec");
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + type + " for " + dropdownType + " Dropdown  is not as per spec");
-        islineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Padding-right of " + type + " for " + dropdownType + " Dropdown is not as per spec");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> Color of option " + type + " for " + dropdownType + " Dropdown is not as per the spec, actual: " + color);
-        }
-
-        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight && isColor);
-    }
-
-    @DataProvider(name = "Mobile : Icon Dropdown Divider Responsive Mobile Data")
-    public Object[][] getDividerIconDropdownMobileTestData() {
-        return new Object[][]{
-                {2, dropdownPgObj.dividerContainer, "margin-top", new String[]{"0px"}},
-                {2, dropdownPgObj.dividerContainer, "margin-bottom", new String[]{"0px"}},
-                {2, dropdownPgObj.dividerContainer, "padding-right", new String[]{"0px"}},
-                {2, dropdownPgObj.dividerContainer, "padding-left", new String[]{"0px"}},
-                {2, dropdownPgObj.dropdownDivider, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#d9d9d9"), commonUtils.hex2RgbWithoutTransparency("#d9d9d9")}},
-                {2, dropdownPgObj.dropdownDivider, "border-bottom-style", new String[]{"solid"}},
-                {2, dropdownPgObj.dropdownDivider, "border-bottom-width", new String[]{"1px"}},
-        };
-    }
-
-    @Test(testName = "Mobile : Icon Dropdown Divider Responsive Test ", dataProvider = "Mobile : Icon Dropdown Divider Responsive Mobile Data", groups = "mobile-regression")
-    public void dividerIconDropdownResponsiveMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig("icon", paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :of Divider for Icon Dropdown is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Icon Dropdown Divider Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "mobile-regression")
-    public void dividerIconDropdownMobileTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :of Divider for Icon Dropdown is not as per the spec, actual: " + cssProperty);
-        }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile: Dismiss Drop Down Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "mobile-regression")
-    public void dismissDropDownMobileTest(int listNum, String dropdownType, By trigger) throws Exception {
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(trigger, "mobile");
-        isDismiss = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
-        Assert.assertTrue(isDismiss);
-
-        //click outside the dropdown to dismiss it
-        commonUtils.click(By.xpath("//html"), "mobile");
-        isDismiss = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
-        result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
-        Assert.assertTrue(result);
-    }
-
-    @DataProvider(name = "Mobile : Click On Close Btn Test Data")
-    public Object[][] closeBtnMobileTestData() {
-        return new Object[][]{
-                {2, "label", dropdownPgObj.textLabel},
-                {2, "button", dropdownPgObj.buttonDropdown},
-                {2, "icon", dropdownPgObj.iconDropdownActivator}
-        };
-    }
-
-    @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression")
-    private void clickOnCloseBtnMobileTest(int listNum, String dropdownType, By trigger) throws IOException, InterruptedException {
-        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
-            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
-        }
-        String paneArray = buildDropDownItemsArray(listNum);
-        setConfig(dropdownType, paneArray);
-        commonUtils.getUrl(dropdownUrl, "mobile");
-        commonUtils.click(trigger, "mobile");
-        Thread.sleep(1000);
-        className = commonUtils.getAttributeValue(dropdownPgObj.closeBtn, "class", "mobile");
-        isClassName = commonUtils.assertValue(className, "pe-icon--remove-lg-18", "Close icon does not use class remove-lg-18");
-        Assert.assertTrue(isClassName);
-        commonUtils.click(dropdownPgObj.closeBtn, "mobile");
-        isDropdownListBox = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
-        if (isDropdownListBox) {
-            log.info("Click on Close Btn, but Dropdown still open, " + dropdownType + " dropdown");
-        }
-        Assert.assertFalse(isDropdownListBox);
-    }
+//    @DataProvider(name = "Mobile : Dropdown Header Test Data")
+//    public Object[][] getHeaderLabelDropdownMobileTestData() {
+//        return new Object[][]{
+//                {2, dropdownPgObj.mobileHeader, "padding-top", new String[]{"0px"}},
+//                {2, dropdownPgObj.mobileHeader, "padding-right", new String[]{"0px"}},
+//                {2, dropdownPgObj.mobileHeader, "padding-bottom", new String[]{"0px"}},
+//                {2, dropdownPgObj.mobileHeader, "padding-left", new String[]{"0px"}},
+//                {2, dropdownPgObj.mobileHeader, "font-size", new String[]{"28px"}},
+//                {2, dropdownPgObj.mobileHeader, "line-height", new String[]{"38.00006103515625px"}},
+//                {2, dropdownPgObj.mobileHeader, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//                {2, dropdownPgObj.mobileHeader, "border-bottom-width", new String[]{"0px"}},
+//                {2, dropdownPgObj.mobileHeader, "margin-bottom", new String[]{"6px"}},
+//                {2, dropdownPgObj.closeBtn, "margin-left", new String[]{"0px"}}
+//        };
+//    }
+//
+//    @Test(testName = "Mobile : Label Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
+//    private void headerLabelDropdownMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
+//        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig("label", paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(dropdownPgObj.textLabel, "mobile");
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :of Header for Label Dropdown is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Button Dropdown Header Test", dataProvider = "Mobile : Dropdown Header Test Data", groups = "mobile-regression")
+//    private void headerButtonDropdownMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
+//        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig("button", paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(dropdownPgObj.buttonDropdown, "mobile");
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :of Header for button Dropdown is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "mobile-regression")
+//    private void optionsLabelDropdownMobileTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
+//        if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        Thread.sleep(1000);
+//        commonUtils.click(trigger, "mobile");
+//        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
+//        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
+//        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
+//        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
+//        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
+//
+//        System.out.println("padding left ::" + paddingLeft);
+//        System.out.println("padding right ::" + paddingRight);
+//        System.out.println("padding bottom ::" + paddingBottom);
+//        System.out.println("padding top ::" + paddingTop);
+//        System.out.println("font size ::" + fontSize);
+//        System.out.println("line height ::" + lineHeight);
+//
+//
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of option button for " + dropdownType + " is not as per spec");
+//        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of " + dropdownType + " is not as per spec");
+//        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTop, "Padding-top of " + dropdownType + " is not as per spec");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingBtm, "Padding-bottom of " + dropdownType + " is not as per spec");
+//        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + dropdownType + " is not as per spec");
+//        islineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Padding-right of " + dropdownType + " is not as per spec");
+//
+//        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight);
+//    }
+//
+//    @Test(testName = "Mobile : Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "mobile-regression")
+//    private void clickOnTriggerMobileTest(int listNum, String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        className = commonUtils.getAttributeValue(iconSVG, "class", "mobile");
+//        isClassName = commonUtils.assertValue(className, expClassName, "The icon does not Use the class as per the specs");
+//        commonUtils.click(trigger, "mobile");
+//        Thread.sleep(1000);
+//        isDropdownListBox = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
+//        if (!isDropdownListBox) {
+//            log.info("Click on the trigger did not open the dropdown list for " + dropdownType + " dropdown");
+//        }
+//        Assert.assertTrue(isDropdownListBox);
+//    }
+//
+//    @DataProvider(name = "Mobile : Dropdown Options Responsive Test Data")
+//    public Object[][] getDataOptionsDropdownMobileTestData() {
+//        return new Object[][]{
+//                {2, "text", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.textLabel, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//                {2, "text", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.textLabel, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//
+//                {2, "button", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.buttonDropdown, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//                {2, "button", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.buttonDropdown, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//
+//                {2, "icon", "list item 1", dropdownPgObj.textDropdownItem1, dropdownPgObj.iconDropdownActivator, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//                {2, "icon", "list item 2", dropdownPgObj.textDropdownItem2, dropdownPgObj.iconDropdownActivator, "16px", "20px", "0px", "0px", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
+//        };
+//    }
+//
+//    @Test(testName = "Mobile : Dropdown Options Responsive Test", dataProvider = "Mobile : Dropdown Options Responsive Test Data", groups = "mobile-regression")
+//    private void optionsLabelDropdownResponsiveMobileTest(int listNum, String dropdownType, String type, By elem, By trigger, String expFontSize, String expLineHt, String expPaddingLeftRight, String expPaddingTopBtm, String[] expColor) throws InterruptedException, IOException {
+//        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        Thread.sleep(1000);
+//        commonUtils.click(trigger, "mobile");
+//
+//        paddingLeft = commonUtils.getCSSValue(elem, "padding-left", "mobile");
+//        paddingRight = commonUtils.getCSSValue(elem, "padding-right", "mobile");
+//        paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
+//        paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
+//        fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
+//        color = commonUtils.getCSSValue(elem, "color", "mobile");
+//
+//        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Padding-left of " + type + " for " + dropdownType + " Dropdown is not as per spec");
+//        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Padding-right of " + type + " for " + dropdownType + " Dropdown is not as per spec");
+//        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingTopBtm, "Padding-top of " + type + " for " + dropdownType + " Dropdown is not as per spec");
+//        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTopBtm, "Padding-bottom of " + type + " for " + dropdownType + " Dropdown is not as per spec");
+//        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + type + " for " + dropdownType + " Dropdown  is not as per spec");
+//        islineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Padding-right of " + type + " for " + dropdownType + " Dropdown is not as per spec");
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("Compounds-> Color of option " + type + " for " + dropdownType + " Dropdown is not as per the spec, actual: " + color);
+//        }
+//
+//        Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight && isColor);
+//    }
+//
+//    @DataProvider(name = "Mobile : Icon Dropdown Divider Responsive Mobile Data")
+//    public Object[][] getDividerIconDropdownMobileTestData() {
+//        return new Object[][]{
+//                {2, dropdownPgObj.dividerContainer, "margin-top", new String[]{"0px"}},
+//                {2, dropdownPgObj.dividerContainer, "margin-bottom", new String[]{"0px"}},
+//                {2, dropdownPgObj.dividerContainer, "padding-right", new String[]{"0px"}},
+//                {2, dropdownPgObj.dividerContainer, "padding-left", new String[]{"0px"}},
+//                {2, dropdownPgObj.dropdownDivider, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#d9d9d9"), commonUtils.hex2RgbWithoutTransparency("#d9d9d9")}},
+//                {2, dropdownPgObj.dropdownDivider, "border-bottom-style", new String[]{"solid"}},
+//                {2, dropdownPgObj.dropdownDivider, "border-bottom-width", new String[]{"1px"}},
+//        };
+//    }
+//
+//    @Test(testName = "Mobile : Icon Dropdown Divider Responsive Test ", dataProvider = "Mobile : Icon Dropdown Divider Responsive Mobile Data", groups = "mobile-regression")
+//    public void dividerIconDropdownResponsiveMobileTest(int listNum, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
+//        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig("icon", paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :of Divider for Icon Dropdown is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile : Icon Dropdown Divider Test ", dataProvider = "Icon Dropdown Divider Test Data", groups = "mobile-regression")
+//    public void dividerIconDropdownMobileTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
+//        if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
+//        cssPropertyType = cssProperty;
+//        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
+//        if (!isCSSProperty) {
+//            log.info("Compounds-> '" + cssPropertyType + "' :of Divider for Icon Dropdown is not as per the spec, actual: " + cssProperty);
+//        }
+//        Assert.assertTrue(isCSSProperty);
+//    }
+//
+//    @Test(testName = "Mobile: Dismiss Drop Down Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "mobile-regression")
+//    public void dismissDropDownMobileTest(int listNum, String dropdownType, By trigger) throws Exception {
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(trigger, "mobile");
+//        isDismiss = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
+//        Assert.assertTrue(isDismiss);
+//
+//        //click outside the dropdown to dismiss it
+//        commonUtils.click(By.xpath("//html"), "mobile");
+//        isDismiss = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
+//        result = commonUtils.assertValue(isDismiss, false, "drop down is not dismissed");
+//        Assert.assertTrue(result);
+//    }
+//
+//    @DataProvider(name = "Mobile : Click On Close Btn Test Data")
+//    public Object[][] closeBtnMobileTestData() {
+//        return new Object[][]{
+//                {2, "label", dropdownPgObj.textLabel},
+//                {2, "button", dropdownPgObj.buttonDropdown},
+//                {2, "icon", dropdownPgObj.iconDropdownActivator}
+//        };
+//    }
+//
+//    @Test(testName = "Mobile : Click On Close Btn Test", dataProvider = "Mobile : Click On Close Btn Test Data", groups = "mobile-regression")
+//    private void clickOnCloseBtnMobileTest(int listNum, String dropdownType, By trigger) throws IOException, InterruptedException {
+//        if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
+//            throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
+//        }
+//        String paneArray = buildDropDownItemsArray(listNum);
+//        setConfig(dropdownType, paneArray);
+//        commonUtils.getUrl(dropdownUrl, "mobile");
+//        commonUtils.click(trigger, "mobile");
+//        Thread.sleep(1000);
+//        className = commonUtils.getAttributeValue(dropdownPgObj.closeBtn, "class", "mobile");
+//        isClassName = commonUtils.assertValue(className, "pe-icon--remove-lg-18", "Close icon does not use class remove-lg-18");
+//        Assert.assertTrue(isClassName);
+//        commonUtils.click(dropdownPgObj.closeBtn, "mobile");
+//        isDropdownListBox = commonUtils.isElementPresent(dropdownPgObj.textDropdownPanel, "mobile");
+//        if (isDropdownListBox) {
+//            log.info("Click on Close Btn, but Dropdown still open, " + dropdownType + " dropdown");
+//        }
+//        Assert.assertFalse(isDropdownListBox);
+//    }
 
     /*****************
      * Common methods
