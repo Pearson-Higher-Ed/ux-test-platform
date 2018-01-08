@@ -16,9 +16,9 @@ addons:
       packages:
         - g++-4.8
   browserstack:
-          username: "pdauser2"
+          username: "eajaz3"
           access_key:
-            secure: sEBHkXpzM1CYP46PWEHs3R1IFZt/TatLZtv2TXTfjtAQbqGefEFFgZvQ5r5j5WLQF73q23lfchS8O3tPsvHjZ7yqzyEfwH+W+aJcj9MJ1EyOyfU8eCbGiHs1z33kjvmKrUROXcPSJayG3aT6IY/GklnkUqo5pYiX2yCRSUyTOzg9HF4o0/gqTZDnsMUAbqsT0nQpb+BXd1f11nSzh7Nn+bLu8/jGXZ9oMUMV7Zp8hrRqt/nFddGwCYQFD4UntVtvlwx4ZEzMKZ7SYdoBILAn5EOU/pNZhohlCyMEwyGo504oSw0qgujdfsSifiOAZ3nSb29bpWXc+ODvZyS2BzEsLlLVmiZy9aF3RPBnrODHT/L8u7lJcUeIypTBOrGELlUEf9qaSzvGWe7jW2YKZqzUdkgWHCDXU292L+4y/WcY6yZ03z9f4Ztg+X7SjbQZRKzhyB7hliAicz4VnQRFfD8YHk1/2dSy9KDXIir4hq2d+QOQPmzyELync+bxlJlbxc4Y3DEVcCuJb70kVj5UZshU6m9EKyoaRD643bHbLIoop1Alg4dDtvQGVEgYObnGAoLz1bTbAiMmkIGWvpKDRI5NgAkrDaAPjeMLnUl+2CPTjLtQtTruuYOtJXdBn1eTpotpwG4zPK5XGjpbHeuO3THr2Y03N8yk/uPkYZDGNS7qano=
+            secure: wbfZ84KOy3Ves52oOC0TAJjzzf1VR+/NcyUbzUlI3rot+DfBYGqRmQhkY7vAdkl3AWszo95LGY9bkaHZgsJnL9rDPNH3F/H6TuCiwUBCWww8OWznMdSXrgwb6fEF6h5pO+VBSp6YGOCue96lzEujFJuUmHbJIniRARvtecs/bm8GXob7ynFc4p0+eq3llkT+PwhnQswSDtVUA6GppPW5gAKNPZa+oU9GQINwq9BmpFI/H3+dvf0oAeelSoENtZ5VZwNPHxE80tBFgnCLKDIsyzHJMUtB1+EsoUD+36c4+l9I6g8AQt1Bsdslzs/sYvuPWW56HQz7VEVxnQ2igPbKBQQ/lRJLwMoB43DwKcONkiO7I0L4HG/TMuSAnIDQNWseXpTkky1bQJRR4r6dbV+W5vkroBTcKaafHNkm5hNPYH8AqbCpYTpOdxjOIoIgeFaeE++5R7euKHT/R+WWcYRehtMzWMcACAKBWHbS2uUPxeHtYwjw5bKgd6aYQv0SWJ8+I1k0QJv5jmXj8B1sIbEhCZjIe2T8iCnMMpqQNFgIxScYgiR86WNDsPeczhx8nGAXNTaqAxKjCR79uscbfjlPg4GSVIrUNYnI0bMWgliQQ4x5JlUPA+iRIZIcs3plrhThBNcQafPp99n5GJ8eoDmHysBn6KulHz3TB0Lxwh+sri4=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
