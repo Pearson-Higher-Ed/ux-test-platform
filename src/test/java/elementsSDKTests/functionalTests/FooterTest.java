@@ -130,7 +130,7 @@ public class FooterTest extends BaseClass {
     //Verify Links
     @Test(testName = "Footer link states", dataProvider = "Footer link state Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void footerLinkStateTest(String state, By linkElement, String[] expColor, String expTextDecoration) throws Exception {
-        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox") || (groupsInclude.startsWith("mobile") && (state.equals("focus") || state.startsWith("hover")))) {
             throw new SkipException("the focus operation is not supported on firefox/safari drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
@@ -241,6 +241,7 @@ public class FooterTest extends BaseClass {
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         if (anchorTagType.equals("_self")) {
             driver.switchTo().window(tabs.get(0));
+            System.out.println("tabs.size(): "+tabs.size());
             if (!(tabs.size() == 1)) {
                 Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
             }
