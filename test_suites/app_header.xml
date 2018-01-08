@@ -15,7 +15,8 @@
             <!--<class name="standAloneTests.AvatarDisplayTest"/>-->
             <!--<class name="standAloneTests.CoachMarkTest"/>-->
             <!--<class name="standAloneTests.SliderTest"/>-->
-            <class name="standAloneTests.DrawerTest"/>
+            <!--<class name="standAloneTests.DrawerTest"/>-->
+            <class name="standAloneTests.ModalTest"/>
         </classes>
     </test>
 </suite>
