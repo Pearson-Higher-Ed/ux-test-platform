@@ -48,7 +48,7 @@ public class IconsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Valid Icon Prop Types Test", dataProvider = "Valid Icon Prop Types Test Data", groups = {"desktop-ci","desktop-regression"})
+    @Test(testName = "Verify Valid Icon Prop Types Test", dataProvider = "Valid Icon Prop Types Test Data", groups = {"desktop-ci","desktop-regression", "mobile-regression"})
     private void validIconPropTypesTest(String iconType, String icon, By element, String[] expWidth, String[] expHeight) throws Exception {
         commonUtils.readInitialConfig(iconsJSFilePath, tempJSFilePath);
         //modify the config with prop types values
