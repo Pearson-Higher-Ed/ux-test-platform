@@ -150,7 +150,7 @@ public class DropdownTest extends BaseClass {
         isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Font-size of " + dropdownType + " is not as per spec");
         islineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHt);
         if (!islineHeight) {
-            log.info("line-height of " + dropdownType + "is not as per spec");
+            log.info("line-height of " + dropdownType + "is not as per spec, actual: "+lineHeight);
         }
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isPaddingTop && isPaddingBottom && isFontSize && islineHeight);
     }
