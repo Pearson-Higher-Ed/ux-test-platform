@@ -545,7 +545,7 @@ public class AlertsTest extends BaseClass {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
             commonUtils.getUrl(basicModeUrl);
             mobileDevice = BaseClass.mobDeviceName;
-        
+
     }
 
     public String constructPath(String absolutePath) {
