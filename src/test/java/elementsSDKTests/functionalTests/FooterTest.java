@@ -24,7 +24,8 @@ import java.util.Map;
  * Created by umahaea on 5/26/17.
  */
 public class FooterTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/footer.html";
+    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/footer.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/footer.html";
     private final String absFooterJSFilePath = new File("elementsSDK/functional/jsfiles/footer/footer.js").getAbsolutePath();
     private final String footerJSFilePath = constructPath(absFooterJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/footer/temp.js").getAbsolutePath();
@@ -127,9 +128,9 @@ public class FooterTest extends BaseClass {
     }
 
     //Verify Links
-    @Test(testName = "Footer link states", dataProvider = "Footer link state Test Data", groups = "desktop-regression")
+    @Test(testName = "Footer link states", dataProvider = "Footer link state Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void footerLinkStateTest(String state, By linkElement, String[] expColor, String expTextDecoration) throws Exception {
-        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox") || (groupsInclude.startsWith("mobile") && (state.equals("focus") || state.startsWith("hover")))) {
             throw new SkipException("the focus operation is not supported on firefox/safari drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
@@ -192,7 +193,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "desktop-regression")
+    @Test(testName = "Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void singlePageStickTest(String singlePageStick, Boolean isSinglePageStick, String message, String copyRightsMessage, String expCopyRightsMessage) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
@@ -219,7 +220,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "desktop-regression")
+    @Test(testName = "Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = {"desktop-regression"})
     private void anchorTagTest(String anchorTagType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
         links = new LinkedHashMap<String, String>();
@@ -254,100 +255,100 @@ public class FooterTest extends BaseClass {
     /************
      * Mobile Tests
      ************/
-    @Test(testName = "Mobile Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = "mobile-regression")
-    private void footerStylesMobileTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String[] expPaddingBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
-        if (!(mobileDevice.contains(device))) {
-            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
-        }
-        appium.rotate(mode);
-
-        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
-        links = new LinkedHashMap<String, String>();
-        links.put("First link", "first");
-        links.put("Second link", "second");
-        links.put("Third link", "third");
-        linksArrayValue = buildListsArray(links);
-        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", setLight, "links", linksArrayValue};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        fontSize = commonUtils.getCSSValue(copyRightTextElement, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(copyRightTextElement, "line-height", "mobile");
-        color = commonUtils.getCSSValue(copyRightTextElement, "color", "mobile");
-        marginBottom = commonUtils.getCSSValue(footerElement, "margin-bottom", "mobile");
-        paddingBottom = commonUtils.getCSSValue(footerElement, "padding-bottom", "mobile");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font-size on size " + size + " is not as per the spec, actual: " + fontSize);
-        }
-        isLineHeight = commonUtils.assertCSSProperties("font-size", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("line-height on size " + size + " is not as per the spec, actual: " + lineHeight);
-        }
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("color on size " + size + " is not as per the spec, actual: " + color);
-        }
-        isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expMarginBottom);
-        if (!isMarginBottom) {
-            log.info("margin-bottom on size " + size + " is not as per the spec, actual: " + marginBottom);
-        }
-        isPaddingBottom = commonUtils.assertCSSProperties("padding-bottom", paddingBottom, expPaddingBottom);
-        if (!isPaddingBottom) {
-            log.info("padding-bottom on size " + size + " is not as per the spec, actual: " + paddingBottom);
-        }
-        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom && isPaddingBottom);
-    }
-
-    @Test(testName = "Mobile: Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "mobile-regression")
-    private void singlePageStickMobileTest(String singlePageStick, Boolean isSinglePageStick, String message, String copyRightsMessage, String expCopyRightsMessage) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
-        links = new LinkedHashMap<String, String>();
-        links.put("First link", "first");
-        links.put("Second link", "second");
-        linksArrayValue = buildListsArray(links);
-        String[] propsPropertiesList = new String[]{"copyrightText", copyRightsMessage, "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class", "mobile").contains("pe-footer--stick");
-        result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
-
-        copyRightMessage = commonUtils.getText(compFooterPgObj.copyRightMessage, "mobile");
-        isCopyRightMessage = commonUtils.assertValue(copyRightsMessage, expCopyRightsMessage, "copyrightText is not as per the spec");
-
-        Assert.assertTrue(result && isCopyRightMessage);
-    }
-
-    @Test(testName = "Mobile: Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "mobile-regression1")
-//code needs to be tested once sauce appium issue is fixed.
-    private void anchorTagMobileTest(String anchorTagType) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
-        links = new LinkedHashMap<String, String>();
-        links.put("First link", "first");
-        links.put("Second link", "second");
-        linksArrayValue = buildListsArray(links);
-
-        String[] propsPropertiesList = null;
-        if (anchorTagType.equals("_self")) {
-            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "links", linksArrayValue};
-        } else if (anchorTagType.equals("_blank")) {
-            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "anchorTarget", "_blank", "links", linksArrayValue};
-        }
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-        ArrayList<String> tabs = new ArrayList<String>(appium.getWindowHandles());
-
-        if (anchorTagType.equals("_self")) {
-            appium.switchTo().window(tabs.get(0));
-            if (!(tabs.size() == 1)) {
-                Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
-            }
-        } else if (anchorTagType.equals("_blank")) {
-            appium.switchTo().window(tabs.get(0));
-            if (!(tabs.size() == 2)) {
-                Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
-            }
-        }
-    }
+//    @Test(testName = "Mobile Footer Styles Test", dataProvider = "Footer Styles Test Data", groups = "mobile-regression")
+//    private void footerStylesMobileTest(String size, int windowWidth, int windowHeight, By tocLinkElement, By copyRightTextElement, String[] expFontSize, String[] expLineHeight, By footerElement, String[] expMarginBottom, String[] expPaddingBottom, String setLight, String[] expColor, String device, ScreenOrientation mode) throws Exception {
+//        if (!(mobileDevice.contains(device))) {
+//            throw new SkipException("To run this test, specify mobile device as you see in the data provider");
+//        }
+//        appium.rotate(mode);
+//
+//        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+//        links = new LinkedHashMap<String, String>();
+//        links.put("First link", "first");
+//        links.put("Second link", "second");
+//        links.put("Third link", "third");
+//        linksArrayValue = buildListsArray(links);
+//        String[] propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", setLight, "links", linksArrayValue};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        fontSize = commonUtils.getCSSValue(copyRightTextElement, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(copyRightTextElement, "line-height", "mobile");
+//        color = commonUtils.getCSSValue(copyRightTextElement, "color", "mobile");
+//        marginBottom = commonUtils.getCSSValue(footerElement, "margin-bottom", "mobile");
+//        paddingBottom = commonUtils.getCSSValue(footerElement, "padding-bottom", "mobile");
+//
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("font-size on size " + size + " is not as per the spec, actual: " + fontSize);
+//        }
+//        isLineHeight = commonUtils.assertCSSProperties("font-size", lineHeight, expLineHeight);
+//        if (!isLineHeight) {
+//            log.info("line-height on size " + size + " is not as per the spec, actual: " + lineHeight);
+//        }
+//        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+//        if (!isColor) {
+//            log.info("color on size " + size + " is not as per the spec, actual: " + color);
+//        }
+//        isMarginBottom = commonUtils.assertCSSProperties("margin-bottom", marginBottom, expMarginBottom);
+//        if (!isMarginBottom) {
+//            log.info("margin-bottom on size " + size + " is not as per the spec, actual: " + marginBottom);
+//        }
+//        isPaddingBottom = commonUtils.assertCSSProperties("padding-bottom", paddingBottom, expPaddingBottom);
+//        if (!isPaddingBottom) {
+//            log.info("padding-bottom on size " + size + " is not as per the spec, actual: " + paddingBottom);
+//        }
+//        Assert.assertTrue(isFontSize && isLineHeight && isColor && isMarginBottom && isPaddingBottom);
+//    }
+//
+//    @Test(testName = "Mobile: Single Page Stick Test", dataProvider = "SinglePageStick Test Data", groups = "mobile-regression")
+//    private void singlePageStickMobileTest(String singlePageStick, Boolean isSinglePageStick, String message, String copyRightsMessage, String expCopyRightsMessage) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+//        links = new LinkedHashMap<String, String>();
+//        links.put("First link", "first");
+//        links.put("Second link", "second");
+//        linksArrayValue = buildListsArray(links);
+//        String[] propsPropertiesList = new String[]{"copyrightText", copyRightsMessage, "light", "false", "singlePageStick", singlePageStick, "links", linksArrayValue};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//
+//        isPresent = commonUtils.getAttributeValue(compFooterPgObj.footer, "class", "mobile").contains("pe-footer--stick");
+//        result = commonUtils.assertValue(isPresent, isSinglePageStick, message);
+//
+//        copyRightMessage = commonUtils.getText(compFooterPgObj.copyRightMessage, "mobile");
+//        isCopyRightMessage = commonUtils.assertValue(copyRightsMessage, expCopyRightsMessage, "copyrightText is not as per the spec");
+//
+//        Assert.assertTrue(result && isCopyRightMessage);
+//    }
+//
+//    @Test(testName = "Mobile: Anchor Tag Test", dataProvider = "AnchorTag Test Data", groups = "mobile-regression1")
+////code needs to be tested once sauce appium issue is fixed.
+//    private void anchorTagMobileTest(String anchorTagType) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "footer-target", "componentName", "Footer"};
+//        links = new LinkedHashMap<String, String>();
+//        links.put("First link", "first");
+//        links.put("Second link", "second");
+//        linksArrayValue = buildListsArray(links);
+//
+//        String[] propsPropertiesList = null;
+//        if (anchorTagType.equals("_self")) {
+//            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "links", linksArrayValue};
+//        } else if (anchorTagType.equals("_blank")) {
+//            propsPropertiesList = new String[]{"copyrightText", "Pearson Education Inc", "light", "false", "singlePageStick", "true", "anchorTarget", "_blank", "links", linksArrayValue};
+//        }
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+//        ArrayList<String> tabs = new ArrayList<String>(appium.getWindowHandles());
+//
+//        if (anchorTagType.equals("_self")) {
+//            appium.switchTo().window(tabs.get(0));
+//            if (!(tabs.size() == 1)) {
+//                Assert.assertTrue(false, "the anchor tag type for _self or just default is not working as per the spec, noOfTabs: " + tabs.size());
+//            }
+//        } else if (anchorTagType.equals("_blank")) {
+//            appium.switchTo().window(tabs.get(0));
+//            if (!(tabs.size() == 2)) {
+//                Assert.assertTrue(false, "the anchor tag type for _blank is not working as per the spec, noOfTabs: " + tabs.size());
+//            }
+//        }
+//    }
 
     /*****************
      * Common Methods

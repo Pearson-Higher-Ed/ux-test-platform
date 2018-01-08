@@ -1965,7 +1965,6 @@ public class InputsTest extends BaseClass {
         js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
 
         marginBottom = commonUtils.getCSSValue(elem, "margin-bottom");
-        System.out.println(marginBottom);
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
     }
