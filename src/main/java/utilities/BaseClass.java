@@ -49,7 +49,7 @@ public class BaseClass {
 //    final static String AUTOMATE_KEY = "BZERJz99zPAMGt9xS6qx";
     final static String USERNAME = "payaltest1";
     final static String AUTOMATE_KEY = "BZERJz99zPAMGt9xS6qx";
-\    final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+    final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
