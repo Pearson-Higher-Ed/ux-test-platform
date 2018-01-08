@@ -172,7 +172,7 @@ public class FooterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"})
     private void negativeConfigValuesTest(String errorType, String[] detailsPropertiesList, String[] propsPropertiesList, String errorMessage) throws Exception {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox")))) {
             throw new SkipException("Compounds-> Focus operation not yet supported in firefox/safari/ie browser drivers");
