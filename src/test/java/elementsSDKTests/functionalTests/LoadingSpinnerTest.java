@@ -67,7 +67,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void heightWidthContainerTest(String containerType, By container, String expHtWidth) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         height = commonUtils.getCSSValue(container, "height");
@@ -94,7 +94,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"desktop-regression","mobile-regression"})
     private void animationOnCirclesTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         animationName = commonUtils.getCSSValue(elem, "animation-name");
@@ -136,7 +136,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void validateCirclePropertiesTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         bgColor = commonUtils.getCSSValue(elem, "background-color");
@@ -169,7 +169,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"desktop-regression","mobile-regression"})
     private void container2AngleTest(String[] expRotate) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform");
