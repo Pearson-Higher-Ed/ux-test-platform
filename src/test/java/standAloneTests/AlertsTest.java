@@ -543,12 +543,9 @@ public class AlertsTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (mobile.equals("off")) {
             commonUtils.getUrl(basicModeUrl);
-        } else {
-            commonUtils.getUrl(basicModeUrl, "mobile");
             mobileDevice = BaseClass.mobDeviceName;
-        }
+        
     }
 
     public String constructPath(String absolutePath) {
