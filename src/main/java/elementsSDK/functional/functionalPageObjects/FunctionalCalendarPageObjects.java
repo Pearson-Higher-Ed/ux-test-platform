@@ -19,9 +19,9 @@ public class FunctionalCalendarPageObjects {
         this.driver = driver;
     }
 
-    public FunctionalCalendarPageObjects(AppiumDriver appium) {
-        this.appium= appium;
-    }
+//    public FunctionalCalendarPageObjects(AppiumDriver appium) {
+//        this.appium= appium;
+//    }
 
     public By calendarContainer = By.xpath("//div[@id='calendar-target']/div");
     public By innerCalendar = By.xpath("//div[@class='pe-inner']");

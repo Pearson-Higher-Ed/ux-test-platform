@@ -69,15 +69,8 @@ public class CalendarTest extends BaseClass {
         } else {
             browser = bsBrowser;
         }
-        if (desktop.equals("on")) {
-            calendarPgObj = new FunctionalCalendarPageObjects(driver);
-            commonUtils.getUrl(calendarWhiteUrl);
-            Assert.assertTrue(isCurrentDateOK(), "looks like the exp and actual current dates are not same");
-        } else if (mobile.equals("on")) {
-            calendarPgObj = new FunctionalCalendarPageObjects(appium);
-            commonUtils.getUrl(calendarWhiteUrl, "mobile");
-            Assert.assertTrue(isCurrentDateOK("mobile"), "looks like the exp and actual current dates are not same");
-        }
+        calendarPgObj = new FunctionalCalendarPageObjects(driver);
+        commonUtils.getUrl(calendarWhiteUrl);
     }
 
     @DataProvider(name = "Current Date Test Data")
