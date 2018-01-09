@@ -27,8 +27,8 @@ public class ProgressBarTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setMobile = "";
-    private String testConfig = "", height = "", bgColor = "", marginTop = "", beforeFinalFormat = "", fileContentsInAString = "", finalConfig = "", animationDuration = "", bgImage = "", align = "", progress = "";
-    private boolean isHeight = false, isBgColor = false, isMarginTop = false, isAnimationDuration = false, isBgImage = false, isAlign = false, isProgress = false, isProgressBarLoaded = false, result = false;
+    private String testConfig = "", height = "", bgColor = "", marginTop = "", beforeFinalFormat = "", fileContentsInAString = "", finalConfig = "", animationDuration = "", bgImage = "", align = "", progress = "", valueText = "";
+    private boolean isHeight = false, isBgColor = false, isMarginTop = false, isAnimationDuration = false, isBgImage = false, isAlign = false, isProgress = false, isProgressBarLoaded = false, result = false, isValueText = false;
     private String preConfigStr1 = "function init() {";
     private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
     private String postConfigStr1 = "));}window.onload = init;";
@@ -58,20 +58,21 @@ public class ProgressBarTest extends BaseClass {
     @DataProvider(name = "Progress Bar And Rail Styles Test Data")
     public Object[][] getProgressBarAndRailStylesTestData() {
         return new Object[][]{
-                {"progress-bar-rail", progressBarPgObj.progressBarRail, "4px", new String[]{commonUtils.hex2RgbWithoutTransparency("#c7c7c7"), commonUtils.hex2Rgb("#c7c7c7")}, "10px"},
-                {"progress-bar", progressBarPgObj.progressBar, "12px", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a6a4"), commonUtils.hex2Rgb("#19a6a4")}, "-4px"}
+                {"progress-bar-rail", progressBarPgObj.progressBarRail, "4px", new String[]{commonUtils.hex2RgbWithoutTransparency("#c7c7c7"), commonUtils.hex2Rgb("#c7c7c7")}, "10px", "Text to Display"},
+                {"progress-bar", progressBarPgObj.progressBar, "12px", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a6a4"), commonUtils.hex2Rgb("#19a6a4")}, "-4px", "Text to Display"}
         };
     }
 
     @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "desktop-regression")
-    private void progressBarAndRailStylesTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
+    private void progressBarAndRailStylesTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop, String expValueText) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "valueText", expValueText, "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         height = commonUtils.getCSSValue(element, "height");
         bgColor = commonUtils.getCSSValue(element, "background-color");
         marginTop = commonUtils.getCSSValue(element, "margin-top");
+        valueText = commonUtils.getAttributeValue(progressBarPgObj.progressBarDiv, "aria-valuetext");
 
         isHeight = commonUtils.assertValue(height, expHeight, "The height of " + type + " is not as per the spec");
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
@@ -79,10 +80,11 @@ public class ProgressBarTest extends BaseClass {
             log.info("The bg-color of " + type + " is not as per the spec, actual: " + bgColor);
         }
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + type + " is not as per the spec");
-        Assert.assertTrue(isHeight && isBgColor && isMarginTop);
+        isValueText = commonUtils.assertValue(valueText, expValueText, "The valueText is not as per specs");
+        Assert.assertTrue(isHeight && isBgColor && isMarginTop && isValueText);
     }
 
-    @Test(testName = "Animated Progress Bar Styles Test", groups = {"desktop-regression","desktop-ci"})
+    @Test(testName = "Animated Progress Bar Styles Test", groups = {"desktop-regression", "desktop-ci"})
     private void animatedProgressBarStylesTest() throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
@@ -134,7 +136,7 @@ public class ProgressBarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = {"desktop-regression","desktop-ci"})
+    @Test(testName = "Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = {"desktop-regression", "desktop-ci"})
     private void progressCalcTest(String min, String max, String value, String expProgress) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
@@ -167,14 +169,15 @@ public class ProgressBarTest extends BaseClass {
 
     //Mobile Tests
     @Test(testName = "Mobile: Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "mobile-regression")
-    private void progressBarAndRailStylesMobileTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
+    private void progressBarAndRailStylesMobileTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop, String expValueText) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "valueText", expValueText, "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         height = commonUtils.getCSSValue(element, "height", "mobile");
         bgColor = commonUtils.getCSSValue(element, "background-color", "mobile");
         marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        valueText = commonUtils.getAttributeValue(progressBarPgObj.progressBarDiv, "aria-valuetext", "mobile");
 
         isHeight = commonUtils.assertValue(height, expHeight, "The height of " + type + " is not as per the spec");
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
@@ -182,7 +185,8 @@ public class ProgressBarTest extends BaseClass {
             log.info("The bg-color of " + type + " is not as per the spec, actual: " + bgColor);
         }
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + type + " is not as per the spec");
-        Assert.assertTrue(isHeight && isBgColor && isMarginTop);
+        isValueText = commonUtils.assertValue(valueText, expValueText, "The valueText is not as per specs");
+        Assert.assertTrue(isHeight && isBgColor && isMarginTop && isValueText);
     }
 
     @Test(testName = "Mobile: Animated Progress Bar Styles Test", groups = "mobile-regression")

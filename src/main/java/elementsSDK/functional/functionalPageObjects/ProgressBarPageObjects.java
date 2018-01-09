@@ -27,4 +27,5 @@ public class ProgressBarPageObjects {
     public By progressBar = By.className("pe-progress-bar");
     public By animatedProgressBar = By.xpath("//div[@class='pe-progress-bar pb-animated']");
     public By progressBarTextAlign = By.xpath("//*[@id='progress-bar-target']/div");
+    public By progressBarDiv = By.id("test-id");
 }
