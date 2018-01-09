@@ -20,7 +20,8 @@ import java.util.Map;
  * Created by umahaea on 9/25/17.
  */
 public class TimePickerTest extends BaseClass {
-    private final String timepickerUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/time-picker.html";
+    //private final String timepickerUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/time-picker.html";
+    private final String timepickerUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/time-picker.html";
     private final String abstimepickerJSFilePath = new File("elementsSDK/functional/jsfiles/timePicker/time-picker.js").getAbsolutePath();
     private final String timepickerJSFilePath = constructPath(abstimepickerJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/timePicker/temp.js").getAbsolutePath();
