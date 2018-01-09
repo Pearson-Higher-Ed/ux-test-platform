@@ -65,17 +65,10 @@ public class DatePickerTest extends BaseClass {
         } else {
             browser = bsBrowser;
         }
-        if (desktop.equals("on")) {
-            calendarPgObj = new FunctionalCalendarPageObjects(driver);
-            datepickerPgObj = new DatePickerPageObjects(driver);
-            commonUtils.getUrl(datepickerUrl);
-            Assert.assertTrue(isCurrentDateOK(), "looks like the exp and actual current dates are not same");
-        } else if (mobile.equals("on")) {
-            calendarPgObj = new FunctionalCalendarPageObjects(appium);
-            datepickerPgObj = new DatePickerPageObjects(appium);
-            commonUtils.getUrl(datepickerUrl, "mobile");
-            Assert.assertTrue(isCurrentDateOK("mobile"), "looks like the exp and actual current dates are not same");
-        }
+        calendarPgObj = new FunctionalCalendarPageObjects(driver);
+        datepickerPgObj = new DatePickerPageObjects(driver);
+        commonUtils.getUrl(datepickerUrl);
+        Assert.assertTrue(isCurrentDateOK(), "looks like the exp and actual current dates are not same");
     }
 
     @DataProvider(name = "Default State Test Data")
