@@ -79,7 +79,7 @@ public class TablesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Check Basic Table Rendered Test", dataProvider = "Check Basic Table Rendered Test Data", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "Check Basic Table Rendered Test", dataProvider = "Check Basic Table Rendered Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void checkBasicTableRenderedTest(int noOfHeaders, int noOfRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -102,7 +102,7 @@ public class TablesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Toggle icon of Sortable Table Test", dataProvider = "Sortable Table Icon Test Data", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "Toggle icon of Sortable Table Test", dataProvider = "Sortable Table Icon Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void checkIconSortableTableTest(int noOfTableHeaders, int noOfTableRows, int colNum, String iconName, String ascName, String descName) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
@@ -154,7 +154,7 @@ public class TablesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "desktop-ci"})
+    @Test(testName = "Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "desktop-ci","mobile-regression"})
     private void selectableTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -172,7 +172,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Selectable Table - Set to False Test", dataProvider = "Selectable Table Test Data", groups = "desktop-regression")
+    @Test(testName = "Selectable Table - Set to False Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
     private void selectableTableFalseTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -190,7 +190,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "desktop-regression")
+    @Test(testName = "Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
     private void clickSelectAllTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -209,7 +209,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "desktop-regression")
+    @Test(testName = "UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
     private void UnSelectAllTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
