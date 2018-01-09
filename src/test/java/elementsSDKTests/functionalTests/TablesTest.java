@@ -154,7 +154,7 @@ public class TablesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "desktop-ci","mobile-regression"})
+    @Test(testName = "Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"})
     private void selectableTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -172,7 +172,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Selectable Table - Set to False Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Selectable Table - Set to False Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void selectableTableFalseTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -190,7 +190,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickSelectAllTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -209,7 +209,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void UnSelectAllTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -256,7 +256,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Click on Row Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = "desktop-regression")
+    @Test(testName = "Click on Row Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void clickonRowSelectableTableTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -295,7 +295,7 @@ public class TablesTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Select Row Border Test - Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Select Row Border Test - Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void SelectRowBorderTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
         String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
@@ -335,153 +335,153 @@ public class TablesTest extends BaseClass {
      * Mobile Tests
      **/
 
-    @Test(testName = "Mobile : Check Basic Table is Rendered Test", dataProvider = "Check Basic Table Rendered Test Data", groups = "mobile-regression")
-    private void checkBasicTableRenderedMobileTest(int noOfHeaders, int noOfRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfHeaders, noOfRows);
-        Thread.sleep(1000);
-        isTablePresent = commonUtils.isElementPresent(compTablesPgObj.table, "mobile");
-        Assert.assertTrue(isTablePresent);
-        table = appium.findElement(compTablesPgObj.table);
-        listElements = table.findElements(By.tagName("th"));
-        isHeaderCount = commonUtils.assertValue(listElements.size(), noOfHeaders, "No of headers do not match the passed value");
-        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
-        isRowCount = commonUtils.assertValue(listElements.size(), noOfRows, "No of rows do not match the passed value");
-        Assert.assertTrue(isHeaderCount && isRowCount);
-    }
-
-    @Test(testName = "Mobile : Toggle icon of Sortable Table Test", dataProvider = "Sortable Table Icon Test Data", groups = "mobile-regression")
-    private void checkIconSortableTableMobileTest(int noOfTableHeaders, int noOfTableRows, int colNum, String iconName, String ascName, String descName) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
-        isSortable = true;
-        colNo = colNum;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
-        isClassName = commonUtils.assertValue(className, iconName, "When table is loaded the sortable icon Class is not as per spec");
-        Assert.assertTrue(isClassName);
-        commonUtils.click(By.xpath(compTablesPgObj.xpathSortableBtn(colNum)), "mobile");
-        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
-        isClassName = commonUtils.assertValue(className, ascName, "Ascending sortable icon  is not as per spec");
-        Assert.assertTrue(isClassName);
-        commonUtils.click(By.xpath(compTablesPgObj.xpathSortableBtn(colNum)), "mobile");
-        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
-        isClassName = commonUtils.assertValue(className, descName, "Descending sortable icon  is not as per spec");
-        Assert.assertTrue(isClassName);
-    }
-
-    @Test(testName = "Mobile : Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
-    private void selectableTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
-        isSelectable = true;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        isPresent = commonUtils.isElementsVisibleOnPage(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
-        Assert.assertTrue(isPresent);
-        for (int i = 1; i <= noOfTableRows; i++) {
-            isPresent = commonUtils.isElementsVisibleOnPage(By.xpath("//*[@id='Cell " + i + "']"), "mobile");
-            if (!isPresent) {
-                log.info("Checkbox is not present on row " + i);
-            }
-            Assert.assertTrue(isPresent);
-        }
-    }
-
-    @Test(testName = "Mobile : Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
-    private void clickSelectAllTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
-        isSelectable = true;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
-        table = appium.findElement(compTablesPgObj.table);
-        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
-        isRowCount = commonUtils.assertValue(listElements.size(), noOfTableRows, "No of checkboxes is incorrect");
-        Assert.assertTrue(isRowCount);
-        for (WebElement e : listElements) {
-            className = e.getAttribute("class");
-            isClassName = commonUtils.assertValue(className, "selected", "Checkboxes are not selected");
-            Assert.assertTrue(isClassName);
-        }
-    }
-
-    @Test(testName = "Mobile : UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
-    private void UnSelectAllTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
-        isSelectable = true;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
-        Thread.sleep(1000);
-        table = appium.findElement(compTablesPgObj.table);
-        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
-        Thread.sleep(1000);
-        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
-        for (WebElement e : listElements) {
-            className = e.getAttribute("class");
-            isClassName = commonUtils.assertValue(className, "", "Checkboxes are still selected");
-            Assert.assertTrue(isClassName);
-        }
-    }
-
-    @Test(testName = "Mobile : Click on Row Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
-    private void clickonRowSelectableTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
-        isSelectable = true;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        table = appium.findElement(compTablesPgObj.table);
-        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
-        for (int i = 0; i < listElements.size(); i++) {
-            commonUtils.clickUsingJS(By.xpath("//*[@id='Cell " + (i + 1) + "']"), "mobile");
-            Thread.sleep(1000);
-            className = listElements.get(i).getAttribute("class");
-            isClassName = commonUtils.assertValue(className, "selected", "Checkboxes are not selected");
-            Assert.assertTrue(isClassName);
-        }
-    }
-
-    @Test(testName = "Mobile : Select Row Border Test - Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"mobile-regression"})
-    private void SelectRowBorderMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
-        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
-        isSelectable = true;
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
-        Thread.sleep(1000);
-        table = appium.findElement(compTablesPgObj.table);
-        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
-        for (int i = 0; i < listElements.size(); i++) {
-            commonUtils.clickUsingJS(By.xpath("//*[@id='Cell " + (i + 1) + "']"), "mobile");
-            element = appium.findElement(By.xpath("//*[@id='Cell " + (i + 1) + "']"));
-            List<WebElement> list = element.findElements(By.tagName("td"));
-            for (WebElement e : list) {
-                String cssPropertyType = "";
-                for (String cssProperty : borderTop) {
-                    cssPropertyType = cssProperty;
-                    String script = "return window.getComputedStyle(document.querySelector('.pe-table--selectable tbody tr:hover td'),':before').getPropertyValue('" + cssProperty + "')";
-                    JavascriptExecutor js = (JavascriptExecutor) appium;
-                    String content = (String) js.executeScript(script);
-                    isBorderTop = commonUtils.assertCSSProperties(cssPropertyType, content, new String[]{"1px", "solid", commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")});
-                    if (!isBorderTop) {
-                        log.info(cssPropertyType + " of the selectable row is not as per spec, actual: " + content);
-                    }
-                    Assert.assertTrue(isBorderTop);
-                }
-                backgroundColor = e.getCssValue("background-color");
-                isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#D6EBE8"), commonUtils.hex2RgbWithoutTransparency("#D6EBE8")});
-                if (!isBackgroundColor) {
-                    log.info("Background Color of Hoverable row : " + i + "and value : " + e.getText() + "is not as per spec, actual: " + backgroundColor);
-                }
-                Assert.assertTrue(isBackgroundColor);
-            }
-        }
-    }
+//    @Test(testName = "Mobile : Check Basic Table is Rendered Test", dataProvider = "Check Basic Table Rendered Test Data", groups = "mobile-regression")
+//    private void checkBasicTableRenderedMobileTest(int noOfHeaders, int noOfRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfHeaders, noOfRows);
+//        Thread.sleep(1000);
+//        isTablePresent = commonUtils.isElementPresent(compTablesPgObj.table, "mobile");
+//        Assert.assertTrue(isTablePresent);
+//        table = appium.findElement(compTablesPgObj.table);
+//        listElements = table.findElements(By.tagName("th"));
+//        isHeaderCount = commonUtils.assertValue(listElements.size(), noOfHeaders, "No of headers do not match the passed value");
+//        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
+//        isRowCount = commonUtils.assertValue(listElements.size(), noOfRows, "No of rows do not match the passed value");
+//        Assert.assertTrue(isHeaderCount && isRowCount);
+//    }
+//
+//    @Test(testName = "Mobile : Toggle icon of Sortable Table Test", dataProvider = "Sortable Table Icon Test Data", groups = "mobile-regression")
+//    private void checkIconSortableTableMobileTest(int noOfTableHeaders, int noOfTableRows, int colNum, String iconName, String ascName, String descName) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "false", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
+//        isSortable = true;
+//        colNo = colNum;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
+//        isClassName = commonUtils.assertValue(className, iconName, "When table is loaded the sortable icon Class is not as per spec");
+//        Assert.assertTrue(isClassName);
+//        commonUtils.click(By.xpath(compTablesPgObj.xpathSortableBtn(colNum)), "mobile");
+//        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
+//        isClassName = commonUtils.assertValue(className, ascName, "Ascending sortable icon  is not as per spec");
+//        Assert.assertTrue(isClassName);
+//        commonUtils.click(By.xpath(compTablesPgObj.xpathSortableBtn(colNum)), "mobile");
+//        className = commonUtils.getAttributeValue(By.cssSelector(compTablesPgObj.getCssSelectorSortIcon(colNum)), "class", "mobile");
+//        isClassName = commonUtils.assertValue(className, descName, "Descending sortable icon  is not as per spec");
+//        Assert.assertTrue(isClassName);
+//    }
+//
+//    @Test(testName = "Mobile : Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
+//    private void selectableTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
+//        isSelectable = true;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        isPresent = commonUtils.isElementsVisibleOnPage(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
+//        Assert.assertTrue(isPresent);
+//        for (int i = 1; i <= noOfTableRows; i++) {
+//            isPresent = commonUtils.isElementsVisibleOnPage(By.xpath("//*[@id='Cell " + i + "']"), "mobile");
+//            if (!isPresent) {
+//                log.info("Checkbox is not present on row " + i);
+//            }
+//            Assert.assertTrue(isPresent);
+//        }
+//    }
+//
+//    @Test(testName = "Mobile : Click on SelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
+//    private void clickSelectAllTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
+//        isSelectable = true;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
+//        table = appium.findElement(compTablesPgObj.table);
+//        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
+//        isRowCount = commonUtils.assertValue(listElements.size(), noOfTableRows, "No of checkboxes is incorrect");
+//        Assert.assertTrue(isRowCount);
+//        for (WebElement e : listElements) {
+//            className = e.getAttribute("class");
+//            isClassName = commonUtils.assertValue(className, "selected", "Checkboxes are not selected");
+//            Assert.assertTrue(isClassName);
+//        }
+//    }
+//
+//    @Test(testName = "Mobile : UnSelectAll Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
+//    private void UnSelectAllTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "true", "children", "React.Children.toArray(tableArray)"};
+//        isSelectable = true;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
+//        Thread.sleep(1000);
+//        table = appium.findElement(compTablesPgObj.table);
+//        commonUtils.clickUsingJS(By.xpath(compTablesPgObj.findXpathSelectCheckbox(headerId)), "mobile");
+//        Thread.sleep(1000);
+//        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
+//        for (WebElement e : listElements) {
+//            className = e.getAttribute("class");
+//            isClassName = commonUtils.assertValue(className, "", "Checkboxes are still selected");
+//            Assert.assertTrue(isClassName);
+//        }
+//    }
+//
+//    @Test(testName = "Mobile : Click on Row Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = "mobile-regression")
+//    private void clickonRowSelectableTableMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
+//        isSelectable = true;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        table = appium.findElement(compTablesPgObj.table);
+//        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
+//        for (int i = 0; i < listElements.size(); i++) {
+//            commonUtils.clickUsingJS(By.xpath("//*[@id='Cell " + (i + 1) + "']"), "mobile");
+//            Thread.sleep(1000);
+//            className = listElements.get(i).getAttribute("class");
+//            isClassName = commonUtils.assertValue(className, "selected", "Checkboxes are not selected");
+//            Assert.assertTrue(isClassName);
+//        }
+//    }
+//
+//    @Test(testName = "Mobile : Select Row Border Test - Selectable Table Test", dataProvider = "Selectable Table Test Data", groups = {"mobile-regression"})
+//    private void SelectRowBorderMobileTest(int noOfTableHeaders, int noOfTableRows) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tables-target", "componentName", "Table"};
+//        String[] propsPropertiesList = new String[]{"selectable", "true", "sortable", "false", "children", "React.Children.toArray(tableArray)"};
+//        isSelectable = true;
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, noOfTableHeaders, noOfTableRows);
+//        Thread.sleep(1000);
+//        table = appium.findElement(compTablesPgObj.table);
+//        listElements = table.findElements(By.cssSelector(".pe-table>tbody>tr"));
+//        for (int i = 0; i < listElements.size(); i++) {
+//            commonUtils.clickUsingJS(By.xpath("//*[@id='Cell " + (i + 1) + "']"), "mobile");
+//            element = appium.findElement(By.xpath("//*[@id='Cell " + (i + 1) + "']"));
+//            List<WebElement> list = element.findElements(By.tagName("td"));
+//            for (WebElement e : list) {
+//                String cssPropertyType = "";
+//                for (String cssProperty : borderTop) {
+//                    cssPropertyType = cssProperty;
+//                    String script = "return window.getComputedStyle(document.querySelector('.pe-table--selectable tbody tr:hover td'),':before').getPropertyValue('" + cssProperty + "')";
+//                    JavascriptExecutor js = (JavascriptExecutor) appium;
+//                    String content = (String) js.executeScript(script);
+//                    isBorderTop = commonUtils.assertCSSProperties(cssPropertyType, content, new String[]{"1px", "solid", commonUtils.hex2Rgb("#19A6A4"), commonUtils.hex2RgbWithoutTransparency("#19A6A4")});
+//                    if (!isBorderTop) {
+//                        log.info(cssPropertyType + " of the selectable row is not as per spec, actual: " + content);
+//                    }
+//                    Assert.assertTrue(isBorderTop);
+//                }
+//                backgroundColor = e.getCssValue("background-color");
+//                isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#D6EBE8"), commonUtils.hex2RgbWithoutTransparency("#D6EBE8")});
+//                if (!isBackgroundColor) {
+//                    log.info("Background Color of Hoverable row : " + i + "and value : " + e.getText() + "is not as per spec, actual: " + backgroundColor);
+//                }
+//                Assert.assertTrue(isBackgroundColor);
+//            }
+//        }
+//    }
 
     /**
      * Common Methods
