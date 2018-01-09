@@ -295,7 +295,7 @@ public class DatePickerTest extends BaseClass {
         String press = Keys.chord(Keys.ALT, Keys.ARROW_DOWN);
         driver.switchTo().activeElement().sendKeys(press);
 
-        String[] focusOnElementForwardTab = {"aria-label", "Prev month", "aria-label", "Next month", "class", "pe-cal-dates"};
+        String[] focusOnElementForwardTab = {"aria-label", "Prev month", "aria-label", "Next month", "class", "pe-cal-dates pe-cal-fix"};
         //forward
         for (int i = 0; i < 6; i = i + 2) {
             commonUtils.keyOperationOnActiveElement(Keys.TAB);
