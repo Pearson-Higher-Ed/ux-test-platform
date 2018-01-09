@@ -18,15 +18,15 @@
             <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.TabsTest"/>-->
-            <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.TablesTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.TimePickerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.DatePickerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>-->
         <!--</classes>-->
     <!--</test>-->
     <!-- Styles(CSS) Tests -->
-    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="8">
+    <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="5">
         <classes>
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>

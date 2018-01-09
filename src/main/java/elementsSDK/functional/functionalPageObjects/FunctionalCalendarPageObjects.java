@@ -19,9 +19,9 @@ public class FunctionalCalendarPageObjects {
         this.driver = driver;
     }
 
-    public FunctionalCalendarPageObjects(AppiumDriver appium) {
-        this.appium= appium;
-    }
+//    public FunctionalCalendarPageObjects(AppiumDriver appium) {
+//        this.appium= appium;
+//    }
 
     public By calendarContainer = By.xpath("//div[@id='calendar-target']/div");
     public By innerCalendar = By.xpath("//div[@class='pe-inner']");
@@ -41,7 +41,7 @@ public class FunctionalCalendarPageObjects {
         return "//div[@class='pe-cal-row pe-cal-weekdays']/div[" + x + "]";
     }
 
-    public By calendarFix = By.xpath("//div[@class='pe-cal-dates']");
+    public By calendarFix = By.xpath("//div[@class='pe-cal-dates pe-cal-fix']");
 
     public By secondaryDate = By.xpath("//div[@class='pe-cal-cell-square secondary-date ']");
     public By disabledDateWhite = By.xpath("//div[@class='pe-cal-cell pe-cal-date pe-cal-past pe-label']");

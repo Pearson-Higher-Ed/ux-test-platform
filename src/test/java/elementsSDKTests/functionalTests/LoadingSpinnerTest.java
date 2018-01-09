@@ -22,8 +22,7 @@ import java.util.Map;
  */
 public class LoadingSpinnerTest extends BaseClass {
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    //private final String loadingSpinnerURL = "http://localhost:8000/src/main/java/compounds/fixtures/loadingSpinner.html";
-    private final String loadingSpinnerURL = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/loadingSpinner.html";
+    private final String loadingSpinnerURL = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/loadingSpinner.html";
     private final String absloadingSpinnerJSFilePath = new File("elementsSDK/functional/jsfiles/loadingSpinner/spinner.js").getAbsolutePath();
     private final String loadingSpinnerJSFilePath = constructPath(absloadingSpinnerJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/loadingSpinner/temp.js").getAbsolutePath();
@@ -68,7 +67,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void heightWidthContainerTest(String containerType, By container, String expHtWidth) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         height = commonUtils.getCSSValue(container, "height");
@@ -95,7 +94,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"desktop-regression","mobile-regression"})
     private void animationOnCirclesTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         animationName = commonUtils.getCSSValue(elem, "animation-name");
@@ -137,7 +136,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void validateCirclePropertiesTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         bgColor = commonUtils.getCSSValue(elem, "background-color");
@@ -170,7 +169,7 @@ public class LoadingSpinnerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"desktop-regression","mobile-regression"})
     private void container2AngleTest(String[] expRotate) throws Exception {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform");
@@ -207,87 +206,87 @@ public class LoadingSpinnerTest extends BaseClass {
      * Mobile Tests
      */
 
-    @Test(testName = "Mobile : Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"mobile-regression"})
-    private void heightWidthContainerMobileTest(String containerType, By container, String expHtWidth) throws Exception {
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        height = commonUtils.getCSSValue(container, "height", "mobile");
-        width = commonUtils.getCSSValue(container, "width", "mobile");
-
-        isHeight = commonUtils.assertValue(height, expHtWidth, "Height of " + containerType + " is not as per spec ");
-        isWidth = commonUtils.assertValue(width, expHtWidth, "Width of " + containerType + " is not as per spec ");
-
-        Assert.assertTrue(isHeight && isWidth);
-    }
-
-    @Test(testName = "Mobile : Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"mobile-regression"})
-    private void animationOnCirclesMobileTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
-        if (setAppium.equals("android")) {
-            throw new SkipException("Skip animation tests on android");
-        }
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        animationName = commonUtils.getCSSValue(elem, "animation-name", "mobile");
-        animationPlayState = commonUtils.getCSSValue(elem, "animation-play-state", "mobile");
-        animationDelay = commonUtils.getCSSValue(elem, "animation-delay", "mobile");
-        animationTimeFunc = commonUtils.getCSSValue(elem, "animation-timing-function", "mobile");
-        animationDuration = commonUtils.getCSSValue(elem, "animation-duration", "mobile");
-        animationCount = commonUtils.getCSSValue(elem, "animation-iteration-count", "mobile");
-        animationDirection = commonUtils.getCSSValue(elem, "animation-direction", "mobile");
-        animationFillMode = commonUtils.getCSSValue(elem, "animation-fill-mode", "mobile");
-
-        isAnimationName = commonUtils.assertValue(animationName, expName, "Animation name for " + circleType + " is not per spec ");
-        isAnimationPlayState = commonUtils.assertValue(animationPlayState, expPlayState, "Animation Play State for " + circleType + " is not per spec ");
-        isAnimationDelay = commonUtils.assertValue(animationDelay, expDelay, "Animation Delay for " + circleType + " is not per spec");
-        isAnimationTimeFunc = commonUtils.assertCSSProperties("animation-timing-function", animationTimeFunc, expTimingFunc);
-        if (!isAnimationTimeFunc) {
-            log.info("animation-timing-function for " + circleType + " is not per spec, actual " + animationTimeFunc);
-        }
-        isAnimationDuration = commonUtils.assertValue(animationDuration, expDuration, "Animation duration for " + circleType + " is not per spec ");
-        isAnimationCount = commonUtils.assertValue(animationCount, expIterationCount, "Animation Iteration count for " + circleType + " is not per spec ");
-        isAnimationDirection = commonUtils.assertValue(animationDirection, expDirection, "Animation direction for " + circleType + " is not per spec ");
-        isAnimationFillMode = commonUtils.assertValue(animationFillMode, expFillMode, "Animation fill mode for " + circleType + " is not per spec");
-
-        Assert.assertTrue(isAnimationName && isAnimationPlayState && isAnimationDelay && isAnimationTimeFunc && isAnimationDuration && isAnimationCount && isAnimationDirection && isAnimationFillMode);
-    }
-
-    @Test(testName = "Mobile : Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"mobile-regression"})
-    private void validateCirclePropertiesMobileTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
-        height = commonUtils.getCSSValue(elem, "height", "mobile");
-        width = commonUtils.getCSSValue(elem, "width", "mobile");
-
-        for (String cssProperty : borderRadii) {
-            borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, expBorderRad);
-            if (!isBorderRadius) {
-                log.info("Border radius for " + circleType + " is not as per spec ");
-            }
-            Assert.assertTrue(isBorderRadius);
-        }
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
-        if (!isBgColor) {
-            log.info("Bg Color of " + circleType + " is not as per spec, actual " + bgColor);
-        }
-        isHeight = commonUtils.assertValue(height, expHtWidth, "Height of " + circleType + " is not as per spec ");
-        isWidth = commonUtils.assertValue(width, expHtWidth, "Width of " + circleType + " is not as per spec ");
-
-        Assert.assertTrue(isBgColor && isHeight && isWidth);
-    }
-
-    @Test(testName = "Mobile : Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"mobile-regression"})
-    private void container2AngleMobileTest(String[] expRotate) throws Exception {
-        if (setAppium.equals("android")) {
-            throw new SkipException("Skip animation tests on android");
-        }
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-        rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform", "mobile");
-        isRotate = commonUtils.assertCSSProperties("transform", rotate, expRotate);
-        if (!isRotate) {
-            log.info("the circles in container 2 are not angled at 45 degree");
-        }
-
-        Assert.assertTrue(isRotate);
-    }
+//    @Test(testName = "Mobile : Height and Width of Container Test", dataProvider = "Height and Width of Container Test Data", groups = {"mobile-regression"})
+//    private void heightWidthContainerMobileTest(String containerType, By container, String expHtWidth) throws Exception {
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+//        height = commonUtils.getCSSValue(container, "height", "mobile");
+//        width = commonUtils.getCSSValue(container, "width", "mobile");
+//
+//        isHeight = commonUtils.assertValue(height, expHtWidth, "Height of " + containerType + " is not as per spec ");
+//        isWidth = commonUtils.assertValue(width, expHtWidth, "Width of " + containerType + " is not as per spec ");
+//
+//        Assert.assertTrue(isHeight && isWidth);
+//    }
+//
+//    @Test(testName = "Mobile : Animation on Circles Test", dataProvider = "Animation on Circles Test Data", groups = {"mobile-regression"})
+//    private void animationOnCirclesMobileTest(String circleType, By elem, String expName, String expPlayState, String expDelay, String[] expTimingFunc, String expDuration, String expIterationCount, String expDirection, String expFillMode) throws Exception {
+//        if (setAppium.equals("android")) {
+//            throw new SkipException("Skip animation tests on android");
+//        }
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+//        animationName = commonUtils.getCSSValue(elem, "animation-name", "mobile");
+//        animationPlayState = commonUtils.getCSSValue(elem, "animation-play-state", "mobile");
+//        animationDelay = commonUtils.getCSSValue(elem, "animation-delay", "mobile");
+//        animationTimeFunc = commonUtils.getCSSValue(elem, "animation-timing-function", "mobile");
+//        animationDuration = commonUtils.getCSSValue(elem, "animation-duration", "mobile");
+//        animationCount = commonUtils.getCSSValue(elem, "animation-iteration-count", "mobile");
+//        animationDirection = commonUtils.getCSSValue(elem, "animation-direction", "mobile");
+//        animationFillMode = commonUtils.getCSSValue(elem, "animation-fill-mode", "mobile");
+//
+//        isAnimationName = commonUtils.assertValue(animationName, expName, "Animation name for " + circleType + " is not per spec ");
+//        isAnimationPlayState = commonUtils.assertValue(animationPlayState, expPlayState, "Animation Play State for " + circleType + " is not per spec ");
+//        isAnimationDelay = commonUtils.assertValue(animationDelay, expDelay, "Animation Delay for " + circleType + " is not per spec");
+//        isAnimationTimeFunc = commonUtils.assertCSSProperties("animation-timing-function", animationTimeFunc, expTimingFunc);
+//        if (!isAnimationTimeFunc) {
+//            log.info("animation-timing-function for " + circleType + " is not per spec, actual " + animationTimeFunc);
+//        }
+//        isAnimationDuration = commonUtils.assertValue(animationDuration, expDuration, "Animation duration for " + circleType + " is not per spec ");
+//        isAnimationCount = commonUtils.assertValue(animationCount, expIterationCount, "Animation Iteration count for " + circleType + " is not per spec ");
+//        isAnimationDirection = commonUtils.assertValue(animationDirection, expDirection, "Animation direction for " + circleType + " is not per spec ");
+//        isAnimationFillMode = commonUtils.assertValue(animationFillMode, expFillMode, "Animation fill mode for " + circleType + " is not per spec");
+//
+//        Assert.assertTrue(isAnimationName && isAnimationPlayState && isAnimationDelay && isAnimationTimeFunc && isAnimationDuration && isAnimationCount && isAnimationDirection && isAnimationFillMode);
+//    }
+//
+//    @Test(testName = "Mobile : Circles Properties Test", dataProvider = "Circles Properties Test Data", groups = {"mobile-regression"})
+//    private void validateCirclePropertiesMobileTest(String circleType, By elem, String[] expBgColor, String expHtWidth, String[] expBorderRad) throws Exception {
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+//        bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
+//        height = commonUtils.getCSSValue(elem, "height", "mobile");
+//        width = commonUtils.getCSSValue(elem, "width", "mobile");
+//
+//        for (String cssProperty : borderRadii) {
+//            borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
+//            isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, expBorderRad);
+//            if (!isBorderRadius) {
+//                log.info("Border radius for " + circleType + " is not as per spec ");
+//            }
+//            Assert.assertTrue(isBorderRadius);
+//        }
+//        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
+//        if (!isBgColor) {
+//            log.info("Bg Color of " + circleType + " is not as per spec, actual " + bgColor);
+//        }
+//        isHeight = commonUtils.assertValue(height, expHtWidth, "Height of " + circleType + " is not as per spec ");
+//        isWidth = commonUtils.assertValue(width, expHtWidth, "Width of " + circleType + " is not as per spec ");
+//
+//        Assert.assertTrue(isBgColor && isHeight && isWidth);
+//    }
+//
+//    @Test(testName = "Mobile : Circles in Container2 angled at 45 degree Test", dataProvider = "Circles in Container2 angled at 45 degree Test Data", groups = {"mobile-regression"})
+//    private void container2AngleMobileTest(String[] expRotate) throws Exception {
+//        if (setAppium.equals("android")) {
+//            throw new SkipException("Skip animation tests on android");
+//        }
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+//        rotate = commonUtils.getCSSValue(indicatorPgObj.container2, "transform", "mobile");
+//        isRotate = commonUtils.assertCSSProperties("transform", rotate, expRotate);
+//        if (!isRotate) {
+//            log.info("the circles in container 2 are not angled at 45 degree");
+//        }
+//
+//        Assert.assertTrue(isRotate);
+//    }
 
     /*****************
      * Common methods
@@ -340,12 +339,7 @@ public class LoadingSpinnerTest extends BaseClass {
     private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
         testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         commonUtils.changeConfig(loadingSpinnerJSFilePath, testConfig);
-        Thread.sleep(1000);
-        if (setMobile.equals("off")) {
-            commonUtils.getUrl(loadingSpinnerURL);
-        } else {
-            commonUtils.getUrl(loadingSpinnerURL, "mobile");
-        }
+        commonUtils.getUrl(loadingSpinnerURL);
     }
 
     private String constructPath(String absolutePath) {
