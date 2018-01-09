@@ -300,31 +300,10 @@ public class FormsTest extends BaseClass {
         Assert.assertTrue(isInputBorderStyle && isInputBorderWidth && isInputBorderColor && isPaddingTop && isPaddingBottom && isInputFontSize && isInputValueColor && isLineHeight);
     } */
 
-    @Test(testName = "BS-Test", groups = "mobile-ci1")
-    public void bsTest() throws InterruptedException {
-        Thread.sleep(1000);
-        System.out.println("before css");
-
-        //System.out.println(appium.findElements(formsPgObj.formName));
-        fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size");
-        System.out.println("font size " + fontSize);
-
-//        WebElement element = appium.findElement(By.name("q"));
-//
-//        element.sendKeys("BrowserStack");
-//        element.submit();
-//
-//        System.out.println(appium.getTitle());
-    }
 
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        /*if (setDesktop.equals("on")) {
-            commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url);
-        }*/
         commonUtils.getUrl(url);
 
     }

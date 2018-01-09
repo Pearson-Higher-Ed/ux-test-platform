@@ -47,8 +47,8 @@ public class BaseClass {
 //    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 //    final static String USERNAME = "pdauser2";
 //    final static String AUTOMATE_KEY = "Ltvhi519RwgaCZZSxJF3";
-    final static String USERNAME = "eajaz4";
-    final static String AUTOMATE_KEY = "m5dqdM3zoDfzCPyezN3P";
+    final static String USERNAME = "pdauser2";
+    final static String AUTOMATE_KEY = "Ltvhi519RwgaCZZSxJF3";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
