@@ -375,9 +375,9 @@ public class DatePickerTest extends BaseClass {
     }
 
     //change handler
-    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void changeHandlerTest(String operationType) {
-        if (browser.equals("firefox") || (browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.startsWith("mobile") && operationType.equals("keys")))) {
+        if (browser.equals("firefox") || (browser.equals("safari") || browser.equals("ie") || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
