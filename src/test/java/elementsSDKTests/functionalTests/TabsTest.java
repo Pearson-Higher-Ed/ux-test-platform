@@ -184,7 +184,7 @@ public class TabsTest extends BaseClass {
     }
 
     //States Styles
-    @Test(testName = "Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = "desktop-regression")
+    @Test(testName = "Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = "desktop-regression1")
     private void tabsStatesStylesTest(String state, String tab, String[] expFontSize, String[] expLineHeight, By element, String[] expColor, String[] expBorderBottoms, String expTextDecoration) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
