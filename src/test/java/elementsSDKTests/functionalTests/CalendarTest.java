@@ -534,7 +534,7 @@ public class CalendarTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", "false"};
         setConfigAndLaunch(calendarWhiteUrl, detailsPropertiesList, propsPropertiesList, calendarWhiteJSFilePath);
 
-        commonUtils.click(By.xpath(actualNextDayToCurrentDate + "/div"));
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div"));
         String[] split = commonUtils.getText(By.xpath(actualNextDayToCurrentDate + "/div")).replaceAll("\n", " ").split(" ");
         clickedDate = "day" + split[0];
         System.out.println(clickedDate);
