@@ -77,7 +77,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void tabsCreateTest(int noOfTabs, int tab, Boolean tabPresent, String tabPresentText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"light", "false", "children", "React.Children.toArray(paneArray)"};
@@ -101,7 +101,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
+    @Test(testName = "Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void tabSelectionTest(int noOfTabs, String tabToSelect, int activeTab, Boolean tabActive) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"selected", tabToSelect, "light", "false", "children", "React.Children.toArray(paneArray)"};
@@ -123,7 +123,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void tabsLightTest(String includeLight, int noOfTabs, String tabToSelect, int activeTab, String setTabLight, Boolean tabLight, String tabLightText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = null;
@@ -151,7 +151,7 @@ public class TabsTest extends BaseClass {
     }
 
     //padding styles
-    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void paddingStylesTest(String state, String tab, By element, String[] expPaddingStyles) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
@@ -230,7 +230,7 @@ public class TabsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isTextDecoration);
     }
 
-    @Test(testName = "Click Tab Test", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Click Tab Test", groups = {"desktop-regression", "mobile-regression"})
     private void clickTabsTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
