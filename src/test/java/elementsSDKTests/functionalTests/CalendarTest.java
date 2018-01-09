@@ -206,7 +206,6 @@ public class CalendarTest extends BaseClass {
     private void disabledDateTest(String calendarColor, String contrast, String url, String calendarJSFilePath, By disabledDate, String[] expColor, String expCursor) throws Exception {
         boolean isDisabledDateExists = commonUtils.isElementsVisibleOnPage(disabledDate);
         if (!isDisabledDateExists) {
-            log.info("disabledDateTest: skipped");
             throw new SkipException("If the first date of the month is current date, then disabled dates are not see on the calendar, so skipping it");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
@@ -307,7 +306,6 @@ public class CalendarTest extends BaseClass {
     @Test(testName = "Calendar Controls Test", dataProvider = "Controls Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void controlsTest(String state, String calendarColor, String contrast, String url, String calendarJSFilePath, By controls, String expWidth, String[] expColor) throws Exception {
         if (state.equals("hover") && (browser.equals("firefox") || browser.equals("safari") || (browser.equals("ie")) || browser.equals("edge") || groupsInclude.startsWith("mobile"))) {
-            log.info("controlsTest: skipped");
             throw new SkipException("hover operations not supported in this browser driver");
         }
 
