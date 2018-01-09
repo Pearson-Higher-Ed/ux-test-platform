@@ -21,7 +21,8 @@ import java.util.*;
  * Created by umahaea on 9/25/17.
  */
 public class DatePickerTest extends BaseClass {
-    private final String datepickerUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/date-picker.html";
+    //private final String datepickerUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/date-picker.html";
+    private final String datepickerUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/date-picker.html";
     private final String absdatepickerJSFilePath = new File("elementsSDK/functional/jsfiles/datePicker/date-picker.js").getAbsolutePath();
     private final String datepickerJSFilePath = constructPath(absdatepickerJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/datePicker/temp.js").getAbsolutePath();
@@ -79,7 +80,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void defaultStateTest(String state, By dateField, By labelText) {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
@@ -108,7 +109,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithOutSelectionTest(String state, By dateField, String dateFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
@@ -138,7 +139,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By dateField) {
         boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         if (!isNextDayToCurrentDateExists) {
@@ -178,7 +179,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void calendarCloseTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
         for (int i = 0; i < 2; i++) {
             String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
@@ -234,7 +235,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void noFocusSelectionTest(String state, By dateField, String dateFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
@@ -258,7 +259,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //Styles Test
-    @Test(testName = "DatePicker Styles Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "DatePicker Styles Test", groups = {"desktop-regression", "mobile-regressionR"}, retryAnalyzer = RetryAnalyzer.class)
     private void stylesTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
@@ -277,7 +278,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //TAB - forward
-    @Test(testName = "Forward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Forward TAB Test", groups = "desktop-regression1", retryAnalyzer = RetryAnalyzer.class)
     private void forwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -306,7 +307,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //TAB - backward
-    @Test(testName = "Backward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Backward TAB Test", groups = "desktop-regression1", retryAnalyzer = RetryAnalyzer.class)
     private void backwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -374,9 +375,9 @@ public class DatePickerTest extends BaseClass {
     }
 
     //change handler
-    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void changeHandlerTest(String operationType) {
-        if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
+        if (browser.equals("firefox") || (browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.startsWith("mobile") && operationType.equals("keys")))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
@@ -408,7 +409,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //date format tests
-    @Test(testName = "Date Format Test", dataProvider = "Date Format Test Data", groups = "desktop-regression")
+    @Test(testName = "Date Format Test", dataProvider = "Date Format Test Data", groups = {"desktop-regression", "mobile-regression"})
     void dateFormatTest(String format) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", format, "labelText", "Select date"};
@@ -437,7 +438,7 @@ public class DatePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
 
@@ -447,215 +448,215 @@ public class DatePickerTest extends BaseClass {
     }
 
     //Mobile Tests
-    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void defaultStateMobileTest(String state, By dateField, By labelText) {
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value");
-        isDateField = commonUtils.assertValue(isDateFieldValue, false, "Date input field is not empty");
-
-        isCalendarIconPresent = commonUtils.getAttributeValue(datepickerPgObj.calendarIcon, "class", "mobile").equals("pe-icon--calendar-18");
-        isCalendarIcon = commonUtils.assertValue(isCalendarIconPresent, true, "In '" + state + "' inputState, calendar icon is not seen");
-
-        isCalendarPresent = commonUtils.isElementPresent(datepickerPgObj.calendar, "mobile");
-        isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state + "' inputState, calendar is present");
-
-        label = commonUtils.getText(labelText, "mobile");
-        isLabel = commonUtils.assertValue(label, "Select date (mm/dd/yyyy)", "In '" + state + "' inputState, the label text is not as per the spec");
-        Assert.assertTrue(isCalendar && isDateField && isCalendarIcon && isLabel);
-    }
-
-    //focus state
-    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithOutSelectionMobileTest(String state, By dateField, String dateFieldClass) {
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(dateField, "mobile");
-
-        //check for focus
-        isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass);
-        isDateField = commonUtils.assertValue(isDateFieldFocused, true, "In '" + state + "' inputState, date field is not focused as per the spec");
-        Assert.assertTrue(isDateField);
-
-        isDateOnCalendarSelected = commonUtils.isElementPresent(datepickerPgObj.selectedDate, "mobile");
-        isDateOnCalendar = commonUtils.assertValue(isDateOnCalendarSelected, false, "In '" + state + "' inputState, Date is already selected on the calendar");
-        Assert.assertTrue(isDateOnCalendar);
-
-        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value");
-        isDateField = commonUtils.assertValue(isDateFieldValue, false, "In '" + state + "' inputState, Date input field is not empty");
-        Assert.assertTrue(isDateField);
-    }
-
-    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithSelectionMobileTest(String state, By dateField) {
-        boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
-        if (!isNextDayToCurrentDateExists) {
-            throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(dateField, "mobile");
-
-        //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
-        commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on date input field
-
-        //Click once again to see if the calendar opens up and shows the selected date
-        commonUtils.click(dateField, "mobile");
-        String value = commonUtils.getAttributeValue(dateField, "value", "mobile");
-        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value=" + value);
-        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
-        Assert.assertTrue(isDateField);
-
-        commonUtils.click(dateField, "mobile");
-        dateInDateField = selectedDate("mobile");
-        Assert.assertTrue((dateInDateField.equals(value)), "In '" + state + "' inputState, the date in the dateField text box and the one selected in the calendar doesn't match");
-    }
-
-    @Test(testName = "Mobile: Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void calendarCloseMobileTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
-        for (int i = 0; i < 2; i++) {
-            String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-            String[] propsPropertiesList = new String[]{"inputState", state[i], "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-            setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-            commonUtils.click(dateFieldElement[i], "mobile");
-
-            //With Selection
-            if (closeType.equals("with-selection")) {
-                if (calendarCloseCase.equals("makes a selection from the calendar")) {
-                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-                }
-                if (calendarCloseCase.equals("manually types some random text")) {
-                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-                    commonUtils.sendKeys(dateFieldElement[i], "some random text", "mobile");
-                }
-                if (calendarCloseCase.equals("manually types valid date")) {
-                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-                    commonUtils.sendKeys(dateFieldElement[i], aValidDate(), "mobile");
-                }
-                if (calendarCloseCase.equals("clicks elsewhere")) {
-                    commonUtils.clickUsingJS(By.xpath(currentDateXpath + "/div/div"), "mobile");
-                    commonUtils.click(By.xpath("//h2"), "mobile");
-                }
-            }
-            //without Selection
-            else if (closeType.equals("without-selection")) {
-                if (calendarCloseCase.equals("manually types some random text")) {
-                    commonUtils.sendKeys(dateFieldElement[i], "some random text", "mobile");
-                }
-                if (calendarCloseCase.equals("clicks elsewhere")) {
-                    commonUtils.click(By.xpath("//h2"), "mobile");
-                }
-            }
-            isCalendarPresent = commonUtils.isElementPresent(calendarElement, "mobile");
-            isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + calendarCloseCase + "', calendar isn't hidden");
-            Assert.assertTrue(isCalendar);
-
-            isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass[i]);
-            isDateField = commonUtils.assertValue(isDateFieldFocused, expDateFieldFocus, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + calendarCloseCase + "' , " + dateFieldFocusState);
-            Assert.assertTrue(isDateField);
-        }
-    }
-
-    //Selected Date(no focus)
-    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void noFocusSelectionMobileTest(String state, By dateField, String dateFieldClass) {
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(dateField, "mobile");
-        commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-
-        //removed focus by clicking somewhere outside
-        commonUtils.click(By.xpath("//h2"), "mobile");
-
-        String value = commonUtils.getAttributeValue(dateField, "value", "mobile");
-        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value=" + value);
-        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
-        Assert.assertTrue(isDateField);
-
-        commonUtils.click(dateField, "mobile");
-        isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass);
-        isDateField = commonUtils.assertValue(isDateFieldFocused, true, "In '" + state + "' inputState, previously selected date is not regaining focus");
-        Assert.assertTrue(isDateField);
-    }
-
-    //Styles Test
-    @Test(testName = "Mobile: DatePicker Styles Test", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void stylesMobileTest() {
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        color = commonUtils.getCSSValue(datepickerPgObj.calendarIcon, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
-        if (!isColor) {
-            log.info("calendar icon 'color' is not as per the spec, actual: " + color);
-        }
-        //commonUtils.setWindowSize(320, 800);
-        width = commonUtils.getCSSValue(datepickerPgObj.dateFieldDefault, "width", "mobile");
-        isWidth = commonUtils.assertValue(width, "150px", "date input field 'min-width' is not as per the spec");
-        //commonUtils.setWindowSize(800, 800);
-        Assert.assertTrue(isColor && isWidth);
-    }
-
-    //change handler
-    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void changeHandlerMobileTest(String operationType) {
-        if ((operationType.equals("keys"))) {
-            throw new SkipException("focus operation not yet supported in appium drivers");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date", "changeHandler", "function () {return alert('clicked!');}"};
-
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
-
-        if (operationType.equals("mouse")) {
-            commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-        }
-
-        changeHandlerText = appium.switchTo().alert().getText();
-        appium.switchTo().alert().accept();
-        isChangeHandlerText = commonUtils.assertValue(changeHandlerText, "clicked!", "change handler didn't trigger the event for operationType: '" + operationType + "'");
-        Assert.assertTrue(isChangeHandlerText);
-    }
-
-    @Test(testName = "Mobile: Date Format Test", dataProvider = "Date Format Test Data", groups = "mobile-regression")
-    void dateFormatMobileTest(String format) throws InterruptedException {
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", format, "labelText", "Select date"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
-
-        //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
-        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
-        Thread.sleep(1000);
-        String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
-        dateInDateField = selectedDateInFormat(format, "mobile");
-
-        Assert.assertTrue((dateInDateField.equals(value)), "In 'default' inputState, the date in the dateField text box is not in the right format as per the spec");
-    }
-
-    //negative tests
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
-    private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-        isDatePickerLoaded = commonUtils.isElementPresent(datepickerPgObj.dateFieldDefault, "mobile");
-        result = commonUtils.assertValue(isDatePickerLoaded, false, "Date Picker is loaded in spite of incorrect config for " + incorrectConfigType);
-        Assert.assertTrue(result);
-    }
+//    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void defaultStateMobileTest(String state, By dateField, By labelText) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value");
+//        isDateField = commonUtils.assertValue(isDateFieldValue, false, "Date input field is not empty");
+//
+//        isCalendarIconPresent = commonUtils.getAttributeValue(datepickerPgObj.calendarIcon, "class", "mobile").equals("pe-icon--calendar-18");
+//        isCalendarIcon = commonUtils.assertValue(isCalendarIconPresent, true, "In '" + state + "' inputState, calendar icon is not seen");
+//
+//        isCalendarPresent = commonUtils.isElementPresent(datepickerPgObj.calendar, "mobile");
+//        isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state + "' inputState, calendar is present");
+//
+//        label = commonUtils.getText(labelText, "mobile");
+//        isLabel = commonUtils.assertValue(label, "Select date (mm/dd/yyyy)", "In '" + state + "' inputState, the label text is not as per the spec");
+//        Assert.assertTrue(isCalendar && isDateField && isCalendarIcon && isLabel);
+//    }
+//
+//    //focus state
+//    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void focusStateWithOutSelectionMobileTest(String state, By dateField, String dateFieldClass) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(dateField, "mobile");
+//
+//        //check for focus
+//        isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass);
+//        isDateField = commonUtils.assertValue(isDateFieldFocused, true, "In '" + state + "' inputState, date field is not focused as per the spec");
+//        Assert.assertTrue(isDateField);
+//
+//        isDateOnCalendarSelected = commonUtils.isElementPresent(datepickerPgObj.selectedDate, "mobile");
+//        isDateOnCalendar = commonUtils.assertValue(isDateOnCalendarSelected, false, "In '" + state + "' inputState, Date is already selected on the calendar");
+//        Assert.assertTrue(isDateOnCalendar);
+//
+//        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value");
+//        isDateField = commonUtils.assertValue(isDateFieldValue, false, "In '" + state + "' inputState, Date input field is not empty");
+//        Assert.assertTrue(isDateField);
+//    }
+//
+//    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void focusStateWithSelectionMobileTest(String state, By dateField) {
+//        boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
+//        if (!isNextDayToCurrentDateExists) {
+//            throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
+//        }
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(dateField, "mobile");
+//
+//        //User makes selection from the calendar.
+//        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+//        commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on date input field
+//
+//        //Click once again to see if the calendar opens up and shows the selected date
+//        commonUtils.click(dateField, "mobile");
+//        String value = commonUtils.getAttributeValue(dateField, "value", "mobile");
+//        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value=" + value);
+//        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
+//        Assert.assertTrue(isDateField);
+//
+//        commonUtils.click(dateField, "mobile");
+//        dateInDateField = selectedDate("mobile");
+//        Assert.assertTrue((dateInDateField.equals(value)), "In '" + state + "' inputState, the date in the dateField text box and the one selected in the calendar doesn't match");
+//    }
+//
+//    @Test(testName = "Mobile: Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void calendarCloseMobileTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
+//        for (int i = 0; i < 2; i++) {
+//            String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//            String[] propsPropertiesList = new String[]{"inputState", state[i], "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//            setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//            commonUtils.click(dateFieldElement[i], "mobile");
+//
+//            //With Selection
+//            if (closeType.equals("with-selection")) {
+//                if (calendarCloseCase.equals("makes a selection from the calendar")) {
+//                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//                }
+//                if (calendarCloseCase.equals("manually types some random text")) {
+//                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//                    commonUtils.sendKeys(dateFieldElement[i], "some random text", "mobile");
+//                }
+//                if (calendarCloseCase.equals("manually types valid date")) {
+//                    commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//                    commonUtils.sendKeys(dateFieldElement[i], aValidDate(), "mobile");
+//                }
+//                if (calendarCloseCase.equals("clicks elsewhere")) {
+//                    commonUtils.clickUsingJS(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//                    commonUtils.click(By.xpath("//h2"), "mobile");
+//                }
+//            }
+//            //without Selection
+//            else if (closeType.equals("without-selection")) {
+//                if (calendarCloseCase.equals("manually types some random text")) {
+//                    commonUtils.sendKeys(dateFieldElement[i], "some random text", "mobile");
+//                }
+//                if (calendarCloseCase.equals("clicks elsewhere")) {
+//                    commonUtils.click(By.xpath("//h2"), "mobile");
+//                }
+//            }
+//            isCalendarPresent = commonUtils.isElementPresent(calendarElement, "mobile");
+//            isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + calendarCloseCase + "', calendar isn't hidden");
+//            Assert.assertTrue(isCalendar);
+//
+//            isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass[i]);
+//            isDateField = commonUtils.assertValue(isDateFieldFocused, expDateFieldFocus, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + calendarCloseCase + "' , " + dateFieldFocusState);
+//            Assert.assertTrue(isDateField);
+//        }
+//    }
+//
+//    //Selected Date(no focus)
+//    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void noFocusSelectionMobileTest(String state, By dateField, String dateFieldClass) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(dateField, "mobile");
+//        commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//
+//        //removed focus by clicking somewhere outside
+//        commonUtils.click(By.xpath("//h2"), "mobile");
+//
+//        String value = commonUtils.getAttributeValue(dateField, "value", "mobile");
+//        isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value=" + value);
+//        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
+//        Assert.assertTrue(isDateField);
+//
+//        commonUtils.click(dateField, "mobile");
+//        isDateFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(dateFieldClass);
+//        isDateField = commonUtils.assertValue(isDateFieldFocused, true, "In '" + state + "' inputState, previously selected date is not regaining focus");
+//        Assert.assertTrue(isDateField);
+//    }
+//
+//    //Styles Test
+//    @Test(testName = "Mobile: DatePicker Styles Test", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void stylesMobileTest() {
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        color = commonUtils.getCSSValue(datepickerPgObj.calendarIcon, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+//        if (!isColor) {
+//            log.info("calendar icon 'color' is not as per the spec, actual: " + color);
+//        }
+//        //commonUtils.setWindowSize(320, 800);
+//        width = commonUtils.getCSSValue(datepickerPgObj.dateFieldDefault, "width", "mobile");
+//        isWidth = commonUtils.assertValue(width, "150px", "date input field 'min-width' is not as per the spec");
+//        //commonUtils.setWindowSize(800, 800);
+//        Assert.assertTrue(isColor && isWidth);
+//    }
+//
+//    //change handler
+//    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void changeHandlerMobileTest(String operationType) {
+//        if ((operationType.equals("keys"))) {
+//            throw new SkipException("focus operation not yet supported in appium drivers");
+//        }
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date", "changeHandler", "function () {return alert('clicked!');}"};
+//
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
+//
+//        if (operationType.equals("mouse")) {
+//            commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
+//        }
+//
+//        changeHandlerText = appium.switchTo().alert().getText();
+//        appium.switchTo().alert().accept();
+//        isChangeHandlerText = commonUtils.assertValue(changeHandlerText, "clicked!", "change handler didn't trigger the event for operationType: '" + operationType + "'");
+//        Assert.assertTrue(isChangeHandlerText);
+//    }
+//
+//    @Test(testName = "Mobile: Date Format Test", dataProvider = "Date Format Test Data", groups = "mobile-regression")
+//    void dateFormatMobileTest(String format) throws InterruptedException {
+//        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", format, "labelText", "Select date"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
+//
+//        //User makes selection from the calendar.
+//        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+//        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
+//        Thread.sleep(1000);
+//        String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
+//        dateInDateField = selectedDateInFormat(format, "mobile");
+//
+//        Assert.assertTrue((dateInDateField.equals(value)), "In 'default' inputState, the date in the dateField text box is not in the right format as per the spec");
+//    }
+//
+//    //negative tests
+//    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
+//    private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+//        isDatePickerLoaded = commonUtils.isElementPresent(datepickerPgObj.dateFieldDefault, "mobile");
+//        result = commonUtils.assertValue(isDatePickerLoaded, false, "Date Picker is loaded in spite of incorrect config for " + incorrectConfigType);
+//        Assert.assertTrue(result);
+//    }
 
     /**********************************
      * Common methods
