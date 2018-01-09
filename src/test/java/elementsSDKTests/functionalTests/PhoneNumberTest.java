@@ -72,7 +72,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Map Country With Flags Test", dataProvider = "Map Country With Flags Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void mapCountryWithFlagsTest(String inputType, String country, String expFlag, String expCountryCode, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -115,7 +115,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void typePhoneNumberTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
@@ -188,7 +188,7 @@ public class PhoneNumberTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
