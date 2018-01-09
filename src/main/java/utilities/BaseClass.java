@@ -48,7 +48,7 @@ public class BaseClass {
 //    final static String USERNAME = "payalpda1";
 //    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
     final static String USERNAME = "payalpda1";
-    final static String AUTOMATE_KEY = "Ltvhi519RwgaCZZSxJF3";
+    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
