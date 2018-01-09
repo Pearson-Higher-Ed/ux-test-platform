@@ -339,12 +339,7 @@ public class LoadingSpinnerTest extends BaseClass {
     private void setConfigAndLaunch(String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
         testConfig = buildJSONObjectDetailConfig(detailsPropertiesList, propsPropertiesList);
         commonUtils.changeConfig(loadingSpinnerJSFilePath, testConfig);
-        Thread.sleep(1000);
-        if (setMobile.equals("off")) {
-            commonUtils.getUrl(loadingSpinnerURL);
-        } else {
-            commonUtils.getUrl(loadingSpinnerURL, "mobile");
-        }
+        commonUtils.getUrl(loadingSpinnerURL);
     }
 
     private String constructPath(String absolutePath) {
