@@ -697,7 +697,7 @@ public class CalendarTest extends BaseClass {
     @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) throws Exception {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
-            throw new SkipException("Compounds-> Focus operation not yet supported in firefox/safari/ie browser drivers");
+            throw new SkipException("Compounds-> operation not yet supported in firefox/safari/ie browser drivers");
         }
         setConfigAndLaunch(calendarWhiteUrl, detailsPropertiesList, propsPropertiesList, calendarWhiteJSFilePath);
 
