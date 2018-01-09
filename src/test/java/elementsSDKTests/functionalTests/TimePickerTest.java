@@ -161,6 +161,7 @@ public class TimePickerTest extends BaseClass {
     public Object[][] getClockCloseTestData() {
         return new Object[][]{
                 {"with-selection", "makes a selection from the dropdown", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"},
+                {"with-selection", "manually types valid date", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"},
                 {"with-selection", "clicks elsewhere", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, false, "it remains focused"},
                 {"with-selection", "manually types some random text", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"},
 
@@ -189,6 +190,7 @@ public class TimePickerTest extends BaseClass {
                 }
                 if (dropDownCloseCase.equals("manually types some random text")) {
                     commonUtils.sendKeys(timeFieldElement[i], "some random text");
+                    Thread.sleep(1000);
                 }
                 if (dropDownCloseCase.equals("manually types valid date")) {
                     driver.findElement(timeFieldElement[i]).clear();
