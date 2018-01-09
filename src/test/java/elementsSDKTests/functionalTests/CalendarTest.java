@@ -514,7 +514,7 @@ public class CalendarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Week Start Day Test", dataProvider = "Week Start Day Prop Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Week Start Day Test", dataProvider = "Week Start Day Prop Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void weekStartDayTest(String weekStartDayProp, String num, String expWeekStartDay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", "false", weekStartDayProp, num};
@@ -539,6 +539,7 @@ public class CalendarTest extends BaseClass {
         clickedDate = "day" + split[0];
         System.out.println(clickedDate);
         activeDescendant = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-activedescendant");
+        System.out.println(activeDescendant);
         isActiveDescendant = commonUtils.assertValue(activeDescendant, clickedDate, "active-descendant for clicked date is not working as per the spec");
 
         tabIndex = commonUtils.getAttributeValue(By.xpath(actualNextDayToCurrentDate + "/div/div"), "tabindex");
