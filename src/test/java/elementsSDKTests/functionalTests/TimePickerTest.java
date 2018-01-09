@@ -251,7 +251,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Styles Test
-    @Test(testName = "TimePicker Styles Test", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "TimePicker Styles Test", groups = {"desktop-regression", "mobile-regressionR"}, retryAnalyzer = RetryAnalyzer.class)
     private void stylesTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
