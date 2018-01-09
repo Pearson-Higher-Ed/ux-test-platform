@@ -56,11 +56,7 @@ public class TimePickerTest extends BaseClass {
         } else {
             browser = bsBrowser;
         }
-        if (desktop.equals("on")) {
-            timepickerPgObj = new TimePickerPageObjects(driver);
-        } else if (mobile.equals("on")) {
-            timepickerPgObj = new TimePickerPageObjects(appium);
-        }
+        timepickerPgObj = new TimePickerPageObjects(driver);
     }
 
     //Tests
@@ -72,7 +68,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Default State Test", dataProvider = "Default State Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void defaultStateTest(String state, By timeField, By labelText) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -101,7 +97,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithOutSelectionTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -131,7 +127,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void focusStateWithSelectionTest(String state, By timeField) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -173,7 +169,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void dropDownCloseTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
 
         for (int i = 0; i < 2; i++) {
@@ -230,7 +226,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void noFocusSelectionTest(String state, By timeField, String timeFieldClass) {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -254,7 +250,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Styles Test
-    @Test(testName = "TimePicker Styles Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "TimePicker Styles Test", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void stylesTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
         String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
@@ -374,9 +370,9 @@ public class TimePickerTest extends BaseClass {
     }
 
     //change handler
-    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Change Handler Test", dataProvider = "Change Handler Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void changeHandlerTest(String operationType) {
-        if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
+        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.startsWith("mobile") && operationType.equals("keys"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
         }
 
@@ -411,7 +407,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression","mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void negativeConfigValuesTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath);
 
@@ -421,220 +417,220 @@ public class TimePickerTest extends BaseClass {
     }
 
     //Mobile Tests
-    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void defaultStateMobileTest(String state, By timeField, By labelText) {
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value");
-        isTimeField = commonUtils.assertValue(isTimeFieldValue, false, "Date input field is not empty");
-
-        isClockIconPresent = commonUtils.getAttributeValue(timepickerPgObj.clockIcon, "class", "mobile").equals("pe-icon--clock-18");
-        isClockIcon = commonUtils.assertValue(isClockIconPresent, true, "In '" + state + "' inputState, calendar icon is not seen");
-
-        isDropDownContainerPresent = commonUtils.isElementPresent(timepickerPgObj.dropDownContainer, "mobile");
-        isDropDownContainer = commonUtils.assertValue(isClockPresent, false, "In '" + state + "' inputState, dropdown container is present");
-
-        label = commonUtils.getText(labelText, "mobile");
-        isLabel = commonUtils.assertValue(label, "Select time (hh:mm)", "In '" + state + "' inputState, the label text is not as per the spec");
-        Assert.assertTrue(isTimeField && isClockIcon && isDropDownContainer && isLabel);
-    }
-
-    //focus state
-    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithOutSelectionMobileTest(String state, By timeField, String timeFieldClass) {
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        commonUtils.click(timeField, "mobile");
-
-        //check for focus
-        isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass);
-        isTimeField = commonUtils.assertValue(isTimeFieldFocused, true, "In '" + state + "' inputState, time field is not focused as per the spec");
-        Assert.assertTrue(isTimeField);
-
-        isTimeOnDropDownSelected = commonUtils.isElementPresent(timepickerPgObj.checkIcon, "mobile");
-        isTimeOnDropDown = commonUtils.assertValue(isTimeOnDropDownSelected, false, "In '" + state + "' inputState, time is already selected on the dropdown");
-        Assert.assertTrue(isTimeOnDropDown);
-
-        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value");
-        isTimeField = commonUtils.assertValue(isTimeFieldValue, false, "In '" + state + "' inputState, Time input field is not empty");
-        Assert.assertTrue(isTimeField);
-    }
-
-    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithSelectionMobileTest(String state, By timeField) {
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        commonUtils.click(timeField, "mobile");
-
-        //User makes selection from the dropdown.
-        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
-        commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on time input field
-
-        //Click once again to see if the dropdown opens up and shows the selected time
-        String value = commonUtils.getAttributeValue(timeField, "value", "mobile");
-        commonUtils.click(timeField, "mobile");
-        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value=" + value);
-        isTimeField = commonUtils.assertValue(isTimeFieldValue, true, "In '" + state + "' inputState, the selected time is not showing up on the timeField");
-        Assert.assertTrue(isTimeField);
-
-        //verify check icon
-        isCheckIconPresent = commonUtils.isElementPresent(timepickerPgObj.checkIcon, "mobile");
-        isCheckIcon = commonUtils.assertValue(isCheckIconPresent, true, "the time is not selected");
-        Assert.assertTrue(isCheckIcon);
-
-        commonUtils.click(timeField, "mobile");
-        timeInTimeField = "1:00 AM";
-        Assert.assertTrue((timeInTimeField.equals(value)), "In '" + state + "' inputState, the time in the timeField text box and the one selected in the dropdown doesn't match");
-    }
-
-    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void dropDownCloseMobileTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
-
-        for (int i = 0; i < 2; i++) {
-            String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-            String[] propsPropertiesList = new String[]{"inputState", state[i], "timeFormat", "hh:mm", "labelText", "Select time"};
-            setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-            commonUtils.click(timeFieldElement[i], "mobile");
-
-            //With Selection
-            if (closeType.equals("with-selection")) {
-                commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
-                if (dropDownCloseCase.equals("makes a selection from the dropdown")) {
-                    commonUtils.click(timeFieldElement[i], "mobile");
-                    commonUtils.click(By.xpath("//li[2]"), "mobile");
-                }
-                if (dropDownCloseCase.equals("manually types some random text")) {
-                    commonUtils.sendKeys(timeFieldElement[i], "some random text", "mobile");
-                }
-                if (dropDownCloseCase.equals("manually types valid date")) {
-                    commonUtils.sendKeys(timeFieldElement[i], "2:00 AM", "mobile");
-                }
-                if (dropDownCloseCase.equals("clicks elsewhere")) {
-                    commonUtils.click(By.xpath("//h2"), "mobile");
-                }
-            }
-
-            //without Selection
-            else if (closeType.equals("without-selection")) {
-                if (dropDownCloseCase.equals("manually types some random text")) {
-                    commonUtils.sendKeys(timeFieldElement[i], "some random text", "mobile");
-                }
-                if (dropDownCloseCase.equals("clicks elsewhere")) {
-                    commonUtils.click(By.xpath("//h2"), "mobile");
-                }
-            }
-            isClockPresent = commonUtils.isElementPresent(dropDownElement, "mobile");
-            isClock = commonUtils.assertValue(isClockPresent, false, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + dropDownCloseCase + "', dropdown isn't hidden");
-            Assert.assertTrue(isClock);
-
-            isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass[i]);
-            isTimeField = commonUtils.assertValue(isTimeFieldFocused, expTimeFieldFocus, "In '" + state[i] + "' inputState," + closeType + ": When the user" + dropDownCloseCase + ", " + timeFieldFocusState);
-            Assert.assertTrue(isTimeField);
-        }
-    }
-
-    //Selected Time(no focus)
-    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void noFocusSelectionMobileTest(String state, By timeField, String timeFieldClass) {
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        commonUtils.click(timeField, "mobile");
-        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
-
-        //remove focus by clicking somewhere outside
-        commonUtils.click(By.xpath("//h2"), "mobile");
-
-        String value = commonUtils.getAttributeValue(timeField, "value", "mobile");
-        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value=" + value);
-        isTimeField = commonUtils.assertValue(isTimeFieldValue, true, "In '" + state + "' inputState, the selected time is not showing up on the timeField");
-        Assert.assertTrue(isTimeField);
-
-        commonUtils.click(timeField, "mobile");
-        isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass);
-        isTimeField = commonUtils.assertValue(isTimeFieldFocused, true, "In '" + state + "' inputState, previously selected time is not regaining focus");
-        Assert.assertTrue(isTimeField);
-    }
-
-    //Styles Test
-    @Test(testName = "Mobile: TimePicker Styles Test", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void stylesMobileTest() {
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        color = commonUtils.getCSSValue(timepickerPgObj.clockIcon, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
-        if (!isColor) {
-            log.info("clock icon 'color' is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isColor); //verify color for clock Icon
-
-        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
-        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
-        commonUtils.click(By.xpath("//h2"), "mobile");
-        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
-        color = commonUtils.getCSSValue(timepickerPgObj.checkIcon, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
-        if (!isColor) {
-            log.info("check icon 'color' is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isColor); //verify color for check Icon
-
-        //commonUtils.setWindowSize(320, 800);
-        width = commonUtils.getCSSValue(timepickerPgObj.timeFieldDefault, "width", "mobile");
-        isWidth = commonUtils.assertValue(width, "150px", "time input field 'min-width' is not as per the spec");
-        Assert.assertTrue(isWidth);//verify width for time input field
-
-        width = commonUtils.getCSSValue(timepickerPgObj.dropDownContainer, "width", "mobile");
-        isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"222px", "220px"});
-        if (!isWidth) {
-            log.info("dropdown container 'min-width' is not as per the spec, actual: " + width);
-        }
-        Assert.assertTrue(isWidth);//verify with for dropdown container
-    }
-
-    //change handler
-    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void changeHandlerMobileTest(String operationType) {
-        if ((operationType.equals("keys"))) {
-            throw new SkipException("keyboard operations not yet supported in firefox/safari/ie browser drivers");
-        }
-
-        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time", "changeHandler", "function () {return alert('clicked!');}"};
-
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
-
-        if (operationType.equals("mouse")) {
-            commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
-        }
-
-        changeHandlerText = appium.switchTo().alert().getText();
-        appium.switchTo().alert().accept();
-        isChangeHandlerText = commonUtils.assertValue(changeHandlerText, "clicked!", "change handler didn't trigger the event for operationType: '" + operationType + "'");
-        Assert.assertTrue(isChangeHandlerText);
-    }
-
-    //negative tests
-    @Test(testName = "Mobile: Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
-    private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
-
-        isTimePickerLoaded = commonUtils.isElementPresent(timepickerPgObj.timeFieldDefault, "mobile");
-        result = commonUtils.assertValue(isTimePickerLoaded, false, "Time Picker is loaded in spite of incorrect config for " + incorrectConfigType);
-        Assert.assertTrue(result);
-    }
+//    @Test(testName = "Mobile: Default State Test", dataProvider = "Default State Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void defaultStateMobileTest(String state, By timeField, By labelText) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value");
+//        isTimeField = commonUtils.assertValue(isTimeFieldValue, false, "Date input field is not empty");
+//
+//        isClockIconPresent = commonUtils.getAttributeValue(timepickerPgObj.clockIcon, "class", "mobile").equals("pe-icon--clock-18");
+//        isClockIcon = commonUtils.assertValue(isClockIconPresent, true, "In '" + state + "' inputState, calendar icon is not seen");
+//
+//        isDropDownContainerPresent = commonUtils.isElementPresent(timepickerPgObj.dropDownContainer, "mobile");
+//        isDropDownContainer = commonUtils.assertValue(isClockPresent, false, "In '" + state + "' inputState, dropdown container is present");
+//
+//        label = commonUtils.getText(labelText, "mobile");
+//        isLabel = commonUtils.assertValue(label, "Select time (hh:mm)", "In '" + state + "' inputState, the label text is not as per the spec");
+//        Assert.assertTrue(isTimeField && isClockIcon && isDropDownContainer && isLabel);
+//    }
+//
+//    //focus state
+//    @Test(testName = "Mobile: Focus State WithOut selection Test", dataProvider = "Focus State WithOut selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void focusStateWithOutSelectionMobileTest(String state, By timeField, String timeFieldClass) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(timeField, "mobile");
+//
+//        //check for focus
+//        isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass);
+//        isTimeField = commonUtils.assertValue(isTimeFieldFocused, true, "In '" + state + "' inputState, time field is not focused as per the spec");
+//        Assert.assertTrue(isTimeField);
+//
+//        isTimeOnDropDownSelected = commonUtils.isElementPresent(timepickerPgObj.checkIcon, "mobile");
+//        isTimeOnDropDown = commonUtils.assertValue(isTimeOnDropDownSelected, false, "In '" + state + "' inputState, time is already selected on the dropdown");
+//        Assert.assertTrue(isTimeOnDropDown);
+//
+//        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value");
+//        isTimeField = commonUtils.assertValue(isTimeFieldValue, false, "In '" + state + "' inputState, Time input field is not empty");
+//        Assert.assertTrue(isTimeField);
+//    }
+//
+//    @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void focusStateWithSelectionMobileTest(String state, By timeField) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(timeField, "mobile");
+//
+//        //User makes selection from the dropdown.
+//        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+//        commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on time input field
+//
+//        //Click once again to see if the dropdown opens up and shows the selected time
+//        String value = commonUtils.getAttributeValue(timeField, "value", "mobile");
+//        commonUtils.click(timeField, "mobile");
+//        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value=" + value);
+//        isTimeField = commonUtils.assertValue(isTimeFieldValue, true, "In '" + state + "' inputState, the selected time is not showing up on the timeField");
+//        Assert.assertTrue(isTimeField);
+//
+//        //verify check icon
+//        isCheckIconPresent = commonUtils.isElementPresent(timepickerPgObj.checkIcon, "mobile");
+//        isCheckIcon = commonUtils.assertValue(isCheckIconPresent, true, "the time is not selected");
+//        Assert.assertTrue(isCheckIcon);
+//
+//        commonUtils.click(timeField, "mobile");
+//        timeInTimeField = "1:00 AM";
+//        Assert.assertTrue((timeInTimeField.equals(value)), "In '" + state + "' inputState, the time in the timeField text box and the one selected in the dropdown doesn't match");
+//    }
+//
+//    @Test(testName = "Mobile: DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void dropDownCloseMobileTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
+//
+//        for (int i = 0; i < 2; i++) {
+//            String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//            String[] propsPropertiesList = new String[]{"inputState", state[i], "timeFormat", "hh:mm", "labelText", "Select time"};
+//            setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//            commonUtils.click(timeFieldElement[i], "mobile");
+//
+//            //With Selection
+//            if (closeType.equals("with-selection")) {
+//                commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+//                if (dropDownCloseCase.equals("makes a selection from the dropdown")) {
+//                    commonUtils.click(timeFieldElement[i], "mobile");
+//                    commonUtils.click(By.xpath("//li[2]"), "mobile");
+//                }
+//                if (dropDownCloseCase.equals("manually types some random text")) {
+//                    commonUtils.sendKeys(timeFieldElement[i], "some random text", "mobile");
+//                }
+//                if (dropDownCloseCase.equals("manually types valid date")) {
+//                    commonUtils.sendKeys(timeFieldElement[i], "2:00 AM", "mobile");
+//                }
+//                if (dropDownCloseCase.equals("clicks elsewhere")) {
+//                    commonUtils.click(By.xpath("//h2"), "mobile");
+//                }
+//            }
+//
+//            //without Selection
+//            else if (closeType.equals("without-selection")) {
+//                if (dropDownCloseCase.equals("manually types some random text")) {
+//                    commonUtils.sendKeys(timeFieldElement[i], "some random text", "mobile");
+//                }
+//                if (dropDownCloseCase.equals("clicks elsewhere")) {
+//                    commonUtils.click(By.xpath("//h2"), "mobile");
+//                }
+//            }
+//            isClockPresent = commonUtils.isElementPresent(dropDownElement, "mobile");
+//            isClock = commonUtils.assertValue(isClockPresent, false, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + dropDownCloseCase + "', dropdown isn't hidden");
+//            Assert.assertTrue(isClock);
+//
+//            isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass[i]);
+//            isTimeField = commonUtils.assertValue(isTimeFieldFocused, expTimeFieldFocus, "In '" + state[i] + "' inputState," + closeType + ": When the user" + dropDownCloseCase + ", " + timeFieldFocusState);
+//            Assert.assertTrue(isTimeField);
+//        }
+//    }
+//
+//    //Selected Time(no focus)
+//    @Test(testName = "Mobile: No Focus Selection Test", dataProvider = "No Focus Selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void noFocusSelectionMobileTest(String state, By timeField, String timeFieldClass) {
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", state, "timeFormat", "hh:mm", "labelText", "Select time"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(timeField, "mobile");
+//        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+//
+//        //remove focus by clicking somewhere outside
+//        commonUtils.click(By.xpath("//h2"), "mobile");
+//
+//        String value = commonUtils.getAttributeValue(timeField, "value", "mobile");
+//        isTimeFieldValue = commonUtils.getAllAttributes(timeField, "mobile").contains("value=" + value);
+//        isTimeField = commonUtils.assertValue(isTimeFieldValue, true, "In '" + state + "' inputState, the selected time is not showing up on the timeField");
+//        Assert.assertTrue(isTimeField);
+//
+//        commonUtils.click(timeField, "mobile");
+//        isTimeFieldFocused = appium.switchTo().activeElement().getAttribute("class").equals(timeFieldClass);
+//        isTimeField = commonUtils.assertValue(isTimeFieldFocused, true, "In '" + state + "' inputState, previously selected time is not regaining focus");
+//        Assert.assertTrue(isTimeField);
+//    }
+//
+//    //Styles Test
+//    @Test(testName = "Mobile: TimePicker Styles Test", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void stylesMobileTest() {
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time"};
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        color = commonUtils.getCSSValue(timepickerPgObj.clockIcon, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+//        if (!isColor) {
+//            log.info("clock icon 'color' is not as per the spec, actual: " + color);
+//        }
+//        Assert.assertTrue(isColor); //verify color for clock Icon
+//
+//        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
+//        commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+//        commonUtils.click(By.xpath("//h2"), "mobile");
+//        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
+//        color = commonUtils.getCSSValue(timepickerPgObj.checkIcon, "color", "mobile");
+//        isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6a7070"), commonUtils.hex2RgbWithoutTransparency("#6a7070")});
+//        if (!isColor) {
+//            log.info("check icon 'color' is not as per the spec, actual: " + color);
+//        }
+//        Assert.assertTrue(isColor); //verify color for check Icon
+//
+//        //commonUtils.setWindowSize(320, 800);
+//        width = commonUtils.getCSSValue(timepickerPgObj.timeFieldDefault, "width", "mobile");
+//        isWidth = commonUtils.assertValue(width, "150px", "time input field 'min-width' is not as per the spec");
+//        Assert.assertTrue(isWidth);//verify width for time input field
+//
+//        width = commonUtils.getCSSValue(timepickerPgObj.dropDownContainer, "width", "mobile");
+//        isWidth = commonUtils.assertCSSProperties("width", width, new String[]{"222px", "220px"});
+//        if (!isWidth) {
+//            log.info("dropdown container 'min-width' is not as per the spec, actual: " + width);
+//        }
+//        Assert.assertTrue(isWidth);//verify with for dropdown container
+//    }
+//
+//    //change handler
+//    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+//    private void changeHandlerMobileTest(String operationType) {
+//        if ((operationType.equals("keys"))) {
+//            throw new SkipException("keyboard operations not yet supported in firefox/safari/ie browser drivers");
+//        }
+//
+//        String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
+//        String[] propsPropertiesList = new String[]{"inputState", "default", "timeFormat", "hh:mm", "labelText", "Select time", "changeHandler", "function () {return alert('clicked!');}"};
+//
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        commonUtils.click(timepickerPgObj.timeFieldDefault, "mobile");
+//
+//        if (operationType.equals("mouse")) {
+//            commonUtils.click(timepickerPgObj.firstTimeItemInDropDown, "mobile");
+//        }
+//
+//        changeHandlerText = appium.switchTo().alert().getText();
+//        appium.switchTo().alert().accept();
+//        isChangeHandlerText = commonUtils.assertValue(changeHandlerText, "clicked!", "change handler didn't trigger the event for operationType: '" + operationType + "'");
+//        Assert.assertTrue(isChangeHandlerText);
+//    }
+//
+//    //negative tests
+//    @Test(testName = "Mobile: Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
+//    private void negativeConfigValuesMobileTest(String incorrectConfigType, String[] detailsPropertiesList, String[] propsPropertiesList) {
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, timepickerJSFilePath, "mobile");
+//
+//        isTimePickerLoaded = commonUtils.isElementPresent(timepickerPgObj.timeFieldDefault, "mobile");
+//        result = commonUtils.assertValue(isTimePickerLoaded, false, "Time Picker is loaded in spite of incorrect config for " + incorrectConfigType);
+//        Assert.assertTrue(result);
+//    }
 
     /*****************
      * Common methods
