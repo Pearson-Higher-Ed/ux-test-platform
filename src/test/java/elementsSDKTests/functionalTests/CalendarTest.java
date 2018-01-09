@@ -525,7 +525,7 @@ public class CalendarTest extends BaseClass {
         Assert.assertTrue(isTextValue);
     }
 
-    @Test(testName = "Aria Test", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Aria Test", groups = {"desktop-regression1", "mobile-regression1"})
     private void ariaTest() throws Exception {
         if (actualNextDayToLastDate) {
             throw new SkipException("There is no valid date on the calendar, since today is the current date");
