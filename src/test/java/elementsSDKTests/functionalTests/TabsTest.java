@@ -21,7 +21,8 @@ import java.util.*;
  * Created by umahaea on 6/6/17.
  */
 public class TabsTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/tabs.html";
+    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/tabs.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/tabs.html";
     private final String absTabsJSFilePath = new File("elementsSDK/functional/jsfiles/tabs/tabs.js").getAbsolutePath();
     private final String tabsJSFilePath = constructPath(absTabsJSFilePath);
     private final String absTempJSFilePath = new File("elementsSDK/functional/jsfiles/tabs/temp.js").getAbsolutePath();
@@ -76,7 +77,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = "desktop-regression")
+    @Test(testName = "Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = {"desktop-regression","mobile-regression"})
     private void tabsCreateTest(int noOfTabs, int tab, Boolean tabPresent, String tabPresentText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"light", "false", "children", "React.Children.toArray(paneArray)"};
@@ -100,7 +101,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void tabSelectionTest(int noOfTabs, String tabToSelect, int activeTab, Boolean tabActive) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"selected", tabToSelect, "light", "false", "children", "React.Children.toArray(paneArray)"};
@@ -122,7 +123,7 @@ public class TabsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = "desktop-regression")
+    @Test(testName = "Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = {"desktop-regression","mobile-regression"})
     private void tabsLightTest(String includeLight, int noOfTabs, String tabToSelect, int activeTab, String setTabLight, Boolean tabLight, String tabLightText) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = null;
@@ -150,9 +151,9 @@ public class TabsTest extends BaseClass {
     }
 
     //padding styles
-    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = "desktop-regression")
+    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = {"desktop-regression","mobile-regression"})
     private void paddingStylesTest(String state, String tab, By element, String[] expPaddingStyles) throws Exception {
-        if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox"))) && (state.equals("hover"))) {
+        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
@@ -185,7 +186,7 @@ public class TabsTest extends BaseClass {
     //States Styles
     @Test(testName = "Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = "desktop-regression")
     private void tabsStatesStylesTest(String state, String tab, String[] expFontSize, String[] expLineHeight, By element, String[] expColor, String[] expBorderBottoms, String expTextDecoration) throws Exception {
-        if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox"))) && (state.equals("hover"))) {
+        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
@@ -229,7 +230,7 @@ public class TabsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isTextDecoration);
     }
 
-    @Test(testName = "Click Tab Test", groups = "desktop-regression")
+    @Test(testName = "Click Tab Test", groups = {"desktop-regression","mobile-regression"})
     private void clickTabsTest() throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
         String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
@@ -347,136 +348,136 @@ public class TabsTest extends BaseClass {
     /*************
      * Mobile Tests
      *************/
-    @Test(testName = "Mobile: Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = "mobile-regression")
-    private void tabsCreateMobileTest(int noOfTabs, int tab, Boolean tabPresent, String tabPresentText) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = new String[]{"light", "false", "children", "React.Children.toArray(paneArray)"};
-        String paneArray = buildPaneArray(noOfTabs);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-
-        isTabPresent = commonUtils.isElementPresent(By.xpath(compTabsPgObj.xpathForTab(tab)), "mobile");
-        result = commonUtils.assertValue(isTabPresent, tabPresent, "Tab is " + tabPresentText + " as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = "mobile-regression")
-    private void tabSelectionMobileTest(int noOfTabs, String tabToSelect, int activeTab, Boolean tabActive) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = new String[]{"selected", tabToSelect, "light", "false", "children", "React.Children.toArray(paneArray)"};
-        String paneArray = buildPaneArray(noOfTabs);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-        Thread.sleep(500);
-
-        isTabActive = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(activeTab)), "class", "mobile").equals("pe-label  activeTab");
-        result = commonUtils.assertValue(isTabActive, tabActive, "The tab selection is not right as per the spec");
-        Assert.assertTrue(result);
-    }
-
-    @Test(testName = "Mobile: Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = "mobile-regression")
-    private void tabsLightMobileTest(String includeLight, int noOfTabs, String tabToSelect, int activeTab, String setTabLight, Boolean tabLight, String tabLightText) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = null;
-        if (includeLight.equals("do-not-include")) {
-            propsPropertiesList = new String[]{"selected", tabToSelect, "children", "React.Children.toArray(paneArray)"};
-        } else {
-            propsPropertiesList = new String[]{"selected", tabToSelect, "light", setTabLight, "children", "React.Children.toArray(paneArray)"};
-        }
-        String paneArray = buildPaneArray(noOfTabs);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-
-        isTabLight = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(activeTab)), "class", "mobile").equals("pe-label light activeTab");
-        result = commonUtils.assertValue(isTabLight, tabLight, "The selected tab is " + tabLightText);
-        Assert.assertTrue(result);
-    }
-
-    //padding styles
-    @Test(testName = "Mobile: Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = "mobile-regression")
-    private void paddingStylesMobileTest(String state, String tab, By element, String[] expPaddingStyles) throws Exception {
-        if (state.equals("hover")) {
-            throw new SkipException("Dont have to test hover operation on mobile");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = new String[]{"selected", "1", "light", "false", "children", "React.Children.toArray(paneArray)"};
-        String paneArray = buildPaneArray(4);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-
-        for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
-            isPadding = commonUtils.assertValue(padding, expPaddingStyles[i], paddings[i] + " for '" + tab + "' in '" + state + "' state is not as per the spec, actual: " + padding);
-            if (!isPadding) {
-                log.info(paddings[i] + " for '" + tab + "' in '" + state + "' state is not as per the spec, actual: " + padding);
-            }
-            Assert.assertTrue(isPadding);
-        }
-    }
-
-    //States Styles
-    @Test(testName = "Mobile: Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = "mobile-regression")
-    private void tabsStatesStylesMobileTest(String state, String tab, String[] expFontSize, String[] expLineHeight, By element, String[] expColor, String[] expBorderBottoms, String expTextDecoration) throws Exception {
-        if (state.equals("hover")) {
-            throw new SkipException("Don't have to test hover operation on mobile");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = new String[]{"selected", "1", "light", "false", "children", "React.Children.toArray(paneArray)"};
-        String paneArray = buildPaneArray(3);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
-        textDecoration = commonUtils.getCSSValue(element, textDecorationProperty, "mobile");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("font size for " + tab + " in '" + state + "' state is not as per the spec, actual: " + fontSize);
-        }
-        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
-        if (!isLineHeight) {
-            log.info("line height for " + tab + " in '" + state + "' state is not as per the spec, actual: " + lineHeight);
-        }
-        isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "text-decoration for '" + state + "' is not as per the spec");
-
-        for (int i = 0; i < borderBottoms.length; i++) {
-            borderBottom = commonUtils.getCSSValue(element, borderBottoms[i], "mobile");
-            if (i == 2) {
-                if (!(state.equals("default"))) {
-                    isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{commonUtils.hex2Rgb(expBorderBottoms[i]), commonUtils.hex2RgbWithoutTransparency(expBorderBottoms[i])});
-                } else {
-                    isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{"rgba(0, 0, 0, 0)", "transparent"});
-                }
-            } else {
-                isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottoms[i], borderBottoms[i] + " for " + tab + " in '" + state + "' state is not as per the spec");
-            }
-            if (!isBorderBottom) {
-                log.info(borderBottoms[i] + " for " + tab + " in '" + state + "' state is not as per the spec, actual: " + borderBottom);
-            }
-            Assert.assertTrue(isBorderBottom);
-        }
-        Assert.assertTrue(isFontSize && isLineHeight && isTextDecoration);
-    }
-
-    @Test(testName = "Mobile: Click Tab Test", groups = "mobile-regression")
-    private void clickTabsMobileTest() throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
-        String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
-        String paneArray = buildPaneArray(2);
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
-        commonUtils.click(compTabsPgObj.secondTabLink, "mobile");
-
-        String[] expBorderBottoms = new String[]{"3px", "solid", "#19a6a4"};
-
-        for (int i = 0; i < borderBottoms.length; i++) {
-            borderBottom = commonUtils.getCSSValue(compTabsPgObj.secondTabLink, borderBottoms[i], "mobile");
-            if (i == 2) {
-                isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{commonUtils.hex2Rgb(expBorderBottoms[i]), commonUtils.hex2RgbWithoutTransparency(expBorderBottoms[i])});
-            } else {
-                isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottoms[i], borderBottoms[i] + " for the clicked tab is not as per the spec");
-            }
-            if (!isBorderBottom) {
-                log.info(borderBottoms[i] + " for the clicked tab is not as per the spec, actual: " + borderBottom);
-            }
-            Assert.assertTrue(isBorderBottom);
-        }
-    }
+//    @Test(testName = "Mobile: Tabs Create Test", dataProvider = "Tabs Create Test Data", groups = "mobile-regression")
+//    private void tabsCreateMobileTest(int noOfTabs, int tab, Boolean tabPresent, String tabPresentText) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = new String[]{"light", "false", "children", "React.Children.toArray(paneArray)"};
+//        String paneArray = buildPaneArray(noOfTabs);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//
+//        isTabPresent = commonUtils.isElementPresent(By.xpath(compTabsPgObj.xpathForTab(tab)), "mobile");
+//        result = commonUtils.assertValue(isTabPresent, tabPresent, "Tab is " + tabPresentText + " as per the spec");
+//        Assert.assertTrue(result);
+//    }
+//
+//    @Test(testName = "Mobile: Tabs Selected Test", dataProvider = "Tab Selection Test Data", groups = "mobile-regression")
+//    private void tabSelectionMobileTest(int noOfTabs, String tabToSelect, int activeTab, Boolean tabActive) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = new String[]{"selected", tabToSelect, "light", "false", "children", "React.Children.toArray(paneArray)"};
+//        String paneArray = buildPaneArray(noOfTabs);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//        Thread.sleep(500);
+//
+//        isTabActive = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(activeTab)), "class", "mobile").equals("pe-label  activeTab");
+//        result = commonUtils.assertValue(isTabActive, tabActive, "The tab selection is not right as per the spec");
+//        Assert.assertTrue(result);
+//    }
+//
+//    @Test(testName = "Mobile: Tabs Light Test", dataProvider = "Tabs Light Test Data", groups = "mobile-regression")
+//    private void tabsLightMobileTest(String includeLight, int noOfTabs, String tabToSelect, int activeTab, String setTabLight, Boolean tabLight, String tabLightText) throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = null;
+//        if (includeLight.equals("do-not-include")) {
+//            propsPropertiesList = new String[]{"selected", tabToSelect, "children", "React.Children.toArray(paneArray)"};
+//        } else {
+//            propsPropertiesList = new String[]{"selected", tabToSelect, "light", setTabLight, "children", "React.Children.toArray(paneArray)"};
+//        }
+//        String paneArray = buildPaneArray(noOfTabs);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//
+//        isTabLight = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(activeTab)), "class", "mobile").equals("pe-label light activeTab");
+//        result = commonUtils.assertValue(isTabLight, tabLight, "The selected tab is " + tabLightText);
+//        Assert.assertTrue(result);
+//    }
+//
+//    //padding styles
+//    @Test(testName = "Mobile: Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = "mobile-regression")
+//    private void paddingStylesMobileTest(String state, String tab, By element, String[] expPaddingStyles) throws Exception {
+//        if (state.equals("hover")) {
+//            throw new SkipException("Dont have to test hover operation on mobile");
+//        }
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = new String[]{"selected", "1", "light", "false", "children", "React.Children.toArray(paneArray)"};
+//        String paneArray = buildPaneArray(4);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//
+//        for (int i = 0; i < paddings.length; i++) {
+//            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+//            isPadding = commonUtils.assertValue(padding, expPaddingStyles[i], paddings[i] + " for '" + tab + "' in '" + state + "' state is not as per the spec, actual: " + padding);
+//            if (!isPadding) {
+//                log.info(paddings[i] + " for '" + tab + "' in '" + state + "' state is not as per the spec, actual: " + padding);
+//            }
+//            Assert.assertTrue(isPadding);
+//        }
+//    }
+//
+//    //States Styles
+//    @Test(testName = "Mobile: Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = "mobile-regression")
+//    private void tabsStatesStylesMobileTest(String state, String tab, String[] expFontSize, String[] expLineHeight, By element, String[] expColor, String[] expBorderBottoms, String expTextDecoration) throws Exception {
+//        if (state.equals("hover")) {
+//            throw new SkipException("Don't have to test hover operation on mobile");
+//        }
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = new String[]{"selected", "1", "light", "false", "children", "React.Children.toArray(paneArray)"};
+//        String paneArray = buildPaneArray(3);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//
+//        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+//        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+//        textDecoration = commonUtils.getCSSValue(element, textDecorationProperty, "mobile");
+//
+//        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+//        if (!isFontSize) {
+//            log.info("font size for " + tab + " in '" + state + "' state is not as per the spec, actual: " + fontSize);
+//        }
+//        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+//        if (!isLineHeight) {
+//            log.info("line height for " + tab + " in '" + state + "' state is not as per the spec, actual: " + lineHeight);
+//        }
+//        isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "text-decoration for '" + state + "' is not as per the spec");
+//
+//        for (int i = 0; i < borderBottoms.length; i++) {
+//            borderBottom = commonUtils.getCSSValue(element, borderBottoms[i], "mobile");
+//            if (i == 2) {
+//                if (!(state.equals("default"))) {
+//                    isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{commonUtils.hex2Rgb(expBorderBottoms[i]), commonUtils.hex2RgbWithoutTransparency(expBorderBottoms[i])});
+//                } else {
+//                    isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{"rgba(0, 0, 0, 0)", "transparent"});
+//                }
+//            } else {
+//                isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottoms[i], borderBottoms[i] + " for " + tab + " in '" + state + "' state is not as per the spec");
+//            }
+//            if (!isBorderBottom) {
+//                log.info(borderBottoms[i] + " for " + tab + " in '" + state + "' state is not as per the spec, actual: " + borderBottom);
+//            }
+//            Assert.assertTrue(isBorderBottom);
+//        }
+//        Assert.assertTrue(isFontSize && isLineHeight && isTextDecoration);
+//    }
+//
+//    @Test(testName = "Mobile: Click Tab Test", groups = "mobile-regression")
+//    private void clickTabsMobileTest() throws Exception {
+//        String[] detailsPropertiesList = new String[]{"elementId", "tabs-target", "componentName", "Tabs"};
+//        String[] propsPropertiesList = new String[]{"selected", "0", "light", "false", "children", "React.Children.toArray(paneArray)"};
+//        String paneArray = buildPaneArray(2);
+//        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray, "mobile");
+//        commonUtils.click(compTabsPgObj.secondTabLink, "mobile");
+//
+//        String[] expBorderBottoms = new String[]{"3px", "solid", "#19a6a4"};
+//
+//        for (int i = 0; i < borderBottoms.length; i++) {
+//            borderBottom = commonUtils.getCSSValue(compTabsPgObj.secondTabLink, borderBottoms[i], "mobile");
+//            if (i == 2) {
+//                isBorderBottom = commonUtils.assertCSSProperties("border-bottom-color", borderBottom, new String[]{commonUtils.hex2Rgb(expBorderBottoms[i]), commonUtils.hex2RgbWithoutTransparency(expBorderBottoms[i])});
+//            } else {
+//                isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottoms[i], borderBottoms[i] + " for the clicked tab is not as per the spec");
+//            }
+//            if (!isBorderBottom) {
+//                log.info(borderBottoms[i] + " for the clicked tab is not as per the spec, actual: " + borderBottom);
+//            }
+//            Assert.assertTrue(isBorderBottom);
+//        }
+//    }
 
     //Common methods
     private String buildPaneArray(int paneArraySize) {
