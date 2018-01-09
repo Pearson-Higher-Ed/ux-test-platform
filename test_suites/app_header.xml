@@ -1,14 +1,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Origami v2 - App Header Test Suite">
-    <test name="origamiV2Test - App Header">
+    <test name="origamiV2Test - App Header" parallel="classes">
         <groups>
             <run>
-                <include name="desktop-regression"/>
+                <include name="mobile-regression"/>
             </run>
         </groups>
         <classes>
             <class name="standAloneTests.AppHeaderTest"/>
+            <class name="standAloneTests.AlertsTest"/>
+            <class name="standAloneTests.LoadingIndicatorTest"/>
+            <class name="standAloneTests.PaginationTest"/>
+            <class name="standAloneTests.AvatarDisplayTest"/>
+            <class name="standAloneTests.CoachMarkTest"/>
+            <class name="standAloneTests.SliderTest"/>
+            <class name="standAloneTests.DrawerTest"/>
+            <class name="standAloneTests.ModalTest"/>
+            <class name="standAloneTests.ContextualHelpTest"/>
         </classes>
     </test>
 </suite>

@@ -1492,7 +1492,7 @@ public class ContextualHelpTest extends BaseClass {
         Assert.assertTrue(isFloat);
     }
 
-    @Test(testName = "Mobile: iPhone 6 Plus and Ipad Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: iPhone 6 Plus and Ipad Verify styles for Header Room Test", dataProvider = "Contextual-Help Drawer padding-top wi/wo app-header Test Data", groups = "mobile-regressionR")
     private void styleForRoomHeaderiPhone6PlusIpadMobileTest(int width, int height, String type, String url, String[] expPaddingTop, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6S plus'");
