@@ -19,10 +19,6 @@ public class TimePickerPageObjects {
         this.driver = driver;
     }
 
-    public TimePickerPageObjects(AppiumDriver appium) {
-        this.appium = appium;
-    }
-
     public By labelTextDefault = By.xpath("//div[@class='pe-timepicker-main']/label[@class='pe-textLabelInput__label']");
     public By labelTextError = By.xpath("//div[@class='pe-timepicker-main']/label[@class='pe-textLabelInput__label--label_error']");
 
