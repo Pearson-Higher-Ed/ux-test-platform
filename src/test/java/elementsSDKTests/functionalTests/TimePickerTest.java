@@ -166,8 +166,7 @@ public class TimePickerTest extends BaseClass {
                 {"with-selection", "manually types some random text", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"},
 
                 {"without-selection", "manually types some random text", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"},
-                {"without-selection", "clicks elsewhere", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, false, "it remains focused"},
-                {"with-selection", "manually types valid date", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, true, "it doesn't remain focused"}
+                {"without-selection", "clicks elsewhere", new String[]{"default", "error"}, new By[]{timepickerPgObj.timeFieldDefault, timepickerPgObj.timeFieldError}, timepickerPgObj.dropDownContainer, new String[]{timeFieldDefaultClass, timeFieldErrorClass}, false, "it remains focused"}
         };
     }
 
@@ -195,6 +194,7 @@ public class TimePickerTest extends BaseClass {
                 if (dropDownCloseCase.equals("manually types valid date")) {
                     driver.findElement(timeFieldElement[i]).clear();
                     commonUtils.sendKeys(timeFieldElement[i], "2:00 AM");
+                    Thread.sleep(1000);
                 }
                 if (dropDownCloseCase.equals("clicks elsewhere")) {
                     commonUtils.click(By.xpath("//h2"));
