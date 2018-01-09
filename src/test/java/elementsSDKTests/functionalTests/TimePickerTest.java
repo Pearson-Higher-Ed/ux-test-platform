@@ -171,7 +171,7 @@ public class TimePickerTest extends BaseClass {
     }
 
     @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
-    private void dropDownCloseTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
+    private void dropDownCloseTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) throws InterruptedException {
 
         for (int i = 0; i < 2; i++) {
             String[] detailsPropertiesList = new String[]{"elementId", "time-picker-target", "componentName", "TimePicker"};
@@ -197,6 +197,7 @@ public class TimePickerTest extends BaseClass {
                 if (dropDownCloseCase.equals("clicks elsewhere")) {
                     commonUtils.click(By.xpath("//h2"));
                 }
+                Thread.sleep(500);
             }
 
             //without Selection
@@ -208,6 +209,7 @@ public class TimePickerTest extends BaseClass {
                     commonUtils.click(By.xpath("//h2"));
                 }
             }
+            Thread.sleep(500);
             isClockPresent = commonUtils.isElementPresent(dropDownElement);
             isClock = commonUtils.assertValue(isClockPresent, false, "In '" + state[i] + "' inputState, " + closeType + ": When the user '" + dropDownCloseCase + "', dropdown isn't hidden");
             Assert.assertTrue(isClock);
