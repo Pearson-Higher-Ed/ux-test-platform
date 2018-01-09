@@ -3,37 +3,37 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="mobile-regression"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
-    <!--<test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="10">
+    <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="10">
         <classes>
-            <class name="elementsSDKTests.functionalTests.AlertsTest"/>
-            <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
-            <class name="elementsSDKTests.functionalTests.DropdownTest"/>
-            <class name="elementsSDKTests.functionalTests.FooterTest"/>
-            <class name="elementsSDKTests.functionalTests.IconsTest"/>
-            <class name="elementsSDKTests.functionalTests.InputsTest"/>
-            <class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>
-            <class name="elementsSDKTests.functionalTests.TabsTest"/>
-            <class name="elementsSDKTests.functionalTests.CalendarTest"/>
-            <class name="elementsSDKTests.functionalTests.TablesTest"/>
-            <class name="elementsSDKTests.functionalTests.TimePickerTest"/>
-            <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.AlertsTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.ButtonsTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.FooterTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.IconsTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.InputsTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.TabsTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.TablesTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.TimePickerTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.DatePickerTest"/>-->
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
-            <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>-->
         </classes>
-    </test>-->
+    </test>
     <!-- Styles(CSS) Tests -->
     <test name="ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="5">
         <classes>
-            <class name="elementsSDKTests.stylesTests.InputsTest"/>
-            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
-            <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
-            <class name="elementsSDKTests.stylesTests.IconsTest"/>
-            <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <class name="elementsSDKTests.stylesTests.FormsTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.InputsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TypographyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ButtonsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.IconsTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TablesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.FormsTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->

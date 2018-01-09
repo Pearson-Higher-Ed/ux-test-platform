@@ -66,7 +66,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "desktop-regression")
     private void progressBarAndRailStylesTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         height = commonUtils.getCSSValue(element, "height");
@@ -85,7 +85,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Animated Progress Bar Styles Test", groups = {"desktop-regression","desktop-ci"})
     private void animatedProgressBarStylesTest() throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         animationDuration = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "animation-duration");
@@ -114,7 +114,7 @@ public class ProgressBarTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = new String[]{};
         if (labelAlign.equals("default")) {
-            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"};
+            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "valueText", "HelloWorld","id", "test-id'"};
         } else {
             propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", labelAlign, "labelText", "% completed", "id", "test-id'"};
         }
@@ -137,7 +137,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = {"desktop-regression","desktop-ci"})
     private void progressCalcTest(String min, String max, String value, String expProgress) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         progress = commonUtils.getAttributeValue(progressBarPgObj.progressBar, "style");
@@ -149,10 +149,10 @@ public class ProgressBarTest extends BaseClass {
     @DataProvider(name = "Negative Config Test Data")
     public Object[][] getNegativeConfigTestData() {
         return new Object[][]{
-                {"empty-elementId", new String[]{"componentName", "ProgressBar"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"}},
-                {"incorrect-elementId", new String[]{"elementId", "progress-bar-target1", "componentName", "ProgressBar"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"}},
-                {"empty-componentName", new String[]{"elementId", "progress-bar-target"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"}},
-                {"incorrect-componentName", new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar1"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"}}
+                {"empty-elementId", new String[]{"componentName", "ProgressBar"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "valueText", "HelloWorld","id", "test-id'"}},
+                {"incorrect-elementId", new String[]{"elementId", "progress-bar-target1", "componentName", "ProgressBar"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"}},
+                {"empty-componentName", new String[]{"elementId", "progress-bar-target"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"}},
+                {"incorrect-componentName", new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar1"}, new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"}}
         };
     }
 
@@ -169,7 +169,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Mobile: Progress Bar And Rail Styles Test", dataProvider = "Progress Bar And Rail Styles Test Data", groups = "mobile-regression")
     private void progressBarAndRailStylesMobileTest(String type, By element, String expHeight, String[] expBgColor, String expMarginTop) {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", "center", "labelText", "% completed", "valueText", "HelloWorld","id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         height = commonUtils.getCSSValue(element, "height", "mobile");
@@ -188,7 +188,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Mobile: Animated Progress Bar Styles Test", groups = "mobile-regression")
     private void animatedProgressBarStylesMobileTest() {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "animated", "alignLabel", "center", "labelText", "% completed", "valueText", "HelloWorld","id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         animationDuration = commonUtils.getCSSValue(progressBarPgObj.animatedProgressBar, "animation-duration", "mobile");
@@ -207,9 +207,9 @@ public class ProgressBarTest extends BaseClass {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
         String[] propsPropertiesList = null;
         if (labelAlign.equals("default")) {
-            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed", "id", "test-id'"};
+            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         } else {
-            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", labelAlign, "labelText", "% completed", "id", "test-id'"};
+            propsPropertiesList = new String[]{"min", "0", "max", "100", "value", "40", "type", "basic", "alignLabel", labelAlign, "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         }
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
@@ -221,7 +221,7 @@ public class ProgressBarTest extends BaseClass {
     @Test(testName = "Mobile: Progress Calc Test", dataProvider = "Progress Calc Test Data", groups = "mobile-regression")
     private void progressCalcMobileTest(String min, String max, String value, String expProgress) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "progress-bar-target", "componentName", "ProgressBar"};
-        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed", "id", "test-id'"};
+        String[] propsPropertiesList = new String[]{"min", min, "max", max, "value", value, "type", "basic", "alignLabel", "center", "labelText", "% completed","valueText", "HelloWorld", "id", "test-id'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         progress = commonUtils.getAttributeValue(progressBarPgObj.progressBar, "style", "mobile");

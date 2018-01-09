@@ -10,7 +10,8 @@ function init() {
 				type: 'animated',
 				alignLabel: 'center',
 				labelText: '% completed',
-				id: 'test-id'
+				id: 'test-id',
+                valueText : 'HelloWorld'
 			}
 		}
 	}));
