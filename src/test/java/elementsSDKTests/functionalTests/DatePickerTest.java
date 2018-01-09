@@ -278,7 +278,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //TAB - forward
-    @Test(testName = "Forward TAB Test", groups = "desktop-regression1", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Forward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void forwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
@@ -307,7 +307,7 @@ public class DatePickerTest extends BaseClass {
     }
 
     //TAB - backward
-    @Test(testName = "Backward TAB Test", groups = "desktop-regression1", retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "Backward TAB Test", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
     private void backwardTabTest() {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge"))) {
             throw new SkipException("focus operation not yet supported in firefox/safari/ie browser drivers");
