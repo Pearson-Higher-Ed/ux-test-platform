@@ -20,8 +20,10 @@ import java.util.*;
  * Created by umahaea on 7/26/17.
  */
 public class CalendarTest extends BaseClass {
-    private final String calendarWhiteUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-white.html";
-    private final String calendarInkblueUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-inkblue.html";
+    //private final String calendarWhiteUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-white.html";
+    private final String calendarWhiteUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-white.html";
+    //private final String calendarInkblueUrl = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-inkblue.html";
+    private final String calendarInkblueUrl = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/calendar/calendar-inkblue.html";
     private final String absCalendarWhiteJSFilePath = new File("elementsSDK/functional/jsfiles/calendar/calendar-white.js").getAbsolutePath();
     private final String absCalendarInkblueJSFilePath = new File("elementsSDK/functional/jsfiles/calendar/calendar-inkblue.js").getAbsolutePath();
     private final String calendarWhiteJSFilePath = constructPath(absCalendarWhiteJSFilePath);

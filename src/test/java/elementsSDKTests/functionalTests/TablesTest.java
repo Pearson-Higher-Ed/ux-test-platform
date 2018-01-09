@@ -20,7 +20,6 @@ import java.util.*;
  * Created by udhadpa on 9/6/17.
  */
 public class TablesTest extends BaseClass {
-    //private final String url = "http://localhost:8000/src/main/java/elementsSDK/functional/fixtures/tables.html";
     private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/functional/fixtures/tables.html";
     private final String absTablesJSFilePath = new File("elementsSDK/functional/jsfiles/tables/tables.js").getAbsolutePath();
     private final String tablesJSFilePath = constructPath(absTablesJSFilePath);
