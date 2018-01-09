@@ -71,6 +71,7 @@ public class CalendarTest extends BaseClass {
         }
         calendarPgObj = new FunctionalCalendarPageObjects(driver);
         commonUtils.getUrl(calendarWhiteUrl);
+        Assert.assertTrue(isCurrentDateOK(), "looks like the exp and actual current dates are not same");
     }
 
     @DataProvider(name = "Current Date Test Data")
