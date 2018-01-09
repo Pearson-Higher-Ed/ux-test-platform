@@ -514,7 +514,7 @@ public class CalendarTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Week Start Day Test", dataProvider = "Week Start Day Prop Test Data", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Week Start Day Test", dataProvider = "Week Start Day Prop Test Data", groups = {"desktop-regression", "mobile-regression1"})
     private void weekStartDayTest(String weekStartDayProp, String num, String expWeekStartDay) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "calendar-target", "componentName", "Calendar"};
         String[] propsPropertiesList = new String[]{"disablePast", "true", "contrast", "false", weekStartDayProp, num};
@@ -525,7 +525,7 @@ public class CalendarTest extends BaseClass {
         Assert.assertTrue(isTextValue);
     }
 
-    @Test(testName = "Aria Test", groups = {"desktop-regression", "mobile-regression"})
+    @Test(testName = "Aria Test", groups = {"desktop-regression", "mobile-regression1"})
     private void ariaTest() throws Exception {
         if (actualNextDayToLastDate) {
             throw new SkipException("There is no valid date on the calendar, since today is the current date");
@@ -537,6 +537,7 @@ public class CalendarTest extends BaseClass {
         commonUtils.click(By.xpath(actualNextDayToCurrentDate + "/div"));
         String[] split = commonUtils.getText(By.xpath(actualNextDayToCurrentDate + "/div")).replaceAll("\n", " ").split(" ");
         clickedDate = "day" + split[0];
+        System.out.println(clickedDate);
         activeDescendant = commonUtils.getAttributeValue(calendarPgObj.calendarFix, "aria-activedescendant");
         isActiveDescendant = commonUtils.assertValue(activeDescendant, clickedDate, "active-descendant for clicked date is not working as per the spec");
 
