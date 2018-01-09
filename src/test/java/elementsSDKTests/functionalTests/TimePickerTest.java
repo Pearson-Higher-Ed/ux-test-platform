@@ -170,7 +170,7 @@ public class TimePickerTest extends BaseClass {
         };
     }
 
-    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = {"desktop-regression", "mobile-regression1"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(testName = "DropDown Close Test", dataProvider = "DropDown Close Test Data", groups = {"desktop-regression", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void dropDownCloseTest(String closeType, String dropDownCloseCase, String[] state, By[] timeFieldElement, By dropDownElement, String[] timeFieldClass, boolean expTimeFieldFocus, String timeFieldFocusState) {
 
         for (int i = 0; i < 2; i++) {
