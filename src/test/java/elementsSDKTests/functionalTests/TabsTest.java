@@ -151,7 +151,7 @@ public class TabsTest extends BaseClass {
     }
 
     //padding styles
-    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Tabs - Padding Styles Test", dataProvider = "Tabs - Padding Styles Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void paddingStylesTest(String state, String tab, By element, String[] expPaddingStyles) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
@@ -184,7 +184,7 @@ public class TabsTest extends BaseClass {
     }
 
     //States Styles
-    @Test(testName = "Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = {"desktop-regression", "mobile-regression1"})
+    @Test(testName = "Tabs - States Styles Test", dataProvider = "Tabs States Styles Test Data", groups = {"desktop-regression", "mobile-regression"})
     private void tabsStatesStylesTest(String state, String tab, String[] expFontSize, String[] expLineHeight, By element, String[] expColor, String[] expBorderBottoms, String expTextDecoration) throws Exception {
         if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || browser.equals("edge") || (groupsInclude.equals("mobile-regression") && state.equals("hover"))) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
