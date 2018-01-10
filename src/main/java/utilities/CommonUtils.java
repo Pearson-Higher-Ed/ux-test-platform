@@ -105,8 +105,7 @@ public class CommonUtils {
     public void sendKeys(By element, String text) {
         try {
             webElement = driver.findElement(element);
-            webElement.clear();
-            js.executeScript("arguments[0].value = '';", element);
+            js.executeScript("arguments[0].value = '';", webElement);
             webElement.sendKeys(text);
         } catch (NoSuchElementException e) {
             System.out.println(errorColorCode + Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + Thread.currentThread().getStackTrace()[2].getLineNumber() + " - " + element + ": no such element, sendkeys operation didn't happen");
