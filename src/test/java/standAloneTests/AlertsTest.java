@@ -280,7 +280,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR1"})
+    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR"})
     private void paddingForAlertsResponsiveTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
@@ -513,7 +513,7 @@ public class AlertsTest extends BaseClass {
         Assert.assertTrue(isWidth && isPaddingLeft && isPaddingRight);
     }
 
-    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regressionR"})
+    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regressionR1"})
     private void paddingForAlertsResponsiveMobileTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
