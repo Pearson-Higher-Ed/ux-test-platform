@@ -16,8 +16,9 @@ addons:
       packages:
         - g++-4.8
   browserstack:
-            - secure: secure: h8tG0ie0rzN3wRspMQPfOxnKehQbix+aGpiskG/9VMoHZ0QbW7s0wrpz8Ljwh8qIFZPGUfp1TOSQy6HBJinSS/xGloUtnGlFaYYmWdE/RYjwCNMOZ9kXvcZv6Cf/8Gu+l+VcKpuarpML4L7b//ke+thZgH16xWInmv1IXrQzpcEBHJGtVntuppDnEaWCjD4FWQdS6+2TJFsFwB/KOs/8A/+Q0mJPwXeggBfMjD5STQRefAi0ebqVro3UJK6ZMWiQy4ZS77E9bXGvlUNX4NRVtLN/+TB0NJwW/Bvj4LVrCQuTkoOLYtF5vkjTkgazes9/QFapjWAPq7A8jZG+4GsuXIZy732NX361EY6vStYJIXZi74OtG4U17/TIDTsNPhR7JGIlkxu7koy2/vfmLjyqwQakcsXtL5V0PG+49KGxh3PQmJXkQpEF2ZyI3c3VuuqpZ8hKdB/A28LcJ7hQnGvN3RCWf0c67ftcmi7f07ulE7YFuuT2lX7XlWsNmgrp/BLNoyY7HjToCHpOv9vlZqj/axC0jrBeXIu63lUz4YPlAYAXgatEmlmm/hZZbe9la9kxw6XmMf3i3ETWTcEYklMWsT4tnYFNfH4AbVh9XDKBeu5yVkak2O2lqsWMByCQRgbiNBMMCrgwtOeFbHBQ8D8c2wmj5OVLgIAK3PfcHnDBmpA=
-            - secure: ZjKHHPmZV5F9kwDQYDaZB3IZ3Mkji3dVxr/VmYyjL7NfZQIZ2PICpOa9bX8S9+9eivMfW4nfJ0RS+zArZBheIqmqpfkuozom9nT3iSzzIpfSpzXZ+OwVLrNpz5NiWcV5Oa2Vk9UkPyw4tOja0+RL11hqFr1OKE3MY1STXV1MVjXTbUfGd1eR61ZDjGIJxyLp1wTf7Qk4G17AsA3F0tsoovSQzpaOD/WmtzgoguoKdy4medaH3xymHd9B9EMuFmCg0n8sBonZ/2QCYXZqEIOdEVPiYZ+VwSblwAyM7OU3Kx5uM1zjIWCuOk4hCGnZbFTjiuVCrVekrQ8B/HanSFsYtsiSFPOm3VZa4kAraoIHUO3FHj1CoKqgbeLXJ4SA//9wusHVdwaZRrj1Gsp6D64UzDgnIe4FTvn0SB0MH7VR8N/OHg0f+ounCfnPkxGup98y2dMPQfS84PdDhuJuYjOyiQEYLj5dtbNsLoj77mSVlSsbhjzv8DNk2RFzt5c9iXpkRcpsVIFKP07WqevU/kWMOhbTaugdnW08cwJwWL9q1JsgOHXVxW4Ksb6XSt7MJ/rg6RV0r2ObhzjPAK3P/9iW6E4OEW+Q1bCU7JA5NJsf0tHBsJEv62X/8wUouBSwntVYcal+6mSUKsYJ0uUgOnZZPvseYcztVklqmHJ7iTiWFqA=
+          username: "uxf2"
+          access_key:
+              secure: ZjKHHPmZV5F9kwDQYDaZB3IZ3Mkji3dVxr/VmYyjL7NfZQIZ2PICpOa9bX8S9+9eivMfW4nfJ0RS+zArZBheIqmqpfkuozom9nT3iSzzIpfSpzXZ+OwVLrNpz5NiWcV5Oa2Vk9UkPyw4tOja0+RL11hqFr1OKE3MY1STXV1MVjXTbUfGd1eR61ZDjGIJxyLp1wTf7Qk4G17AsA3F0tsoovSQzpaOD/WmtzgoguoKdy4medaH3xymHd9B9EMuFmCg0n8sBonZ/2QCYXZqEIOdEVPiYZ+VwSblwAyM7OU3Kx5uM1zjIWCuOk4hCGnZbFTjiuVCrVekrQ8B/HanSFsYtsiSFPOm3VZa4kAraoIHUO3FHj1CoKqgbeLXJ4SA//9wusHVdwaZRrj1Gsp6D64UzDgnIe4FTvn0SB0MH7VR8N/OHg0f+ounCfnPkxGup98y2dMPQfS84PdDhuJuYjOyiQEYLj5dtbNsLoj77mSVlSsbhjzv8DNk2RFzt5c9iXpkRcpsVIFKP07WqevU/kWMOhbTaugdnW08cwJwWL9q1JsgOHXVxW4Ksb6XSt7MJ/rg6RV0r2ObhzjPAK3P/9iW6E4OEW+Q1bCU7JA5NJsf0tHBsJEv62X/8wUouBSwntVYcal+6mSUKsYJ0uUgOnZZPvseYcztVklqmHJ7iTiWFqA=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
@@ -32,7 +33,7 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=elements_sdk.xml test
+- mvn -Dtest_suite_xml=functional.xml test
 
 notifications:
   email:
