@@ -39,14 +39,7 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    //    final static String USERNAME = SauceParam.SAUCE_USERNAME;
-//    final static String ACCESS_KEY = SauceParam.SAUCE_ACCESS_KEY;
-//    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-//    final static String USERNAME = "payalpda1";
-//    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
-    final static String USERNAME = "uxf2";
-    final static String AUTOMATE_KEY = "qUujsjsNwzzpSgSzC5w4";
-    //final String URL = "https://" + System.getenv("username") + ":" + System.getenv("access_key") + "@hub-cloud.browserstack.com/wd/hub";
+    final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     final String URL = "https://" + USERNAME + ":" + System.getenv("BROWSERSTACK_ACCESS_KEY") + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
