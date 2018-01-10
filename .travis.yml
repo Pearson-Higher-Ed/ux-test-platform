@@ -13,10 +13,11 @@ env:
 
 addons:
   apt:
-#      sources:
-#        - ubuntu-toolchain-r-test
+      sources:
+        - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
+
   browserstack: true
 #          username: "payalpda1"
 #          access_key:
