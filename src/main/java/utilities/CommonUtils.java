@@ -107,6 +107,7 @@ public class CommonUtils {
             System.out.println("2");
             webElement = driver.findElement(element);
             System.out.println("3");
+            js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].value = '';", webElement);
             System.out.println("4");
             webElement.sendKeys(text);
