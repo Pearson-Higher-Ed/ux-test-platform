@@ -285,11 +285,11 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression1"})
+    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression"})
     private void paddingForAlertsResponsiveTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
-//        if (!platform.equals("OS X")) {
-//            throw new SkipException("Responsive tests are not supported on Windows in sauce");
-//        }
+        if (!platform.equals("OS X")) {
+            throw new SkipException("Responsive tests are not supported on Windows in sauce");
+        }
         alertType = alertsPgObj.generateRandomAlerts();
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
