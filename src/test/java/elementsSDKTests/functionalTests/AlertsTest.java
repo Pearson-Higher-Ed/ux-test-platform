@@ -285,7 +285,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression1"})
     private void paddingForAlertsResponsiveTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
         if (!platform.equals("OS S")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");

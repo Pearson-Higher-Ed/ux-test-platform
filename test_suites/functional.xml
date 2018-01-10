@@ -3,13 +3,13 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="mobile-regression1"/>
+            <include name="desktop-regression1"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
     <test name="ElementsSDK: Functional(JavaScript) Tests" parallel="classes" thread-count="5">
         <classes>
-            <!--<class name="elementsSDKTests.functionalTests.AlertsTest"/>-->
+            <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <!--<class name="elementsSDKTests.functionalTests.ButtonsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.InputsTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.ProgressBarTest"/>-->
@@ -23,7 +23,7 @@
 
             <!--<class name="elementsSDKTests.functionalTests.TimePickerTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.DatePickerTest"/>-->
-            <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
+            <!--<class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>-->
             <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
         </classes>
     </test>
