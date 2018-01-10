@@ -182,7 +182,6 @@ public class DatePickerTest extends BaseClass {
     @Test(testName = "Calendar Close Test", dataProvider = "Calendar Close Test Data", groups = {"desktop-regression", "desktop-ci", "mobile-regression"}, retryAnalyzer = RetryAnalyzer.class)
     private void calendarCloseTest(String closeType, String calendarCloseCase, String[] state, By[] dateFieldElement, By calendarElement, String[] dateFieldClass, boolean expDateFieldFocus, String dateFieldFocusState) throws InterruptedException {
         for (int i = 0; i < 2; i++) {
-            //Thread.sleep(2000);
             String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
             String[] propsPropertiesList = new String[]{"inputState", state[i], "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
             setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
