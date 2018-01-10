@@ -4,11 +4,12 @@
     <test name="origamiV2Test - Alerts">
         <groups>
             <run>
-                <include name="mobile-regressionR1"/>
+                <include name="mobile-regressionR"/>
             </run>
         </groups>
         <classes>
-            <class name="standAloneTests.AlertsTest"/>
+            <!--<class name="standAloneTests.AlertsTest"/>-->
+            <class name="elementsSDKTests.stylesTests.GridTest"/>
         </classes>
     </test>
 </suite>

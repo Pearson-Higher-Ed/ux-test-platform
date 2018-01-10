@@ -329,14 +329,14 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XS and SM Container Padding Test", dataProvider = "iOS: XS and SM Container Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XS and SM Container Padding Test", dataProvider = "iOS: XS and SM Container Padding Test Data", groups = "mobile-regressionR")
     private void xsAndSMContainerPaddingMobileiOSTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
-        if (!(mobileDevice.equals("iPhone 7"))) {
+        /*if (!(mobileDevice.equals("iPhone 6s"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
-        }
+        }*/
         //commonUtils.rotate(mode);
         WebDriver augmentedDriver = new Augmenter().augment(driver);
-        ((Rotatable)augmentedDriver).rotate(ScreenOrientation.LANDSCAPE);
+        ((Rotatable)augmentedDriver).rotate(mode);
         System.out.println(((Rotatable) augmentedDriver).getOrientation());
         commonUtils.getUrl(url);
         appium.rotate(mode);
