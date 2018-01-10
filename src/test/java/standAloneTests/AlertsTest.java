@@ -276,7 +276,7 @@ public class AlertsTest extends BaseClass {
         return new Object[][]{
                 {320, 800, "36px", "8px", "8px", "24px", "28px", "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
                 {480, 800, "36px", "8px", "8px", "24px", "28px", "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {768, 800, "32px", "12px", "12px", "28px", "28px", "iPad Air", ScreenOrientation.PORTRAIT},
+              //  {768, 800, "32px", "12px", "12px", "28px", "28px", "iPad Air", ScreenOrientation.PORTRAIT},
         };
     }
 
