@@ -105,14 +105,14 @@ public class PhoneNumberTest extends BaseClass {
     public Object[][] getTypePhoneNumberTestData() {
         return new Object[][]{
                 {countryCodes[0], "fancy", countryFlagCodes[0], countries[0], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "true", "infoMessage", "Test Info'"}},
-//                {countryCodes[3], "basic", countryFlagCodes[3], countries[3], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "true", "infoMessage", "Test Info'"}},
-//                {countryCodes[4], "error-fancy", countryFlagCodes[4], countries[4], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "true", "infoMessage", "Test Info", "errorMessage", "incorrect phone number'"}},
-//                {countryCodes[4], "error-basic", countryFlagCodes[4], countries[4], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "false", "infoMessage", "Test Info", "errorMessage", "incorrect phone number'"}}
+                {countryCodes[3], "basic", countryFlagCodes[3], countries[3], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "true", "infoMessage", "Test Info'"}},
+                {countryCodes[4], "error-fancy", countryFlagCodes[4], countries[4], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "true", "infoMessage", "Test Info", "errorMessage", "incorrect phone number'"}},
+                {countryCodes[4], "error-basic", countryFlagCodes[4], countries[4], new String[]{"labelText", "Mobile Phone", "placeholder", "555-555-5555", "fancy", "false", "infoMessage", "Test Info", "errorMessage", "incorrect phone number'"}}
         };
     }
 
     @Test(testName = "Type Phone number Test Data", dataProvider = "Type Phone Number Test Data", groups = {"desktop-regression", "mobile-regression1"})
-    private void typePhoneNumberTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
+    private void typePhoneNumberTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         commonUtils.printFileContents(phoneNumberJSFilePath);
@@ -120,6 +120,9 @@ public class PhoneNumberTest extends BaseClass {
 
         //enter country code
         commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode);
+        if(groupsInclude.startsWith("mobile")) {
+            Thread.sleep(500);
+        }
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
         Assert.assertTrue(isFlag);
