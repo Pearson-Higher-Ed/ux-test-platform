@@ -120,7 +120,6 @@ public class PhoneNumberTest extends BaseClass {
 
         //enter country code
         commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode);
-        System.out.println("2");
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
         Assert.assertTrue(isFlag);
