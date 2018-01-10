@@ -44,8 +44,8 @@ public class BaseClass {
 //    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 //    final static String USERNAME = "payalpda1";
 //    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
-    final static String USERNAME = "uxf2";
-    final static String AUTOMATE_KEY = "qUujsjsNwzzpSgSzC5w4";
+    final static String USERNAME = "payalpda1";
+    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
     //final String URL = "https://" + System.getenv("username") + ":" + System.getenv("access_key") + "@hub-cloud.browserstack.com/wd/hub";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
@@ -67,6 +67,8 @@ public class BaseClass {
         logs.enable(LogType.BROWSER, Level.ALL);
 
         System.out.println("USRNAME" +  System.getenv("username"));
+        System.out.println("USRNAME" +  System.getenv("BROWSERSTACK_USERNAME"));
+
         System.out.println("Accesskey" +  System.getenv("BROWSERSTACK_ACCESS_KEY"));
         //String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
         //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
