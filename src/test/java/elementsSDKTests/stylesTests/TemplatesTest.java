@@ -415,7 +415,7 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XS column Padding Test", dataProvider = "iOS: XS Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XS column Padding Test", dataProvider = "iOS: XS Template Test Data", groups = "mobile-regressionR")
     private void xsTemplateMobileiOSTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus' or 'iPhone 7 Plus");
@@ -482,13 +482,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): SM column Padding Test", dataProvider = "iOS: SM Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): SM column Padding Test", dataProvider = "iOS: SM Template Test Data", groups = "mobile-regressionR")
     private void smTemplateMobileiOSTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus' or 'iPhone 7 Plus");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -549,13 +550,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): MD column Padding Test", dataProvider = "iOS: MD Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): MD column Padding Test", dataProvider = "iOS: MD Template Test Data", groups = "mobile-regressionR")
     private void mdTemplateMobileiOSTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -616,13 +618,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): LG column Padding Test", dataProvider = "iOS: LG Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): LG column Padding Test", dataProvider = "iOS: LG Template Test Data", groups = "mobile-regressionR")
     private void lgTemplateMobileiOSTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -683,13 +686,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XL column Padding Test", dataProvider = "iOS: XL Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XL column Padding Test", dataProvider = "iOS: XL Template Test Data", groups = "mobile-regressionR")
     private void xlTemplateMobileiOSTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("iPad Pro Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -750,13 +754,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(Android): SM column Padding Test", dataProvider = "Android: SM Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(Android): SM column Padding Test", dataProvider = "Android: SM Template Test Data", groups = "mobile-regressionR")
     private void smTemplateMobileAndroidTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");
@@ -817,13 +822,14 @@ public class TemplatesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(Android): MD column Padding Test", dataProvider = "Android: MD Template Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(Android): MD column Padding Test", dataProvider = "Android: MD Template Test Data", groups = "mobile-regressionR")
     private void mdTemplateMobileAndroidTest(String type, ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String expColWidth, String expPaddingBottom, String expPaddingTop) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        commonUtils.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         colWidth = commonUtils.getCSSValue(element, "width");

@@ -504,7 +504,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "desktop-regression")
+    @Test(testName = "Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = {"desktop-regression","mobile-regression"})
     private void fancyPasswordInputOtherFieldsShowTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) {
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -668,7 +668,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputOtherFieldsShowTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) {
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -713,7 +713,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "desktop-regression")
+    @Test(testName = "Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = {"desktop-regression","mobile-regression"})
     private void basicPasswordInputShowBtnTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws InterruptedException {
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
         marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
@@ -750,7 +750,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Basic - Verify Password Input - Show Button Focus Test", dataProvider = "Basic - Password Input - Show Button Focus Test data", groups = "desktop-regression")
     private void basicPasswordInputShowBtnFocusTest(String inputState, String id, String showButtonId, By showbutton) throws Exception {
         if ((browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox"))) {
-            throw new SkipException("");
+            throw new SkipException("Focus is not supported on firefox and safari browsers");
         }
         commonUtils.focusOnElementById(showButtonId);
         Thread.sleep(500);
@@ -1339,7 +1339,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = {"desktop-regression","mobile-regression"})
     private void svgIconForCheckBoxTest(String type, By element, By iconElement, String expOpacity, String[] expHeight, String[] expWidth) throws Exception {
         commonUtils.clickUsingJS(element);
         opacity = commonUtils.getCSSValue(iconElement, "opacity");
@@ -1370,8 +1370,11 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "desktop-regression")
+    @Test(testName = "Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = {"desktop-regression","mobile-regression"})
     private void labelForCheckBoxTest(String type, By element, String[] expPaddingLeft, String expDisplay) {
+        if (type.contains("focus") && setMobile.equals("on")) {
+            throw new SkipException("Don't have to test focus operations on mobile");
+        }
         if (type.contains("focus")) {
             commonUtils.focusOnElementById(type);
         }
@@ -1881,12 +1884,12 @@ public class InputsTest extends BaseClass {
             Assert.assertTrue(isAriaDescByContains);
         }
         Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
-    } */
+    }
 
 
 
     //Fancy - Password Input
-    @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Fancy - Verify Password Input - Label,and Msg", dataProvider = "Fancy - Password Input - Label,and Msg Test Data", groups = "mobile-regressionT")
     private void fancyPasswordInputOtherFieldsShowMobileTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) {
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -1922,7 +1925,7 @@ public class InputsTest extends BaseClass {
 
     }
 
-   /* @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
+   @Test(testName = "Mobile: Fancy - Verify Password Input - Show Button Test", dataProvider = "Fancy - Password Input - Show Button Test data", groups = "mobile-regression")
     private void fancyPasswordInputFancyShowBtnMobileTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop) throws InterruptedException {
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
         marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
@@ -1986,10 +1989,10 @@ public class InputsTest extends BaseClass {
             log.info("Underline color  of " + type + " is not as per spec,actual " + color);
         }
         Assert.assertTrue(isHeight && isColor);
-    }*/
+    }
 
     //Basic - Password Input
-    @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Basic - Verify Password Input - Label,and Msg", dataProvider = "Basic - Password Input - Label,and Msg Test Data", groups = "mobile-regressionT")
     private void basicPasswordInputOtherFieldsShowMobileTest(String type, By elem, By label, By infoMsg, By errorMsg, String expLabelFontSize, String[] expLabelFontColor) throws InterruptedException {
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
@@ -2029,7 +2032,7 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isLabelFontSize && isLabelColor && isLabelFor);
     }
 
-    @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Basic - Verify Password Input - Show Button", dataProvider = "Basic - Password Input - Show Button Test data", groups = "mobile-regressionT")
     private void basicPasswordInputShowBtnMobileTest(String type, By showbutton, String[] expShowBtnColor, String expMarginTop, String expMarginRight) throws InterruptedException {
         showBtnColor = commonUtils.getCSSValue(showbutton, "color");
         marginTop = commonUtils.getCSSValue(showbutton, "margin-top");
@@ -2344,9 +2347,9 @@ public class InputsTest extends BaseClass {
             log.info("'" + cssPropertyType + "' :for checkbox in disabled state is not as per the spec, actual: " + cssProperty);
         }
         Assert.assertTrue(isCSSProperty);
-    } */
+    }
 
-    @Test(testName = "Mobile: Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Check Box- SVG Icon", dataProvider = "Check Box - SVG Icon Test Data", groups = "mobile-regressionT")
     private void svgIconForCheckBoxMobileTest(String type, By element, By iconElement, String expOpacity, String[] expHeight, String[] expWidth) throws Exception {
         commonUtils.click(element);
         opacity = commonUtils.getCSSValue(iconElement, "opacity");
@@ -2365,7 +2368,7 @@ public class InputsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regressionT")
     private void labelForCheckBoxMobileTest(String type, By element, String[] expPaddingLeft, String expDisplay) {
         if (type.contains("focus")) {
             throw new SkipException("Don't have to test focus operations on mobile");

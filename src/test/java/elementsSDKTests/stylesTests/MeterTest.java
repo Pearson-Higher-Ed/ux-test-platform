@@ -75,7 +75,7 @@ public class MeterTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Border Properties Test", dataProvider = "Meter Border Properties Test Data", groups = {"desktop-ci", "desktop-regression"})
+    @Test(testName = "Border Properties Test", dataProvider = "Meter Border Properties Test Data", groups = {"desktop-ci", "desktop-regression","mobile-regression"})
     private void meterBorderPropertiesTest(By element, String[] borderTopColor, String[] borderBottomColor, String[] borderLeftColor, String[] borderRightColor, String borderTopStyle, String borderBottomStyle, String borderLeftStyle, String borderRightStyle, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth) {
         commonUtils.getUrl(url);
         result = verifyMeterBorderProperties(element, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth);
@@ -128,14 +128,14 @@ public class MeterTest extends BaseClass {
         }
         Assert.assertTrue(isHeight && isBackgroundColor);
     }
-*/
+
     @Test(testName = "Mobile: Border Properties Test", dataProvider = "Meter Border Properties Test Data", groups = {"mobile-regression"})
     private void meterBorderPropertiesMobileTest(By element, String[] borderTopColor, String[] borderBottomColor, String[] borderLeftColor, String[] borderRightColor, String borderTopStyle, String borderBottomStyle, String borderLeftStyle, String borderRightStyle, String borderTopWidth, String borderBottomWidth, String borderLeftWidth, String borderRightWidth) {
         commonUtils.getUrl(url);
         result = verifyMeterBorderProperties(element, borderTopColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth);
         Assert.assertTrue(result);
     }
-
+*/
    /* @Test(testName = "Mobile: Meter-Basic Label Test", groups = "mobile-regression")
     private void useBasicLabelMobileTest() {
         commonUtils.getUrl(url);
