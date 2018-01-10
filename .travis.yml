@@ -11,8 +11,8 @@ env:
 
 addons:
   apt:
-#      sources:
-#        - ubuntu-toolchain-r-test
+      sources:
+        - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
   browserstack:
@@ -38,7 +38,7 @@ script:
 notifications:
   email:
     recipients:
-    #- eajazali.mahaboobbasha@pearson.com
+    - eajazali.mahaboobbasha@pearson.com
     - payal.dhadge@pearson.com
     on_success: always
     on_failure: always
