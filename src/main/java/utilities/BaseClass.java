@@ -1,15 +1,11 @@
 package utilities;
 
-import com.sun.tools.classfile.Synthetic_attribute;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
+
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -51,6 +47,7 @@ public class BaseClass {
     final static String USERNAME = "payalpda1";
     final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
     final String URL = "https://" + System.getenv("USERNAME") + ":" + System.getenv("AUTOMATE_KEY") + "@hub-cloud.browserstack.com/wd/hub";
+    //final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
