@@ -1,5 +1,6 @@
 package utilities;
 
+import com.sun.tools.classfile.Synthetic_attribute;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;

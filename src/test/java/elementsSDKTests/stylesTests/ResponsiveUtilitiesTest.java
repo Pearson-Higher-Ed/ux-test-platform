@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 
 public class ResponsiveUtilitiesTest extends BaseClass {
 
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/responsive.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/responsive.html";
     private String responsiveValue_1 = "", responsiveValue_2 = "", responsiveValue_3;
     private static String env = "", mobileDevice = "";
     Boolean result = false, result_1 = false, result_2 = false, result_3 = false;
@@ -148,9 +148,9 @@ public class ResponsiveUtilitiesTest extends BaseClass {
     }
 
     private boolean performRespForMobileEval(By element, String visible, String color, String display) {
-        responsiveValue_1 = commonUtils.getText(element, "mobile");
-        responsiveValue_2 = commonUtils.getCSSValue(element, "color", "mobile");
-        responsiveValue_3 = commonUtils.getCSSValue(element, "display", "mobile");
+        responsiveValue_1 = commonUtils.getText(element);
+        responsiveValue_2 = commonUtils.getCSSValue(element, "color");
+        responsiveValue_3 = commonUtils.getCSSValue(element, "display");
         result_1 = commonUtils.assertValue(responsiveValue_1, visible, visible + " Responsive Failed");
         result_2 = commonUtils.assertValue(responsiveValue_2, color, visible + " Responsive Failed");
         result_3 = commonUtils.assertValue(responsiveValue_3, display, visible + " Responsive Failed");
@@ -173,13 +173,14 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6sPlusTestData", groups = {"mobile-regression"})
+    @Test(testName = "iPhone 6 Plus", dataProvider = "iPhone6sPlusTestData", groups = {"mobile-regressionR"})
     private void iPhone6sPlusResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6s Plus'");
         }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        commonUtils.getUrl(url);
         result = performRespForMobileEval(element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -195,13 +196,14 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile-regression"})
+    @Test(testName = "iPad Air", dataProvider = "iPadAirTestData", groups = {"mobile-regressionR"})
     private void iPadAirResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        commonUtils.getUrl(url);
         result = performRespForMobileEval(element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -215,13 +217,14 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile-regression"})
+    @Test(testName = "iPad Pro", dataProvider = "iPadProTestData", groups = {"mobile-regressionR"})
     private void iPadProResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("iPad Pro Simulator"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        commonUtils.getUrl(url);
         result = performRespForMobileEval(element, visible, color, display);
         Assert.assertTrue(result);
     }
@@ -235,13 +238,14 @@ public class ResponsiveUtilitiesTest extends BaseClass {
         };
     }
 
-    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile-regression"})
+    @Test(testName = "nexus7", dataProvider = "nexus7TestData", groups = {"mobile-regressionR"})
     private void nexus7ResponsiveTest(ScreenOrientation mode, By element, String visible, String color, String display) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
         }
-        appium.rotate(mode);
-        commonUtils.getUrl(url, "mobile");
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        commonUtils.getUrl(url);
         result = performRespForMobileEval(element, visible, color, display);
         Assert.assertTrue(result);
     }

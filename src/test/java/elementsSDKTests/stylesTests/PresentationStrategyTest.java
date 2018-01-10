@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * Created by udhadpa on 9/22/16.
  */
 public class PresentationStrategyTest extends BaseClass {
-    private final String url = "http://localhost:8000/src/main/java/elementsSDK/styles/fixtures/presentation-strategies.html";
+    private final String url = "http://bs-local.com:8000/src/main/java/elementsSDK/styles/fixtures/presentation-strategies.html";
     private static String env = "", mobileDevice = "", setDesktop = "";
     private String marginRight = "", marginLeft = "", marginBottom = "", marginTop = "", paddingRight = "", paddingLeft = "", colWidth;
     private boolean isMarginLeft = false, isMarginRight = false, isMarginBottom = false, isMarginTop = false, ispaddingRight = false, ispaddingLeft = false, isColWidth;
@@ -60,16 +60,16 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Centered
-    @Test(testName = "Centered Strategy Test", groups = {"desktop-regression"})
+    @Test(testName = "Centered Strategy Test", groups = {"desktop-regression","mobile-regression"})
     private void setCenteredStrategyTest() {
         marginLeft = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-left");
         marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right");
 
-        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px"});
+        isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"0px", "60px", "80px", "90px"});
         if (!isMarginLeft) {
             log.info("centered strategy: margin-left for centered element is not as per the spec");
         }
-        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px"});
+        isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
         if (!isMarginRight) {
             log.info("centered strategy: margin-right for centered element is not as per the spec");
         }
@@ -495,15 +495,16 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS) : XS And SM Default Strategy Test", dataProvider = "iOS: XS And SM Default Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS) : XS And SM Default Strategy Test", dataProvider = "iOS: XS And SM Default Strategy Test Data", groups = {"mobile-regressionR"})
     private void getXSAndSMStrategyiOSMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "default strategy: margin-left for " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "default strategy: margin-right for " + mode + " is not as per the spec");
@@ -519,15 +520,16 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS) : MD And LG Default Strategy Test", dataProvider = "iOS: MD and LG Default Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS) : MD And LG Default Strategy Test", dataProvider = "iOS: MD and LG Default Strategy Test Data", groups = {"mobile-regressionR"})
     private void getMDAndLGDefaultStrategyiOSTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "default strategy: margin-left for " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "default strategy: margin-right for " + mode + " is not as per the spec");
@@ -542,15 +544,16 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XLG Default Strategy Test", dataProvider = "iOS: XLG Default Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XLG Default Strategy Test", dataProvider = "iOS: XLG Default Strategy Test Data", groups = {"mobile-regressionR"})
     private void getXLGDefaultStrategyiOSMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "default strategy: margin-left for " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "default strategy: margin-right for " + mode + " is not as per the spec");
@@ -566,15 +569,16 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(Android): SM And MD Default Strategy Test", dataProvider = "Android: SM And MD Default Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(Android): SM And MD Default Strategy Test", dataProvider = "Android: SM And MD Default Strategy Test Data", groups = {"mobile-regressionR"})
     private void getSMAndMDDefaultStrategyAndroidMobileTest(ScreenOrientation mode, By element, String expMarginRight, String expMarginLeft) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as Google Nexus 7 HD Emulator");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "default strategy: margin-left for " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "default strategy: margin-right for " + mode + " is not as per the spec");
@@ -583,14 +587,12 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Centered
-    @Test(testName = "Mobile: Centered Strategy Test", groups = {"mobile-regression"})
+   /* @Test(testName = "Mobile: Centered Strategy Test", groups = {"mobile-regression"})
     private void setCenteredStrategyMobileTest() {
-        commonUtils.getUrl(url, "mobile");
+        commonUtils.getUrl(url);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right", "mobile");
-        System.out.println(marginLeft);
-        System.out.println(marginRight);
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.centeredElement1, "margin-right");
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, new String[]{"60px", "80px", "90px"});
         if (!isMarginLeft) {
             log.info("centered strategy: margin-left for centered element is not as per the spec");
@@ -601,7 +603,7 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         Assert.assertTrue(isMarginLeft && isMarginRight);
-    }
+    }*/
 
     @DataProvider(name = "iOS: XS and SM Left/Right Strategy Test Data")
     private Object[][] setXSandSMLeftRightStrategyTestData() {
@@ -614,15 +616,16 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Left/Right
-    @Test(testName = "Mobile(iOS) : XS and SM Left/Right Strategy Test", dataProvider = "iOS: XS and SM Left/Right Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS) : XS and SM Left/Right Strategy Test", dataProvider = "iOS: XS and SM Left/Right Strategy Test Data", groups = {"mobile-regressionR"})
     private void setXSandSMLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "left/right strategy: margin-left for " + item + " in " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "left/right strategy: margin-right for " + item + " in " + mode + " is not as per the spec");
@@ -641,15 +644,16 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Left/Right
-    @Test(testName = "Mobile(iOS) : MD and LG Left/Right Strategy Test", dataProvider = "iOS: MD and LG Left/Right Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS) : MD and LG Left/Right Strategy Test", dataProvider = "iOS: MD and LG Left/Right Strategy Test Data", groups = {"mobile-regressionR"})
     private void setMDandLGLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "left/right strategy: margin-left for " + item + " in " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "left/right strategy: margin-right for " + item + " in " + mode + " is not as per the spec");
@@ -666,15 +670,16 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Left/Right
-    @Test(testName = "Mobile(iOS) : XLG Left/Right Strategy Test", dataProvider = "iOS: XLG Left/Right Strategy Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS) : XLG Left/Right Strategy Test", dataProvider = "iOS: XLG Left/Right Strategy Test Data", groups = {"mobile-regressionR"})
     private void setXLGLeftRightStrategyMobileTest(ScreenOrientation mode, String item, By element, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
         }
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginLeft = commonUtils.getCSSValue(element, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(element, "margin-right", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginLeft = commonUtils.getCSSValue(element, "margin-left");
+        marginRight = commonUtils.getCSSValue(element, "margin-right");
 
         isMarginLeft = commonUtils.assertValue(marginLeft, expMarginLeft, "left/right strategy: margin-left for " + item + " in " + mode + " is not as per the spec");
         isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "left/right strategy: margin-right for " + item + " in " + mode + " is not as per the spec");
@@ -691,20 +696,21 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Default Gap Spacing
-    @Test(testName = "Mobile: Default Spacing Gap Test", dataProvider = "Mobile:Spacing Default Gap Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Default Spacing Gap Test", dataProvider = "Mobile:Spacing Default Gap Test Data", groups = {"mobile-regressionR"})
     private void setSpacingDefaultGapMobileTest(String item, ScreenOrientation mode) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
         for (int j = 1; j <= 3; j++) {
-            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom", "mobile");
-            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top", "mobile");
+            marginBottom = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-bottom");
+            marginTop = commonUtils.getCSSValue(By.id("centered-default" + j), "margin-top");
 
             isMarginBottom = commonUtils.assertValue(marginBottom, "0px", "Margin bottom value for" + item + j + "is not as per the spec");
             isMarginTop = commonUtils.assertValue(marginTop, "0px", "Margin top value for value for" + item + j + "is not as per the spec");
 
             for (int i = 1; i <= 2; i++) {
-                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right", "mobile");
-                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left", "mobile");
+                marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right");
+                marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left");
 
                 isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
                 if (!isMarginRight) {
@@ -735,19 +741,20 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Small Gap Spacing
-    @Test(testName = "Mobile: Small Gap Spacing Test", dataProvider = "Mobile:Spacing Small Gap Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Small Gap Spacing Test", dataProvider = "Mobile:Spacing Small Gap Test Data", groups = {"mobile-regressionR"})
     private void setSmallGapSpacingMobileTest(String item, By element, ScreenOrientation mode, String expMarginBottom, String expMarginTop) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
 
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin Top value for" + item + "is not as per the spec");
 
         for (int i = 1; i <= 2; i++) {
-            marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id("smallgap-element" + i), "margin-left");
 
             isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
             if (!isMarginRight) {
@@ -777,19 +784,20 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
     //Large Gap Spacing
-    @Test(testName = "Mobile: Large Gap Spacing Test", dataProvider = "Mobile:Spacing Large Gap Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile: Large Gap Spacing Test", dataProvider = "Mobile:Spacing Large Gap Test Data", groups = {"mobile-regressionR"})
     private void setLargeGapSpacingMobileTest(String item, By element, ScreenOrientation mode, String expMarginBottom, String expMarginTop) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
-        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
-        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
 
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin bottom value for" + item + "is not as per the spec");
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top value for" + item + "is not as per the spec");
 
         for (int i = 1; i <= 2; i++) {
-            marginRight = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-right", "mobile");
-            marginLeft = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-left", "mobile");
+            marginRight = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-right");
+            marginLeft = commonUtils.getCSSValue(By.id("largegap-element" + i), "margin-left");
 
             isMarginRight = commonUtils.assertCSSProperties("margin-right", marginRight, new String[]{"0px", "60px", "80px", "90px"});
             if (!isMarginRight) {
@@ -813,13 +821,14 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile : BasicGrid - Small Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Small Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regressionR"})
     private void setGridSmallCol2MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol2, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -831,9 +840,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -860,13 +869,14 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile : BasicGrid - Small Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Small Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regressionR"})
     private void setGridSmallCol3MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol3, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -878,9 +888,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -908,13 +918,14 @@ public class PresentationStrategyTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile : BasicGrid - Small Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Small Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regressionR"})
     private void setGridSmallCol4MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridSmallCol4, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -926,9 +937,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -948,13 +959,14 @@ public class PresentationStrategyTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile : BasicGrid - Large Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Large Col 2", dataProvider = "Mobile : BasicGrid - Col 2 Test Data", groups = {"mobile-regressionR"})
     private void setGridLargeCol2MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol2, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -966,9 +978,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -987,13 +999,14 @@ public class PresentationStrategyTest extends BaseClass {
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
 
-    @Test(testName = "Mobile : BasicGrid - Large Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Large Col 3", dataProvider = "Mobile : BasicGrid - Col 3 Test Data", groups = {"mobile-regressionR"})
     private void setGridLargeCol3MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol3, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -1005,9 +1018,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -1026,13 +1039,14 @@ public class PresentationStrategyTest extends BaseClass {
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
 
-    @Test(testName = "Mobile : BasicGrid - Large Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : BasicGrid - Large Col 4", dataProvider = "Mobile : BasicGrid - Col 4 Test Data", groups = {"mobile-regressionR"})
     private void setGridLargeCol4MobileTest(ScreenOrientation mode, String[] expColWidth, String[] expMarginLeft, String[] expMarginRight) {
-        commonUtils.getUrl(url, "mobile");
-        appium.rotate(mode);
+        commonUtils.getUrl(url);
+        //appium.rotate(mode);
+        commonUtils.rotate(mode);
 
-        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-left", "mobile");
-        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-right", "mobile");
+        marginLeft = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-left");
+        marginRight = commonUtils.getCSSValue(preStratPgObj.gridLargeCol4, "margin-right");
 
         isMarginLeft = commonUtils.assertCSSProperties("margin-left", marginLeft, expMarginLeft);
         if (!isMarginLeft) {
@@ -1044,9 +1058,9 @@ public class PresentationStrategyTest extends BaseClass {
         }
 
         for (int i = 1; i <= 12; i++) {
-            paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left", "mobile");
-            paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width", "mobile");
+            paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left");
+            paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right");
+            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -1072,11 +1086,7 @@ public class PresentationStrategyTest extends BaseClass {
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
-        if (setDesktop.equals("on")) {
             commonUtils.getUrl(url);
-        } else if (setMobile.equals("on")) {
-            commonUtils.getUrl(url, "mobile");
-        }
     }
 
     @AfterMethod(alwaysRun = true)

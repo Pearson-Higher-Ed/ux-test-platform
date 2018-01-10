@@ -336,7 +336,7 @@ public class GridTest extends BaseClass {
         }*/
         //commonUtils.rotate(mode);
         WebDriver augmentedDriver = new Augmenter().augment(driver);
-        ((Rotatable)augmentedDriver).rotate(mode);
+        ((Rotatable) augmentedDriver).rotate(mode);
         System.out.println(((Rotatable) augmentedDriver).getOrientation());
         commonUtils.getUrl(url);
         //appium.rotate(mode);
@@ -359,7 +359,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regressionR")
     private void xsAndSMColumnPaddingMobileiOSTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("iPhone 7"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -385,7 +385,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): MD and LG Container Padding Test", dataProvider = "iOS: MD and LG Container Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): MD and LG Container Padding Test", dataProvider = "iOS: MD and LG Container Padding Test Data", groups = "mobile-regressionR")
     private void mdAndLGContainerPaddingMobileiOSTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -412,7 +412,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): MD and LG Column Padding Test", dataProvider = "iOS: MD and LG Column Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): MD and LG Column Padding Test", dataProvider = "iOS: MD and LG Column Padding Test Data", groups = "mobile-regressionR")
     private void mdAndLGColumnPaddingMobileiOSTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -438,7 +438,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XLG Container Padding Test", dataProvider = "iOS: XLG Container Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XLG Container Padding Test", dataProvider = "iOS: XLG Container Padding Test Data", groups = "mobile-regressionR")
     private void xlgContainerPaddingMobileiOSTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
@@ -464,7 +464,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XLG Column Padding Test", dataProvider = "iOS: XLG Column Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(iOS): XLG Column Padding Test", dataProvider = "iOS: XLG Column Padding Test Data", groups = "mobile-regressionR")
     private void xlgColumnPaddingMobileiOSTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
@@ -499,7 +499,7 @@ public class GridTest extends BaseClass {
                 {ScreenOrientation.PORTRAIT, "Column12", gridPgObj.cont3Col12, "404px"},};
     }
 
-    @Test(testName = "Mobile(iOS): XS Column Span Test", dataProvider = "XS Column Span Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XS Column Span Test", dataProvider = "XS Column Span Test Data", groups = {"mobile-regressionR"})
     private void xsColumnSpanMobileiOSTest(ScreenOrientation mode, String colName, By element, String expectedWidth) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -529,7 +529,7 @@ public class GridTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, "Column12", gridPgObj.cont3Col12, "716px"},};
     }
 
-    @Test(testName = "Mobile(iOS): SM Column Span Test", dataProvider = "SM Column Span Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): SM Column Span Test", dataProvider = "SM Column Span Test Data", groups = {"mobile-regressionR"})
     private void smColumnSpanMobileiOSTest(ScreenOrientation mode, String colName, By element, String expectedWidth) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -560,7 +560,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): MD Column Span Test", dataProvider = "MD Column Span Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): MD Column Span Test", dataProvider = "MD Column Span Test Data", groups = {"mobile-regressionR"})
     private void mdColumnSpanMobileiOSTest(ScreenOrientation mode, String colName, By element, String expectedWidth) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -592,7 +592,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): LG Column Span Test", dataProvider = "LG Column Span Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): LG Column Span Test", dataProvider = "LG Column Span Test Data", groups = {"mobile-regressionR"})
     private void lgColumnSpanMobileiOSTest(ScreenOrientation mode, String colName, By element, String expectedWidth) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -621,7 +621,7 @@ public class GridTest extends BaseClass {
                 {ScreenOrientation.LANDSCAPE, "Column12", gridPgObj.cont3Col12, "1100px"},};
     }
 
-    @Test(testName = "Mobile(iOS): XLG Column Span Test", dataProvider = "XLG Column Span Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XLG Column Span Test", dataProvider = "XLG Column Span Test Data", groups = {"mobile-regressionR"})
     private void xlgColumnSpanMobileiOSTest(ScreenOrientation mode, String colName, By element, String expectedWidth) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -645,7 +645,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XS and SM Row Test ", dataProvider = "XS and SM Row Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XS and SM Row Test ", dataProvider = "XS and SM Row Test Data", groups = {"mobile-regressionR"})
     private void xsAndSMRowMobileiOSTest(ScreenOrientation mode, String rowName, String expRow, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPhone 6 Plus"))) {
             throw new SkipException("To run this test specify mobile device as 'iPhone 6 Plus'");
@@ -682,7 +682,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): MD and LG Row Test", dataProvider = "MD and LG Row Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): MD and LG Row Test", dataProvider = "MD and LG Row Test Data", groups = {"mobile-regressionR"})
     private void mdAndLGRowMobileiOSTest(ScreenOrientation mode, String rowName, String expRow, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Air"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Air'");
@@ -716,7 +716,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(iOS): XLG Row Test", dataProvider = "XLG Row Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XLG Row Test", dataProvider = "XLG Row Test Data", groups = {"mobile-regressionR"})
     private void xlgRowMobileiOSTest(ScreenOrientation mode, String rowName, String expRow, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("iPad Pro"))) {
             throw new SkipException("To run this test specify mobile device as 'iPad Pro'");
@@ -750,7 +750,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(android): XS and SM Container Padding Test", dataProvider = "Android: XS and SM Container Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(android): XS and SM Container Padding Test", dataProvider = "Android: XS and SM Container Padding Test Data", groups = "mobile-regressionR")
     private void xsAndSMContainerPaddingMobileAndroidTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
@@ -769,7 +769,7 @@ public class GridTest extends BaseClass {
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isContainerWidth);
     }
 
-    @Test(testName = "Mobile(Android): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(Android): XS and SM Column Padding Test", dataProvider = "XS and SM Column Padding Test Data", groups = "mobile-regressionR")
     private void xsAndSMColumnPaddingMobileAndroidTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");
@@ -794,7 +794,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile(Android): SM and MD Container Padding Test", dataProvider = "Android: SM and MD Container Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile(Android): SM and MD Container Padding Test", dataProvider = "Android: SM and MD Container Padding Test Data", groups = "mobile-regressionR")
     private void smAndMDContainerPaddingMobileAndroidTest(ScreenOrientation mode, By element, String expPaddingLeft, String expPaddingRight, String contWidth) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
@@ -820,7 +820,7 @@ public class GridTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Mobile: SM and MD Column Padding Test", dataProvider = "SM and MD Column Padding Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: SM and MD Column Padding Test", dataProvider = "SM and MD Column Padding Test Data", groups = "mobile-regressionR")
     private void smAndMDColumnPaddingMobileAndroidTest(ScreenOrientation mode, String expColumn, String expPaddingLeft, String expPaddingRight) {
         if (!(mobileDevice.equals("Google Nexus 7 HD Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'Google Nexus 7 HD Emulator'");
@@ -837,7 +837,7 @@ public class GridTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile(iOS): XS and SM Row Test ", dataProvider = "XS and SM Row Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile(iOS): XS and SM Row Test ", dataProvider = "XS and SM Row Test Data", groups = {"mobile-regressionR"})
     private void xsAndSMRowMobileAndroidTest(ScreenOrientation mode, String rowName, String expRow, String expMarginLeft, String expMarginRight) {
         if (!(mobileDevice.equals("LG Nexus 4 Emulator"))) {
             throw new SkipException("To run this test specify mobile device as 'LG Nexus 4 Emulator'");

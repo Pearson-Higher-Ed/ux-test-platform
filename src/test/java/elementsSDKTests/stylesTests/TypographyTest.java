@@ -387,7 +387,7 @@ public class TypographyTest extends BaseClass {
     //Verify Links
     @Test(testName = "Verify link states", dataProvider = "link state Test Data", groups = "desktop-regression")
     private void linkStateTest(String state, By element, String[] expColor, String expTextDecoration) {
-        if (browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
+        if ( browser.equals("firefox") || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("the focus operation is not supported on firefox/safari drivers");
         }
         if (state.equals("hover")) {
