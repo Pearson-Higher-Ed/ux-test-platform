@@ -53,12 +53,8 @@ public class PhoneNumberTest extends BaseClass {
         } else {
             browser = bsBrowser;
         }
-        if (desktop.equals("on")) {
-            js = (JavascriptExecutor) driver;
-            phNumPgObj = new PhoneNumberPageObjects(driver);
-        } else if (mobile.equals("on")) {
-            phNumPgObj = new PhoneNumberPageObjects(appium);
-        }
+        js = (JavascriptExecutor) driver;
+        phNumPgObj = new PhoneNumberPageObjects(driver);
     }
 
     @DataProvider(name = "Map Country With Flags Test Data")
