@@ -16,7 +16,7 @@ addons:
       packages:
         - g++-4.8
   browserstack:
-          username: "uxf2"
+          username: "payalpda1"
           access_key:
               secure: dllZq9cOy4w4TfCtD5D9zR+uCUwR0i3A7cfPkUIe/N7wG/HpK5yibJBbhOr0LUlMP1lKuNFL1gYFtaijdWYhrfN3qzqufQ8bBpmvY/nEx62rIe+DrWTtRmdlJFh53xPQbkgrNSPPjenk92EMx1USIma2lYL5xp27p44K9ByIzVgKWbXA050Je7D1VqHATneCLkt3WLJtbapd0Q57pRGlJE3B3Nw5amAKcJ6s76KMifDd3mOYagEdBYC+RfflfzLa8pmzJL1t2GwaHRqL6OpNpafB6bHMutvQZNjLpUUFzPRnUK/PoylqidzwJ0QPpSD9nbKLgw+p7eUBVSgRt52PniNspa4nrVEW3UzFvB4oih5HJ3OL/nT6Utz8x2PNoszJ1/Yd3Dgsz6XzCXDMRoQWOQG67Gk0NH3tW7uU141ybenrIlYmtlCl7DRrLTynByg8OSXKmEErtHPQR5uJNmivx9cxp9BkLz44/7penZRycFgKsZLDb8e6Bvow3Eu5fAOKRno4b/2nQwSxr0bEFj39U+sHLfgoofZg7PnNoIDPwH3zAlXycJcqPf+hycTAP4TSHN4nlykxVuiof2E0TfvUe3lTVAv0qc1sHkdslIxVJdA6umqkH73rjrYgRAq0pRPwJZMwarK64VIhfLae6a/6nJnjwo/bT+AdIDjumig6jXU=
 
@@ -33,7 +33,7 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=functional.xml test
+- mvn -Dtest_suite_xml=elements_sdk.xml test
 
 notifications:
   email:
