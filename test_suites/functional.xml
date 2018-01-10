@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="mobile-regression"/>
+            <include name="mobile-regression1"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
@@ -22,8 +22,8 @@
             <!--<class name="elementsSDKTests.functionalTests.CalendarTest"/>-->
 
             <!--<class name="elementsSDKTests.functionalTests.TimePickerTest"/>-->
-            <class name="elementsSDKTests.functionalTests.DatePickerTest"/>
-            <!--<class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>-->
+            <!--<class name="elementsSDKTests.functionalTests.DatePickerTest"/>-->
+            <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
             <!--<class name="elementsSDKTests.functionalTests.DropdownTest"/>-->
         </classes>
     </test>
