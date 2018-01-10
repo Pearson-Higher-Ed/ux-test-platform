@@ -115,9 +115,12 @@ public class PhoneNumberTest extends BaseClass {
     private void typePhoneNumberTest(String countryCode, String inputType, String expFlag, String country, String[] propsPropertiesList) {
         String[] detailsPropertiesList = new String[]{"elementId", "phone-number-target", "componentName", "PhoneNumber"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
+        commonUtils.printFileContents(phoneNumberJSFilePath);
+        System.out.println("1");
 
         //enter country code
         commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode);
+        System.out.println("2");
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
         Assert.assertTrue(isFlag);
