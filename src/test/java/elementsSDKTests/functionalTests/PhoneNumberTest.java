@@ -123,7 +123,7 @@ public class PhoneNumberTest extends BaseClass {
         commonUtils.click(phNumPgObj.phoneNumberField);
         commonUtils.sendKeys(phNumPgObj.phoneNumberField, countryCode);
         if(groupsInclude.startsWith("mobile")) {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         }
         flag = commonUtils.getAttributeValue(phNumPgObj.flagImg, "src");
         isFlag = commonUtils.assertValue(flag.contains(expFlag), true, "For inputType " + inputType + " On typing the country code, the country: '" + country + "' is not selected as per the spec");
