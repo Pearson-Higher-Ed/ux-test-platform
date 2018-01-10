@@ -47,8 +47,8 @@ public class BaseClass {
 //    final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 //    final static String USERNAME = "payalpda1";
 //    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
-    final static String USERNAME = "eajaz5";
-    final static String AUTOMATE_KEY = "BMNCuxmQhpzZrfwfsseD";
+    final static String USERNAME = "payalpda1";
+    final static String AUTOMATE_KEY = "empqs87SCr2L1szLiyvS";
     final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     DesiredCapabilities caps = null;
     Properties prop = null;
@@ -70,7 +70,7 @@ public class BaseClass {
         //String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
         //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
         String[] desktopCaps = new String[]{"os", platform, "os_version", osVersion, "browser_version", bsBrowserVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "resolution", "1920x1080", "browserstack.debug", "false", "browserstack.timezone", "London"};
-        String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "name",this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.debug", "false", "browserstack.timezone", "London"};
+        String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "name",this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.debug", "true", "browserstack.timezone", "London"};
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");

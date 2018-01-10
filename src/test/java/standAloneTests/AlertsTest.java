@@ -276,11 +276,11 @@ public class AlertsTest extends BaseClass {
         return new Object[][]{
                 {320, 800, "36px", "8px", "8px", "24px", "28px", "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
                 {480, 800, "36px", "8px", "8px", "24px", "28px", "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {768, 800, "32px", "12px", "12px", "28px", "28px", "iPad Air", ScreenOrientation.PORTRAIT},
+              //  {768, 800, "32px", "12px", "12px", "28px", "28px", "iPad Air", ScreenOrientation.PORTRAIT},
         };
     }
 
-    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR"})
+    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR1"})
     private void paddingForAlertsResponsiveTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");

@@ -16,9 +16,9 @@ addons:
       packages:
         - g++-4.8
   browserstack:
-          username: "eajaz5"
+          username: "payalpda1"
           access_key:
-              secure: MPVBtFdOvzq920cQobU3KmODe6NEIkaQN8vqf49PrbwdLoyUDshMutOQcJJ1hFYixb3pLjU8lb296tKeElDTjK97zp6fIidCPtbn7y/rnEKw7mukHMXG5fhGHiRC6Gpxp/ScygDk4HnBmgQb7RozUILZB2fsUlWpyrviOjpks+OjtOxbK3f7N8eRZ9G2HDHPMxz5U/D5T4Jr27rt/kb/mddj31NQH8QGbb1KpThYE1ap5QoG03+HOChaQbI5HwRC3+BsAacjK4pNGwTd3y/2581vPwHiVie9V5Zn7XDhC/GXi+PSbrjS1RvqtA3Io2//OX3Sx8oS+D36p/wEXXG68CRvqgoxPVy510uM/4qa7V0LUpHPbVjBQYdadi09nuTr9JwvmLX1HOKhuRgzEpyAufnOCpi19XPB8Air4xkE+xICVFhraNUz6xSupvtbjiSgYvc80d3Nmty8lwSaBmRpnd9xZTtrXLX6w4UbX5gPMfkaddZPD44yCBcne3VsYOyzXrpNr51J3foPQyFpERYYKOjU6LGlIbvgzMphGSNGM4qRfLd+3rZKJsZaVXdEQylxwA6Ygt33bu5Hbfl9oYkjuMjt/tpx8lTffvo0VLo7yhGwyx6UuQAbvB9mQEwUuuW80BmsXMAKOnjsFOqv948YMvEO8zfAEwW9g3pFtd8ECCc=
+              secure: dllZq9cOy4w4TfCtD5D9zR+uCUwR0i3A7cfPkUIe/N7wG/HpK5yibJBbhOr0LUlMP1lKuNFL1gYFtaijdWYhrfN3qzqufQ8bBpmvY/nEx62rIe+DrWTtRmdlJFh53xPQbkgrNSPPjenk92EMx1USIma2lYL5xp27p44K9ByIzVgKWbXA050Je7D1VqHATneCLkt3WLJtbapd0Q57pRGlJE3B3Nw5amAKcJ6s76KMifDd3mOYagEdBYC+RfflfzLa8pmzJL1t2GwaHRqL6OpNpafB6bHMutvQZNjLpUUFzPRnUK/PoylqidzwJ0QPpSD9nbKLgw+p7eUBVSgRt52PniNspa4nrVEW3UzFvB4oih5HJ3OL/nT6Utz8x2PNoszJ1/Yd3Dgsz6XzCXDMRoQWOQG67Gk0NH3tW7uU141ybenrIlYmtlCl7DRrLTynByg8OSXKmEErtHPQR5uJNmivx9cxp9BkLz44/7penZRycFgKsZLDb8e6Bvow3Eu5fAOKRno4b/2nQwSxr0bEFj39U+sHLfgoofZg7PnNoIDPwH3zAlXycJcqPf+hycTAP4TSHN4nlykxVuiof2E0TfvUe3lTVAv0qc1sHkdslIxVJdA6umqkH73rjrYgRAq0pRPwJZMwarK64VIhfLae6a/6nJnjwo/bT+AdIDjumig6jXU=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
@@ -33,7 +33,7 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=functional.xml test
+- mvn -Dtest_suite_xml=alerts.xml test
 
 notifications:
   email:
