@@ -17,7 +17,8 @@ addons:
         - g++-4.8
   browserstack:
           username: "uxf1"
-          secure: 31KXWCEEYUgczYvz+9ghn3TtA88ADIgVADLCbXE1gZgkWt2GUR4NNl1yDmZ+1dpdJoGlCxHSbpS0ZkvV5pqV2W0e3VSkJ/OydDjEZdL5Sc/fqZhbgt9tierPprGYuUCtkk8So0rZZwKyUdT91CaY7X3X2sFDZdvTkxvkl9w++VDk4uEIpA+MImthSpCG5xpoun8eY3l7O1+cK3cRizRS/umo8NRJeipw/A98qjcvWlsU+I5779ALSyAD6Q+OkGtwzk8plhJS7M2lSwdsjFXYmccpGBxm2pBxKKPFW5r7XGMk4lLQvmjsl4UCNPqS8rBfsqq6pHmjJew8eAlr+Gkf3uNDXEKIZUzwD4wU1chpPlaOg+2AoQzpYX+P2+vvh4QO0ut4yXE493VepAFeiTlz0rNCSsAFqQUv8SF0xmFOIim+0RecTN8BHRO+SXaHLzTdKKOT8+L1sjnVPshUfqDvKfjyg688xRKUX3J3jjTscMj9Zi1+Gbf384VwIgzfoV9l0decioLH2Oa3F4YTt+KjTE2v3AFkd32HCJ0hSoaYFNo0NGPClZE7bhYPHiXFwm1de3ePT7FLa8GasRXArcTRBEPxCJdCFCib4QJn7E9/LND3enbgdIIJTAGYXr6o4bevgjX0dEPhulGds7H2wgeS0M0MI/3LQ49we/fB8nfGciM=
+          access_key:
+              secure: 31KXWCEEYUgczYvz+9ghn3TtA88ADIgVADLCbXE1gZgkWt2GUR4NNl1yDmZ+1dpdJoGlCxHSbpS0ZkvV5pqV2W0e3VSkJ/OydDjEZdL5Sc/fqZhbgt9tierPprGYuUCtkk8So0rZZwKyUdT91CaY7X3X2sFDZdvTkxvkl9w++VDk4uEIpA+MImthSpCG5xpoun8eY3l7O1+cK3cRizRS/umo8NRJeipw/A98qjcvWlsU+I5779ALSyAD6Q+OkGtwzk8plhJS7M2lSwdsjFXYmccpGBxm2pBxKKPFW5r7XGMk4lLQvmjsl4UCNPqS8rBfsqq6pHmjJew8eAlr+Gkf3uNDXEKIZUzwD4wU1chpPlaOg+2AoQzpYX+P2+vvh4QO0ut4yXE493VepAFeiTlz0rNCSsAFqQUv8SF0xmFOIim+0RecTN8BHRO+SXaHLzTdKKOT8+L1sjnVPshUfqDvKfjyg688xRKUX3J3jjTscMj9Zi1+Gbf384VwIgzfoV9l0decioLH2Oa3F4YTt+KjTE2v3AFkd32HCJ0hSoaYFNo0NGPClZE7bhYPHiXFwm1de3ePT7FLa8GasRXArcTRBEPxCJdCFCib4QJn7E9/LND3enbgdIIJTAGYXr6o4bevgjX0dEPhulGds7H2wgeS0M0MI/3LQ49we/fB8nfGciM=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
