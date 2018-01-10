@@ -23,6 +23,7 @@ public class FunctionalDropdownPageObjects {
     public By textDropdownItem2 = By.xpath("(//ul[@id='text-dropdown']/li[@role='presentation'])[2]");
     public By textDropdownItem3 = By.xpath("(.//*[@id='text-dropdown']/li[@role='presentation'])[3]");
     public By textDropdownDivider = By.xpath(".//*[@id='text-dropdown']/li[@class='divider-container']");
+    public By dropDownItemError = By.xpath("//*[@id='text-dropdown']/li[@id='itemTypeNotRecognized']");
 
     public By iconDropdownActivator = By.xpath("//*[@id='dropdown-target']/div/button");
     public By iconBtnSvg = By.cssSelector("#dropdown-target > div > button > svg");

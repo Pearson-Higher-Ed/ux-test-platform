@@ -26,14 +26,15 @@ public class DropdownTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile = "", mobileDevice = "";
-    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", browserLogs = "", dismiss = "", getDefaultConfig = "", getTestConfig = "";
+    private String cssPropertyType = "", backgroundColor = "", testConfig = "", fileContentsInAString = "", browserLogs = "", dismiss = "", getDefaultConfig = "", getTestConfig = "", propTypeErrorMsg = "";
     private String borderTop = "", borderRight = "", borderLeft = "", borderBottom = "";
     boolean isCSSProperty = false, isBackgroundColor = false, result = false, isDropdownPanelVisible = false;
     private String paddingLeft = "", paddingRight = "", paddingTop = "", paddingBottom = "", fontSize = "", lineHeight = "", color = "", className = "", role = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", titleText = "", word = "", word1 = "", word2 = "", testName = "", borderRadius = "", padding = "";
     String paneItems = "";
-    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false, isTitleText = false, isBorderRadius = false, isPadding = false;
+    private boolean isPaddingLeft = false, isPaddingRight = false, isPaddingBottom = false, isPaddingTop = false, isFontSize = false, islineHeight = false, isColor = false, isDropdownListBox = false, isCheckmarkPresent = false, isClassName = false, isRole = false, isRightAlign, isDropUp = false, isDismiss = false, isTitleText = false, isBorderRadius = false, isPadding = false, isPropTypeErrorMsg = false, isDefaultType = false, isItemType = false;
     private String preConfigStr1 = "var dropdown = React.createElement(Dropdown,";
     private String postConfigStr = ");ReactDOM.render(dropdown, document.getElementById('dropdown-target'));";
+    private String incorrectItemTypeErrorMessage = "DropdownItem \"type\" prop not recognized...";
     JsonObject jsonDetailObject = null, jsonDetailPropertiesObject = null, jsonPropsObject = null, jsonPropsPropertiesObject = null;
     Map<String, String> detailProperties = null;
     Map<String, String> propsProperties = null;
@@ -73,7 +74,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Label Test - Label Dropdown Test", dataProvider = "Label Details - Label Dropdown Test Data", groups = "desktop-regression")
     private void labelDropdownLabelTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws IOException, InterruptedException {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         Thread.sleep(1000);
         commonUtils.getUrl(dropdownUrl);
@@ -95,7 +96,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Border - Label Dropdown Test", dataProvider = "Border - Label Dropdown Test Data", groups = "desktop-regression")
     private void borderLabelDropdownTest(int listNum, String[] dropdownType, By[] dropdownElement, String[] expectedCSSValue, String[] expBorderTops, String[] expBorderRights, String[] expBorderBottoms, String[] expBorderLefts, String[] expPaddingValue, String[] expBorderRadiusValue) throws Exception {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         String type;
         int i;
 
@@ -130,7 +131,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Dropdown Options Test", dataProvider = "Dropdown Options Test Data", groups = "desktop-regression")
     private void optionsLabelDropdownTest(int listNum, String dropdownType, By trigger, By elem, String expPaddingLeft, String expPaddingRight, String expPaddingTop, String expPaddingBtm, String expFontSize, String[] expLineHt) throws InterruptedException, IOException {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         Thread.sleep(1000);
         commonUtils.getUrl(dropdownUrl);
@@ -170,7 +171,7 @@ public class DropdownTest extends BaseClass {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Focus operation not yet supported in firefox/safari browser drivers");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.click(trigger);
@@ -203,7 +204,7 @@ public class DropdownTest extends BaseClass {
         if ((browser.equals("firefox")) || browser.equals("safari") || lBrowser.equals("firefox")) {
             throw new SkipException("Hover operation not yet supported in firefox/safari browser drivers");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.click(trigger);
@@ -231,7 +232,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Icon Dropdown Divider Test", dataProvider = "Icon Dropdown Divider Test Data", groups = "desktop-regression")
     public void dividerIconDropdownTest(int listNum, String dropdownType, By elem, String cssProperty, String[] expectedCSSValue) throws InterruptedException, IOException {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.clickUsingJS(dropdownPgObj.iconDropdownActivator);
@@ -255,7 +256,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "desktop-regression")
     private void clickOnTriggerTest(int listNum, String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         className = commonUtils.getAttributeValue(iconSVG, "class");
@@ -283,7 +284,7 @@ public class DropdownTest extends BaseClass {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.tabOnElement(trigger);
@@ -309,7 +310,7 @@ public class DropdownTest extends BaseClass {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.tabSpace(trigger);
@@ -326,7 +327,7 @@ public class DropdownTest extends BaseClass {
         if (browser.equals("safari")) {
             throw new SkipException("Tab operation not available on Safari sauce browser");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.click(trigger);
@@ -352,7 +353,7 @@ public class DropdownTest extends BaseClass {
         if (!browser.equals("chrome")) {
             throw new SkipException("This operation not available on edge sauce browser");
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl);
         commonUtils.click(trigger);
@@ -363,10 +364,87 @@ public class DropdownTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
+    @DataProvider(name = "Incorrect Item Type Test Data")
+    public Object[][] incorrectItemTypeTestData() {
+        return new Object[][]{
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "link1", incorrectItemTypeErrorMessage},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "button1", incorrectItemTypeErrorMessage},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "link1", incorrectItemTypeErrorMessage},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "button1", incorrectItemTypeErrorMessage},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "link1", incorrectItemTypeErrorMessage},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "imageButton1", incorrectItemTypeErrorMessage}
+        };
+    }
+
+    @Test(testName = "Incorrect Item Type Test", dataProvider = "Incorrect Item Type Test Data", groups = "desktop-regression")
+    private void incorrectItemTypeTest(int listNum, String dropdownType, By trigger, By option, String type, String errorMessage) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum, type, "divider");
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl);
+        commonUtils.click(trigger);
+
+        propTypeErrorMsg = commonUtils.getText(dropdownPgObj.dropDownItemError);
+        isPropTypeErrorMsg = commonUtils.assertValue(propTypeErrorMsg, errorMessage, "for incorrect prop type " + dropdownType + " there is no error message as per the spec");
+        Assert.assertTrue(isPropTypeErrorMsg);
+    }
+
+    @DataProvider(name = "Empty Item Type Test Data")
+    public Object[][] emptyItemTypeTestData() {
+        return new Object[][]{
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "a"},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "a"},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "a"},
+                {2, "button", dropdownPgObj.buttonDropdown, dropdownPgObj.textDropdownItem1, "a"},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "a"},
+                {2, "icon", dropdownPgObj.iconDropdownActivator, dropdownPgObj.textDropdownItem1, "a"}
+        };
+    }
+
+    @Test(testName = "Empty Item Type Test", dataProvider = "Empty Item Type Test Data", groups = "desktop-regression")
+    private void emptyItemTypeTest(int listNum, String dropdownType, By trigger, By option, String expDefaultType) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum);
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl);
+        commonUtils.click(trigger);
+        boolean defaultType = driver.findElement(By.xpath("//*[@id='text-dropdown']/li[1]/a")).isDisplayed();
+        isDefaultType = commonUtils.assertValue(defaultType, true, "for empty type for " + dropdownType + ", the default type is not a link as per the spec");
+        Assert.assertTrue(isDefaultType);
+    }
+
+    @DataProvider(name = "Dropdown Item Type Test Data")
+    public Object[][] dropdownItemTypeTestData() {
+        return new Object[][]{
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "link", "a"},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "button", "button"},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "imageButton", "button"},
+                {2, "text", dropdownPgObj.textLabel, dropdownPgObj.textDropdownItem1, "divider", "hr"}
+        };
+    }
+
+    @Test(testName = "DropDown Item Type Test", dataProvider = "Dropdown Item Type Test Data", groups = "desktop-regression")
+    private void dropdownItemTypeTest(int listNum, String dropdownType, By trigger, By option, String type, String expItemType) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum, type, "divider");
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl);
+        commonUtils.click(trigger);
+
+        boolean itemType = driver.findElement(By.xpath("//*[@id='text-dropdown']/li[1]/" + expItemType + "")).isDisplayed();
+        isItemType = commonUtils.assertValue(itemType, true, "for type " + type + ", the item type " + expItemType + " is not a link as per the spec");
+        Assert.assertTrue(isItemType);
+    }
+
     /******************************
      * Mobile Tests
      ******************************/
-
     @DataProvider(name = "Mobile : Dropdown Header Test Data")
     public Object[][] getHeaderLabelDropdownMobileTestData() {
         return new Object[][]{
@@ -388,7 +466,7 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig("label", paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.textLabel, "mobile");
@@ -406,7 +484,7 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig("button", paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.buttonDropdown, "mobile");
@@ -424,7 +502,7 @@ public class DropdownTest extends BaseClass {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         Thread.sleep(1000);
@@ -435,14 +513,6 @@ public class DropdownTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
         fontSize = commonUtils.getCSSValue(elem, "font-size", "mobile");
         lineHeight = commonUtils.getCSSValue(elem, "line-height", "mobile");
-
-        System.out.println("padding left ::" + paddingLeft);
-        System.out.println("padding right ::" + paddingRight);
-        System.out.println("padding bottom ::" + paddingBottom);
-        System.out.println("padding top ::" + paddingTop);
-        System.out.println("font size ::" + fontSize);
-        System.out.println("line height ::" + lineHeight);
-
 
         isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left of option button for " + dropdownType + " is not as per spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding-right of " + dropdownType + " is not as per spec");
@@ -456,7 +526,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Mobile : Click On The trigger Test", dataProvider = "Click On The trigger Test Data", groups = "mobile-regression")
     private void clickOnTriggerMobileTest(int listNum, String dropdownType, By trigger, String expClassName, By iconSVG) throws IOException, InterruptedException {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         className = commonUtils.getAttributeValue(iconSVG, "class", "mobile");
@@ -489,7 +559,7 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         Thread.sleep(1000);
@@ -535,7 +605,7 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig("icon", paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
@@ -553,7 +623,7 @@ public class DropdownTest extends BaseClass {
         if (mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator")) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(dropdownPgObj.iconDropdownActivator, "mobile");
@@ -568,7 +638,7 @@ public class DropdownTest extends BaseClass {
 
     @Test(testName = "Mobile: Dismiss Drop Down Test", dataProvider = "Tab And Enter On trigger Test Data", groups = "mobile-regression")
     public void dismissDropDownMobileTest(int listNum, String dropdownType, By trigger) throws Exception {
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(trigger, "mobile");
@@ -596,7 +666,7 @@ public class DropdownTest extends BaseClass {
         if (!(mobileDevice.equals("iPhone 6s Plus Simulator") || mobileDevice.equals("iPhone 7 Plus Simulator"))) {
             throw new SkipException("Responsive behavior not supported for this device " + mobileDevice);
         }
-        String paneArray = buildDropDownItemsArray(listNum);
+        String paneArray = buildDropDownItemsArray(listNum, "link", "divider");
         setConfig(dropdownType, paneArray);
         commonUtils.getUrl(dropdownUrl, "mobile");
         commonUtils.click(trigger, "mobile");
@@ -610,6 +680,50 @@ public class DropdownTest extends BaseClass {
             log.info("Click on Close Btn, but Dropdown still open, " + dropdownType + " dropdown");
         }
         Assert.assertFalse(isDropdownListBox);
+    }
+
+    @Test(testName = "Mobile: Incorrect Item Type Test", dataProvider = "Incorrect Item Type Test Data", groups = "mobile-regression")
+    private void incorrectItemTypeMobileTest(int listNum, String dropdownType, By trigger, By option, String type, String errorMessage) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum, type, "divider");
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl, "mobile");
+        commonUtils.click(trigger, "mobile");
+
+        propTypeErrorMsg = commonUtils.getText(dropdownPgObj.dropDownItemError, "mobile");
+        isPropTypeErrorMsg = commonUtils.assertValue(propTypeErrorMsg, errorMessage, "for incorrect prop type " + dropdownType + " there is no error message as per the spec");
+        Assert.assertTrue(isPropTypeErrorMsg);
+    }
+
+    @Test(testName = "Mobile: Empty Item Type Test", dataProvider = "Empty Item Type Test Data", groups = "mobile-regression")
+    private void emptyItemTypeMobileTest(int listNum, String dropdownType, By trigger, By option, String expDefaultType) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum);
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl, "mobile");
+        commonUtils.click(trigger, "mobile");
+        boolean defaultType = appium.findElement(By.xpath("//*[@id='text-dropdown']/li[1]/a")).isDisplayed();
+        isDefaultType = commonUtils.assertValue(defaultType, true, "for empty type for " + dropdownType + ", the default type is not a link as per the spec");
+        Assert.assertTrue(isDefaultType);
+    }
+
+    @Test(testName = "Mobile: DropDown Item Type Test", dataProvider = "Dropdown Item Type Test Data", groups = "mobile-regression")
+    private void dropdownItemTypeMobileTest(int listNum, String dropdownType, By trigger, By option, String type, String expItemType) throws IOException, InterruptedException {
+        String paneArray = buildDropDownItemsArray(listNum, type, "divider");
+        String[] propsPropertiesList = new String[]{"mobileTitle", "mobile Title", "type", dropdownType, "label", "text", "id", "text"};
+        testConfig = buildJSONObjectDetailConfig(propsPropertiesList, paneArray);
+        commonUtils.changeConfig(dropdownJSFilePath, testConfig);
+
+        commonUtils.getUrl(dropdownUrl, "mobile");
+        commonUtils.click(trigger, "mobile");
+
+        boolean itemType = appium.findElement(By.xpath("//*[@id='text-dropdown']/li[1]/" + expItemType + "")).isDisplayed();
+        isItemType = commonUtils.assertValue(itemType, true, "for type " + type + ", the item type " + expItemType + " is not a link as per the spec");
+        Assert.assertTrue(isItemType);
     }
 
     /*****************
@@ -684,13 +798,25 @@ public class DropdownTest extends BaseClass {
         }
     }
 
+    private String buildDropDownItemsArray(int paneArraySize, String type1, String type2) {
+        paneArrayList = new ArrayList<String>();
+        if (paneArraySize == 0) {
+            paneItems = "";
+        }
+        for (int i = 1; i < paneArraySize + 1; i++) {
+            paneItems = "React.createElement(DropdownItem, { label: 'list item " + i + "', type:'" + type1 + "'}), React.createElement(DropdownItem, { type: '" + type2 + "'}),";
+            paneArrayList.add(paneItems);
+        }
+        return paneArrayList.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",,", ",");
+    }
+
     private String buildDropDownItemsArray(int paneArraySize) {
         paneArrayList = new ArrayList<String>();
         if (paneArraySize == 0) {
             paneItems = "";
         }
         for (int i = 1; i < paneArraySize + 1; i++) {
-            paneItems = "React.createElement(DropdownItem, { label: 'list item " + i + "', type:'link'}), React.createElement(DropdownItem, { type: 'divider'}),";
+            paneItems = "React.createElement(DropdownItem, { label: 'list item " + i + "'}), React.createElement(DropdownItem, { type: 'divider'}),";
             paneArrayList.add(paneItems);
         }
         return paneArrayList.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",,", ",");

@@ -3,7 +3,7 @@
 <suite name="ElementsSDK Test Suite">
     <groups>
         <run>
-            <include name="desktop-ci"/>
+            <include name="desktop-regression"/>
         </run>
     </groups>
     <!-- Functional(JavaScript) Tests -->
