@@ -339,7 +339,7 @@ public class GridTest extends BaseClass {
         ((Rotatable)augmentedDriver).rotate(mode);
         System.out.println(((Rotatable) augmentedDriver).getOrientation());
         commonUtils.getUrl(url);
-        appium.rotate(mode);
+        //appium.rotate(mode);
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");
         containerWidth = commonUtils.getCSSValue(element, "width");
