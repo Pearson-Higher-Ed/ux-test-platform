@@ -66,7 +66,7 @@ public class BaseClass {
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
 
-        System.out.println("USRNAME" +  System.getenv("BROWSERSTACK_USERNAME"));
+        System.out.println("USRNAME" +  System.getenv("username"));
         System.out.println("Accesskey" +  System.getenv("BROWSERSTACK_ACCESS_KEY"));
         //String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
         //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
