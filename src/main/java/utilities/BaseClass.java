@@ -39,8 +39,8 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    //final static String USERNAME = BrowserStackParam.BROWSERSTACK_USERNAME;
+    //final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    final static String USERNAME = BrowserStackParam.BROWSERSTACK_USERNAME;
     //final String URL = "https://" + USERNAME + ":" + System.getenv("BROWSERSTACK_ACCESS_KEY") + "@hub-cloud.browserstack.com/wd/hub";
     final String URL = "https://" + USERNAME + ":" + BrowserStackParam.BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
@@ -60,6 +60,7 @@ public class BaseClass {
         setDesktop = desktop;
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
+        System.out.println(BrowserStackParam.BROWSERSTACK_USERNAME + " " + BrowserStackParam.BROWSERSTACK_ACCESS_KEY);
 
         String[] desktopCaps = new String[]{"os", platform, "os_version", osVersion, "browser_version", bsBrowserVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "resolution", "1920x1080", "browserstack.debug", "false", "browserstack.timezone", "London"};
         String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.debug", "false", "browserstack.timezone", "London"};
