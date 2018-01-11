@@ -56,11 +56,11 @@ public class BrowserStackParam {
         } else {
             throw new SkipException("BSKey property not set, " + "it is mandate to define the BSKey property");
         }
-        if (properties.getProperty("LocIdentifier") != null
-                && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("\"\"")) && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("dummy"))) {
-            BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
-        } else {
-            throw new SkipException("LocIdentifier property not set, " + "it is mandate to define the LocIdentifier property");
-        }
+        if(!String.valueOf(System.getenv().get("USER")).equals("travis") && properties.getProperty("LocIdentifier") != null
+                    && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("\"\"")) && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("dummy"))) {
+                BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
+            } else {
+                throw new SkipException("LocIdentifier property not set, " + "it is mandate to define the LocIdentifier property");
+            }
     }
 }
