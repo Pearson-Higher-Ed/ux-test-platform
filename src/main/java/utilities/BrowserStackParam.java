@@ -19,10 +19,12 @@ public class BrowserStackParam {
     public static final String TEST_ROOT_DIR;
     private static final String PROP_FILE = "src/main/resources/BrowserStackParam.properties";
     private static Properties properties = new Properties();
+    private static final boolean env = String.valueOf(System.getenv().get("USER")).equals("travis");
 
     static {
 
         FileInputStream in = null;
+        BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
         TEST_ROOT_DIR = System.getProperty("user.dir");
         try {
             in = new FileInputStream(TEST_ROOT_DIR + File.separator + PROP_FILE);
@@ -56,11 +58,13 @@ public class BrowserStackParam {
         } else {
             throw new SkipException("BSKey property not set, " + "it is mandate to define the BSKey property");
         }
-        if(!String.valueOf(System.getenv().get("USER")).equals("travis") && properties.getProperty("LocIdentifier") != null
-                    && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("\"\"")) && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("dummy"))) {
-                BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
-            } else {
+        if (!env && properties.getProperty("LocIdentifier") != null
+                && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("\"\"")) && !(properties.getProperty("LocIdentifier").equalsIgnoreCase("dummy"))) {
+        } else {
+            if (!env) {
                 throw new SkipException("LocIdentifier property not set, " + "it is mandate to define the LocIdentifier property");
             }
+        }
+
     }
 }

@@ -39,8 +39,8 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    //final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    final static String USERNAME = BrowserStackParam.BROWSERSTACK_USERNAME;
+    final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    //final static String USERNAME = BrowserStackParam.BROWSERSTACK_USERNAME;
     //final String URL = "https://" + USERNAME + ":" + System.getenv("BROWSERSTACK_ACCESS_KEY") + "@hub-cloud.browserstack.com/wd/hub";
     final String URL = "https://" + USERNAME + ":" + BrowserStackParam.BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
