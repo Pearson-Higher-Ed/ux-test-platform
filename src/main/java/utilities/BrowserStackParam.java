@@ -51,7 +51,7 @@ public class BrowserStackParam {
         }
 
         if (System.getenv("BROWSERSTACK_ACCESS_KEY") != null && !(System.getenv("BROWSERSTACK_ACCESS_KEY").equalsIgnoreCase(""))) {
-            BROWSERSTACK_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+            BROWSERSTACK_ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
         } else if (properties.getProperty("BSKey") != null
                 && !(properties.getProperty("BSKey").equalsIgnoreCase("\"\"")) && !(properties.getProperty("BSKey").equalsIgnoreCase("dummy"))) {
             BROWSERSTACK_ACCESS_KEY = properties.getProperty("BSKey");
