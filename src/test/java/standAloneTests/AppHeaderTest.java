@@ -969,7 +969,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Styles for Signed Out Mode Test", dataProvider = "Styles for Signed Out Mode Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Styles for Signed Out Mode Test", dataProvider = "Styles for Signed Out Mode Test Data", groups = "mobile-regressionR")
     private void stylesForSignedOutModeMobileTest(int width, int height, By element, String type, String cssProperty, String[] expectedCSSValue, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
@@ -1239,7 +1239,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "mobile-regressionR")
     private void stylesForBasicModeMobileTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
@@ -1265,7 +1265,7 @@ public class AppHeaderTest extends BaseClass {
         Assert.assertTrue(isMarginTop && isFontSize && isLineHeight);
     }
 
-    @Test(testName = "Mobile: Sign Out Button Test", groups = "mobile-regression")
+    @Test(testName = "Mobile: Sign Out Button Test", groups = "mobile-regressionR")
     private void signOutButtonStylesMobileTest() {
         commonUtils.getUrl(basicModeUrl, "mobile");
         if (mobileDevice.contains("iPhone 6")) {

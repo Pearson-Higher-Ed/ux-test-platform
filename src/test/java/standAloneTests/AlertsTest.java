@@ -490,7 +490,7 @@ public class AlertsTest extends BaseClass {
     }
 
 
-    @Test(testName = "Mobile : Width and padding Alert List Responsive Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Width and padding Alert List Responsive Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"mobile-regressionR"})
     private void widthPaddingLeftResponsiveMobileTest(int screenWidth, int height, String[] expWidth, String expPaddingLeft, String expPaddingRight, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
@@ -512,7 +512,7 @@ public class AlertsTest extends BaseClass {
         Assert.assertTrue(isWidth && isPaddingLeft && isPaddingRight);
     }
 
-    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"mobile-regressionR"})
     private void paddingForAlertsResponsiveMobileTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");

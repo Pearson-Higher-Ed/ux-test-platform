@@ -726,7 +726,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isBackgroundColor);
     }
 
-    @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regressionR")
     private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By
             modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String
                                                         device, ScreenOrientation mode) throws Exception {
@@ -758,7 +758,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isWidth && isBackgroundColor);
     }
 
-    @Test(testName = "Mobile: Modal Header Test", dataProvider = "Modal Header Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Header Test", dataProvider = "Modal Header Test Data", groups = "mobile-regressionR")
     private void modalHeaderMobileTest(String size, int width, int height, By modalHeaderElement, String[]
             expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -777,7 +777,7 @@ public class ModalTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Header Text Test", dataProvider = "Modal Header Text Test Data", groups = "mobile-regressionR")
     private void modalHeaderTextMobileTest(String size, int width, int height, By modalHeaderTextElement, String[]
             expMarginValue, String[] expColor, String[] expFontSize, String[] expLineHeight, String[] expMarginBottom, String
                                                    device, ScreenOrientation mode) throws Exception {
@@ -824,7 +824,7 @@ public class ModalTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Body Test", dataProvider = "Modal Body Test Data", groups = "mobile-regressionR")
     private void modalBodyMobileTest(String size, int windowWidth, int windowHeight, By modalBodyElement, String[]
             expFontSize, String[] expLineHeight, String[] expPaddingValue, String expOutlineStyle, String[] expColor, String
                                              device, ScreenOrientation mode) throws Exception {
@@ -866,7 +866,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isOutlineStyle && isColor);
     }
 
-    @Test(testName = "Mobile: Modal Body Border Normal Test", dataProvider = "Modal Body Border Normal Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Body Border Normal Test", dataProvider = "Modal Body Border Normal Test Data", groups = "mobile-regressionR")
     private void modalBodyBorderNormalMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String[] expMarginTop, String[] expMarginBottom, String device, ScreenOrientation mode) throws
             Exception {
@@ -893,7 +893,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isMarginTop && isMarginBottom);
     }
 
-    @Test(testName = "Mobile: Footer- Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Footer- Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "mobile-regressionR")
     private void modalBodyBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String[] expPaddingTop, String[] expMarginTop, String[] expMarginBottom, String[]
                                                    expBorderTops, String[] expBorderBottoms, String device, ScreenOrientation mode) throws Exception {
@@ -950,7 +950,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isPaddingTop && isMarginTop && isMarginBottom);
     }
 
-    @Test(testName = "Mobile: No Footer- Modal Body Border Test", dataProvider = "No Footer: Modal Body Border Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: No Footer- Modal Body Border Test", dataProvider = "No Footer: Modal Body Border Test Data", groups = "mobile-regressionR")
     private void modalBodyNoFooterBorderMobileTest(String type, String size, int windowWidth, int windowHeight, By
             modalBodyElement, String modalBodyClass, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -966,7 +966,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(result);
     }
 
-    @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Buttons in Modal Test", dataProvider = "Modal Buttons Test Data", groups = "mobile-regressionR")
     private void buttonsInModalMobileTest(String size, int windowWidth, int windowHeight, String type, By
             buttonElement, String[] expMarginValue, String[] expFlexGrow, String[] expFlexShrink, String[] expFlexBasis, String
                                                   device, ScreenOrientation mode) throws Exception {
@@ -1006,7 +1006,7 @@ public class ModalTest extends BaseClass {
         Assert.assertTrue(isFlexGrow && isFlexShrink && isFlexBasis);
     }
 
-    @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Footer Test", dataProvider = "Modal Footer Test Data", groups = "mobile-regressionR")
     private void modalFooterMobileTest(String size, int width, int height, By modalFooterElement, String[]
             expPaddingValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
@@ -1024,7 +1024,7 @@ public class ModalTest extends BaseClass {
         }
     }
 
-    @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regressionR")
     private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By
             modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String
                                                      expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
