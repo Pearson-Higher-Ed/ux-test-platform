@@ -11,15 +11,15 @@ env:
   - export BROWSERSTACK_USERNAME=eajaz6
 
 addons:
+  browserstack:
+          username: $BROWSERSTACK_USERNAME
+          access_key:
+              secure: khKb1dFmUIo5JWidbf2PTyHqsf5g+EgYlaPkkEA4gsPTRor0dv0yVLKBBahuoT2igFIrmBRNWMhEHdAgK0gfYmz7DtPOn7U9Pq2xyc56l+xMypmlGZwuvWNBOO0LW6gauKImVcFLJr5BCAvEqAM08Oi8O4z3l3auZvXI2nAT8xa3YUxObwJVuxpAWzKEV7uDK2/yb01uoeuJ0tHlncfyHyT/wbDiaAXtm7V2Zyjl3QPLazle3ffja3nZ2fnTyX9fISOIJhXtTy6SOK1UV3qkugAH5qpbdGAWhA4+4ioY9PM7kdVekVdwsfdT/UEe6Etp7D9SGguIh1JQRr4kBGpHdkUU9JUZbSrdlNUskrqLEin/Fk9hEWjl794yu6RE3ox4ofDavzvBlwre+bTKnx8p5jfVzA7Vke85IdaGtYm1Gc9q7+HthvJ+Y8DyP7Mvu2j6og3ouCrt2Lu+duuaEc+ArJz9iaHEl+jBGEUfonXut0BjgjpRWrdKAj7IZnpayZfbfaGtL4EjgfrGNiY/CsVoiY9o2aWrPdF7VU1LIAU9VZzPyZQ6pwf0apU+Tugc/tsuLyKBptrfuLT2/BHw9w0cmPGmq9zI1rgdP8tQ8HGDjJOV5QNsm2WX1CHjUmfBVK6Z539gE/ii0ZVPyYhBD1k3ee2YQw0m37uoMsWLuIaig9Y=
   apt:
       sources:
         - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
-  browserstack:
-          username: $BROWSERSTACK_USERNAME
-          access_key:
-              secure: khKb1dFmUIo5JWidbf2PTyHqsf5g+EgYlaPkkEA4gsPTRor0dv0yVLKBBahuoT2igFIrmBRNWMhEHdAgK0gfYmz7DtPOn7U9Pq2xyc56l+xMypmlGZwuvWNBOO0LW6gauKImVcFLJr5BCAvEqAM08Oi8O4z3l3auZvXI2nAT8xa3YUxObwJVuxpAWzKEV7uDK2/yb01uoeuJ0tHlncfyHyT/wbDiaAXtm7V2Zyjl3QPLazle3ffja3nZ2fnTyX9fISOIJhXtTy6SOK1UV3qkugAH5qpbdGAWhA4+4ioY9PM7kdVekVdwsfdT/UEe6Etp7D9SGguIh1JQRr4kBGpHdkUU9JUZbSrdlNUskrqLEin/Fk9hEWjl794yu6RE3ox4ofDavzvBlwre+bTKnx8p5jfVzA7Vke85IdaGtYm1Gc9q7+HthvJ+Y8DyP7Mvu2j6og3ouCrt2Lu+duuaEc+ArJz9iaHEl+jBGEUfonXut0BjgjpRWrdKAj7IZnpayZfbfaGtL4EjgfrGNiY/CsVoiY9o2aWrPdF7VU1LIAU9VZzPyZQ6pwf0apU+Tugc/tsuLyKBptrfuLT2/BHw9w0cmPGmq9zI1rgdP8tQ8HGDjJOV5QNsm2WX1CHjUmfBVK6Z539gE/ii0ZVPyYhBD1k3ee2YQw0m37uoMsWLuIaig9Y=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
