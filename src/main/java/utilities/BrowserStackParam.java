@@ -24,7 +24,6 @@ public class BrowserStackParam {
     static {
 
         FileInputStream in = null;
-        BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
         TEST_ROOT_DIR = System.getProperty("user.dir");
         try {
             in = new FileInputStream(TEST_ROOT_DIR + File.separator + PROP_FILE);
@@ -40,6 +39,8 @@ public class BrowserStackParam {
             e.printStackTrace();
             throw new SkipException("Failure loading property file -> " + e.getMessage());
         }
+        BROWSERSTACK_LOCAL_IDENTIFIER = properties.getProperty("LocIdentifier");
+        System.out.println("1" + BROWSERSTACK_LOCAL_IDENTIFIER);
 
         if (System.getenv("BROWSERSTACK_USERNAME") != null && !(System.getenv("BROWSERSTACK_USERNAME").equalsIgnoreCase(""))) {
             BROWSERSTACK_USERNAME = System.getenv("BROWSERSTACK_USERNAME");

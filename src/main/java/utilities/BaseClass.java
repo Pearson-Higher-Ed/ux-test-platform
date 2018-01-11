@@ -125,6 +125,7 @@ public class BaseClass {
             if (mobile.equals("on")) {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     if (mobileCaps[i].equals("browserstack.localIdentifier")) {
+                        System.out.println(BrowserStackParam.BROWSERSTACK_LOCAL_IDENTIFIER);
                         caps.setCapability(mobileCaps[i], BrowserStackParam.BROWSERSTACK_LOCAL_IDENTIFIER);// **** change this to reflect params file *****
                     } else if (mobileCaps[i].equals("build"))
                         continue;
