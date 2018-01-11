@@ -5,10 +5,6 @@ jdk:
   - oraclejdk8
 
 env:
-  matrix:
-  - TEST_SUITE=desktop_full_suite.xml
-  - TEST_SUITE=mobile_full_suite.xml
-
   global:
   - CXX=g++-4.8
   - export UX_TEST_PLATFORM_ROOT_DIR=~/build/Pearson-Higher-Ed/ux-test-platform
@@ -38,7 +34,7 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=$TEST_SUITE test
+- mvn test
 
 notifications:
   email:
