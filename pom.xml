@@ -44,8 +44,8 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles> 
-                        <!--<suiteXmlFile>test_suites/desktop_full_suite.xml</suiteXmlFile>-->
-                        <suiteXmlFile>test_suites/mobile_full_suite.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/desktop_full_suite.xml</suiteXmlFile>
+                        <!--<suiteXmlFile>test_suites/mobile_full_suite.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
