@@ -134,6 +134,7 @@ public class TabsTest extends BaseClass {
         }
         String paneArray = buildPaneArray(noOfTabs);
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "var paneArray = " + paneArray);
+        Thread.sleep(1000);
 
         isTabLight = commonUtils.getAttributeValue(By.xpath(compTabsPgObj.xpathForTabLink(activeTab)), "class").equals("pe-label light activeTab");
         result = commonUtils.assertValue(isTabLight, tabLight, "The selected tab is " + tabLightText);

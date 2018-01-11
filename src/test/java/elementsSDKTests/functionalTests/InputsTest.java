@@ -401,6 +401,7 @@ public class InputsTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", "false", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
+        Thread.sleep(1000);
         bgColor = commonUtils.getCSSValue(element, "background-color");
         marginTop = commonUtils.getCSSValue(element, "margin-top");
         paddingRight = commonUtils.getCSSValue(element, "padding-right");

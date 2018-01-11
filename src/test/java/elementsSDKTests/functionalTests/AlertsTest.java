@@ -72,6 +72,7 @@ public class AlertsTest extends BaseClass {
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
+        Thread.sleep(1000);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
         borderLeftStyle = commonUtils.getCSSValue(alert, "border-left-style");
         borderLeftColor = commonUtils.getCSSValue(alert, "border-left-color");
