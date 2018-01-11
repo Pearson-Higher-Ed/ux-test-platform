@@ -21,6 +21,6 @@ bin/
 
 # Node
 node_modules
-fonts
-icons
-images
+#fonts
+#icons
+#images
