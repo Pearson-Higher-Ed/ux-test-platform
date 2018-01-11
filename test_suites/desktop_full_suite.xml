@@ -7,7 +7,7 @@
         </run>
     </groups>
 
-    <test name="Desktop Full Test Suite" parallel="classes" thread-count="12">
+    <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
         <classes>
             <!-- Functional(JavaScript) Tests -->
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
