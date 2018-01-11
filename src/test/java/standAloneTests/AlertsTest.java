@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression1"})
+    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression"})
     private void successErrorInformationAlertsTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.click(button);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
@@ -336,7 +336,7 @@ public class AlertsTest extends BaseClass {
      * Mobile Tests
      */
 
-    @Test(testName = "Mobile : Verify Success, Error and Information Alert", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression"})
+    @Test(testName = "Mobile : Verify Success, Error and Information Alert", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"mobile-regression1"})
     private void successErrorAlertsInformationMobileTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.clickUsingJS(button, "mobile");
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width", "mobile");
