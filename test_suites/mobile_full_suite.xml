@@ -25,7 +25,6 @@
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
             <!--<class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>-->
 
-
             <!-- Styles(CSS) Tests -->
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
@@ -37,7 +36,6 @@
             <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
-
 
             <!-- Stand alone tests -->
             <class name="standAloneTests.ContextualHelpTest"/>
