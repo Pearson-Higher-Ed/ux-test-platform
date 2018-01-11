@@ -51,7 +51,6 @@ public class BaseClass {
     public static boolean isLocal = false;
     public final String warningColorCode = "\u001B[36m";
 
-
     @BeforeClass(alwaysRun = true)
     protected void setUp() throws IOException {
         caps = new DesiredCapabilities();
@@ -241,4 +240,3 @@ public class BaseClass {
             Thread.sleep(500);//Since the local test runs are very fast, giving a half second delay for each test, for correct test results
         }
     }
-}

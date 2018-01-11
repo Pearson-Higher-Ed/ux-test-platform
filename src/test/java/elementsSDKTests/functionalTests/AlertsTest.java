@@ -66,7 +66,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-ci", "desktop-regression1", "mobile-regression"})
+    @Test(testName = "Verify Success, Error Information alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-ci", "desktop-regression", "mobile-regression"})
     private void successErrorInformationAlertsTest(String alertClass, String alertType, By alert, String inlineVal, String[] expColor, String[] expBoxShadow) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "StaticAlert", "componentName", "StaticAlert"};
         String[] propsPropertiesList = new String[]{"type", alertType, "title", "Inline title", "message", "Hello this is an informative msg", "inline", inlineVal, "disable", "false"};

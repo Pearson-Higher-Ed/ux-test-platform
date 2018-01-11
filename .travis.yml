@@ -8,18 +8,18 @@ env:
   global:
   - CXX=g++-4.8
   - export UX_TEST_PLATFORM_ROOT_DIR=~/build/Pearson-Higher-Ed/ux-test-platform
-  - export BROWSERSTACK_USERNAME=payalpda1
+  - export BROWSERSTACK_USERNAME=hello680
 
 addons:
   apt:
-#      sources:
-#        - ubuntu-toolchain-r-test
+      sources:
+        - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
   browserstack:
           username: $BROWSERSTACK_USERNAME
           access_key:
-              secure: dllZq9cOy4w4TfCtD5D9zR+uCUwR0i3A7cfPkUIe/N7wG/HpK5yibJBbhOr0LUlMP1lKuNFL1gYFtaijdWYhrfN3qzqufQ8bBpmvY/nEx62rIe+DrWTtRmdlJFh53xPQbkgrNSPPjenk92EMx1USIma2lYL5xp27p44K9ByIzVgKWbXA050Je7D1VqHATneCLkt3WLJtbapd0Q57pRGlJE3B3Nw5amAKcJ6s76KMifDd3mOYagEdBYC+RfflfzLa8pmzJL1t2GwaHRqL6OpNpafB6bHMutvQZNjLpUUFzPRnUK/PoylqidzwJ0QPpSD9nbKLgw+p7eUBVSgRt52PniNspa4nrVEW3UzFvB4oih5HJ3OL/nT6Utz8x2PNoszJ1/Yd3Dgsz6XzCXDMRoQWOQG67Gk0NH3tW7uU141ybenrIlYmtlCl7DRrLTynByg8OSXKmEErtHPQR5uJNmivx9cxp9BkLz44/7penZRycFgKsZLDb8e6Bvow3Eu5fAOKRno4b/2nQwSxr0bEFj39U+sHLfgoofZg7PnNoIDPwH3zAlXycJcqPf+hycTAP4TSHN4nlykxVuiof2E0TfvUe3lTVAv0qc1sHkdslIxVJdA6umqkH73rjrYgRAq0pRPwJZMwarK64VIhfLae6a/6nJnjwo/bT+AdIDjumig6jXU=
+              secure: nEooq1CCz7KDu1qkEemnAmO0IG2hIApOcPizA0ANyNgN/2vXHEco1qiiUE6M0uXlq6zFuWsC96dL/MgaykHV4EXhZRgFL2xc/6I7TbRLHwTau9nIg+xkYLQUQhpfmFm5SJ3WYCgHNlhoznyZ/V4vGEj8gZ1x64HYMxqRIDnNVz6cvQDj9UCuFohe4/V0A4PZ2thtvJPv65a3DMna69wGAMiQRVz0jNkajBuNFlRC21HVn9kpp9MSV1gblMfcuyykQvpF5oQBLDzeXPB59/VDrZ3Eim3h0daGAF00SBk2WbCa8zctFklBIywvrmB19cPsKqGTQPp6TJTCZby1EvQHt6/0hemsIckmDpa8dtDDdTwnmioK6hwtpK42THP/ld82aLE/zSt92Fl9TLYIUkkdQ1iM4s2hC9bNU6JgeG3GBWXmYOfJRJ6g/2KWS/OnO/cQ0j0d9VdYZlT/VAHyio1IvG9kQPv9L26xsjtripvBhK6F9uxYsq+OAI9/WtVNbEU5Ih/cXplsW883AbcxqFShQ8ItMnfHvQY8xpHlrJb8O/x4vl0fvLd1fX9Pb1TlQCtCtZvlenJAulL/obBoIPnO8XU7JfTLryyPb41Q3c3TBFypYCT4IXkHzah0KYtgnizvEVMRLzoEm7xr+BQqsWsSWIQKx+XMtSKzAIz7OnKUfgg=
 
 install:
 - mvn clean install -DskipTests=true -q -Dmaven.javadoc.skip=true -B -V
