@@ -8,13 +8,13 @@ env:
   global:
   - CXX=g++-4.8
   - export UX_TEST_PLATFORM_ROOT_DIR=~/build/Pearson-Higher-Ed/ux-test-platform
-  - export BROWSERSTACK_USERNAME=eajaz6
+  - export BROWSERSTACK_USERNAME=uxf1
 
 addons:
   browserstack:
           username: $BROWSERSTACK_USERNAME
           access_key:
-              secure: khKb1dFmUIo5JWidbf2PTyHqsf5g+EgYlaPkkEA4gsPTRor0dv0yVLKBBahuoT2igFIrmBRNWMhEHdAgK0gfYmz7DtPOn7U9Pq2xyc56l+xMypmlGZwuvWNBOO0LW6gauKImVcFLJr5BCAvEqAM08Oi8O4z3l3auZvXI2nAT8xa3YUxObwJVuxpAWzKEV7uDK2/yb01uoeuJ0tHlncfyHyT/wbDiaAXtm7V2Zyjl3QPLazle3ffja3nZ2fnTyX9fISOIJhXtTy6SOK1UV3qkugAH5qpbdGAWhA4+4ioY9PM7kdVekVdwsfdT/UEe6Etp7D9SGguIh1JQRr4kBGpHdkUU9JUZbSrdlNUskrqLEin/Fk9hEWjl794yu6RE3ox4ofDavzvBlwre+bTKnx8p5jfVzA7Vke85IdaGtYm1Gc9q7+HthvJ+Y8DyP7Mvu2j6og3ouCrt2Lu+duuaEc+ArJz9iaHEl+jBGEUfonXut0BjgjpRWrdKAj7IZnpayZfbfaGtL4EjgfrGNiY/CsVoiY9o2aWrPdF7VU1LIAU9VZzPyZQ6pwf0apU+Tugc/tsuLyKBptrfuLT2/BHw9w0cmPGmq9zI1rgdP8tQ8HGDjJOV5QNsm2WX1CHjUmfBVK6Z539gE/ii0ZVPyYhBD1k3ee2YQw0m37uoMsWLuIaig9Y=
+              secure: zdeDoNvM+LkKvGrl53s9YGbQM9VgAOPOW49mWKVJ2RiYVlrAS/nSPKkp0th6J2LKM54f+ngueY1xLiFNFGS0J8BYgtqOJzcKKiePbFy9jwJfNagB8Wbccj8SDnIaaQc3rp1XaOn3ZmVpi403OktAHPE1M6gCXE6dgeH3bBp1vo5Cz8d78zc/3ao61sUZhr5AbfBuMdMqQVygycXHX+lr0FFA3Hya4ctYIxgmGDsT1lMDyZplSm6KM0CgThDkXz3w69Gl1AaLiCQzcApiUc3Y736DczlWakNqIpdUyB5TAt1FC325/BdndkucCNBNODglDsQfqauhsgUMG8JuA4BwKXur3V9J9dU7fU7eFyilc+t8fe6EdUk9dpUPa/Xq+vCo74C09AGVk3tWz5X4S1VARIx4Thr89FM4LwBUlN+6yYBn9guWCTzoA4uNRjM0NopWlbrqc3fXmmo7uh7YfPis3tDejo02pzFOZcT4KkJ52I2hjiXNWgPTT4hRsqau9qnKsDRDM0UwBvZ9zEGAYt+o8eOoE9MwajZKL4cho8RpChYlX4qXuVvw7IvZrivOYncCojF2Wi2Yn9gY2mcYYgsgZ4nOiBv8rj/fx/no17ewkfvH/+9mPxQSSK5vrVbJiQcv29ijODgDTMf4D1uquo53/crHpyRJxrNdPrxegH1cbC0=
   apt:
       sources:
         - ubuntu-toolchain-r-test
@@ -34,7 +34,7 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn -Dtest_suite_xml=functional.xml test
+- mvn test
 
 notifications:
   email:
