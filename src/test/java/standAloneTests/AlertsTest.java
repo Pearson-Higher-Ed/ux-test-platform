@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression","mobile-regression1"})
+    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression","mobile-regression"})
     private void successErrorInformationAlertsTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.click(button);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
@@ -280,7 +280,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regressionR"})
+    @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regression"})
     private void paddingForAlertsResponsiveTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
@@ -313,7 +313,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Width and padding left Alert List Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"desktop-regressionR"})
+    @Test(testName = "Width and padding left Alert List Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"desktop-regression"})
     private void widthPaddingLeftResponsiveTest(int screenWidth, int height, String[] expWidth, String expPaddingLeft, String expPaddingRight, String device, ScreenOrientation mode) {
         if (!platform.equals("OS X 10.11")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");

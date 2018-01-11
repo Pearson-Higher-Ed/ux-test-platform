@@ -203,7 +203,7 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Styles for Signed Out Mode Test", groups = "desktop-regressionR", dataProvider = "Styles for Signed Out Mode Test Data")
+    @Test(testName = "Verify Styles for Signed Out Mode Test", groups = "desktop-regression", dataProvider = "Styles for Signed Out Mode Test Data")
     private void stylesForSignedOutModeTest(int width, int height, By element, String type, String cssProperty, String[] expectedCSSValue, String device, ScreenOrientation mode) {
         commonUtils.setWindowSize(width, height);
         commonUtils.getUrl(signOutModeUrl);
@@ -586,7 +586,7 @@ public class AppHeaderTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "desktop-regressionR")
+    @Test(testName = "Verify Styles for Basic Mode Test", dataProvider = "Styles for Basic Mode Test Data", groups = "desktop-regression")
     private void stylesForBasicModeTest(int width, int height, String type, By menuElement, By itemElement, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String device, ScreenOrientation mode) throws Exception {
         commonUtils.setWindowSize(width, height);
         commonUtils.getUrl(basicModeUrl);
