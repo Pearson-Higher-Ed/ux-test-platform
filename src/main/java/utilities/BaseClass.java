@@ -39,8 +39,11 @@ public class BaseClass {
     private final String mobileGroupErrorMessage = "To run Mobile tests, set group 'name' => 'mobile-regression'";
     private final String errorColorCode = "\u001B[31m";
     private final String successColorCode = "\u001B[32m";
-    final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    final String URL = "https://" + USERNAME + ":" + System.getenv("BROWSERSTACK_ACCESS_KEY") + "@hub-cloud.browserstack.com/wd/hub";
+    //final static String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    final static String USERNAME = BrowserStackParam.BROWSERSTACK_USERNAME;
+    //final String URL = "https://" + USERNAME + ":" + System.getenv("BROWSERSTACK_ACCESS_KEY") + "@hub-cloud.browserstack.com/wd/hub";
+    final String URL = "https://" + USERNAME + ":" + BrowserStackParam.BROWSERSTACK_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
     DesiredCapabilities caps = null;
     Properties prop = null;
     ITestContext testContext = null;
@@ -58,12 +61,8 @@ public class BaseClass {
         setMobile = mobile;
         logs.enable(LogType.BROWSER, Level.ALL);
 
-        System.out.println("USRNAME" + System.getenv("BROWSERSTACK_USERNAME"));
-        System.out.println("Accesskey" + System.getenv("BROWSERSTACK_ACCESS_KEY"));
-        //String[] desktopCaps = new String[]{"platform", platform, "version", sauceBrowserVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "screenResolution", "1920x1440", "recordScreenshots", "false", "timeZone", "London"};
-        //String[] mobileCaps = new String[]{MobileCapabilityType.DEVICE_NAME, mobDeviceName, MobileCapabilityType.PLATFORM_VERSION, mobilePlatformVer, MobileCapabilityType.BROWSER_NAME, mobBrowser, MobileCapabilityType.APPIUM_VERSION, appiumVer, "maxDuration", "10800", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "recordScreenshots", "false", "timeZone", "London"};
         String[] desktopCaps = new String[]{"os", platform, "os_version", osVersion, "browser_version", bsBrowserVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "resolution", "1920x1080", "browserstack.debug", "false", "browserstack.timezone", "London"};
-        String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.debug", "true", "browserstack.timezone", "London"};
+        String[] mobileCaps = new String[]{"device", mobDeviceName, "realMobile", "true", "os_version", mobilePlatformVer, "browserstack.local", "true", "name", this.getClass().getPackage().getName() + " => " + this.getClass().getSimpleName(), "browserstack.localIdentifier", System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER"), "build", System.getenv("TRAVIS_BUILD_NUMBER"), "browserstack.debug", "false", "browserstack.timezone", "London"};
 
         if (!((desktopCaps.length % 2 == 0) && (mobileCaps.length % 2 == 0))) {
             log.info(errorColorCode + "Pass even set of parameters for desktop and mobile capabilities");
@@ -125,7 +124,7 @@ public class BaseClass {
             if (mobile.equals("on")) {
                 for (int i = 0; i < (mobileCaps.length - 1); i += 2) {
                     if (mobileCaps[i].equals("browserstack.localIdentifier")) {
-                        caps.setCapability(mobileCaps[i], "Test123");// **** change this to reflect params file *****
+                        caps.setCapability(mobileCaps[i], BrowserStackParam.BROWSERSTACK_LOCAL_IDENTIFIER);// **** change this to reflect params file *****
                     } else if (mobileCaps[i].equals("build"))
                         continue;
                     else

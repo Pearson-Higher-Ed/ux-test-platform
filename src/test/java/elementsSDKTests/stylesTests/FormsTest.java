@@ -37,7 +37,7 @@ public class FormsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Form", dataProvider = "Forms Data", groups = {"desktop-ci","mobile-regression"})
+    @Test(testName = "Verify Form", dataProvider = "Forms Data", groups = {"desktop-ci","desktop-regression","mobile-regression"})
     private void verifyFormsTest(String expFormNameFontSize, String expLineHeight, String expFormNameFontWt, String expMarginBottom, String[] expTopErrorFontColor, String[] expTopErrorFontSize, String[] expTopErrorLineHt, String[] expTopErrorBottom, String[] expErrorDescColor, String expBottomMargin, String[] expLabelColor, String expLabelFontSize, String expLabelLineHt, String expInputsBottomMargin, String[] expSubmitBtnColor) throws InterruptedException {
         // Form Name
         fontSize = commonUtils.getCSSValue(formsPgObj.formName, "font-size");

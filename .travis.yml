@@ -34,7 +34,8 @@ script:
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
-- mvn test
+#- mvn test
+- mvn -Dtest_suite_xml=alerts.xml test
 
 notifications:
   email:

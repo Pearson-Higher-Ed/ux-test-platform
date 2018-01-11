@@ -47,7 +47,7 @@ public class AlertsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression","mobile-regression"})
+    @Test(testName = "Verify Success, Error Information Alerts", dataProvider = "Success, Error, Information Alerts Test Data", groups = {"desktop-regression","mobile-regression1"})
     private void successErrorInformationAlertsTest(By button, String alertType, By alert, String[] expColor, String[] expBoxShadow) {
         commonUtils.click(button);
         borderLeftWidth = commonUtils.getCSSValue(alert, "border-left-width");
