@@ -9,6 +9,17 @@
 
     <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
         <classes>
+            <!-- Stand alone tests -->
+            <class name="standAloneTests.ContextualHelpTest"/>
+            <class name="standAloneTests.DrawerTest"/>
+            <class name="standAloneTests.AvatarDisplayTest"/>
+            <class name="standAloneTests.AlertsTest"/>
+            <class name="standAloneTests.AppHeaderTest"/>
+            <class name="standAloneTests.PaginationTest"/>
+            <class name="standAloneTests.ModalTest"/>
+            <class name="standAloneTests.SliderTest"/>
+            <class name="standAloneTests.LoadingIndicatorTest"/>
+
             <!-- Functional(JavaScript) Tests -->
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
@@ -37,17 +48,6 @@
             <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
             <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
 
-
-            <!-- Stand alone tests -->
-            <class name="standAloneTests.ContextualHelpTest"/>
-            <class name="standAloneTests.DrawerTest"/>
-            <class name="standAloneTests.AvatarDisplayTest"/>
-            <class name="standAloneTests.AlertsTest"/>
-            <class name="standAloneTests.AppHeaderTest"/>
-            <class name="standAloneTests.PaginationTest"/>
-            <class name="standAloneTests.ModalTest"/>
-            <class name="standAloneTests.SliderTest"/>
-            <class name="standAloneTests.LoadingIndicatorTest"/>
         </classes>
     </test>
 </suite>
