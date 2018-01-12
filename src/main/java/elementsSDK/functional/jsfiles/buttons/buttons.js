@@ -8,9 +8,9 @@ function init() {
 			elementId: 'button-target',
 			componentName: 'Button',
 			props: {
-btnType: 'primary',
-btnSize: 'xlarge',
-children: 'default-large',
+				btnType: '',
+				btnSize: 'large',
+				children: 'children',
 				onClick: (function () {
 					return alert('Hello World!');
 				})

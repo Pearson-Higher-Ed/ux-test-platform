@@ -7,7 +7,7 @@ function init() {
 			elementId: 'icon-target',
 			componentName: 'Icon',
 			props: {
-name: 'font-setting-18'
+				name: 'audio-high-24'
 			}
 		}
 	}));
