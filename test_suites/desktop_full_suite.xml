@@ -7,8 +7,19 @@
         </run>
     </groups>
 
-    <test name="Desktop Full Test Suite" parallel="classes" thread-count="25">
+    <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
         <classes>
+            <!-- Stand alone tests -->
+            <class name="standAloneTests.ContextualHelpTest"/>
+            <class name="standAloneTests.DrawerTest"/>
+            <class name="standAloneTests.AvatarDisplayTest"/>
+            <class name="standAloneTests.AlertsTest"/>
+            <class name="standAloneTests.AppHeaderTest"/>
+            <class name="standAloneTests.PaginationTest"/>
+            <class name="standAloneTests.ModalTest"/>
+            <class name="standAloneTests.SliderTest"/>
+            <class name="standAloneTests.LoadingIndicatorTest"/>
+
             <!-- Functional(JavaScript) Tests -->
             <class name="elementsSDKTests.functionalTests.AlertsTest"/>
             <class name="elementsSDKTests.functionalTests.ButtonsTest"/>
@@ -25,7 +36,6 @@
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
             <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
 
-
             <!-- Styles(CSS) Tests -->
             <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
@@ -33,23 +43,10 @@
             <class name="elementsSDKTests.stylesTests.IconsTest"/>
             <class name="elementsSDKTests.stylesTests.FormsTest"/>
             <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <class name="elementsSDKTests.stylesTests.GridTest"/>
-            <class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>
-            <class name="elementsSDKTests.stylesTests.TemplatesTest"/>
-            <class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>
-
-
-            <!-- Stand alone tests -->
-            <class name="standAloneTests.ContextualHelpTest"/>
-            <class name="standAloneTests.DrawerTest"/>
-            <class name="standAloneTests.AvatarDisplayTest"/>
-            <class name="standAloneTests.AlertsTest"/>
-            <class name="standAloneTests.AppHeaderTest"/>
-            <class name="standAloneTests.PaginationTest"/>
-            <class name="standAloneTests.ModalTest"/>
-            <class name="standAloneTests.SliderTest"/>
-            <class name="standAloneTests.LoadingIndicatorTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
         </classes>
     </test>
 </suite>
-
