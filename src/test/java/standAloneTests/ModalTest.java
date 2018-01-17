@@ -85,17 +85,17 @@ public class ModalTest extends BaseClass {
     @DataProvider(name = "Modal Template Width and Overlay Test Data")
     private Object[][] getModalWidthAndOverlayTestData() {
         return new Object[][]{
-                {"md", 768, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"600px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"440px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
-                {"md", 768, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"600px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
-                {"sm", 480, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"440px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
-                {"xs", 320, 800, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
+                {"md", 768, 150, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"600px"}, new String[]{"225.984px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 150, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"440px"}, new String[]{"189.984px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"xs", 320, 150, "true", modalPgObj.modalWithFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{"237.984px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT},
+                {"md", 768, 300, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"600px"}, new String[]{"149.984px"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPad Air", ScreenOrientation.PORTRAIT},
+                {"sm", 480, 300, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"440px"}, new String[]{"106px", "123.984"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.LANDSCAPE},
+                {"xs", 320, 300, "false", modalPgObj.modalWithoutFooterTemplateReact, new String[]{"360px", "374px", "335px", "414px", "320px"}, new String[]{"106px", "123.984"}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"2px", "2px", "2px", "2px"}, "iPhone 6s Plus", ScreenOrientation.PORTRAIT}
         };
     }
 
     @Test(testName = "Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void modalWidthAndOverlayTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String device, ScreenOrientation mode) throws Exception {
+    private void modalWidthAndOverlayTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplateElement, String[] expWidth, String[] expHeight, String[] expBackgroundColor, String[] expBorderRadiusValue, String device, ScreenOrientation mode) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "modal-target"};
         String[] propsTextList = new String[]{"initiatingButtonText", "any string", "headerTitle", "Terms n Conditions (basic title)", "closeButtonSRText", "close", "modalSaveButtonText", "save", "modalCancelButtonText", "cancel"};
         String[] propsPropertiesList = new String[]{"isShown", "true", "cancelBtnHandler", "function () {return alert('You clicked Cancel!');}", "successBtnHandler", "function () {return alert('You clicked save!');}", "footerVisible", visible, "children", "React.createElement('p', {}, 'Lorem ipsum dolor sit amet')"};
@@ -104,11 +104,16 @@ public class ModalTest extends BaseClass {
         commonUtils.setWindowSize(windowWidth, windowHeight);
         Thread.sleep(500);
         width = commonUtils.getCSSValue(modalTemplateElement, "width");
+        height = commonUtils.getCSSValue(modalTemplateElement, "height");
         backgroundColor = commonUtils.getCSSValue(modalTemplateElement, "background-color");
 
         isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
         if (!isWidth) {
             log.info("'modal template' - width for " + size + " is not as per the spec, actual: " + width);
+        }
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        if (!isHeight) {
+            log.info("'modal template' - height for window: " + windowWidth + ", " + windowHeight + " is not as per the spec, actual: " + height);
         }
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
         if (!isBackgroundColor) {
@@ -119,7 +124,7 @@ public class ModalTest extends BaseClass {
             isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadiusValue[i], "'modal template' - " + borderRadiuss[i] + " for " + size + " size is not as per the spec");
             Assert.assertTrue(isBorderRadius);
         }
-        Assert.assertTrue(isWidth && isBackgroundColor);
+        Assert.assertTrue(isWidth && isHeight && isBackgroundColor);
     }
 
     //Modal Header
@@ -727,9 +732,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Template Width Test", dataProvider = "Modal Template Width and Overlay Test Data", groups = "mobile-regression")
-    private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By
-            modalTemplateElement, String[] expWidth, String[] expBackgroundColor, String[] expBorderRadiusValue, String
-                                                        device, ScreenOrientation mode) throws Exception {
+    private void modalWidthAndOverlayMobileTest(String size, int windowWidth, int windowHeight, String visible, By modalTemplateElement, String[] expWidth, String[] expHeight, String[] expBackgroundColor, String[] expBorderRadiusValue, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
@@ -1025,9 +1028,7 @@ public class ModalTest extends BaseClass {
     }
 
     @Test(testName = "Mobile: Modal Modal Close X Button Test", dataProvider = "Modal Close X Button Test Data", groups = "mobile-regression")
-    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By
-            modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String
-                                                     expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
+    private void modalCloseXButtonMobileTest(String size, int windowWidth, int windowHeight, By modalCloseButton, String expWidth, String expHeight, String expCloseButtonFloat, String[] expMarginValue, String expTextDecoration, String[] expBorderStyles, String device, ScreenOrientation mode) throws Exception {
         if (!(mobileDevice.contains(device))) {
             throw new SkipException("To run this test, specify mobile device as you see in the data provider");
         }
