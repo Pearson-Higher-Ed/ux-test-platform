@@ -82,7 +82,7 @@ public class CoachMarkTest extends BaseClass {
         width = commonUtils.getCSSValue(elem, "min-width");
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
 
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#d6ebe8"), commonUtils.hex2Rgb("#d6ebe8")});
+        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#DAF0ED"), commonUtils.hex2Rgb("#DAF0ED")});
         if (!isBgColor) {
             log.info("Background color of " + type + " coach-mark is not as per spec, actual " +bgColor);
         }
@@ -217,7 +217,7 @@ public class CoachMarkTest extends BaseClass {
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
         className = commonUtils.getAttributeValue(coachMarkPgObj.svg, "class");
         isClass = commonUtils.assertValue(className, "pe-icon--remove-sm-18", "Class name of X Icon does not match the design specs");
-        commonUtils.click(coachMarkPgObj.xIcon);
+        commonUtils.clickUsingJS(coachMarkPgObj.xIcon);
         isPresent = commonUtils.isElementPresent(elem);
         isElemPresent = commonUtils.assertValue(isPresent, false, "Coach mark did not dismiss");
         Assert.assertTrue(isClass && isElemPresent);
@@ -290,7 +290,7 @@ public class CoachMarkTest extends BaseClass {
         width = commonUtils.getCSSValue(elem, "min-width", "mobile");
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
 
-        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#d6ebe8"), commonUtils.hex2Rgb("#d6ebe8")});
+        isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, new String[]{commonUtils.hex2RgbWithoutTransparency("#DAF0ED"), commonUtils.hex2Rgb("#DAF0ED")});
         if (!isBgColor) {
             log.info("Background color of " + type + " coach-mark is not as per spec, actual " + bgColor);
         }
