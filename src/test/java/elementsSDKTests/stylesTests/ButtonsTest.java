@@ -203,7 +203,9 @@ public class ButtonsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Bos shadow of " + type + " in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        cursor = commonUtils.getCSSValue(elem, "cursor");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of " + type + " in Disabled state  not as per spec");
+        Assert.assertTrue(isColor && isBackgroundColor && isBoxShadow && isCursor);
     }
 
     //Buttons borders
@@ -469,7 +471,9 @@ public class ButtonsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow", "mobile");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Bos shadow of " + type + " in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        cursor = commonUtils.getCSSValue(elem, "cursor", "mobile");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of " + type + " in Disabled state  not as per spec");
+        Assert.assertTrue(isColor && isBackgroundColor && isBoxShadow && isCursor);
     }
 
     @Test(testName = "Mobile : Verify Buttons Borders Test", dataProvider = "Buttons Borders Test Data", groups = "mobile-regression")
