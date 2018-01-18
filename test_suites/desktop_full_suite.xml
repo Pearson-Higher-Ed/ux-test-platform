@@ -7,7 +7,7 @@
         </run>
     </groups>
 
-    <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
+    <test name="Desktop Full Test Suite" parallel="classes" thread-count="12">
         <classes>
             <!-- Stand alone tests -->
             <class name="standAloneTests.ContextualHelpTest"/>
@@ -26,7 +26,7 @@
             <class name="elementsSDKTests.functionalTests.DropdownTest"/>
             <class name="elementsSDKTests.functionalTests.FooterTest"/>
             <class name="elementsSDKTests.functionalTests.IconsTest"/>
-            <!--<class name="elementsSDKTests.functionalTests.InputsTest"/>-->
+            <class name="elementsSDKTests.functionalTests.InputsTest"/>
             <class name="elementsSDKTests.functionalTests.LoadingSpinnerTest"/>
             <class name="elementsSDKTests.functionalTests.TabsTest"/>
             <class name="elementsSDKTests.functionalTests.CalendarTest"/>
@@ -37,7 +37,7 @@
             <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
 
             <!-- Styles(CSS) Tests -->
-            <!--<class name="elementsSDKTests.stylesTests.InputsTest"/>-->
+            <class name="elementsSDKTests.stylesTests.InputsTest"/>
             <class name="elementsSDKTests.stylesTests.TypographyTest"/>
             <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
             <class name="elementsSDKTests.stylesTests.IconsTest"/>
