@@ -296,7 +296,7 @@ public class ModalTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Footer: Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "desktop-regression1")
+    @Test(testName = "Footer: Modal Body Border Test", dataProvider = "Footer: Modal Body Border Test Data", groups = "desktop-regression")
     private void modalBodyFooterBorderTest(String type, String size, int windowWidth, int windowHeight, By modalBodyElement, String[] expPaddingTop, String[] expMarginTop, String[] expMarginBottom, String[] expBorderTops, String[] expBorderBottoms, String device, ScreenOrientation mode) throws Exception {
         commonUtils.setWindowSize(windowWidth, windowHeight);
 
