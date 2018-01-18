@@ -46,7 +46,7 @@
             <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
             <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
-            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>--> 
         </classes>
     </test>
 </suite>
