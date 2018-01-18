@@ -7,7 +7,7 @@
         </run>
     </groups>
 
-    <test name="Desktop Full Test Suite" parallel="classes" thread-count="12">
+    <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
         <classes>
             <!-- Stand alone tests -->
             <class name="standAloneTests.ContextualHelpTest"/>
