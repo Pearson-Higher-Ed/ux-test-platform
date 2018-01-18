@@ -29,6 +29,7 @@ before_script:
 - python -m SimpleHTTPServer &>/dev/null &
 
 script:
+- free -m
 - export component=elements-sdk1
 - export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
