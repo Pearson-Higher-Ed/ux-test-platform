@@ -9,6 +9,18 @@
 
     <test name="Desktop Full Test Suite" parallel="classes" thread-count="5">
         <classes>
+            <!-- Styles(CSS) Tests -->
+            <class name="elementsSDKTests.stylesTests.InputsTest"/>
+            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
+            <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
+            <class name="elementsSDKTests.stylesTests.IconsTest"/>
+            <class name="elementsSDKTests.stylesTests.FormsTest"/>
+            <class name="elementsSDKTests.stylesTests.TablesTest"/>
+            <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
+            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
+
             <!-- Stand alone tests -->
             <class name="standAloneTests.ContextualHelpTest"/>
             <class name="standAloneTests.DrawerTest"/>
@@ -36,17 +48,6 @@
             <class name="elementsSDKTests.functionalTests.ProgressBarTest"/>
             <class name="elementsSDKTests.functionalTests.PhoneNumberTest"/>
 
-            <!-- Styles(CSS) Tests -->
-            <class name="elementsSDKTests.stylesTests.InputsTest"/>
-            <class name="elementsSDKTests.stylesTests.TypographyTest"/>
-            <class name="elementsSDKTests.stylesTests.ButtonsTest"/>
-            <class name="elementsSDKTests.stylesTests.IconsTest"/>
-            <class name="elementsSDKTests.stylesTests.FormsTest"/>
-            <class name="elementsSDKTests.stylesTests.TablesTest"/>
-            <!--<class name="elementsSDKTests.stylesTests.GridTest"/>-->
-            <!--<class name="elementsSDKTests.stylesTests.PresentationStrategyTest"/>-->
-            <!--<class name="elementsSDKTests.stylesTests.TemplatesTest"/>-->
-            <!--<class name="elementsSDKTests.stylesTests.ResponsiveUtilitiesTest"/>-->
         </classes>
     </test>
 </suite>
