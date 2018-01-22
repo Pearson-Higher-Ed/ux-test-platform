@@ -201,7 +201,7 @@ public class AlertsTest extends BaseClass {
         isPaddingTop = commonUtils.assertValue(paddingTop, "4px", "Compounds -> Padding top of alert " + alertClass + alertType + " is not as per spec");
         isPaddingRight = commonUtils.assertValue(paddingRight, "12px", "Compounds -> Padding right of alert " + alertClass + alertType + " is not as per spec");
 
-        Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
+        Assert.assertTrue(isMarginLeft && isMarginTop && isPaddingTop && isPaddingRight);
     }
 
     @Test(testName = "Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = "desktop-regression")
@@ -289,7 +289,7 @@ public class AlertsTest extends BaseClass {
 
     @Test(testName = "Padding and Width for alerts Responsive Test", dataProvider = "Padding and Width for Alerts Responsive Test Data", groups = {"desktop-regression"})
     private void paddingForAlertsResponsiveTest(String alertClass, String inlineVal, int screenWidth, int height, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String expDisplay, String[] expWidth, String device, ScreenOrientation mode) throws Exception {
-        if (!platform.equals("OS X 10.11")) {
+        if (!(platform.equals("OS X 10.11") || (platform.startsWith("macOS")))) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
         }
         alertType = alertsPgObj.generateRandomAlerts();
@@ -458,7 +458,7 @@ public class AlertsTest extends BaseClass {
         if (!isPaddingRight) {
             log.info("Compounds -> Padding right of alert" + alertClass + alertType + " is not as per spec, actual " + paddingRight);
         }
-        Assert.assertTrue(isMarginLeft && isPaddingTop && isPaddingRight);
+        Assert.assertTrue(isMarginLeft && isMarginTop && isPaddingTop && isPaddingRight);
     }
 
     @Test(testName = "Mobile : Click on 'X' icon", dataProvider = "Alert Title Properties Test Data", groups = "mobile-regression")
