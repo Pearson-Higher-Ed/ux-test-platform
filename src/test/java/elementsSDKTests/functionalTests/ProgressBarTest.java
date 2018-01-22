@@ -58,7 +58,7 @@ public class ProgressBarTest extends BaseClass {
     @DataProvider(name = "Progress Bar And Rail Styles Test Data")
     public Object[][] getProgressBarAndRailStylesTestData() {
         return new Object[][]{
-                {"progress-bar-rail", progressBarPgObj.progressBarRail, "4px", new String[]{commonUtils.hex2RgbWithoutTransparency("#c7c7c7"), commonUtils.hex2Rgb("#c7c7c7")}, "10px", "Text to Display"},
+                {"progress-bar-rail", progressBarPgObj.progressBarRail, "4px", new String[]{commonUtils.hex2RgbWithoutTransparency("#c7c7c7"), commonUtils.hex2Rgb("#c7c7c7")}, "7px", "Text to Display"},
                 {"progress-bar", progressBarPgObj.progressBar, "12px", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a6a4"), commonUtils.hex2Rgb("#19a6a4")}, "-4px", "Text to Display"}
         };
     }
