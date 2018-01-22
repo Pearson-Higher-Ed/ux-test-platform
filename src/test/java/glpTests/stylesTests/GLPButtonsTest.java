@@ -57,7 +57,7 @@ public class GLPButtonsTest extends BaseClass {
     }
 
     @Test(testName = "Buttons CSS Props Test", dataProvider = "Buttons CSS Props Test Data", groups = "desktop-regression")
-    private void verifyAllButtonsCSSPropsTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expBorRad, String expTextDecoration) {
+    private void buttonsCSSPropsTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expBorRad, String expTextDecoration) {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         height = commonUtils.getCSSValue(elem, "height");
@@ -198,21 +198,23 @@ public class GLPButtonsTest extends BaseClass {
             log.info("Bg Color of Default Button in Disabled state  not as per spec, actual: " + backgroundColor);
         }
         boxShadow = commonUtils.getCSSValue(btnPgObect.defaultBtnDisabled, "box-shadow");
-        isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Box shadow of Default Button in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Box shadow of Default Button in Disabled state not as per spec");
+        cursor = commonUtils.getCSSValue(btnPgObect.defaultBtnDisabled, "cursor");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of Default Button in Disabled state not as per spec");
+        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor && isCursor);
     }
 
     @DataProvider(name = "Link Button Test Data")
     public Object[][] getLinkButtonTestData() {
         return new Object[][]{
-                {"Link Btn", btnPgObect.linkBtn, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"0px"}, "underline"},
-                {"Link Btn 2.0", btnPgObect.linkBtn2, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"4px"}, "underline"},
-                {"link-button-2.0-disabled", btnPgObect.linkBtn2Disabled, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"4px"}, "none"}
+                {"Link Btn", btnPgObect.linkBtn, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"0px"}, "underline","pointer"},
+                {"Link Btn 2.0", btnPgObect.linkBtn2, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"4px"}, "underline","pointer"},
+                {"link-button-2.0-disabled", btnPgObect.linkBtn2Disabled, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}, new String[]{"4px"}, "none","default"}
         };
     }
 
     @Test(testName = "Link Button Test", dataProvider = "Link Button Test Data", groups = "desktop-regression")
-    private void linkButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration) {
+    private void linkButtonTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration, String expCursor) {
         color = commonUtils.getCSSValue(elem, "color");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color");
         textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty);
@@ -233,7 +235,10 @@ public class GLPButtonsTest extends BaseClass {
             log.info(" Bg Color of " + type + " is not as per spec, actual: " + backgroundColor);
         }
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "Text decoration of " + type + " is not as per spec");
-        Assert.assertTrue(isColor && isBackgroundColor && isTextDecoration);
+        cursor = commonUtils.getCSSValue(elem, "cursor");
+        isCursor = commonUtils.assertValue(cursor, expCursor, "Cursor of " + type + " in Disabled state not as per spec");
+
+        Assert.assertTrue(isColor && isBackgroundColor && isTextDecoration && isCursor);
     }
 
     @DataProvider(name = "Link Button-Hover state Test Data")
@@ -360,7 +365,7 @@ public class GLPButtonsTest extends BaseClass {
      */
 
     @Test(testName = "Mobile : Buttons CSS Props Test", dataProvider = "Buttons CSS Props Test Data", groups = "mobile-regression")
-    private void verifyButtonsCSSPropsMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expBorRad, String expTextDecoration) {
+    private void buttonsCSSPropsMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expHeight, String expBorRad, String expTextDecoration) {
         color = commonUtils.getCSSValue(elem, "color", "mobile");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         height = commonUtils.getCSSValue(elem, "height", "mobile");
@@ -434,12 +439,14 @@ public class GLPButtonsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(btnPgObect.defaultBtnDisabled, "box-shadow", "mobile");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Box shadow of Default Button in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        cursor = commonUtils.getCSSValue(btnPgObect.defaultBtnDisabled, "cursor","mobile");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of Default Button in Disabled state not as per spec");
+        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor && isCursor);
     }
 
 
     @Test(testName = "Mobile : Link Button Test", dataProvider = "Link Button Test Data", groups = "mobile-regression")
-    private void linkButtonMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration) {
+    private void linkButtonMobileTest(String type, By elem, String[] expColor, String[] expBgColor, String[] expPadding, String expTextDecoration,String expCursor) {
         color = commonUtils.getCSSValue(elem, "color", "mobile");
         backgroundColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         textDecoration = commonUtils.getCSSValue(elem, textDecorationProperty, "mobile");
@@ -460,7 +467,10 @@ public class GLPButtonsTest extends BaseClass {
             log.info(" Bg Color of " + type + " is not as per spec, actual: " + backgroundColor);
         }
         isTextDecoration = commonUtils.assertValue(textDecoration, expTextDecoration, "Text decoration of " + type + " is not as per spec");
-        Assert.assertTrue(isColor && isBackgroundColor && isTextDecoration);
+        cursor = commonUtils.getCSSValue(elem, "cursor","mobile");
+        isCursor = commonUtils.assertValue(cursor, expCursor, "Cursor of " + type + " is in Disabled state not as per spec");
+
+        Assert.assertTrue(isColor && isBackgroundColor && isTextDecoration && isCursor);
     }
 
     @Test(testName = "Mobile : Size Buttons Test", dataProvider = "Size Buttons Test Data", groups = "mobile-regression")

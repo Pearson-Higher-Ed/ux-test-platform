@@ -176,11 +176,14 @@ public class GLPButtonsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(glpFuncBtnPgObj.button, "box-shadow");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Box shadow of Default Button in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        cursor = commonUtils.getCSSValue(glpFuncBtnPgObj.button, "cursor");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of Default Button in Disabled state not as per spec");
+
+        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor && isCursor);
     }
 
     @DataProvider(name = "Button-Hover and Focus state Test Data")
-    public Object[][] getButtonHoverStateTestData() {
+    public Object[][] getButtonHoverFocusStateTestData() {
         return new Object[][]{
                 {"Tertiary Btn'", "tertiary", "hover", new String[]{commonUtils.hex2Rgb("#505759"), commonUtils.hex2RgbWithoutTransparency("#505759")}, new String[]{commonUtils.hex2Rgb("#ededed"), commonUtils.hex2RgbWithoutTransparency("#ededed")}},
                 {"Default Btn'", "'", "hover", new String[]{commonUtils.hex2Rgb("#505759"), commonUtils.hex2RgbWithoutTransparency("#505759")}, new String[]{"rgba(0, 0, 0, 0)", "rgb(0,0,0)", "transparent"}},
@@ -194,7 +197,7 @@ public class GLPButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Button - Hover and Focus state Test", dataProvider = "Button-Hover and Focus state Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Button - Hover and Focus state Test", dataProvider = "Button-Hover and Focus state Test Data", groups = {"desktop-regression"})
     private void buttonHoverFocusStateTest(String type, String btnType, String action, String[] expColor, String[] expBgColor) throws Exception {
         if (browser.equals("safari") || browser.equals("firefox") || browser.equals("ie")) {
             throw new SkipException("Hover operation not yet supported in firefox/safari/ie browser drivers");
@@ -284,7 +287,7 @@ public class GLPButtonsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isFontWt && isHeight && isPaddingLeft && isPaddingRight);
     }
 
-    @DataProvider(name = "Verify Incorrect Values Test Data")
+    @DataProvider(name = "Incorrect Values Test Data")
     public Object[][] getIncorrectValuesData() {
         return new Object[][]{
                 {"xyz-target", "Button", "default"},
@@ -298,7 +301,7 @@ public class GLPButtonsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Verify Incorrect Values Test", dataProvider = "Verify Incorrect Values Test Data", groups = "desktop-regression")
+    @Test(testName = "Incorrect Values Test", dataProvider = "Incorrect Values Test Data", groups = "desktop-regression")
     private void incorrectValuesTest(String elemId, String compName, String btnType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", elemId, "componentName", compName};
         String[] propsPropertiesList = new String[]{"btnType", btnType, "children", btnType + " button'"};
@@ -398,7 +401,10 @@ public class GLPButtonsTest extends BaseClass {
         }
         boxShadow = commonUtils.getCSSValue(glpFuncBtnPgObj.button, "box-shadow", "mobile");
         isBoxShadow = commonUtils.assertValue(boxShadow, "none", "Box shadow of Default Button in Disabled state  not as per spec");
-        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor);
+        cursor = commonUtils.getCSSValue(glpFuncBtnPgObj.button, "cursor","mobile");
+        isCursor = commonUtils.assertValue(cursor, "default", "Cursor of Default Button in Disabled state not as per spec");
+
+        Assert.assertTrue(isColor && isBoxShadow && isBackgroundColor && isCursor);
     }
 
     @Test(testName = "Mobile : Size Buttons Test", dataProvider = "Size Buttons Test Data", groups = "mobile-regression")
@@ -441,7 +447,7 @@ public class GLPButtonsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isLineHeight && isFontWt && isHeight && isPaddingLeft && isPaddingRight);
     }
 
-    @Test(testName = "Mobile : Verify Incorrect Values Test", dataProvider = "Verify Incorrect Values Test Data", groups = "mobile-regression")
+    @Test(testName = "Mobile : Incorrect Values Test", dataProvider = "Incorrect Values Test Data", groups = "mobile-regression")
     private void incorrectValuesMobileTest(String elemId, String compName, String btnType) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", elemId, "componentName", compName};
         String[] propsPropertiesList = new String[]{"btnType", btnType, "children", btnType + " button'"};
