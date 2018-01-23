@@ -35,7 +35,7 @@
 2. Go to ux-test-platform directory
 <pre>
     cd ux-test-platform
-    git checkout _rebrand_
+    git checkout rebrand
     npm install
     npm run copy-assets
     python -m SimpleHTTPServer
@@ -52,8 +52,9 @@
     </details>
 
 4. Run mode configuration:
-	* Run it as a maven test(for eg. elements_sdk.xml):<pre>mvn -Dtest_suite_xml=elements_sdk.xml</pre>
-	* Run it as a testng suite. test_suites/<component.xml>
+	* Run it as a maven test from your Terminal/Cmd prompt(for eg. elements_sdk.xml):<pre>cd /Users/umahaea/Documents/workspace/ux-test-platform 
+	mvn -Dtest_suite_xml=elements_sdk.xml</pre>
+	* Run it as a testng suite. Right click on test_suites/<component.xml> and run as a testng suite.
 	
 NOTE: Mobile tests runs can also be run Sauce via your local machine. Follow this <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/rebrand/docs/run-mobile-tests-on-sauce-via-local.md"><b>DOCS</b></a> 
 	
