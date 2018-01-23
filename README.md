@@ -52,7 +52,7 @@
     </details>
 
 4. Run mode configuration:
-	* Run it as a maven test from your Terminal/Cmd prompt(for eg. elements_sdk.xml):<pre>cd /Users/umahaea/Documents/workspace/ux-test-platform 
+	* Run it as a maven test from your Terminal/Cmd prompt(for eg. elements_sdk.xml):<pre>cd /workspace/ux-test-platform 
 	mvn -Dtest_suite_xml=elements_sdk.xml</pre>
 	* Run it as a testng suite. Right click on test_suites/<component.xml> and run as a testng suite.
 	
