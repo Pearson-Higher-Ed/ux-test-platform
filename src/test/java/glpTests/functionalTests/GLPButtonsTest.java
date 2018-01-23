@@ -119,7 +119,7 @@ public class GLPButtonsTest extends BaseClass {
     }
 
     @DataProvider(name = "Default Button Border Test Data")
-    public Object[][] getDefaultButtonsBorderTestData() {
+    public Object[][] getDefaultButtonBorderTestData() {
         return new Object[][]{
                 {"Default Btn'", false, "'", "solid", new String[]{commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, "1px"},
                 {"Default Btn'", true, "'", "solid", new String[]{commonUtils.hex2Rgb("#505759"), commonUtils.hex2RgbWithoutTransparency("#505759")}, "1px"},
