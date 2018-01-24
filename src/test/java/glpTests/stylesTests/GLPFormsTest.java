@@ -5,7 +5,7 @@ package glpTests.stylesTests;
 
 import java.lang.reflect.Method;
 
-import glp.styles.stylesPageObjects.GLPFormsPageObjects;
+import glp.styles.stylesPageObjects.FormsPageObjects;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -21,21 +21,21 @@ public class GLPFormsTest extends BaseClass {
     final static Logger log = Logger.getLogger(GLPFormsTest.class.getName());
     private String marginBottom = "", marginTop = "", marginLeft = "", marginRight = "";
     private boolean isFontSize = false, isMarginBottom = false, isMarginTop = false, isMarginLeft = false, isMarginRight = false;
-    GLPFormsPageObjects formsPgObj = null;
+    FormsPageObjects formsPgObj = null;
 
     @BeforeClass(alwaysRun = true)
     private void beforeClass() {
-        formsPgObj = new GLPFormsPageObjects();
+        formsPgObj = new FormsPageObjects();
         if (!runEnv.equals("travis")) {
             browser = localBrowser;
         } else {
             browser = sauceBrowser;
         }
         if (desktop.equals("on")) {
-            formsPgObj = new GLPFormsPageObjects(driver);
+            formsPgObj = new FormsPageObjects(driver);
         } else if (mobile.equals("on")) {
             mobileDevice = mobDeviceName;
-            formsPgObj = new GLPFormsPageObjects(appium);
+            formsPgObj = new FormsPageObjects(appium);
         }
     }
 

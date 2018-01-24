@@ -7,18 +7,18 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by udhadpa on 12/8/17.
  */
-public class GLPFormsPageObjects {
+public class FormsPageObjects {
     WebDriver driver = null;
     AppiumDriver appium = null;
 
-    public GLPFormsPageObjects() {
+    public FormsPageObjects() {
     }
 
-    public GLPFormsPageObjects(WebDriver driver) {
+    public FormsPageObjects(WebDriver driver) {
         this.driver = driver;
     }
 
-    public GLPFormsPageObjects(AppiumDriver appium) {
+    public FormsPageObjects(AppiumDriver appium) {
         this.appium = appium;
     }
 
