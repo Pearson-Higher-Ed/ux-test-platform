@@ -171,13 +171,13 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "CSS properties of Alert Content Test Data")
     public Object[][] getAlertContentData() {
         return new Object[][]{
-                {"banner", "Success", "12px", new String[]{"16px"}, "false"},
-                {"banner", "Error", "12px", new String[]{"16px"}, "false"},
-                {"banner", "Information", "0px", new String[]{"16px"}, "false"},
+                {"banner", "Success", "12px", new String[]{"14px"}, "false"},
+                {"banner", "Error", "12px", new String[]{"14px"}, "false"},
+                {"banner", "Information", "0px", new String[]{"14px"}, "false"},
 
-                {"inline", "Success", "12px", new String[]{"16px"}, "true"},
-                {"inline", "Error", "12px", new String[]{"16px"}, "true"},
-                {"inline", "Information", "0px", new String[]{"16px"}, "true"},
+                {"inline", "Success", "12px", new String[]{"14px"}, "true"},
+                {"inline", "Error", "12px", new String[]{"14px"}, "true"},
+                {"inline", "Information", "0px", new String[]{"14px"}, "true"},
         };
     }
 

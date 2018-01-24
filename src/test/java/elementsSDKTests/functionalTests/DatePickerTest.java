@@ -28,9 +28,9 @@ public class DatePickerTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "";
-    private String testConfig = "", color = "", fileContentsInAString = "", beforeFinalFormat = "", finalConfig = "", actualCurrentDate = "", actualNextDayToCurrentDate = "", actualCurrentMonth = "", actualCurrentYear = "", currentDateXpath = "", dateInDateField = "", monthInNumber = "", label = "", width = "", testName = "", focused = "", changeHandlerText = "";
+    private String testConfig = "", color = "", fileContentsInAString = "", beforeFinalFormat = "", finalConfig = "", actualCurrentDate = "", actualNextDayToCurrentDate = "", actualCurrentMonth = "", actualCurrentYear = "", actualCurrentDateInNumericalFormat = "", currentDateXpath = "", dateInDateField = "", monthInNumber = "", label = "", width = "", testName = "", focused = "", changeHandlerText = "";
     private String preConfigStr1 = "function init() {";
-    private boolean isColor = false, isCurrentDate = false, isCalendarPresent = false, isCalendar = false, isCalendarIconPresent = false, isCalendarIcon = false, isDateField = false, isDateFieldValue = false, isDateFieldFocused = false, isDateOnCalendar = false, isDateOnCalendarSelected = false, isLabel = false, isWidth = false, actualNextDayToLastDate = false, isFocused = false, isChangeHandlerText = false, isDatePickerLoaded = false, result = false;
+    private boolean isColor = false, isCurrentDate = false, isCalendarPresent = false, isCalendar = false, isCalendarIconPresent = false, isCalendarIcon = false, isDateField = false, isDateFieldValue = false, isDateFieldFocused = false, isDateOnCalendar = false, isDateOnCalendarSelected = false, isLabel = false, isWidth = false, actualNextDayToLastDate = false, isFocused = false, isChangeHandlerText = false, isDatePickerLoaded = false, isSelectedDateExists = false, result = false;
     private String preConfigStr2 = "document.body.dispatchEvent(new CustomEvent('o.InitComponents', ";
     private String postConfigStr1 = "));}window.onload = init;";
     private String dateFieldDefaultClass = "pe-datepicker-input-styles pe-textInput--basic";
@@ -137,16 +137,53 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue(isDateField);
     }
 
+    @DataProvider(name = "Focus State WithOut Selection Visual Confirmation Test Data")
+    public Object[][] getFocusStateWithOutSelectionVisualConfirmationTestData() {
+        return new Object[][]{
+                {"default", "valid-date", datepickerPgObj.dateFieldDefault, dateFieldDefaultClass, actualCurrentDateInNumericalFormat},
+                {"error", "valid-date", datepickerPgObj.dateFieldError, dateFieldErrorClass, actualCurrentDateInNumericalFormat},
+                {"default", "invalid-date", datepickerPgObj.dateFieldDefault, dateFieldDefaultClass, "31/31/1999"},
+                {"error", "invalid-date", datepickerPgObj.dateFieldError, dateFieldErrorClass, "31/31/1999"}
+        };
+    }
+
+    @Test(testName = "Focus State WithOut Selection Visual Confirmation Test", dataProvider = "Focus State WithOut Selection Visual Confirmation Test Data", groups = "desktop-regression", retryAnalyzer = RetryAnalyzer.class)
+    private void focusStateWithOutSelectionVisualConfirmationTest(String state, String dateValidity, By dateField, String dateFieldClass, String dateToBeTyped) throws InterruptedException {
+        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath);
+
+        commonUtils.click(dateField);
+
+        //type the date
+        commonUtils.sendKeys(dateField, dateToBeTyped);
+        commonUtils.click(dateField);
+
+        String value = commonUtils.getAttributeValue(dateField, "value"); //grab the value from the date field
+
+        //Open the calendar to check
+        commonUtils.click(dateField);
+        selectedDate();
+
+        if (dateValidity.equals("valid-date")) {
+            Assert.assertTrue((selectedDate().equals(value)), "In '" + state + "' inputState, the valid date: '" + dateToBeTyped + "' typed in the dateField text box is not selected in the calendar");
+        } else {
+            Assert.assertTrue(selectedDate().equals("no-selection"), "In '" + state + "' inputState, the invalid date: '" + dateToBeTyped + "' typed in the dateField text box is selected in the calendar");
+        }
+    }
+
     @DataProvider(name = "Focus State With selection Test Data")
     public Object[][] getFocusStateWithSelectionTestData() {
         return new Object[][]{
-                {"default", datepickerPgObj.dateFieldDefault},
-                {"error", datepickerPgObj.dateFieldError}
+                {"default", "currentDate", currentDateXpath, datepickerPgObj.dateFieldDefault},
+                {"error", "currentDate", currentDateXpath, datepickerPgObj.dateFieldError},
+                {"default", "actualNextDayToCurrentDate", actualNextDayToCurrentDate, datepickerPgObj.dateFieldDefault},
+                {"error", "actualNextDayToCurrentDate", actualNextDayToCurrentDate, datepickerPgObj.dateFieldError}
         };
     }
 
     @Test(testName = "Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = {"desktop-regression", "desktop-ci"}, retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithSelectionTest(String state, By dateField) {
+    private void focusStateWithSelectionTest(String state, String date, String dateBox, By dateField) {
         boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         if (!isNextDayToCurrentDateExists) {
             throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
@@ -158,14 +195,14 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(dateField);
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div")); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(dateBox + "/div/div"));
         commonUtils.click(By.xpath("//h2")); // click somewhere else to release the focus on date input field
 
         //Click once again to see if the calendar opens up and shows the selected date
         commonUtils.click(dateField);
         String value = commonUtils.getAttributeValue(dateField, "value");
         isDateFieldValue = commonUtils.getAllAttributes(dateField).contains("value=" + value);
-        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
+        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date: '" + date + "' is not showing up on the dateField");
         Assert.assertTrue(isDateField);
 
         commonUtils.click(dateField);
@@ -424,7 +461,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(datepickerPgObj.dateFieldDefault);
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div")); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         commonUtils.click(datepickerPgObj.dateFieldDefault);
         Thread.sleep(1000);
         String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value");
@@ -470,7 +507,7 @@ public class DatePickerTest extends BaseClass {
         isCalendar = commonUtils.assertValue(isCalendarPresent, false, "In '" + state + "' inputState, calendar is present");
 
         label = commonUtils.getText(labelText, "mobile");
-        isLabel = commonUtils.assertValue(label, "Select date (mm/dd/yyyy)", "In '" + state + "' inputState, the label text is not as per the spec");
+        isLabel = commonUtils.assertValue(label, "Select date", "In '" + state + "' inputState, the label text is not as per the spec");
         Assert.assertTrue(isCalendar && isDateField && isCalendarIcon && isLabel);
     }
 
@@ -497,8 +534,33 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue(isDateField);
     }
 
+    @Test(testName = "Mobile: Focus State WithOut Selection Visual Confirmation Test", dataProvider = "Focus State WithOut Selection Visual Confirmation Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
+    private void focusStateWithOutSelectionVisualConfirmationMobileTest(String state, String dateValidity, By dateField, String dateFieldClass, String dateToBeTyped) {
+        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
+        String[] propsPropertiesList = new String[]{"inputState", state, "dateFormat", "mm/dd/yyyy", "labelText", "Select date"};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
+
+        commonUtils.click(dateField, "mobile");
+
+        //type the date
+        commonUtils.sendKeys(dateField, dateToBeTyped, "mobile");
+        commonUtils.click(dateField, "mobile");
+
+        String value = commonUtils.getAttributeValue(dateField, "value", "mobile"); //grab the value from the date field
+
+        //Open the calendar to check
+        commonUtils.click(dateField, "mobile");
+        selectedDate("mobile");
+
+        if (dateValidity.equals("valid-date")) {
+            Assert.assertTrue((selectedDate("mobile").equals(value)), "In '" + state + "' inputState, the valid date: '" + dateToBeTyped + "' typed in the dateField text box is not selected in the calendar");
+        } else {
+            Assert.assertTrue(selectedDate("mobile").equals("no-selection"), "In '" + state + "' inputState, the invalid date: '" + dateToBeTyped + "' typed in the dateField text box is selected in the calendar");
+        }
+    }
+
     @Test(testName = "Mobile: Focus State With selection Test", dataProvider = "Focus State With selection Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void focusStateWithSelectionMobileTest(String state, By dateField) {
+    private void focusStateWithSelectionMobileTest(String state, String date, String dateBox, By dateField) {
         boolean isNextDayToCurrentDateExists = commonUtils.isElementPresent(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
         if (!isNextDayToCurrentDateExists) {
             throw new SkipException("If the last date of the month is current date, then next day to current date is not see on the calendar, so skipping it");
@@ -510,14 +572,14 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(dateField, "mobile");
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(dateBox + "/div/div"), "mobile");
         commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on date input field
 
         //Click once again to see if the calendar opens up and shows the selected date
         commonUtils.click(dateField, "mobile");
         String value = commonUtils.getAttributeValue(dateField, "value", "mobile");
         isDateFieldValue = commonUtils.getAllAttributes(dateField, "mobile").contains("value=" + value);
-        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date is not showing up on the dateField");
+        isDateField = commonUtils.assertValue(isDateFieldValue, true, "In '" + state + "' inputState, the clicked date: '" + date + "' is not showing up on the dateField");
         Assert.assertTrue(isDateField);
 
         commonUtils.click(dateField, "mobile");
@@ -614,29 +676,6 @@ public class DatePickerTest extends BaseClass {
         Assert.assertTrue(isColor && isWidth);
     }
 
-    //change handler
-    @Test(testName = "Mobile: Change Handler Test", dataProvider = "Change Handler Test Data", groups = "mobile-regression", retryAnalyzer = RetryAnalyzer.class)
-    private void changeHandlerMobileTest(String operationType) {
-        if ((operationType.equals("keys"))) {
-            throw new SkipException("focus operation not yet supported in appium drivers");
-        }
-        String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
-        String[] propsPropertiesList = new String[]{"inputState", "default", "dateFormat", "mm/dd/yyyy", "labelText", "Select date", "changeHandler", "function () {return alert('clicked!');}"};
-
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, datepickerJSFilePath, "mobile");
-
-        commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
-
-        if (operationType.equals("mouse")) {
-            commonUtils.click(By.xpath(currentDateXpath + "/div/div"), "mobile");
-        }
-
-        changeHandlerText = appium.switchTo().alert().getText();
-        appium.switchTo().alert().accept();
-        isChangeHandlerText = commonUtils.assertValue(changeHandlerText, "clicked!", "change handler didn't trigger the event for operationType: '" + operationType + "'");
-        Assert.assertTrue(isChangeHandlerText);
-    }
-
     @Test(testName = "Mobile: Date Format Test", dataProvider = "Date Format Test Data", groups = "mobile-regression")
     void dateFormatMobileTest(String format) throws InterruptedException {
         String[] detailsPropertiesList = new String[]{"elementId", "date-picker-target", "componentName", "DatePicker"};
@@ -646,7 +685,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
         commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
         Thread.sleep(1000);
         String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
@@ -735,6 +774,7 @@ public class DatePickerTest extends BaseClass {
                     actualNextDayToCurrentDate = calendarPgObj.xpathForDate(i, j + 1);
                     actualNextDayToLastDate = commonUtils.getAttributeValue(By.xpath(actualNextDayToCurrentDate), "class").equals("pe-cal-cell");
                     currentDateXpath = calendarPgObj.xpathForDate(i, j);
+                    actualCurrentDateInNumericalFormat = cal.get(Calendar.MONTH) + 1 + "/" + actualCurrentDate + "/" + actualCurrentYear;
                     break;
                 }
             }
@@ -772,6 +812,7 @@ public class DatePickerTest extends BaseClass {
                     actualNextDayToCurrentDate = calendarPgObj.xpathForDate(i, j + 1);
                     actualNextDayToLastDate = commonUtils.getAttributeValue(By.xpath(actualNextDayToCurrentDate), "class", "mobile").equals("pe-cal-cell");
                     currentDateXpath = calendarPgObj.xpathForDate(i, j);
+                    actualCurrentDateInNumericalFormat = cal.get(Calendar.MONTH) + 1 + "/" + actualCurrentDate + "/" + actualCurrentYear;
                     break;
                 }
             }
@@ -797,7 +838,7 @@ public class DatePickerTest extends BaseClass {
         String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
-        String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate).replaceAll("\"", "");
+        isSelectedDateExists = commonUtils.isElementPresent(datepickerPgObj.selectedDate);
 
         for (int i = 0; i < 12; i++) {
             if (actualCurrentMonth.equals(monthsOfYear[i])) {
@@ -805,15 +846,19 @@ public class DatePickerTest extends BaseClass {
                 break;
             }
         }
-        return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+        if (isSelectedDateExists) {
+            String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate).replaceAll("\"", "");
+            return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+        } else {
+            return "no-selection";
+        }
     }
 
     private String selectedDate(String mobile) {
         String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String[] monthsInNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
-        String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate, "mobile").replaceAll("\"", "");
-        commonUtils.getAttributeValue(datepickerPgObj.selectedDate, "aria-label", "mobile");
+        isSelectedDateExists = commonUtils.isElementPresent(datepickerPgObj.selectedDate, "mobile");
 
         for (int i = 0; i < 12; i++) {
             if (actualCurrentMonth.equals(monthsOfYear[i])) {
@@ -821,7 +866,12 @@ public class DatePickerTest extends BaseClass {
                 break;
             }
         }
-        return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+        if (isSelectedDateExists) {
+            String selectedDate = commonUtils.getText(datepickerPgObj.selectedDate, "mobile").replaceAll("\"", "");
+            return monthInNumber + "/" + selectedDate + "/" + actualCurrentYear;
+        } else {
+            return "no-selection";
+        }
     }
 
     private String selectedDateInFormat(String format) {
