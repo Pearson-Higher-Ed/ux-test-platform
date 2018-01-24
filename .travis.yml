@@ -30,7 +30,7 @@ before_script:
 
 script:
 - export component=elements-sdk
-- export feature_branch=DES-820_DatePicker
+- export feature_branch=master
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
 - mvn -Dtest_suite_xml=elements_sdk.xml test
