@@ -461,7 +461,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(datepickerPgObj.dateFieldDefault);
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div")); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"));
         commonUtils.click(datepickerPgObj.dateFieldDefault);
         Thread.sleep(1000);
         String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value");
@@ -572,7 +572,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(dateField, "mobile");
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(dateBox + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(dateBox + "/div/div"), "mobile");
         commonUtils.click(By.xpath("//h2"), "mobile"); // click somewhere else to release the focus on date input field
 
         //Click once again to see if the calendar opens up and shows the selected date
@@ -685,7 +685,7 @@ public class DatePickerTest extends BaseClass {
         commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
 
         //User makes selection from the calendar.
-        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile"); //!Not able to select the current date -> issue already opened
+        commonUtils.clickUsingJS(By.xpath(actualNextDayToCurrentDate + "/div/div"), "mobile");
         commonUtils.click(datepickerPgObj.dateFieldDefault, "mobile");
         Thread.sleep(1000);
         String value = commonUtils.getAttributeValue(datepickerPgObj.dateFieldDefault, "value", "mobile");
