@@ -698,7 +698,7 @@ public class ModalTest extends BaseClass {
     public Object[][] getScrollWithPageModalTestData() {
         return new Object[][]{
                 {"true", "auto", "true", modalPgObj.modalWithFooterTemplateReact},
-                {"false", "visible", "false", modalPgObj.modalWithFooterTemplateReact}
+                {"false", "auto", "false", modalPgObj.modalWithFooterTemplateReact}
         };
     }
 
