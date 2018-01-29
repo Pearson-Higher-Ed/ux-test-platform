@@ -7,7 +7,7 @@ jdk:
 env:
   matrix:
   - TEST_SUITE=glp_desktop_regression_suite.xml
-  - TEST_SUITE=dlp_mobile_regression_suite.xml
+  - TEST_SUITE=glp_mobile_regression_suite.xml
   global:
   - export MAVEN_OPTS="-Xms1024m -Xmx4096m -XX:PermSize=1024m"
   - export JAVA_OPTS="-Xmx512m"
@@ -37,7 +37,7 @@ before_script:
 script:
 - free -m
 - export component=glp-elements-sdk
-- export feature_branch=master
+- export feature_branch=unstable-2.0-GLP
 - chmod 777 ./src/main/shell_scripts/components.sh
 - ./src/main/shell_scripts/components.sh
 - free -m
