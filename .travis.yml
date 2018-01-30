@@ -7,7 +7,7 @@ jdk:
 env:
   matrix:
   - TEST_SUITE=glp_desktop_regression_suite.xml
-  - TEST_SUITE=glp_mobile_regression_suite.xml
+  #- TEST_SUITE=glp_mobile_regression_suite.xml
   global:
   - export MAVEN_OPTS="-Xms1024m -Xmx4096m -XX:PermSize=1024m"
   - export JAVA_OPTS="-Xmx512m"
