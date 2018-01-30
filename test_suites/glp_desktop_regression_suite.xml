@@ -7,11 +7,12 @@
         </run>
     </groups>
     <!-- Styles(CSS) Tests -->
-    <test name="GLP ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="3">
-        <classes>
+    <!--<test name="GLP ElementsSDK: Styles(CSS) Tests" parallel="classes" thread-count="3">-->
+    <test name="GLP ElementsSDK: Styles(CSS) Tests">
+    <classes>
             <class name="glpTests.stylesTests.GLPFormsTest"/>
             <class name="glpTests.stylesTests.GLPButtonsTest"/>
-            <class name="glpTests.functionalTests.GLPButtonsTest"/>
+            <!--<class name="glpTests.functionalTests.GLPButtonsTest"/>-->
         </classes>
     </test>
 </suite>
