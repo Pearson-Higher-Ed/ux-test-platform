@@ -173,11 +173,11 @@ public class AlertsTest extends BaseClass {
         return new Object[][]{
                 {"banner", "Success", "12px", new String[]{"14px"}, "false"},
                 {"banner", "Error", "12px", new String[]{"14px"}, "false"},
-                {"banner", "Information", "0px", new String[]{"14px"}, "false"},
+                {"banner", "Information", "0px", new String[]{"0px"}, "false"},
 
                 {"inline", "Success", "12px", new String[]{"14px"}, "true"},
                 {"inline", "Error", "12px", new String[]{"14px"}, "true"},
-                {"inline", "Information", "0px", new String[]{"14px"}, "true"},
+                {"inline", "Information", "0px", new String[]{"0px"}, "true"},
         };
     }
 
