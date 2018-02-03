@@ -30,9 +30,9 @@ public class InputsTest extends BaseClass {
     private final String tempJSFilePath = constructPath(absTempJSFilePath);
 
     private static String browser = "", lBrowser = "", setPlatform = "", setAppium = "", setMobile;
-    private String browserLogs = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "open sans,calibri,tahoma,sans-serif", edgeFontFamily = "Open Sans,Calibri,Tahoma,sans-serif", cssPropertyType = "", outlineStyle = "", backgroundColor = "", unroundedTransValue = "", display = "", height = "", transitionDelay = "", transitionDuration = "", transitionProp = "", trainsitionTimingFunc = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", bgColor = "", marginTop = "", paddingRight = "", paddingLeft = "", fontSize = "", lineHeight = "", borderRadius = "", borderWidth = "", borderStyle = "", borderColor = "", color = "", boxShadow = "", basicInputBorder = "", basicInputValueColor = "", labelFontSize = "", labelColor = "", paddingTop = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", labelLineHeight = "", actIconClass = "", showBtnColor = "", showBtnFloat = "", textDecoration = "", paddingBottom = "", borderBottom = "", borderBottomColor = "", borderBottomStyle = "", width = "", marginRight = "", marginBottom = "", radioBtnSelectedColor = "", radioBtnPadding = "";
+    private String browserLogs = "", macChromeFontFamily = "\"Open Sans\", Calibri, Tahoma, sans-serif", ffFontFamily = "\"Open Sans\",Calibri,Tahoma,sans-serif", safariFontFamily = "'Open Sans', Calibri, Tahoma, sans-serif", ieFontFamily = "open sans,calibri,tahoma,sans-serif", edgeFontFamily = "Open Sans,Calibri,Tahoma,sans-serif", cssPropertyType = "", outlineStyle = "", backgroundColor = "", unroundedTransValue = "", display = "", height = "", transitionDelay = "", transitionDuration = "", transitionProp = "", trainsitionTimingFunc = "", testConfig = "", fileContentsInAString = "", postFixConfig = "", preFixConfig = "", bgColor = "", marginTop = "", paddingRight = "", paddingLeft = "", fontSize = "", lineHeight = "", borderRadius = "", borderWidth = "", borderStyle = "", borderColor = "", color = "", boxShadow = "", basicInputBorder = "", basicInputValueColor = "", labelFontSize = "", labelColor = "", paddingTop = "", beforeFinalFormat = "", finalFormat = "", finalConfig = "", labelLineHeight = "", actIconClass = "", showBtnColor = "", showBtnFloat = "", textDecoration = "", paddingBottom = "", borderBottom = "", borderBottomColor = "", borderBottomStyle = "", width = "", marginRight = "", marginBottom = "", radioBtnSelectedColor = "", radioBtnPadding = "", fontFamily = "", padding = "", testName = "", position = "", minHeight = "", leftProperty = "", topProperty = "";
     int indexOfFirstOpenBrace = 0, indexOfLastCloseBrace = 0, roundedTransValue = 0, len = 0, lastIndexOf = 0, indexOfFirstCloseBrace = 0;
-    private boolean isCSSProperty = false, isOutlineStyle = false, isBackgroundColor = false, isDisplay = false, isHeight = false, isTransitionDelay = false, isTransitionDuration = false, isTransitionProp = false, isTransitionTimingFunc = false, result = false, isBorderRadius = false, isMarginTop = false, isPaddingRight = false, isPaddingLeft = false, isFontSize = false, isLineHeight = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isColor = false, isLabelFor = false, isBoxShadow = false, isBasicInputBorder = false, isBasicInputValueColor = false, isLabelFontSize = false, isLabelColor = false, isPaddingTop = false, isAriaDescByContains = false, islabelLineHeight = false, isIconClass = false, isBgColor = false, isShowBtnColor = false, isShowBtnFloat = false, isTextDecoration = false, isPaddingBottom = false, isBorderBottom = false, isBorderBottomColor = false, isBorderBottomStyle = false, isMarginRight = false, isRadioBtnPadding = false, isMarginBottom = false, isWidth = false, isRadioBtnSelectedColor = false;
+    private boolean isCSSProperty = false, isOutlineStyle = false, isBackgroundColor = false, isDisplay = false, isHeight = false, isTransitionDelay = false, isTransitionDuration = false, isTransitionProp = false, isTransitionTimingFunc = false, result = false, isBorderRadius = false, isMarginTop = false, isPaddingRight = false, isPaddingLeft = false, isFontSize = false, isLineHeight = false, isBorderWidth = false, isBorderStyle = false, isBorderColor = false, isColor = false, isLabelFor = false, isBoxShadow = false, isBasicInputBorder = false, isBasicInputValueColor = false, isLabelFontSize = false, isLabelColor = false, isPaddingTop = false, isAriaDescByContains = false, islabelLineHeight = false, isIconClass = false, isBgColor = false, isShowBtnColor = false, isShowBtnFloat = false, isTextDecoration = false, isPaddingBottom = false, isBorderBottom = false, isBorderBottomColor = false, isBorderBottomStyle = false, isMarginRight = false, isRadioBtnPadding = false, isMarginBottom = false, isWidth = false, isRadioBtnSelectedColor = false, isFontFamily = false, isPadding = false, isMinHeight = false, isPosition = false, isTop = false, isLeft = false;
     private final String incorrectElementIdErrorMsg = "Target container is not a DOM element";
     private final String incorrectComponentNameErrorMsg = "type is invalid";
 
@@ -44,11 +44,18 @@ public class InputsTest extends BaseClass {
     Map<String, String> propsProperties = null;
     Map<String, JsonObject> propsConfigMap = null;
 
-    List<String> borderWidths = Arrays.asList("border-top-width", "border-right-width", "border-bottom-width", "border-left-width");
-    List<String> borderStyles = Arrays.asList("border-top-style", "border-right-style", "border-bottom-style", "border-left-style");
-    List<String> borderColors = Arrays.asList("border-top-color", "border-right-color", "border-bottom-color", "border-left-color");
-    List<String> borderRadii = Arrays.asList("border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius");
-    List<String> paddings = Arrays.asList("padding-top", "padding-bottom", "padding-right", "padding-left");
+
+    String[] borderTops = {"border-top-width", "border-top-style", "border-top-color"};
+    String[] borderBottoms = {"border-bottom-width", "border-bottom-style", "border-bottom-color"};
+    String[] borderRights = {"border-right-width", "border-right-style", "border-right-color"};
+    String[] borderLefts = {"border-left-width", "border-left-style", "border-left-color"};
+    String[] paddings = {"padding-top", "padding-bottom", "padding-right", "padding-left"};
+    String[] borderRadiuss = {"border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius"};
+
+    String[] borderWidths = {"border-top-width", "border-right-width", "border-bottom-width", "border-left-width"};
+    String[] borderStyles = {"border-top-style", "border-bottom-style", "border-right-style", "border-left-style"};
+    String[] borderColors = {"border-top-color", "border-right-color", "border-bottom-color", "border-left-color"};
+    String[] borderRadii = {"border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius"};
 
     private String infoMsgClassName = "pe-input--info_message";
     private String errorMsgClassName = "pe-input--error_message";
@@ -107,142 +114,179 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Fancy - Single Line Text Input Test Data")
     public Object[][] getFancySingleLineTextInputTestData() {
         return new Object[][]{
-                {"border-bottom-width", new String[]{"1px"}},
-                {"border-bottom-style", new String[]{"solid"}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {"font-size", new String[]{"14px"}},
-                {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"border-top-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"padding-top", new String[]{"8px"}},
-                {"padding-right", new String[]{"0px"}},
-                {"padding-bottom", new String[]{"10px"}},
-                {"padding-left", new String[]{"0px"}},
-                {"font-family", new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily, edgeFontFamily}}
-        };
+                {inputsPgObj.slTextInput, new String[]{"1px", "solid", "#6A7070"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}};
     }
 
     //Fancy - Inputs (Single line - default)
     @Test(testName = "Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void fancySingleLineTextInputTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        color = commonUtils.getCSSValue(element, "color");
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i]);
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Line Text Input", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input Errored Test Data")
     public Object[][] getFancySingleLineTextInputErroredTestData() {
         return new Object[][]{
-                {inputsPgObj.slTextInputErrored, "border-bottom-width", new String[]{"1px"}},
-                {inputsPgObj.slTextInputErrored, "border-bottom-style", new String[]{"solid"}},
-                {inputsPgObj.slTextInputErrored, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.slTextInputErrored, "font-size", new String[]{"14px"}},
-                {inputsPgObj.slTextInputErrored, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.slTextInputErrored, "border-top-style", new String[]{"none"}},
-                {inputsPgObj.slTextInputErrored, "border-right-style", new String[]{"none"}},
-                {inputsPgObj.slTextInputErrored, "border-left-style", new String[]{"none"}},
-                {inputsPgObj.slTextInputErrored, "padding-top", new String[]{"8px"}},
-                {inputsPgObj.slTextInputErrored, "padding-right", new String[]{"0px"}},
-                {inputsPgObj.slTextInputErrored, "padding-bottom", new String[]{"10px"}},
-                {inputsPgObj.slTextInputErrored, "padding-left", new String[]{"0px"}},
-                {inputsPgObj.slTextInputErrored, "font-family", new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily, edgeFontFamily}},
-                {inputsPgObj.textInputUnderLineErrorClass, "background-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.textInputUnderLineErrorClass, "display", new String[]{"block"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "height", new String[]{"4px"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "transform", new String[]{"matrix(0, 0, 0, 1, 0, 0)"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "transition-delay", new String[]{"0s"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "transition-duration", new String[]{"0.2s"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "transition-property", new String[]{"all"}},
-                {inputsPgObj.textInputUnderLineErrorClass, "transition-timing-function", new String[]{"ease", "cubic-bezier(0.25, 0.1, 0.25, 1)"}}
-        };
+                {inputsPgObj.slTextInputErrored, new String[]{"1px", "solid", "#DB0020"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}};
     }
 
     //Fancy - Inputs (single line - error)
     @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "desktop-regression")
-    private void fancySingleLineTextInputErroredTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputErroredTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(element, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        color = commonUtils.getCSSValue(element, "color");
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i]);
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Line Text Input - Errored", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input Disabled Test Data")
     public Object[][] getFancySingleLineInputDisabledTestData() {
         return new Object[][]{
-                {"border-bottom-width", new String[]{"4px"}},
-                {"border-bottom-style", new String[]{"solid"}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {"font-family", new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily, edgeFontFamily}}
+                {inputsPgObj.slTextInputDisabled, new String[]{"4px", "solid", "#C7C7C7"}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}
         };
     }
 
     //Fancy - Inputs (single line - disabled)
     @Test(testName = "Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "desktop-regression")
-    private void fancySingleLineTextInputDisabledTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputDisabledTest(By element, String[] expBorderBottoms, String[] expColor, String[] expBackgroundColor, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
+        color = commonUtils.getCSSValue(element, "color");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
+
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isBackgroundColor) {
+            log.info("background-color for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + backgroundColor);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isColor && isBackgroundColor && isFontFamily);
+        testBorders("Fancy - Single Line Text Input - Disabled", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input ReadOnly Test Data")
     public Object[][] getFancySingleLineInputReadOnlyTestData() {
         return new Object[][]{
-                {"border-bottom-width", new String[]{"0px"}},
-                {"border-bottom-style", new String[]{"none"}},
-                {"border-bottom-color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {"font-size", new String[]{"14px"}},
-                {"border-top-style", new String[]{"none"}},
-                {"border-right-style", new String[]{"none"}},
-                {"border-left-style", new String[]{"none"}},
-                {"padding-top", new String[]{"8px"}},
-                {"padding-right", new String[]{"0px"}},
-                {"padding-bottom", new String[]{"10px"}},
-                {"padding-left", new String[]{"0px"}},
-                {"font-family", new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily, edgeFontFamily}}
+                {inputsPgObj.slTextInputReadOnly, new String[]{"0px", "none", "#252525"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"14px"}, new String[]{"none", "none", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}
         };
     }
 
     //Inputs (single line - readonly)
     @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "desktop-regression")
-    private void fancySingleLineTextInputReadOnlyTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputReadOnlyTest(By element, String[] expBorderBottoms, String[] expColor, String[] expFontSize, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        color = commonUtils.getCSSValue(element, "color");
+        fontFamily = commonUtils.getCSSValue(element, "font-family");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i]);
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Text Line Input - ReadOnly", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input - Focus state Test Data")
@@ -952,123 +996,168 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "MultiLine Input Active Test Data")
     public Object[][] getMultiLineInputData() {
         return new Object[][]{
-                {inputsPgObj.multiLineTextInput, "font-size", new String[]{"14px"}},
-                {inputsPgObj.multiLineTextInput, "line-height", new String[]{"18px"}},
-                {inputsPgObj.multiLineTextInput, "padding-top", new String[]{"9px"}},
-                {inputsPgObj.multiLineTextInput, "padding-bottom", new String[]{"9px"}},
-                {inputsPgObj.multiLineTextInput, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.multiLineTextInput, "padding-right", new String[]{"14px"}},
-                {inputsPgObj.multiLineTextInput, "margin-top", new String[]{"6px"}},
-                {inputsPgObj.multiLineTextInput, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.multiLineTextInput, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {inputsPgObj.multiLineTextInput, "border-bottom-width", new String[]{"1px"}},
-                {inputsPgObj.multiLineTextInput, "border-top-width", new String[]{"1px"}},
-                {inputsPgObj.multiLineTextInput, "border-right-width", new String[]{"1px"}},
-                {inputsPgObj.multiLineTextInput, "border-left-width", new String[]{"1px"}},
-                {inputsPgObj.multiLineTextInput, "border-bottom-style", new String[]{"solid"}},
-                {inputsPgObj.multiLineTextInput, "border-top-style", new String[]{"solid"}},
-                {inputsPgObj.multiLineTextInput, "border-right-style", new String[]{"solid"}},
-                {inputsPgObj.multiLineTextInput, "border-left-style", new String[]{"solid"}},
-                {inputsPgObj.multiLineTextInput, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextInput, "border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextInput, "border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextInput, "border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
+                {inputsPgObj.multiLineTextInput, new String[]{"14px"}, new String[]{"18px"}, new String[]{"6px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"9px", "9px", "14px", "14px"}, new String[]{"1px", "1px", "1px", "1px"}, new String[]{"solid", "solid", "solid", "solid"}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
         };
     }
 
     @Test(testName = "MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void multiLineInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void multiLineInputBoxTest(By element, String[] expFontSize, String[] expLineHeight, String[] expMarginTop, String[] expColor, String[] expBackgroundColor, String[] expPadding, String[] expBorderWidth, String[] expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Active is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size");
+        lineHeight = commonUtils.getCSSValue(element, "line-height");
+        marginTop = commonUtils.getCSSValue(element, "margin-top");
+        color = commonUtils.getCSSValue(element, "color");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("bg-color", backgroundColor, expBackgroundColor);
+
+        if (!isFontSize) {
+            log.info("font size for MultiLine Input is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isLineHeight) {
+            log.info("Line Height for MultiLine Input is not as per the spec, actual: " + lineHeight);
+        }
+        if (!isMarginTop) {
+            log.info("margin-top for MultiLine Input is not as per the spec, actual: " + marginTop);
+        }
+        if (!isColor) {
+            log.info("color for for MultiLine Input is not as per the spec, actual: " + color);
+        }
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isFontSize && isLineHeight && isMarginTop && isColor && isBackgroundColor);
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i]);
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < borderWidths.length; i++) {
+            borderWidth = commonUtils.getCSSValue(element, borderWidths[i]);
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth[i], borderWidths[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Text is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
     @DataProvider(name = "MultiLine Input Error Test Data")
     public Object[][] getMultiLineInputErrorData() {
         return new Object[][]{
-                {inputsPgObj.multiLineTextErrorInput, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {inputsPgObj.multiLineTextErrorInput, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.multiLineTextErrorInput, "border-top-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.multiLineTextErrorInput, "border-right-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.multiLineTextErrorInput, "border-left-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
+                {inputsPgObj.multiLineTextErrorInput, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}}
         };
     }
 
     @Test(testName = "MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"desktop-regression"})
-    private void multiLineInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void multiLineInputBoxErrorTest(By element, String[] expBackgroundColor, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Error is not as per the spec, actual: " + cssProperty);
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input Error is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isBackgroundColor);
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Input Error is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
     @DataProvider(name = "MultiLine Input Disabled Test Data")
     public Object[][] getMultiLineInputDisabledData() {
         return new Object[][]{
-                {inputsPgObj.multiLineTextDisabledInput, "color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9"), commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}},
-                {inputsPgObj.multiLineTextDisabledInput, "background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
-                {inputsPgObj.multiLineTextDisabledInput, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextDisabledInput, "border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextDisabledInput, "border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextDisabledInput, "border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.multiLineTextDisabledInput, "outline-style", new String[]{"none"}}
-        };
+                {inputsPgObj.multiLineTextDisabledInput, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9"), commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{"none"}}};
     }
 
     @Test(testName = "MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"desktop-regression"})
-    private void multiLineInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void multiLineInputBoxDisabledTest(By element, String[] expColor, String[] expBackgroundColor, String[] expBorderColor, String[] expOutlineStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+        color = commonUtils.getCSSValue(element, "color");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        outlineStyle = commonUtils.getCSSValue(element, "outline-style");
+
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        isOutlineStyle = commonUtils.assertCSSProperties("outline-style", outlineStyle, expOutlineStyle);
+        if (!isColor) {
+            log.info("color for MultiLine Input Error is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isBackgroundColor) {
+            log.info("background-color for MultiLine Input Error is not as per the spec, actual: " + backgroundColor);
+        }
+        if (!isOutlineStyle) {
+            log.info("outline-style for MultiLine Input Error is not as per the spec, actual: " + outlineStyle);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor && isOutlineStyle);
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Input Disabled is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
     @DataProvider(name = "MultiLine Input ReadOnly Test Data")
     public Object[][] getMultiLineInputReadOnlyData() {
         return new Object[][]{
-                {inputsPgObj.multiLineTextReadOnlyInput, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-                {inputsPgObj.multiLineTextReadOnlyInput, "border-bottom-style", new String[]{"none"}},
-                {inputsPgObj.multiLineTextReadOnlyInput, "border-top-style", new String[]{"none"}},
-                {inputsPgObj.multiLineTextReadOnlyInput, "border-right-style", new String[]{"none"}},
-                {inputsPgObj.multiLineTextReadOnlyInput, "border-left-style", new String[]{"none"}},
+                {inputsPgObj.multiLineTextReadOnlyInput, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}, new String[]{"none", "none", "none", "none"}}
         };
     }
 
-    @Test(testName = "MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"desktop-regression"})
-    private void multiLineInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = "desktop-regression")
+    private void multiLineInputBoxReadOnlyTest(By element, String[] expBackgroundColor, String[] expBorderStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+        backgroundColor = commonUtils.getCSSValue(element, "background-color");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input ReadOnly is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isBackgroundColor);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for MultiLine Text ReadOnly is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
     }
 
     @DataProvider(name = "MultiLine Input Label Test Data")
@@ -1150,155 +1239,67 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Select Input
-    @DataProvider(name = "Fancy Select Input Active Test Data")
-    public Object[][] getFancySelectInputData() {
+    @DataProvider(name = "Fancy Select Input All States Test Data")
+    public Object[][] getFancySelectInputAllStatesTestData() {
         return new Object[][]{
-                {inputsPgObj.fancySelectInputContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.fancySelectInputContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.fancySelectInputContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.fancySelectInput, "padding-top", new String[]{"8px"}},
-                {inputsPgObj.fancySelectInput, "padding-bottom", new String[]{"10px"}},
-                {inputsPgObj.fancySelectInputContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.fancySelectInput, "border-bottom-width", new String[]{"1px"}},
-                {inputsPgObj.fancySelectInput, "border-bottom-style", new String[]{"solid"}},
-                {inputsPgObj.fancySelectInput, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
-                {inputsPgObj.fancySelectInputContainer, "border-top-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputContainer, "border-top-right-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputContainer, "border-bottom-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputContainer, "border-bottom-right-radius", new String[]{"3px"}},
+                {"Fancy Select Input", "select-input-fancy", "pe-select-container--fancy", "select-input-fancy-div", "default", inputsPgObj.fancySelectInput, inputsPgObj.fancySelectInputContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"1px", "solid", "#6A7070"}, new String[]{"3px", "3px", "3px", "3px"}},
+                {"Fancy Select Input Error", "select-input-fancy-error", "pe-select-container-fancy-error", "select-input-fancy-error-div", "error", inputsPgObj.fancySelectInputError, inputsPgObj.fancySelectInputErrorContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"1px", "solid", "#DB0020"}, new String[]{"3px", "3px", "3px", "3px"}},
+                {"Fancy Select Input ReadOnly", "select-input-fancy-readOnly", "pe-select-container-fancy-readonly", "select-input-fancy-readOnly-div", "readOnly", inputsPgObj.fancySelectInputReadOnly, inputsPgObj.fancySelectInputReadOnlyContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"0px", "none", "#252525"}, new String[]{"3px", "3px", "3px", "3px"}},
+                {"Fancy Select Input Disabled", "select-input-fancy-disabled", "pe-select-container-fancy-disabled", "select-input-fancy-disabled-div", "disabled", inputsPgObj.fancySelectInputDisabled, inputsPgObj.fancySelectInputDisabledContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"4px", "solid", "#C7C7C7"}, new String[]{"3px", "3px", "3px", "3px"}}
         };
     }
 
-    @Test(testName = "Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void fancySelectInputBoxTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Fancy Select Input Box All States Test", dataProvider = "Fancy Select Input All States Test Data", groups = {"desktop-ci", "desktop-regression"})
+    private void fancySelectInputBoxAllStatesTest(String type, String id, String className, String divElement, String state, By element, By elementContainer, String[] expHeight, String[] expFontSize, String[] expLineHeight, String[] expPadding, String[] expColor, String[] expBorderBottoms, String[] expBorderRad) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container--fancy"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
+        webElement = driver.findElement(By.className(className));
+        js.executeScript("arguments[0].setAttribute('id','" + divElement + "')", webElement);
+
+        height = commonUtils.getCSSValue(elementContainer, "height");
+        fontSize = commonUtils.getCSSValue(elementContainer, "font-size");
+        lineHeight = commonUtils.getCSSValue(elementContainer, "line-height");
+        color = commonUtils.getCSSValue(elementContainer, "color");
+
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isHeight) {
+            log.info("Height for " + type + " is not as per the spec, actual: " + height);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Fancy Select Input Error Test Data")
-    public Object[][] getFancySelectInputErrorData() {
-        return new Object[][]{
-                {inputsPgObj.fancySelectInputErrorContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.fancySelectInputError, "padding-top", new String[]{"8px"}},
-                {inputsPgObj.fancySelectInputError, "padding-bottom", new String[]{"10px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.fancySelectInputError, "border-bottom-width", new String[]{"1px"}},
-                {inputsPgObj.fancySelectInputError, "border-bottom-style", new String[]{"solid"}},
-                {inputsPgObj.fancySelectInputError, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
-                {inputsPgObj.fancySelectInputErrorContainer, "border-top-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "border-top-right-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "border-bottom-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputErrorContainer, "border-bottom-right-radius", new String[]{"3px"}},
-        };
-    }
-
-    @Test(testName = "Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-fancy-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
+        if (!isFontSize) {
+            log.info("font size for " + type + " is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Fancy Select Input Disabled Test Data")
-    public Object[][] getFancySelectInputDisabledData() {
-        return new Object[][]{
-                {inputsPgObj.fancySelectInputDisabledContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.fancySelectInputDisabled, "padding-top", new String[]{"8px"}},
-                {inputsPgObj.fancySelectInputDisabled, "padding-bottom", new String[]{"10px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.fancySelectInputDisabled, "border-bottom-width", new String[]{"4px"}},
-                {inputsPgObj.fancySelectInputDisabled, "border-bottom-style", new String[]{"solid"}},
-                {inputsPgObj.fancySelectInputDisabled, "border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "border-top-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "border-top-right-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "border-bottom-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputDisabledContainer, "border-bottom-right-radius", new String[]{"3px"}},
-        };
-    }
-
-    @Test(testName = "Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-fancy-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+        if (!isLineHeight) {
+            log.info("Line Height for " + type + " is not as per the spec, actual: " + lineHeight);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Fancy Select Input ReadOnly Test Data")
-    public Object[][] getFancySelectInputReadOnlyData() {
-        return new Object[][]{
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.fancySelectInputReadOnly, "padding-top", new String[]{"8px"}},
-                {inputsPgObj.fancySelectInputReadOnly, "padding-bottom", new String[]{"10px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.fancySelectInputReadOnly, "border-bottom-width", new String[]{"0px"}},
-                {inputsPgObj.fancySelectInputReadOnly, "border-bottom-style", new String[]{"none"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "border-top-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "border-top-right-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "border-bottom-left-radius", new String[]{"3px"}},
-                {inputsPgObj.fancySelectInputReadOnlyContainer, "border-bottom-right-radius", new String[]{"3px"}},
-        };
-    }
-
-    @Test(testName = "Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"desktop-regression"})
-    private void fancySelectInputBoxReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-fancy-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isHeight && isFontSize && isLineHeight && isColor);
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i]);
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for " + type + " is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        testBorders(type, borderBottom, borderBottoms, expBorderBottoms, element);
+        int i = 0;
+        for (i = 0; i < borderRadii.length; i++) {
+            borderRadius = commonUtils.getCSSValue(elementContainer, borderRadii[i]);
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad[i], "Border radius " + borderRadii[i] + " of " + type + " field is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
     @DataProvider(name = "Fancy Select Input Label Test Data")
-    public Object[][] getFancySelectInputLabelIconData() {
+    public Object[][] getFancySelectInputLabelTestData() {
         return new Object[][]{
                 {"select-input-fancy", "default", inputsPgObj.fancySelectInput, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")}},
                 {"select-input-fancy-error", "error", inputsPgObj.fancySelectInputError, compInputsPgObj.label, "12px", "16px", new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")}},
@@ -1344,7 +1345,7 @@ public class InputsTest extends BaseClass {
         };
     }
 
-    @Test(testName = "Fancy Select Input Label Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
+    @Test(testName = "Fancy Select Input Msg Test", dataProvider = "Fancy Select Input Msg Test Data", groups = {"desktop-regression"})
     private void fancySelectInputBoxMsgTest(String type, String state, String msgType, String className, By msg, String expFontSize, String expPaddingTop, String[] expColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
         String[] propsPropertiesList = new String[]{"id", type, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
@@ -1402,132 +1403,67 @@ public class InputsTest extends BaseClass {
 
     //Basic - Select Input
     @DataProvider(name = "Basic Select Input All States Test Data")
-    public Object[][] getBasicSelectInputData() {
+    public Object[][] getBasicSelectInputAllStatesData() {
         return new Object[][]{
-                {inputsPgObj.basicSelectInputContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.basicSelectInput, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInput, "padding-right", new String[]{"14px", "4.2px"}},
-                {inputsPgObj.basicSelectInputContainer, "margin-top", new String[]{"6px"}},
-                {inputsPgObj.basicSelectInputContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.basicSelectInputContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.basicSelectInput, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-        };
+                {"Basic Select Input", "select-input-basic", "pe-select-container", "select-input-div", "default", inputsPgObj.basicSelectInput, inputsPgObj.basicSelectInputContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"14px", "4.2px"}, new String[]{"6px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"Basic Select Input Error", "select-input-basic-error", "pe-select-container-error", "select-input-error-div", "error", inputsPgObj.basicSelectInputError, inputsPgObj.basicSelectInputErrorContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"4.2px", "4.199999809265137px"}, new String[]{"6px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
+                {"Basic Select Input Disabled", "select-input-basic-disabled", "pe-select-container-disabled", "select-input-disabled-div", "disabled", inputsPgObj.basicSelectInputDisabled, inputsPgObj.basicSelectInputDisabledContainer, new String[]{"36px", "34px"}, new String[]{"14px"}, new String[]{"14px"}, new String[]{"6px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
+                {"Basic Select Input ReadOnly", "select-input-basic-readOnly", "pe-select-container-readonly", "select-input-readOnly-div", "readOnly", inputsPgObj.basicSelectInputReadOnly, inputsPgObj.basicSelectInputReadOnlyContainer, new String[]{"36px", "34px"}, new String[]{"0px"}, new String[]{"0px"}, new String[]{"6px"}, new String[]{"14px"}, new String[]{"18px", "20px", "17px", "19px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}}};
     }
 
-    @Test(testName = "Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Basic Select Input All States Test", dataProvider = "Basic Select Input All States Test Data", groups = "desktop-regression")
+    private void basicSelectInputAllStatesTest(String type, String id, String className, String divElement, String state, By element, By elementContainer, String[] expHeight, String[] expPaddingLeft, String[] expPaddingRight, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Basic Select Input- Active is not as per the spec, actual: " + cssProperty);
+        webElement = driver.findElement(By.className(className));
+        js.executeScript("arguments[0].setAttribute('id','" + divElement + "')", webElement);
+        height = commonUtils.getCSSValue(elementContainer, "height");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right");
+        marginTop = commonUtils.getCSSValue(elementContainer, "margin-top");
+        fontSize = commonUtils.getCSSValue(elementContainer, "font-size");
+        lineHeight = commonUtils.getCSSValue(elementContainer, "line-height");
+        color = commonUtils.getCSSValue(elementContainer, "color");
+        backgroundColor = commonUtils.getCSSValue(elementContainer, "background-color");
+
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
+        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, expPaddingRight);
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+
+        if (!isHeight) {
+            log.info("Height for " + type + " is not as per the spec, actual: " + height);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Basic Select Input Error Test Data")
-    public Object[][] getBasicSelectInputErrorData() {
-        return new Object[][]{
-                {inputsPgObj.basicSelectInputErrorContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.basicSelectInputError, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputError, "padding-right", new String[]{"4.2px", "4.199999809265137px"}},
-                {inputsPgObj.basicSelectInputErrorContainer, "margin-top", new String[]{"6px"}},
-                {inputsPgObj.basicSelectInputErrorContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputErrorContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.basicSelectInputErrorContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.basicSelectInputError, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-        };
-    }
-
-    @Test(testName = "Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputErrorTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Basic Select Input- Error is not as per the spec, actual: " + cssProperty);
+        if (!isPaddingLeft) {
+            log.info("padding-left for " + type + " is not as per the spec, actual: " + paddingLeft);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Basic Select Input Disabled Test Data")
-    public Object[][] getBasicSelectInputDisabledData() {
-        return new Object[][]{
-                {inputsPgObj.basicSelectInputDisabledContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.basicSelectInputDisabled, "padding-left", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputDisabled, "padding-right", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputDisabledContainer, "margin-top", new String[]{"6px"}},
-                {inputsPgObj.basicSelectInputDisabledContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputDisabledContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.basicSelectInputDisabledContainer, "color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {inputsPgObj.basicSelectInputDisabled, "background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
-        };
-    }
-
-    @Test(testName = "Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputDisabledTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
-        Thread.sleep(500);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Basic Select Input- Disabled is not as per the spec, actual: " + cssProperty);
+        if (!isPaddingRight) {
+            log.info("padding-right for " + type + " is not as per the spec, actual: " + paddingRight);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Basic Select Input ReadOnly Test Data")
-    public Object[][] getBasicSelectInputReadOnlyData() {
-        return new Object[][]{
-                {inputsPgObj.basicSelectInputReadOnlyContainer, "height", new String[]{"36px", "34px"}},
-                {inputsPgObj.basicSelectInputReadOnly, "padding-left", new String[]{"0px"}},
-                {inputsPgObj.basicSelectInputReadOnly, "padding-right", new String[]{"0px"}},
-                {inputsPgObj.basicSelectInputReadOnlyContainer, "margin-top", new String[]{"6px"}},
-                {inputsPgObj.basicSelectInputReadOnlyContainer, "font-size", new String[]{"14px"}},
-                {inputsPgObj.basicSelectInputReadOnlyContainer, "line-height", new String[]{"18px", "20px", "17px", "19px"}},
-                {inputsPgObj.basicSelectInputReadOnlyContainer, "color", new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}},
-                {inputsPgObj.basicSelectInputReadOnly, "background-color", new String[]{commonUtils.hex2Rgb("#FFFFFF"), commonUtils.hex2RgbWithoutTransparency("#FFFFFF")}},
-        };
-    }
-
-    @Test(testName = "Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"desktop-regression"})
-    private void basicSelectInputReadOnlyTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.className("pe-select-container-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Basic Select Input- ReadOnly is not as per the spec, actual: " + cssProperty);
+        if (!isMarginTop) {
+            log.info("margin-top for " + type + " is not as per the spec, actual: " + marginTop);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isFontSize) {
+            log.info("font size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        if (!isLineHeight) {
+            log.info("Line Height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        if (!isBackgroundColor) {
+            log.info("bg-color for " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isHeight && isPaddingLeft && isPaddingRight && isMarginTop && isFontSize && isLineHeight && isColor);
     }
 
     @DataProvider(name = "Basic Select Input Border Test Data")
@@ -1664,139 +1600,156 @@ public class InputsTest extends BaseClass {
     @DataProvider(name = "Check Box Input - Test Data")
     public Object[][] getCheckBoxTestData() {
         return new Object[][]{
-                {inputsPgObj.checkBoxClass, "checkboxInput", "position", new String[]{"relative"}},
-                {inputsPgObj.checkBoxClass, "checkboxInput", "min-height", new String[]{"16px"}},
-                {inputsPgObj.checkBoxClass, "checkboxInput", "margin-bottom", new String[]{"14px"}},
+                {inputsPgObj.checkBoxClass, new String[]{"relative"}, new String[]{"16px"}, new String[]{"14px"}}
         };
     }
 
     @Test(testName = "Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void checkboxTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void checkboxTest(By element, String[] expPosition, String[] expMinHeight, String[] expMarginBottom) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(element);
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+        js.executeScript("arguments[0].setAttribute('id', 'checkboxInput')", webElement);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkboxInput, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox input is not as per the spec, actual: " + cssProperty);
+        position = commonUtils.getCSSValue(element, "position");
+        minHeight = commonUtils.getCSSValue(element, "min-height");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom");
+
+        isPosition = commonUtils.assertCSSProperties("position", position, expPosition);
+        isMinHeight = commonUtils.assertCSSProperties("min-height", minHeight, expMinHeight);
+        isMarginBottom = commonUtils.assertCSSProperties("marginBottom", marginBottom, expMarginBottom);
+
+        if (!isPosition) {
+            log.info("position for checkbox input is not as per the spec, actual: " + position);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isMinHeight) {
+            log.info("min-height for checkbox input is not as per the spec, actual: " + minHeight);
+        }
+        if (!isMarginBottom) {
+            log.info("margin-bottom for checkbox input is not as per the spec, actual: " + marginBottom);
+        }
+        Assert.assertTrue(isPosition && isMinHeight && isMarginBottom);
     }
 
     @DataProvider(name = "Check Box - Normal State Test Data")
     public Object[][] getCheckBoxNormalStateTestData() {
         return new Object[][]{
-                {"checkbox-state", "position", new String[]{"absolute"}},
-                {"checkbox-state", "top", new String[]{"0px"}},
-                {"checkbox-state", "left", new String[]{"0px"}},
-                {"checkbox-state", "height", new String[]{"16px", "14px"}},//ie renders it as 14px, other browsers it looks good.
-                {"checkbox-state", "width", new String[]{"16px", "14px"}},
-                {"checkbox-state", "border-top-width", new String[]{"1px"}},
-                {"checkbox-state", "border-bottom-width", new String[]{"1px"}},
-                {"checkbox-state", "border-left-width", new String[]{"1px"}},
-                {"checkbox-state", "border-right-width", new String[]{"1px"}},
-                {"checkbox-state", "border-bottom-style", new String[]{"solid"}},
-                {"checkbox-state", "border-top-style", new String[]{"solid"}},
-                {"checkbox-state", "border-left-style", new String[]{"solid"}},
-                {"checkbox-state", "border-right-style", new String[]{"solid"}},
-                {"checkbox-state", "border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-state", "border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-state", "border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-state", "border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-state", "border-top-left-radius", new String[]{"2px"}},
-                {"checkbox-state", "border-top-right-radius", new String[]{"2px"}},
-                {"checkbox-state", "border-bottom-left-radius", new String[]{"2px"}},
-                {"checkbox-state", "border-bottom-right-radius", new String[]{"2px"}}
+                {inputsPgObj.checkBoxState, new String[]{"absolute"}, new String[]{"0px"}, new String[]{"0px"}, new String[]{"16px", "14px"}, new String[]{"16px", "14px"}, "1px", "solid", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}, "2px"}
         };
     }
 
     @Test(testName = "Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void checkboxNormalStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void checkboxNormalStateTest(By element, String[] expPosition, String[] expTop, String[] expLeft, String[] expHeight, String[] expWidth, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBorderRadius) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = new String[]{"id", "checkbox-state", "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath("//span"));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+        js.executeScript("arguments[0].setAttribute('id', 'checkbox-state')", webElement);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
+        position = commonUtils.getCSSValue(element, "position");
+        topProperty = commonUtils.getCSSValue(element, "top");
+        leftProperty = commonUtils.getCSSValue(element, "left");
+        height = commonUtils.getCSSValue(element, "height");
+        width = commonUtils.getCSSValue(element, "width");
+
+        isPosition = commonUtils.assertCSSProperties("position", position, expPosition);
+        isTop = commonUtils.assertCSSProperties("top", topProperty, expTop);
+        isLeft = commonUtils.assertCSSProperties("left", leftProperty, expLeft);
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+
+        if (!isPosition) {
+            log.info("position for checkbox input is not as per the spec, actual" + position);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isTop) {
+            log.info("top for checkbox input is not as per the spec, actual" + topProperty);
+        }
+        if (!isLeft) {
+            log.info("left for checkbox input is not as per the spec, actual" + leftProperty);
+        }
+        if (!isHeight) {
+            log.info("height for checkbox input is not as per the spec, actual" + height);
+        }
+        if (!isWidth) {
+            log.info("width for checkbox input is not as per the spec, actual" + width);
+        }
+        Assert.assertTrue(isPosition && isTop && isLeft && isHeight && isWidth);
+
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(element, cssProperty);
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(element, cssProperty);
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color '" + cssProperty + "' of check box is not as per spec, actual: " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(element, cssProperty);
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Border radius '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
-    @DataProvider(name = "Check Box - Focus State Test Data")
-    public Object[][] getCheckBoxFocusStateTestData() {
+    @DataProvider(name = "Check Box - All States Test Data")
+    public Object[][] getCheckBoxAllStatesTestData() {
         return new Object[][]{
-                {"checkbox-state", "border-top-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
-                {"checkbox-state", "border-bottom-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
-                {"checkbox-state", "border-left-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
-                {"checkbox-state", "border-right-color", new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}}
+                {"focus", "checkbox-state", By.xpath("//span"), inputsPgObj.checkBoxState, new String[]{commonUtils.hex2Rgb("#047A9C"), commonUtils.hex2RgbWithoutTransparency("#047A9C")}},
+                {"disabled", "checkbox-checked-disabled", By.xpath("//div[1]/span"), inputsPgObj.checkBoxCheckedDisabled, new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
         };
     }
 
-    @Test(testName = "Verify Checkbox - Focus State", dataProvider = "Check Box - Focus State Test Data", groups = "desktop-regression")
-    private void checkboxFocusStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
-        if (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox")) {
+    @Test(testName = "Verify Checkbox - All States Test", dataProvider = "Check Box - All States Test Data", groups = "desktop-regression")
+    private void checkboxAllStatesTest(String state, String id, By xpathElement, By element, String[] expBorderColor) throws Exception {
+        if (state.equals("focus") && (browser.equals("firefox") || browser.equals("safari") || browser.equals("ie") || lBrowser.equals("firefox"))) {
             throw new SkipException("the focus operation is not supported on firefox/safari/ie drivers");
         }
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = {};
+        if (state.equals("focus")) {
+            propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        } else {
+            propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        }
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
         js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.xpath("//span"));
+        webElement = driver.findElement(xpathElement);
         js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
 
-        String cssPropertyType = cssProperty;
-        commonUtils.focusOnElementById("radiocheck-undefined- 0-0");
-        commonUtils.focusOnElementById("checkbox-state");
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        if (state.equals("focus")) {
+            commonUtils.focusOnElementById("radiocheck-undefined- 0-0");
+            commonUtils.focusOnElementById("checkbox-state");
+        } else {
+            backgroundColor = commonUtils.getCSSValue(element, "background-color");
+            isBackgroundColor = commonUtils.assertCSSProperties("bg-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
+            if (!isBackgroundColor) {
+                log.info("'bg-color of check box in " + state + " state is not as per spec, actual: " + backgroundColor);
+            }
+            Assert.assertTrue(isBackgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @DataProvider(name = "Check Box - Disabled State Test Data")
-    public Object[][] getCheckBoxDisabledStateTestData() {
-        return new Object[][]{
-                {"checkbox-checked-disabled", "background-color", new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")}},
-                {"checkbox-checked-disabled", "border-top-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-checked-disabled", "border-bottom-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-checked-disabled", "border-left-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}},
-                {"checkbox-checked-disabled", "border-right-color", new String[]{commonUtils.hex2Rgb("#C7C7C7"), commonUtils.hex2RgbWithoutTransparency("#C7C7C7")}}
-        };
-    }
-
-    @Test(testName = "Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "desktop-regression")
-    private void checkboxDisabledStateTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
-
-        js = (JavascriptExecutor) driver;
-        webElement = driver.findElement(By.xpath("//div[1]/span"));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
-
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty);
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty);
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color '" + cssProperty + "' of check box in " + state + " state is not as per spec");
+            }
+            Assert.assertTrue(isBorderColor);
         }
-        Assert.assertTrue(isCSSProperty);
     }
 
     @DataProvider(name = "Check Box - Label Test Data")
@@ -1964,7 +1917,6 @@ public class InputsTest extends BaseClass {
         js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
 
         marginBottom = commonUtils.getCSSValue(elem, "margin-bottom");
-        System.out.println(marginBottom);
         isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
     }
@@ -1994,67 +1946,174 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Inputs (Single line - default)
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"mobile-regression"})
-    private void fancySingleLineTextInputMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = "mobile-regression")
+    private void fancySingleLineTextInputMobileTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input", "labelText", "Last Name", "inputType", "default", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInput, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Line Text Input", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
     }
 
     //Fancy - Inputs (single line - error)
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputErroredMobileTest(By element, String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputErroredMobileTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-error", "labelText", "Last Name", "inputState", "error", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(element, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Errored Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Line Text Input - Errored", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
     }
 
     //Fancy - Inputs (single line - disabled)
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputDisabledMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputDisabledMobileTest(By element, String[] expBorderBottoms, String[] expColor, String[] expBackgroundColor, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-disabled", "labelText", "Last Name", "inputState", "disabled", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line Disabled Input is not as per the spec, actual: " + cssProperty);
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isBackgroundColor) {
+            log.info("background-color for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + backgroundColor);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input Disabled is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isColor && isBackgroundColor && isFontFamily);
+        testBorders("Fancy - Single Line Text Input - Disabled", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
     }
 
     //Inputs (single line - readonly)
     @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputReadOnlyMobileTest(String cssProperty, String[] expectedCSSValue) throws Exception {
+    private void fancySingleLineTextInputReadOnlyMobileTest(By element, String[] expBorderBottoms, String[] expColor, String[] expFontSize, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
         String[] propsPropertiesList = new String[]{"id", "sl-text-input-readonly", "labelText", "Last Name", "inputState", "readOnly", "fancy", "true", "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.slTextInputReadOnly, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for Single Line ReadOnly Input is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
+
+        if (!isFontSize) {
+            log.info("font-size for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isColor) {
+            log.info("color for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + color);
+        }
+        if (!isFontFamily) {
+            log.info("font-family for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontFamily);
+        }
+
+        Assert.assertTrue(isFontSize && isColor && isFontFamily);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+        testBorders("Fancy - Single Text Line Input - ReadOnly", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
+    }
+
+    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"mobile-regression"})
+    private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
+        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
+
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        if (!isFontSize) {
+            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
+        }
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isColor) {
+            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
+        }
+        Assert.assertTrue(isFontSize && isColor);
     }
 
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - underline", dataProvider = "Fancy - Single Line Text Input - underline Test Data", groups = {"mobile-regression"})
@@ -2090,25 +2149,6 @@ public class InputsTest extends BaseClass {
         trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function", "mobile");
         isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
         Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
-    }
-
-    @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = {"mobile-regression"})
-    private void singleLineTextInputInputMobileTest(String inputState, String id, By element, String type, String[] expFontSize, String[] expColor) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "text-input-target", "componentName", "TextInput"};
-        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Last Name", "inputState", inputState, "fancy", type, "placeholder", "Last Name", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
-        }
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        if (!isColor) {
-            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
-        }
-        Assert.assertTrue(isFontSize && isColor);
     }
 
     //Basic - Text Input
@@ -2471,64 +2511,144 @@ public class InputsTest extends BaseClass {
     }
 
     //Multiline Text
-    @Test(testName = "Mobile: MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: MultiLine Input - Active States Test", dataProvider = "MultiLine Input Active Test Data", groups = "mobile-regression")
+    private void multiLineInputBoxMobileTest(By element, String[] expFontSize, String[] expLineHeight, String[] expMarginTop, String[] expColor, String[] expBackgroundColor, String[] expPadding, String[] expBorderWidth, String[] expBorderStyle, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input", "labelText", "Multi-line label", "inputState", "default", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Active is not as per the spec, actual: " + cssProperty);
+        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
+        lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
+        marginTop = commonUtils.getCSSValue(element, "margin-top", "mobile");
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("bg-color", backgroundColor, expBackgroundColor);
+
+        if (!isFontSize) {
+            log.info("font size for MultiLine Input is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isLineHeight) {
+            log.info("Line Height for MultiLine Input is not as per the spec, actual: " + lineHeight);
+        }
+        if (!isMarginTop) {
+            log.info("margin-top for MultiLine Input is not as per the spec, actual: " + marginTop);
+        }
+        if (!isColor) {
+            log.info("color for for MultiLine Input is not as per the spec, actual: " + color);
+        }
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isFontSize && isLineHeight && isMarginTop && isColor && isBackgroundColor);
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+
+        for (int i = 0; i < borderWidths.length; i++) {
+            borderWidth = commonUtils.getCSSValue(element, borderWidths[i], "mobile");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth[i], borderWidths[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Text is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
-    @Test(testName = "Mobile: MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: MultiLine Input - Error States Test", dataProvider = "MultiLine Input Error Test Data", groups = "mobile-regression")
+    private void multiLineInputBoxErrorMobileTest(By element, String[] expBackgroundColor, String[] expBorderColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-error", "labelText", "Multi-line label", "inputState", "error", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Error is not as per the spec, actual: " + cssProperty);
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input Error is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isBackgroundColor);
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Input Error is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
-    @Test(testName = "Mobile: MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: MultiLine Input - Disabled States Test", dataProvider = "MultiLine Input Disabled Test Data", groups = "mobile-regression")
+    private void multiLineInputBoxDisabledMobileTest(By element, String[] expColor, String[] expBackgroundColor, String[] expBorderColor, String[] expOutlineStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-disabled", "labelText", "Multi-line label", "inputState", "disabled", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        outlineStyle = commonUtils.getCSSValue(element, "outline-style", "mobile");
+
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        isOutlineStyle = commonUtils.assertCSSProperties("outline-style", outlineStyle, expOutlineStyle);
+        if (!isColor) {
+            log.info("color for MultiLine Input Error is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isBackgroundColor) {
+            log.info("background-color for MultiLine Input Error is not as per the spec, actual: " + backgroundColor);
+        }
+        if (!isOutlineStyle) {
+            log.info("outline-style for MultiLine Input Error is not as per the spec, actual: " + outlineStyle);
+        }
+        Assert.assertTrue(isColor && isBackgroundColor && isOutlineStyle);
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color " + cssProperty + " for MultiLine Input Disabled is not as per spec, actual " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
-    @Test(testName = "Mobile: MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void multiLineInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: MultiLine Input - ReadOnly States Test", dataProvider = "MultiLine Input ReadOnly Test Data", groups = "mobile-regression")
+    private void multiLineInputBoxReadOnlyMobileTest(By element, String[] expBackgroundColor, String[] expBorderStyle) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "multilinetext-target", "componentName", "MultiLineText"};
         String[] propsPropertiesList = new String[]{"id", "multiLine-text-input-readOnly", "labelText", "Multi-line label", "inputState", "readOnly", "placeholder", "Multilinetext placeholder", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for MultiLine Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+        if (!isBackgroundColor) {
+            log.info("background-color for for MultiLine Input ReadOnly is not as per the spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isBackgroundColor);
+
+        for (int i = 0; i < borderStyles.length; i++) {
+            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for MultiLine Text ReadOnly is not as per the spec");
+            Assert.assertTrue(isBorderStyle);
+        }
     }
 
     @Test(testName = "Mobile: MultiLine Input Label Test", dataProvider = "MultiLine Input Label Test Data", groups = {"mobile-regression"})
@@ -2555,76 +2675,53 @@ public class InputsTest extends BaseClass {
     }
 
     //Fancy - Select Input
-    @Test(testName = "Mobile : Fancy Select Input Box- Active States Test", dataProvider = "Fancy Select Input Active Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Fancy Select Input Box All States Test", dataProvider = "Fancy Select Input All States Test Data", groups = "mobile-regression")
+    private void fancySelectInputBoxAllStatesMobileTest(String type, String id, String className, String divElement, String state, By element, By elementContainer, String[] expHeight, String[] expFontSize, String[] expLineHeight, String[] expPadding, String[] expColor, String[] expBorderBottoms, String[] expBorderRad) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container--fancy"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Active is not as per the spec, actual: " + cssProperty);
+        webElement = appium.findElement(By.className(className));
+        js.executeScript("arguments[0].setAttribute('id','" + divElement + "')", webElement);
+
+        height = commonUtils.getCSSValue(elementContainer, "height", "mobile");
+        fontSize = commonUtils.getCSSValue(elementContainer, "font-size", "mobile");
+        lineHeight = commonUtils.getCSSValue(elementContainer, "line-height", "mobile");
+        color = commonUtils.getCSSValue(elementContainer, "color", "mobile");
+
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        if (!isHeight) {
+            log.info("Height for " + type + " is not as per the spec, actual: " + height);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- Error States Test", dataProvider = "Fancy Select Input Error Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Error is not as per the spec, actual: " + cssProperty);
+        if (!isFontSize) {
+            log.info("font size for " + type + " is not as per the spec, actual: " + fontSize);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- Disabled States Test", dataProvider = "Fancy Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-disabled-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- Disabled is not as per the spec, actual: " + cssProperty);
+        if (!isLineHeight) {
+            log.info("Line Height for " + type + " is not as per the spec, actual: " + lineHeight);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Fancy Select Input Box- ReadOnly States Test", dataProvider = "Fancy Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void fancySelectInputBoxReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-fancy-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "true", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-fancy-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-fancy-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Fancy Select Input Box- ReadOnly is not as per the spec, actual: " + cssProperty);
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isHeight && isFontSize && isLineHeight && isColor);
+
+        for (int i = 0; i < paddings.length; i++) {
+            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for " + type + " is not as per the spec");
+            Assert.assertTrue(isPadding);
+        }
+
+        testBorders(type, borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
+        int i = 0;
+        for (i = 0; i < borderRadii.length; i++) {
+            borderRadius = commonUtils.getCSSValue(elementContainer, borderRadii[i], "mobile");
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad[i], "Border radius " + borderRadii[i] + " of " + type + " field is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
     @Test(testName = "Mobile : Fancy Select Input Label Test", dataProvider = "Fancy Select Input Label Test Data", groups = {"mobile-regression"})
@@ -2672,76 +2769,60 @@ public class InputsTest extends BaseClass {
     }
 
     //Basic - Select Input
-    @Test(testName = "Mobile : Basic Select Input Active Test", dataProvider = "Basic Select Input All States Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Basic Select Input All States Test", dataProvider = "Basic Select Input All States Test Data", groups = "mobile-regression")
+    private void basicSelectInputAllStatesMobileTest(String type, String id, String className, String divElement, String state, By element, By elementContainer, String[] expHeight, String[] expPaddingLeft, String[] expPaddingRight, String[] expMarginTop, String[] expFontSize, String[] expLineHeight, String[] expColor, String[] expBackgroundColor) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "default", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
+        String[] propsPropertiesList = new String[]{"id", id, "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", state, "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Active is not as per the spec, actual: " + cssProperty);
+        webElement = appium.findElement(By.className(className));
+        js.executeScript("arguments[0].setAttribute('id','" + divElement + "')", webElement);
+
+        height = commonUtils.getCSSValue(elementContainer, "height", "mobile");
+        paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
+        paddingRight = commonUtils.getCSSValue(element, "padding-right", "mobile");
+        marginTop = commonUtils.getCSSValue(elementContainer, "margin-top", "mobile");
+        fontSize = commonUtils.getCSSValue(elementContainer, "font-size", "mobile");
+        lineHeight = commonUtils.getCSSValue(elementContainer, "line-height", "mobile");
+        color = commonUtils.getCSSValue(elementContainer, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(elementContainer, "background-color", "mobile");
+
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
+        isPaddingRight = commonUtils.assertCSSProperties("padding-right", paddingRight, expPaddingRight);
+        isMarginTop = commonUtils.assertCSSProperties("margin-top", marginTop, expMarginTop);
+
+        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
+        isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
+        isColor = commonUtils.assertCSSProperties("color", color, expColor);
+        isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
+
+        if (!isHeight) {
+            log.info("Height for " + type + " is not as per the spec, actual: " + height);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Error Test", dataProvider = "Basic Select Input Error Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputErrorMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-error", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "error", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-error"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-error-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Error is not as per the spec, actual: " + cssProperty);
+        if (!isPaddingLeft) {
+            log.info("padding-left for " + type + " is not as per the spec, actual: " + paddingLeft);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input Disabled Test", dataProvider = "Basic Select Input Disabled Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputDisabledMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-disabled", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "disabled", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-disabled"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-disabled-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- Disabled is not as per the spec, actual: " + cssProperty);
+        if (!isPaddingRight) {
+            log.info("padding-right for " + type + " is not as per the spec, actual: " + paddingRight);
         }
-        Assert.assertTrue(isCSSProperty);
-    }
-
-    @Test(testName = "Mobile : Basic Select Input ReadOnly Test", dataProvider = "Basic Select Input ReadOnly Test Data", groups = {"mobile-regression"})
-    private void basicSelectInputReadOnlyMobileTest(By elem, String cssProperty, String[] expectedCSSValue) throws Exception {
-        String[] detailsPropertiesList = new String[]{"elementId", "select-target", "componentName", "Select"};
-        String[] propsPropertiesList = new String[]{"id", "select-input-basic-readOnly", "labelText", "Select Label", "options", "['ipad', 'mac','iphone']", "fancy", "false", "inputState", "readOnly", "changeHandler", "function () {}", "infoMessage", "This is an info message", "errorMessage", "This is an error message'"};
-        setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
-
-        js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.className("pe-select-container-readonly"));
-        js.executeScript("arguments[0].setAttribute('id','select-input-readOnly-div')", webElement);
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssPropertyType, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds->" + cssPropertyType + "' :for Basic Select Input- ReadOnly is not as per the spec, actual: " + cssProperty);
+        if (!isMarginTop) {
+            log.info("margin-top for " + type + " is not as per the spec, actual: " + marginTop);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isFontSize) {
+            log.info("font size for " + type + " is not as per the spec, actual: " + fontSize);
+        }
+        if (!isLineHeight) {
+            log.info("Line Height for " + type + " is not as per the spec, actual: " + lineHeight);
+        }
+        if (!isColor) {
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
+        }
+        if (!isBackgroundColor) {
+            log.info("bg-color for " + type + " is not as per the spec, actual: " + backgroundColor);
+        }
+        Assert.assertTrue(isHeight && isPaddingLeft && isPaddingRight && isMarginTop && isFontSize && isLineHeight && isColor);
     }
 
     @Test(testName = "Mobile : Basic Select Input Box- Border Test", dataProvider = "Basic Select Input Border Test Data", groups = {"mobile-regression"})
@@ -2808,61 +2889,131 @@ public class InputsTest extends BaseClass {
     }
 
     //Check Box
-    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = {"mobile-regression"})
-    private void checkboxMobileTest(By element, String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Verify Checkbox Input", dataProvider = "Check Box Input - Test Data", groups = "mobile-regression")
+    private void checkboxMobileTest(By element, String[] expPosition, String[] expMinHeight, String[] expMarginBottom) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = new String[]{"id", "checkboxInput", "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(element);
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+        js.executeScript("arguments[0].setAttribute('id', 'checkboxInput')", webElement);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkboxInput, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox input is not as per the spec, actual: " + cssProperty);
+        position = commonUtils.getCSSValue(element, "position", "mobile");
+        minHeight = commonUtils.getCSSValue(element, "min-height", "mobile");
+        marginBottom = commonUtils.getCSSValue(element, "margin-bottom", "mobile");
+
+        isPosition = commonUtils.assertCSSProperties("position", position, expPosition);
+        isMinHeight = commonUtils.assertCSSProperties("min-height", minHeight, expMinHeight);
+        isMarginBottom = commonUtils.assertCSSProperties("marginBottom", marginBottom, expMarginBottom);
+
+        if (!isPosition) {
+            log.info("position for checkbox input is not as per the spec, actual: " + position);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isMinHeight) {
+            log.info("min-height for checkbox input is not as per the spec, actual: " + minHeight);
+        }
+        if (!isMarginBottom) {
+            log.info("margin-bottom for checkbox input is not as per the spec, actual: " + marginBottom);
+        }
+        Assert.assertTrue(isPosition && isMinHeight && isMarginBottom);
     }
 
-    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = {"mobile-regression"})
-    private void checkboxNormalStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Verify Checkbox - Normal State", dataProvider = "Check Box - Normal State Test Data", groups = "mobile-regression")
+    private void checkboxNormalStateMobileTest(By element, String[] expPosition, String[] expTop, String[] expLeft, String[] expHeight, String[] expWidth, String expBorderWidth, String expBorderStyle, String[] expBorderColor, String expBorderRadius) throws Exception {
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = new String[]{"id", "checkbox-state", "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
         webElement = appium.findElement(By.xpath("//span"));
-        js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
+        js.executeScript("arguments[0].setAttribute('id', 'checkbox-state')", webElement);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxState, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in normal state is not as per the spec, actual: " + cssProperty);
+        position = commonUtils.getCSSValue(element, "position", "mobile");
+        topProperty = commonUtils.getCSSValue(element, "top", "mobile");
+        leftProperty = commonUtils.getCSSValue(element, "left", "mobile");
+        height = commonUtils.getCSSValue(element, "height", "mobile");
+        width = commonUtils.getCSSValue(element, "width", "mobile");
+
+        isPosition = commonUtils.assertCSSProperties("position", position, expPosition);
+        isTop = commonUtils.assertCSSProperties("top", topProperty, expTop);
+        isLeft = commonUtils.assertCSSProperties("left", leftProperty, expLeft);
+        isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
+        isWidth = commonUtils.assertCSSProperties("width", width, expWidth);
+
+        if (!isPosition) {
+            log.info("position for checkbox input is not as per the spec, actual" + position);
         }
-        Assert.assertTrue(isCSSProperty);
+        if (!isTop) {
+            log.info("top for checkbox input is not as per the spec, actual" + topProperty);
+        }
+        if (!isLeft) {
+            log.info("left for checkbox input is not as per the spec, actual" + leftProperty);
+        }
+        if (!isHeight) {
+            log.info("height for checkbox input is not as per the spec, actual" + height);
+        }
+        if (!isWidth) {
+            log.info("width for checkbox input is not as per the spec, actual" + width);
+        }
+        Assert.assertTrue(isPosition && isTop && isLeft && isHeight && isWidth);
+
+        for (String cssProperty : borderWidths) {
+            borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderWidth);
+        }
+        for (String cssProperty : borderStyles) {
+            borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderStyle);
+        }
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color '" + cssProperty + "' of check box is not as per spec, actual: " + borderColor);
+            }
+            Assert.assertTrue(isBorderColor);
+        }
+        for (String cssProperty : borderRadii) {
+            borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Border radius '" + cssProperty + "' of check box is not as per spec");
+            Assert.assertTrue(isBorderRadius);
+        }
     }
 
-    @Test(testName = "Mobile: Verify Checkbox - Disabled State", dataProvider = "Check Box - Disabled State Test Data", groups = "mobile-regression")
-    private void checkboxDisabledStateMobileTest(String id, String cssProperty, String[] expectedCSSValue) throws Exception {
+    @Test(testName = "Mobile: Verify Checkbox - All States Test", dataProvider = "Check Box - All States Test Data", groups = "mobile-regression")
+    private void checkboxAllStatesMobileTest(String state, String id, By xpathElement, By element, String[] expBorderColor) throws Exception {
+        if (state.equals("focus")) {
+            throw new SkipException("dont have to do focus operation on mobile devices");
+        }
         String[] detailsPropertiesList = new String[]{"elementId", "checkbox-target", "componentName", "RadioCheckGroup"};
-        String[] propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+        String[] propsPropertiesList = {};
+
+        propsPropertiesList = new String[]{"id", id, "inputType", "checkbox", "legendText", "checkbox1", "options", "[{value: 0, label: 'coffee', checked: true, disabled: true}, {value: 1, label: 'tea'}, {value: 2, label: 'hot cocoa'}]", "changeHandler", "function () {}"};
+
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList, "mobile");
 
         js = (JavascriptExecutor) appium;
-        webElement = appium.findElement(By.xpath("//div[1]/span"));
+        webElement = appium.findElement(xpathElement);
         js.executeScript("arguments[0].setAttribute('id', '" + id + "')", webElement);
 
-        String cssPropertyType = cssProperty;
-        cssProperty = commonUtils.getCSSValue(inputsPgObj.checkBoxCheckedDisabled, cssProperty, "mobile");
-        isCSSProperty = commonUtils.assertCSSProperties(cssProperty, cssProperty, expectedCSSValue);
-        if (!isCSSProperty) {
-            log.info("Compounds-> '" + cssPropertyType + "' :for checkbox in focus state is not as per the spec, actual: " + cssProperty);
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        isBackgroundColor = commonUtils.assertCSSProperties("bg-color", backgroundColor, new String[]{commonUtils.hex2Rgb("#E9E9E9"), commonUtils.hex2RgbWithoutTransparency("#E9E9E9")});
+        if (!isBackgroundColor) {
+            log.info("'bg-color of check box in " + state + " state is not as per spec, actual: " + backgroundColor);
         }
-        Assert.assertTrue(isCSSProperty);
+        Assert.assertTrue(isBackgroundColor);
+
+        for (String cssProperty : borderColors) {
+            borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
+            isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
+            if (!isBorderColor) {
+                log.info("Border color '" + cssProperty + "' of check box in " + state + " state is not as per spec");
+            }
+            Assert.assertTrue(isBorderColor);
+        }
     }
 
     @Test(testName = "Mobile: Verify Check Box - Label", dataProvider = "Check Box - Label Test Data", groups = "mobile-regression")
@@ -3106,9 +3257,44 @@ public class InputsTest extends BaseClass {
         return path;
     }
 
+    public void testBorders(String inputType, String borderType, String[] border, String[] expBordersArray, By element) {
+        int i = 0;
+        boolean isBorderType = false;
+        for (i = 0; i < border.length; i++) {
+            borderType = commonUtils.getCSSValue(element, border[i]);
+            if (i == 2) {
+                isBorderType = commonUtils.assertCSSProperties("border", borderType, new String[]{commonUtils.hex2Rgb(expBordersArray[i]), commonUtils.hex2RgbWithoutTransparency(expBordersArray[i])});
+            } else {
+                isBorderType = commonUtils.assertValue(borderType, expBordersArray[i], testName + ": " + border[i] + " for input-type: " + inputType + ", is not as per the spec");
+            }
+            if (!isBorderType) {
+                log.info(testName + ": " + border[i] + " for input-type:  " + inputType + ", is not as per the spec, actual: " + borderType);
+            }
+            Assert.assertTrue(isBorderType);
+        }
+    }
+
+    public void testBorders(String inputType, String borderType, String[] border, String[] expBordersArray, By element, String mobile) {
+        int i = 0;
+        boolean isBorderType = false;
+        for (i = 0; i < border.length; i++) {
+            borderType = commonUtils.getCSSValue(element, border[i], "mobile");
+            if (i == 2) {
+                isBorderType = commonUtils.assertCSSProperties("border", borderType, new String[]{commonUtils.hex2Rgb(expBordersArray[i]), commonUtils.hex2RgbWithoutTransparency(expBordersArray[i])});
+            } else {
+                isBorderType = commonUtils.assertValue(borderType, expBordersArray[i], testName + ": " + border[i] + " for input-type: " + inputType + ", is not as per the spec");
+            }
+            if (!isBorderType) {
+                log.info(testName + ": " + border[i] + " for input-type:  " + inputType + ", is not as per the spec, actual: " + borderType);
+            }
+            Assert.assertTrue(isBorderType);
+        }
+    }
+
     @BeforeMethod(alwaysRun = true)
     private void beforeMethod(Method method) throws Exception {
         System.out.println("Test Method----> " + this.getClass().getSimpleName() + "::" + method.getName());
+        testName = this.getClass().getSimpleName() + "::" + method.getName();
         commonUtils.readInitialConfig(inputsJSFilePath, tempJSFilePath);
     }
 
