@@ -131,4 +131,4 @@ Go to Travis CI https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds/
 Look for TESTS section.
 
 ## How to contribute to this repo:
-Look into this <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/blob/des-743/docs/contribute-to-ux-test-platform.md"><b>DOCS</b></a> 
+Look into this <a href="https://github.com/Pearson-Higher-Ed/ux-test-platform/tree/rebrand/docs"><b>DOCS</b></a> 
