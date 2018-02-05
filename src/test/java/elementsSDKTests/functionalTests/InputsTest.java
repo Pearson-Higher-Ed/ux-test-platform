@@ -100,12 +100,12 @@ public class InputsTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + type + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
         }
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + type + " is not as per the spec, actual: " + color);
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
     }
@@ -223,7 +223,7 @@ public class InputsTest extends BaseClass {
 
         commonUtils.focusOnElementById(id);
         outlineStyle = commonUtils.getCSSValue(element, "outline-style");
-        isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "Compounds-> '" + type + "' :for Single Line Input - Focus state is not as per the spec");
+        isOutlineStyle = commonUtils.assertValue(outlineStyle, expOutlineStyle, "'" + type + "' :for Single Line Input - Focus state is not as per the spec");
 
         if (!(type.equals("sl-text-label-input-readonly"))) {
             backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
@@ -233,36 +233,36 @@ public class InputsTest extends BaseClass {
             try {
                 roundedTransValue = Math.round(Float.valueOf(Float.valueOf(String.valueOf(unroundedTransValue))));
             } catch (NumberFormatException e) {
-                log.info("Compounds-> number format exception for background color");
+                log.info("number format exception for background color");
             }
             backgroundColor = backgroundColor.substring(0, backgroundColor.lastIndexOf(',')) + ", " + roundedTransValue + ")";
             isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
             if (!isBackgroundColor) {
-                log.info("Compounds-> background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
+                log.info("background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
             }
             display = commonUtils.getCSSValue(underlineElement, "display");
-            isDisplay = commonUtils.assertValue(display, expDisplay, "Compounds-> underline color for '" + underlineElementType + "' is not as per the spec");
+            isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
             height = commonUtils.getCSSValue(underlineElement, "height");
             isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
             if (!isHeight) {
-                log.info("Compounds-> height for " + underlineElementType + " is not as per the spec, actual: " + height);
+                log.info("height for " + underlineElementType + " is not as per the spec, actual: " + height);
             }
             transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay");
             isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
             if (!isTransitionDelay) {
-                log.info("Compounds-> transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
+                log.info("transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
             }
             transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration");
             isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
             if (!isTransitionDuration) {
-                log.info("Compounds-> transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
+                log.info("transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
             }
             transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property");
-            isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "Compounds-> '" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+            isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
             trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function");
             isTransitionTimingFunc = commonUtils.assertCSSProperties("transition-timing-function", trainsitionTimingFunc, expUnderlineTransitionTimingFunc);
             if (!isTransitionTimingFunc) {
-                log.info("Compounds-> " + "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec, actual: " + expUnderlineTransitionTimingFunc);
+                log.info("" + "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec, actual: " + expUnderlineTransitionTimingFunc);
             }
             Assert.assertTrue(isOutlineStyle && isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
         }
@@ -285,29 +285,29 @@ public class InputsTest extends BaseClass {
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
         if (!isBackgroundColor) {
-            log.info("Compounds-> background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
+            log.info("background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
         }
         display = commonUtils.getCSSValue(underlineElement, "display");
         isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
         height = commonUtils.getCSSValue(underlineElement, "height");
         isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
         if (!isHeight) {
-            log.info("Compounds-> height for " + underlineElementType + " is not as per the spec, actual: " + height);
+            log.info("height for " + underlineElementType + " is not as per the spec, actual: " + height);
         }
         transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay");
         isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
         if (!isTransitionDelay) {
-            log.info("Compounds-> transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
+            log.info("transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
         }
         transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration");
         isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
         if (!isTransitionDuration) {
-            log.info("Compounds-> transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
+            log.info("transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
         }
         transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property");
-        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "Compounds-> '" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+        isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
         trainsitionTimingFunc = commonUtils.getCSSValue(underlineElement, "transition-timing-function");
-        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "Compounds-> '" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
+        isTransitionTimingFunc = commonUtils.assertValue(trainsitionTimingFunc, expUnderlineTransitionTimingFunc, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
         Assert.assertTrue(isBackgroundColor && isDisplay && isHeight && isTransitionDelay && isTransitionDuration && isTransitionProp && isTransitionTimingFunc);
     }
 
@@ -331,12 +331,12 @@ public class InputsTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
         }
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
+            log.info("color for " + inputState + " is not as per the spec, actual: " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
     }
@@ -372,20 +372,20 @@ public class InputsTest extends BaseClass {
 
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
         if (!isBackgroundColor) {
-            log.info("Compounds-> Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
+            log.info("Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> margin-top of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Padding right of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding left of Input-Basic Single Line (Active) field is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding right of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding left of Input-Basic Single Line (Active) field is not as per spec");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
-            log.info("Compounds-> Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
+            log.info("Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
         }
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
+            log.info("Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
         }
-        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Compounds-> Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
+        isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
 
         Assert.assertTrue(isBackgroundColor && isMarginTop && isPaddingRight && isPaddingLeft && isHeight && isFontSize && isLineHeight);
     }
@@ -407,19 +407,19 @@ public class InputsTest extends BaseClass {
 
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(element, cssProperty);
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(element, cssProperty);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
             borderColor = commonUtils.getCSSValue(element, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
+                log.info("Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
@@ -447,12 +447,12 @@ public class InputsTest extends BaseClass {
         color = commonUtils.getCSSValue(elementForLabel, "color");
         fontSize = commonUtils.getCSSValue(elementForLabel, "font-size");
         lineHeight = commonUtils.getCSSValue(elementForLabel, "line-height");
-        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Compounds-> Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, expLabelColor);
         if (!isColor) {
-            log.info("Compounds-> Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
+            log.info("Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
         }
-        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Compounds-> Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element);
         Assert.assertTrue(isColor && isFontSize && isLabelFor);
     }
@@ -482,13 +482,13 @@ public class InputsTest extends BaseClass {
 
         isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
         if (!isBoxShadow) {
-            log.info("Compounds-> Box shadow of Input-Basic Single Line (Focus) field is not as per spec exp, actual " + boxShadow);
+            log.info("Box shadow of Input-Basic Single Line (Focus) field is not as per spec exp, actual " + boxShadow);
         }
         isBasicInputBorder = commonUtils.assertCSSProperties("border", basicInputBorder, expBorder);
         if (!isBasicInputBorder) {
-            log.info("Compounds-> Border of Input-Basic Single Line (Focus) field is not as per spec exp, actual " + basicInputBorder);
+            log.info("Border of Input-Basic Single Line (Focus) field is not as per spec exp, actual " + basicInputBorder);
         }
-        isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Compounds-> Border radius of Input-Basic Single Line (Focus) field is not as per spec");
+        isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Border radius of Input-Basic Single Line (Focus) field is not as per spec");
 
         js = (JavascriptExecutor) driver;
         webElement = driver.findElement(By.xpath("//label"));
@@ -520,22 +520,22 @@ public class InputsTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top");
         isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
         if (!isPaddingTop) {
-            log.info("Compounds-> padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
+            log.info("padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
         }
         color = commonUtils.getCSSValue(element, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + inputType + " is not as per the spec, actual: " + color);
+            log.info("color for " + inputType + " is not as per the spec, actual: " + color);
         }
         fontSize = commonUtils.getCSSValue(element, "font-size");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
         }
         lineHeight = commonUtils.getCSSValue(element, "line-height");
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
         if (!isLineHeight) {
-            log.info("Compounds-> line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
+            log.info("line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
         }
         Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
@@ -569,21 +569,21 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> label color of " + inputState + type + " is not as per spec,actual" + labelColor);
+            log.info("label color of " + inputState + type + " is not as per spec,actual" + labelColor);
         }
         isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+            log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
         fontSize = commonUtils.getCSSValue(infoMsg, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
         paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Info Msg padding top of " + type + " is not as per spec");
         color = commonUtils.getCSSValue(infoMsg, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
 
@@ -592,13 +592,13 @@ public class InputsTest extends BaseClass {
             js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
             Thread.sleep(500);
             fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
             paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top");
-            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
+            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Error Msg padding top of " + type + " is not as per spec");
             color = commonUtils.getCSSValue(errorMsg, "color");
             isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
             if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+                log.info("Font Color of error Msg of " + type + " is not as per spec, actual " + color);
             }
             Assert.assertTrue(isFontSize && isColor && isPaddingTop);
         }
@@ -628,10 +628,10 @@ public class InputsTest extends BaseClass {
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+            log.info("Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The top margin value  of " + id + "  show btn is not as per specs");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + id + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
             cssProperty = commonUtils.getCSSValue(showbutton, cssProperty);
@@ -664,9 +664,9 @@ public class InputsTest extends BaseClass {
         Thread.sleep(2000);
         textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line");
         if (inputState.equals("disabled")) {
-            isTextDecoration = commonUtils.assertValue(textDecoration, "none", "Compounds-> text-decoration for Show Password Button for " + id + " is not as per the spec");
+            isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + id + " is not as per the spec");
         } else {
-            isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "Compounds-> text-decoration for Show Password Button for " + id + " is not as per the spec");
+            isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "text-decoration for Show Password Button for " + id + " is not as per the spec");
         }
         Assert.assertTrue(isTextDecoration);
     }
@@ -689,20 +689,20 @@ public class InputsTest extends BaseClass {
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom");
         paddingTop = commonUtils.getCSSValue(elem, "padding-top");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Compounds-> The padding-bottom of " + id + " is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> The padding-top of " + id + " is not as per spec");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "The padding-bottom of " + id + " is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "The padding-top of " + id + " is not as per spec");
 
         borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width");
         borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color");
         borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style");
-        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "Compounds-> The bottom border width of " + id + "  is not as per spec");
+        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "The bottom border width of " + id + "  is not as per spec");
         if (!id.equals("password-input-fancy-readOnly")) {
             isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
             if (!isBorderBottomColor) {
-                log.info("Compounds-> Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
+                log.info("Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
             }
         }
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "Compounds-> The bottom border style of " + id + " is not as per spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "The bottom border style of " + id + " is not as per spec");
         Assert.assertTrue(isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
     }
 
@@ -728,10 +728,10 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(underlineElement, "height");
         color = commonUtils.getCSSValue(underlineElement, "background-color");
 
-        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "Compounds-> The underline height of " + id + " is not as per spec");
+        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "The underline height of " + id + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("background-color", color, expUnderlineColor);
         if (!isColor) {
-            log.info("Compounds-> Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
+            log.info("Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
         }
         Assert.assertTrue(isHeight && isColor);
     }
@@ -762,22 +762,22 @@ public class InputsTest extends BaseClass {
 
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelColor = commonUtils.getCSSValue(label, "color");
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> The font size of " + type + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+            log.info("label color of " + type + " is not as per spec,actual" + labelColor);
         }
         isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+            log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
         fontSize = commonUtils.getCSSValue(infoMsg, "font-size");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
         color = commonUtils.getCSSValue(infoMsg, "color");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
 
@@ -786,11 +786,11 @@ public class InputsTest extends BaseClass {
             js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
             Thread.sleep(500);
             fontSize = commonUtils.getCSSValue(errorMsg, "font-size");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
             color = commonUtils.getCSSValue(errorMsg, "color");
             isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
             if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+                log.info("Font Color of error Msg of " + type + " is not as per spec, actual " + color);
             }
             Assert.assertTrue(isFontSize && isColor);
         }
@@ -822,15 +822,15 @@ public class InputsTest extends BaseClass {
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+            log.info("Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Compounds-> The margin-right value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The top margin value  of " + id + "  show btn is not as per specs");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "The margin-right value  of " + id + "  show btn is not as per specs");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + id + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
             cssProperty = commonUtils.getCSSValue(showbutton, cssProperty);
-            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
+            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "'" + cssPropertyType + "' of " + id + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
         Assert.assertTrue(isShowBtnColor && isMarginTop && isMarginRight && isShowBtnFloat);
@@ -860,9 +860,9 @@ public class InputsTest extends BaseClass {
         Thread.sleep(1000);
         textDecoration = commonUtils.getCSSValue(showbutton, "text-decoration-line");
         if (inputState.equals("disabled")) {
-            isTextDecoration = commonUtils.assertValue(textDecoration, "none", "Compounds-> text-decoration for Show Password Button for " + id + " is not as per the spec");
+            isTextDecoration = commonUtils.assertValue(textDecoration, "none", "text-decoration for Show Password Button for " + id + " is not as per the spec");
         } else {
-            isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "Compounds-> text-decoration for Show Password Button for " + id + " is not as per the spec");
+            isTextDecoration = commonUtils.assertValue(textDecoration, "underline", "text-decoration for Show Password Button for " + id + " is not as per the spec");
         }
         Assert.assertTrue(isTextDecoration);
     }
@@ -889,18 +889,18 @@ public class InputsTest extends BaseClass {
         bgColor = commonUtils.getCSSValue(elem, "background-color");
         marginTop = commonUtils.getCSSValue(elem, "margin-top");
 
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Compounds-> The padding-left of " + id + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Compounds-> The padding-right of " + id + " is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "The padding-left of " + id + " is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "The padding-right of " + id + " is not as per spec");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
-            log.info("Compounds-> The height of " + id + " is not as per spec, actual " + height);
+            log.info("The height of " + id + " is not as per spec, actual " + height);
         }
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> The font-size of " + id + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "The font-size of " + id + " is not as per spec");
         isBgColor = commonUtils.assertCSSProperties("color", bgColor, expBgColor);
         if (!isBgColor) {
             log.info("BackGround Color of " + id + " is not as per spec, actual " + bgColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The margin-top of " + id + " is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + id + " is not as per spec");
 
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isHeight && isFontSize && isBgColor && isMarginTop);
     }
@@ -1097,11 +1097,11 @@ public class InputsTest extends BaseClass {
         labelLineHeight = commonUtils.getCSSValue(label, "line-height");
         labelColor = commonUtils.getCSSValue(label, "color");
 
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + labelTextType + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + labelTextType + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + labelTextType + " Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + labelTextType + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
+            log.info("Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
         }
         Assert.assertTrue(isLabelFontSize && islabelLineHeight && isLabelColor);
     }
@@ -1127,26 +1127,26 @@ public class InputsTest extends BaseClass {
         commonUtils.focusOnElementById(type);
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
             borderColor = commonUtils.getCSSValue(elem, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
+                log.info("Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
         isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
         if (!isBoxShadow) {
-            log.info("Compounds-> Box-shadow  of " + type + " (Focus) is not as per spec, actual " + boxShadow);
+            log.info("Box-shadow  of " + type + " (Focus) is not as per spec, actual " + boxShadow);
         }
         Assert.assertTrue(isBoxShadow);
     }
@@ -1233,13 +1233,13 @@ public class InputsTest extends BaseClass {
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+            log.info("Label color of " + type + " is not as per spec, actual " + labelColor);
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+            log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor);
     }
@@ -1274,7 +1274,7 @@ public class InputsTest extends BaseClass {
         color = commonUtils.getCSSValue(msg, "color");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> Font Color of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
     }
@@ -1306,7 +1306,7 @@ public class InputsTest extends BaseClass {
 
         isBgColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
         if (!isBgColor) {
-            log.info("Compounds-> The underline background-color of " + type + " is not as per spec, actual " + bgColor);
+            log.info("The underline background-color of " + type + " is not as per spec, actual " + bgColor);
         }
         isHeight = commonUtils.assertValue(height, expHeight, "height of underline for " + type + " is not as per spec");
         isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin Top of underline for " + type + " is not as per spec");
@@ -1401,17 +1401,17 @@ public class InputsTest extends BaseClass {
         Thread.sleep(500);
         for (String cssProperty : borderRadii) {
             borderRadius = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Compounds-> Border radius  " + cssProperty + " of " + type + " is not as per spec");
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Border radius  " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         if (!type.equals("select-input-basic-readOnly")) {
@@ -1419,7 +1419,7 @@ public class InputsTest extends BaseClass {
                 borderColor = commonUtils.getCSSValue(elem, cssProperty);
                 isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
                 if (!isBorderColor) {
-                    log.info("Compounds-> Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
+                    log.info("Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
                 }
                 Assert.assertTrue(isBorderColor);
             }
@@ -1449,13 +1449,13 @@ public class InputsTest extends BaseClass {
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+            log.info("Label color of " + type + " is not as per spec, actual " + labelColor);
         }
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
         islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(label, elem);
         if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+            log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class");
@@ -1484,12 +1484,12 @@ public class InputsTest extends BaseClass {
         Thread.sleep(1000);
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " (Focus) field is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(elem, cssProperty);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " (Focus) field is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         Thread.sleep(1000);
@@ -1497,14 +1497,14 @@ public class InputsTest extends BaseClass {
             borderColor = commonUtils.getCSSValue(elem, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
+                log.info("Border color " + cssProperty + " of " + type + " (Focus) field is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
         boxShadow = commonUtils.getCSSValue(elem, "box-shadow");
         isBoxShadow = commonUtils.assertCSSProperties("box-shadow", boxShadow, expBoxShadow);
         if (!isBoxShadow) {
-            log.info("Compounds-> Box-shadow of " + type + " (Focus) is not as per spec, actual " + boxShadow);
+            log.info("Box-shadow of " + type + " (Focus) is not as per spec, actual " + boxShadow);
         }
         Assert.assertTrue(isBoxShadow);
     }
@@ -1694,10 +1694,10 @@ public class InputsTest extends BaseClass {
         paddingLeft = commonUtils.getCSSValue(element, "padding-left");
         isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
         if (!isPaddingLeft) {
-            log.info("Compounds-> padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
+            log.info("padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
         }
         display = commonUtils.getCSSValue(element, "display");
-        isDisplay = commonUtils.assertValue(display, expDisplay, "Compounds-> 'display' for checkbox label of '" + id + "' type is not as per the spec");
+        isDisplay = commonUtils.assertValue(display, expDisplay, "'display' for checkbox label of '" + id + "' type is not as per the spec");
 
         Assert.assertTrue(isPaddingLeft && isDisplay);
     }
@@ -1734,25 +1734,25 @@ public class InputsTest extends BaseClass {
             borderColor = commonUtils.getCSSValue(span, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border-color of " + elemType + " is not as per spec, actual " + borderColor);
+                log.info("Border-color of " + elemType + " is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(span, cssProperty);
-            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "'" + cssProperty + "' of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(span, cssProperty);
-            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "'" + cssProperty + "' of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderRadii) {
             borderRadius = commonUtils.getCSSValue(span, cssProperty);
             isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, new String[]{"50%", "8px"});
             if (!isBorderRadius) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
+                log.info("'" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
             }
             Assert.assertTrue(isBorderRadius);
         }
@@ -1760,7 +1760,7 @@ public class InputsTest extends BaseClass {
             radioBtnPadding = commonUtils.getCSSValue(span, cssProperty);
             isRadioBtnPadding = commonUtils.assertCSSProperties(cssProperty, radioBtnPadding, new String[]{"3px", "6px"});
             if (!isRadioBtnPadding) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
+                log.info("'" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
             }
             Assert.assertTrue(isRadioBtnPadding);
         }
@@ -1771,7 +1771,7 @@ public class InputsTest extends BaseClass {
         }
         isRadioBtnSelectedColor = commonUtils.assertCSSProperties("color", radioBtnSelectedColor, expSvgColor);
         if (!isRadioBtnSelectedColor) {
-            log.info("Compounds-> Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
+            log.info("Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
         }
         Assert.assertTrue(isRadioBtnSelectedColor);
     }
@@ -1799,12 +1799,12 @@ public class InputsTest extends BaseClass {
         paddingLeft = commonUtils.getCSSValue(label, "padding-left");
         labelFontSize = commonUtils.getCSSValue(label, "font-size");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding-left between " + elemType + " and its label is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left between " + elemType + " and its label is not as per spec");
         isLabelFontSize = commonUtils.assertCSSProperties("font-size", labelFontSize, expLabelfontSize);
         if (!isLabelFontSize) {
-            log.info("Compounds-> Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
+            log.info("Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
         }
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Compounds-> Label line height of " + elemType + "is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Label line height of " + elemType + "is not as per spec");
 
         Assert.assertTrue(isPaddingLeft && isLabelFontSize && islabelLineHeight);
     }
@@ -1830,7 +1830,7 @@ public class InputsTest extends BaseClass {
         js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
 
         marginBottom = commonUtils.getCSSValue(elem, "margin-bottom");
-        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
     }
 
@@ -1848,12 +1848,12 @@ public class InputsTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + type + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + type + " is not as per the spec, actual: " + fontSize);
         }
         color = commonUtils.getCSSValue(element, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + type + " is not as per the spec, actual: " + color);
+            log.info("color for " + type + " is not as per the spec, actual: " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
     }
@@ -1937,12 +1937,12 @@ public class InputsTest extends BaseClass {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + inputState + " is not as per the spec, actual: " + fontSize);
         }
         color = commonUtils.getCSSValue(element, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + inputState + " is not as per the spec, actual: " + color);
+            log.info("color for " + inputState + " is not as per the spec, actual: " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
     }
@@ -1956,24 +1956,24 @@ public class InputsTest extends BaseClass {
         backgroundColor = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expUnderlineBackgroundColor);
         if (!isBackgroundColor) {
-            log.info("Compounds-> background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
+            log.info("background-color for " + underlineElementType + " is not as per the spec, actual: " + backgroundColor);
         }
         display = commonUtils.getCSSValue(underlineElement, "display", "mobile");
         isDisplay = commonUtils.assertValue(display, expDisplay, "underline color for '" + underlineElementType + "' is not as per the spec");
         height = commonUtils.getCSSValue(underlineElement, "height", "mobile");
         isHeight = commonUtils.assertCSSProperties("height", height, expUnderlineHeight);
         if (!isHeight) {
-            log.info("Compounds-> height for " + underlineElementType + " is not as per the spec, actual: " + height);
+            log.info("height for " + underlineElementType + " is not as per the spec, actual: " + height);
         }
         transitionDelay = commonUtils.getCSSValue(underlineElement, "transition-delay", "mobile");
         isTransitionDelay = commonUtils.assertCSSProperties("transitionDelay", transitionDelay, expUnderlineTrasitionDelay);
         if (!isTransitionDelay) {
-            log.info("Compounds-> transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
+            log.info("transitionDelay for " + underlineElementType + " is not as per the spec, actual: " + transitionDelay);
         }
         transitionDuration = commonUtils.getCSSValue(underlineElement, "transition-duration", "mobile");
         isTransitionDuration = commonUtils.assertCSSProperties("transitionDuration", transitionDuration, expUnderlineTrasitionDuration);
         if (!isTransitionDuration) {
-            log.info("Compounds-> transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
+            log.info("transitionDuration for " + underlineElementType + " is not as per the spec, actual: " + transitionDuration);
         }
         transitionProp = commonUtils.getCSSValue(underlineElement, "transition-property", "mobile");
         isTransitionProp = commonUtils.assertValue(transitionProp, expUnderlineTransitionProp, "'" + underlineElementType + "' :for Single Line Input - Focus state is not as per the spec");
@@ -1998,24 +1998,24 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
         for (String cssProperty : borderRadii) {
             borderRadius = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Compounds-> Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRad, "Border radius " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec ");
             Assert.assertTrue(isBorderRadius);
         }
 
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", bgColor, expBgColor);
         if (!isBackgroundColor) {
-            log.info("Compounds-> Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
+            log.info("Background color of Input-Basic Single Line (" + type + ") field is not as per spec exp, actual " + bgColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> margin-top of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Compounds-> Padding right of Input-Basic Single Line (Active) field is not as per spec");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding left of Input-Basic Single Line (Active) field is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "margin-top of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingRight, "Padding right of Input-Basic Single Line (Active) field is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding left of Input-Basic Single Line (Active) field is not as per spec");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
-            log.info("Compounds-> Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
+            log.info("Box height of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + height);
         }
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
+            log.info("Font Size of Input-Basic Single Line (" + type + ") field is not as per spec, actual " + fontSize);
         }
         isLineHeight = commonUtils.assertValue(lineHeight, expLineHt, "Line height of Input-Basic Single Line (" + type + ") field is not as per spec");
 
@@ -2030,19 +2030,19 @@ public class InputsTest extends BaseClass {
 
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Compounds-> Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(element, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderColors) {
             borderColor = commonUtils.getCSSValue(element, cssProperty, "mobile");
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
+                log.info("Border color " + cssProperty + " of Input-Basic Single Line (" + type + ") field is not as per spec, actual: " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
@@ -2061,12 +2061,12 @@ public class InputsTest extends BaseClass {
         color = commonUtils.getCSSValue(elementForLabel, "color", "mobile");
         fontSize = commonUtils.getCSSValue(elementForLabel, "font-size", "mobile");
         lineHeight = commonUtils.getCSSValue(elementForLabel, "line-height", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Compounds-> Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expLabelFontSize, "Label font size of Input-Basic Single Line (" + type + ") label is not as per spec");
         isColor = commonUtils.assertCSSProperties("color", color, expLabelColor);
         if (!isColor) {
-            log.info("Compounds-> Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
+            log.info("Label color of Input-Basic Single Line (" + type + ") is not as per spec, actual:" + color);
         }
-        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Compounds-> Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
+        isLineHeight = commonUtils.assertValue(lineHeight, "16px", "Line-height of Input-Basic Single Line (" + type + ") label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(elementForLabel, element, "mobile");
         Assert.assertTrue(isColor && isFontSize && isLabelFor);
     }
@@ -2084,22 +2084,22 @@ public class InputsTest extends BaseClass {
         paddingTop = commonUtils.getCSSValue(element, "padding-top", "mobile");
         isPaddingTop = commonUtils.assertCSSProperties("padding-top", paddingTop, expPaddingTop);
         if (!isPaddingTop) {
-            log.info("Compounds-> padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
+            log.info("padding-top for " + inputType + " is not as per the spec, actual: " + paddingTop);
         }
         color = commonUtils.getCSSValue(element, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> color for " + inputType + " is not as per the spec, actual: " + color);
+            log.info("color for " + inputType + " is not as per the spec, actual: " + color);
         }
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
         if (!isFontSize) {
-            log.info("Compounds-> font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
+            log.info("font-size for " + inputType + " is not as per the spec, actual: " + fontSize);
         }
         lineHeight = commonUtils.getCSSValue(element, "line-height", "mobile");
         isLineHeight = commonUtils.assertCSSProperties("line-height", lineHeight, expLineHeight);
         if (!isLineHeight) {
-            log.info("Compounds-> line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
+            log.info("line-height for " + inputType + " is not as per the spec, actual: " + lineHeight);
         }
         Assert.assertTrue(isPaddingTop && isColor && isFontSize && isLineHeight);
     }
@@ -2123,21 +2123,21 @@ public class InputsTest extends BaseClass {
         isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+            log.info("label color of " + type + " is not as per spec,actual" + labelColor);
         }
         isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
         if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+            log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
         fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
         paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Info Msg padding top of " + type + " is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Info Msg padding top of " + type + " is not as per spec");
         color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
 
@@ -2146,13 +2146,13 @@ public class InputsTest extends BaseClass {
             js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
             Thread.sleep(500);
             fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
             paddingTop = commonUtils.getCSSValue(infoMsg, "padding-top", "mobile");
-            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Compounds-> Error Msg padding top of " + type + " is not as per spec");
+            isPaddingTop = commonUtils.assertValue(paddingTop, "3px", "Error Msg padding top of " + type + " is not as per spec");
             color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
             isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
             if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+                log.info("Font Color of error Msg of " + type + " is not as per spec, actual " + color);
             }
             Assert.assertTrue(isFontSize && isColor && isPaddingTop);
         }
@@ -2172,14 +2172,14 @@ public class InputsTest extends BaseClass {
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+            log.info("Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The top margin value  of " + id + "  show btn is not as per specs");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + id + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
             cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
-            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
+            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "'" + cssPropertyType + "' of " + id + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
         Assert.assertTrue(isShowBtnColor && isMarginTop && isShowBtnFloat);
@@ -2193,20 +2193,20 @@ public class InputsTest extends BaseClass {
 
         paddingBottom = commonUtils.getCSSValue(elem, "padding-bottom", "mobile");
         paddingTop = commonUtils.getCSSValue(elem, "padding-top", "mobile");
-        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "Compounds-> The padding-bottom of " + id + " is not as per spec");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> The padding-top of " + id + " is not as per spec");
+        isPaddingBottom = commonUtils.assertValue(paddingBottom, expPaddingBottom, "The padding-bottom of " + id + " is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "The padding-top of " + id + " is not as per spec");
 
         borderBottom = commonUtils.getCSSValue(elem, "border-bottom-width", "mobile");
         borderBottomColor = commonUtils.getCSSValue(elem, "border-bottom-color", "mobile");
         borderBottomStyle = commonUtils.getCSSValue(elem, "border-bottom-style", "mobile");
-        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "Compounds-> The bottom border width of " + id + "  is not as per spec");
+        isBorderBottom = commonUtils.assertValue(borderBottom, expBorderBottom, "The bottom border width of " + id + "  is not as per spec");
         if (!id.equals("password-input-fancy-readOnly")) {
             isBorderBottomColor = commonUtils.assertCSSProperties("border-bottom-color", borderBottomColor, expBorderBtmColor);
             if (!isBorderBottomColor) {
-                log.info("Compounds-> Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
+                log.info("Bottom border color of " + id + " is not as per spec,actual " + borderBottomColor);
             }
         }
-        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "Compounds-> The bottom border style of " + id + " is not as per spec");
+        isBorderBottomStyle = commonUtils.assertValue(borderBottomStyle, expBorderBtmStyle, "The bottom border style of " + id + " is not as per spec");
 
         Assert.assertTrue(isPaddingBottom && isPaddingTop && isBorderBottom && isBorderBottomColor && isBorderBottomStyle);
     }
@@ -2225,10 +2225,10 @@ public class InputsTest extends BaseClass {
         lineHeight = commonUtils.getCSSValue(underlineElement, "height", "mobile");
         color = commonUtils.getCSSValue(underlineElement, "background-color", "mobile");
 
-        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "Compounds-> The underline height of " + id + " is not as per spec");
+        isHeight = commonUtils.assertValue(lineHeight, expUnderlineHeight, "The underline height of " + id + " is not as per spec");
         isColor = commonUtils.assertCSSProperties("background-color", color, expUnderlineColor);
         if (!isColor) {
-            log.info("Compounds-> Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
+            log.info("Underline color  of " + id + " is not as per spec,actual " + color + " at width " + width);
         }
         Assert.assertTrue(isHeight && isColor);
     }
@@ -2249,22 +2249,22 @@ public class InputsTest extends BaseClass {
 
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> The font size of " + type + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "The font size of " + type + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> label color of " + type + " is not as per spec,actual" + labelColor);
+            log.info("label color of " + type + " is not as per spec,actual" + labelColor);
         }
         isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
         if (!isLabelFor) {
-            log.info("Compounds-> the password label is not mapped correctly to the password field  of " + type);
+            log.info("the password label is not mapped correctly to the password field  of " + type);
         }
 
         fontSize = commonUtils.getCSSValue(infoMsg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> Info Msg font size of " + type + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, "12px", "Info Msg font size of " + type + " is not as per spec");
         color = commonUtils.getCSSValue(infoMsg, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#6A7070"), commonUtils.hex2RgbWithoutTransparency("#6A7070")});
         if (!isColor) {
-            log.info("Compounds-> Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of Info Msg of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor);
 
@@ -2273,11 +2273,11 @@ public class InputsTest extends BaseClass {
             js.executeScript("arguments[0].setAttribute('id','" + errorMsgId + "')", webElement);
             Thread.sleep(500);
             fontSize = commonUtils.getCSSValue(errorMsg, "font-size", "mobile");
-            isFontSize = commonUtils.assertValue(fontSize, "12px", "Compounds-> error Msg font size of " + type + " is not as per spec");
+            isFontSize = commonUtils.assertValue(fontSize, "12px", "error Msg font size of " + type + " is not as per spec");
             color = commonUtils.getCSSValue(errorMsg, "color", "mobile");
             isColor = commonUtils.assertCSSProperties("color", color, new String[]{commonUtils.hex2Rgb("#DB0020"), commonUtils.hex2RgbWithoutTransparency("#DB0020")});
             if (!isColor) {
-                log.info("Compounds-> Font Color of error Msg of " + type + " is not as per spec, actual " + color);
+                log.info("Font Color of error Msg of " + type + " is not as per spec, actual " + color);
             }
             Assert.assertTrue(isFontSize && isColor);
         }
@@ -2298,15 +2298,15 @@ public class InputsTest extends BaseClass {
 
         isShowBtnColor = commonUtils.assertCSSProperties("color", showBtnColor, expShowBtnColor);
         if (!isShowBtnColor) {
-            log.info("Compounds-> Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
+            log.info("Show Button color  of " + id + " is not as per spec,actual " + showBtnColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The top margin value  of " + id + "  show btn is not as per specs");
-        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "Compounds-> The margin-right value  of " + id + "  show btn is not as per specs");
-        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "Compounds-> The show btn  of " + id + " is not on aligned on the right side");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The top margin value  of " + id + "  show btn is not as per specs");
+        isMarginRight = commonUtils.assertValue(marginRight, expMarginRight, "The margin-right value  of " + id + "  show btn is not as per specs");
+        isShowBtnFloat = commonUtils.assertValue(showBtnFloat, "right", "The show btn  of " + id + " is not on aligned on the right side");
         for (String cssProperty : paddings) {
             String cssPropertyType = cssProperty;
             cssProperty = commonUtils.getCSSValue(showbutton, cssProperty, "mobile");
-            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "Compounds-> '" + cssPropertyType + "' of " + id + " is not as per spec");
+            isCSSProperty = commonUtils.assertValue(cssProperty, "2px", "'" + cssPropertyType + "' of " + id + " is not as per spec");
             Assert.assertTrue(isCSSProperty);
         }
         Assert.assertTrue(isShowBtnColor && isMarginTop && isMarginRight && isShowBtnFloat);
@@ -2325,18 +2325,18 @@ public class InputsTest extends BaseClass {
         bgColor = commonUtils.getCSSValue(elem, "background-color", "mobile");
         marginTop = commonUtils.getCSSValue(elem, "margin-top", "mobile");
 
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "Compounds-> The padding-left of " + id + " is not as per spec");
-        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "Compounds-> The padding-right of " + id + " is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeftRight, "The padding-left of " + id + " is not as per spec");
+        isPaddingRight = commonUtils.assertValue(paddingRight, expPaddingLeftRight, "The padding-right of " + id + " is not as per spec");
         isHeight = commonUtils.assertCSSProperties("height", height, expHeight);
         if (!isHeight) {
-            log.info("Compounds-> The height of " + id + " is not as per spec, actual " + height);
+            log.info("The height of " + id + " is not as per spec, actual " + height);
         }
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> The font-size of " + id + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "The font-size of " + id + " is not as per spec");
         isBgColor = commonUtils.assertCSSProperties("color", bgColor, expBgColor);
         if (!isBgColor) {
-            log.info("Compounds-> BackGround Color of " + id + " is not as per spec, actual " + bgColor);
+            log.info("BackGround Color of " + id + " is not as per spec, actual " + bgColor);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Compounds-> The margin-top of " + id + " is not as per spec");
+        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "The margin-top of " + id + " is not as per spec");
 
         Assert.assertTrue(isPaddingLeft && isPaddingRight && isHeight && isFontSize && isBgColor && isMarginTop);
     }
@@ -2496,11 +2496,11 @@ public class InputsTest extends BaseClass {
         labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
         labelColor = commonUtils.getCSSValue(label, "color", "mobile");
 
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + labelTextType + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + labelTextType + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + labelTextType + " Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + labelTextType + " Label is not as per spec");
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelFontColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
+            log.info("Font-color of " + labelTextType + " Label is not as per spec, actual " + labelColor);
         }
         Assert.assertTrue(isLabelFontSize && islabelLineHeight && isLabelColor);
     }
@@ -2567,13 +2567,13 @@ public class InputsTest extends BaseClass {
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+            log.info("Label color of " + type + " is not as per spec, actual " + labelColor);
         }
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> font-size of " + type + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "font-size of " + type + " Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
         if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+            log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor);
     }
@@ -2588,13 +2588,13 @@ public class InputsTest extends BaseClass {
         webElement = appium.findElement(By.className(className));
         js.executeScript("arguments[0].setAttribute('id','" + msgType + "')", webElement);
         fontSize = commonUtils.getCSSValue(msg, "font-size", "mobile");
-        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "Compounds-> font size of " + type + " is not as per spec");
+        isFontSize = commonUtils.assertValue(fontSize, expFontSize, "font size of " + type + " is not as per spec");
         paddingTop = commonUtils.getCSSValue(msg, "padding-top", "mobile");
-        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "Compounds-> padding top of " + type + " is not as per spec");
+        isPaddingTop = commonUtils.assertValue(paddingTop, expPaddingTop, "padding top of " + type + " is not as per spec");
         color = commonUtils.getCSSValue(msg, "color", "mobile");
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isColor) {
-            log.info("Compounds-> Font Color of " + type + " is not as per spec, actual " + color);
+            log.info("Font Color of " + type + " is not as per spec, actual " + color);
         }
         Assert.assertTrue(isFontSize && isColor && isPaddingTop);
     }
@@ -2667,17 +2667,17 @@ public class InputsTest extends BaseClass {
         js.executeScript("arguments[0].setAttribute('id','" + id + "')", webElement);
         for (String cssProperty : borderRadii) {
             borderRadius = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Compounds-> Border radius  " + cssProperty + " of " + type + " is not as per spec");
+            isBorderRadius = commonUtils.assertValue(borderRadius, expBorderRadius, "Border radius  " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderRadius);
         }
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Compounds-> Border width " + cssProperty + " of " + type + " is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth, "Border width " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(elem, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Compounds-> Border style " + cssProperty + " of " + type + " is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle, "Border style " + cssProperty + " of " + type + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         if (!type.equals("select-input-basic-readOnly")) {
@@ -2685,7 +2685,7 @@ public class InputsTest extends BaseClass {
                 borderColor = commonUtils.getCSSValue(elem, cssProperty, "mobile");
                 isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
                 if (!isBorderColor) {
-                    log.info("Compounds-> Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
+                    log.info("Border color " + cssProperty + " of " + type + " is not as per spec, actual " + borderColor);
                 }
                 Assert.assertTrue(isBorderColor);
             }
@@ -2705,17 +2705,17 @@ public class InputsTest extends BaseClass {
 
         isLabelColor = commonUtils.assertCSSProperties("color", labelColor, expLabelColor);
         if (!isLabelColor) {
-            log.info("Compounds-> Label color of " + type + " is not as per spec, actual " + labelColor);
+            log.info("Label color of " + type + " is not as per spec, actual " + labelColor);
         }
-        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Compounds-> Font-size of " + type + " Label is not as per spec");
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Compounds-> Line-height of " + type + " Label is not as per spec");
+        isLabelFontSize = commonUtils.assertValue(labelFontSize, expLabelFontSize, "Font-size of " + type + " Label is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, expLabelLineHt, "Line-height of " + type + " Label is not as per spec");
         isLabelFor = commonUtils.checkLabelForVal(label, elem, "mobile");
         if (!isLabelFor) {
-            log.info("Compounds-> Label for " + type + " is not tagged to the appropriate input");
+            log.info("Label for " + type + " is not tagged to the appropriate input");
         }
         // icon
         actIconClass = commonUtils.getAttributeValue(icon, "class", "mobile");
-        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Compounds-> Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
+        isIconClass = commonUtils.assertValue(actIconClass, "pe-icon--dropdown-open-sm-24", "Dropdown icon does not comply to the \"pe-icon--dropdown-open-sm-24\"");
         Assert.assertTrue(isLabelColor && isLabelFontSize && islabelLineHeight && isLabelFor && isIconClass);
     }
 
@@ -2863,10 +2863,10 @@ public class InputsTest extends BaseClass {
         paddingLeft = commonUtils.getCSSValue(element, "padding-left", "mobile");
         isPaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, expPaddingLeft);
         if (!isPaddingLeft) {
-            log.info("Compounds-> padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
+            log.info("padding-left for checkbox label of " + id + " type is not as per the spec, actual: " + paddingLeft);
         }
         display = commonUtils.getCSSValue(element, "display", "mobile");
-        isDisplay = commonUtils.assertValue(display, expDisplay, "Compounds-> 'display' for checkbox label of '" + id + "' type is not as per the spec");
+        isDisplay = commonUtils.assertValue(display, expDisplay, "'display' for checkbox label of '" + id + "' type is not as per the spec");
 
         Assert.assertTrue(isPaddingLeft && isDisplay);
     }
@@ -2894,25 +2894,25 @@ public class InputsTest extends BaseClass {
             borderColor = commonUtils.getCSSValue(span, cssProperty, "mobile");
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
             if (!isBorderColor) {
-                log.info("Compounds-> Border-color of " + elemType + " is not as per spec, actual " + borderColor);
+                log.info("Border-color of " + elemType + " is not as per spec, actual " + borderColor);
             }
             Assert.assertTrue(isBorderColor);
         }
         for (String cssProperty : borderStyles) {
             borderStyle = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, "solid", "'" + cssProperty + "' of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderStyle);
         }
         for (String cssProperty : borderWidths) {
             borderWidth = commonUtils.getCSSValue(span, cssProperty, "mobile");
-            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec");
+            isBorderWidth = commonUtils.assertValue(borderWidth, "1px", "'" + cssProperty + "' of " + elemType + " is not as per spec");
             Assert.assertTrue(isBorderWidth);
         }
         for (String cssProperty : borderRadii) {
             borderRadius = commonUtils.getCSSValue(span, cssProperty, "mobile");
             isBorderRadius = commonUtils.assertCSSProperties(cssProperty, borderRadius, new String[]{"50%", "8px"});
             if (!isBorderRadius) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
+                log.info("'" + cssProperty + "' of " + elemType + " is not as per spec, actual " + borderRadius);
             }
             Assert.assertTrue(isBorderRadius);
         }
@@ -2920,7 +2920,7 @@ public class InputsTest extends BaseClass {
             radioBtnPadding = commonUtils.getCSSValue(span, cssProperty, "mobile");
             isRadioBtnPadding = commonUtils.assertCSSProperties(cssProperty, radioBtnPadding, new String[]{"3px", "6px"});
             if (!isRadioBtnPadding) {
-                log.info("Compounds-> '" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
+                log.info("'" + cssProperty + "' of " + elemType + " is not as per spec, actual " + radioBtnPadding);
             }
             Assert.assertTrue(isRadioBtnPadding);
         }
@@ -2931,7 +2931,7 @@ public class InputsTest extends BaseClass {
         }
         isRadioBtnSelectedColor = commonUtils.assertCSSProperties("color", radioBtnSelectedColor, expSvgColor);
         if (!isRadioBtnSelectedColor) {
-            log.info("Compounds-> Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
+            log.info("Svg-icon color when selected of " + elemType + " is not as per spec, actual " + radioBtnSelectedColor);
         }
         Assert.assertTrue(isRadioBtnSelectedColor);
     }
@@ -2949,12 +2949,12 @@ public class InputsTest extends BaseClass {
         paddingLeft = commonUtils.getCSSValue(label, "padding-left", "mobile");
         labelFontSize = commonUtils.getCSSValue(label, "font-size", "mobile");
         labelLineHeight = commonUtils.getCSSValue(label, "line-height", "mobile");
-        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Compounds-> Padding-left between " + elemType + " and its label is not as per spec");
+        isPaddingLeft = commonUtils.assertValue(paddingLeft, expPaddingLeft, "Padding-left between " + elemType + " and its label is not as per spec");
         isLabelFontSize = commonUtils.assertCSSProperties("font-size", labelFontSize, expLabelfontSize);
         if (!isLabelFontSize) {
             log.info("Label font size of " + elemType + "is not as per spec, actual " + labelFontSize);
         }
-        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Compounds-> Label line height of " + elemType + "is not as per spec");
+        islabelLineHeight = commonUtils.assertValue(labelLineHeight, "18px", "Label line height of " + elemType + "is not as per spec");
 
         Assert.assertTrue(isPaddingLeft && isLabelFontSize && islabelLineHeight);
     }
@@ -2970,7 +2970,7 @@ public class InputsTest extends BaseClass {
         js.executeScript("arguments[0].setAttribute('id', '" + divId + "')", webElement);
 
         marginBottom = commonUtils.getCSSValue(elem, "margin-bottom", "mobile");
-        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Compounds-> Margin-Bottom of " + elemType + " is not as per spec");
+        isMarginBottom = commonUtils.assertValue(marginBottom, expMarginBottom, "Margin-Bottom of " + elemType + " is not as per spec");
         Assert.assertTrue(isMarginBottom);
     }
 
@@ -3012,7 +3012,7 @@ public class InputsTest extends BaseClass {
     @Test(testName = "Negative Config Test", dataProvider = "Negative Config Test Data", groups = {"desktop-regression"})
     private void negativeConfigValuesTest(String errorType, String[] detailsPropertiesList, String[] propsPropertiesList, String errorMessage) throws Exception {
         if (((browser.equals("firefox")) || (browser.equals("safari")) || (browser.equals("ie")) || browser.equals("edge") || (lBrowser.equals("firefox")))) {
-            throw new SkipException("Compounds-> Focus operation not yet supported in firefox/safari/ie browser drivers");
+            throw new SkipException("Focus operation not yet supported in firefox/safari/ie browser drivers");
         }
         setConfigAndLaunch(detailsPropertiesList, propsPropertiesList);
 
