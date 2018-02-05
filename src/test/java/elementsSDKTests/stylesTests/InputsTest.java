@@ -35,7 +35,6 @@ public class InputsTest extends BaseClass {
     String[] borderRights = {"border-right-width", "border-right-style", "border-right-color"};
     String[] borderLefts = {"border-left-width", "border-left-style", "border-left-color"};
     String[] paddings = {"padding-top", "padding-bottom", "padding-right", "padding-left"};
-    String[] borderRadiuss = {"border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius"};
 
     String[] borderWidths = {"border-top-width", "border-right-width", "border-bottom-width", "border-left-width"};
     String[] borderStyles = {"border-top-style", "border-bottom-style", "border-right-style", "border-left-style"};
@@ -83,14 +82,16 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isColor);
     }
 
-    @DataProvider(name = "Fancy - Single Line Text Input Test Data")
-    public Object[][] getFancySingleLineTextInputTestData() {
+    @DataProvider(name = "Fancy - Single Line Text Input Default/Error/ReadOnly Test Data")
+    public Object[][] getFancySingleLineTextInputDefaultErrorReadOnlyTestData() {
         return new Object[][]{
-                {inputsPgObj.slTextInput, new String[]{"1px", "solid", "#6A7070"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}};
+                {"default", "sl-text-input", inputsPgObj.slTextInput, new String[]{"1px", "solid", "#6A7070"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}},
+                {"error", "sl-text-input-error", inputsPgObj.slTextInputErrored, new String[]{"1px", "solid", "#DB0020"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}},
+                {"readOnly", "sl-text-input-readonly", inputsPgObj.slTextInputReadOnly, new String[]{"0px", "none", "#252525"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"none", "none", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}};
     }
 
-    @Test(testName = "Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = {"desktop-ci", "desktop-regression"})
-    private void fancySingleLineTextInputTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
+    @Test(testName = "Fancy - Verify Single Line Text Input - Default/Error/ReadOnly", dataProvider = "Fancy - Single Line Text Input Default/Error/ReadOnly Test Data", groups = {"desktop-ci", "desktop-regression"})
+    private void fancySingleLineTextInputDefaultErrorReadOnlyTest(String type, String id, By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
         fontSize = commonUtils.getCSSValue(element, "font-size");
         color = commonUtils.getCSSValue(element, "color");
         fontFamily = commonUtils.getCSSValue(element, "font-family");
@@ -100,71 +101,29 @@ public class InputsTest extends BaseClass {
         isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
 
         if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input is not as per the spec, actual: " + fontSize);
+            log.info("font-size for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + fontSize);
         }
         if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input is not as per the spec, actual: " + color);
+            log.info("color for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + color);
         }
         if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input is not as per the spec, actual: " + fontFamily);
-        }
-        Assert.assertTrue(isFontSize && isColor && isFontFamily);
-
-        for (int i = 0; i < borderStyles.length; i++) {
-            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text is not as per the spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-
-        for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(element, paddings[i]);
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text is not as per the spec");
-            Assert.assertTrue(isPadding);
-        }
-        testBorders("Fancy - Single Line Text Input", borderBottom, borderBottoms, expBorderBottoms, element);
-    }
-
-    @DataProvider(name = "Fancy - Single Line Text Input Errored Test Data")
-    public Object[][] getFancySingleLineTextInputErroredTestData() {
-        return new Object[][]{
-                {inputsPgObj.slTextInputErrored, new String[]{"1px", "solid", "#DB0020"}, new String[]{"14px"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525"), commonUtils.hex2Rgb("#c7c7c7"), commonUtils.hex2RgbWithoutTransparency("#c7c7c7")}, new String[]{"none", "solid", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}};
-    }
-
-    //Inputs (single line - error)
-    @Test(testName = "Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "desktop-regression")
-    private void fancySingleLineTextInputErroredTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        color = commonUtils.getCSSValue(element, "color");
-        fontFamily = commonUtils.getCSSValue(element, "font-family");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
-
-        if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontSize);
-        }
-        if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + color);
-        }
-        if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontFamily);
+            log.info("font-family for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + fontFamily);
         }
 
         Assert.assertTrue(isFontSize && isColor && isFontFamily);
 
         for (int i = 0; i < borderStyles.length; i++) {
             borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text - " + type + "is not as per the spec");
             Assert.assertTrue(isBorderStyle);
         }
 
         for (int i = 0; i < paddings.length; i++) {
             padding = commonUtils.getCSSValue(element, paddings[i]);
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text - " + type + "is not as per the spec");
             Assert.assertTrue(isPadding);
         }
-        testBorders("Fancy - Single Line Text Input - Errored", borderBottom, borderBottoms, expBorderBottoms, element);
+        testBorders("Fancy - Single Line Text Input - " + type + " ", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input Disabled Test Data")
@@ -204,43 +163,6 @@ public class InputsTest extends BaseClass {
         return new Object[][]{
                 {inputsPgObj.slTextInputReadOnly, new String[]{"0px", "none", "#252525"}, new String[]{commonUtils.hex2Rgb("#252525"), commonUtils.hex2RgbWithoutTransparency("#252525")}, new String[]{"14px"}, new String[]{"none", "none", "none", "none"}, new String[]{"8px", "10px", "0px", "0px"}, new String[]{macChromeFontFamily, ffFontFamily, safariFontFamily, ieFontFamily}}
         };
-    }
-
-    //Inputs (single line - readonly)
-    @Test(testName = "Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "desktop-regression")
-    private void fancySingleLineTextInputReadOnlyTest(By element, String[] expBorderBottoms, String[] expColor, String[] expFontSize, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
-        fontSize = commonUtils.getCSSValue(element, "font-size");
-        color = commonUtils.getCSSValue(element, "color");
-        fontFamily = commonUtils.getCSSValue(element, "font-family");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
-
-        if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontSize);
-        }
-        if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + color);
-        }
-        if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontFamily);
-        }
-
-        Assert.assertTrue(isFontSize && isColor && isFontFamily);
-
-        for (int i = 0; i < borderStyles.length; i++) {
-            borderStyle = commonUtils.getCSSValue(element, borderStyles[i]);
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-
-        for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(element, paddings[i]);
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
-            Assert.assertTrue(isPadding);
-        }
-        testBorders("Fancy - Single Text Line Input - ReadOnly", borderBottom, borderBottoms, expBorderBottoms, element);
     }
 
     @DataProvider(name = "Fancy - Single Line Text Input - Focus state Test Data")
@@ -1701,8 +1623,8 @@ public class InputsTest extends BaseClass {
         Assert.assertTrue(isFontSize && isColor);
     }
 
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input", dataProvider = "Fancy - Single Line Text Input Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputMobileTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
+    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Default/Error/ReadOnly", dataProvider = "Fancy - Single Line Text Input Default/Error/ReadOnly Test Data", groups = "mobile-regression")
+    private void fancySingleLineTextInputDefaultErrorReadOnlyMobileTest(String type, String id, By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
         fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
         color = commonUtils.getCSSValue(element, "color", "mobile");
         fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
@@ -1712,72 +1634,36 @@ public class InputsTest extends BaseClass {
         isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
 
         if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input is not as per the spec, actual: " + fontSize);
+            log.info("font-size for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + fontSize);
         }
         if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input is not as per the spec, actual: " + color);
+            log.info("color for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + color);
         }
         if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input is not as per the spec, actual: " + fontFamily);
+            log.info("font-family for Fancy - Single Line Text Input - " + type + " is not as per the spec, actual: " + fontFamily);
         }
 
         Assert.assertTrue(isFontSize && isColor && isFontFamily);
 
         for (int i = 0; i < borderStyles.length; i++) {
             borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text is not as per the spec");
+            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text - " + type + "is not as per the spec");
             Assert.assertTrue(isBorderStyle);
         }
 
         for (int i = 0; i < paddings.length; i++) {
             padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text is not as per the spec");
+            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text - " + type + "is not as per the spec");
             Assert.assertTrue(isPadding);
         }
-        testBorders("Fancy - Single Line Text Input", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Errored", dataProvider = "Fancy - Single Line Text Input Errored Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputErroredMobileTest(By element, String[] expBorderBottoms, String[] expFontSize, String[] expColor, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
-
-        if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontSize);
-        }
-        if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + color);
-        }
-        if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input Errored is not as per the spec, actual: " + fontFamily);
-        }
-
-        Assert.assertTrue(isFontSize && isColor && isFontFamily);
-
-        for (int i = 0; i < borderStyles.length; i++) {
-            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-
-        for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Line Text Input Errored is not as per the spec");
-            Assert.assertTrue(isPadding);
-        }
-        testBorders("Fancy - Single Line Text Input - Errored", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
+        testBorders("Fancy - Single Line Text Input - " + type + " ", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
     }
 
     @Test(testName = "Mobile: Fancy - Verify Single Line Text Input - Disabled", dataProvider = "Fancy - Single Line Text Input Disabled Test Data", groups = "mobile-regression")
     private void fancySingleLineTextInputDisabledMobileTest(By element, String[] expBorderBottoms, String[] expColor, String[] expBackgroundColor, String[] expFontFamily) {
-        color = commonUtils.getCSSValue(element, "color", "element");
-        backgroundColor = commonUtils.getCSSValue(element, "background-color", "element");
-        fontFamily = commonUtils.getCSSValue(element, "font-family", "element");
+        color = commonUtils.getCSSValue(element, "color", "mobile");
+        backgroundColor = commonUtils.getCSSValue(element, "background-color", "mobile");
+        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
 
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         isBackgroundColor = commonUtils.assertCSSProperties("background-color", backgroundColor, expBackgroundColor);
@@ -1795,42 +1681,6 @@ public class InputsTest extends BaseClass {
 
         Assert.assertTrue(isColor && isBackgroundColor && isFontFamily);
         testBorders("Fancy - Single Line Text Input - Disabled", borderBottom, borderBottoms, expBorderBottoms, element);
-    }
-
-    @Test(testName = "Mobile: Fancy - Verify Single Text Line Input - ReadOnly", dataProvider = "Fancy - Single Line Text Input ReadOnly Test Data", groups = "mobile-regression")
-    private void fancySingleLineTextInputReadOnlyMobileTest(By element, String[] expBorderBottoms, String[] expColor, String[] expFontSize, String[] expBorderStyle, String[] expPadding, String[] expFontFamily) {
-        fontSize = commonUtils.getCSSValue(element, "font-size", "mobile");
-        color = commonUtils.getCSSValue(element, "color", "mobile");
-        fontFamily = commonUtils.getCSSValue(element, "font-family", "mobile");
-
-        isFontSize = commonUtils.assertCSSProperties("font-size", fontSize, expFontSize);
-        isColor = commonUtils.assertCSSProperties("color", color, expColor);
-        isFontFamily = commonUtils.assertCSSProperties("font-family", fontFamily, expFontFamily);
-
-        if (!isFontSize) {
-            log.info("font-size for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontSize);
-        }
-        if (!isColor) {
-            log.info("color for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + color);
-        }
-        if (!isFontFamily) {
-            log.info("font-family for Fancy - Single Line Text Input ReadOnly is not as per the spec, actual: " + fontFamily);
-        }
-
-        Assert.assertTrue(isFontSize && isColor && isFontFamily);
-
-        for (int i = 0; i < borderStyles.length; i++) {
-            borderStyle = commonUtils.getCSSValue(element, borderStyles[i], "mobile");
-            isBorderStyle = commonUtils.assertValue(borderStyle, expBorderStyle[i], borderStyles[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
-            Assert.assertTrue(isBorderStyle);
-        }
-
-        for (int i = 0; i < paddings.length; i++) {
-            padding = commonUtils.getCSSValue(element, paddings[i], "mobile");
-            isPadding = commonUtils.assertValue(padding, expPadding[i], paddings[i] + " for fancy - Single Text Line Input - ReadOnly is not as per the spec");
-            Assert.assertTrue(isPadding);
-        }
-        testBorders("Fancy - Single Text Line Input - ReadOnly", borderBottom, borderBottoms, expBorderBottoms, element, "mobile");
     }
 
     @Test(testName = "Mobile: Verify Single Line Text Input - Text Label", dataProvider = "Single Line Text Input - Text Label Test Data", groups = "mobile-regression")
