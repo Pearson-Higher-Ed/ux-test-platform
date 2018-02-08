@@ -14,9 +14,10 @@ public class ContextualHelpPageObjects {
 
     public ContextualHelpPageObjects() {
     }
-
     public By contextualHelpDrawer = By.xpath("//div[@id='o-contextual-help-drawer']");
-    public By contextualHelpHeader = By.xpath("//div[@class='o-contextual-help__header']/h2");
+    //public By contextualHelpHeader = By.xpath("//div[@class='o-contextual-help__header']/h2");
+    public By contextualHelpHeader = By.xpath("//*[@id='o-contextual-help-drawer']/div[1]/div[1]/h2");
+
     public By contextualHelpDrawerHeader = By.xpath("//div[@class='o-contextual-help__header']");
     public By contextualHelpDrawerCloseIcon = By.xpath("//button[@class='pe-icon--btn close-help']/*[local-name() = 'svg']");
     public By contextualHelpDrawerCloseButton = By.xpath("//button[@class='pe-icon--btn close-help']");
