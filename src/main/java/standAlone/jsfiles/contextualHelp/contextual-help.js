@@ -5,7 +5,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.dispatchEvent(new CustomEvent('o.InitContextualHelp'));
   var help = document.getElementById('o-contextual-help-drawer').oContextualHelp;
-  var newTopics = ["testcontent/student/deletedcourse", "testcontent/student/droppedcourse", "testcontent/student/freetrial"];
+  var newTopics = ["console/student/deletedcourse", "console/student/droppedcourse", "console/student/freetrial"];
   help.addTopics(newTopics);
 });
 

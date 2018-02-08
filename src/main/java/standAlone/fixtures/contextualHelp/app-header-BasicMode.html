@@ -24,14 +24,14 @@
 <div style="position: relative;top: 100px;">
     <h2 style="color:peru">Contextual Help Test-> Basic Mode App Header</h2>
     <label id="demo" style="color:green">Drawer Toggle Status</label><br><br>
-    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('testcontent/student/freetrial')">Open Specific
+    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('console/student/freetrial')">Open Specific
         Article(FreeTrial)</a><br><br>
     <a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help
         topics</a><br><br>
-    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('testcontent/student/freetrial',500)">Remove
+    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('console/student/freetrial',500)">Remove
         one topic</a><br><br>
     <a id="openAndThenRemoveMoreThanOneTopic" href="#"
-       onclick="openThenRemoveTopics((['testcontent/student/freetrial','testcontent/contactsupport']),500)">Remove more
+       onclick="openThenRemoveTopics((['console/student/freetrial','contactsupport']),500)">Remove more
         than one topic</a><br><br>
 </div>
 <div class="demo-container"></div>
@@ -45,7 +45,7 @@
 <script type="application/json" data-o-contextual-help-config>
     {
         "helpTopics": [
-            "testcontent/contactsupport"
+            "contactsupport"
         ]
     }
 </script>

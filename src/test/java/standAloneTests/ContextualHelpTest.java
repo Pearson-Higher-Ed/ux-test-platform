@@ -98,6 +98,7 @@ public class ContextualHelpTest extends BaseClass {
     private void openThruAppHeaderModeTest(String appHeaderMode, String url) throws Exception {
         commonUtils.getUrl(url);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(1000);
         isConxHelpHeader = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpHeader);
         result = commonUtils.assertValue(isConxHelpHeader, true, " Contextual Help in AppHeader-" + appHeaderMode + " mode did NOT launch");
         Assert.assertTrue(result);
@@ -108,9 +109,11 @@ public class ContextualHelpTest extends BaseClass {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(1000);
 
         for (i = 1; i <= 4; i++) {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
+            System.out.println(xpathForHelpTopics);
             isHelpTopicPresent = commonUtils.isElementPresent(By.xpath(xpathForHelpTopics));
             result = commonUtils.assertValue(isHelpTopicPresent, true, "help topic " + i + " not displayed for Student");
             Assert.assertTrue(result);
@@ -129,6 +132,7 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.changeConfig(contextualHelpJSFilePath, initialConfig, testConfig);
         commonUtils.getUrl(contextualHelpUrl);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(1000);
 
         for (i = 1; i <= 3; i++) {
             xpathForHelpTopics = conxHelpPgObj.xpathForHelpTopics("topic" + i, i);
@@ -143,7 +147,10 @@ public class ContextualHelpTest extends BaseClass {
     private void verifyContextualHelpDrawerTest() throws Exception {
         int i;
         commonUtils.getUrl(contextualHelpUrl);
+        Thread.sleep(1000);
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(1000);
+
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         contextualHelpDrawerHeading = commonUtils.getText(conxHelpPgObj.contextualHelpHeader);
         isContextualHelpDrawerHeading = commonUtils.assertValue(contextualHelpDrawerHeading, "Help Topics", "contextual help header HEADING is not 'Help Topics'");
@@ -172,12 +179,15 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerCloseButton);
         isContextualHelpDrawerClose = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.contextualHelpDrawerClose);
         Assert.assertTrue(isContextualHelpDrawerClose);
+        Thread.sleep(500);
 
         //Test2 - Click 'X' button when user navigates into a help topic
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.helpTopicTitle);
+        Thread.sleep(500);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailVisible);
-        Thread.sleep(2000);
+        Thread.sleep(500);
         commonUtils.click(conxHelpPgObj.contextualHelpDrawerHelpTopicDetailCloseButton);
         isHelpContentTopicDetailVisible = commonUtils.isElementsVisibleOnPage(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertFalse(isHelpContentTopicDetailVisible);
@@ -248,10 +258,11 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(appHeaderPgObj.clickableHelpLink);
         Thread.sleep(500);
         commonUtils.click(elem);
+        Thread.sleep(500);
         helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle);
         helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText);
-        isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Test Contact Support", " HelpContentTopicDetailTitle is NOT correct");
-        isHelpContentTopicDetailText = commonUtils.assertValue(helpContentTopicDetailText, "Thank you for stopping by! Having trouble? Please Contact Us Now . If there's an answer you'd like to see listed in our Help menu, tell us! We're here to listen and make Help and Support yours.", " HelpContentTopicDetailText is NOT correct");
+        isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Having trouble or need support?", " HelpContentTopicDetailTitle is NOT correct");
+        isHelpContentTopicDetailText = commonUtils.assertValue(helpContentTopicDetailText, "Check out Pearson Support for popular topics or contact information.", " HelpContentTopicDetailText is NOT correct");
         Assert.assertTrue(isHelpContentTopicDetailTitle && isHelpContentTopicDetailText);
     }
 
@@ -289,6 +300,7 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(conxHelpPgObj.backToHelpTopicsButton);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
+        Thread.sleep(1000);
 
         for (i = 1; i <= 4; i++) { //Iterating it 4 times because there are 4 help topics. They should be displayed.
             xpathForHelpTopicsTitle = conxHelpPgObj.xpathForHelpTopicsTitle("item" + i, i);
@@ -308,6 +320,7 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(conxHelpPgObj.removeAllTopicsAndSetLanguageAndAddtopicsAndOpen);
         isContextualHelpDrawerOpen = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerOpen);
         Assert.assertTrue(isContextualHelpDrawerOpen);
+        Thread.sleep(500);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpTopics);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
         iscontextualHelpDrawerCloseIcon = commonUtils.isElementPresent(conxHelpPgObj.contextualHelpDrawerCloseIcon);
@@ -564,6 +577,7 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.keyOperationOnActiveElement(Keys.ENTER);
         isHelpContentTopicDetailVisible = commonUtils.isElementPresent(conxHelpPgObj.helpContentTopicDetailReopen);
         Assert.assertTrue(isHelpContentTopicDetailVisible);
+        Thread.sleep(1000);
 
         //2. Tab through to see if the focus is trapped in the help topic detail
         while (i <= 6) {
@@ -1109,8 +1123,8 @@ public class ContextualHelpTest extends BaseClass {
         commonUtils.click(elem, "mobile");
         helpContentTopicDetail = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailTitle, "mobile");
         helpContentTopicDetailText = commonUtils.getText(conxHelpPgObj.helpContentTopicDetailText, "mobile");
-        isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Test Contact Support", " HelpContentTopicDetailTitle is NOT correct");
-        isHelpContentTopicDetailText = commonUtils.assertValue(helpContentTopicDetailText, "Thank you for stopping by! Having trouble? Please Contact Us Now . If there's an answer you'd like to see listed in our Help menu, tell us! We're here to listen and make Help and Support yours.", " HelpContentTopicDetailText is NOT correct");
+        isHelpContentTopicDetailTitle = commonUtils.assertValue(helpContentTopicDetail, "Having trouble or need support?", " HelpContentTopicDetailTitle is NOT correct");
+        isHelpContentTopicDetailText = commonUtils.assertValue(helpContentTopicDetailText, "Check out Pearson Support for popular topics or contact information.", " HelpContentTopicDetailText is NOT correct");
         Assert.assertTrue(isHelpContentTopicDetailTitle && isHelpContentTopicDetailText);
     }
 
