@@ -15,8 +15,8 @@
         git checkout branch-name
         npm install
         npm run build
-        cp build/dist.compounds.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
-        cp build/eventInstantiator.compounds.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+        cp build/dist.elements-sdk.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
+        cp build/eventInstantiator.elements-sdk.js /ux-test-platform/src/main/java/elementsSDK/functional/jsfiles/
         cp build/css/elements.css /ux-test-platform/src/main/java/elementsSDK/css/</pre>
     </details>
 	<details><summary>:point_right: standAlone:</summary>
