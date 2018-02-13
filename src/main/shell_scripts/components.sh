@@ -198,11 +198,10 @@ cd coach-mark
 git checkout $1
 npm install &>/dev/null
 npm run build &>/dev/null
-cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dist.coach-mark.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
-cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/dev.coach-mark.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
-cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/fonts $UX_TEST_PLATFORM_ROOT_DIR/
-cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/icons $UX_TEST_PLATFORM_ROOT_DIR/
-cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/pearson-elements/dist/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/coachMark/
+cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/build/eventInterface.coach-mark.js $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/jsfiles/coachMark/
+cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/@pearson-components/elements-sdk/build/fonts $UX_TEST_PLATFORM_ROOT_DIR/
+cp -R $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/@pearson-components/elements-sdk/build/icons $UX_TEST_PLATFORM_ROOT_DIR/
+cp $UX_TEST_PLATFORM_ROOT_DIR/coach-mark/node_modules/@pearson-components/elements-sdk/build/css/elements.css $UX_TEST_PLATFORM_ROOT_DIR/src/main/java/standAlone/css/coachMark/
 }
 
 # Below conditions are to install the components specific to its feature branch.

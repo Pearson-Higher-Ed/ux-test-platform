@@ -16,8 +16,8 @@ public class CoachMarkPageObjects {
     }
 
     public By coachMark = By.xpath("//*[@id='unique']/div");
-    public By title = By.xpath("//*[@id='unique']/div/div/div/div");
-    public By message = By.xpath("//*[@id='unique']/div/div/div/p");
+    public By title = By.xpath("//*[@id='unique']/div/div/div");
+    public By message = By.xpath("//*[@id='unique']/div/div/p");
     public By xIcon = By.xpath("//*[@id='unique']/div/button");
     public By svg = By.cssSelector("#unique > div > button > svg");
     public By dismissalLink = By.xpath("//*[@id='unique']/div/div/button");
