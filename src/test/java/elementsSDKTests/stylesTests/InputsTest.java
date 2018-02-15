@@ -1443,6 +1443,12 @@ public class InputsTest extends BaseClass {
             Assert.assertTrue(isBorderWidth);
         }
 
+        for (int i = 0; i < borderRadii.length; i++) {
+            borderRadius = commonUtils.getCSSValue(element, borderRadii[i]);
+            isBorderRadius = commonUtils.assertValue(borderRadius, "3px", borderRadii[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderRadius);
+        }
+
         for (String cssProperty : borderColors) {
             borderColor = commonUtils.getCSSValue(element, cssProperty);
             isBorderColor = commonUtils.assertCSSProperties(cssProperty, borderColor, expBorderColor);
@@ -2085,6 +2091,12 @@ public class InputsTest extends BaseClass {
             borderWidth = commonUtils.getCSSValue(element, borderWidths[i], "mobile");
             isBorderWidth = commonUtils.assertValue(borderWidth, expBorderWidth[i], borderWidths[i] + " for MultiLine Text is not as per the spec");
             Assert.assertTrue(isBorderWidth);
+        }
+
+        for (int i = 0; i < borderRadii.length; i++) {
+            borderRadius = commonUtils.getCSSValue(element, borderRadii[i],"mobile");
+            isBorderRadius = commonUtils.assertValue(borderRadius, "3px", borderRadii[i] + " for MultiLine Text is not as per the spec");
+            Assert.assertTrue(isBorderRadius);
         }
 
         for (String cssProperty : borderColors) {
