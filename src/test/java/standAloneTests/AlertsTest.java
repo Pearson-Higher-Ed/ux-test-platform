@@ -213,16 +213,15 @@ public class AlertsTest extends BaseClass {
     @DataProvider(name = "Icon Properties Test Data")
     public Object[][] getIconPropsTestData() {
         return new Object[][]{
-                {alertsPgObj.successAlertBtn, "Success", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")}, "6px", new String[]{"block", "inline"}, "pe-icon--check-lg-18"},
-                {alertsPgObj.errorAlertBtn, "Error", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, "9px", new String[]{"block", "inline"}, "pe-icon--warning-18"},
+                {alertsPgObj.successAlertBtn, "Success", new String[]{commonUtils.hex2RgbWithoutTransparency("#19a5a3"), commonUtils.hex2Rgb("#19a5a3")},new String[]{"block", "inline"}, "pe-icon--check-lg-18"},
+                {alertsPgObj.errorAlertBtn, "Error", new String[]{commonUtils.hex2RgbWithoutTransparency("#db0020"), commonUtils.hex2Rgb("#db0020")}, new String[]{"block", "inline"}, "pe-icon--warning-18"},
         };
     }
 
     @Test(testName = "Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"desktop-regression"})
-    private void iconPropertiesTest(By button, String alertType, String[] expColor, String expMarginTop, String[] expDisplay, String expClassName) {
+    private void iconPropertiesTest(By button, String alertType, String[] expColor,String[] expDisplay, String expClassName) {
         commonUtils.click(button);
         color = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "color");
-        marginTop = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "margin-top");
         display = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "display");
         className = commonUtils.getAttributeValue(By.cssSelector(alertsPgObj.alertSVGIcon(alertType)), "class");
 
@@ -230,13 +229,12 @@ public class AlertsTest extends BaseClass {
         if (!isColor) {
             log.info("color of icon for " + alertType + " is not as per spec, actual " + color);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top of icon for " + alertType + " is not as per spec");
         isDisplay = commonUtils.assertCSSProperties("display", display, expDisplay);
         if (!isDisplay) {
             log.info("display of icon for " + alertType + " is not as per spec, actual " + display);
         }
         isClassName = commonUtils.assertValue(className, expClassName, "Class Name for icon " + alertType + " is not as per spec");
-        Assert.assertTrue(isColor && isMarginTop && isDisplay && isClassName);
+        Assert.assertTrue(isColor && isDisplay && isClassName);
     }
 
     @DataProvider(name = "Generate Multiple alerts Test Data")
@@ -280,7 +278,7 @@ public class AlertsTest extends BaseClass {
 
     @Test(testName = "Padding for Alerts Responsive Test", dataProvider = "Padding for Alerts Responsive Test Data", groups = {"desktop-regression"})
     private void paddingForAlertsResponsiveTest(int screenWidth, int height, String expMarginTop, String expPadTop, String expPadRight, String expPadBtm, String expPadLeft, String device, ScreenOrientation mode) {
-        if (!platform.equals("OS X 10.11")) {
+        if (platform.contains("Windows")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
         }
         commonUtils.setWindowSize(screenWidth, height);
@@ -313,7 +311,7 @@ public class AlertsTest extends BaseClass {
 
     @Test(testName = "Width and padding left Alert List Test", dataProvider = "Width and Paddings Alert List Responsive Test Data", groups = {"desktop-regression"})
     private void widthPaddingLeftResponsiveTest(int screenWidth, int height, String[] expWidth, String expPaddingLeft, String expPaddingRight, String device, ScreenOrientation mode) {
-        if (!platform.equals("OS X 10.11")) {
+        if (platform.contains("Windows")) {
             throw new SkipException("Responsive tests are not supported on Windows in sauce");
         }
         commonUtils.setWindowSize(screenWidth, height);
@@ -451,22 +449,20 @@ public class AlertsTest extends BaseClass {
     }
 
     @Test(testName = "Mobile : Icon Properties Test", dataProvider = "Icon Properties Test Data", groups = {"mobile-regression"})
-    private void iconPropertiesMobileTest(By button, String alertType, String[] expColor, String expMarginTop, String[] expDisplay, String expClassName) {
+    private void iconPropertiesMobileTest(By button, String alertType, String[] expColor, String[] expDisplay, String expClassName) {
         commonUtils.clickUsingJS(button, "mobile");
         color = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "color", "mobile");
-        marginTop = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "margin-top", "mobile");
         display = commonUtils.getCSSValue(By.xpath(alertsPgObj.xpathForAlertSVG(alertType)), "display", "mobile");
 
         isColor = commonUtils.assertCSSProperties("color", color, expColor);
         if (!isTextFontColor) {
             log.info("color of icon for " + alertType + " is not as per spec, actual " + color);
         }
-        isMarginTop = commonUtils.assertValue(marginTop, expMarginTop, "Margin top of icon for " + alertType + " is not as per spec");
         isDisplay = commonUtils.assertCSSProperties("display", display, expDisplay);
         if (!isDisplay) {
             log.info("display of icon for " + alertType + " is not as per spec, actual " + display);
         }
-        Assert.assertTrue(isColor && isMarginTop && isDisplay);
+        Assert.assertTrue(isColor && isDisplay);
     }
 
     @Test(testName = "Mobile : Generate Multiple alerts", dataProvider = "Generate Multiple alerts Test Data", groups = "mobile-regression")
