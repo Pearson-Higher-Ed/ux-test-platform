@@ -282,7 +282,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -292,11 +291,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col2 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width of contentArea" + i + " of small grid col2 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -325,7 +320,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -335,11 +329,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col3 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + "of contentArea" + i + " of small grid col3 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -368,7 +358,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -378,11 +367,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col4 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col4 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -400,7 +385,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -410,11 +394,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of large grid col2 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + "of contentArea" + i + " of large grid col2 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -431,7 +411,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -441,11 +420,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of large grid col3 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col3 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -463,7 +438,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -473,11 +447,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of large grid col4 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + "of contentArea" + i + " of large grid col4 is not as spec exp :" + expColWidth + " act: " + colWidth);
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -833,7 +803,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small2col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -843,11 +812,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col2 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col2 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -880,7 +845,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small3col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -890,11 +854,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col3 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of small grid col3 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -928,7 +888,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-small4col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "5px"});
             if (!ispaddingLeft) {
@@ -938,11 +897,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of small grid col4 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + "of small grid col4 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -968,7 +923,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large2col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -978,11 +932,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding" + paddingRight + " of contentArea" + i + " of large grid col2 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col2 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -1007,7 +957,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large3col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -1017,11 +966,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding of contentArea" + i + " of large grid col3 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col3 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
@@ -1046,7 +991,6 @@ public class PresentationStrategyTest extends BaseClass {
         for (int i = 1; i <= 12; i++) {
             paddingLeft = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-left", "mobile");
             paddingRight = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "padding-right", "mobile");
-            colWidth = commonUtils.getCSSValue(By.id("grid-large4col-element" + i), "width", "mobile");
 
             ispaddingLeft = commonUtils.assertCSSProperties("padding-left", paddingLeft, new String[]{"0px", "10px"});
             if (!ispaddingLeft) {
@@ -1056,11 +1000,7 @@ public class PresentationStrategyTest extends BaseClass {
             if (!ispaddingRight) {
                 log.info("right padding" + paddingRight + "of contentArea" + i + " of large grid col4 is not as per specs");
             }
-            isColWidth = commonUtils.assertCSSProperties("width", colWidth, expColWidth);
-            if (!isColWidth) {
-                log.info("col-width" + colWidth + " of contentArea" + i + " of large grid col4 is not as spec");
-            }
-            Assert.assertTrue(ispaddingLeft && ispaddingRight && isColWidth);
+            Assert.assertTrue(ispaddingLeft && ispaddingRight);
         }
         Assert.assertTrue(isMarginLeft && isMarginRight);
     }
