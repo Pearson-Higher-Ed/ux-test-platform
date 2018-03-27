@@ -3,62 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../css/drawer/elements.css"/>
     <title></title>
 </head>
 <body>
+<div id="drawer-target"/>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+<script src="../../jsfiles/drawer/eventInterface.drawer.js"></script>
 <script src="../../jsfiles/drawer/dist.drawer.js"></script>
 <script src="../../jsfiles/drawer/drawer.js"></script>
-
-<!-- Drawers -->
-<div data-o-component="o-drawer" id="left-drawer-demo" class="o-drawer-animated o-drawer o-drawer-left">
-    <button type="button" id="close-link-in-left-drawer" data-target="#left-drawer-demo" data-close="o-drawer">close</button>
-    <h2>Hello Left Drawer</h2>
-    <p>Drawer stuffs... just a Drawer, being a Drawer, doing Drawer things. <a id="random-link-in-left-drawer" href="#foo">Random link</a> and many other things.</p>
-    <label for="focusables-input-in-left-drawer" style="display:block;">Bar: </label><input type="text" id="focusables-input-in-left-drawer" value="focusables">
-</div>
-
-<div data-o-component="o-drawer" id="other-left-drawer-demo" class="o-drawer-animated">
-    <a href="#other-left-drawer-demo" data-toggle="o-drawer">close</a><br/>
-    Other Left Drawer
-</div>
-
-<div data-o-component="o-drawer" id="right-drawer-demo" class="o-drawer-right o-drawer-animated o-drawer">
-    <button type="button" id="close-link-in-right-drawer" data-target="#right-drawer-demo" data-close="o-drawer">close</button>
-    <h2>Hello Right Drawer</h2>
-    <p>Drawer stuffs... just a Drawer, being a Drawer, doing Drawer things. <a id="random-link-in-right-drawer" href="#foo">Random link</a> and many other things.</p>
-
-    <label for="focusables-input-in-right-drawer" style="display:block;">Bar: </label><input type="text" id="focusables-input-in-right-drawer" value="focusables">
-</div>
-
-<div data-o-component="o-drawer" id="other-right-drawer-demo" class="o-drawer-right o-drawer-animated">
-    <a href="#other-right-drawer-demo" data-toggle="o-drawer">close</a><br/>
-    Other Right Drawer
-</div>
-
-<div data-o-component="o-drawer" id="drawer-example" class="o-drawer-right o-drawer-animated">
-    Using data-target instead of href.
-</div>
-
-<!-- Links to Trigger Drawers -->
-<div style="width: 260px; margin: 0px auto;">
-    <h1 style="color: peru;position:relative">Drawer Component</h1>
-    <a id="toggle-left-drawer" href="#left-drawer-demo" data-toggle="o-drawer">Toggle Left Drawer</a><br><br>
-    <a id="toggle-right-drawer" href="#right-drawer-demo" data-toggle="o-drawer">Toggle Right Drawer</a><br><br>
-
-    <a id="open-left-drawer" href="#left-drawer-demo" data-open="o-drawer">Open Left Drawer</a><br>
-    <a id="other-left-drawer" href="#other-left-drawer-demo" data-toggle="o-drawer" style="color: red;">Other Left drawer</a><br><br>
-
-    <a id="open-right-drawer" href="#right-drawer-demo" data-open="o-drawer">Open Right Drawer</a><br>
-    <a id="other-right-drawer" href="#other-right-drawer-demo" data-toggle="o-drawer" style="color:red;">Other Right drawer</a><br><br>
-
-    <a id="close-left-drawer" href="#left-drawer-demo" data-close="o-drawer">Close Left Drawer</a><br><br>
-    <a id="close-right-drawer" href="#right-drawer-demo" data-close="o-drawer">Close Right Drawer</a><br><br>
-
-    <button data-target="#drawer-example" data-toggle="o-drawer">Button trigger</button><br><br>
-
-    <label id="toggleStatusText" style="color:green">Drawer Toggle Status</label><br><br>
-</div>
 
 </body>
 </html>
