@@ -7,7 +7,7 @@ function init() {
                 drawerTop: "61px",
                 handleHelp: function () {
                 },
-                language: 'en-us',
+                language: 'fr',
                 showHelp: true,
                 text: {
                     backButton: 'Back',
@@ -16,8 +16,10 @@ function init() {
                 },
                 topics: [
                     'console/student/freetrial',
-                    'pi/forgot_creds/next',
-                    'contactsupport'
+                    //'pi/forgot_creds/next',
+                    'contactsupport',
+                    'console/instructor/courseregsettings',
+                    'custom/text/demo/example'
                 ]
             }
         }
