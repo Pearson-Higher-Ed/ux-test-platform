@@ -22,40 +22,46 @@
     pe_ajax.send();
 </script>
 
-<div style="position: relative;top: 100px;">
-    <h2 style="color:peru">Contextual Help Test</h2>
-    <label id="demo" style="color:green">Drawer Toggle Status</label><br><br>
-    <a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('console/student/freetrial')">Open Specific
-        Article(FreeTrial)</a><br><br>
-    <a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help
-        topics</a><br><br>
-    <a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('console/student/freetrial',500)">Remove
-        one topic</a><br><br>
-    <a id="openAndThenRemoveMoreThanOneTopic" href="#"
-       onclick="openThenRemoveTopics((['console/student/freetrial','contactsupport']),500)">Remove more
-        than one topic</a><br><br>
-    <a id="removeAllTopicsAndSetLanguageAndAddtopicsAndOpen" href="#" onclick="setLanguageThenOpen()">Remove all topics,
-        setLanguage('fr'), add topics, open drawer</a><br><br>
-    <a id="testAccordianContent" href="#" onclick="testAccordion()">Test Accordion Content</a><br><br>
-    <button id="toggleHelpDrawer" type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer">Toggle
-        Help Drawer (direct)
-    </button>
-</div>
-<div class="demo-container"></div>
+<!--<div style="position: relative;top: 100px;">-->
+    <!--<h2 style="color:peru">Contextual Help Test</h2>-->
+    <!--<label id="demo" style="color:green">Drawer Toggle Status</label><br><br>-->
+    <!--<a id="openSpecificHelpTopic" href="#" onclick="openSpecificArticle('console/student/freetrial')">Open Specific-->
+        <!--Article(FreeTrial)</a><br><br>-->
+    <!--<a id="openAndThenRemoveAllHelpTopics" href="#" onclick="openThenRemoveAllTopics()">Open and Then Remove all help-->
+        <!--topics</a><br><br>-->
+    <!--<a id="openAndThenRemoveOneTopic" href="#" onclick="openThenRemoveTopics('console/student/freetrial',500)">Remove-->
+        <!--one topic</a><br><br>-->
+    <!--<a id="openAndThenRemoveMoreThanOneTopic" href="#"-->
+       <!--onclick="openThenRemoveTopics((['console/student/freetrial','contactsupport']),500)">Remove more-->
+        <!--than one topic</a><br><br>-->
+    <!--<a id="removeAllTopicsAndSetLanguageAndAddtopicsAndOpen" href="#" onclick="setLanguageThenOpen()">Remove all topics,-->
+        <!--setLanguage('fr'), add topics, open drawer</a><br><br>-->
+    <!--<a id="testAccordianContent" href="#" onclick="testAccordion()">Test Accordion Content</a><br><br>-->
+    <!--<button id="toggleHelpDrawer" type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer">Toggle-->
+        <!--Help Drawer (direct)-->
+    <!--</button>-->
+<!--</div> -->
+<!--<div class="demo-container"></div> -->
 
+<div class="demo-container"></div>
+<div id ="contextual-help-target"></div>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 
 <script src="../../jsfiles/appHeader/dist.app-header.js"></script>
 <script src="../../jsfiles/contextualHelp/dist.contextual-help.js"></script>
-<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+<script src="../../jsfiles/contextualHelp/eventInterface.contextual-help.js"></script>
 <script type="text/javascript" src="../../jsfiles/appHeader/basic.js"></script>
 <script type="text/javascript" src="../../jsfiles/contextualHelp/contextual-help.js"></script>
 
-<script type="application/json" data-o-contextual-help-config>
-    {
-        "helpTopics": [
-            "contactsupport"
-        ]
-    }
-</script>
+<!--<script type="application/json" data-o-contextual-help-config>-->
+    <!--{-->
+        <!--"helpTopics": [-->
+            <!--"contactsupport"-->
+        <!--]-->
+    <!--}
+</script>-->
 </body>
 </html>

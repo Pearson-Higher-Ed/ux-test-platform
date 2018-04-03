@@ -26,3 +26,56 @@ function init() {
     }));
 }
 window.onload = init;
+
+
+/*
+let conHelpProps = {
+    directTopic: undefined,
+    drawerTop: "61px",
+    handleHelp: function () {},
+    language: 'en-us',
+    showHelp: false,
+    text: {
+        backButton: 'Back',
+        closeButton: 'Close',
+        headerTitle: 'Help Topics'
+    },
+    topics: [
+        'console/student/freetrial',
+        'pi/forgot_creds/next',
+        'contactsupport'
+    ]
+}
+function init() {
+    document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
+        detail: {
+            elementId: 'contextual-help-target',
+            props: conHelpProps
+        }
+    }));
+    const jumpToTopicButton = document.createElement('button');
+    jumpToTopicButton.innerText = 'Direct Topic';
+    jumpToTopicButton.onclick = function() {
+        conHelpProps.directTopic = 'contactsupport';
+        conHelpProps.showHelp = true;
+        conHelpProps.handleHelp = () => {
+            conHelpProps.directTopic = undefined;
+            conHelpProps.showHelp = false;
+            document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
+                detail: {
+                    elementId: 'contextual-help-target',
+                    props: conHelpProps
+                }
+            }));
+        }
+        document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
+            detail: {
+                elementId: 'contextual-help-target',
+                props: conHelpProps
+            }
+        }));
+    }
+    document.body.appendChild(jumpToTopicButton);
+}
+window.onload = init;
+*/
